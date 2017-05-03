@@ -1,0 +1,92 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MongoPool::getSize</h1>
+  <p class="verinfo">(PECL mongo &gt;= 1.2.3)</p><p class="refpurpose"><span class="refname">MongoPool::getSize</span> &#x2014; <span class="dc-title">Get pool size for connection pools</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongopool.getsize-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="type">int</span> <span class="methodname"><strong>MongoPool::getSize</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongopool.getsize-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongopool.getsize-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the current pool size.
+  </p>
+ </div>
+
+ <div class="refsect1 changelog" id="refsect1-mongopool.getsize-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.2.11</td>
+       <td>Emits <strong><code>E_DEPRECATED</code></strong> when used.</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongopool.getsize-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1639">
+   <p><strong>Example #1 Changing pool size</strong></p>
+   <div class="example-contents"><p>
+    This returns the default pool size, sets a new pool size, then prints the
+    new pool size and the pool debugging information.  Note that changing the
+    pool size only affects new connection pools, it does not change old ones.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$connection&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Mongo</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;host1&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;pool&#xA0;size&#xA0;is&#xA0;-1<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;pool&#xA0;size&#xA0;is:&#xA0;&quot;</span><span style="color: #007700">.</span><span style="color: #0000BB">MongoPool</span><span style="color: #007700">::</span><span style="color: #0000BB">getSize</span><span style="color: #007700">().</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;setting&#xA0;pool&#xA0;size&#xA0;to&#xA0;200\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">MongoPool</span><span style="color: #007700">::</span><span style="color: #0000BB">setSize</span><span style="color: #007700">(</span><span style="color: #0000BB">200</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;pool&#xA0;size&#xA0;is&#xA0;200<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;pool&#xA0;size&#xA0;is:&#xA0;&quot;</span><span style="color: #007700">.</span><span style="color: #0000BB">MongoPool</span><span style="color: #007700">::</span><span style="color: #0000BB">getSize</span><span style="color: #007700">().</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$conn2&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Mongo</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;host2&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;remaining&#xA0;for&#xA0;host1&#xA0;is&#xA0;-2<br>//&#xA0;remaining&#xA0;for&#xA0;host2&#xA0;is&#xA0;199<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">Mongo</span><span style="color: #007700">::</span><span style="color: #0000BB">poolDebug</span><span style="color: #007700">());<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mongopool.getsize-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mongopool.setsize.html" class="function" rel="rdfs-seeAlso">MongoPool::setSize()</a> - Set the size for future connection pools.</span></li>
+    <li class="member"><span class="function"><a href="mongopool.info.html" class="function" rel="rdfs-seeAlso">MongoPool::info()</a> - Returns information about all connection pools.</span></li>
+    <li class="member">The <a href="mongo.connecting.html" class="link">connection</a> documentation.</li>
+   </ul>
+  </p>
+ </div>
+
+

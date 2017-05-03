@@ -1,0 +1,187 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">expect_expectl</h1>
+  <p class="verinfo">(PECL expect &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">expect_expectl</span> &#x2014; <span class="dc-title">Waits until the output from a process matches one
+  of the patterns, a specified time period has passed, or an <acronym title="End Of File">EOF</acronym> is seen
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.expect-expectl-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>expect_expectl</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$expect</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$cases</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter reference">&amp;$match</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Waits until the output from a process matches one of the patterns,
+   a specified time period has passed, or an <acronym title="End Of File">EOF</acronym> is seen.
+  </p>
+  <p class="para">
+   If <code class="parameter">match</code> is provided, then it is filled with the result of search.
+   The matched string can be found in <code class="parameter">match[0]</code>.
+   The match substrings (according to the parentheses) in the original pattern can be found
+   in <code class="parameter">match[1]</code>, <code class="parameter">match[2]</code>, and so
+   on, up to <code class="parameter">match[9]</code> (the limitation of libexpect).
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.expect-expectl-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">expect</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An Expect stream, previously opened with
+       <span class="function"><a href="function.expect-popen.html" class="function">expect_popen()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">cases</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An array of expect cases. Each expect case is an indexed array,
+       as described in the following table:
+       <table class="doctable table">
+        <caption><strong>Expect Case Array</strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Index Key</th>
+           <th>Value Type</th>
+           <th>Description</th>
+           <th>Is Mandatory</th>
+           <th>Default Value</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td>0</td>
+           <td>string</td>
+           <td>pattern, that will be matched against the output from the stream</td>
+           <td>yes</td>
+           <td class="empty">&#xA0;</td>
+          </tr>
+
+          <tr>
+           <td>1</td>
+           <td>mixed</td>
+           <td>value, that will be returned by this function, if the pattern matches</td>
+           <td>yes</td>
+           <td class="empty">&#xA0;</td>
+          </tr>
+
+          <tr>
+           <td>2</td>
+           <td>integer</td>
+           <td>
+            pattern type, one of:
+            <a href="expect.constants.html#constants.expect.exp-glob" class="link"><strong><code>EXP_GLOB</code></strong></a>,
+            <a href="expect.constants.html#constants.expect.exp-exact" class="link"><strong><code>EXP_EXACT</code></strong></a>
+            or
+            <a href="expect.constants.html#constants.expect.exp-regexp" class="link"><strong><code>EXP_REGEXP</code></strong></a>
+           </td>
+           <td>no</td>
+           <td><a href="expect.constants.html#constants.expect.exp-glob" class="link"><strong><code>EXP_GLOB</code></strong></a></td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.expect-expectl-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns value associated with the pattern that was matched.
+  </p>
+  <p class="para">
+   On failure this function returns:
+   <a href="expect.constants.html#constants.expect.exp-eof" class="link"><strong><code>EXP_EOF</code></strong></a>,
+   <a href="expect.constants.html#constants.expect.exp-timeout" class="link"><strong><code>EXP_TIMEOUT</code></strong></a>
+   or
+   <a href="expect.constants.html#constants.expect.exp-fullbuffer" class="link"><strong><code>EXP_FULLBUFFER</code></strong></a>
+  </p>
+ </div>
+
+ <div class="refsect1 changelog" id="refsect1-function.expect-expectl-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>0.2.1</td>
+       <td>
+       Prior to version 0.2.1, in <code class="parameter">match</code> parameter a match string was returned,
+       not an array of match substrings.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.expect-expectl-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4185">
+    <p><strong>Example #1 <span class="function"><strong>expect_expectl()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Copies&#xA0;file&#xA0;from&#xA0;remote&#xA0;host:<br></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;expect.timeout&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">30</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$stream&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;expect://scp&#xA0;user@remotehost:/var/log/messages&#xA0;/home/user/messages.txt&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;r&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$cases&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;array(pattern,&#xA0;value&#xA0;to&#xA0;return&#xA0;if&#xA0;pattern&#xA0;matched)<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">array(</span><span style="color: #DD0000">&quot;password:&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;asked&#xA0;for&#xA0;password&quot;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;array(</span><span style="color: #DD0000">&quot;yes/no)?&quot;</span><span style="color: #007700">,&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;asked&#xA0;for&#xA0;yes/no&quot;</span><span style="color: #007700">)<br>);<br><br>while&#xA0;(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;switch&#xA0;(</span><span style="color: #0000BB">expect_expectl</span><span style="color: #007700">(</span><span style="color: #0000BB">$stream</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$cases</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;case&#xA0;</span><span style="color: #DD0000">&quot;asked&#xA0;for&#xA0;password&quot;</span><span style="color: #007700">:<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$stream</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my&#xA0;password\n&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;break;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;case&#xA0;</span><span style="color: #DD0000">&quot;asked&#xA0;for&#xA0;yes/no&quot;</span><span style="color: #007700">:<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$stream</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;yes\n&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;break;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;case&#xA0;</span><span style="color: #0000BB">EXP_TIMEOUT</span><span style="color: #007700">:<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;case&#xA0;</span><span style="color: #0000BB">EXP_EOF</span><span style="color: #007700">:<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;break&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;break&#xA0;both&#xA0;the&#xA0;switch&#xA0;statement&#xA0;and&#xA0;the&#xA0;while&#xA0;loop<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">default:<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;die&#xA0;</span><span style="color: #DD0000">&quot;Error&#xA0;has&#xA0;occurred!&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$stream</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.expect-expectl-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.expect-popen.html" class="function" rel="rdfs-seeAlso">expect_popen()</a> - Execute command via Bourne shell, and open the PTY stream to
+  the process</span></li>
+   </ul>
+  </p>
+ </div>
+

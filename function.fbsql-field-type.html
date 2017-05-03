@@ -1,0 +1,97 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">fbsql_field_type</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">fbsql_field_type</span> &#x2014; <span class="dc-title">Get the type of the specified field in a result</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.fbsql-field-type-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>fbsql_field_type</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$result</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$field_offset</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>fbsql_field_type()</strong></span> is similar to the
+   <span class="function"><a href="function.fbsql-field-name.html" class="function">fbsql_field_name()</a></span> function, but the field type is
+   returned instead. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.fbsql-field-type-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+result</code></dt>
+<dd>
+<p class="para">A result identifier
+returned by <span class="function"><a href="function.fbsql-query.html" class="function">fbsql_query()</a></span> or
+<span class="function"><a href="function.fbsql-db-query.html" class="function">fbsql_db_query()</a></span>.</p></dd>
+
+    
+     <dt>
+<code class="parameter">field_offset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The numerical offset of the field. The field index starts at 0.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.fbsql-field-type-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the field type, as a string.
+  </p>
+  <p class="para">
+   This can be one of <em>int</em>, <em>real</em>,
+   <em>string</em>, <em>blob</em>, and others as detailed
+   in the <a href="http://www.frontbase.com/cgi-bin/WebObjects/FBWebSite.woa" class="link external">&#xBB;&#xA0;FrontBase documentation</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.fbsql-field-type-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-1217">
+    <p><strong>Example #1 <span class="function"><strong>fbsql_field_type()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>fbsql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;_SYSTEM&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">fbsql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;wisconsin&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fbsql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;onek;&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$fields&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fbsql_num_fields</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$rows&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fbsql_num_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$table&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fbsql_field_table</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Your&#xA0;&apos;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$table&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&apos;&#xA0;table&#xA0;has&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$fields&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;fields&#xA0;and&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$rows&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;records&#xA0;&lt;br&#xA0;/&gt;&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;table&#xA0;has&#xA0;the&#xA0;following&#xA0;fields&#xA0;&lt;br&#xA0;/&gt;&quot;</span><span style="color: #007700">;<br>while&#xA0;(</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">&lt;&#xA0;</span><span style="color: #0000BB">$fields</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$type&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fbsql_field_type</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$name&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fbsql_field_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$len&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fbsql_field_len</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$flags&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fbsql_field_flags</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$type&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$name&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$len&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$flags&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++;<br>}<br></span><span style="color: #0000BB">fbsql_close</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.fbsql-field-type-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.fbsql-field-name.html" class="function" rel="rdfs-seeAlso">fbsql_field_name()</a> - Get the name of the specified field in a result</span></li>
+   </ul>
+  </p>
+ </div>
+
+

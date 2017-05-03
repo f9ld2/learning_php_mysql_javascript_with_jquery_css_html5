@@ -1,0 +1,96 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">mysqli_result::$field_count</h1>
+  <h1 class="refname">mysqli_num_fields</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">mysqli_result::$field_count</span> -- <span class="refname">mysqli_num_fields</span> &#x2014; <span class="dc-title">Get the number of fields in a result</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli-result.field-count-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Object oriented style</p>
+  <div class="fieldsynopsis"><span class="type">int</span> <var class="varname"><a href="mysqli-result.field-count.html">$mysqli_result-&gt;field_count</a></var>;</div>
+
+  <p class="para">Procedural style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>mysqli_num_fields</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli-result.html" class="type mysqli_result">mysqli_result</a></span> <code class="parameter">$result</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the number of fields from specified result set.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli-result.field-count-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+result</code></dt>
+<dd>
+<p class="para">Procedural style only: A result set
+identifier returned by <span class="function"><a href="mysqli.query.html" class="function">mysqli_query()</a></span>, <span class="function"><a href="mysqli.store-result.html" class="function">mysqli_store_result()</a></span>
+or <span class="function"><a href="mysqli.use-result.html" class="function">mysqli_use_result()</a></span>.</p></dd>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli-result.field-count-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The number of fields from a result set.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli-result.field-count-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1917">
+   <p><strong>Example #1 Object oriented style</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;world&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;exit();<br>}<br><br>if&#xA0;(</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;City&#xA0;ORDER&#xA0;BY&#xA0;ID&#xA0;LIMIT&#xA0;1&quot;</span><span style="color: #007700">))&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;determine&#xA0;number&#xA0;of&#xA0;fields&#xA0;in&#xA0;result&#xA0;set&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$field_cnt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">field_count</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Result&#xA0;set&#xA0;has&#xA0;%d&#xA0;fields.\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$field_cnt</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;close&#xA0;result&#xA0;set&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;close&#xA0;connection&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-1918">
+   <p><strong>Example #2 Procedural style</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$link&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;world&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;exit();<br>}<br><br>if&#xA0;(</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;City&#xA0;ORDER&#xA0;BY&#xA0;ID&#xA0;LIMIT&#xA0;1&quot;</span><span style="color: #007700">))&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;determine&#xA0;number&#xA0;of&#xA0;fields&#xA0;in&#xA0;result&#xA0;set&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$field_cnt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysqli_num_fields</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Result&#xA0;set&#xA0;has&#xA0;%d&#xA0;fields.\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$field_cnt</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;close&#xA0;result&#xA0;set&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">mysqli_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;close&#xA0;connection&#xA0;*/<br></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above examples will output:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Result set has 5 fields.
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli-result.field-count-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mysqli-result.fetch-field.html" class="function" rel="rdfs-seeAlso">mysqli_fetch_field()</a> - Returns the next field in the result set</span></li>
+   </ul>
+  </p>
+ </div>
+
+

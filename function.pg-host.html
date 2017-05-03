@@ -1,0 +1,89 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">pg_host</h1> 
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">pg_host</span> &#x2014; <span class="dc-title">
+   Returns the host name associated with the connection
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.pg-host-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>pg_host</strong></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <code class="parameter">$connection</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>pg_host()</strong></span> returns the host name of the given
+   PostgreSQL <code class="parameter">connection</code> resource is
+   connected to.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.pg-host-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">connection</code></dt>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.  When 
+       <code class="parameter">connection</code> is not present, the default connection 
+       is used. The default connection is the last connection made by 
+       <span class="function"><a href="function.pg-connect.html" class="function">pg_connect()</a></span> or <span class="function"><a href="function.pg-pconnect.html" class="function">pg_pconnect()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.pg-host-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A <span class="type"><a href="language.types.string.html" class="type string">string</a></span> containing the name of the host the 
+   <code class="parameter">connection</code> is to, or <strong><code>FALSE</code></strong> on error.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.pg-host-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2325">
+    <p><strong>Example #1 <span class="function"><strong>pg_host()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$pgsql_conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;dbname=mark&#xA0;host=localhost&quot;</span><span style="color: #007700">);<br><br>if&#xA0;(</span><span style="color: #0000BB">$pgsql_conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;print&#xA0;</span><span style="color: #DD0000">&quot;Successfully&#xA0;connected&#xA0;to:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">pg_host</span><span style="color: #007700">(</span><span style="color: #0000BB">$pgsql_conn</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br/&gt;\n&quot;</span><span style="color: #007700">;<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;print&#xA0;</span><span style="color: #0000BB">pg_last_error</span><span style="color: #007700">(</span><span style="color: #0000BB">$pgsql_conn</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;exit;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.pg-host-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.pg-connect.html" class="function" rel="rdfs-seeAlso">pg_connect()</a> - Open a PostgreSQL connection</span></li>
+    <li class="member"><span class="function"><a href="function.pg-pconnect.html" class="function" rel="rdfs-seeAlso">pg_pconnect()</a> - Open a persistent PostgreSQL connection</span></li>
+   </ul>
+  </p>
+ </div>
+

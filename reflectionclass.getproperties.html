@@ -1,0 +1,111 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ReflectionClass::getProperties</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ReflectionClass::getProperties</span> &#x2014; <span class="dc-title">Gets properties</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-reflectionclass.getproperties-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">array</span> <span class="methodname"><strong>ReflectionClass::getProperties</strong></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$filter</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Retrieves reflected properties.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-reflectionclass.getproperties-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">filter</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The optional filter, for filtering desired property types. It&apos;s configured using
+       the <a href="class.reflectionproperty.html#reflectionproperty.constants.modifiers" class="link">ReflectionProperty constants</a>,
+       and defaults to all property types.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-reflectionclass.getproperties-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An array of <a href="class.reflectionproperty.html" class="classname">ReflectionProperty</a> objects.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-reflectionclass.getproperties-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-6051">
+   <p><strong>Example #1 <span class="function"><strong>ReflectionClass::getProperties()</strong></span> filtering example</strong></p>
+   <div class="example-contents"><p>
+    This example demonstrates usage of the optional <code class="parameter">filter</code>
+    parameter, where it essentially skips private properties.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Foo&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$foo&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;protected&#xA0;</span><span style="color: #0000BB">$bar&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$baz&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">$foo&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">$reflect&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ReflectionClass</span><span style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$props&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$reflect</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getProperties</span><span style="color: #007700">(</span><span style="color: #0000BB">ReflectionProperty</span><span style="color: #007700">::</span><span style="color: #0000BB">IS_PUBLIC&#xA0;</span><span style="color: #007700">|&#xA0;</span><span style="color: #0000BB">ReflectionProperty</span><span style="color: #007700">::</span><span style="color: #0000BB">IS_PROTECTED</span><span style="color: #007700">);<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$props&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$prop</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;print&#xA0;</span><span style="color: #0000BB">$prop</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getName</span><span style="color: #007700">()&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$props</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+foo
+bar
+array(2) {
+  [0]=&gt;
+  object(ReflectionProperty)#3 (2) {
+    [&quot;name&quot;]=&gt;
+    string(3) &quot;foo&quot;
+    [&quot;class&quot;]=&gt;
+    string(3) &quot;Foo&quot;
+  }
+  [1]=&gt;
+  object(ReflectionProperty)#4 (2) {
+    [&quot;name&quot;]=&gt;
+    string(3) &quot;bar&quot;
+    [&quot;class&quot;]=&gt;
+    string(3) &quot;Foo&quot;
+  }
+}
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-reflectionclass.getproperties-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="reflectionclass.getproperty.html" class="methodname" rel="rdfs-seeAlso">ReflectionClass::getProperty()</a> - Gets a ReflectionProperty for a class&apos;s property</span></li>
+    <li class="member"><a href="class.reflectionproperty.html" class="classname">ReflectionProperty</a></li>
+    <li class="member"><a href="class.reflectionproperty.html#reflectionproperty.constants.modifiers" class="link">ReflectionProperty modifier constants</a></li>
+   </ul>
+  </p>
+ </div>
+
+

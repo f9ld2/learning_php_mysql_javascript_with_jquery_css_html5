@@ -1,0 +1,168 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">mkdir</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">mkdir</span> &#x2014; <span class="dc-title">Makes directory</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.mkdir-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>mkdir</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$pathname</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code><span class="initializer"> = 0777</span></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$recursive</code><span class="initializer"> = false</span></span>
+   [, <span class="methodparam"><span class="type">resource</span> <code class="parameter">$context</code></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   Attempts to create the directory specified by pathname. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mkdir-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">pathname</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The directory path.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mode</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The mode is 0777 by default, which means the widest possible
+       access. For more information on modes, read the details
+       on the <span class="function"><a href="function.chmod.html" class="function">chmod()</a></span> page.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       </p><p class="para">
+        <code class="parameter">mode</code> is ignored on Windows.
+       </p>
+      </blockquote></dd></dl></p>
+      <p class="para">
+       Note that you probably want to specify the mode as an octal number,
+       which means it should have a leading zero. The mode is also modified
+       by the current umask, which you can change using
+       <span class="function"><a href="function.umask.html" class="function">umask()</a></span>.
+      </p>
+     
+
+    
+    
+     <dt>
+<code class="parameter">recursive</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Allows the creation of nested directories specified in the 
+       <code class="parameter">pathname</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">context</code></dt>
+
+     <dd>
+
+      <blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">Context support was added
+with PHP 5.0.0. For a description of <em>contexts</em>, refer to
+<a href="book.stream.html" class="xref">Streams</a>.</span></p></blockquote>
+     </dd>
+
+    
+   
+
+  <p></p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mkdir-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mkdir-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2666">
+    <p><strong>Example #1 <span class="function"><strong>mkdir()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>mkdir</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;/path/to/my/dir&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0700</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2667">
+    <p><strong>Example #2 <span class="function"><strong>mkdir()</strong></span> using the <code class="parameter">recursive</code> parameter</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Desired&#xA0;folder&#xA0;structure<br></span><span style="color: #0000BB">$structure&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;./depth1/depth2/depth3/&apos;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;To&#xA0;create&#xA0;the&#xA0;nested&#xA0;structure,&#xA0;the&#xA0;$recursive&#xA0;parameter&#xA0;<br>//&#xA0;to&#xA0;mkdir()&#xA0;must&#xA0;be&#xA0;specified.<br><br></span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">mkdir</span><span style="color: #007700">(</span><span style="color: #0000BB">$structure</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0777</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;die(</span><span style="color: #DD0000">&apos;Failed&#xA0;to&#xA0;create&#xA0;folders...&apos;</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #FF8000">//&#xA0;...<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-function.mkdir-errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Emits an <strong><code>E_WARNING</code></strong> level error if the directory
+   already exists.
+  </p>
+  <p class="para">
+   Emits an <strong><code>E_WARNING</code></strong> level error if the relevant
+   permissions prevent creating the directory.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.mkdir-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">When <a href="features.safe-mode.html" class="link">safe mode</a> is enabled, PHP checks whether
+the directory in which the script is operating has the same UID (owner) as the
+script that is being executed.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mkdir-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.is-dir.html" class="function" rel="rdfs-seeAlso">is_dir()</a> - Tells whether the filename is a directory</span></li>    
+    <li class="member"><span class="function"><a href="function.rmdir.html" class="function" rel="rdfs-seeAlso">rmdir()</a> - Removes directory</span></li>
+   </ul>
+  </p>
+ </div>
+
+

@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ifx_htmltbl_result</h1>
+  <p class="verinfo">(PHP 4, PHP &lt;=5.2.0)</p><p class="refpurpose"><span class="refname">ifx_htmltbl_result</span> &#x2014; <span class="dc-title">Formats all rows of a query into a HTML table</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.ifx-htmltbl-result-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>ifx_htmltbl_result</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$result_id</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$html_table_options</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Formats and prints all rows of the <code class="parameter">result_id</code> query
+   into a HTML table. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ifx-htmltbl-result-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">result_id</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">result_id</code> is a valid resultid returned by
+       <span class="function"><a href="function.ifx-query.html" class="function">ifx_query()</a></span> or
+       <span class="function"><a href="function.ifx-prepare.html" class="function">ifx_prepare()</a></span> (select type queries only!).
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">html_table_options</code></dt>
+
+     <dd>
+
+      <p class="para">
+       This optional argument is a string of &lt;table&gt; tag options.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ifx-htmltbl-result-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of fetched rows, or <strong><code>FALSE</code></strong> on errors.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ifx-htmltbl-result-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-1290">
+    <p><strong>Example #1 Informix results as HTML table</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$rid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ifx_prepare&#xA0;</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;select&#xA0;*&#xA0;from&#xA0;emp&#xA0;where&#xA0;name&#xA0;like&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$name</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$connid</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">IFX_SCROLL</span><span style="color: #007700">);<br>if&#xA0;(!&#xA0;</span><span style="color: #0000BB">$rid</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;...&#xA0;error&#xA0;...&#xA0;*/<br></span><span style="color: #007700">}<br></span><span style="color: #0000BB">$rowcount&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ifx_affected_rows&#xA0;</span><span style="color: #007700">(</span><span style="color: #0000BB">$rid</span><span style="color: #007700">);<br>if&#xA0;(</span><span style="color: #0000BB">$rowcount&#xA0;</span><span style="color: #007700">&gt;&#xA0;</span><span style="color: #0000BB">1000</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf&#xA0;</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Too&#xA0;many&#xA0;rows&#xA0;in&#xA0;result&#xA0;set&#xA0;(%d)\n&lt;br&#xA0;/&gt;&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$rowcount</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;die&#xA0;(</span><span style="color: #DD0000">&quot;Please&#xA0;restrict&#xA0;your&#xA0;query&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">);<br>}<br>if&#xA0;(!&#xA0;</span><span style="color: #0000BB">ifx_do</span><span style="color: #007700">(</span><span style="color: #0000BB">$rid</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;...&#xA0;error&#xA0;...&#xA0;*/<br></span><span style="color: #007700">}<br><br></span><span style="color: #0000BB">ifx_htmltbl_result&#xA0;</span><span style="color: #007700">(</span><span style="color: #0000BB">$rid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;border=\&quot;2\&quot;&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">ifx_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$rid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+

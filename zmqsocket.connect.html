@@ -1,0 +1,89 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ZMQSocket::connect</h1>
+  <p class="verinfo">(PECL zmq &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">ZMQSocket::connect</span> &#x2014; <span class="dc-title">Connect the socket</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-zmqsocket.connect-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="class.zmqsocket.html" class="type ZMQSocket">ZMQSocket</a></span> <span class="methodname"><strong>ZMQSocket::connect</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$dsn</code></span>
+   [, <span class="methodparam"><span class="type">boolean</span> <code class="parameter">$force</code><span class="initializer"> = false</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Connect the socket to a remote endpoint. The endpoint is defined in format <em>transport://address</em> where 
+   transport is one of the following: inproc, ipc, tcp, pgm or epgm.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-zmqsocket.connect-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">dsn</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The connect dsn, for example <em>transport://address</em>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">force</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Tries to connect even if the socket has already been connected to given endpoint.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-zmqsocket.connect-examples">
+ <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-5252">
+    <p><strong>Example #1 A <span class="function"><strong>ZMQContext()</strong></span> example</strong></p>
+    <div class="example-contents"><p>
+     Construct a new context and allocate request socket from it
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;Server&#xA0;hostname&#xA0;*/<br></span><span style="color: #0000BB">$dsn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;tcp://127.0.0.1:5555&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">/*&#xA0;Create&#xA0;a&#xA0;socket&#xA0;*/<br></span><span style="color: #0000BB">$socket&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ZMQSocket</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">ZMQContext</span><span style="color: #007700">(),&#xA0;</span><span style="color: #0000BB">ZMQ</span><span style="color: #007700">::</span><span style="color: #0000BB">SOCKET_REQ</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;my&#xA0;socket&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Get&#xA0;list&#xA0;of&#xA0;connected&#xA0;endpoints&#xA0;*/<br></span><span style="color: #0000BB">$endpoints&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$socket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getEndpoints</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">/*&#xA0;Check&#xA0;if&#xA0;the&#xA0;socket&#xA0;is&#xA0;connected&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">in_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$dsn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$endpoints</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;connect&apos;</span><span style="color: #007700">]))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;p&gt;Connecting&#xA0;to&#xA0;</span><span style="color: #0000BB">$dsn</span><span style="color: #DD0000">&lt;/p&gt;&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$socket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$dsn</span><span style="color: #007700">);<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;p&gt;Already&#xA0;connected&#xA0;to&#xA0;</span><span style="color: #0000BB">$dsn</span><span style="color: #DD0000">&lt;/p&gt;&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;Send&#xA0;and&#xA0;receive&#xA0;*/<br></span><span style="color: #0000BB">$socket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">send</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Hello!&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$message&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$socket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">recv</span><span style="color: #007700">();<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;p&gt;Server&#xA0;said:&#xA0;</span><span style="color: #007700">{</span><span style="color: #0000BB">$message</span><span style="color: #007700">}</span><span style="color: #DD0000">&lt;/p&gt;&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-zmqsocket.connect-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the current object. Throws ZMQSocketException on error.
+  </p>
+ </div>
+
+
+

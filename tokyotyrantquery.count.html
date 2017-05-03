@@ -1,0 +1,72 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">TokyoTyrantQuery::count</h1>
+  <p class="verinfo">(No version information available, might only be in Git)</p><p class="refpurpose"><span class="refname">TokyoTyrantQuery::count</span> &#x2014; <span class="dc-title">Counts records</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-tokyotyrantquery.count-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">int</span> <span class="methodname"><strong>TokyoTyrantQuery::count</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns a count of how many records a query returns.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-tokyotyrantquery.count-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-tokyotyrantquery.count-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a count of matching rows and throws TokyoTyrantException on error
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-tokyotyrantquery.count-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2477">
+    <p><strong>Example #1 <span class="methodname"><strong>TokyoTyrantQuery::count()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;Connect&#xA0;to&#xA0;a&#xA0;table&#xA0;database&#xA0;*/<br></span><span style="color: #0000BB">$tt&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">TokyoTyrantTable</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1979</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Add&#xA0;rows&#xA0;*/<br></span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">put</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;column1&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;some&#xA0;data&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;column2&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;something&#xA0;here&quot;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">put</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;column1&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;more&#xA0;data&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;column2&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;best&#xA0;data&#xA0;this&#xA0;far&quot;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">put</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;column1&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;again&#xA0;data&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;column3&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;not&#xA0;here&quot;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">put</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;column45&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;random&#xA0;data&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;column2&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;something&#xA0;along&#xA0;the&#xA0;lines&quot;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">put</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;column21&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;test&#xA0;data&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;column2&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;generating..&quot;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">put</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;column1&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;foobar&#xA0;data&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;column2&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;value&#xA0;here&quot;</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">/*&#xA0;Get&#xA0;a&#xA0;new&#xA0;query&#xA0;object&#xA0;*/<br></span><span style="color: #0000BB">$query&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getQuery</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">/*&#xA0;Add&#xA0;a&#xA0;search&#xA0;condition&#xA0;*/<br></span><span style="color: #0000BB">$query</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addCond</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;column2&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">TokyoTyrant</span><span style="color: #007700">::</span><span style="color: #0000BB">RDBQC_STROR</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;something&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Count&#xA0;the&#xA0;results&#xA0;*/<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">count</span><span style="color: #007700">());<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+int(2)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-tokyotyrantquery.count-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="tokyotyrantquery.out.html" class="methodname" rel="rdfs-seeAlso">TokyoTyrantQuery::out()</a> - Removes records based on query</span></li>
+    <li class="member"><span class="methodname"><a href="tokyotyrantquery.search.html" class="methodname" rel="rdfs-seeAlso">TokyoTyrantQuery::search()</a> - Searches records</span></li>
+    <li class="member"><span class="methodname"><a href="tokyotyrantquery.metasearch.html" class="methodname" rel="rdfs-seeAlso">TokyoTyrantQuery::metaSearch()</a> - Retrieve records with multiple queries</span></li>
+   </ul>
+  </p>
+ </div>
+
+

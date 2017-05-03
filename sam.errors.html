@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+  <h2 class="title">Error handling</h2>
+  <p class="para">
+   All SAMConnection methods that provide access to messaging operations
+   return <strong><code>FALSE</code></strong> if an error occurred in processing the request.
+   In addition the SAMConnection object has two properties, &quot;errno&quot;
+   and &quot;error&quot;, that provide respectively the error number and
+   text description of the last error to occur on the connection.
+  </p>
+  <p class="para">
+   <div class="example" id="example-5069">
+    <p><strong>Example #1 Handling an error from a method that returns no result</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">commit</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;The&#xA0;commit&#xA0;failed!<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;Commit&#xA0;failed&#xA0;(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #DD0000">)&#xA0;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5070">
+    <p><strong>Example #2 Handling an error from a method that returns a result</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$correlid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">send</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;queue://send/test&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$msg</span><span style="color: #007700">);<br><br>if&#xA0;(!</span><span style="color: #0000BB">$correlid</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;The&#xA0;Send&#xA0;failed!<br>&#xA0;&#xA0;</span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;Send&#xA0;failed&#xA0;(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #DD0000">)&#xA0;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">;<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;...&#xA0;*/<br></span><span style="color: #007700">}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ 

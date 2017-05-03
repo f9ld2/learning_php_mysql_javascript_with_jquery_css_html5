@@ -1,0 +1,106 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_num_rows</h1>
+  <h1 class="refname">SQLiteResult::numRows</h1>
+  <p class="verinfo">(PHP 5 &lt; 5.4.0, PECL sqlite &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">sqlite_num_rows</span> -- <span class="refname">SQLiteResult::numRows</span> &#x2014; <span class="dc-title">Returns the number of rows in a buffered result set</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.sqlite-num-rows-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>sqlite_num_rows</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$result</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>SQLiteResult::numRows</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the number of rows in the buffered <code class="parameter">result</code>
+   set.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.sqlite-num-rows-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">result</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The SQLite result resource.  This parameter is not required when using
+       the object-oriented method.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: </p><p class="para">This function cannot be used with
+unbuffered result handles.</p></blockquote></dd></dl></p>
+     
+
+    
+   
+
+  <p></p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlite-num-rows-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of rows, as an integer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.sqlite-num-rows-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2393">
+    <p><strong>Example #1 Procedural example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$db&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sqlite_open</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;mysqlitedb&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sqlite_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$db</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;mytable&#xA0;WHERE&#xA0;name=&apos;John&#xA0;Doe&apos;&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$rows&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sqlite_num_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;Number&#xA0;of&#xA0;rows:&#xA0;</span><span style="color: #0000BB">$rows</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2394">
+    <p><strong>Example #2 Object-oriented example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$db&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SQLiteDatabase</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;mysqlitedb&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;mytable&#xA0;WHERE&#xA0;name=&apos;John&#xA0;Doe&apos;&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$rows&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">numRows</span><span style="color: #007700">();<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;Number&#xA0;of&#xA0;rows:&#xA0;</span><span style="color: #0000BB">$rows</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.sqlite-num-rows-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.sqlite-changes.html" class="function" rel="rdfs-seeAlso">sqlite_changes()</a> - Returns the number of rows that were changed by the most
+   recent SQL statement</span></li>
+    <li class="member"><span class="function"><a href="function.sqlite-query.html" class="function" rel="rdfs-seeAlso">sqlite_query()</a> - Executes a query against a given database and returns a result handle</span></li>
+    <li class="member"><span class="function"><a href="function.sqlite-num-fields.html" class="function" rel="rdfs-seeAlso">sqlite_num_fields()</a> - Returns the number of fields in a result set</span></li>
+   </ul>
+  </p>
+ </div>
+

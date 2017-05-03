@@ -1,0 +1,165 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MysqlndUhConnection::sslSet</h1>
+  <p class="verinfo">(PECL mysqlnd-uh &gt;= 1.0.0-alpha)</p><p class="refpurpose"><span class="refname">MysqlndUhConnection::sslSet</span> &#x2014; <span class="dc-title">Used for establishing secure connections using SSL</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqlnduhconnection.sslset-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><strong>MysqlndUhConnection::sslSet</strong></span>
+    ( <span class="methodparam"><span class="type"><span class="type mysqlnd_connection">mysqlnd_connection</span></span> <code class="parameter">$connection</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$cert</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$ca</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$capath</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$cipher</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Used for establishing secure connections using SSL.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqlnduhconnection.sslset-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">connection</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Mysqlnd connection handle. Do not modify!
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">key</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The path name to the key file.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">cert</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The path name to the certificate file.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">ca</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The path name to the certificate authority file.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">capath</code></dt>
+
+    <dd>
+
+     <p class="para">
+       The pathname to a directory that contains trusted SSL CA certificates in PEM format.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">cipher</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A list of allowable ciphers to use for SSL encryption.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqlnduhconnection.sslset-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success.
+   Otherwise, returns <strong><code>FALSE</code></strong>
+  </p>
+ </div>
+
+
+<div class="refsect1 examples" id="refsect1-mysqlnduhconnection.sslset-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2165">
+    <p><strong>Example #1 <span class="function"><strong>MysqlndUhConnection::sslSet()</strong></span> example</strong></p>
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">proxy&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">MysqlndUhConnection&#xA0;</span><span style="color: #007700">{<br>&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">sslSet</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$cert</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ca</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$capath</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$cipher</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;%s(%s)\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">func_get_args</span><span style="color: #007700">(),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$ret&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">sslSet</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$cert</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ca</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$capath</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$cipher</span><span style="color: #007700">);<br>&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;%s&#xA0;returns&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$ret</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br>&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$ret</span><span style="color: #007700">;<br>&#xA0;}<br>}<br></span><span style="color: #0000BB">mysqlnd_uh_set_connection_proxy</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">proxy</span><span style="color: #007700">());<br></span><span style="color: #0000BB">$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;root&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;test&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ssl_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;key&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;cert&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;ca&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;capath&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;cipher&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+proxy::sslSet(array (
+  0 =&gt; NULL,
+  1 =&gt; &apos;key&apos;,
+  2 =&gt; &apos;cert&apos;,
+  3 =&gt; &apos;ca&apos;,
+  4 =&gt; &apos;capath&apos;,
+  5 =&gt; &apos;cipher&apos;,
+))
+proxy::sslSet returns true
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqlnduhconnection.sslset-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <span class="function"><a href="function.mysqlnd-uh-set-connection-proxy.html" class="function" rel="rdfs-seeAlso">mysqlnd_uh_set_connection_proxy()</a> - Installs a proxy for mysqlnd connections</span>
+    </li>
+    <li class="member">
+     <span class="function"><a href="mysqli.ssl-set.html" class="function" rel="rdfs-seeAlso">mysqli_ssl_set()</a> - Used for establishing secure connections using SSL</span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+

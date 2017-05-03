@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">PDOStatement::columnCount</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7, PECL pdo &gt;= 0.2.0)</p><p class="refpurpose"><span class="refname">PDOStatement::columnCount</span> &#x2014; <span class="dc-title">
+   Returns the number of columns in the result set
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-pdostatement.columncount-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">int</span> <span class="methodname"><strong>PDOStatement::columnCount</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   Use <span class="function"><strong>PDOStatement::columnCount()</strong></span> to return the number
+   of columns in the result set represented by the PDOStatement object.
+  </p>
+  <p class="para">
+   If the PDOStatement object was returned from <span class="function"><a href="pdo.query.html" class="function">PDO::query()</a></span>,
+   the column count is immediately available.
+  </p>
+  <p class="para">
+   If the PDOStatement object was returned from
+   <span class="function"><a href="pdo.prepare.html" class="function">PDO::prepare()</a></span>, an accurate column count will not be
+   available until you invoke <span class="function"><a href="pdostatement.execute.html" class="function">PDOStatement::execute()</a></span>.
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-pdostatement.columncount-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of columns in the result set represented by the
+   PDOStatement object, even if the result set is empty. If there is no result set,
+   <span class="function"><strong>PDOStatement::columnCount()</strong></span> returns <em>0</em>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-pdostatement.columncount-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-1027">
+    <p><strong>Example #1 Counting columns</strong></p>
+    <div class="example-contents"><p>
+     This example demonstrates how <span class="function"><strong>PDOStatement::columnCount()</strong></span>
+     operates with and without a result set.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$dbh&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;odbc:sample&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;db2inst1&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;ibmdb2&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$sth&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;name,&#xA0;colour&#xA0;FROM&#xA0;fruit&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Count&#xA0;the&#xA0;number&#xA0;of&#xA0;columns&#xA0;in&#xA0;the&#xA0;(non-existent)&#xA0;result&#xA0;set&#xA0;*/<br></span><span style="color: #0000BB">$colcount&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">columnCount</span><span style="color: #007700">();<br>print(</span><span style="color: #DD0000">&quot;Before&#xA0;execute(),&#xA0;result&#xA0;set&#xA0;has&#xA0;</span><span style="color: #0000BB">$colcount</span><span style="color: #DD0000">&#xA0;columns&#xA0;(should&#xA0;be&#xA0;0)\n&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">/*&#xA0;Count&#xA0;the&#xA0;number&#xA0;of&#xA0;columns&#xA0;in&#xA0;the&#xA0;result&#xA0;set&#xA0;*/<br></span><span style="color: #0000BB">$colcount&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">columnCount</span><span style="color: #007700">();<br>print(</span><span style="color: #DD0000">&quot;After&#xA0;execute(),&#xA0;result&#xA0;set&#xA0;has&#xA0;</span><span style="color: #0000BB">$colcount</span><span style="color: #DD0000">&#xA0;columns&#xA0;(should&#xA0;be&#xA0;2)\n&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Before execute(), result set has 0 columns (should be 0)
+After execute(), result set has 2 columns (should be 2)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 seealso" id="refsect1-pdostatement.columncount-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="pdo.prepare.html" class="function" rel="rdfs-seeAlso">PDO::prepare()</a> - Prepares a statement for execution and returns a statement object</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.execute.html" class="function" rel="rdfs-seeAlso">PDOStatement::execute()</a> - Executes a prepared statement</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.rowcount.html" class="function" rel="rdfs-seeAlso">PDOStatement::rowCount()</a> - Returns the number of rows affected by the last SQL statement</span></li>
+   </ul>
+  </p>
+ </div>
+
+

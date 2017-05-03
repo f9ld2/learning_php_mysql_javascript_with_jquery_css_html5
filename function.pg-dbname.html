@@ -1,0 +1,76 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">pg_dbname</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">pg_dbname</span> &#x2014; <span class="dc-title">Get the database name</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.pg-dbname-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>pg_dbname</strong></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <code class="parameter">$connection</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>pg_dbname()</strong></span> returns the name of the database
+   that the given PostgreSQL <code class="parameter">connection</code>
+   resource.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.pg-dbname-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">connection</code></dt>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.  When 
+       <code class="parameter">connection</code> is not present, the default connection 
+       is used. The default connection is the last connection made by 
+       <span class="function"><a href="function.pg-connect.html" class="function">pg_connect()</a></span> or <span class="function"><a href="function.pg-pconnect.html" class="function">pg_pconnect()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.pg-dbname-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A <span class="type"><a href="language.types.string.html" class="type string">string</a></span> containing the name of the database the 
+   <code class="parameter">connection</code> is to, or <strong><code>FALSE</code></strong> on error.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.pg-dbname-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2298">
+    <p><strong>Example #1 <span class="function"><strong>pg_dbname()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>&#xA0;&#xA0;error_reporting</span><span style="color: #007700">(</span><span style="color: #0000BB">E_ALL</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;host=localhost&#xA0;port=5432&#xA0;dbname=mary&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">pg_dbname</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;mary<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+

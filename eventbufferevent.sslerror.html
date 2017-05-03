@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">EventBufferEvent::sslError</h1>
+  <p class="verinfo">(PECL event &gt;= 1.2.6-beta)</p><p class="refpurpose"><span class="refname">EventBufferEvent::sslError</span> &#x2014; <span class="dc-title">Returns most recent OpenSSL error reported on the buffer event</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-eventbufferevent.sslerror-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="type">string</span> 
+   <span class="methodname"><strong>EventBufferEvent::sslError</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns most recent OpenSSL error reported on the buffer event.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    This function is available only if
+    <em>Event</em>
+    is compiled with OpenSSL support.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-eventbufferevent.sslerror-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-eventbufferevent.sslerror-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns OpenSSL error string reported on the buffer event, or <strong><code>FALSE</code></strong>, if
+   there is no more error to return.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-eventbufferevent.sslerror-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-4840">
+   <p><strong>Example #1 
+    <span class="function"><strong>EventBufferEvent::sslError()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;This&#xA0;callback&#xA0;is&#xA0;invoked&#xA0;when&#xA0;some&#xA0;even&#xA0;occurs&#xA0;on&#xA0;the&#xA0;event&#xA0;listener,<br>//&#xA0;e.g.&#xA0;connection&#xA0;closed,&#xA0;or&#xA0;an&#xA0;error&#xA0;occured<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">ssl_event_cb</span><span style="color: #007700">(</span><span style="color: #0000BB">$bev</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$events</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ctx</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$events&#xA0;</span><span style="color: #007700">&amp;&#xA0;</span><span style="color: #0000BB">EventBufferEvent</span><span style="color: #007700">::</span><span style="color: #0000BB">ERROR</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Fetch&#xA0;errors&#xA0;from&#xA0;the&#xA0;SSL&#xA0;error&#xA0;stack<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">while&#xA0;(</span><span style="color: #0000BB">$err&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$bev</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sslError</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">fprintf</span><span style="color: #007700">(</span><span style="color: #0000BB">STDERR</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;Bufferevent&#xA0;error&#xA0;%s.\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$err</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$events&#xA0;</span><span style="color: #007700">&amp;&#xA0;(</span><span style="color: #0000BB">EventBufferEvent</span><span style="color: #007700">::</span><span style="color: #0000BB">EOF&#xA0;</span><span style="color: #007700">|&#xA0;</span><span style="color: #0000BB">EventBufferEvent</span><span style="color: #007700">::</span><span style="color: #0000BB">ERROR</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$bev</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-eventbufferevent.sslerror-seealso">
+  <h3 class="title">See Also</h3>
+  <ul class="simplelist">
+   <li class="member">
+    <span class="methodname"><a href="eventbufferevent.sslrenegotiate.html" class="methodname" rel="rdfs-seeAlso">EventBufferEvent::sslRenegotiate()</a> - Tells a bufferevent to begin SSL renegotiation.</span>
+   </li>
+  </ul>
+ </div>
+

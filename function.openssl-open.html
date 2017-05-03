@@ -1,0 +1,126 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">openssl_open</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">openssl_open</span> &#x2014; <span class="dc-title">Open sealed data</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.openssl-open-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>openssl_open</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$sealed_data</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter reference">&amp;$open_data</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$env_key</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$priv_key_id</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$method</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>openssl_open()</strong></span> opens (decrypts)
+   <code class="parameter">sealed_data</code> using the private key associated with
+   the key identifier <code class="parameter">priv_key_id</code> and the envelope key
+   <code class="parameter">env_key</code>, and fills
+   <code class="parameter">open_data</code> with the decrypted data.
+   The envelope key is generated when the
+   data are sealed and can only be used by one specific private key. See
+   <span class="function"><a href="function.openssl-seal.html" class="function">openssl_seal()</a></span> for more information.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.openssl-open-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">sealed_data</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">open_data</code></dt>
+
+     <dd>
+
+      <p class="para">
+       If the call is successful the opened data is returned in this
+       parameter.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">env_key</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">priv_key_id</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.openssl-open-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.openssl-open-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-940">
+    <p><strong>Example #1 <span class="function"><strong>openssl_open()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;$sealed&#xA0;and&#xA0;$env_key&#xA0;are&#xA0;assumed&#xA0;to&#xA0;contain&#xA0;the&#xA0;sealed&#xA0;data<br>//&#xA0;and&#xA0;our&#xA0;envelope&#xA0;key,&#xA0;both&#xA0;given&#xA0;to&#xA0;us&#xA0;by&#xA0;the&#xA0;sealer.<br><br>//&#xA0;fetch&#xA0;private&#xA0;key&#xA0;from&#xA0;file&#xA0;and&#xA0;ready&#xA0;it<br></span><span style="color: #0000BB">$fp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;/src/openssl-0.9.6/demos/sign/key.pem&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;r&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$priv_key&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fread</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">8192</span><span style="color: #007700">);<br></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$pkeyid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">openssl_get_privatekey</span><span style="color: #007700">(</span><span style="color: #0000BB">$priv_key</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;decrypt&#xA0;the&#xA0;data&#xA0;and&#xA0;store&#xA0;it&#xA0;in&#xA0;$open<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">openssl_open</span><span style="color: #007700">(</span><span style="color: #0000BB">$sealed</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$open</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$env_key</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$pkeyid</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;here&#xA0;is&#xA0;the&#xA0;opened&#xA0;data:&#xA0;&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$open</span><span style="color: #007700">;<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;failed&#xA0;to&#xA0;open&#xA0;data&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;free&#xA0;the&#xA0;private&#xA0;key&#xA0;from&#xA0;memory<br></span><span style="color: #0000BB">openssl_free_key</span><span style="color: #007700">(</span><span style="color: #0000BB">$pkeyid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.openssl-open-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.openssl-seal.html" class="function" rel="rdfs-seeAlso">openssl_seal()</a> - Seal (encrypt) data</span></li>
+   </ul>
+  </p>
+ </div>
+
+

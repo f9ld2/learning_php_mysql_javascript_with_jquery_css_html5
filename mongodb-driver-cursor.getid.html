@@ -1,0 +1,82 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MongoDB\Driver\Cursor::getId</h1>
+  <p class="verinfo">(mongodb &gt;=1.0.0)</p><p class="refpurpose"><span class="refname">MongoDB\Driver\Cursor::getId</span> &#x2014; <span class="dc-title">Returns the ID for this cursor</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongodb-driver-cursor.getid-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type"><span class="type MongoDB\Driver\CursorId">MongoDB\Driver\CursorId</span></span> <span class="methodname"><strong>MongoDB\Driver\Cursor::getId</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the <a href="class.mongodb-driver-cursorid.html" class="classname">MongoDB\Driver\CursorId</a> associated with
+   this cursor. A cursor ID uniquely identifies the cursor on the server.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongodb-driver-cursor.getid-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongodb-driver-cursor.getid-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the <a href="class.mongodb-driver-cursorid.html" class="classname">MongoDB\Driver\CursorId</a> for this cursor.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongodb-driver-cursor.getid-errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <ul class="simplelist">
+   <li class="member">Throws <a href="class.mongodb-driver-exception-invalidargumentexception.html" class="classname">MongoDB\Driver\Exception\InvalidArgumentException</a> on argument parsing errors.</li>
+  </ul>
+ </div>
+
+
+
+ <div class="refsect1 examples" id="refsect1-mongodb-driver-cursor.getid-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1683">
+   <p><strong>Example #1 <span class="function"><strong>MongoDB\Driver\Cursor::getId()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">/*&#xA0;In&#xA0;this&#xA0;example,&#xA0;we&#xA0;insert&#xA0;several&#xA0;documents&#xA0;into&#xA0;the&#xA0;collection&#xA0;and&#xA0;specify<br>&#xA0;*&#xA0;a&#xA0;smaller&#xA0;batchSize&#xA0;to&#xA0;ensure&#xA0;that&#xA0;the&#xA0;first&#xA0;batch&#xA0;contains&#xA0;only&#xA0;a&#xA0;subset&#xA0;of<br>&#xA0;*&#xA0;our&#xA0;results&#xA0;and&#xA0;the&#xA0;cursor&#xA0;remains&#xA0;open&#xA0;on&#xA0;the&#xA0;server.&#xA0;*/<br></span><span style="color: #0000BB">$manager&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoDB</span><span style="color: #007700">\</span><span style="color: #0000BB">Driver</span><span style="color: #007700">\</span><span style="color: #0000BB">Manager</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;mongodb://localhost:27017&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$query&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoDB</span><span style="color: #007700">\</span><span style="color: #0000BB">Driver</span><span style="color: #007700">\</span><span style="color: #0000BB">Query</span><span style="color: #007700">([],&#xA0;[</span><span style="color: #DD0000">&apos;batchSize&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">]);<br><br></span><span style="color: #0000BB">$bulk&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoDB</span><span style="color: #007700">\</span><span style="color: #0000BB">Driver</span><span style="color: #007700">\</span><span style="color: #0000BB">BulkWrite</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$bulk</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">([</span><span style="color: #DD0000">&apos;x&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">]);<br></span><span style="color: #0000BB">$bulk</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">([</span><span style="color: #DD0000">&apos;x&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">]);<br></span><span style="color: #0000BB">$bulk</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">([</span><span style="color: #DD0000">&apos;x&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">]);<br></span><span style="color: #0000BB">$manager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executeBulkWrite</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;db.collection&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$bulk</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$cursor&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$manager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executeQuery</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;db.collection&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getId</span><span style="color: #007700">());<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+object(MongoDB\Driver\CursorId)#5 (1) {
+  [&quot;id&quot;]=&gt;
+  int(94810124093)
+}
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+
+ <div class="refsect1 seealso" id="refsect1-mongodb-driver-cursor.getid-seealso">
+  <h3 class="title">See Also</h3>
+  <ul class="simplelist">
+   <li class="member"><a href="class.mongodb-driver-cursorid.html" class="classname">MongoDB\Driver\CursorId</a></li>
+   <li class="member"><span class="function"><a href="mongodb-driver-cursorid.tostring.html" class="function" rel="rdfs-seeAlso">MongoDB\Driver\CursorId::__toString()</a> - String representation of the cursor ID</span></li>
+  </ul>
+ </div>
+
+

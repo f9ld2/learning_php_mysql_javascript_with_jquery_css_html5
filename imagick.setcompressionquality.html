@@ -1,0 +1,79 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::setCompressionQuality</h1>
+  <p class="verinfo">(PECL imagick 0.9.10-0.9.9)</p><p class="refpurpose"><span class="refname">Imagick::setCompressionQuality</span> &#x2014; <span class="dc-title">Sets the object&apos;s default compression quality</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-imagick.setcompressionquality-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>Imagick::setCompressionQuality</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$quality</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets the object&apos;s default compression quality.
+  </p>
+
+  <div class="caution"><strong class="caution">Caution</strong>
+   <p class="para">
+    This method only works for new images e.g. those created through Imagick::newPseudoImage. For existing images you should use <span class="methodname"><a href="imagick.setimagecompressionquality.html" class="methodname">Imagick::setImageCompressionQuality()</a></span>.
+   </p>
+  </div>
+  
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-imagick.setcompressionquality-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">quality</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-imagick.setcompressionquality-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success.
+  </p>
+ </div>
+
+
+
+
+ <div class="refsect1 examples" id="refsect1-imagick.setcompressionquality-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+    <div class="example" id="example-3761">
+      <p><strong>Example #1  <span class="function"><strong>Imagick::setCompressionQuality()</strong></span></strong></p>
+      <div class="example-contents">
+      <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">setCompressionQuality</span><span style="color: #007700">(</span><span style="color: #0000BB">$imagePath</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$quality</span><span style="color: #007700">)&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$backgroundImagick&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;\</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">(</span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #0000BB">$imagePath</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;\</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setCompressionQuality</span><span style="color: #007700">(</span><span style="color: #0000BB">$quality</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">newPseudoImage</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$backgroundImagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageWidth</span><span style="color: #007700">(),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$backgroundImagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageHeight</span><span style="color: #007700">(),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;canvas:white&apos;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">compositeImage</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$backgroundImagick</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;\</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">::</span><span style="color: #0000BB">COMPOSITE_ATOP</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">0<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFormat</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;jpg&quot;</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Content-Type:&#xA0;image/jpg&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageBlob</span><span style="color: #007700">();<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+    </div>
+  </p>
+ </div>
+
+

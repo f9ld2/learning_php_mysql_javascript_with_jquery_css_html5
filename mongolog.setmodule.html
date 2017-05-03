@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MongoLog::setModule</h1>
+  <p class="verinfo">(PECL mongo &gt;= 1.2.3)</p><p class="refpurpose"><span class="refname">MongoLog::setModule</span> &#x2014; <span class="dc-title">Sets the module(s) to be logged</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongolog.setmodule-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>MongoLog::setModule</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$module</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function can be used to set which driver modules should be logged. The
+   <a href="class.mongolog.html#mongolog.constants.module" class="link">MongoLog module constants</a>
+   may be used with bitwise operators to specify multiple modules.
+  </p>
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;first,&#xA0;specify&#xA0;a&#xA0;logging&#xA0;level<br></span><span style="color: #0000BB">MongoLog</span><span style="color: #007700">::</span><span style="color: #0000BB">setLevel</span><span style="color: #007700">(</span><span style="color: #0000BB">MongoLog</span><span style="color: #007700">::</span><span style="color: #0000BB">ALL</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;log&#xA0;replica&#xA0;set&#xA0;activity<br></span><span style="color: #0000BB">MongoLog</span><span style="color: #007700">::</span><span style="color: #0000BB">setModule</span><span style="color: #007700">(</span><span style="color: #0000BB">MongoLog</span><span style="color: #007700">::</span><span style="color: #0000BB">RS</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;log&#xA0;replica&#xA0;sets&#xA0;and&#xA0;connection&#xA0;activity<br></span><span style="color: #0000BB">MongoLog</span><span style="color: #007700">::</span><span style="color: #0000BB">setModule</span><span style="color: #007700">(</span><span style="color: #0000BB">MongoLog</span><span style="color: #007700">::</span><span style="color: #0000BB">RS</span><span style="color: #007700">|</span><span style="color: #0000BB">MongoLog</span><span style="color: #007700">::</span><span style="color: #0000BB">CON</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;log&#xA0;everything&#xA0;except&#xA0;IO&#xA0;activity<br></span><span style="color: #0000BB">MongoLog</span><span style="color: #007700">::</span><span style="color: #0000BB">setModule</span><span style="color: #007700">(</span><span style="color: #0000BB">MongoLog</span><span style="color: #007700">::</span><span style="color: #0000BB">ALL&#xA0;</span><span style="color: #007700">&amp;&#xA0;(~</span><span style="color: #0000BB">MongoLog</span><span style="color: #007700">::</span><span style="color: #0000BB">IO</span><span style="color: #007700">));<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+  <p class="para">
+   Note that you must also call <span class="function"><a href="mongolog.setlevel.html" class="function">MongoLog::setLevel()</a></span> to
+   enable logging.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongolog.setmodule-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">module</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       The module(s) you would like to log.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+

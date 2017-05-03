@@ -1,0 +1,117 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">DOMDocument::importNode</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">DOMDocument::importNode</span> &#x2014; <span class="dc-title">Import node into current document</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-domdocument.importnode-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="class.domnode.html" class="type DOMNode">DOMNode</a></span> <span class="methodname"><strong>DOMDocument::importNode</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.domnode.html" class="type DOMNode">DOMNode</a></span> <code class="parameter">$importedNode</code></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$deep</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function returns a copy of the node to import and associates it with 
+   the current document.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-domdocument.importnode-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">importedNode</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The node to import.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">deep</code></dt>
+
+     <dd>
+
+      <p class="para">
+       If set to <strong><code>TRUE</code></strong>, this method will recursively import the subtree under
+       the <code class="parameter">importedNode</code>.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       </p><p class="para">
+        To copy the nodes attributes <code class="parameter">deep</code> needs to be set to <strong><code>TRUE</code></strong>
+       </p>
+      </blockquote></dd></dl></p>
+     
+
+    
+   
+
+  <p></p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-domdocument.importnode-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The copied node or <strong><code>FALSE</code></strong>, if it cannot be copied.
+  </p>
+ </div>
+
+ <div class="refsect1 errors" id="refsect1-domdocument.importnode-errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   <a href="class.domexception.html" class="classname">DOMException</a> is thrown if node cannot be imported.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-domdocument.importnode-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-6259">
+    <p><strong>Example #1 <span class="function"><strong>DOMDocument::importNode()</strong></span> example</strong></p>
+    <div class="example-contents"><p>
+      Copying nodes between documents.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$orgdoc&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">DOMDocument</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$orgdoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadXML</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;&lt;root&gt;&lt;element&gt;&lt;child&gt;text&#xA0;in&#xA0;child&lt;/child&gt;&lt;/element&gt;&lt;/root&gt;&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;The&#xA0;node&#xA0;we&#xA0;want&#xA0;to&#xA0;import&#xA0;to&#xA0;a&#xA0;new&#xA0;document<br></span><span style="color: #0000BB">$node&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$orgdoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getElementsByTagName</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;element&quot;</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">item</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br><br><br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;a&#xA0;new&#xA0;document<br></span><span style="color: #0000BB">$newdoc&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">DOMDocument</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$newdoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">formatOutput&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;Add&#xA0;some&#xA0;markup<br></span><span style="color: #0000BB">$newdoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadXML</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;&lt;root&gt;&lt;someelement&gt;text&#xA0;in&#xA0;some&#xA0;element&lt;/someelement&gt;&lt;/root&gt;&quot;</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;&apos;new&#xA0;document&apos;&#xA0;before&#xA0;copying&#xA0;nodes&#xA0;into&#xA0;it:\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #0000BB">$newdoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">saveXML</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Import&#xA0;the&#xA0;node,&#xA0;and&#xA0;all&#xA0;its&#xA0;children,&#xA0;to&#xA0;the&#xA0;document<br></span><span style="color: #0000BB">$node&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$newdoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">importNode</span><span style="color: #007700">(</span><span style="color: #0000BB">$node</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br></span><span style="color: #FF8000">//&#xA0;And&#xA0;then&#xA0;append&#xA0;it&#xA0;to&#xA0;the&#xA0;&quot;&lt;root&gt;&quot;&#xA0;node<br></span><span style="color: #0000BB">$newdoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">documentElement</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">appendChild</span><span style="color: #007700">(</span><span style="color: #0000BB">$node</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;\nThe&#xA0;&apos;new&#xA0;document&apos;&#xA0;after&#xA0;copying&#xA0;the&#xA0;nodes&#xA0;into&#xA0;it:\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #0000BB">$newdoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">saveXML</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+The &apos;new document&apos; before copying nodes into it:
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;root&gt;
+  &lt;someelement&gt;text in some element&lt;/someelement&gt;
+&lt;/root&gt;
+
+The &apos;new document&apos; after copying the nodes into it:
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;root&gt;
+  &lt;someelement&gt;text in some element&lt;/someelement&gt;
+  &lt;element&gt;
+    &lt;child&gt;text in child&lt;/child&gt;
+  &lt;/element&gt;
+&lt;/root&gt;
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ 
+

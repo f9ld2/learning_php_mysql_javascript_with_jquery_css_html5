@@ -1,0 +1,109 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">session_name</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">session_name</span> &#x2014; <span class="dc-title">Get and/or set the current session name</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.session-name-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>session_name</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>session_name()</strong></span> returns the name of the current
+   session. If <code class="parameter">name</code> is given,
+   <span class="function"><strong>session_name()</strong></span> will update the session name and return
+   the <em class="emphasis">old</em> session name.
+  </p>
+  <p class="para">
+   The session name is reset to the default value stored in
+   <em>session.name</em> at request startup time. Thus, you need to
+   call <span class="function"><strong>session_name()</strong></span> for every request (and before
+   <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> or <span class="function"><a href="function.session-register.html" class="function">session_register()</a></span>
+   are called).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.session-name-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The session name references the name of the session, which is 
+       used in cookies and URLs (e.g. <em>PHPSESSID</em>). It
+       should contain only alphanumeric characters; it should be short and
+       descriptive (i.e. for users with enabled cookie warnings).
+       If <code class="parameter">name</code> is specified, the name of the current
+       session is changed to its value.
+      </p>
+      <p class="para">
+       <div class="warning"><strong class="warning">Warning</strong>
+        <p class="para">
+         The session name can&apos;t consist of digits only, at least one letter
+         must be present. Otherwise a new session id is generated every time.
+        </p>
+       </div>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.session-name-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the name of the current session. If <code class="parameter">name</code> is given
+   and function updates the session name, name of the <em class="emphasis">old</em> session
+   is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.session-name-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-5379">
+    <p><strong>Example #1 <span class="function"><strong>session_name()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">/*&#xA0;set&#xA0;the&#xA0;session&#xA0;name&#xA0;to&#xA0;WebsiteID&#xA0;*/<br><br></span><span style="color: #0000BB">$previous_name&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">session_name</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;WebsiteID&quot;</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;previous&#xA0;session&#xA0;name&#xA0;was&#xA0;</span><span style="color: #0000BB">$previous_name</span><span style="color: #DD0000">&lt;br&#xA0;/&gt;&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.session-name-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     The <a href="session.configuration.html#ini.session.name" class="link">session.name</a> configuration
+     directive
+    </li>
+   </ul>
+  </p>
+ </div>
+
+

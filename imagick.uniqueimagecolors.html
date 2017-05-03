@@ -1,0 +1,52 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::uniqueImageColors</h1>
+  <p class="verinfo">(PECL imagick 2.0.0)</p><p class="refpurpose"><span class="refname">Imagick::uniqueImageColors</span> &#x2014; <span class="dc-title">Discards all but one of any pixel color</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-imagick.uniqueimagecolors-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>Imagick::uniqueImageColors</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   Discards all but one of any pixel color. 
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-imagick.uniqueimagecolors-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success.
+  </p>
+ </div>
+
+
+
+
+ <div class="refsect1 examples" id="refsect1-imagick.uniqueimagecolors-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+    <div class="example" id="example-3813">
+      <p><strong>Example #1  <span class="function"><strong>Imagick::uniqueImageColors()</strong></span></strong></p>
+      <div class="example-contents">
+      <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">uniqueImageColors</span><span style="color: #007700">(</span><span style="color: #0000BB">$imagePath</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;\</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">(</span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #0000BB">$imagePath</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//Reduce&#xA0;the&#xA0;image&#xA0;to&#xA0;256&#xA0;colours&#xA0;nicely.<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">quantizeImage</span><span style="color: #007700">(</span><span style="color: #0000BB">256</span><span style="color: #007700">,&#xA0;\</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">::</span><span style="color: #0000BB">COLORSPACE_YIQ</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">uniqueImageColors</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">scaleimage</span><span style="color: #007700">(</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageWidth</span><span style="color: #007700">(),&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageHeight</span><span style="color: #007700">()&#xA0;*&#xA0;</span><span style="color: #0000BB">20</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Content-Type:&#xA0;image/png&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageBlob</span><span style="color: #007700">();<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+    </div>
+  </p>
+ </div>
+
+

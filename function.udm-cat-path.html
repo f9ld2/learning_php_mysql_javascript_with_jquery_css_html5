@@ -1,0 +1,116 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">udm_cat_path</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5 &lt;= 5.0.5, PECL mnogosearch &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">udm_cat_path</span> &#x2014; <span class="dc-title">Get the path to the current category</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.udm-cat-path-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><strong>udm_cat_path</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$agent</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$category</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns an array describing the path in the categories tree from the tree
+   root to the current one, specified by <code class="parameter">category</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.udm-cat-path-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">agent</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A link to Agent, received after call to
+       <span class="function"><a href="function.udm-alloc-agent.html" class="function">udm_alloc_agent()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">category</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.udm-cat-path-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The returned array consists of pairs. Elements with even index numbers
+   contain the category paths, odd elements contain the corresponding category
+   names.
+  </p>
+  <p class="para">
+   For example, the call <em>$array=udm_cat_path($agent, &apos;02031D&apos;);</em>
+   may return the following array:
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+ $array[0] will contain &apos;&apos;
+ $array[1] will contain &apos;Root&apos;
+ $array[2] will contain &apos;02&apos;
+ $array[3] will contain &apos;Sport&apos;
+ $array[4] will contain &apos;0203&apos;
+ $array[5] will contain &apos;Auto&apos;
+ $array[4] will contain &apos;02031D&apos;
+ $array[5] will contain &apos;Ferrari&apos;
+</pre></div>
+  </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.udm-cat-path-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-5268">
+    <p><strong>Example #1 
+     Specifying path to the current category in the following format:
+     &apos;&gt; Root &gt; Sport &gt; Auto &gt; Ferrari&apos;
+    </strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>&#xA0;&#xA0;$cat_path_arr&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">udm_cat_path</span><span style="color: #007700">(</span><span style="color: #0000BB">$udm_agent</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$cat</span><span style="color: #007700">);<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$cat_path&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;for&#xA0;(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$cat_path_arr</span><span style="color: #007700">);&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">+=</span><span style="color: #0000BB">2</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$path&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$cat_path_arr</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">];<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$name&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$cat_path_arr</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">+</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$cat_path&#xA0;</span><span style="color: #007700">.=&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&gt;&#xA0;&lt;a&#xA0;href=\&quot;</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #0000BB">PHP_SELF</span><span style="color: #007700">]</span><span style="color: #DD0000">?cat=</span><span style="color: #0000BB">$path</span><span style="color: #DD0000">\&quot;&gt;</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">&lt;/a&gt;&#xA0;&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.udm-cat-path-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.udm-cat-list.html" class="function" rel="rdfs-seeAlso">udm_cat_list()</a> - Get all the categories on the same level with the current one</span></li>
+   </ul>
+  </p>
+ </div>
+
+

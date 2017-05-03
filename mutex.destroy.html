@@ -1,0 +1,87 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Mutex::destroy</h1>
+  <p class="verinfo">(PECL pthreads &lt; 3.0.0)</p><p class="refpurpose"><span class="refname">Mutex::destroy</span> &#x2014; <span class="dc-title">Destroy Mutex</span></p>
+
+ </div>
+
+ <div id="mutex.destroy-refsynopsisdiv">
+  <div class="warning"><strong class="warning">Warning</strong>
+   <p class="para">
+    The <a href="class.mutex.html" class="classname">Mutex</a> class has been removed in pthreads v3.
+   </p>
+  </div>
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mutex.destroy-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+ <span class="modifier">final</span> 
+ <span class="modifier">public</span> 
+ <span class="modifier">static</span> 
+ <span class="type">boolean</span> 
+ <span class="methodname"><strong>Mutex::destroy</strong></span>
+  ( <span class="methodparam">
+  <span class="type"><span class="type long">long</span></span>
+   <code class="parameter">$mutex</code>
+ </span>
+   )</div>
+
+  <p class="para rdfs-comment">Destroying Mutex handles must be carried out explicitly by the programmer when they are finished with the Mutex handle. </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mutex.destroy-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">mutex</code></dt>
+
+    <dd>
+
+     <p class="para">
+ A handle returned by a previous call to <span class="function"><a href="mutex.create.html" class="function">Mutex::create()</a></span>.
+ The handle should not be locked by any Thread when <span class="function"><strong>Mutex::destroy()</strong></span> is called.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mutex.destroy-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">A boolean indication of success</p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mutex.destroy-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4270">
+    <p><strong>Example #1 Mutex Creation and Destruction</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/**&#xA0;You&#xA0;cannot&#xA0;use&#xA0;the&#xA0;&quot;new&quot;&#xA0;keyword,&#xA0;a&#xA0;Mutex&#xA0;is&#xA0;not&#xA0;a&#xA0;PHP&#xA0;object&#xA0;**/<br></span><span style="color: #0000BB">$mutex&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">Mutex</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">();<br></span><span style="color: #FF8000">/**&#xA0;You&#xA0;have&#xA0;the&#xA0;physical&#xA0;address&#xA0;of&#xA0;the&#xA0;Mutex&#xA0;**/<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$mutex</span><span style="color: #007700">);<br></span><span style="color: #FF8000">/**&#xA0;Always&#xA0;destroy&#xA0;mutex&#xA0;you&#xA0;have&#xA0;created&#xA0;**/<br></span><span style="color: #0000BB">Mutex</span><span style="color: #007700">::</span><span style="color: #0000BB">destroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$mutex</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+int(40096976)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+

@@ -1,0 +1,77 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">fbsql_insert_id</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">fbsql_insert_id</span> &#x2014; <span class="dc-title">Get the id generated from the previous INSERT operation</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.fbsql-insert-id-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>fbsql_insert_id</strong></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <code class="parameter">$link_identifier</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Gets the id generated from the previous INSERT operation which created a
+   DEFAULT UNIQUE value.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    The value of the FrontBase SQL function
+    <span class="function"><strong>fbsql_insert_id()</strong></span> always contains the most recently
+    generated DEFAULT UNIQUE value, and is not reset between queries.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.fbsql-insert-id-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+link_identifier</code></dt>
+<dd>
+<p class="para">A FrontBase link identifier
+returned by <span class="function"><a href="function.fbsql-connect.html" class="function">fbsql_connect()</a></span> or
+<span class="function"><a href="function.fbsql-pconnect.html" class="function">fbsql_pconnect()</a></span>.</p><p class="para">If optional and not specified,
+the function will try to find an open link to the FrontBase server and if no
+such link is found it will try to create one as if
+<span class="function"><a href="function.fbsql-connect.html" class="function">fbsql_connect()</a></span> was called with no arguments.</p>
+</dd>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.fbsql-insert-id-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the ID generated from the previous INSERT query, or 0 if the
+   previous query does not generate an DEFAULT UNIQUE value.
+  </p>
+  <p class="para">
+   If you need to save the value for later, be sure to call this function
+   immediately after the query that generates the value.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.fbsql-insert-id-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.fbsql-affected-rows.html" class="function" rel="rdfs-seeAlso">fbsql_affected_rows()</a> - Get number of affected rows in previous FrontBase operation</span></li>
+   </ul>
+  </p>
+ </div>
+
+

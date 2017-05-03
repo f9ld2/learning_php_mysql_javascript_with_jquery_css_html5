@@ -1,0 +1,141 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MysqlndUhConnection::setClientOption</h1>
+  <p class="verinfo">(PECL mysqlnd-uh &gt;= 1.0.0-alpha)</p><p class="refpurpose"><span class="refname">MysqlndUhConnection::setClientOption</span> &#x2014; <span class="dc-title">Sets a client option</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqlnduhconnection.setclientoption-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><strong>MysqlndUhConnection::setClientOption</strong></span>
+    ( <span class="methodparam"><span class="type"><span class="type mysqlnd_connection">mysqlnd_connection</span></span> <code class="parameter">$connection</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$option</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$value</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+    Sets a client option.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqlnduhconnection.setclientoption-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">connection</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Mysqlnd connection handle. Do not modify!
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">option</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The option to be set.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">value</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Optional option value, if required.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqlnduhconnection.setclientoption-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success.
+   Otherwise, returns <strong><code>FALSE</code></strong>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqlnduhconnection.setclientoption-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2161">
+    <p><strong>Example #1 <span class="function"><strong>MysqlndUhConnection::setClientOption()</strong></span> example</strong></p>
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">client_option_to_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$option</span><span style="color: #007700">)&#xA0;{<br>&#xA0;static&#xA0;</span><span style="color: #0000BB">$mapping&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPTION_OPT_CONNECT_TIMEOUT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPTION_OPT_CONNECT_TIMEOUT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPTION_OPT_COMPRESS&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPTION_OPT_COMPRESS&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPTION_OPT_NAMED_PIPE&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPTION_OPT_NAMED_PIPE&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPTION_INIT_COMMAND&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPTION_INIT_COMMAND&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_READ_DEFAULT_FILE&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_READ_DEFAULT_FILE&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_READ_DEFAULT_GROUP&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_READ_DEFAULT_GROUP&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_SET_CHARSET_DIR&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_SET_CHARSET_DIR&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_SET_CHARSET_NAME&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_SET_CHARSET_NAME&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_LOCAL_INFILE&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_LOCAL_INFILE&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_PROTOCOL&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_PROTOCOL&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_SHARED_MEMORY_BASE_NAME&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_SHARED_MEMORY_BASE_NAME&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_READ_TIMEOUT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_READ_TIMEOUT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_WRITE_TIMEOUT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_WRITE_TIMEOUT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_USE_RESULT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_USE_RESULT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_USE_REMOTE_CONNECTION&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_USE_REMOTE_CONNECTION&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_USE_EMBEDDED_CONNECTION&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_USE_EMBEDDED_CONNECTION&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_GUESS_CONNECTION&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_GUESS_CONNECTION&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_SET_CLIENT_IP&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_SET_CLIENT_IP&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_SECURE_AUTH&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_SECURE_AUTH&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_REPORT_DATA_TRUNCATION&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_REPORT_DATA_TRUNCATION&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_RECONNECT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_RECONNECT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_SSL_VERIFY_SERVER_CERT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_SSL_VERIFY_SERVER_CERT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_NET_CMD_BUFFER_SIZE&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_NET_CMD_BUFFER_SIZE&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_NET_READ_BUFFER_SIZE&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_NET_READ_BUFFER_SIZE&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_SSL_KEY&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_SSL_KEY&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_SSL_CERT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_SSL_CERT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_SSL_CA&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_SSL_CA&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_SSL_CAPATH&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_SSL_CAPATH&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_SSL_CIPHER&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_SSL_CIPHER&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_SSL_PASSPHRASE&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_SSL_PASSPHRASE&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_SERVER_OPTION_PLUGIN_DIR&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_SERVER_OPTION_PLUGIN_DIR&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_SERVER_OPTION_DEFAULT_AUTH&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_SERVER_OPTION_DEFAULT_AUTH&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_SERVER_OPTION_SET_CLIENT_IP&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_SERVER_OPTION_SET_CLIENT_IP&quot;<br>&#xA0;</span><span style="color: #007700">);<br>&#xA0;if&#xA0;(</span><span style="color: #0000BB">version_compare</span><span style="color: #007700">(</span><span style="color: #0000BB">PHP_VERSION</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;5.3.99-dev&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;&gt;&apos;</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$mapping</span><span style="color: #007700">[</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_MAX_ALLOWED_PACKET</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_MAX_ALLOWED_PACKET&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$mapping</span><span style="color: #007700">[</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_OPT_AUTH_PROTOCOL</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_AUTH_PROTOCOL&quot;</span><span style="color: #007700">;<br>&#xA0;}<br>&#xA0;if&#xA0;(</span><span style="color: #0000BB">defined</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_INT_AND_FLOAT_NATIVE&quot;</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;special&#xA0;mysqlnd&#xA0;build&#xA0;*/<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$mapping</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_INT_AND_FLOAT_NATIVE&quot;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_OPT_INT_AND_FLOAT_NATIVE&quot;</span><span style="color: #007700">;<br>&#xA0;}<br>&#xA0;return&#xA0;(isset(</span><span style="color: #0000BB">$mapping</span><span style="color: #007700">[</span><span style="color: #0000BB">$option</span><span style="color: #007700">]))&#xA0;?&#xA0;</span><span style="color: #0000BB">$mapping</span><span style="color: #007700">[</span><span style="color: #0000BB">$option</span><span style="color: #007700">]&#xA0;:&#xA0;</span><span style="color: #DD0000">&apos;unknown&apos;</span><span style="color: #007700">;<br>}<br><br>class&#xA0;</span><span style="color: #0000BB">proxy&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">MysqlndUhConnection&#xA0;</span><span style="color: #007700">{<br>&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">setClientOption</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$option</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;%s(%s)\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">func_get_args</span><span style="color: #007700">(),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br>&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Option&#xA0;&apos;%s&apos;&#xA0;set&#xA0;to&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">client_option_to_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$option</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$value</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$ret&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">setClientOption</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$option</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #007700">);<br>&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;%s&#xA0;returns&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$ret</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br>&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$ret</span><span style="color: #007700">;<br>&#xA0;}<br>}<br></span><span style="color: #0000BB">mysqlnd_uh_set_connection_proxy</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">proxy</span><span style="color: #007700">());<br></span><span style="color: #0000BB">$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;root&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;test&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+proxy::setClientOption(array (
+  0 =&gt; NULL,
+  1 =&gt; 210,
+  2 =&gt; 3221225472,
+))
+Option &apos;MYSQLND_UH_MYSQLND_OPT_MAX_ALLOWED_PACKET&apos; set to 3221225472
+proxy::setClientOption returns true
+proxy::setClientOption(array (
+  0 =&gt; NULL,
+  1 =&gt; 211,
+  2 =&gt; &apos;mysql_native_password&apos;,
+))
+Option &apos;MYSQLND_UH_MYSQLND_OPT_AUTH_PROTOCOL&apos; set to &apos;mysql_native_password&apos;
+proxy::setClientOption returns true
+proxy::setClientOption(array (
+  0 =&gt; NULL,
+  1 =&gt; 8,
+  2 =&gt; 1,
+))
+Option &apos;MYSQLND_UH_MYSQLND_OPT_LOCAL_INFILE&apos; set to 1
+proxy::setClientOption returns true
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqlnduhconnection.setclientoption-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <span class="function"><a href="function.mysqlnd-uh-set-connection-proxy.html" class="function" rel="rdfs-seeAlso">mysqlnd_uh_set_connection_proxy()</a> - Installs a proxy for mysqlnd connections</span>
+    </li>
+    <li class="member">
+     <span class="function"><a href="mysqli.real-connect.html" class="function" rel="rdfs-seeAlso">mysqli_real_connect()</a> - Opens a connection to a mysql server</span>
+    </li>
+    <li class="member">
+     <span class="function"><a href="mysqli.options.html" class="function" rel="rdfs-seeAlso">mysqli_options()</a> - Set options</span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+

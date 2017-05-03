@@ -1,0 +1,108 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ZMQPoll::poll</h1>
+  <p class="verinfo">(PECL zmq &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">ZMQPoll::poll</span> &#x2014; <span class="dc-title">Poll the items</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-zmqpoll.poll-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">integer</span> <span class="methodname"><strong>ZMQPoll::poll</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter reference">&amp;$readable</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter reference">&amp;$writable</code></span>
+   [, <span class="methodparam"><span class="type">integer</span> <code class="parameter">$timeout</code><span class="initializer"> = -1</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Polls the items in the current poll set. The readable and writable items are returned in the 
+   <code class="parameter">readable</code> and <code class="parameter">writable</code> parameters. 
+   <span class="function"><a href="zmqpoll.getlasterrors.html" class="function">ZMQPoll::getLastErrors()</a></span> can be used to check if there were errors.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-zmqpoll.poll-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">readable</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Array where readable ZMQSockets/PHP streams are returned. The array
+       will be cleared at the beginning of the operation.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">writable</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Array where writable ZMQSockets/PHP streams are returned. The array
+       will be cleared at the beginning of the operation.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">timeout</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Timeout for the operation. -1 means that poll waits until
+       at least one item has activity. Please note that starting from 
+       version 1.0.0 the poll timeout is defined in milliseconds, rather
+       than microseconds.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-zmqpoll.poll-examples">
+ <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-5255">
+    <p><strong>Example #1 A <span class="function"><strong>ZMQPoll()</strong></span> example</strong></p>
+    <div class="example-contents"><p>
+     Create a simple poll server
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">/*&#xA0;Create&#xA0;socket,&#xA0;request-reply&#xA0;pattern&#xA0;(reply&#xA0;socket)&#xA0;*/<br></span><span style="color: #0000BB">$context&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ZMQContext</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$server&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$context</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getSocket</span><span style="color: #007700">(</span><span style="color: #0000BB">ZMQ</span><span style="color: #007700">::</span><span style="color: #0000BB">SOCKET_REP</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Bind&#xA0;to&#xA0;port&#xA0;5555&#xA0;on&#xA0;127.0.0.1&#xA0;*/<br></span><span style="color: #0000BB">$server</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bind</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;tcp://127.0.0.1:5555&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Create&#xA0;new&#xA0;pollset&#xA0;for&#xA0;incoming/outgoing&#xA0;message&#xA0;*/<br></span><span style="color: #0000BB">$poll&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ZMQPoll</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">/*&#xA0;Add&#xA0;the&#xA0;object&#xA0;and&#xA0;listen&#xA0;for&#xA0;poll&#xA0;in/out&#xA0;*/<br></span><span style="color: #0000BB">$id&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$poll</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #0000BB">$server</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">ZMQ</span><span style="color: #007700">::</span><span style="color: #0000BB">POLL_IN&#xA0;</span><span style="color: #007700">|&#xA0;</span><span style="color: #0000BB">ZMQ</span><span style="color: #007700">::</span><span style="color: #0000BB">POLL_OUT</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Added&#xA0;object&#xA0;with&#xA0;id&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$id&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">/*&#xA0;Initialise&#xA0;readable&#xA0;and&#xA0;writable&#xA0;arrays&#xA0;*/<br></span><span style="color: #0000BB">$readable&#xA0;</span><span style="color: #007700">=&#xA0;array();<br></span><span style="color: #0000BB">$writable&#xA0;</span><span style="color: #007700">=&#xA0;array();<br><br>while&#xA0;(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;Amount&#xA0;of&#xA0;events&#xA0;retrieved&#xA0;*/<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$events&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;Poll&#xA0;until&#xA0;there&#xA0;is&#xA0;something&#xA0;to&#xA0;do&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$events&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$poll</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">poll</span><span style="color: #007700">(</span><span style="color: #0000BB">$readable</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$writable</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$errors&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$poll</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getLastErrors</span><span style="color: #007700">();<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$errors</span><span style="color: #007700">)&#xA0;&gt;&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;foreach&#xA0;(</span><span style="color: #0000BB">$errors&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$error</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Error&#xA0;polling&#xA0;object&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$error&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;}&#xA0;catch&#xA0;(</span><span style="color: #0000BB">ZMQPollException&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;poll&#xA0;failed:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">()&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$events&#xA0;</span><span style="color: #007700">&gt;&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;Loop&#xA0;through&#xA0;readable&#xA0;objects&#xA0;and&#xA0;recv&#xA0;messages&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$readable&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$r</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Received&#xA0;message:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$r</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">recv</span><span style="color: #007700">()&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;catch&#xA0;(</span><span style="color: #0000BB">ZMQException&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;recv&#xA0;failed:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">()&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;Loop&#xA0;through&#xA0;writable&#xA0;and&#xA0;send&#xA0;back&#xA0;messages&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$writable&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$w</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$w</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">send</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Got&#xA0;it!&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;catch&#xA0;(</span><span style="color: #0000BB">ZMQException&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;send&#xA0;failed:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">()&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;}<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+ 
+
+ <div class="refsect1 returnvalues" id="refsect1-zmqpoll.poll-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an integer representing amount of items with activity. Throws ZMQPollException on error.
+  </p>
+ </div>
+
+
+

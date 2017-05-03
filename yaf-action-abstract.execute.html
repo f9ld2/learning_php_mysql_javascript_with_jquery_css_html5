@@ -1,0 +1,92 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Yaf_Action_Abstract::execute</h1>
+  <p class="verinfo">(Yaf &gt;=1.0.0)</p><p class="refpurpose"><span class="refname">Yaf_Action_Abstract::execute</span> &#x2014; <span class="dc-title">Action entry point</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-yaf-action-abstract.execute-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>Yaf_Action_Abstract::execute</strong></span>
+    ([ <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$arg</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   user should always define this method for a action, this is the entry point
+   of an action.
+   <span class="methodname"><strong>Yaf_Action_Abstract::execute()</strong></span> may have agruments.
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    </p><p class="para">
+     The value retrived from the request is not safe. you should do some
+     filtering work before you use it.
+    </p>
+   </blockquote></p>
+  <p></p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-yaf-action-abstract.execute-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-yaf-action-abstract.execute-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-yaf-action-abstract.execute-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-4729">
+   <p><strong>Example #1 <span class="function"><strong>Yaf_Action_Abstract::execute()</strong></span>example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/**&#xA0;<br>&#xA0;*&#xA0;A&#xA0;controller&#xA0;example<br>&#xA0;*/<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">ProductController&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">Yaf_Controller_Abstract&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;protected&#xA0;</span><span style="color: #0000BB">$actions&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;index&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;actions/Index.php&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;);<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-4730">
+   <p><strong>Example #2 <span class="function"><strong>Yaf_Action_Abstract::execute()</strong></span>example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/**&#xA0;<br>&#xA0;*&#xA0;ListAction<br>&#xA0;*/<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">ListAction&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">Yaf_Action_Abstract&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">execute&#xA0;</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$id</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #0000BB">$name&#xA0;</span><span style="color: #007700">==&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRequest</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">getParam</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;name&quot;</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #0000BB">$id&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">==&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRequest</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">getParam</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;id&quot;</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+/**
+ * Now assuming we are using the Yaf_Route_Static route 
+ * for request: http://yourdomain/product/list/name/yaf/id/22
+ * will result:
+ */
+ bool(true)
+ bool(true)
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-yaf-action-abstract.execute-seealso">
+  <h3 class="title">See Also</h3>
+  <ul class="simplelist">
+   <li class="member">
+  </li></ul>
+ </div>
+
+

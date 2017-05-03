@@ -1,0 +1,135 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">oci_parse</h1>
+  <p class="verinfo">(PHP 5, PHP 7, PECL OCI8 &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">oci_parse</span> &#x2014; <span class="dc-title">Prepares an Oracle statement for execution</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.oci-parse-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><strong>oci_parse</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$connection</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$sql_text</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Prepares <code class="parameter">sql_text</code> using
+   <code class="parameter">connection</code> and returns the statement identifier,
+   which can be used with <span class="function"><a href="function.oci-bind-by-name.html" class="function">oci_bind_by_name()</a></span>, 
+   <span class="function"><a href="function.oci-execute.html" class="function">oci_execute()</a></span> and other functions.
+  </p>
+  <p class="para">
+   Statement identifiers can be freed
+   with <span class="function"><a href="function.oci-free-statement.html" class="function">oci_free_statement()</a></span> or by setting the
+   variable to <strong><code>NULL</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.oci-parse-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">connection</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An Oracle connection identifier, returned by 
+       <span class="function"><a href="function.oci-connect.html" class="function">oci_connect()</a></span>, <span class="function"><a href="function.oci-pconnect.html" class="function">oci_pconnect()</a></span>, or <span class="function"><a href="function.oci-new-connect.html" class="function">oci_new_connect()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">sql_text</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The SQL or PL/SQL statement.
+      </p>
+      <p class="para">
+       SQL statements <em class="emphasis">should not</em> end with a
+       semi-colon (&quot;;&quot;).  PL/SQL
+       statements <em class="emphasis">should</em> end with a semi-colon
+       (&quot;;&quot;).
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.oci-parse-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a statement handle on success, or <strong><code>FALSE</code></strong> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.oci-parse-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2262">
+    <p><strong>Example #1 <span class="function"><strong>oci_parse()</strong></span> example for SQL statements</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Parse&#xA0;the&#xA0;statement.&#xA0;Note&#xA0;there&#xA0;is&#xA0;no&#xA0;final&#xA0;semi-colon&#xA0;in&#xA0;the&#xA0;SQL&#xA0;statement<br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;*&#xA0;FROM&#xA0;employees&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;table&#xA0;border=&apos;1&apos;&gt;\n&quot;</span><span style="color: #007700">;<br>while&#xA0;(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_ASSOC</span><span style="color: #007700">+</span><span style="color: #0000BB">OCI_RETURN_NULLS</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;tr&gt;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;foreach&#xA0;(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$item</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&#xA0;&#xA0;&#xA0;&lt;td&gt;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;(</span><span style="color: #0000BB">$item&#xA0;</span><span style="color: #007700">!==&#xA0;</span><span style="color: #0000BB">null&#xA0;</span><span style="color: #007700">?&#xA0;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$item</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">)&#xA0;:&#xA0;</span><span style="color: #DD0000">&quot;&amp;nbsp;&quot;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;/td&gt;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;/tr&gt;\n&quot;</span><span style="color: #007700">;<br>}<br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;/table&gt;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2263">
+    <p><strong>Example #2 <span class="function"><strong>oci_parse()</strong></span> example for PL/SQL statements</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">/*<br>&#xA0;&#xA0;Before&#xA0;running&#xA0;the&#xA0;PHP&#xA0;program,&#xA0;create&#xA0;a&#xA0;stored&#xA0;procedure&#xA0;in<br>&#xA0;&#xA0;SQL*Plus&#xA0;or&#xA0;SQL&#xA0;Developer:<br><br>&#xA0;&#xA0;CREATE&#xA0;OR&#xA0;REPLACE&#xA0;PROCEDURE&#xA0;myproc(p1&#xA0;IN&#xA0;NUMBER,&#xA0;p2&#xA0;OUT&#xA0;NUMBER)&#xA0;AS<br>&#xA0;&#xA0;BEGIN<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;p2&#xA0;:=&#xA0;p1&#xA0;*&#xA0;2;<br>&#xA0;&#xA0;END;<br><br>*/<br><br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$e&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$p1&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">8</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;When&#xA0;parsing&#xA0;PL/SQL&#xA0;programs,&#xA0;there&#xA0;should&#xA0;be&#xA0;a&#xA0;final&#xA0;semi-colon&#xA0;in&#xA0;the&#xA0;string<br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;begin&#xA0;myproc(:p1,&#xA0;:p2);&#xA0;end;&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_bind_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;:p1&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$p1</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_bind_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;:p2&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$p2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">40</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br>print&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$p2</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;prints&#xA0;16<br><br></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.oci-parse-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    This function <em class="emphasis">does not</em> validate 
+    <code class="parameter">sql_text</code>. The only way to find out if
+    <code class="parameter">sql_text</code> is a valid SQL or PL/SQL statement
+    is to execute it.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.oci-parse-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.oci-execute.html" class="function" rel="rdfs-seeAlso">oci_execute()</a> - Executes a statement</span></li>
+    <li class="member"><span class="function"><a href="function.oci-free-statement.html" class="function" rel="rdfs-seeAlso">oci_free_statement()</a> - Frees all resources associated with statement or cursor</span></li>
+   </ul>
+  </p>
+ </div>
+
+

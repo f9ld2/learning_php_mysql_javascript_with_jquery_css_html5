@@ -1,0 +1,71 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ezmlm_hash</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ezmlm_hash</span> &#x2014; <span class="dc-title">Calculate the hash value needed by EZMLM</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.ezmlm-hash-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>ezmlm_hash</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$addr</code></span>
+   )</div>
+
+  <p class="simpara">
+   <span class="function"><strong>ezmlm_hash()</strong></span> calculates the hash value needed
+   when keeping EZMLM mailing lists in a MySQL database.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ezmlm-hash-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">addr</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The email address that&apos;s being hashed.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ezmlm-hash-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The hash value of <code class="parameter">addr</code>.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.ezmlm-hash-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-3925">
+    <p><strong>Example #1 Calculating the hash and subscribing a user</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$user&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;joecool@example.com&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$hash&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ezmlm_hash</span><span style="color: #007700">(</span><span style="color: #0000BB">$user</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$query&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;INSERT&#xA0;INTO&#xA0;sample&#xA0;VALUES&#xA0;(%s,&#xA0;&apos;%s&apos;)&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$hash</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$user</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;using&#xA0;PHPLIB&#xA0;db&#xA0;interface<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+

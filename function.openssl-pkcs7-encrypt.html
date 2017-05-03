@@ -1,0 +1,145 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">openssl_pkcs7_encrypt</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">openssl_pkcs7_encrypt</span> &#x2014; <span class="dc-title">Encrypt an S/MIME message</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.openssl-pkcs7-encrypt-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>openssl_pkcs7_encrypt</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$infile</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$outfile</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$recipcerts</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$headers</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$cipherid</code><span class="initializer"> = OPENSSL_CIPHER_RC2_40</span></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>openssl_pkcs7_encrypt()</strong></span> takes the contents of the
+   file named <code class="parameter">infile</code> and encrypts them using an RC2
+   40-bit cipher so that they can only be read by the intended recipients
+   specified by <code class="parameter">recipcerts</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.openssl-pkcs7-encrypt-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">infile</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">outfile</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">recipcerts</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Either a lone X.509 certificate, or an array of X.509 certificates.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">headers</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">headers</code> is an array of headers that
+       will be prepended to the data after it has been encrypted.
+      </p>
+      <p class="para">
+       <code class="parameter">headers</code> can be either an associative array
+       keyed by header name, or an indexed array, where each element contains
+       a single header line.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">flags</code> can be used to specify options that affect
+       the encoding process - see <a href="openssl.pkcs7.flags.html" class="link">PKCS7
+       constants</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">cipherid</code></dt>
+
+     <dd>
+
+      <p class="para">
+       One of <a href="openssl.ciphers.html" class="link">cipher constants</a>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.openssl-pkcs7-encrypt-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.openssl-pkcs7-encrypt-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-943">
+    <p><strong>Example #1 <span class="function"><strong>openssl_pkcs7_encrypt()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;the&#xA0;message&#xA0;you&#xA0;want&#xA0;to&#xA0;encrypt&#xA0;and&#xA0;send&#xA0;to&#xA0;your&#xA0;secret&#xA0;agent<br>//&#xA0;in&#xA0;the&#xA0;field,&#xA0;known&#xA0;as&#xA0;nighthawk.&#xA0;&#xA0;You&#xA0;have&#xA0;his&#xA0;certificate<br>//&#xA0;in&#xA0;the&#xA0;file&#xA0;nighthawk.pem<br></span><span style="color: #0000BB">$data&#xA0;</span><span style="color: #007700">=&#xA0;&lt;&lt;&lt;EOD<br></span><span style="color: #DD0000">Nighthawk,<br><br>Top&#xA0;secret,&#xA0;for&#xA0;your&#xA0;eyes&#xA0;only!<br><br>The&#xA0;enemy&#xA0;is&#xA0;closing&#xA0;in!&#xA0;Meet&#xA0;me&#xA0;at&#xA0;the&#xA0;cafe&#xA0;at&#xA0;8.30am<br>to&#xA0;collect&#xA0;your&#xA0;forged&#xA0;passport!<br><br>HQ<br></span><span style="color: #007700">EOD;<br><br></span><span style="color: #FF8000">//&#xA0;load&#xA0;key<br></span><span style="color: #0000BB">$key&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;nighthawk.pem&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;save&#xA0;message&#xA0;to&#xA0;file<br></span><span style="color: #0000BB">$fp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;msg.txt&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;w&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;encrypt&#xA0;it<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">openssl_pkcs7_encrypt</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;msg.txt&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;enc.txt&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;array(</span><span style="color: #DD0000">&quot;To&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;nighthawk@example.com&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #FF8000">//&#xA0;keyed&#xA0;syntax<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;From:&#xA0;HQ&#xA0;&lt;hq@example.com&gt;&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #FF8000">//&#xA0;indexed&#xA0;syntax<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;Subject&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;Eyes&#xA0;only&quot;</span><span style="color: #007700">)))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;message&#xA0;encrypted&#xA0;-&#xA0;send&#xA0;it!<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">exec</span><span style="color: #007700">(</span><span style="color: #0000BB">ini_get</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;sendmail_path&quot;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&lt;&#xA0;enc.txt&quot;</span><span style="color: #007700">);<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+

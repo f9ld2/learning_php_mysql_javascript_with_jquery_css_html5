@@ -1,0 +1,179 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">array_udiff</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">array_udiff</span> &#x2014; <span class="dc-title">Computes the difference of arrays by using a callback function for data comparison</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.array-udiff-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><strong>array_udiff</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$array1</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$array2</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$...</code></span>
+   ], <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$value_compare_func</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Computes the difference of arrays by using a callback function for data
+   comparison. This is unlike <span class="function"><a href="function.array-diff.html" class="function">array_diff()</a></span> which uses an
+   internal function for comparing the data.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.array-udiff-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">array1</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The first array.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">array2</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The second array.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">value_compare_func</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The callback comparison function.
+      </p>
+      <p class="para">
+       The comparison function must return an integer less than, equal to, or greater than zero if the first argument is considered to be respectively less than, equal to, or greater than the second.
+Note that before PHP 7.0.0 this integer had to be in the range from -2147483648 to 2147483647.
+      </p>
+      <div class="methodsynopsis dc-description"><span class="type">int</span> <span class="methodname"><span class="replaceable">callback</span></span> ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$a</code></span>, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$b</code></span> )</div>
+
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.array-udiff-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array containing all the values of <code class="parameter">array1</code>
+   that are not present in any of the other arguments.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.array-udiff-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-5611">
+    <p><strong>Example #1 <span class="function"><strong>array_udiff()</strong></span> example using stdClass Objects</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Arrays&#xA0;to&#xA0;compare<br></span><span style="color: #0000BB">$array1&#xA0;</span><span style="color: #007700">=&#xA0;array(new&#xA0;</span><span style="color: #0000BB">stdclass</span><span style="color: #007700">,&#xA0;new&#xA0;</span><span style="color: #0000BB">stdclass</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;new&#xA0;</span><span style="color: #0000BB">stdclass</span><span style="color: #007700">,&#xA0;new&#xA0;</span><span style="color: #0000BB">stdclass</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;);<br><br></span><span style="color: #0000BB">$array2&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;new&#xA0;</span><span style="color: #0000BB">stdclass</span><span style="color: #007700">,&#xA0;new&#xA0;</span><span style="color: #0000BB">stdclass</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;);<br><br></span><span style="color: #FF8000">//&#xA0;Set&#xA0;some&#xA0;properties&#xA0;for&#xA0;each&#xA0;object<br></span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">width&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">11</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">height&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">width&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">;&#xA0;&#xA0;</span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">height&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">width&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">;&#xA0;&#xA0;</span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">height&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">9</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">width&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">;&#xA0;&#xA0;</span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">height&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$array2</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">width&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">;&#xA0;&#xA0;</span><span style="color: #0000BB">$array2</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">height&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$array2</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">width&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">9</span><span style="color: #007700">;&#xA0;&#xA0;</span><span style="color: #0000BB">$array2</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">height&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br><br>function&#xA0;</span><span style="color: #0000BB">compare_by_area</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$b</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$areaA&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">width&#xA0;</span><span style="color: #007700">*&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">height</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$areaB&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$b</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">width&#xA0;</span><span style="color: #007700">*&#xA0;</span><span style="color: #0000BB">$b</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">height</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$areaA&#xA0;</span><span style="color: #007700">&lt;&#xA0;</span><span style="color: #0000BB">$areaB</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;elseif&#xA0;(</span><span style="color: #0000BB">$areaA&#xA0;</span><span style="color: #007700">&gt;&#xA0;</span><span style="color: #0000BB">$areaB</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">array_udiff</span><span style="color: #007700">(</span><span style="color: #0000BB">$array1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$array2</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;compare_by_area&apos;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; stdClass Object
+        (
+            [width] =&gt; 11
+            [height] =&gt; 3
+        )
+
+    [1] =&gt; stdClass Object
+        (
+            [width] =&gt; 7
+            [height] =&gt; 1
+        )
+
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5612">
+    <p><strong>Example #2 <span class="function"><strong>array_udiff()</strong></span> example using DateTime Objects</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">MyCalendar&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;</span><span style="color: #0000BB">$free&#xA0;</span><span style="color: #007700">=&#xA0;array();<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;</span><span style="color: #0000BB">$booked&#xA0;</span><span style="color: #007700">=&#xA0;array();<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$week&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;now&apos;</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$start&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #0000BB">$week</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$start</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">modify</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Monday&#xA0;this&#xA0;week&#xA0;midnight&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$end&#xA0;</span><span style="color: #007700">=&#xA0;clone&#xA0;</span><span style="color: #0000BB">$start</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$end</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">modify</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Friday&#xA0;this&#xA0;week&#xA0;midnight&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$interval&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">DateInterval</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;P1D&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;foreach&#xA0;(new&#xA0;</span><span style="color: #0000BB">DatePeriod</span><span style="color: #007700">(</span><span style="color: #0000BB">$start</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$interval</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$end</span><span style="color: #007700">)&#xA0;as&#xA0;</span><span style="color: #0000BB">$freeTime</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">[]&#xA0;=&#xA0;</span><span style="color: #0000BB">$freeTime</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">bookAppointment</span><span style="color: #007700">(</span><span style="color: #0000BB">DateTime&#xA0;$date</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$note</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">booked</span><span style="color: #007700">[]&#xA0;=&#xA0;array(</span><span style="color: #DD0000">&apos;date&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">modify</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;midnight&apos;</span><span style="color: #007700">),&#xA0;</span><span style="color: #DD0000">&apos;note&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$note</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">checkAvailability</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">array_udiff</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">booked</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #0000BB">$this</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;customCompare&apos;</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">customCompare</span><span style="color: #007700">(</span><span style="color: #0000BB">$free</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$booked</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$free</span><span style="color: #007700">))&#xA0;</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$free</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;date&apos;</span><span style="color: #007700">];<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;else&#xA0;</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$free</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$booked</span><span style="color: #007700">))&#xA0;</span><span style="color: #0000BB">$b&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$booked</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;date&apos;</span><span style="color: #007700">];<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;else&#xA0;</span><span style="color: #0000BB">$b&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$booked</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">==&#xA0;</span><span style="color: #0000BB">$b</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;elseif&#xA0;(</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">&gt;&#xA0;</span><span style="color: #0000BB">$b</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;a&#xA0;calendar&#xA0;for&#xA0;weekly&#xA0;appointments<br></span><span style="color: #0000BB">$myCalendar&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MyCalendar</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;Book&#xA0;some&#xA0;appointments&#xA0;for&#xA0;this&#xA0;week<br></span><span style="color: #0000BB">$myCalendar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bookAppointment</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Monday&#xA0;this&#xA0;week&apos;</span><span style="color: #007700">),&#xA0;</span><span style="color: #DD0000">&quot;Cleaning&#xA0;GoogleGuy&apos;s&#xA0;apartment.&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$myCalendar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bookAppointment</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Wednesday&#xA0;this&#xA0;week&apos;</span><span style="color: #007700">),&#xA0;</span><span style="color: #DD0000">&quot;Going&#xA0;on&#xA0;a&#xA0;snowboarding&#xA0;trip.&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$myCalendar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bookAppointment</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Friday&#xA0;this&#xA0;week&apos;</span><span style="color: #007700">),&#xA0;</span><span style="color: #DD0000">&quot;Fixing&#xA0;buggy&#xA0;code.&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Check&#xA0;availability&#xA0;of&#xA0;days&#xA0;by&#xA0;comparing&#xA0;$booked&#xA0;dates&#xA0;against&#xA0;$free&#xA0;dates<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;I&apos;m&#xA0;available&#xA0;on&#xA0;the&#xA0;following&#xA0;days&#xA0;this&#xA0;week...\n\n&quot;</span><span style="color: #007700">;<br>foreach&#xA0;(</span><span style="color: #0000BB">$myCalendar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">checkAvailability</span><span style="color: #007700">()&#xA0;as&#xA0;</span><span style="color: #0000BB">$free</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$free</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;l&apos;</span><span style="color: #007700">),&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;&#xA0;<br>}<br>echo&#xA0;</span><span style="color: #DD0000">&quot;\n\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;I&apos;m&#xA0;busy&#xA0;on&#xA0;the&#xA0;following&#xA0;days&#xA0;this&#xA0;week...\n\n&quot;</span><span style="color: #007700">;<br>foreach&#xA0;(</span><span style="color: #0000BB">$myCalendar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">booked&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$booked</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$booked</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;date&apos;</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;l&apos;</span><span style="color: #007700">),&#xA0;</span><span style="color: #DD0000">&quot;:&#xA0;&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$booked</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;note&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;&#xA0;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+I&apos;m available on the following days this week...
+
+Tuesday
+Thursday
+
+
+I&apos;m busy on the following days this week...
+
+Monday: Cleaning GoogleGuy&apos;s apartment.
+Wednesday: Going on a snowboarding trip.
+Friday: Fixing buggy code.
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes" id="refsect1-function.array-udiff-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <span class="simpara">
+    Please note that this function only checks one dimension of a n-dimensional
+    array. Of course you can check deeper dimensions by using
+    <em>array_udiff($array1[0], $array2[0], &quot;data_compare_func&quot;);</em>.
+   </span>
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.array-udiff-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.array-diff.html" class="function" rel="rdfs-seeAlso">array_diff()</a> - Computes the difference of arrays</span></li>
+    <li class="member"><span class="function"><a href="function.array-diff-assoc.html" class="function" rel="rdfs-seeAlso">array_diff_assoc()</a> - Computes the difference of arrays with additional index check</span></li>
+    <li class="member"><span class="function"><a href="function.array-diff-uassoc.html" class="function" rel="rdfs-seeAlso">array_diff_uassoc()</a> - Computes the difference of arrays with additional index check which is performed by a user supplied callback function</span></li>
+    <li class="member"><span class="function"><a href="function.array-udiff-assoc.html" class="function" rel="rdfs-seeAlso">array_udiff_assoc()</a> - Computes the difference of arrays with additional index check, compares data by a callback function</span></li>
+    <li class="member"><span class="function"><a href="function.array-udiff-uassoc.html" class="function" rel="rdfs-seeAlso">array_udiff_uassoc()</a> - Computes the difference of arrays with additional index check, compares data and indexes by a callback function</span></li>
+    <li class="member"><span class="function"><a href="function.array-intersect.html" class="function" rel="rdfs-seeAlso">array_intersect()</a> - Computes the intersection of arrays</span></li>
+    <li class="member"><span class="function"><a href="function.array-intersect-assoc.html" class="function" rel="rdfs-seeAlso">array_intersect_assoc()</a> - Computes the intersection of arrays with additional index check</span></li>
+    <li class="member"><span class="function"><a href="function.array-uintersect.html" class="function" rel="rdfs-seeAlso">array_uintersect()</a> - Computes the intersection of arrays, compares data by a callback function</span></li>
+    <li class="member"><span class="function"><a href="function.array-uintersect-assoc.html" class="function" rel="rdfs-seeAlso">array_uintersect_assoc()</a> - Computes the intersection of arrays with additional index check, compares data by a callback function</span></li>
+    <li class="member"><span class="function"><a href="function.array-uintersect-uassoc.html" class="function" rel="rdfs-seeAlso">array_uintersect_uassoc()</a> - Computes the intersection of arrays with additional index check, compares data and indexes by separate callback functions</span></li>
+   </ul>
+  </p>
+ </div>
+

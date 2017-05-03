@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+  <h2 class="title">namespace keyword and __NAMESPACE__ constant</h2>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7)</p>
+  <p class="para">
+   PHP supports two ways of abstractly accessing elements within the current namespace,
+   the <strong><code>__NAMESPACE__</code></strong> magic constant, and the <em>namespace</em>
+   keyword.
+  </p>
+  <p class="para">
+   The value of <strong><code>__NAMESPACE__</code></strong> is a string that contains the current
+   namespace name.  In global, un-namespaced code, it contains an empty string.
+   <div class="example" id="example-253">
+    <p><strong>Example #1 __NAMESPACE__ example, namespaced code</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">namespace&#xA0;</span><span style="color: #0000BB">MyProject</span><span style="color: #007700">;<br><br>echo&#xA0;</span><span style="color: #DD0000">&apos;&quot;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">__NAMESPACE__</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;&quot;&apos;</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;outputs&#xA0;&quot;MyProject&quot;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-254">
+    <p><strong>Example #2 __NAMESPACE__ example, global code</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&apos;&quot;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">__NAMESPACE__</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;&quot;&apos;</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;outputs&#xA0;&quot;&quot;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   The <strong><code>__NAMESPACE__</code></strong> constant is useful for dynamically constructing
+   names, for instance:
+   <div class="example" id="example-255">
+    <p><strong>Example #3 using __NAMESPACE__ for dynamic name construction</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">namespace&#xA0;</span><span style="color: #0000BB">MyProject</span><span style="color: #007700">;<br><br>function&#xA0;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #0000BB">$classname</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">__NAMESPACE__&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&apos;\\&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$classname</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;new&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   The <em>namespace</em> keyword can be used to explicitly request
+   an element from the current namespace or a sub-namespace.  It is the namespace
+   equivalent of the <em>self</em> operator for classes.
+   <div class="example" id="example-256">
+    <p><strong>Example #4 the namespace operator, inside a namespace</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">namespace&#xA0;</span><span style="color: #0000BB">MyProject</span><span style="color: #007700">;<br><br>use&#xA0;</span><span style="color: #0000BB">blah</span><span style="color: #007700">\</span><span style="color: #0000BB">blah&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">mine</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;see&#xA0;&quot;Using&#xA0;namespaces:&#xA0;Aliasing/Importing&quot;<br><br></span><span style="color: #0000BB">blah</span><span style="color: #007700">\</span><span style="color: #0000BB">mine</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;calls&#xA0;function&#xA0;MyProject\blah\mine()<br></span><span style="color: #007700">namespace\</span><span style="color: #0000BB">blah</span><span style="color: #007700">\</span><span style="color: #0000BB">mine</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;calls&#xA0;function&#xA0;MyProject\blah\mine()<br><br></span><span style="color: #007700">namespace\</span><span style="color: #0000BB">func</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;calls&#xA0;function&#xA0;MyProject\func()<br></span><span style="color: #007700">namespace\</span><span style="color: #0000BB">sub</span><span style="color: #007700">\</span><span style="color: #0000BB">func</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;calls&#xA0;function&#xA0;MyProject\sub\func()<br></span><span style="color: #007700">namespace\</span><span style="color: #0000BB">cname</span><span style="color: #007700">::</span><span style="color: #0000BB">method</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;calls&#xA0;static&#xA0;method&#xA0;&quot;method&quot;&#xA0;of&#xA0;class&#xA0;MyProject\cname<br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;namespace\</span><span style="color: #0000BB">sub</span><span style="color: #007700">\</span><span style="color: #0000BB">cname</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;instantiates&#xA0;object&#xA0;of&#xA0;class&#xA0;MyProject\sub\cname<br></span><span style="color: #0000BB">$b&#xA0;</span><span style="color: #007700">=&#xA0;namespace\</span><span style="color: #0000BB">CONSTANT</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;assigns&#xA0;value&#xA0;of&#xA0;constant&#xA0;MyProject\CONSTANT&#xA0;to&#xA0;$b<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-257">
+    <p><strong>Example #5 the namespace operator, in global code</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #007700">namespace\</span><span style="color: #0000BB">func</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;calls&#xA0;function&#xA0;func()<br></span><span style="color: #007700">namespace\</span><span style="color: #0000BB">sub</span><span style="color: #007700">\</span><span style="color: #0000BB">func</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;calls&#xA0;function&#xA0;sub\func()<br></span><span style="color: #007700">namespace\</span><span style="color: #0000BB">cname</span><span style="color: #007700">::</span><span style="color: #0000BB">method</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;calls&#xA0;static&#xA0;method&#xA0;&quot;method&quot;&#xA0;of&#xA0;class&#xA0;cname<br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;namespace\</span><span style="color: #0000BB">sub</span><span style="color: #007700">\</span><span style="color: #0000BB">cname</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;instantiates&#xA0;object&#xA0;of&#xA0;class&#xA0;sub\cname<br></span><span style="color: #0000BB">$b&#xA0;</span><span style="color: #007700">=&#xA0;namespace\</span><span style="color: #0000BB">CONSTANT</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;assigns&#xA0;value&#xA0;of&#xA0;constant&#xA0;CONSTANT&#xA0;to&#xA0;$b<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ 

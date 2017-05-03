@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">imagepalettecopy</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">imagepalettecopy</span> &#x2014; <span class="dc-title">Copy the palette from one image to another</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.imagepalettecopy-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>imagepalettecopy</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$destination</code></span>
+   , <span class="methodparam"><span class="type">resource</span> <code class="parameter">$source</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>imagepalettecopy()</strong></span> copies the palette from the
+   <code class="parameter">source</code> image to the 
+   <code class="parameter">destination</code> image.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.imagepalettecopy-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">destination</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The destination image resource.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">source</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The source image resource.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.imagepalettecopy-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.imagepalettecopy-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-3587">
+    <p><strong>Example #1 <span class="function"><strong>imagepalettecopy()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;two&#xA0;palette&#xA0;images<br></span><span style="color: #0000BB">$palette1&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">imagecreate</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$palette2&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">imagecreate</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Allocate&#xA0;the&#xA0;background&#xA0;to&#xA0;be&#xA0;<br>//&#xA0;green&#xA0;in&#xA0;the&#xA0;first&#xA0;palette&#xA0;image<br></span><span style="color: #0000BB">$green&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$palette1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">255</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Copy&#xA0;the&#xA0;palette&#xA0;from&#xA0;image&#xA0;1&#xA0;to&#xA0;image&#xA0;2<br></span><span style="color: #0000BB">imagepalettecopy</span><span style="color: #007700">(</span><span style="color: #0000BB">$palette2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$palette1</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Since&#xA0;the&#xA0;palette&#xA0;is&#xA0;now&#xA0;copied&#xA0;we&#xA0;can&#xA0;use&#xA0;the&#xA0;<br>//&#xA0;green&#xA0;color&#xA0;allocated&#xA0;to&#xA0;image&#xA0;1&#xA0;without&#xA0;using&#xA0;<br>//&#xA0;imagecolorallocate()&#xA0;twice<br></span><span style="color: #0000BB">imagefilledrectangle</span><span style="color: #007700">(</span><span style="color: #0000BB">$palette2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">99</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">99</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$green</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Output&#xA0;image&#xA0;to&#xA0;the&#xA0;browser<br></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Content-type:&#xA0;image/png&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">imagepng</span><span style="color: #007700">(</span><span style="color: #0000BB">$palette2</span><span style="color: #007700">);<br></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$palette1</span><span style="color: #007700">);<br></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$palette2</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+

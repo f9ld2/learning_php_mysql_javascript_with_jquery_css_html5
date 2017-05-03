@@ -1,0 +1,160 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">in_array</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">in_array</span> &#x2014; <span class="dc-title">Checks if a value exists in an array</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.in-array-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>in_array</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$needle</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$haystack</code></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$strict</code><span class="initializer"> = <strong><code>FALSE</code></strong></span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Searches <code class="parameter">haystack</code> for <code class="parameter">needle</code> using loose comparison 
+   unless <code class="parameter">strict</code> is set.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.in-array-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">needle</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The searched value.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       </p><p class="para">
+        If <code class="parameter">needle</code> is a string, the comparison is done
+        in a case-sensitive manner.
+       </p>
+      </blockquote></dd></dl></p>
+     
+
+    
+    
+     <dt>
+<code class="parameter">haystack</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The array.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">strict</code></dt>
+
+     <dd>
+
+      <p class="para">
+       If the third parameter <code class="parameter">strict</code> is set to <strong><code>TRUE</code></strong>
+       then the <span class="function"><strong>in_array()</strong></span> function will also check the
+       <a href="language.types.html" class="link">types</a> of the
+       <code class="parameter">needle</code> in the <code class="parameter">haystack</code>.
+      </p>
+     </dd>
+
+    
+   
+
+  <p></p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.in-array-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> if <code class="parameter">needle</code> is found in the array,
+   <strong><code>FALSE</code></strong> otherwise.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.in-array-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-5636">
+    <p><strong>Example #1 <span class="function"><strong>in_array()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$os&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;Mac&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;NT&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;Irix&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;Linux&quot;</span><span style="color: #007700">);<br>if&#xA0;(</span><span style="color: #0000BB">in_array</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Irix&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$os</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Got&#xA0;Irix&quot;</span><span style="color: #007700">;<br>}<br>if&#xA0;(</span><span style="color: #0000BB">in_array</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;mac&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$os</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Got&#xA0;mac&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     The second condition fails because <span class="function"><strong>in_array()</strong></span>
+     is case-sensitive, so the program above will display:
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Got Irix
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5637">
+    <p><strong>Example #2 <span class="function"><strong>in_array()</strong></span> with strict example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$a&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&apos;1.10&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">12.4</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1.13</span><span style="color: #007700">);<br><br>if&#xA0;(</span><span style="color: #0000BB">in_array</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;12.4&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&apos;12.4&apos;&#xA0;found&#xA0;with&#xA0;strict&#xA0;check\n&quot;</span><span style="color: #007700">;<br>}<br><br>if&#xA0;(</span><span style="color: #0000BB">in_array</span><span style="color: #007700">(</span><span style="color: #0000BB">1.13</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;1.13&#xA0;found&#xA0;with&#xA0;strict&#xA0;check\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+1.13 found with strict check
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5638">
+    <p><strong>Example #3 <span class="function"><strong>in_array()</strong></span> with an array as needle</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$a&#xA0;</span><span style="color: #007700">=&#xA0;array(array(</span><span style="color: #DD0000">&apos;p&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;h&apos;</span><span style="color: #007700">),&#xA0;array(</span><span style="color: #DD0000">&apos;p&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;r&apos;</span><span style="color: #007700">),&#xA0;</span><span style="color: #DD0000">&apos;o&apos;</span><span style="color: #007700">);<br><br>if&#xA0;(</span><span style="color: #0000BB">in_array</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&apos;p&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;h&apos;</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&apos;ph&apos;&#xA0;was&#xA0;found\n&quot;</span><span style="color: #007700">;<br>}<br><br>if&#xA0;(</span><span style="color: #0000BB">in_array</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&apos;f&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;i&apos;</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&apos;fi&apos;&#xA0;was&#xA0;found\n&quot;</span><span style="color: #007700">;<br>}<br><br>if&#xA0;(</span><span style="color: #0000BB">in_array</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;o&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&apos;o&apos;&#xA0;was&#xA0;found\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+  &apos;ph&apos; was found
+  &apos;o&apos; was found
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.in-array-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.array-search.html" class="function" rel="rdfs-seeAlso">array_search()</a> - Searches the array for a given value and returns the first corresponding key if successful</span></li>
+    <li class="member"><span class="function"><a href="function.isset.html" class="function" rel="rdfs-seeAlso">isset()</a> - Determine if a variable is set and is not NULL</span></li>
+    <li class="member"><span class="function"><a href="function.array-key-exists.html" class="function" rel="rdfs-seeAlso">array_key_exists()</a> - Checks if the given key or index exists in the array</span></li>
+   </ul>
+  </p>
+ </div>
+

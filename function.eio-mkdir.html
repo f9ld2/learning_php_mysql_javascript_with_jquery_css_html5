@@ -1,0 +1,173 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">eio_mkdir</h1>
+  <p class="verinfo">(PECL eio &gt;= 0.0.1dev)</p><p class="refpurpose"><span class="refname">eio_mkdir</span> &#x2014; <span class="dc-title">Create directory</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.eio-mkdir-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><strong>eio_mkdir</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$path</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$pri</code><span class="initializer"> = EIO_PRI_DEFAULT</span></span>
+   [, <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$callback</code><span class="initializer"> = NULL</span></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$data</code><span class="initializer"> = NULL</span></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+  <span class="function"><strong>eio_mkdir()</strong></span> creates directory with specified access
+  <code class="parameter">mode</code>.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.eio-mkdir-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">path</code></dt>
+
+    <dd>
+
+     <p class="para">
+     Path for the new directory.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">mode</code></dt>
+
+    <dd>
+
+     <p class="para">
+     Access mode, e.g. 0755
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">pri</code></dt>
+
+    <dd>
+
+    <p class="para">The request priority: <strong><code>EIO_PRI_DEFAULT</code></strong>, <strong><code>EIO_PRI_MIN</code></strong>, <strong><code>EIO_PRI_MAX</code></strong>, or <strong><code>NULL</code></strong>.
+If <strong><code>NULL</code></strong> passed, <code class="parameter">pri</code> internally is set to
+<strong><code>EIO_PRI_DEFAULT</code></strong>.
+</p>
+
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">callback</code></dt>
+
+    <dd>
+
+     <p class="para">
+<code class="parameter">callback</code> function is called when the request is done.
+It should match the following prototype: <div class="example-contents"><div class="phpcode"><code><span style="color: #000000">
+void&#xA0;callback(mixed&#xA0;$data,&#xA0;int&#xA0;$result[,&#xA0;resource&#xA0;$req]);</span>
+</code></div></div>
+
+<dl>
+
+
+<dt>
+<code class="parameter">data</code></dt>
+
+<dd>
+<p class="para">is custom data passed to the request.</p></dd>
+
+
+
+<dt>
+<code class="parameter">result</code></dt>
+
+<dd>
+<p class="para">request-specific result value; basically, the value returned by corresponding
+system call.</p></dd>
+
+
+
+<dt>
+<code class="parameter">req</code></dt>
+
+<dd>
+<p class="para">is optional request resource which can be used with functions like <span class="function"><a href="function.eio-get-last-error.html" class="function">eio_get_last_error()</a></span></p></dd>
+
+
+</dl>
+
+</p>
+
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">data</code></dt>
+
+    <dd>
+
+     <p class="para">
+     Arbitrary variable passed to <code class="parameter">callback</code>.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.eio-mkdir-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <span class="function"><strong>eio_mkdir()</strong></span> returns request resource on success or <strong><code>FALSE</code></strong> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.eio-mkdir-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-4143">
+   <p><strong>Example #1 <span class="function"><strong>eio_mkdir()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$temp_dirname&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;eio-temp-dir&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">/*&#xA0;Is&#xA0;called&#xA0;when&#xA0;eio_mkdir()&#xA0;finishes&#xA0;*/<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">my_mkdir_callback</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&#xA0;{<br>&#xA0;if&#xA0;(</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">==&#xA0;</span><span style="color: #0000BB">0&#xA0;</span><span style="color: #007700">&amp;&amp;&#xA0;</span><span style="color: #0000BB">is_dir</span><span style="color: #007700">(</span><span style="color: #0000BB">$temp_dirname</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&amp;&amp;&#xA0;!</span><span style="color: #0000BB">is_readable</span><span style="color: #007700">(</span><span style="color: #0000BB">$temp_dirname</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&amp;&amp;&#xA0;</span><span style="color: #0000BB">is_writable</span><span style="color: #007700">(</span><span style="color: #0000BB">$temp_dirname</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;eio_mkdir_ok&quot;</span><span style="color: #007700">;<br>&#xA0;}<br><br>&#xA0;</span><span style="color: #FF8000">//&#xA0;Remove&#xA0;directory<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">file_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">))<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">rmdir</span><span style="color: #007700">(</span><span style="color: #0000BB">$temp_dirname</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;directory&#xA0;with&#xA0;access&#xA0;mode&#xA0;0300<br></span><span style="color: #0000BB">eio_mkdir</span><span style="color: #007700">(</span><span style="color: #0000BB">$temp_dirname</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0300</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">EIO_PRI_DEFAULT</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_mkdir_callback&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$temp_dirname</span><span style="color: #007700">);<br></span><span style="color: #0000BB">eio_event_loop</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+eio_mkdir_ok
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+
+ <div class="refsect1 seealso" id="refsect1-function.eio-mkdir-seealso">
+  <h3 class="title">See Also</h3>
+  <ul class="simplelist">
+   <li class="member">eio_rmdir</li>
+  </ul>
+ </div>
+
+

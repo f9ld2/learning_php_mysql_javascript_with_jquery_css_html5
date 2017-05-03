@@ -1,0 +1,134 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">fprintf</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">fprintf</span> &#x2014; <span class="dc-title">Write a formatted string to a stream</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.fprintf-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>fprintf</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$handle</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$format</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$args</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Write a string produced according to <code class="parameter">format</code> to the
+   stream resource specified by <code class="parameter">handle</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.fprintf-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">handle</code></dt>
+
+     <dd>
+
+      <p class="para">A file system pointer <span class="type"><a href="language.types.resource.html" class="type resource">resource</a></span>
+that is typically created using <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">format</code></dt>
+
+     <dd>
+
+      <p class="para">
+       See <span class="function"><a href="function.sprintf.html" class="function">sprintf()</a></span> for a description of 
+       <code class="parameter">format</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">args</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">...</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.fprintf-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the length of the string written.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.fprintf-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-5447">
+    <p><strong>Example #1 <span class="function"><strong>fprintf()</strong></span>: zero-padded integers</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">if&#xA0;(!(</span><span style="color: #0000BB">$fp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;date.txt&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;w&apos;</span><span style="color: #007700">)))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;return;<br>}<br><br></span><span style="color: #0000BB">fprintf</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;%04d-%02d-%02d&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$year</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$month</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$day</span><span style="color: #007700">);<br></span><span style="color: #FF8000">//&#xA0;will&#xA0;write&#xA0;the&#xA0;formatted&#xA0;ISO&#xA0;date&#xA0;to&#xA0;date.txt<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-5448">
+    <p><strong>Example #2 <span class="function"><strong>fprintf()</strong></span>: formatting currency</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">if&#xA0;(!(</span><span style="color: #0000BB">$fp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;currency.txt&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;w&apos;</span><span style="color: #007700">)))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;return;<br>}<br><br></span><span style="color: #0000BB">$money1&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">68.75</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$money2&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">54.35</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$money&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$money1&#xA0;</span><span style="color: #007700">+&#xA0;</span><span style="color: #0000BB">$money2</span><span style="color: #007700">;<br></span><span style="color: #FF8000">//&#xA0;echo&#xA0;$money&#xA0;will&#xA0;output&#xA0;&quot;123.1&quot;;<br></span><span style="color: #0000BB">$len&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fprintf</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;%01.2f&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$money</span><span style="color: #007700">);<br></span><span style="color: #FF8000">//&#xA0;will&#xA0;write&#xA0;&quot;123.10&quot;&#xA0;to&#xA0;currency.txt<br><br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;wrote&#xA0;</span><span style="color: #0000BB">$len</span><span style="color: #DD0000">&#xA0;bytes&#xA0;to&#xA0;currency.txt&quot;</span><span style="color: #007700">;<br></span><span style="color: #FF8000">//&#xA0;use&#xA0;the&#xA0;return&#xA0;value&#xA0;of&#xA0;fprintf&#xA0;to&#xA0;determine&#xA0;how&#xA0;many&#xA0;bytes&#xA0;we&#xA0;wrote<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.fprintf-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.printf.html" class="function" rel="rdfs-seeAlso">printf()</a> - Output a formatted string</span></li>
+    <li class="member"><span class="function"><a href="function.sprintf.html" class="function" rel="rdfs-seeAlso">sprintf()</a> - Return a formatted string</span></li>
+    <li class="member"><span class="function"><a href="function.sscanf.html" class="function" rel="rdfs-seeAlso">sscanf()</a> - Parses input from a string according to a format</span></li>
+    <li class="member"><span class="function"><a href="function.fscanf.html" class="function" rel="rdfs-seeAlso">fscanf()</a> - Parses input from a file according to a format</span></li>
+    <li class="member"><span class="function"><a href="function.vsprintf.html" class="function" rel="rdfs-seeAlso">vsprintf()</a> - Return a formatted string</span></li>
+    <li class="member"><span class="function"><a href="function.number-format.html" class="function" rel="rdfs-seeAlso">number_format()</a> - Format a number with grouped thousands</span></li>
+   </ul>
+  </p>
+ </div>
+
+

@@ -1,0 +1,129 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ldap_connect</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ldap_connect</span> &#x2014; <span class="dc-title">Connect to an LDAP server</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.ldap-connect-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><strong>ldap_connect</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$host</code><span class="initializer"> = <strong><code>NULL</code></strong></span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$port</code><span class="initializer"> = 389</span></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Creates an LDAP link identifier and checks whether the given
+   <code class="parameter">host</code> and <code class="parameter">port</code> are plausible.
+  </p>
+  <p class="para">
+   Note: This function does <em class="emphasis">not</em> open a connection.
+   It checks whether the given parameters are plausible and can be used
+   to open a connection as soon as one is needed.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ldap-connect-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">host</code></dt>
+
+     <dd>
+
+      <p class="para">
+       This field supports using a hostname or, with OpenLDAP 2.x.x and
+       later, a full LDAP URI of the form <em>ldap://hostname:port</em>
+       or <em>ldaps://hostname:port</em> for SSL encryption.
+      </p>
+      <p class="para">
+       You can also provide multiple LDAP-URIs separated by a space as one string
+      </p>
+      <p class="para">
+       Note that <em>hostname:port</em> is not a supported LDAP URI as the schema is missing.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">port</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The port to connect to. Not used when using LDAP URIs.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ldap-connect-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a positive LDAP link identifier when the provided hostname/port combination or LDAP URI
+   seems plausible. It&apos;s a syntactic check of the provided parameters but the server(s) will not
+   be contacted! If the syntactic check fails it returns <strong><code>FALSE</code></strong>.
+   When OpenLDAP 2.x.x is used, <span class="function"><strong>ldap_connect()</strong></span> will always
+   return a <span class="type"><a href="language.types.resource.html" class="type resource">resource</a></span> as it does not actually connect but just
+   initializes the connecting parameters.  The actual connect happens with
+   the next calls to ldap_* funcs, usually with
+   <span class="function"><a href="function.ldap-bind.html" class="function">ldap_bind()</a></span>.
+  </p>
+  <p class="para">
+   If no arguments are specified then the link identifier of the already
+   opened link will be returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ldap-connect-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4939">
+    <p><strong>Example #1 Example of connecting to LDAP server.</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;LDAP&#xA0;variables<br></span><span style="color: #0000BB">$ldaphost&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;ldap.example.com&quot;</span><span style="color: #007700">;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;your&#xA0;ldap&#xA0;servers<br></span><span style="color: #0000BB">$ldapport&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">389</span><span style="color: #007700">;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;your&#xA0;ldap&#xA0;server&apos;s&#xA0;port&#xA0;number<br><br>//&#xA0;Connecting&#xA0;to&#xA0;LDAP<br></span><span style="color: #0000BB">$ldapconn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ldap_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$ldaphost</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ldapport</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;or&#xA0;die(</span><span style="color: #DD0000">&quot;Could&#xA0;not&#xA0;connect&#xA0;to&#xA0;</span><span style="color: #0000BB">$ldaphost</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-4940">
+    <p><strong>Example #2 Example of connecting securely to LDAP server.</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;make&#xA0;sure&#xA0;your&#xA0;host&#xA0;is&#xA0;the&#xA0;correct&#xA0;one<br>//&#xA0;that&#xA0;you&#xA0;issued&#xA0;your&#xA0;secure&#xA0;certificate&#xA0;to<br></span><span style="color: #0000BB">$ldaphost&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;ldaps://ldap.example.com/&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;Connecting&#xA0;to&#xA0;LDAP<br></span><span style="color: #0000BB">$ldapconn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ldap_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$ldaphost</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;or&#xA0;die(</span><span style="color: #DD0000">&quot;Could&#xA0;not&#xA0;connect&#xA0;to&#xA0;</span><span style="color: #007700">{</span><span style="color: #0000BB">$ldaphost</span><span style="color: #007700">}</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ldap-connect-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ldap-bind.html" class="function" rel="rdfs-seeAlso">ldap_bind()</a> - Bind to LDAP directory</span></li>
+   </ul>
+  </p>
+ </div>
+
+

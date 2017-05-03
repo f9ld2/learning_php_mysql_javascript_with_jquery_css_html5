@@ -1,0 +1,114 @@
+---
+layout: default
+---
+
+   <h2 class="title">Variable functions</h2>
+
+   <p class="para">
+    PHP supports the concept of variable functions. This means that if
+    a variable name has parentheses appended to it, PHP will look for
+    a function with the same name as whatever the variable evaluates
+    to, and will attempt to execute it. Among other things, this can
+    be used to implement callbacks, function tables, and so forth.
+   </p>
+   <p class="para">
+    Variable functions won&apos;t work with language constructs such 
+    as <span class="function"><a href="function.echo.html" class="function">echo</a></span>, <span class="function"><a href="function.print.html" class="function">print</a></span>,
+    <span class="function"><a href="function.unset.html" class="function">unset()</a></span>, <span class="function"><a href="function.isset.html" class="function">isset()</a></span>,
+    <span class="function"><a href="function.empty.html" class="function">empty()</a></span>, <span class="function"><a href="function.include.html" class="function">include</a></span>,
+    <span class="function"><a href="function.require.html" class="function">require</a></span> and the like. Utilize wrapper functions to make
+    use of any of these constructs as variable functions.
+   </p>
+   <p class="para">
+    <div class="example" id="example-159">
+     <p><strong>Example #1 Variable function example</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;In&#xA0;foo()&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br>function&#xA0;</span><span style="color: #0000BB">bar</span><span style="color: #007700">(</span><span style="color: #0000BB">$arg&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;&apos;</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;In&#xA0;bar();&#xA0;argument&#xA0;was&#xA0;&apos;</span><span style="color: #0000BB">$arg</span><span style="color: #DD0000">&apos;.&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;This&#xA0;is&#xA0;a&#xA0;wrapper&#xA0;function&#xA0;around&#xA0;echo<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">echoit</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$string</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">$func&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;foo&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$func</span><span style="color: #007700">();&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;calls&#xA0;foo()<br><br></span><span style="color: #0000BB">$func&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;bar&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$func</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;test&apos;</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;calls&#xA0;bar()<br><br></span><span style="color: #0000BB">$func&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;echoit&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$func</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;test&apos;</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;calls&#xA0;echoit()<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    Object methods can also be called with the variable functions syntax.
+    <div class="example" id="example-160">
+     <p><strong>Example #2 Variable method example</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Foo<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;function&#xA0;</span><span style="color: #0000BB">Variable</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$name&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;Bar&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">$name</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;calls&#xA0;the&#xA0;Bar()&#xA0;method<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">}<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;function&#xA0;</span><span style="color: #0000BB">Bar</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;This&#xA0;is&#xA0;Bar&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">$foo&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$funcname&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;Variable&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$foo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">$funcname</span><span style="color: #007700">();&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;calls&#xA0;$foo-&gt;Variable()<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    When calling static methods, the function call is stronger than the static property operator:
+    <div class="example" id="example-161">
+     <p><strong>Example #3 Variable method example with static properties</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Foo<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;static&#xA0;</span><span style="color: #0000BB">$variable&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;static&#xA0;property&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;static&#xA0;function&#xA0;</span><span style="color: #0000BB">Variable</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Method&#xA0;Variable&#xA0;called&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br>echo&#xA0;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">::</span><span style="color: #0000BB">$variable</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;prints&#xA0;&apos;static&#xA0;property&apos;.&#xA0;It&#xA0;does&#xA0;need&#xA0;a&#xA0;$variable&#xA0;in&#xA0;this&#xA0;scope.<br></span><span style="color: #0000BB">$variable&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;Variable&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">Foo</span><span style="color: #007700">::</span><span style="color: #0000BB">$variable</span><span style="color: #007700">();&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;calls&#xA0;$foo-&gt;Variable()&#xA0;reading&#xA0;$variable&#xA0;in&#xA0;this&#xA0;scope.<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+     As of PHP 5.4.0, you can call any <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> stored in a variable.
+    <div class="example" id="example-162">
+     <p><strong>Example #4 Complex callables</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Foo<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;static&#xA0;function&#xA0;</span><span style="color: #0000BB">bar</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;bar\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;function&#xA0;</span><span style="color: #0000BB">baz</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;baz\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">$func&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;Foo&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;bar&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$func</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;prints&#xA0;&quot;bar&quot;<br></span><span style="color: #0000BB">$func&#xA0;</span><span style="color: #007700">=&#xA0;array(new&#xA0;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;baz&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$func</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;prints&#xA0;&quot;baz&quot;<br></span><span style="color: #0000BB">$func&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;Foo::bar&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$func</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;prints&#xA0;&quot;bar&quot;&#xA0;as&#xA0;of&#xA0;PHP&#xA0;7.0.0;&#xA0;prior,&#xA0;it&#xA0;raised&#xA0;a&#xA0;fatal&#xA0;error<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+      
+   <p class="para">
+    See also <span class="function"><a href="function.is-callable.html" class="function">is_callable()</a></span>, <span class="function"><a href="function.call-user-func.html" class="function">call_user_func()</a></span>,
+    <a href="language.variables.variable.html" class="link">
+    variable variables</a> and <span class="function"><a href="function.function-exists.html" class="function">function_exists()</a></span>.
+   </p>
+   
+   <div class="sect2">
+    <h3 class="title">Changelog</h3>
+    <p class="para">
+     <table class="doctable informaltable">
+      
+       <thead>
+        <tr>
+         <th>Version</th>
+         <th>Description</th>
+        </tr>
+
+       </thead>
+
+       <tbody class="tbody">
+        <tr>
+         <td>7.0.0</td>
+         <td>
+          &apos;ClassName::methodName&apos; is allowed as variable function.
+         </td>
+        </tr>
+
+        <tr>
+         <td>5.4.0</td>
+         <td>
+          Arrays, which are valid callables, are allowed as variable functions.
+         </td>
+        </tr>
+
+       </tbody>
+      
+     </table>
+
+    </p>
+   </div>
+  

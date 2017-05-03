@@ -1,0 +1,100 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Phar::getStub</h1>
+  <p class="verinfo">(PHP &gt;= 5.3.0, PECL phar &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">Phar::getStub</span> &#x2014; <span class="dc-title">Return the PHP loader or bootstrap stub of a Phar archive</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-phar.getstub-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">string</span> <span class="methodname"><strong>Phar::getStub</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   Phar archives contain a bootstrap loader, or <em>stub</em>
+   written in PHP that is executed when the archive is executed in PHP either via
+   include:
+   <div class="example-contents">
+    <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">include&#xA0;</span><span style="color: #DD0000">&apos;myphar.phar&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   or by simple execution:
+   <div class="example-contents screen">
+    <div class="cdata"><pre>
+php myphar.phar
+    </pre></div>
+   </div>
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-phar.getstub-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing the contents of the bootstrap loader (stub) of
+   the current Phar archive.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-phar.getstub-errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws <a href="class.runtimeexception.html" class="classname">RuntimeException</a> if it is not possible to read
+   the stub from the Phar archive.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-phar.getstub-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-744">
+    <p><strong>Example #1 A <span class="function"><strong>Phar::getStub()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$p&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;/path/to/my.phar&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;my.phar&apos;</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getStub</span><span style="color: #007700">();<br>echo&#xA0;</span><span style="color: #DD0000">&quot;==NEXT==\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setStub</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;&lt;?php<br>function&#xA0;__autoload(</span><span style="color: #0000BB">$class</span><span style="color: #DD0000">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;include&#xA0;&apos;phar://&apos;&#xA0;.&#xA0;str_replace(&apos;_&apos;,&#xA0;&apos;/&apos;,&#xA0;</span><span style="color: #0000BB">$class</span><span style="color: #DD0000">);<br>}<br>Phar::mapPhar(&apos;myphar.phar&apos;);<br>include&#xA0;&apos;phar://myphar.phar/startup.php&apos;;<br>__HALT_COMPILER();&#xA0;?&gt;&quot;</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getStub</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+&lt;?php __HALT_COMPILER(); ?&gt;
+==NEXT==
+&lt;?php
+function __autoload($class)
+{
+    include &apos;phar://&apos; . str_replace(&apos;_&apos;, &apos;/&apos;, $class);
+}
+Phar::mapPhar(&apos;myphar.phar&apos;);
+include &apos;phar://myphar.phar/startup.php&apos;;
+__HALT_COMPILER(); ?&gt;
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-phar.getstub-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="phar.setstub.html" class="function" rel="rdfs-seeAlso">Phar::setStub()</a> - Used to set the PHP loader or bootstrap stub of a Phar archive</span></li>
+    <li class="member"><span class="function"><a href="phar.createdefaultstub.html" class="function" rel="rdfs-seeAlso">Phar::createDefaultStub()</a> - Create a phar-file format specific stub</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+

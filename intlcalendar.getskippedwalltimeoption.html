@@ -1,0 +1,117 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">IntlCalendar::getSkippedWallTimeOption</h1>
+  <p class="verinfo">(PHP 5.5.0, PHP 7, PECL &gt;= 3.0.0a1)</p><p class="refpurpose"><span class="refname">IntlCalendar::getSkippedWallTimeOption</span> &#x2014; <span class="dc-title">Get behavior for handling skipped wall time</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-intlcalendar.getskippedwalltimeoption-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Object oriented style
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">int</span> <span class="methodname"><strong>IntlCalendar::getSkippedWallTimeOption</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Procedural style
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>intlcal_get_skipped_wall_time_option</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.intlcalendar.html" class="type IntlCalendar">IntlCalendar</a></span> <code class="parameter">$cal</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets the current strategy for dealing with wall times that are skipped
+   whenever the clock is forwarded during dailight saving time start transitions.
+   The default value is <strong><code>IntlCalendar::WALLTIME_LAST</code></strong>.
+  </p>
+  <p class="para">
+   The calendar must be <a href="intlcalendar.setlenient.html" class="link">lenient</a> for this option to have
+   any effect, otherwise attempting to set a non-existing time will cause an
+   error.
+  </p>
+  <p class="para">
+   This function requires ICU 4.9 or later.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-intlcalendar.getskippedwalltimeoption-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">cal</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The IntlCalendar resource.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-intlcalendar.getskippedwalltimeoption-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   One of the constants <strong><code>IntlCalendar::WALLTIME_FIRST</code></strong>,
+   <strong><code>IntlCalendar::WALLTIME_LAST</code></strong> or
+   <strong><code>IntlCalendar::WALLTIME_NEXT_VALID</code></strong>.
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 examples" id="refsect1-intlcalendar.getskippedwalltimeoption-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2868">
+   <p><strong>Example #1 <span class="function"><strong>IntlCalendar::getSkippedWallTimeOption()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;date.timezone&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Europe/Lisbon&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;intl.default_locale&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;en_US&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;intl.error_level&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">E_WARNING</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//On&#xA0;March&#xA0;31st&#xA0;at&#xA0;0100,&#xA0;the&#xA0;clock&#xA0;goes&#xA0;forward&#xA0;1&#xA0;hour&#xA0;and&#xA0;from&#xA0;GMT+00&#xA0;to&#xA0;GMT+01<br></span><span style="color: #0000BB">$cal&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">IntlGregorianCalendar</span><span style="color: #007700">(</span><span style="color: #0000BB">2013</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2&#xA0;</span><span style="color: #FF8000">/*&#xA0;March&#xA0;*/</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">31</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">30</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isLenient</span><span style="color: #007700">(),&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;true<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getSkippedWalltimeOption</span><span style="color: #007700">()&#xA0;</span><span style="color: #FF8000">//&#xA0;0&#xA0;WALLTIME_LAST<br></span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$formatter&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;UTC&apos;<br></span><span style="color: #007700">);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$formatter</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getTime</span><span style="color: #007700">()&#xA0;/&#xA0;</span><span style="color: #0000BB">1000</span><span style="color: #007700">));<br><br></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setSkippedWallTimeOption</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">WALLTIME_FIRST</span><span style="color: #007700">);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getSkippedWalltimeOption</span><span style="color: #007700">());&#xA0;</span><span style="color: #FF8000">//&#xA0;1&#xA0;WALLTIME_FIRST<br></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">FIELD_HOUR_OF_DAY</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$formatter</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getTime</span><span style="color: #007700">()&#xA0;/&#xA0;</span><span style="color: #0000BB">1000</span><span style="color: #007700">));<br><br></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setSkippedWallTimeOption</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">WALLTIME_NEXT_VALID</span><span style="color: #007700">);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getSkippedWalltimeOption</span><span style="color: #007700">());&#xA0;</span><span style="color: #FF8000">//&#xA0;2&#xA0;WALLTIME_NEXT_VALID<br></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">FIELD_HOUR_OF_DAY</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$formatter</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getTime</span><span style="color: #007700">()&#xA0;/&#xA0;</span><span style="color: #0000BB">1000</span><span style="color: #007700">));</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+bool(true)
+int(0)
+string(40) &quot;Sunday, March 31, 2013 at 1:30:00 AM GMT&quot;
+int(1)
+string(41) &quot;Sunday, March 31, 2013 at 12:30:00 AM GMT&quot;
+int(2)
+string(40) &quot;Sunday, March 31, 2013 at 1:00:00 AM GMT&quot;
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-intlcalendar.getskippedwalltimeoption-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="intlcalendar.getrepeatedwalltimeoption.html" class="methodname" rel="rdfs-seeAlso">IntlCalendar::getRepeatedWallTimeOption()</a> - Get behavior for handling repeating wall time</span></li>
+    <li class="member"><span class="methodname"><a href="intlcalendar.setskippedwalltimeoption.html" class="methodname" rel="rdfs-seeAlso">IntlCalendar::setSkippedWallTimeOption()</a> - Set behavior for handling skipped wall times at positive timezone offset transitions</span></li>
+    <li class="member"><span class="methodname"><a href="intlcalendar.setrepeatedwalltimeoption.html" class="methodname" rel="rdfs-seeAlso">IntlCalendar::setRepeatedWallTimeOption()</a> - Set behavior for handling repeating wall times at negative timezone offset transitions</span></li>
+   </ul>
+  </p>
+ </div>
+
+

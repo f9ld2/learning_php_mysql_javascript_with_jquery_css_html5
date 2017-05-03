@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+ <h1>Examples</h1>
+
+ <div class="example" id="example-649">
+  <p><strong>Example #1 Xhprof example with the optional GUI</strong></p>
+  <div class="example-contents"><p>
+   This example starts and stops the profiler, then uses the bundled
+   GUI interface to save and parse the results. In other words, the
+   code from the extension itself ends at the call to
+   <span class="function"><a href="function.xhprof-disable.html" class="function">xhprof_disable()</a></span>.
+  </p></div>
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>xhprof_enable</span><span style="color: #007700">(</span><span style="color: #0000BB">XHPROF_FLAGS_CPU&#xA0;</span><span style="color: #007700">+&#xA0;</span><span style="color: #0000BB">XHPROF_FLAGS_MEMORY</span><span style="color: #007700">);<br><br>for&#xA0;(</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">&lt;=&#xA0;</span><span style="color: #0000BB">1000</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">*&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">$xhprof_data&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">xhprof_disable</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">$XHPROF_ROOT&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;/tools/xhprof/&quot;</span><span style="color: #007700">;<br>include_once&#xA0;</span><span style="color: #0000BB">$XHPROF_ROOT&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;/xhprof_lib/utils/xhprof_lib.php&quot;</span><span style="color: #007700">;<br>include_once&#xA0;</span><span style="color: #0000BB">$XHPROF_ROOT&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;/xhprof_lib/utils/xhprof_runs.php&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$xhprof_runs&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">XHProfRuns_Default</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$run_id&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$xhprof_runs</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">save_run</span><span style="color: #007700">(</span><span style="color: #0000BB">$xhprof_data</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;xhprof_testing&quot;</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;http://localhost/xhprof/xhprof_html/index.php?run=</span><span style="color: #007700">{</span><span style="color: #0000BB">$run_id</span><span style="color: #007700">}</span><span style="color: #DD0000">&amp;source=xhprof_testing\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+  <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+http://localhost/xhprof/xhprof_html/index.php?run=t11_4bdf44d21121f&amp;source=xhprof_testing
+</pre></div>
+  </div>
+ </div>

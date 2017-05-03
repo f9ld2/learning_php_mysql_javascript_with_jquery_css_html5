@@ -1,0 +1,134 @@
+---
+layout: default
+---
+
+  <h2 class="title">Compression Filters</h2>
+
+  <p class="simpara">
+   While the <a href="wrappers.compression.html" class="link">Compression Wrappers</a>
+   provide a way of creating
+   gzip and bz2 compatible files on the local filesystem, they do not provide a 
+   means for generalized compression over network streams, nor do they provide a 
+   means to begin with a non-compressed stream and transition to a compressed one.  
+   For this, a compression filter may be applied to any stream resource at any time.
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <span class="simpara">
+    Compression filters do <em class="emphasis">not</em> generate headers and trailers
+    used by command line utilities such as <em>gzip</em>.  They only compress
+    and decompress the payload portions of compressed data streams.
+   </span>
+  </p></blockquote>
+
+  <p class="simpara">
+   <em>zlib.deflate</em> (compression) and
+   <em>zlib.inflate</em> (decompression) are implementations of
+   the compression methods described in <a href="http://www.faqs.org/rfcs/rfc1951" class="link external">&#xBB;&#xA0;RFC 1951</a>.
+   The <em>deflate</em> filter takes up to three parameters passed as
+   an associative array.  
+
+   <code class="parameter">level</code> describes the compression
+   strength to use (1-9).  Higher numbers will generally yield smaller payloads at
+   the cost of additional processing time.  Two special compression levels also exist:
+   0 (for no compression at all), and -1 (zlib internal default -- currently 6).
+
+   <code class="parameter">window</code> is the base-2 log of the compression loopback window size.
+   Higher values (up to 15 -- 32768 bytes) yield better compression at a cost of memory,
+   while lower values (down to 9 -- 512 bytes) yield worse compression in a smaller memory footprint.
+   Default <code class="parameter">window</code> size is currently <strong><code>15</code></strong>.
+
+   <code class="parameter">memory</code> is a scale indicating how much work memory should be allocated.
+   Valid values range from 1 (minimal allocation) to 9 (maximum allocation).  This memory allocation
+   affects speed only and does not impact the size of the generated payload.
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <span class="simpara">
+    Because compression level is the most commonly used parameter, it may be alternatively
+    provided as a simple integer value (rather than an array element).
+   </span>
+  </p></blockquote>
+
+  <p class="simpara">
+    zlib.* compression filters are available with PHP as of version <em>5.1.0</em> if
+    <a href="ref.zlib.html" class="link">zlib</a> support is enabled.  They are also available as a backport in version
+    <em>5.0.x</em> by installing the <a href="http://pecl.php.net/package/zlib_filter" class="link external">&#xBB;&#xA0;zlib_filter</a>
+    package from <a href="http://pecl.php.net/" class="link external">&#xBB;&#xA0;PECL</a>.
+  </p>
+
+  <div class="example" id="example-6476">
+   <p><strong>Example #1 
+    <em>zlib.deflate</em> and
+    <em>zlib.inflate</em>
+   </strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$params&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&apos;level&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">6</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;window&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">15</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;memory&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">9</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$original_text&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;This&#xA0;is&#xA0;a&#xA0;test.\nThis&#xA0;is&#xA0;only&#xA0;a&#xA0;test.\nThis&#xA0;is&#xA0;not&#xA0;an&#xA0;important&#xA0;string.\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;original&#xA0;text&#xA0;is&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$original_text</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;characters&#xA0;long.\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$fp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;test.deflated&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;w&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">stream_filter_append</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;zlib.deflate&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">STREAM_FILTER_WRITE</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$params</span><span style="color: #007700">);<br></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$original_text</span><span style="color: #007700">);<br></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;compressed&#xA0;file&#xA0;is&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">filesize</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;test.deflated&apos;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;bytes&#xA0;long.\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;original&#xA0;text&#xA0;was:\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #FF8000">/*&#xA0;Use&#xA0;readfile&#xA0;and&#xA0;zlib.inflate&#xA0;to&#xA0;decompress&#xA0;on&#xA0;the&#xA0;fly&#xA0;*/<br></span><span style="color: #0000BB">readfile</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;php://filter/zlib.inflate/resource=test.deflated&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Generates&#xA0;output:<br><br>The&#xA0;original&#xA0;text&#xA0;is&#xA0;70&#xA0;characters&#xA0;long.<br>The&#xA0;compressed&#xA0;file&#xA0;is&#xA0;56&#xA0;bytes&#xA0;long.<br>The&#xA0;original&#xA0;text&#xA0;was:<br>This&#xA0;is&#xA0;a&#xA0;test.<br>This&#xA0;is&#xA0;only&#xA0;a&#xA0;test.<br>This&#xA0;is&#xA0;not&#xA0;an&#xA0;important&#xA0;string.<br><br>&#xA0;*/<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="example" id="example-6477">
+   <p><strong>Example #2 
+    <em>zlib.deflate</em> simple
+   </strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$original_text&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;This&#xA0;is&#xA0;a&#xA0;test.\nThis&#xA0;is&#xA0;only&#xA0;a&#xA0;test.\nThis&#xA0;is&#xA0;not&#xA0;an&#xA0;important&#xA0;string.\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;original&#xA0;text&#xA0;is&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$original_text</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;characters&#xA0;long.\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$fp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;test.deflated&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;w&apos;</span><span style="color: #007700">);<br></span><span style="color: #FF8000">/*&#xA0;Here&#xA0;&quot;6&quot;&#xA0;indicates&#xA0;compression&#xA0;level&#xA0;6&#xA0;*/<br></span><span style="color: #0000BB">stream_filter_append</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;zlib.deflate&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">STREAM_FILTER_WRITE</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">6</span><span style="color: #007700">);<br></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$original_text</span><span style="color: #007700">);<br></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;compressed&#xA0;file&#xA0;is&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">filesize</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;test.deflated&apos;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;bytes&#xA0;long.\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">/*&#xA0;Generates&#xA0;output:<br><br>The&#xA0;original&#xA0;text&#xA0;is&#xA0;70&#xA0;characters&#xA0;long.<br>The&#xA0;compressed&#xA0;file&#xA0;is&#xA0;56&#xA0;bytes&#xA0;long.<br><br>&#xA0;*/<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="simpara">
+   <em>bzip2.compress</em> and
+   <em>bzip2.decompress</em>
+   work in the same manner as the zlib filters described above.
+
+   The <em>bzip2.compress</em> filter accepts up to two parameters given as 
+   elements of an associative array: 
+
+   <code class="parameter">blocks</code> is an integer value
+   from 1 to 9 specifying the number of 100kbyte blocks of memory to allocate for
+   workspace. 
+
+   <code class="parameter">work</code> is also an integer value ranging from
+   0 to 250 indicating how much effort to expend using the normal compression method
+   before falling back on a slower, but more reliable method.  Tuning this parameter
+   effects only compression speed.  Neither size of compressed output nor memory usage
+   are changed by this setting.  A work factor of 0 instructs the bzip library to use
+   an internal default.   
+
+   The <em>bzip2.decompress</em> filter only accepts one parameter,
+   which can be passed as either an ordinary boolean value, or as the 
+   <code class="parameter">small</code> element of an associative array.
+
+   <code class="parameter">small</code>, when set to a <strong><code>TRUE</code></strong> value, instructs the bzip library
+   to perform decompression in a minimal memory footprint at the cost of speed.
+  </p>
+
+  <p class="simpara">
+    bzip2.* compression filters are available with PHP as of version <em>5.1.0</em> if
+    <a href="ref.bzip2.html" class="link">bz2</a> support is enabled.  They are also available as a backport in version
+    <em>5.0.x</em> by installing the <a href="http://pecl.php.net/package/bz2_filter" class="link external">&#xBB;&#xA0;bz2_filter</a>
+    package from <a href="http://pecl.php.net/" class="link external">&#xBB;&#xA0;PECL</a>.
+  </p>
+
+  <div class="example" id="example-6478">
+   <p><strong>Example #3 
+    <em>bzip2.compress</em> and
+    <em>bzip2.decompress</em>
+   </strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$param&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&apos;blocks&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">9</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;work&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;original&#xA0;file&#xA0;is&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">filesize</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;LICENSE&apos;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;bytes&#xA0;long.\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$fp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;LICENSE.compressed&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;w&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">stream_filter_append</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;bzip2.compress&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">STREAM_FILTER_WRITE</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$param</span><span style="color: #007700">);<br></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;LICENSE&apos;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;compressed&#xA0;file&#xA0;is&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">filesize</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;LICENSE.compressed&apos;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;bytes&#xA0;long.\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">/*&#xA0;Generates&#xA0;output:<br><br>The&#xA0;original&#xA0;text&#xA0;is&#xA0;3288&#xA0;characters&#xA0;long.<br>The&#xA0;compressed&#xA0;file&#xA0;is&#xA0;1488&#xA0;bytes&#xA0;long.<br><br>&#xA0;*/<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ 

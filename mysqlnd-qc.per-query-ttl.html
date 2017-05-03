@@ -1,0 +1,104 @@
+---
+layout: default
+---
+
+  <h2 class="title">Setting the TTL</h2>
+  <p class="para">
+   The default invalidation strategy of the query cache plugin is Time to Live
+   (<em>TTL</em>). The built-in storage handlers will use the default
+   <em>TTL</em> defined by the PHP configuration value
+   <em><a href="mysqlnd-qc.configuration.html" class="link">mysqlnd_qc.ttl</a></em>
+   unless the query string contains a hint for setting a different
+   <em>TTL</em>. The <em>TTL</em> is specified in seconds.
+   By default cache entries expire after <em>30</em> seconds
+  </p>
+  <p class="para">
+   The example sets <em>mysqlnd_qc.ttl=3</em> to cache
+   statements for three seconds by default. Every second it updates
+   a database table record to hold the current time and executes
+   a <em>SELECT</em> statement to fetch the record from the
+   database. The <em>SELECT</em> statement is cached for
+   three seconds because it is prefixed with the SQL hint enabling
+   caching. The output verifies that the query results are taken
+   from the cache for the duration of three seconds before they
+   are refreshed.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2094">
+    <p><strong>Example #1 Setting the TTL with the <em>mysqlnd_qc.ttl</em> ini setting</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">mysqlnd_qc.enable_qc=1
+mysqlnd_qc.ttl=3</pre>
+</div>
+    </div>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;Connect,&#xA0;create&#xA0;and&#xA0;populate&#xA0;test&#xA0;table&#xA0;*/<br></span><span style="color: #0000BB">$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;host&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;schema&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;port&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;socket&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;DROP&#xA0;TABLE&#xA0;IF&#xA0;EXISTS&#xA0;test&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;test(id&#xA0;VARCHAR(255))&quot;</span><span style="color: #007700">);<br><br>for&#xA0;(</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">&lt;&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;update&#xA0;DB&#xA0;row&#xA0;&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;DELETE&#xA0;FROM&#xA0;test&quot;</span><span style="color: #007700">)&#xA0;||<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;INSERT&#xA0;INTO&#xA0;test(id)&#xA0;VALUES&#xA0;(NOW())&quot;</span><span style="color: #007700">))<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;Of&#xA0;course,&#xA0;a&#xA0;real-life&#xA0;script&#xA0;should&#xA0;do&#xA0;better&#xA0;error&#xA0;handling&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;[%d]&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;select&#xA0;latest&#xA0;row&#xA0;but&#xA0;cache&#xA0;results&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$query&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;/*&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">MYSQLND_QC_ENABLE_SWITCH&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;*/&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$query&#xA0;</span><span style="color: #007700">.=&#xA0;</span><span style="color: #DD0000">&quot;SELECT&#xA0;id&#xA0;AS&#xA0;_time&#xA0;FROM&#xA0;test&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(!(</span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&#xA0;||<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;!(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">()))<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;[%d]&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Wall&#xA0;time&#xA0;%s&#xA0;-&#xA0;DB&#xA0;row&#xA0;time&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;H:i:s&quot;</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;_time&apos;</span><span style="color: #007700">]);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;pause&#xA0;one&#xA0;second&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above examples will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Wall time 14:55:59 - DB row time 2012-01-11 14:55:59
+Wall time 14:56:00 - DB row time 2012-01-11 14:55:59
+Wall time 14:56:01 - DB row time 2012-01-11 14:55:59
+Wall time 14:56:02 - DB row time 2012-01-11 14:56:02
+Wall time 14:56:03 - DB row time 2012-01-11 14:56:02
+Wall time 14:56:04 - DB row time 2012-01-11 14:56:02
+Wall time 14:56:05 - DB row time 2012-01-11 14:56:05
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   As can be seen from the example, any <em>TTL</em> based cache
+   can serve stale data. Cache entries are not automatically invalidated,
+   if underlying data changes. Applications using the default
+   <em>TTL</em> invalidation strategy must be able to work correctly
+   with stale data.
+  </p>
+  <p class="para">
+   A user-defined cache storage handler can implement any invalidation strategy
+   to work around this limitation.
+  </p>
+  <p class="para">
+   The default <em>TTL</em> can be overruled using the SQL hint
+   <em>/*qc_tt=seconds*/</em>. The SQL hint must be appear immediately
+   after the SQL hint which enables caching. It is recommended to use the PHP constant
+   <em><a href="mysqlnd-qc.constants.html" class="link">MYSQLND_QC_TTL_SWITCH</a></em>
+   instead of using the string value.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2095">
+    <p><strong>Example #2 Setting TTL with SQL hints</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$start&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Connect,&#xA0;create&#xA0;and&#xA0;populate&#xA0;test&#xA0;table&#xA0;*/<br></span><span style="color: #0000BB">$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;host&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;schema&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;port&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;socket&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;DROP&#xA0;TABLE&#xA0;IF&#xA0;EXISTS&#xA0;test&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;test(id&#xA0;INT)&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;INSERT&#xA0;INTO&#xA0;test(id)&#xA0;VALUES&#xA0;(1),&#xA0;(2)&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Default&#xA0;TTL\t:&#xA0;%d&#xA0;seconds\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">ini_get</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;mysqlnd_qc.ttl&quot;</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">/*&#xA0;Will&#xA0;be&#xA0;cached&#xA0;for&#xA0;2&#xA0;seconds&#xA0;*/<br></span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;/*%s*//*%s%d*/SELECT&#xA0;id&#xA0;FROM&#xA0;test&#xA0;WHERE&#xA0;id&#xA0;=&#xA0;1&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">MYSQLND_QC_ENABLE_SWITCH</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">MYSQLND_QC_TTL_SWITCH</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br></span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;DELETE&#xA0;FROM&#xA0;test&#xA0;WHERE&#xA0;id&#xA0;=&#xA0;1&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Cache&#xA0;hit&#xA0;-&#xA0;no&#xA0;automatic&#xA0;invalidation&#xA0;and&#xA0;still&#xA0;valid!&#xA0;*/<br></span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br></span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Cache&#xA0;miss&#xA0;-&#xA0;cache&#xA0;entry&#xA0;has&#xA0;expired&#xA0;*/<br></span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br></span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Script&#xA0;runtime\t:&#xA0;%d&#xA0;seconds\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&#xA0;-&#xA0;</span><span style="color: #0000BB">$start</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above examples will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Default TTL     : 30 seconds
+array(1) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+}
+array(1) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+}
+NULL
+Script runtime  : 3 seconds
+</pre></div>
+    </div>
+   </div>
+  </p>
+ 

@@ -1,0 +1,94 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ftp_rename</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ftp_rename</span> &#x2014; <span class="dc-title">Renames a file or a directory on the FTP server</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.ftp-rename-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>ftp_rename</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$ftp_stream</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$oldname</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$newname</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>ftp_rename()</strong></span> renames a file or a directory on the FTP
+   server.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.ftp-rename-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">ftp_stream</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The link identifier of the FTP connection.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">oldname</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The old file/directory name.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">newname</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The new name.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ftp-rename-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure. Upon failure (such as attempting to rename a non-existent
+   file), an <em>E_WARNING</em> error will be emitted.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.ftp-rename-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4887">
+    <p><strong>Example #1 <span class="function"><strong>ftp_rename()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$old_file&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;somefile.txt.bak&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$new_file&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;somefile.txt&apos;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;set&#xA0;up&#xA0;basic&#xA0;connection<br></span><span style="color: #0000BB">$conn_id&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ftp_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$ftp_server</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;login&#xA0;with&#xA0;username&#xA0;and&#xA0;password<br></span><span style="color: #0000BB">$login_result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ftp_login</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ftp_user_name</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ftp_user_pass</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;try&#xA0;to&#xA0;rename&#xA0;$old_file&#xA0;to&#xA0;$new_file<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">ftp_rename</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$old_file</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$new_file</span><span style="color: #007700">))&#xA0;{<br>&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;successfully&#xA0;renamed&#xA0;</span><span style="color: #0000BB">$old_file</span><span style="color: #DD0000">&#xA0;to&#xA0;</span><span style="color: #0000BB">$new_file</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}&#xA0;else&#xA0;{<br>&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;There&#xA0;was&#xA0;a&#xA0;problem&#xA0;while&#xA0;renaming&#xA0;</span><span style="color: #0000BB">$old_file</span><span style="color: #DD0000">&#xA0;to&#xA0;</span><span style="color: #0000BB">$new_file</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;close&#xA0;the&#xA0;connection<br></span><span style="color: #0000BB">ftp_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+

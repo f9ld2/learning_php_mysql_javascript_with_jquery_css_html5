@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+ <h1>Incompatibilities</h1>
+
+ <p class="para">
+  MySQL Native Driver is in most cases compatible with MySQL Client Library
+  (<em>libmysql</em>). This section documents incompatibilities
+  between these libraries.
+ </p>
+ <ul class="itemizedlist">
+  <li class="listitem">
+   <p class="para">
+    Values of <em>bit</em> data type are returned as binary strings
+    (e.g. &quot;\0&quot; or &quot;\x1F&quot;) with <em>libmysql</em> and as decimal
+    strings (e.g. &quot;0&quot; or &quot;31&quot;) with <em>mysqlnd</em>. If you want the
+    code to be compatible with both libraries then always return bit fields as
+    numbers from MySQL with a query like this:
+    <em>SELECT bit + 0 FROM table</em>.
+   </p>
+  </li>
+ </ul>

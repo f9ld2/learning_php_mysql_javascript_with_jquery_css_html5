@@ -1,0 +1,269 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">oci_connect</h1>
+  <p class="verinfo">(PHP 5, PHP 7, PECL OCI8 &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">oci_connect</span> &#x2014; <span class="dc-title">Connect to an Oracle database</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.oci-connect-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><strong>oci_connect</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$username</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$password</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$connection_string</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$character_set</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$session_mode</code></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   Returns a connection identifier needed for most other OCI8 operations. 
+  </p>
+  <p class="para">
+   See <a href="oci8.connection.html" class="link">Connection Handling</a> for
+   general information on connection management and connection
+   pooling.
+  </p>
+  <p class="para">
+   From PHP 5.1.2 (PECL OCI8 1.1) <span class="function"><a href="function.oci-close.html" class="function">oci_close()</a></span> can
+   be used to close the connection.
+  </p>
+  <p class="para">
+   The second and subsequent calls to <span class="function"><strong>oci_connect()</strong></span>
+   with the same parameters will return the connection handle returned
+   from the first call. This means that transactions in one handle are
+   also in the other handles, because they use the
+   <em class="emphasis">same</em> underlying database connection. If two
+   handles need to be transactionally isolated from each other, use
+   <span class="function"><a href="function.oci-new-connect.html" class="function">oci_new_connect()</a></span> instead.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.oci-connect-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">username</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The Oracle user name.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">password</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The password for <code class="parameter">username</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">connection_string</code></dt>
+
+     <dd>
+
+      <p class="para">Contains
+the <em>Oracle instance</em> to connect to. It can be
+an <a href="https://docs.oracle.com/database/121/NETAG/naming.htm" class="link external">&#xBB;&#xA0;Easy Connect
+string</a>, or a Connect Name from
+the <var class="filename">tnsnames.ora</var> file, or the name of a local
+Oracle instance.
+</p>
+<p class="para">If not specified, PHP uses
+environment variables such as <strong><code>TWO_TASK</code></strong> (on Linux)
+or <strong><code>LOCAL</code></strong> (on Windows)
+and <strong><code>ORACLE_SID</code></strong> to determine the
+<em>Oracle instance</em> to connect to.
+</p>
+<p class="para">
+To use the Easy Connect naming method, PHP must be linked with Oracle
+10<em class="emphasis">g</em> or greater Client libraries. The Easy Connect string for Oracle
+10<em class="emphasis">g</em> is of the form:
+<em class="emphasis">[//]host_name[:port][/service_name]</em>. From Oracle
+11<em class="emphasis">g</em>, the syntax is:
+<em class="emphasis">[//]host_name[:port][/service_name][:server_type][/instance_name]</em>.
+Service names can be found by running the Oracle
+utility <em>lsnrctl status</em> on the database server
+machine.
+</p>
+<p class="para">
+The <var class="filename">tnsnames.ora</var> file can be in the Oracle Net
+search path, which
+includes <var class="filename">$ORACLE_HOME/network/admin</var>
+and <var class="filename">/etc</var>.  Alternatively
+set <em>TNS_ADMIN</em> so
+that <var class="filename">$TNS_ADMIN/tnsnames.ora</var> is read.  Make sure
+the web daemon has read access to the file.
+</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">character_set</code></dt>
+
+     <dd>
+
+      <p class="para">Determines
+the character set used by the Oracle Client libraries.  The character
+set does not need to match the character set used by the database.  If
+it doesn&apos;t match, Oracle will do its best to convert data to and from
+the database character set.  Depending on the character sets this may
+not give usable results.  Conversion also adds some time overhead.
+</p>
+<p class="para">If not specified, the
+Oracle Client libraries determine a character set from
+the <strong><code>NLS_LANG</code></strong> environment variable.
+</p>
+<p class="para">Passing this parameter can
+reduce the time taken to connect.
+</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">session_mode</code></dt>
+
+     <dd>
+
+      <p class="para">This
+parameter is available since version PHP 5 (PECL OCI8 1.1) and accepts the
+following values: <strong><code>OCI_DEFAULT</code></strong>,
+<strong><code>OCI_SYSOPER</code></strong> and <strong><code>OCI_SYSDBA</code></strong>.
+If either <strong><code>OCI_SYSOPER</code></strong> or
+<strong><code>OCI_SYSDBA</code></strong> were specified, this function will try
+to establish privileged connection using external credentials.
+Privileged connections are disabled by default. To enable them you
+need to set <a href="oci8.configuration.html#ini.oci8.privileged-connect" class="link">oci8.privileged_connect</a>
+to <em>On</em>.
+</p>
+<p class="para">
+PHP 5.3 (PECL OCI8 1.3.4) introduced the
+<strong><code>OCI_CRED_EXT</code></strong> mode value. This tells Oracle to use
+External or OS authentication, which must be configured in the
+database.  The <strong><code>OCI_CRED_EXT</code></strong> flag can only be used
+with username of &quot;/&quot; and a empty password.
+<a href="oci8.configuration.html#ini.oci8.privileged-connect" class="link">oci8.privileged_connect</a>
+may be <em>On</em> or <em>Off</em>.
+</p>
+<p class="para">
+<strong><code>OCI_CRED_EXT</code></strong> may be combined with the
+<strong><code>OCI_SYSOPER</code></strong> or
+<strong><code>OCI_SYSDBA</code></strong> modes.
+</p>
+<p class="para">
+<strong><code>OCI_CRED_EXT</code></strong> is not supported on Windows for
+security reasons.
+</p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.oci-connect-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a connection identifier or <strong><code>FALSE</code></strong> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.oci-connect-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2208">
+    <p><strong>Example #1 Basic <span class="function"><strong>oci_connect()</strong></span> using Easy Connect syntax</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;Connects&#xA0;to&#xA0;the&#xA0;XE&#xA0;service&#xA0;(i.e.&#xA0;database)&#xA0;on&#xA0;the&#xA0;&quot;localhost&quot;&#xA0;machine<br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$e&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;*&#xA0;FROM&#xA0;employees&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;table&#xA0;border=&apos;1&apos;&gt;\n&quot;</span><span style="color: #007700">;<br>while&#xA0;(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_ASSOC</span><span style="color: #007700">+</span><span style="color: #0000BB">OCI_RETURN_NULLS</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;tr&gt;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;foreach&#xA0;(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$item</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&#xA0;&#xA0;&#xA0;&lt;td&gt;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;(</span><span style="color: #0000BB">$item&#xA0;</span><span style="color: #007700">!==&#xA0;</span><span style="color: #0000BB">null&#xA0;</span><span style="color: #007700">?&#xA0;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$item</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">)&#xA0;:&#xA0;</span><span style="color: #DD0000">&quot;&amp;nbsp;&quot;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;/td&gt;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;/tr&gt;\n&quot;</span><span style="color: #007700">;<br>}<br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;/table&gt;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2209">
+    <p><strong>Example #2 Basic <span class="function"><strong>oci_connect()</strong></span> using a Network Connect name</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;Connects&#xA0;to&#xA0;the&#xA0;MYDB&#xA0;database&#xA0;described&#xA0;in&#xA0;tnsnames.ora&#xA0;file,<br>//&#xA0;One&#xA0;example&#xA0;tnsnames.ora&#xA0;entry&#xA0;for&#xA0;MYDB&#xA0;could&#xA0;be:<br>//&#xA0;&#xA0;&#xA0;MYDB&#xA0;=<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;(DESCRIPTION&#xA0;=<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;(ADDRESS&#xA0;=&#xA0;(PROTOCOL&#xA0;=&#xA0;TCP)(HOST&#xA0;=&#xA0;mymachine.oracle.com)(PORT&#xA0;=&#xA0;1521))<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;(CONNECT_DATA&#xA0;=<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;(SERVER&#xA0;=&#xA0;DEDICATED)<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;(SERVICE_NAME&#xA0;=&#xA0;XE)<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;)<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;)<br><br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;MYDB&apos;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$e&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;*&#xA0;FROM&#xA0;employees&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;table&#xA0;border=&apos;1&apos;&gt;\n&quot;</span><span style="color: #007700">;<br>while&#xA0;(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_ASSOC</span><span style="color: #007700">+</span><span style="color: #0000BB">OCI_RETURN_NULLS</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;tr&gt;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;foreach&#xA0;(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$item</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&#xA0;&#xA0;&#xA0;&lt;td&gt;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;(</span><span style="color: #0000BB">$item&#xA0;</span><span style="color: #007700">!==&#xA0;</span><span style="color: #0000BB">null&#xA0;</span><span style="color: #007700">?&#xA0;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$item</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">)&#xA0;:&#xA0;</span><span style="color: #DD0000">&quot;&amp;nbsp;&quot;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;/td&gt;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;/tr&gt;\n&quot;</span><span style="color: #007700">;<br>}<br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;/table&gt;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2210">
+    <p><strong>Example #3 <span class="function"><strong>oci_connect()</strong></span> with an explicit character set</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;AL32UTF8&apos;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$e&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;*&#xA0;FROM&#xA0;employees&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;table&#xA0;border=&apos;1&apos;&gt;\n&quot;</span><span style="color: #007700">;<br>while&#xA0;(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_ASSOC</span><span style="color: #007700">+</span><span style="color: #0000BB">OCI_RETURN_NULLS</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;tr&gt;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;foreach&#xA0;(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$item</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&#xA0;&#xA0;&#xA0;&lt;td&gt;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;(</span><span style="color: #0000BB">$item&#xA0;</span><span style="color: #007700">!==&#xA0;</span><span style="color: #0000BB">null&#xA0;</span><span style="color: #007700">?&#xA0;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$item</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">)&#xA0;:&#xA0;</span><span style="color: #DD0000">&quot;&amp;nbsp;&quot;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;/td&gt;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;/tr&gt;\n&quot;</span><span style="color: #007700">;<br>}<br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;/table&gt;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2211">
+    <p><strong>Example #4 Using multiple calls to <span class="function"><strong>oci_connect()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$c1&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;hr&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;welcome&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$c2&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;hr&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;welcome&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Both&#xA0;$c1&#xA0;and&#xA0;$c2&#xA0;show&#xA0;the&#xA0;same&#xA0;PHP&#xA0;resource&#xA0;id&#xA0;meaning&#xA0;they&#xA0;use&#xA0;the<br>//&#xA0;same&#xA0;underlying&#xA0;database&#xA0;connection<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;c1&#xA0;is&#xA0;</span><span style="color: #0000BB">$c1</span><span style="color: #DD0000">&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;c2&#xA0;is&#xA0;</span><span style="color: #0000BB">$c2</span><span style="color: #DD0000">&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br><br>function&#xA0;</span><span style="color: #0000BB">create_table</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stmt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;create&#xA0;table&#xA0;hallo&#xA0;(test&#xA0;varchar2(64))&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Created&#xA0;table&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br>function&#xA0;</span><span style="color: #0000BB">drop_table</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stmt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;drop&#xA0;table&#xA0;hallo&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Dropped&#xA0;table&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br>function&#xA0;</span><span style="color: #0000BB">insert_data</span><span style="color: #007700">(</span><span style="color: #0000BB">$connname</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stmt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;insert&#xA0;into&#xA0;hallo<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;values(to_char(sysdate,&apos;DD-MON-YY&#xA0;HH24:MI:SS&apos;))&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_DEFAULT</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$connname</span><span style="color: #DD0000">&#xA0;inserted&#xA0;row&#xA0;without&#xA0;committing&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br>function&#xA0;</span><span style="color: #0000BB">rollback</span><span style="color: #007700">(</span><span style="color: #0000BB">$connname</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">oci_rollback</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$connname</span><span style="color: #DD0000">&#xA0;rollback&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br>function&#xA0;</span><span style="color: #0000BB">select_data</span><span style="color: #007700">(</span><span style="color: #0000BB">$connname</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stmt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;select&#xA0;*&#xA0;from&#xA0;hallo&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_DEFAULT</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$connname</span><span style="color: #DD0000">&#xA0;----selecting&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;while&#xA0;(</span><span style="color: #0000BB">oci_fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&#xA0;&#xA0;&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">oci_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;TEST&quot;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$connname</span><span style="color: #DD0000">&#xA0;----done&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">create_table</span><span style="color: #007700">(</span><span style="color: #0000BB">$c1</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">insert_data</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;c1&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$c1</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Insert&#xA0;a&#xA0;row&#xA0;using&#xA0;c1<br></span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;sleep&#xA0;to&#xA0;show&#xA0;a&#xA0;different&#xA0;timestamp&#xA0;for&#xA0;the&#xA0;2nd&#xA0;row<br></span><span style="color: #0000BB">insert_data</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;c2&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$c2</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Insert&#xA0;a&#xA0;row&#xA0;using&#xA0;c2<br><br></span><span style="color: #0000BB">select_data</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;c1&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$c1</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Results&#xA0;of&#xA0;both&#xA0;inserts&#xA0;are&#xA0;returned<br></span><span style="color: #0000BB">select_data</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;c2&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$c2</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Results&#xA0;of&#xA0;both&#xA0;inserts&#xA0;are&#xA0;returned<br><br></span><span style="color: #0000BB">rollback</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;c1&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$c1</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Rollback&#xA0;using&#xA0;c1<br><br></span><span style="color: #0000BB">select_data</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;c1&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$c1</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Both&#xA0;inserts&#xA0;have&#xA0;been&#xA0;rolled&#xA0;back<br></span><span style="color: #0000BB">select_data</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;c2&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$c2</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">drop_table</span><span style="color: #007700">(</span><span style="color: #0000BB">$c1</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Closing&#xA0;one&#xA0;of&#xA0;the&#xA0;connections&#xA0;makes&#xA0;the&#xA0;PHP&#xA0;variable&#xA0;unusable,&#xA0;but<br>//&#xA0;the&#xA0;other&#xA0;could&#xA0;be&#xA0;used<br></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$c1</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #DD0000">&quot;c1&#xA0;is&#xA0;</span><span style="color: #0000BB">$c1</span><span style="color: #DD0000">&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;c2&#xA0;is&#xA0;</span><span style="color: #0000BB">$c2</span><span style="color: #DD0000">&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br><br><br></span><span style="color: #FF8000">//&#xA0;Output&#xA0;is:<br>//&#xA0;&#xA0;&#xA0;&#xA0;c1&#xA0;is&#xA0;Resource&#xA0;id&#xA0;#5<br>//&#xA0;&#xA0;&#xA0;&#xA0;c2&#xA0;is&#xA0;Resource&#xA0;id&#xA0;#5<br>//&#xA0;&#xA0;&#xA0;&#xA0;Created&#xA0;table<br>//&#xA0;&#xA0;&#xA0;&#xA0;c1&#xA0;inserted&#xA0;row&#xA0;without&#xA0;committing<br>//&#xA0;&#xA0;&#xA0;&#xA0;c2&#xA0;inserted&#xA0;row&#xA0;without&#xA0;committing<br>//&#xA0;&#xA0;&#xA0;&#xA0;c1&#xA0;----selecting<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;09-DEC-09&#xA0;12:14:43<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;09-DEC-09&#xA0;12:14:45<br>//&#xA0;&#xA0;&#xA0;&#xA0;c1&#xA0;----done<br>//&#xA0;&#xA0;&#xA0;&#xA0;c2&#xA0;----selecting<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;09-DEC-09&#xA0;12:14:43<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;09-DEC-09&#xA0;12:14:45<br>//&#xA0;&#xA0;&#xA0;&#xA0;c2&#xA0;----done<br>//&#xA0;&#xA0;&#xA0;&#xA0;c1&#xA0;rollback<br>//&#xA0;&#xA0;&#xA0;&#xA0;c1&#xA0;----selecting<br>//&#xA0;&#xA0;&#xA0;&#xA0;c1&#xA0;----done<br>//&#xA0;&#xA0;&#xA0;&#xA0;c2&#xA0;----selecting<br>//&#xA0;&#xA0;&#xA0;&#xA0;c2&#xA0;----done<br>//&#xA0;&#xA0;&#xA0;&#xA0;Dropped&#xA0;table<br>//&#xA0;&#xA0;&#xA0;&#xA0;c1&#xA0;is&#xA0;<br>//&#xA0;&#xA0;&#xA0;&#xA0;c2&#xA0;is&#xA0;Resource&#xA0;id&#xA0;#5<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.oci-connect-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    An incorrectly installed or configured OCI8 extension will often
+    manifest itself as a connection problem or error.
+    See <a href="oci8.setup.html" class="link">Installing/Configuring</a> for
+    troubleshooting information.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.oci-connect-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.oci-pconnect.html" class="function" rel="rdfs-seeAlso">oci_pconnect()</a> - Connect to an Oracle database using a persistent connection</span></li>
+    <li class="member"><span class="function"><a href="function.oci-new-connect.html" class="function" rel="rdfs-seeAlso">oci_new_connect()</a> - Connect to the Oracle server using a unique connection</span></li>
+    <li class="member"><span class="function"><a href="function.oci-close.html" class="function" rel="rdfs-seeAlso">oci_close()</a> - Closes an Oracle connection</span></li>
+   </ul>
+  </p>
+ </div>
+
+

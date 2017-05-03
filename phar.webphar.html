@@ -1,0 +1,184 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Phar::webPhar</h1>
+  <p class="verinfo">(PHP &gt;= 5.3.0, PECL phar &gt;= 2.0.0)</p><p class="refpurpose"><span class="refname">Phar::webPhar</span> &#x2014; <span class="dc-title">mapPhar for web-based phars. front controller for web applications</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-phar.webphar-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="modifier">static</span> <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>Phar::webPhar</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$alias</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$index</code><span class="initializer"> = &quot;index.php&quot;</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$f404</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$mimetypes</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$rewrites</code></span>
+  ]]]]] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><a href="phar.mapphar.html" class="function">Phar::mapPhar()</a></span> for web-based phars.  This method parses
+   <var class="varname"><var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER[&apos;REQUEST_URI&apos;]</a></var></var> and routes a request from a web
+   browser to an internal file within the phar archive.  In essence, it simulates
+   a web server, routing requests to the correct file, echoing the correct headers
+   and parsing PHP files as needed.  This powerful method is part of what makes it easy
+   to convert an existing PHP application into a phar archive.  Combined with
+   <span class="function"><a href="phar.mungserver.html" class="function">Phar::mungServer()</a></span> and <span class="function"><a href="phar.interceptfilefuncs.html" class="function">Phar::interceptFileFuncs()</a></span>,
+   any web application can be used unmodified from a phar archive.
+  </p>
+  <p class="para">
+   <span class="function"><strong>Phar::webPhar()</strong></span> should only be
+   called from the stub of a phar archive (see <a href="phar.fileformat.stub.html" class="link">here</a>
+   for more information on what a stub is).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-phar.webphar-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">alias</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The alias that can be used in <em>phar://</em> URLs to
+       refer to this archive, rather than its full path.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">index</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The location within the phar of the directory index.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">f404</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The location of the script to run when a file is not found.  This
+       script should output the proper HTTP 404 headers.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mimetypes</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An array mapping additional file extensions to MIME type.
+       If the default mapping is sufficient, pass an empty array.
+       By default, these extensions are mapped to these MIME types:
+       <div class="example-contents">
+        <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$mimes&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;phps&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">PHPS</span><span style="color: #007700">,&#xA0;</span><span style="color: #FF8000">//&#xA0;pass&#xA0;to&#xA0;highlight_file()<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;c&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/plain&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;cc&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/plain&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;cpp&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/plain&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;c++&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/plain&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;dtd&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/plain&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;h&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/plain&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;log&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/plain&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;rng&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/plain&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;txt&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/plain&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;xsd&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/plain&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;php&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">PHP</span><span style="color: #007700">,&#xA0;</span><span style="color: #FF8000">//&#xA0;parse&#xA0;as&#xA0;PHP<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;inc&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">PHP</span><span style="color: #007700">,&#xA0;</span><span style="color: #FF8000">//&#xA0;parse&#xA0;as&#xA0;PHP<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;avi&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;video/avi&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;bmp&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/bmp&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;css&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/css&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;gif&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/gif&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;htm&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/html&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;html&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/html&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;htmls&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/html&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;ico&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/x-ico&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;jpe&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/jpeg&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;jpg&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/jpeg&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;jpeg&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/jpeg&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;js&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;application/x-javascript&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;midi&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;audio/midi&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;mid&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;audio/midi&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;mod&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;audio/mod&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;mov&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;movie/quicktime&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;mp3&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;audio/mp3&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;mpg&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;video/mpeg&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;mpeg&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;video/mpeg&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;pdf&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;application/pdf&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;png&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/png&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;swf&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;application/shockwave-flash&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;tif&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/tiff&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;tiff&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/tiff&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;wav&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;audio/wav&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;xbm&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/xbm&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;xml&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;text/xml&apos;</span><span style="color: #007700">,<br>);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       </div>
+
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">rewrites</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The rewrites function is passed a string as its only parameter and must return a <span class="type"><a href="language.types.string.html" class="type string">string</a></span> or <strong><code>FALSE</code></strong>.
+      </p>
+      <p class="para">
+       If you are using fast-cgi or cgi then the parameter passed to the function is the value of the 
+       <var class="varname"><var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER[&apos;PATH_INFO&apos;]</a></var></var> variable. Otherwise, the parameter passed to the function is the value
+       of the <var class="varname"><var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER[&apos;REQUEST_URI&apos;]</a></var></var> variable.
+      </p>
+      <p class="para">
+       If a string is returned it is used as the internal file path. If <strong><code>FALSE</code></strong> is returned then webPhar() will
+       send a HTTP 403 Denied Code.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-phar.webphar-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-phar.webphar-errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws <a href="class.pharexception.html" class="classname">PharException</a> when unable to open the internal
+   file to output, or if
+   called from a non-stub.  If an invalid array value is passed into
+   <code class="parameter">mimetypes</code> or an invalid callback is passed into <code class="parameter">rewrites</code>, then
+   <a href="class.unexpectedvalueexception.html" class="classname">UnexpectedValueException</a> is thrown.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-phar.webphar-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-767">
+    <p><strong>Example #1 A <span class="function"><strong>Phar::webPhar()</strong></span> example</strong></p>
+    <div class="example-contents"><p>
+     With the example below, the created phar will display <em>Hello World</em>
+     if one browses to <em>/myphar.phar/index.php</em> or to
+     <em>/myphar.phar</em>, and will display the source of
+     <em>index.phps</em> if one browses to <em>/myphar.phar/index.phps</em>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;creating&#xA0;the&#xA0;phar&#xA0;archive:<br></span><span style="color: #007700">try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$phar&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;myphar.phar&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$phar</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;index.php&apos;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;&lt;?php&#xA0;echo&#xA0;&quot;Hello&#xA0;World&quot;;&#xA0;?&gt;&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$phar</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;index.phps&apos;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;&lt;?php&#xA0;echo&#xA0;&quot;Hello&#xA0;World&quot;;&#xA0;?&gt;&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$phar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setStub</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;&lt;?php<br>Phar::webPhar();<br>__HALT_COMPILER();&#xA0;?&gt;&apos;</span><span style="color: #007700">);<br>}&#xA0;catch&#xA0;(</span><span style="color: #0000BB">Exception&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;handle&#xA0;error&#xA0;here<br></span><span style="color: #007700">}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-phar.webphar-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="phar.mungserver.html" class="function" rel="rdfs-seeAlso">Phar::mungServer()</a> - Defines a list of up to 4 $_SERVER variables that should be modified for execution</span></li>
+    <li class="member"><span class="function"><a href="phar.interceptfilefuncs.html" class="function" rel="rdfs-seeAlso">Phar::interceptFileFuncs()</a> - instructs phar to intercept fopen, file_get_contents, opendir, and all of the stat-related functions</span></li>
+   </ul>
+  </p>
+ </div>
+
+

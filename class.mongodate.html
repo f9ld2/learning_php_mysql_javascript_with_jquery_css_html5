@@ -1,0 +1,122 @@
+---
+layout: default
+---
+
+
+ <h1 class="title">The MongoDate class</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(PECL mongo &gt;=0.8.1)</p>
+
+  <div class="warning"><strong class="warning">Warning</strong>
+   <p class="para">This extension that defines this class
+is deprecated. Instead, the <a href="set.mongodb.html" class="link">MongoDB</a> extension should be used.
+Alternatives to this class include:</p>
+   <ul class="simplelist">
+    <li class="member"><a href="class.mongodb-bson-utcdatetime.html" class="classname">MongoDB\BSON\UTCDateTime</a></li>
+   </ul>
+  </div>
+
+
+  <div class="section" id="mongodate.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    Represent date objects for the database.  This class should be used to save
+    dates to the database and to query for dates.  For example:
+   </p>
+   <div class="example" id="mongocommandcursor.stages.adding-options">
+    <p><strong>Example #1 Storing dates with <strong class="classname">MongoDate</strong></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;save&#xA0;a&#xA0;date&#xA0;to&#xA0;the&#xA0;database<br></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">save</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&quot;ts&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoDate</span><span style="color: #007700">()));<br><br></span><span style="color: #0000BB">$start&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoDate</span><span style="color: #007700">(</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;2010-01-15&#xA0;00:00:00&quot;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$end&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoDate</span><span style="color: #007700">(</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;2010-01-30&#xA0;00:00:00&quot;</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">//&#xA0;find&#xA0;dates&#xA0;between&#xA0;1/15/2010&#xA0;and&#xA0;1/30/2010<br></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&quot;ts&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(</span><span style="color: #DD0000">&apos;$gt&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$start</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;$lte&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$end</span><span style="color: #007700">)));<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <p class="para">
+    MongoDB stores dates as milliseconds past the epoch.  This means that dates 
+    <em class="emphasis">do not</em> contain timezone information.  Timezones must be
+    stored in a separate field if needed.  Second, this means that any precision
+    beyond milliseconds will be lost when the document is sent to/from the 
+    database.
+   </p>
+  </div>
+
+
+  <div class="section" id="mongodate.synopsis">
+   <h2 class="title">Class synopsis</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">MongoDate</strong>
+     </span>
+     {</div>
+
+  
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Fields */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">public</span>
+     <span class="type">int</span>
+      <var class="varname">$<var class="varname">sec</var></var>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">public</span>
+     <span class="type">int</span>
+      <var class="varname">$<var class="varname">usec</var></var>
+    ;</div>
+
+
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Methods */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongodate.construct.html" class="methodname">__construct</a></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$sec</code><span class="initializer"> = time()</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$usec</code><span class="initializer"> = 0</span></span>
+  ]] )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">DateTime</span> <span class="methodname"><a href="mongodate.todatetime.html" class="methodname">toDateTime</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">string</span> <span class="methodname"><a href="mongodate.tostring.html" class="methodname">__toString</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+   }</div>
+
+
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="mongodate.construct.html">MongoDate::__construct</a> &#x2014; Creates a new date.</li><li><a href="mongodate.todatetime.html">MongoDate::toDateTime</a> &#x2014; Returns a DateTime object representing this date</li><li><a href="mongodate.tostring.html">MongoDate::__toString</a> &#x2014; Returns a string representation of this date</li></ul>

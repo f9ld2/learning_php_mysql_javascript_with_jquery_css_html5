@@ -1,0 +1,126 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ldap_add</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ldap_add</span> &#x2014; <span class="dc-title">Add entries to LDAP directory</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.ldap-add-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>ldap_add</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$link_identifier</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$dn</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$entry</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Add entries in the LDAP directory. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ldap-add-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">link_identifier</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An LDAP link identifier, returned by <span class="function"><a href="function.ldap-connect.html" class="function">ldap_connect()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">dn</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The distinguished name of an LDAP entity.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">entry</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An array that specifies the information about the entry. The values in
+       the entries are indexed by individual attributes.
+       In case of multiple values for an attribute, they are indexed using
+       integers starting with 0.
+       <div class="informalexample">
+        <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$entry</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;attribute1&quot;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;value&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$entry</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;attribute2&quot;</span><span style="color: #007700">][</span><span style="color: #0000BB">0</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;value1&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$entry</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;attribute2&quot;</span><span style="color: #007700">][</span><span style="color: #0000BB">1</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;value2&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+        </div>
+
+       </div>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ldap-add-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ldap-add-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4935">
+    <p><strong>Example #1 Complete example with authenticated bind</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$ds&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ldap_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;assuming&#xA0;the&#xA0;LDAP&#xA0;server&#xA0;is&#xA0;on&#xA0;this&#xA0;host<br><br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$ds</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;bind&#xA0;with&#xA0;appropriate&#xA0;dn&#xA0;to&#xA0;give&#xA0;update&#xA0;access<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$r&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ldap_bind</span><span style="color: #007700">(</span><span style="color: #0000BB">$ds</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;cn=root,&#xA0;o=My&#xA0;Company,&#xA0;c=US&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;secret&quot;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;prepare&#xA0;data<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$info</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;cn&quot;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;John&#xA0;Jones&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$info</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;sn&quot;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;Jones&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$info</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;objectclass&quot;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;person&quot;</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;add&#xA0;data&#xA0;to&#xA0;directory<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$r&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ldap_add</span><span style="color: #007700">(</span><span style="color: #0000BB">$ds</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;cn=John&#xA0;Jones,&#xA0;o=My&#xA0;Company,&#xA0;c=US&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$info</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">ldap_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$ds</span><span style="color: #007700">);<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Unable&#xA0;to&#xA0;connect&#xA0;to&#xA0;LDAP&#xA0;server&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.ldap-add-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">This function is
+binary-safe.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ldap-add-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ldap-delete.html" class="function" rel="rdfs-seeAlso">ldap_delete()</a> - Delete an entry from a directory</span></li>
+   </ul>
+  </p>
+ </div>
+
+

@@ -1,0 +1,187 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">imagelayereffect</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">imagelayereffect</span> &#x2014; <span class="dc-title">Set the alpha blending flag to use layering effects</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.imagelayereffect-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>imagelayereffect</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$image</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$effect</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Set the alpha blending flag to use layering effects.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.imagelayereffect-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+image</code></dt>
+<dd>
+<p class="para">An image resource, returned by one of the image creation functions,
+such as <span class="function"><a href="function.imagecreatetruecolor.html" class="function">imagecreatetruecolor()</a></span>.</p></dd>
+
+    
+     <dt>
+<code class="parameter">effect</code></dt>
+
+     <dd>
+
+      <p class="para">
+       One of the following constants:
+       <dl>
+
+        
+         <dt>
+<strong><code>IMG_EFFECT_REPLACE</code></strong></dt>
+
+         <dd>
+
+          <span class="simpara">
+           Use pixel replacement (equivalent of passing <strong><code>TRUE</code></strong> to
+           <span class="function"><a href="function.imagealphablending.html" class="function">imagealphablending()</a></span>)
+          </span>
+         </dd>
+
+        
+        
+         <dt>
+<strong><code>IMG_EFFECT_ALPHABLEND</code></strong></dt>
+
+         <dd>
+
+          <span class="simpara">
+           Use normal pixel blending (equivalent of passing <strong><code>FALSE</code></strong> to
+           <span class="function"><a href="function.imagealphablending.html" class="function">imagealphablending()</a></span>)
+          </span>
+         </dd>
+
+        
+        
+         <dt>
+<strong><code>IMG_EFFECT_NORMAL</code></strong></dt>
+
+         <dd>
+
+          <span class="simpara">
+           Same as <strong><code>IMG_EFFECT_ALPHABLEND</code></strong>.
+          </span>
+         </dd>
+
+        
+        
+         <dt>
+<strong><code>IMG_EFFECT_OVERLAY</code></strong></dt>
+
+         <dd>
+
+          <span class="simpara">
+           Overlay has the effect that black background pixels will remain
+           black, white background pixels will remain white, but grey
+           background pixels will take the colour of the foreground pixel.
+          </span>
+         </dd>
+
+        
+        
+         <dt>
+<strong><code>IMG_EFFECT_MULTIPLY</code></strong></dt>
+
+         <dd>
+
+          <span class="simpara">
+           Overlays with a multiply effect.
+          </span>
+         </dd>
+
+        
+       </dl>
+
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.imagelayereffect-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.imagelayereffect-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Version</th>
+      <th>Description</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>7.2.0</td>
+      <td>
+       Added <strong><code>IMG_EFFECT_MULTIPLY</code></strong> (requires system libgd &gt;=
+       2.1.1 or the bundled libgd).
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.imagelayereffect-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-3583">
+   <p><strong>Example #1 <span class="function"><strong>imagelayereffect()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Setup&#xA0;an&#xA0;image<br></span><span style="color: #0000BB">$im&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">imagecreatetruecolor</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Set&#xA0;a&#xA0;background<br></span><span style="color: #0000BB">imagefilledrectangle</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">220</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">220</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">220</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">//&#xA0;Apply&#xA0;the&#xA0;overlay&#xA0;alpha&#xA0;blending&#xA0;flag<br></span><span style="color: #0000BB">imagelayereffect</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">IMG_EFFECT_OVERLAY</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Draw&#xA0;two&#xA0;grey&#xA0;ellipses<br></span><span style="color: #0000BB">imagefilledellipse</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">50</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">50</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">40</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">40</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">255</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">));<br></span><span style="color: #0000BB">imagefilledellipse</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">50</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">50</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">50</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">80</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">255</span><span style="color: #007700">));<br></span><span style="color: #0000BB">imagefilledellipse</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">50</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">50</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">80</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">50</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">255</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">//&#xA0;Output<br></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Content-type:&#xA0;image/png&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">imagepng</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="mediaobject">
+     
+     <div class="imageobject">
+      <img src="images/21009b70229598c6a80eef8b45bf282b-imagelayereffect.png" alt="Output of example : imagelayereffect()" width="100" height="100">
+     </div>
+    </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.imagelayereffect-notes">
+  <h3 class="title">Notes</h3>
+  <p class="simpara">
+   Before PHP 5.5.0, this function is only available if PHP is compiled with the
+   bundled version of the GD library.
+  </p>
+ </div>
+
+

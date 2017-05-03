@@ -1,0 +1,147 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">min</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">min</span> &#x2014; <span class="dc-title">Find lowest value</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.min-description">
+  <h3 class="title">Description</h3>
+   <div class="methodsynopsis dc-description">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>min</strong></span>
+     ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$values</code></span>
+    )</div>
+
+   <div class="methodsynopsis dc-description">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>min</strong></span>
+     ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value1</code></span>
+    , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value2</code></span>
+    [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+   ] )</div>
+
+  <p class="para rdfs-comment">
+   If the first and only parameter is an array, <span class="function"><strong>min()</strong></span>
+   returns the lowest value in that array. If at least two parameters are 
+   provided, <span class="function"><strong>min()</strong></span> returns the smallest of these values.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    Values of different types will be compared using the <a href="language.operators.comparison.html" class="link">
+    standard comparison rules</a>. For instance, a non-numeric <span class="type"><a href="language.types.string.html" class="type string">string</a></span> will be
+    compared to an <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span> as though it were <em>0</em>, but multiple non-numeric
+    <span class="type"><a href="language.types.string.html" class="type string">string</a></span> values will be compared alphanumerically. The actual value returned will be of the
+    original type with no conversion applied.
+   </p>
+  <p></p></blockquote>
+  <div class="caution"><strong class="caution">Caution</strong>
+   <p class="simpara">
+    Be careful when passing arguments with mixed types values because
+    <span class="function"><strong>min()</strong></span> can produce unpredictable results.
+   </p>
+  </div>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.min-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">values</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An array containing the values.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">value1</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Any <a href="language.operators.comparison.html" class="link">comparable</a>
+       value.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">value2</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Any <a href="language.operators.comparison.html" class="link">comparable</a>
+       value.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">...</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Any <a href="language.operators.comparison.html" class="link">comparable</a>
+       value.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.min-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <span class="function"><strong>min()</strong></span> returns the parameter value considered &quot;lowest&quot; according to standard
+   comparisons. If multiple values of different types evaluate as equal (e.g. <em>0</em>
+   and <em>&apos;abc&apos;</em>) the first provided to the function will be returned.
+  </p>
+
+  <p class="para">
+   If an empty array is passed, then <strong><code>FALSE</code></strong> will be returned and an
+   <strong><code>E_WARNING</code></strong> error will be emitted.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.min-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4016">
+    <p><strong>Example #1 Example uses of <span class="function"><strong>min()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">6</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;1<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">));&#xA0;</span><span style="color: #FF8000">//&#xA0;2<br><br>//&#xA0;The&#xA0;string&#xA0;&apos;hello&apos;&#xA0;when&#xA0;compared&#xA0;to&#xA0;an&#xA0;int&#xA0;is&#xA0;treated&#xA0;as&#xA0;0<br>//&#xA0;Since&#xA0;the&#xA0;two&#xA0;values&#xA0;are&#xA0;equal,&#xA0;the&#xA0;order&#xA0;they&#xA0;are&#xA0;provided&#xA0;determines&#xA0;the&#xA0;result<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;hello&apos;</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;0<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hello&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;hello<br><br>//&#xA0;Here&#xA0;we&#xA0;are&#xA0;comparing&#xA0;-1&#xA0;&lt;&#xA0;0,&#xA0;so&#xA0;-1&#xA0;is&#xA0;the&#xA0;lowest&#xA0;value<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hello&apos;</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;-1<br><br>//&#xA0;With&#xA0;multiple&#xA0;arrays&#xA0;of&#xA0;different&#xA0;lengths,&#xA0;min&#xA0;returns&#xA0;the&#xA0;shortest<br></span><span style="color: #0000BB">$val&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">),&#xA0;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">));&#xA0;</span><span style="color: #FF8000">//&#xA0;array(2,&#xA0;2,&#xA0;2)<br><br>//&#xA0;Multiple&#xA0;arrays&#xA0;of&#xA0;the&#xA0;same&#xA0;length&#xA0;are&#xA0;compared&#xA0;from&#xA0;left&#xA0;to&#xA0;right<br>//&#xA0;so&#xA0;in&#xA0;our&#xA0;example:&#xA0;2&#xA0;==&#xA0;2,&#xA0;but&#xA0;4&#xA0;&lt;&#xA0;5<br></span><span style="color: #0000BB">$val&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">8</span><span style="color: #007700">),&#xA0;array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">));&#xA0;</span><span style="color: #FF8000">//&#xA0;array(2,&#xA0;4,&#xA0;8)<br><br>//&#xA0;If&#xA0;both&#xA0;an&#xA0;array&#xA0;and&#xA0;non-array&#xA0;are&#xA0;given,&#xA0;the&#xA0;array&#xA0;is&#xA0;never&#xA0;returned<br>//&#xA0;as&#xA0;comparisons&#xA0;treat&#xA0;arrays&#xA0;as&#xA0;greater&#xA0;than&#xA0;any&#xA0;other&#xA0;value<br></span><span style="color: #0000BB">$val&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;string&apos;</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">42</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;string<br><br>//&#xA0;If&#xA0;one&#xA0;argument&#xA0;is&#xA0;NULL&#xA0;or&#xA0;a&#xA0;boolean,&#xA0;it&#xA0;will&#xA0;be&#xA0;compared&#xA0;against<br>//&#xA0;other&#xA0;values&#xA0;using&#xA0;the&#xA0;rules&#xA0;FALSE&#xA0;&lt;&#xA0;TRUE&#xA0;and&#xA0;NULL&#xA0;==&#xA0;FALSE&#xA0;regardless&#xA0;of&#xA0;the&#xA0;<br>//&#xA0;other&#xA0;types&#xA0;involved<br>//&#xA0;In&#xA0;the&#xA0;below&#xA0;examples,&#xA0;both&#xA0;-10&#xA0;and&#xA0;10&#xA0;are&#xA0;treated&#xA0;as&#xA0;TRUE&#xA0;in&#xA0;the&#xA0;comparison<br></span><span style="color: #0000BB">$val&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(-</span><span style="color: #0000BB">10</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">FALSE</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">10</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;FALSE<br></span><span style="color: #0000BB">$val&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(-</span><span style="color: #0000BB">10</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">10</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;NULL<br><br>//&#xA0;0,&#xA0;on&#xA0;the&#xA0;other&#xA0;hand,&#xA0;is&#xA0;treated&#xA0;as&#xA0;FALSE,&#xA0;so&#xA0;is&#xA0;&quot;lower&#xA0;than&quot;&#xA0;TRUE<br></span><span style="color: #0000BB">$val&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;0<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.min-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.max.html" class="function" rel="rdfs-seeAlso">max()</a> - Find highest value</span></li>
+    <li class="member"><span class="function"><a href="function.count.html" class="function" rel="rdfs-seeAlso">count()</a> - Count all elements in an array, or something in an object</span></li>
+   </ul>
+  </p>
+ </div>
+

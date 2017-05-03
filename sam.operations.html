@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+  <h2 class="title">Messaging operations</h2>
+  <p class="para">
+   All messaging operations are performed through calls to methods on the
+   connection object.
+   To add a message to a queue the &quot;send&quot; method is used, to obtain a
+   message from a queue the &quot;receive&quot; method is used. Other methods
+   provide publish and subscribe functionality and control of transaction
+   boundaries.
+  </p>
+  <p class="para">
+   <div class="example" id="example-5064">
+    <p><strong>Example #1 Adding a message to a queue and receiving a response</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$msg&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SAMMessage</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;This&#xA0;is&#xA0;a&#xA0;simple&#xA0;text&#xA0;message&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">SAM_REPLY_TO&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;queue://receive/test&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$correlid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">send</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;queue://send/test&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$msg</span><span style="color: #007700">);<br><br>if&#xA0;(!</span><span style="color: #0000BB">$correlid</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;The&#xA0;Send&#xA0;failed!<br>&#xA0;&#xA0;</span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;Send&#xA0;failed&#xA0;(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #DD0000">)&#xA0;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">;<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$resp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">receive</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;queue://receive/test&apos;</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #0000BB">SAM_CORRELID&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$correlid</span><span style="color: #007700">));<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ 

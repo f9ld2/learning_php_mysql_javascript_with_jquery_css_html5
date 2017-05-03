@@ -1,0 +1,64 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MongoCode::__toString</h1>
+  <p class="verinfo">(PECL mongo &gt;= 0.8.3)</p><p class="refpurpose"><span class="refname">MongoCode::__toString</span> &#x2014; <span class="dc-title">Returns this code as a string</span></p>
+
+ </div>
+
+ <div id="mongocode.tostring-soft-deprecation-notice" class="soft-deprecation-notice">
+  <blockquote class="sidebar">
+   <p class="para">This extension that defines this method
+is deprecated. Instead, the <a href="set.mongodb.html" class="link">MongoDB</a> extension should be used.
+There is no equivalent for this method in the new extension.</p>
+  </blockquote>
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongocode.tostring-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">string</span> <span class="methodname"><strong>MongoCode::__toString</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongocode.tostring-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongocode.tostring-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This code, the scope is not returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongocode.tostring-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1612">
+   <p><strong>Example #1 <span class="function"><strong>MongoCode::__toString()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$code&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoCode</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;return&#xA0;x;&apos;</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;x&quot;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&quot;hi&quot;</span><span style="color: #007700">));<br>echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$code</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$code&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoCode</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;function()&#xA0;{&#xA0;for(i=0;i&lt;10;i++)&#xA0;{&#xA0;db.foo.update({x:i},&#xA0;{x:i+1});&#xA0;}&#xA0;}&apos;</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$code</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+return x;
+function() { for(i=0;i&lt;10;i++) { db.foo.update({x:i}, {x:i+1}); } }
+</pre></div>
+   </div>
+  </div>
+ </div>
+

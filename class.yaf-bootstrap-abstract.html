@@ -1,0 +1,75 @@
+---
+layout: default
+---
+
+
+ <h1 class="title">The Yaf_Bootstrap_Abstract class</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(No version information available, might only be in Git)</p>
+
+
+  <div class="section" id="yaf-bootstrap-abstract.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+     Bootstrap is a mechanism used to do some intial config before a
+     Application run.
+   </p>
+   <p class="para">
+     User may define their own Bootstrap class by inheriting
+     <strong class="classname">Yaf_Bootstrap_Abstract</strong>
+   </p>
+   <p class="para">
+     Any method declared in Bootstrap class with leading &quot;_init&quot;, will be
+     called by <span class="methodname"><a href="yaf-application.bootstrap.html" class="methodname">Yaf_Application::bootstrap()</a></span> one by one 
+     according to their defined order. 
+   </p>
+  </div>
+
+
+ <div class="section">
+  <h2 class="title">Examples</h2>
+  <div class="example" id="example-4717">
+   <p><strong>Example #1 Bootstrap example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;bootstrap&#xA0;class&#xA0;should&#xA0;be&#xA0;defined&#xA0;under&#xA0;./application/Bootstrap.php&#xA0;*/<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Bootstrap&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">Yaf_Bootstrap_Abstract&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">_initConfig</span><span style="color: #007700">(</span><span style="color: #0000BB">Yaf_Dispatcher&#xA0;$dispatcher</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">_initPlugin</span><span style="color: #007700">(</span><span style="color: #0000BB">Yaf_Dispatcher&#xA0;$dispatcher</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$config&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;application&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;directory&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;/application/&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;),<br>&#xA0;&#xA0;&#xA0;);<br>&#xA0;<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$app&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Yaf_Application</span><span style="color: #007700">(</span><span style="color: #0000BB">$config</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$app</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bootstrap</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+string(22) &quot;Bootstrap::_initConfig&quot;
+string(22) &quot;Bootstrap::_initPlugin&quot;
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+  <div class="section" id="yaf-bootstrap-abstract.synopsis">
+   <h2 class="title">Class synopsis</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <span class="modifier">abstract</span>
+      <strong class="classname">Yaf_Bootstrap_Abstract</strong>
+     </span>
+     {</div>
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Properties */</div>
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Methods */</div>
+   }</div>
+
+
+  </div>
+
+ </div>
+

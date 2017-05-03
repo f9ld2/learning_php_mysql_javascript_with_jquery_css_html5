@@ -1,0 +1,99 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">cubrid_is_instance</h1>
+  <p class="verinfo">(PECL CUBRID &gt;= 8.3.0)</p><p class="refpurpose"><span class="refname">cubrid_is_instance</span> &#x2014; <span class="dc-title">Check whether the instance pointed by OID exists</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.cubrid-is-instance-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>cubrid_is_instance</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$conn_identifier</code></span>  
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$oid</code></span>  
+   )</div>
+
+  <p class="para rdfs-comment">
+    The <span class="function"><strong>cubrid_is_instance()</strong></span> function is used to check
+    whether the instance pointed by the given <code class="parameter">oid</code>
+    exists or not.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.cubrid-is-instance-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+  <dl>
+
+    
+  <dt>
+<code class="parameter">conn_identifier</code></dt>
+
+  <dd>
+<p class="para">Connection identifier.</p></dd>
+
+   
+   
+  <dt>
+<code class="parameter">oid</code></dt>
+
+  <dd>
+<p class="para">OID of the instance that you want to check the existence.</p></dd>
+
+   
+  </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.cubrid-is-instance-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+    1, if such instance exists; 
+  </p>
+    <p class="para">
+    0, if such instance does not exist; 
+  </p>
+    <p class="para">
+    -1, in case of error
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.cubrid-is-instance-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1117">
+   <p><strong>Example #1 <span class="function"><strong>cubrid_is_instance()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">cubrid_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">33000</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;demodb&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">=&#xA0;&lt;&lt;&lt;EOD<br></span><span style="color: #DD0000">SELECT&#xA0;host_year,&#xA0;medal,&#xA0;game_date&#xA0;<br>FROM&#xA0;game&#xA0;<br>WHERE&#xA0;athlete_code&#xA0;IN&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;(SELECT&#xA0;code&#xA0;FROM&#xA0;athlete&#xA0;WHERE&#xA0;name=&apos;Thorpe&#xA0;Ian&apos;);<br></span><span style="color: #007700">EOD;<br><br></span><span style="color: #0000BB">$req&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">cubrid_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">CUBRID_INCLUDE_OID</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$oid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">cubrid_current_oid</span><span style="color: #007700">(</span><span style="color: #0000BB">$req</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">cubrid_is_instance&#xA0;</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$oid</span><span style="color: #007700">);<br>if&#xA0;(</span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">==&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Instance&#xA0;pointed&#xA0;by&#xA0;</span><span style="color: #0000BB">$oid</span><span style="color: #DD0000">&#xA0;exists.\n&quot;</span><span style="color: #007700">;<br>}&#xA0;else&#xA0;if&#xA0;(</span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">==&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">){<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Instance&#xA0;pointed&#xA0;by&#xA0;</span><span style="color: #0000BB">$oid</span><span style="color: #DD0000">&#xA0;doesn&apos;t&#xA0;exist.\n&quot;</span><span style="color: #007700">;<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;error\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">cubrid_disconnect</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Instance pointed by @0|0|0 doesn&apos;t exist.
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+   <div class="refsect1 seealso" id="refsect1-function.cubrid-is-instance-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+   <li class="member"><span class="function"><a href="function.cubrid-drop.html" class="function" rel="rdfs-seeAlso">cubrid_drop()</a> - Delete an instance using OID</span></li>   
+   <li class="member"><span class="function"><a href="function.cubrid-get-class-name.html" class="function" rel="rdfs-seeAlso">cubrid_get_class_name()</a> - Get the class name using OID</span></li>
+   </ul>
+  </p>
+  </div>
+
+

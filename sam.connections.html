@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+  <h2 class="title">Connections</h2>
+  <p class="para">
+   In order to perform any messaging and queueing functions a connection
+   must be established with a messaging server by creating a SAMConnection
+   object and calling its &quot;connect&quot; method, with a set of connection
+   properties, to connect the PHP script to the messaging server.  Until
+   such time as the SAMConnection object is destroyed the connection
+   will be maintained and available for use. All SAMConnection objects
+   are destroyed when the PHP script exits.
+  </p>
+  <p class="para">
+   A set of default properties may be used in connecting to a messaging
+   server but as a minimum the PHP script must specify a protocol to be
+   used.
+  </p>
+  <p class="para">
+   <div class="example" id="example-5057">
+    <p><strong>Example #1 Creating a connection and connecting to a remote WebSphere MQSeries Messaging Server</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SAMConnection</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect</span><span style="color: #007700">(</span><span style="color: #0000BB">SAM_WMQ</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #0000BB">SAM_HOST&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;myhost.mycompany.com&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">SAM_PORT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1506</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">SAM_BROKER&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;mybroker&apos;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5058">
+    <p><strong>Example #2 Creating a connection and connecting to a remote WebSphere Application Server</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SAMConnection</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect</span><span style="color: #007700">(</span><span style="color: #0000BB">SAM_WPM</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #0000BB">SAM_ENDPOINTS&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;localhost:7278:BootstrapBasicMessaging&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">SAM_BUS&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Bus1&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">SAM_TARGETCHAIN&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;InboundBasicMessaging&apos;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5059">
+    <p><strong>Example #3 Creating a connection and connecting to an MQTT server</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SAMConnection</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect</span><span style="color: #007700">(</span><span style="color: #0000BB">SAM_MQTT</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #0000BB">SAM_HOST&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;myhost.mycompany.com&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">SAM_PORT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1883</span><span style="color: #007700">));<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ 

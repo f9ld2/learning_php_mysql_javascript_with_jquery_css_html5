@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+  <h2 class="title">Example that shows the effect of scream</h2>
+  <p class="para">
+   This example demonstrates how scream affects the behaviour of PHP&apos;s  error handler.
+  </p>
+  <p class="para">
+   <div class="example" id="example-593">
+    <p><strong>Example #1 Enabling and disabling scream at runtime</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Make&#xA0;sure&#xA0;errors&#xA0;will&#xA0;be&#xA0;shown<br></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;display_errors&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br></span><span style="color: #0000BB">error_reporting</span><span style="color: #007700">(</span><span style="color: #0000BB">E_ALL</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Disable&#xA0;scream&#xA0;-&#xA0;this&#xA0;is&#xA0;the&#xA0;default&#xA0;and&#xA0;produce&#xA0;an&#xA0;error<br></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;scream.enabled&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Opening&#xA0;http://example.com/not-existing-file\n&quot;</span><span style="color: #007700">;<br>@</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;http://example.com/not-existing-file&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;r&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Now&#xA0;enable&#xA0;scream&#xA0;and&#xA0;try&#xA0;again<br></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;scream.enabled&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Opening&#xA0;http://example.com/not-existing-file\n&quot;</span><span style="color: #007700">;<br>@</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;http://example.com/not-existing-file&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;r&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Opening http://example.com/not-existing-file
+Opening http://example.com/not-existing-file
+
+Warning: fopen(http://example.com/not-existing-file): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found in example.php on line 14
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <span class="simpara">
+    Usually one would set this in the <a href="configuration.file.html" class="link">php.ini configuration file</a>
+    instead of changing the code.
+    </span>
+  </p></blockquote>
+ 

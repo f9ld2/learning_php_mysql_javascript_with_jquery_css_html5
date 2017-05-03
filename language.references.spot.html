@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+   <h2 class="title">Spotting References</h2>
+   <p class="simpara">
+    Many syntax constructs in PHP are implemented via referencing
+    mechanisms, so everything mentioned herein about reference binding also
+    applies to these constructs. Some constructs, like passing and
+    returning by reference, are mentioned above. Other constructs that
+    use references are:
+   </p>
+
+   <div class="sect2" id="references.global">
+    <h3 class="title">global References</h3>
+    <p class="para">
+     When you declare a variable as <strong class="command">global $var</strong> you
+     are in fact creating reference to a global variable. That means,
+     this is the same as:
+     <div class="informalexample">
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$var&#xA0;</span><span style="color: #007700">=&amp;&#xA0;</span><span style="color: #0000BB">$GLOBALS</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;var&quot;</span><span style="color: #007700">];<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+     </div>
+    </p>
+    <p class="simpara">
+     This also means that unsetting <var class="varname"><var class="varname">$var</var></var>
+     won&apos;t unset the global variable.
+    </p>
+   </div>
+
+   <div class="sect2" id="references.this">
+    <h3 class="title"><em>$this</em></h3>
+    <p class="simpara">
+     In an object method, <var class="varname"><var class="varname">$this</var></var> is always a reference
+     to the caller object.
+    </p>
+   </div>
+  

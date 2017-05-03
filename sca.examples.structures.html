@@ -1,0 +1,229 @@
+---
+layout: default
+---
+
+  <h2 class="title"> Working with Data Structures </h2>
+  <p class="para">
+   SCA components can pass and return the four PHP scalar types
+   boolean, integer, float and string, but to pass or return data
+   structures, SCA components use Service Data Objects (SDOs). SDOs
+   are described in much more detail in
+   <a href="ref.sdo.html" class="link">the SDO pages</a> of this manual.
+   Readers familiar with SDOs will know that they are suitable for
+   representing the sort of structured and semi-structured data that
+   is frequently modeled in XML, and that they serialize very
+   naturally for passing between remote components, or in Web
+   services. SDOs are presently the only supported way to pass and
+   return data structures. It is not possible to pass or return PHP
+   objects, or PHP arrays. 
+  </p>
+  
+  <p class="para"> 
+   The SCA runtime always assures data is passed by-value, even
+   for local calls. To do this, the SCA runtime copies any SDOs in the
+   parameter list before passing them on, just as it does for scalar
+   types. 
+  </p>
+    
+  <div class="section" id="sca.examples.structures.defined">
+   <h2 class="title"> How data structures are defined to SCA components </h2>
+   <p class="para"> 
+    Currently the only mechanism for specifying the location of
+    a data structure definition is by specifying the types in an XML
+    schema file. However, in the future it may be possible to define
+    types in other ways, such as based on PHP classes or interfaces, or
+    based on definitions expressed as associative arrays. 
+   </p>
+   
+   <p class="para">
+    To illustrate the use of SDOs we introduce a new component.
+    The PortfolioMangement service below returns an SDO
+    representing a stock portfolio for a given customer. 
+   </p>
+   
+   <p class="para">
+    <div class="example" id="example-6187">
+     <p><strong>Example #1 A Component that uses Data Structures</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #007700">include&#xA0;</span><span style="color: #DD0000">&quot;SCA/SCA.php&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">/**<br>&#xA0;*&#xA0;Manage&#xA0;the&#xA0;portfolio&#xA0;for&#xA0;a&#xA0;customer.<br>&#xA0;*<br>&#xA0;*&#xA0;@service<br>&#xA0;*&#xA0;@binding.soap<br>&#xA0;*<br>&#xA0;*&#xA0;@types&#xA0;http://www.example.org/Portfolio&#xA0;PortfolioTypes.xsd<br>&#xA0;*<br>&#xA0;*/<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">PortfolioManagement&#xA0;</span><span style="color: #007700">{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/**<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;Get&#xA0;the&#xA0;stock&#xA0;portfolio&#xA0;for&#xA0;a&#xA0;given&#xA0;customer.<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;@param&#xA0;integer&#xA0;$customer_id&#xA0;The&#xA0;id&#xA0;for&#xA0;the&#xA0;customer<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;@return&#xA0;Portfolio&#xA0;http://www.example.org/Portfolio&#xA0;The&#xA0;stock&#xA0;portfolio&#xA0;(symbols&#xA0;and&#xA0;quantities)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">getPortfolio</span><span style="color: #007700">(</span><span style="color: #0000BB">$customer_id</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Pretend&#xA0;we&#xA0;just&#xA0;got&#xA0;this&#xA0;from&#xA0;a&#xA0;database<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$portfolio&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">SCA</span><span style="color: #007700">::</span><span style="color: #0000BB">createDataObject</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;http://www.example.org/Portfolio&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Portfolio&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$holding&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$portfolio</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createDataObject</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;holding&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$holding</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ticker&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;AAPL&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$holding</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">number&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">100.5</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$holding&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$portfolio</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createDataObject</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;holding&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$holding</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ticker&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;INTL&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$holding</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">number&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">100.5</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$holding&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$portfolio</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createDataObject</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;holding&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$holding</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ticker&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;IBM&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$holding</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">number&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">100.5</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$portfolio</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   
+   <p class="para">
+    The @types annotation:
+   </p>
+   
+   <p class="para">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">@</span><span style="color: #0000BB">types&#xA0;http</span><span style="color: #007700">:</span><span style="color: #FF8000">//www.example.org/Portfolio&#xA0;PortfolioTypes.xsd<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </p>
+   
+   <p class="para">
+    indicates that types in the namespace
+    http://www.example.org/Portfolio will be found in the schema
+    file located by the URI PortfolioTypes.xsd. The generated WSDL
+    would reproduce this information with an import statement as
+    follows: 
+   </p>
+   
+   <p class="para">
+    <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;xs:import schemaLocation=&quot;PortfolioTypes.xsd&quot;
+                      namespace=&quot;http://www.example.org/Portfolio&quot;/&gt;</pre>
+</div>
+    </div>
+
+   </p>
+   
+   <p class="para">
+    so the URI, absolute or relative, must be one that can be
+    resolved when included in the schemaLocation attribute. 
+   </p>
+   
+  </div>
+  
+    
+  <div class="section" id="sca.examples.structures.creating">
+   <h2 class="title">Creating SDOs </h2>
+   <p class="para">
+    Readers familiar with SDOs will know that they are always
+    created according to a description of the permitted structure
+    (sometimes referred to as the &apos;schema&apos; or &apos;model&apos;) and that,
+    rather than creating them directly using &apos;new&apos;, some form of data
+    factory is needed. Often, an existing data object can be used as the
+    data factory, but sometimes, and especially in order to get the
+    first data object, something else must act as the data factory.
+   </p>
+   
+   <p class="para">
+    In SCA, either the SCA runtime class or the proxies for
+    services, whether local or remote, can act as the data factories
+    for SDOs. The choice of which to use, and when, is described in the
+    next two sections. 
+   </p>
+   <p class="para"> 
+    We switch to a new example in order to illustrate the creation
+    of SDOs, both to pass to a service, and to be returned from a service.
+   </p>
+  </div>
+  
+    
+  <div class="section" id="sca.examples.structures.services">
+   <h2 class="title">Creating an SDO to pass to a service</h2>
+   <p class="para">
+    A caller of a service which requires a data structure to be
+    passed in to it uses the proxy to the service as the data factory for
+    the corresponding SDOs. For example, suppose a component makes
+    use of a proxy for a service provided by a local AddressBook
+    component. 
+   </p>
+   
+   <p class="para">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/**<br>&#xA0;*&#xA0;@reference<br>&#xA0;*&#xA0;@binding.local&#xA0;AddressBook.php<br>&#xA0;*/<br></span><span style="color: #0000BB">$address_book</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </p>
+   <p class="para"> 
+    The AddressBook component that it wishes to call is defined
+    as follows: 
+   </p>
+   <p class="para">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/**<br>*&#xA0;@service<br>*&#xA0;@binding.soap<br>*&#xA0;@types&#xA0;http://addressbook&#xA0;../AddressBook/AddressBook.xsd<br>*/<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">AddressBook&#xA0;</span><span style="color: #007700">{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/**<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;@param&#xA0;personType&#xA0;$person&#xA0;http://addressbook&#xA0;(a&#xA0;person&#xA0;object)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;@return&#xA0;addressType&#xA0;http://addressbook&#xA0;(the&#xA0;address&#xA0;object&#xA0;for&#xA0;the&#xA0;person&#xA0;object)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">lookupAddress</span><span style="color: #007700">(</span><span style="color: #0000BB">$person</span><span style="color: #007700">)&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;...<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </p>
+   
+   <p class="para"> 
+    The AddressBook component provides a service method called
+    
+    <span class="function"><strong>lookupAddress()</strong></span> which uses types from the
+    http://addressbook namespace. The lookupAddress method takes a
+    personType data structure and returns an addressType. Both types
+    are defined in the schema file addressbook.xsd. 
+   </p>
+   
+   <p class="para"> 
+    Once the component that wishes to use the AddressBook
+    component has been constructed, so that the
+    <var class="varname"><var class="varname">$address_book</var></var> instance variable contains
+    a proxy for the service, the calling component can use the proxy in
+    <var class="varname"><var class="varname">$address_book</var></var> to create the person SDO, as
+    shown below: 
+   </p>
+   
+   <p class="para">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$william_shakespeare&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$address_book</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createDataObject</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;http://addressbook&apos;</span><span style="color: #007700">,</span><span style="color: #DD0000">&apos;personType&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$william_shakespeare&#xA0;</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;William&#xA0;Shakespeare&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$address&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$address_book</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">lookupAddress</span><span style="color: #007700">(</span><span style="color: #0000BB">$william_shakespeare</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </p>
+   
+   <p class="para"> 
+    Note, the use of the proxy as the means to create the SDO is not
+    limited to SCA components. If a service is being called from a
+    general PHP script, and the proxy was obtained with
+    <span class="function"><strong>getService()</strong></span> then the same approach is
+    used. 
+   </p>
+   
+   <p class="para">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$address_book&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">SCA</span><span style="color: #007700">::</span><span style="color: #0000BB">getService</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;AddressBook.php&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$william_shakespeare&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$address_book</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createDataObject</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;http://addressbook&apos;</span><span style="color: #007700">,</span><span style="color: #DD0000">&apos;personType&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       
+    </div>
+
+   </p>
+   
+  </div>
+  
+
+  <div class="section" id="sca.examples.structures.services.returning">
+   <h2 class="title"> Creating an SDO to return from a component </h2>
+   <p class="para"> 
+    A component that needs to create a data object for return to a
+    caller will not have a proxy to use as a data object, In this case it
+    uses the
+    <span class="function"><strong>createDataObject()</strong></span> static method on
+    <var class="filename">SCA.php</var>. Hence if the AddressBook
+    component described above needed to create an object of type
+    <strong class="classname">addressType</strong> within the namespace
+    http://addressbook, it might do so as follows: 
+   </p>
+   
+   <p class="para">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$address&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">SCA</span><span style="color: #007700">::</span><span style="color: #0000BB">createDataObject</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;http://addressbook&apos;</span><span style="color: #007700">,</span><span style="color: #DD0000">&apos;addressType&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       
+    </div>
+
+   </p>
+  </div>
+  
+ 

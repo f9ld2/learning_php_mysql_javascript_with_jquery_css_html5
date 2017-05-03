@@ -1,0 +1,74 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">AppendIterator::getInnerIterator</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7)</p><p class="refpurpose"><span class="refname">AppendIterator::getInnerIterator</span> &#x2014; <span class="dc-title">Gets the inner iterator</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-appenditerator.getinneriterator-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="class.iterator.html" class="type Iterator">Iterator</a></span> <span class="methodname"><strong>AppendIterator::getInnerIterator</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This method returns the current inner iterator.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-appenditerator.getinneriterator-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-appenditerator.getinneriterator-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The current inner iterator, or <strong><code>NULL</code></strong> if there is not one.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-appenditerator.getinneriterator-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4419">
+    <p><strong>Example #1 <span class="methodname"><strong>AppendIterator::getInnerIterator()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$array_a&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ArrayIterator</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&apos;a&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;aardwolf&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;b&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;bear&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;c&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;capybara&apos;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$array_b&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">RegexIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$array_a</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;/^[ac]/&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$iterator&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">AppendIterator</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$iterator</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">append</span><span style="color: #007700">(</span><span style="color: #0000BB">$array_a</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$iterator</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">append</span><span style="color: #007700">(</span><span style="color: #0000BB">$array_b</span><span style="color: #007700">);<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$iterator&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$current</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$inner&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$iterator</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getInnerIterator</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$inner&#xA0;</span><span style="color: #007700">instanceOf&#xA0;</span><span style="color: #0000BB">RegexIterator</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Filtered:&#xA0;&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Original:&#xA0;&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$current&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Original: aardwolf
+Original: bear
+Original: capybara
+Filtered: aardwolf
+Filtered: capybara
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-appenditerator.getinneriterator-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="appenditerator.getiteratorindex.html" class="methodname" rel="rdfs-seeAlso">AppendIterator::getIteratorIndex()</a> - Gets an index of iterators</span></li>
+   </ul>
+  </p>
+ </div>
+
+

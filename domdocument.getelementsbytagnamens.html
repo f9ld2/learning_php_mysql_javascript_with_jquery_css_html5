@@ -1,0 +1,101 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">DOMDocument::getElementsByTagNameNS</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">DOMDocument::getElementsByTagNameNS</span> &#x2014; <span class="dc-title">
+   Searches for all elements with given tag name in specified namespace
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-domdocument.getelementsbytagnamens-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="class.domnodelist.html" class="type DOMNodeList">DOMNodeList</a></span> <span class="methodname"><strong>DOMDocument::getElementsByTagNameNS</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$namespaceURI</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$localName</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns a <a href="class.domnodelist.html" class="classname">DOMNodeList</a> of all elements with a given 
+   local name and a namespace URI.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-domdocument.getelementsbytagnamens-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">namespaceURI</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The namespace URI of the elements to match on. 
+       The special value <em>*</em> matches all namespaces.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">localName</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The local name of the elements to match on. 
+       The special value <em>*</em> matches all local names.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-domdocument.getelementsbytagnamens-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A new <a href="class.domnodelist.html" class="classname">DOMNodeList</a> object containing all the matched 
+   elements.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-domdocument.getelementsbytagnamens-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-6258">
+    <p><strong>Example #1 Get all the XInclude elements</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$xml&#xA0;</span><span style="color: #007700">=&#xA0;&lt;&lt;&lt;EOD<br></span><span style="color: #DD0000">&lt;?xml&#xA0;version=&quot;1.0&quot;&#xA0;?&gt;<br>&lt;chapter&#xA0;xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;&gt;<br>&lt;title&gt;Books&#xA0;of&#xA0;the&#xA0;other&#xA0;guy..&lt;/title&gt;<br>&lt;para&gt;<br>&#xA0;&lt;xi:include&#xA0;href=&quot;book.xml&quot;&gt;<br>&#xA0;&#xA0;&lt;xi:fallback&gt;<br>&#xA0;&#xA0;&#xA0;&lt;error&gt;xinclude:&#xA0;book.xml&#xA0;not&#xA0;found&lt;/error&gt;<br>&#xA0;&#xA0;&lt;/xi:fallback&gt;<br>&#xA0;&lt;/xi:include&gt;<br>&#xA0;&lt;include&gt;<br>&#xA0;&#xA0;This&#xA0;is&#xA0;another&#xA0;namespace<br>&#xA0;&lt;/include&gt;<br>&lt;/para&gt;<br>&lt;/chapter&gt;<br></span><span style="color: #007700">EOD;<br></span><span style="color: #0000BB">$dom&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">DOMDocument</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;load&#xA0;the&#xA0;XML&#xA0;string&#xA0;defined&#xA0;above<br></span><span style="color: #0000BB">$dom</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadXML</span><span style="color: #007700">(</span><span style="color: #0000BB">$xml</span><span style="color: #007700">);<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$dom</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getElementsByTagNameNS</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;http://www.w3.org/2001/XInclude&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;*&apos;</span><span style="color: #007700">)&#xA0;as&#xA0;</span><span style="color: #0000BB">$element</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;local&#xA0;name:&#xA0;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$element</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">localName</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;,&#xA0;prefix:&#xA0;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$element</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prefix</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+local name: include, prefix: xi
+local name: fallback, prefix: xi
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-domdocument.getelementsbytagnamens-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="domdocument.getelementsbytagname.html" class="methodname" rel="rdfs-seeAlso">DOMDocument::getElementsByTagName()</a> - Searches for all elements with given local tag name</span></li>
+   </ul>
+  </p>
+ </div>
+

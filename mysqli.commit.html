@@ -1,0 +1,152 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">mysqli::commit</h1>
+  <h1 class="refname">mysqli_commit</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">mysqli::commit</span> -- <span class="refname">mysqli_commit</span> &#x2014; <span class="dc-title">Commits the current transaction</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli.commit-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Object oriented style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>mysqli::commit</strong></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">Procedural style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>mysqli_commit</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli.html" class="type mysqli">mysqli</a></span> <code class="parameter">$link</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Commits the current transaction for the database connection.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli.commit-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+link</code></dt>
+<dd>
+<p class="para">Procedural style only: A link identifier
+returned by <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span> or <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span>
+</p></dd>
+
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A bitmask of <strong><code>MYSQLI_TRANS_COR_*</code></strong> constants.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       If provided then <em>COMMIT/*name*/</em> is executed.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli.commit-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-mysqli.commit-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.5.0</td>
+       <td>
+        Added <code class="parameter">flags</code> and <code class="parameter">name</code>
+        parameters.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli.commit-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1828">
+   <p><strong>Example #1 <span class="methodname"><strong>mysqli::commit()</strong></span> example</strong></p>
+   <div class="example-contents"><p>Object oriented style</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;world&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;Language&#xA0;LIKE&#xA0;CountryLanguage&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;set&#xA0;autocommit&#xA0;to&#xA0;off&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">autocommit</span><span style="color: #007700">(</span><span style="color: #0000BB">FALSE</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Insert&#xA0;some&#xA0;values&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;INSERT&#xA0;INTO&#xA0;Language&#xA0;VALUES&#xA0;(&apos;DEU&apos;,&#xA0;&apos;Bavarian&apos;,&#xA0;&apos;F&apos;,&#xA0;11.2)&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;INSERT&#xA0;INTO&#xA0;Language&#xA0;VALUES&#xA0;(&apos;DEU&apos;,&#xA0;&apos;Swabian&apos;,&#xA0;&apos;F&apos;,&#xA0;9.4)&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;commit&#xA0;transaction&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">commit</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;print(</span><span style="color: #DD0000">&quot;Transaction&#xA0;commit&#xA0;failed\n&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;drop&#xA0;table&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;DROP&#xA0;TABLE&#xA0;Language&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;close&#xA0;connection&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Procedural style</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$link&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;test&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;set&#xA0;autocommit&#xA0;to&#xA0;off&#xA0;*/<br></span><span style="color: #0000BB">mysqli_autocommit</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">FALSE</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;Language&#xA0;LIKE&#xA0;CountryLanguage&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Insert&#xA0;some&#xA0;values&#xA0;*/<br></span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;INSERT&#xA0;INTO&#xA0;Language&#xA0;VALUES&#xA0;(&apos;DEU&apos;,&#xA0;&apos;Bavarian&apos;,&#xA0;&apos;F&apos;,&#xA0;11.2)&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;INSERT&#xA0;INTO&#xA0;Language&#xA0;VALUES&#xA0;(&apos;DEU&apos;,&#xA0;&apos;Swabian&apos;,&#xA0;&apos;F&apos;,&#xA0;9.4)&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;commit&#xA0;transaction&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">mysqli_commit</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;print(</span><span style="color: #DD0000">&quot;Transaction&#xA0;commit&#xA0;failed\n&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;close&#xA0;connection&#xA0;*/<br></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli.commit-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mysqli.autocommit.html" class="function" rel="rdfs-seeAlso">mysqli_autocommit()</a> - Turns on or off auto-committing database modifications</span></li>
+    <li class="member"><span class="function"><a href="mysqli.begin-transaction.html" class="function" rel="rdfs-seeAlso">mysqli_begin_transaction()</a> - Starts a transaction</span></li>
+    <li class="member"><span class="function"><a href="mysqli.rollback.html" class="function" rel="rdfs-seeAlso">mysqli_rollback()</a> - Rolls back current transaction</span></li>
+    <li class="member"><span class="function"><a href="mysqli.savepoint.html" class="function" rel="rdfs-seeAlso">mysqli_savepoint()</a> - Set a named transaction savepoint</span></li>
+   </ul>
+  </p>
+ </div>
+
+

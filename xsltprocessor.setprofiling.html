@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">XSLTProcessor::setProfiling</h1>
+  <p class="verinfo">(PHP &gt;= 5.3.0)</p><p class="refpurpose"><span class="refname">XSLTProcessor::setProfiling</span> &#x2014; <span class="dc-title">Sets profiling output file</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-xsltprocessor.setprofiling-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>XSLTProcessor::setProfiling</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$filename</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets the file to output profiling information when processing 
+   a stylesheet.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-xsltprocessor.setprofiling-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">filename</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Path to the file to dump profiling information.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-xsltprocessor.setprofiling-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-xsltprocessor.setprofiling-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-6399">
+    <p><strong>Example #1 Example profiling output</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Load&#xA0;the&#xA0;XML&#xA0;source<br></span><span style="color: #0000BB">$xml&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">DOMDocument</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$xml</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">load</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;collection.xml&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$xsl&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">DOMDocument</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$xsl</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">load</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;collection.xsl&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Configure&#xA0;the&#xA0;transformer<br></span><span style="color: #0000BB">$proc&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">XSLTProcessor</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$proc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setProfiling</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;profiling.txt&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$proc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">importStyleSheet</span><span style="color: #007700">(</span><span style="color: #0000BB">$xsl</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;attach&#xA0;the&#xA0;xsl&#xA0;rules<br><br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">trim</span><span style="color: #007700">(</span><span style="color: #0000BB">$proc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">transformToDoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$xml</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">firstChild</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">wholeText</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     The above code will produce the following information 
+     in the profiling file:
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+number               match                name      mode  Calls Tot 100us Avg
+
+    0                   cd                                    2      3      1
+    1           collection                                    1      1      1
+
+                         Total                                3      4
+
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+

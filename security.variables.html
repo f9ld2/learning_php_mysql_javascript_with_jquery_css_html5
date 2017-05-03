@@ -1,0 +1,72 @@
+---
+layout: default
+---
+
+ <h1>User Submitted Data</h1>
+
+ <p class="para">
+  The greatest weakness in many <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> programs is not inherent in the
+  language itself, but merely an issue of code not being written with
+  security in mind. For this reason, you should always take the time
+  to consider the implications of a given piece of code, to ascertain
+  the possible damage if an unexpected variable is submitted to it.
+  <div class="example" id="example-371">
+   <p><strong>Example #1 Dangerous Variable Usage</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;remove&#xA0;a&#xA0;file&#xA0;from&#xA0;the&#xA0;user&apos;s&#xA0;home&#xA0;directory...&#xA0;or&#xA0;maybe<br>//&#xA0;somebody&#xA0;else&apos;s?<br></span><span style="color: #0000BB">unlink&#xA0;</span><span style="color: #007700">(</span><span style="color: #0000BB">$evil_var</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Write&#xA0;logging&#xA0;of&#xA0;their&#xA0;access...&#xA0;or&#xA0;maybe&#xA0;an&#xA0;/etc/passwd&#xA0;entry?<br></span><span style="color: #0000BB">fwrite&#xA0;</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$evil_var</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Execute&#xA0;something&#xA0;trivial..&#xA0;or&#xA0;rm&#xA0;-rf&#xA0;*?<br></span><span style="color: #0000BB">system&#xA0;</span><span style="color: #007700">(</span><span style="color: #0000BB">$evil_var</span><span style="color: #007700">);<br></span><span style="color: #0000BB">exec&#xA0;</span><span style="color: #007700">(</span><span style="color: #0000BB">$evil_var</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  You should always carefully examine your code to make sure that any
+  variables being submitted from a web browser are being properly
+  checked, and ask yourself the following questions:
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     Will this script only affect the intended files?
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Can unusual or undesirable data be acted upon?
+    </span>
+   </li>
+   <li class="listitem">
+   <span class="simpara">
+     Can this script be used in unintended ways?
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Can this be used in conjunction with other scripts in a negative
+     manner?
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Will any transactions be adequately logged?
+    </span>
+   </li>
+  </ul>
+ </p>
+ <p class="para">
+  By adequately asking these questions while writing the script,
+  rather than later, you prevent an unfortunate re-write when you
+  need to increase your security. By starting out with this mindset,
+  you won&apos;t guarantee the security of your system, but you can help
+  improve it.
+ </p>
+ <p class="para">
+  You may also want to consider turning off register_globals,
+  magic_quotes, or other convenience settings which may confuse
+  you as to the validity, source, or value of a given variable.
+  Working with <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> in error_reporting(E_ALL) mode can also help warn
+  you about variables being used before they are checked or
+  initialized (so you can prevent unusual data from being
+  operated upon).
+ </p>

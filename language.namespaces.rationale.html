@@ -1,0 +1,85 @@
+---
+layout: default
+---
+
+  <h2 class="title">Namespaces overview</h2>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7)</p>
+  <p class="simpara">
+   What are namespaces? In the broadest definition namespaces are a way of encapsulating
+   items.  This can be seen as an abstract concept in many places. For example, in any
+   operating system directories serve to group related files, and act as a namespace for
+   the files within them. As a concrete example, the file <em>foo.txt</em> can
+   exist in both directory <em>/home/greg</em> and in <em>/home/other</em>,
+   but two copies of <em>foo.txt</em> cannot co-exist in the same directory. In
+   addition, to access the <em>foo.txt</em> file outside of the
+   <em>/home/greg</em> directory, we must prepend the directory name to the file
+   name using the directory separator to get <em>/home/greg/foo.txt</em>. This
+   same principle extends to namespaces in the programming world.
+  </p>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.0.0</td>
+       <td>
+        Added Group use Declarations.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+  <p class="simpara">
+   In the PHP world, namespaces are designed to solve two problems that authors
+   of libraries and applications encounter when creating re-usable code elements
+   such as classes or functions:
+  </p>
+  <p class="para">
+   <ol type="1">
+    <li class="listitem">
+     <span class="simpara">
+      Name collisions between code you create, and
+      internal PHP classes/functions/constants or third-party classes/functions/constants.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Ability to alias (or shorten) Extra_Long_Names designed to alleviate the first problem,
+      improving readability of source code.
+     </span>
+    </li>
+   </ol>
+  </p>
+  <p class="simpara">
+   PHP Namespaces provide a way in which to group related classes, interfaces, 
+   functions and constants.  Here is an example of namespace syntax in PHP:
+  </p>
+  <div class="example" id="example-242">
+   <p><strong>Example #1 Namespace syntax example</strong></p>
+   <div class="example-contents">
+   <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">namespace&#xA0;</span><span style="color: #0000BB">my</span><span style="color: #007700">\</span><span style="color: #0000BB">name</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;see&#xA0;&quot;Defining&#xA0;Namespaces&quot;&#xA0;section<br><br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">MyClass&#xA0;</span><span style="color: #007700">{}<br>function&#xA0;</span><span style="color: #0000BB">myfunction</span><span style="color: #007700">()&#xA0;{}<br>const&#xA0;</span><span style="color: #0000BB">MYCONST&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MyClass</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;\</span><span style="color: #0000BB">my</span><span style="color: #007700">\</span><span style="color: #0000BB">name</span><span style="color: #007700">\</span><span style="color: #0000BB">MyClass</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;see&#xA0;&quot;Global&#xA0;Space&quot;&#xA0;section<br><br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hi&apos;</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;see&#xA0;&quot;Using&#xA0;namespaces:&#xA0;fallback&#xA0;to&#xA0;global<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;function/constant&quot;&#xA0;section<br><br></span><span style="color: #0000BB">$d&#xA0;</span><span style="color: #007700">=&#xA0;namespace\</span><span style="color: #0000BB">MYCONST</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;see&#xA0;&quot;namespace&#xA0;operator&#xA0;and&#xA0;__NAMESPACE__<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;constant&quot;&#xA0;section<br></span><span style="color: #0000BB">$d&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">__NAMESPACE__&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&apos;\MYCONST&apos;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #0000BB">constant</span><span style="color: #007700">(</span><span style="color: #0000BB">$d</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;see&#xA0;&quot;Namespaces&#xA0;and&#xA0;dynamic&#xA0;language&#xA0;features&quot;&#xA0;section<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    Namespace names <em>PHP</em> and <em>php</em>, and compound names starting
+    with these names (like <em>PHP\Classes</em>) are reserved for internal language use 
+    and should not be used in the userspace code. 
+   </p>
+  <p></p></blockquote>
+ 

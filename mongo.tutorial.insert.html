@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+   <h2 class="title">Inserting a Document</h2>
+   <p class="para">
+    Associative arrays are the basic object that can be saved to a collection in
+    the database. A somewhat random &quot;document&quot; might be:
+   </p>
+   <div class="example" id="example-1447">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$doc&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;name&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MongoDB&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;type&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;database&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;count&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;info&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;(object)array(&#xA0;</span><span style="color: #DD0000">&quot;x&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">203</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;y&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">102</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;versions&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(</span><span style="color: #DD0000">&quot;0.9.7&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;0.9.8&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;0.9.9&quot;</span><span style="color: #007700">)<br>);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <p class="para">
+    Note that you can have nested arrays and objects. The driver will always
+    store an associative array as an object in the database. A
+    numerically indexed array is stored as an array in case the keys start at
+    0 and are not interrupted, and as an object if the array keys don&apos;t start
+    at 0 or have gaps (ie: <em>0, 1, 4, 5</em>).
+   </p>
+   <p class="para">
+    To insert this document, use <span class="function"><a href="mongocollection.insert.html" class="function">MongoCollection::insert()</a></span>:
+   </p>
+   <div class="example" id="example-1448">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$connection&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$collection&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$connection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">database</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">collectionName</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$doc&#xA0;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="section" id="mongo.tutorial.insert.seealso">
+    <h2 class="title">See Also</h2>
+    <p class="para">
+     The API documentation on <span class="function"><a href="mongocollection.insert.html" class="function">MongoCollection::insert()</a></span>
+     contains more information about inserting data.
+    </p>
+   </div>
+  

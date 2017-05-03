@@ -1,0 +1,77 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">RecursiveArrayIterator::hasChildren</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7)</p><p class="refpurpose"><span class="refname">RecursiveArrayIterator::hasChildren</span> &#x2014; <span class="dc-title">Returns whether current entry is an array or an object.</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-recursivearrayiterator.haschildren-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><strong>RecursiveArrayIterator::hasChildren</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns whether current entry is an <span class="type"><a href="language.types.array.html" class="type array">array</a></span> or an <span class="type"><a href="language.types.object.html" class="type object">object</a></span> for
+   which an iterator can be obtained via
+   <span class="methodname"><a href="recursivearrayiterator.getchildren.html" class="methodname">RecursiveArrayIterator::getChildren()</a></span>.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-recursivearrayiterator.haschildren-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-recursivearrayiterator.haschildren-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> if the current entry is an <span class="type"><a href="language.types.array.html" class="type array">array</a></span> or an <span class="type"><a href="language.types.object.html" class="type object">object</a></span>,
+   otherwise <strong><code>FALSE</code></strong> is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-recursivearrayiterator.haschildren-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4477">
+    <p><strong>Example #1 <span class="function"><strong>RecursiveArrayIterator::hasChildren()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$fruits&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;a&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;lemon&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;b&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;orange&quot;</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;a&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;apple&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;p&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;pear&quot;</span><span style="color: #007700">));<br><br></span><span style="color: #0000BB">$iterator&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">RecursiveArrayIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span style="color: #007700">);<br><br>while&#xA0;(</span><span style="color: #0000BB">$iterator</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">valid</span><span style="color: #007700">())&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Check&#xA0;if&#xA0;there&#xA0;are&#xA0;children<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$iterator</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">hasChildren</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;print&#xA0;all&#xA0;children<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$iterator</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getChildren</span><span style="color: #007700">()&#xA0;as&#xA0;</span><span style="color: #0000BB">$key&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$key&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;:&#xA0;&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$value&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;No&#xA0;children.\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$iterator</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">next</span><span style="color: #007700">();<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+No children.
+No children.
+a : apple
+p : pear
+
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-recursivearrayiterator.haschildren-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="recursivearrayiterator.getchildren.html" class="function" rel="rdfs-seeAlso">RecursiveArrayIterator::getChildren()</a> - Returns an iterator for the current entry if it is an array or an object.</span></li>
+   </ul>
+  </p>
+ </div>
+
+

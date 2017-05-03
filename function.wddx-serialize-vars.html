@@ -1,0 +1,94 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">wddx_serialize_vars</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">wddx_serialize_vars</span> &#x2014; <span class="dc-title">Serialize variables into a WDDX packet</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.wddx-serialize-vars-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>wddx_serialize_vars</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$var_name</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Creates a WDDX packet with a structure that contains the serialized
+   representation of the passed variables.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.wddx-serialize-vars-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   This function takes a variable number of parameters.
+   <dl>
+
+    
+     <dt>
+<code class="parameter">var_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Can be either a string naming a variable or an array containing
+       strings naming the variables or another array, etc.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">...</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.wddx-serialize-vars-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the WDDX packet, or <strong><code>FALSE</code></strong> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.wddx-serialize-vars-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-6379">
+    <p><strong>Example #1 <span class="function"><strong>wddx_serialize_vars()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$a&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$b&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">5.5</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;blue&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;orange&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;violet&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$d&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;colors&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$clvars&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;c&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;d&quot;</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #0000BB">wddx_serialize_vars</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;a&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;b&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$clvars</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+&lt;wddxPacket version=&apos;1.0&apos;&gt;&lt;header/&gt;&lt;data&gt;&lt;struct&gt;&lt;var name=&apos;a&apos;&gt;&lt;number&gt;1&lt;/number&gt;&lt;/var&gt;
+&lt;var name=&apos;b&apos;&gt;&lt;number&gt;5.5&lt;/number&gt;&lt;/var&gt;&lt;var name=&apos;c&apos;&gt;&lt;array length=&apos;3&apos;&gt;
+&lt;string&gt;blue&lt;/string&gt;&lt;string&gt;orange&lt;/string&gt;&lt;string&gt;violet&lt;/string&gt;&lt;/array&gt;&lt;/var&gt;
+&lt;var name=&apos;d&apos;&gt;&lt;string&gt;colors&lt;/string&gt;&lt;/var&gt;&lt;/struct&gt;&lt;/data&gt;&lt;/wddxPacket&gt;
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+

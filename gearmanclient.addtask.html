@@ -1,0 +1,154 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">GearmanClient::addTask</h1>
+  <p class="verinfo">(PECL gearman &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">GearmanClient::addTask</span> &#x2014; <span class="dc-title">Add a task to be run in parallel</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-gearmanclient.addtask-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="class.gearmantask.html" class="type GearmanTask">GearmanTask</a></span> <span class="methodname"><strong>GearmanClient::addTask</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$function_name</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$workload</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&amp;$context</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$unique</code></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Adds a task to be run in parallel with other tasks.  Call this method for all the tasks
+   to be run in parallel, then call <span class="methodname"><a href="gearmanclient.runtasks.html" class="methodname">GearmanClient::runTasks()</a></span> to 
+   perform the work.  Note that enough workers need to be available for the tasks to all
+   run in parallel.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-gearmanclient.addtask-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">function_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A registered function the worker is to execute
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">workload</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Serialized data to be processed
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">context</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Application context to associate with a task
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">unique</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A unique ID used to identify a particular task
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-gearmanclient.addtask-returnvalues">
+  <h3 class="title">Return Values</h3>
+ <p class="para">
+   A <a href="class.gearmantask.html" class="classname">GearmanTask</a> object or <strong><code>FALSE</code></strong> if the task could not be added.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-gearmanclient.addtask-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4899">
+    <p><strong>Example #1 Basic submission of two tasks</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">#&#xA0;Create&#xA0;our&#xA0;gearman&#xA0;client<br></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">GearmanClient</span><span style="color: #007700">();&#xA0;<br><br></span><span style="color: #FF8000">#&#xA0;add&#xA0;the&#xA0;default&#xA0;job&#xA0;server<br></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">();&#xA0;<br><br></span><span style="color: #FF8000">#&#xA0;set&#xA0;a&#xA0;function&#xA0;to&#xA0;be&#xA0;called&#xA0;when&#xA0;the&#xA0;work&#xA0;is&#xA0;complete<br></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setCompleteCallback</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;complete&quot;</span><span style="color: #007700">);&#xA0;<br><br></span><span style="color: #FF8000">#&#xA0;add&#xA0;a&#xA0;task&#xA0;to&#xA0;perform&#xA0;the&#xA0;&quot;reverse&quot;&#xA0;function&#xA0;on&#xA0;the&#xA0;string&#xA0;&quot;Hello&#xA0;World!&quot;<br></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTask</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;reverse&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;Hello&#xA0;World!&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;1&quot;</span><span style="color: #007700">);&#xA0;<br><br></span><span style="color: #FF8000">#&#xA0;add&#xA0;another&#xA0;task&#xA0;to&#xA0;perform&#xA0;the&#xA0;&quot;reverse&quot;&#xA0;function&#xA0;on&#xA0;the&#xA0;string&#xA0;&quot;!dlroW&#xA0;olleH&quot;<br></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTask</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;reverse&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;!dlroW&#xA0;olleH&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;2&quot;</span><span style="color: #007700">);&#xA0;<br><br></span><span style="color: #FF8000">#&#xA0;run&#xA0;the&#xA0;tasks<br></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runTasks</span><span style="color: #007700">();&#xA0;<br><br>function&#xA0;</span><span style="color: #0000BB">complete</span><span style="color: #007700">(</span><span style="color: #0000BB">$task</span><span style="color: #007700">)&#xA0;<br>{&#xA0;<br>&#xA0;&#xA0;print&#xA0;</span><span style="color: #DD0000">&quot;COMPLETE:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unique</span><span style="color: #007700">()&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;,&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span style="color: #007700">()&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;&#xA0;<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+COMPLETE: 2, Hello World!
+COMPLETE: 1, !dlroW olleH
+</pre></div>
+    </div>
+   </div>
+   <div class="example" id="example-4900">
+    <p><strong>Example #2 Basic submission of two tasks with passing application context</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$client&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">GearmanClient</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">#&#xA0;set&#xA0;a&#xA0;function&#xA0;to&#xA0;be&#xA0;called&#xA0;when&#xA0;the&#xA0;work&#xA0;is&#xA0;complete<br></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setCompleteCallback</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;reverse_complete&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">#&#xA0;Add&#xA0;some&#xA0;tasks&#xA0;for&#xA0;a&#xA0;placeholder&#xA0;of&#xA0;where&#xA0;to&#xA0;put&#xA0;the&#xA0;results<br></span><span style="color: #0000BB">$results&#xA0;</span><span style="color: #007700">=&#xA0;array();<br></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTask</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;reverse&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;Hello&#xA0;World!&quot;</span><span style="color: #007700">,&#xA0;&amp;</span><span style="color: #0000BB">$results</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;t1&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTask</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;reverse&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;!dlroW&#xA0;olleH&quot;</span><span style="color: #007700">,&#xA0;&amp;</span><span style="color: #0000BB">$results</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;t2&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runTasks</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">#&#xA0;The&#xA0;results&#xA0;should&#xA0;now&#xA0;be&#xA0;filled&#xA0;in&#xA0;from&#xA0;the&#xA0;callbacks<br></span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$results&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$id&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$id&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;handle&apos;</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;,&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;data&apos;</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br><br>function&#xA0;</span><span style="color: #0000BB">reverse_complete</span><span style="color: #007700">(</span><span style="color: #0000BB">$task</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$results</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$results</span><span style="color: #007700">[</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unique</span><span style="color: #007700">()]&#xA0;=&#xA0;array(</span><span style="color: #DD0000">&quot;handle&quot;</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">jobHandle</span><span style="color: #007700">(),&#xA0;</span><span style="color: #DD0000">&quot;data&quot;</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span style="color: #007700">());<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+t2: H.foo:21, Hello World!
+t1: H:foo:22, !dlroW olleH
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-gearmanclient.addtask-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtaskhigh.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskHigh()</a> - Add a high priority task to run in parallel</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtasklow.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskLow()</a> - Add a low priority task to run in parallel</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtaskbackground.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskBackground()</a> - Add a background task to be run in parallel</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtaskhighbackground.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskHighBackground()</a> - Add a high priority background task to be run in parallel</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtasklowbackground.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskLowBackground()</a> - Add a low priority background task to be run in parallel</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.runtasks.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::runTasks()</a> - Run a list of tasks in parallel</span></li>
+   </ul>
+  </p>
+ </div>
+
+

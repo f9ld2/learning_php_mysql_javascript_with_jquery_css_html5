@@ -1,0 +1,114 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">TokyoTyrantTable::putKeep</h1>
+  <p class="verinfo">(PECL tokyo_tyrant &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">TokyoTyrantTable::putKeep</span> &#x2014; <span class="dc-title">Put a new record</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-tokyotyranttable.putkeep-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>TokyoTyrantTable::putKeep</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$columns</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Puts a new record into the database. If the key already exists this method throws an exception
+   indicating that the records exists.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-tokyotyranttable.putkeep-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">key</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The primary key of the row or <strong><code>NULL</code></strong>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">columns</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Array of the row contents
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-tokyotyranttable.putkeep-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the primary key and throws TokyoTyrantException on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-tokyotyranttable.putkeep-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2474">
+    <p><strong>Example #1 <span class="methodname"><strong>TokyoTyrantTable::putKeep()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;Connect&#xA0;to&#xA0;a&#xA0;table&#xA0;database&#xA0;*/<br></span><span style="color: #0000BB">$tt&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">TokyoTyrantTable</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1979</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Passing&#xA0;null&#xA0;to&#xA0;put&#xA0;generates&#xA0;a&#xA0;new&#xA0;uid&#xA0;*/<br></span><span style="color: #0000BB">$index&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">put</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;column1&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;some&#xA0;data&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;column2&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;more&#xA0;data&quot;</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">/*&#xA0;Get&#xA0;the&#xA0;row&#xA0;back&#xA0;*/<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #0000BB">$index</span><span style="color: #007700">));<br><br>try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">putKeep</span><span style="color: #007700">(</span><span style="color: #0000BB">$index</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;column1&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;something&#xA0;new&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;new_column&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;other&#xA0;data&quot;</span><span style="color: #007700">));<br>}&#xA0;catch&#xA0;(</span><span style="color: #0000BB">TokyoTyrantException&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getCode</span><span style="color: #007700">()&#xA0;===&#xA0;</span><span style="color: #0000BB">TokyoTyrant</span><span style="color: #007700">::</span><span style="color: #0000BB">TTE_KEEP</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Existing&#xA0;record!&#xA0;Not&#xA0;modified\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Error:&#xA0;&quot;&#xA0;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">()&#xA0;,&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;Get&#xA0;the&#xA0;row&#xA0;back&#xA0;*/<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #0000BB">$index</span><span style="color: #007700">));<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(2) {
+  [&quot;column1&quot;]=&gt;
+  string(9) &quot;some data&quot;
+  [&quot;column2&quot;]=&gt;
+  string(9) &quot;more data&quot;
+}
+Existing record! Not modified
+array(2) {
+  [&quot;column1&quot;]=&gt;
+  string(9) &quot;some data&quot;
+  [&quot;column2&quot;]=&gt;
+  string(9) &quot;more data&quot;
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-tokyotyranttable.putkeep-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="tokyotyranttable.put.html" class="methodname" rel="rdfs-seeAlso">TokyoTyrantTable::put()</a> - Store a row</span></li>
+   </ul>
+  </p>
+ </div>
+
+

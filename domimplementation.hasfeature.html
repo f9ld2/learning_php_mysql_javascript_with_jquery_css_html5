@@ -1,0 +1,100 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">DOMImplementation::hasFeature</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">DOMImplementation::hasFeature</span> &#x2014; <span class="dc-title">
+   Test if the DOM implementation implements a specific feature
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-domimplementation.hasfeature-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><strong>DOMImplementation::hasFeature</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$feature</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$version</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Test if the DOM implementation implements a specific 
+   <code class="parameter">feature</code>.
+  </p>
+  <p class="para">
+   You can find a list of all features in the <a href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/introduction.html#ID-Conformance" class="link external">&#xBB;&#xA0;Conformance</a> section of the DOM
+   specification.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-domimplementation.hasfeature-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">feature</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The feature to test.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">version</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The version number of the <code class="parameter">feature</code> to test. In 
+       level 2, this can be either <em>2.0</em> or
+       <em>1.0</em>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-domimplementation.hasfeature-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 errors" id="refsect1-domimplementation.hasfeature-errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">This method <em class="emphasis">may</em> be called statically, but will issue an <strong><code>E_STRICT</code></strong> error.</p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-domimplementation.hasfeature-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-6279">
+   <p><strong>Example #1 Testing your DOM Implementation</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$features&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;Core&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Core&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;XML&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;XML&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;HTML&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;HTML&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;Views&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Views&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;Stylesheets&apos;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Style&#xA0;Sheets&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;CSS&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;CSS&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;CSS2&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;CSS2&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;Events&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Events&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;UIEvents&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;User&#xA0;interface&#xA0;Events&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;MouseEvents&apos;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Mouse&#xA0;Events&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;MutationEvents&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Mutation&#xA0;Events&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;HTMLEvents&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;HTML&#xA0;Events&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;Range&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Range&#xA0;module&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;Traversal&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Traversal&#xA0;module&apos;<br></span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br>foreach&#xA0;(</span><span style="color: #0000BB">$features&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$key&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$name</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">DOMImplementation</span><span style="color: #007700">::</span><span style="color: #0000BB">hasFeature</span><span style="color: #007700">(</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;2.0&apos;</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Has&#xA0;feature&#xA0;</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Missing&#xA0;feature&#xA0;</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-domimplementation.hasfeature-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="domnode.issupported.html" class="methodname" rel="rdfs-seeAlso">DOMNode::isSupported()</a> - Checks if feature is supported for specified version</span></li>
+   </ul>
+  </p>
+ </div>
+

@@ -1,0 +1,205 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">CURL context options</h1>
+  <p class="refpurpose"><span class="refname">CURL context options</span> &#x2014; <span class="dc-title">CURL context option listing</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-context.curl-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   CURL context options are available when the
+   <a href="intro.curl.html" class="link">CURL</a> extension was compiled using the
+   <strong class="option unknown">--with-curlwrappers</strong>
+ configure option.
+  </p>
+ </div>
+
+
+ <div class="refsect1 options" id="refsect1-context.curl-options">
+  <h3 class="title">Options</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt id="context.curl.method">
+      <code class="parameter">method</code>
+      <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       <strong><code>GET</code></strong>, <strong><code>POST</code></strong>, or
+       any other HTTP method supported by the remote server.
+      </p>
+      <p class="para">
+       Defaults to <strong><code>GET</code></strong>.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="context.curl.header">
+      <code class="parameter">header</code>
+      <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Additional headers to be sent during request. Values
+       in this option will override other values (such as
+       <em>User-agent:</em>, <em>Host:</em>,
+       and <em>Authentication:</em>).
+      </p>
+     </dd>
+
+    
+    
+     <dt id="context.curl.user-agent">
+      <code class="parameter">user_agent</code>
+      <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Value to send with User-Agent: header.
+      </p>
+      <p class="para">
+       By default the
+       <a href="filesystem.configuration.html#ini.user-agent" class="link">user_agent</a>
+       <var class="filename">php.ini</var> setting is used.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="context.curl.content">
+      <code class="parameter">content</code>
+      <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Additional data to be sent after the headers. This option is not used
+       for <strong><code>GET</code></strong> or <strong><code>HEAD</code></strong> requests.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="context.curl.proxy">
+      <code class="parameter">proxy</code>
+      <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       URI specifying address of proxy server. (e.g.
+       <em>tcp://proxy.example.com:5100</em>).
+      </p>
+     </dd>
+
+    
+    
+     <dt id="context.curl.max-redirects">
+      <code class="parameter">max_redirects</code>
+      <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       The max number of redirects to follow. Value <em>1</em> or
+       less means that no redirects are followed.
+      </p>
+      <p class="para">
+       Defaults to <em>20</em>.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="context.curl.curl-verify-ssl-host">
+      <code class="parameter">curl_verify_ssl_host</code>
+      <span class="type"><a href="language.types.boolean.html" class="type boolean">boolean</a></span>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Verify the host.
+      </p>
+      <p class="para">
+       Defaults to <strong><code>FALSE</code></strong>
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       </p><p class="para">
+        This option is available for both the http and ftp protocol wrappers.
+       </p>
+      </blockquote></dd></dl></p>
+     
+
+    
+    
+     <dt id="context.curl.curl-verify-ssl-peer">
+      <code class="parameter">curl_verify_ssl_peer</code>
+      <span class="type"><a href="language.types.boolean.html" class="type boolean">boolean</a></span>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Require verification of SSL certificate used.
+      </p>
+      <p class="para">
+       Defaults to <strong><code>FALSE</code></strong>
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       </p><p class="para">
+        This option is available for both the http and ftp protocol wrappers.
+       </p>
+      <p></p></blockquote>
+     </dd>
+
+    
+   
+
+  <p></p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-context.curl-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="iterator.example.basic">
+    <p><strong>Example #1 Fetch a page and send POST data</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$postdata&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">http_build_query</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;var1&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;some&#xA0;content&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;var2&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;doh&apos;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">)<br>);<br><br></span><span style="color: #0000BB">$opts&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&apos;http&apos;&#xA0;</span><span style="color: #007700">=&gt;<br>&#xA0;&#xA0;&#xA0;&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;method&apos;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;POST&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;header&apos;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Content-type:&#xA0;application/x-www-form-urlencoded&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;content&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$postdata<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">)<br>);<br><br></span><span style="color: #0000BB">$context&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">stream_context_create</span><span style="color: #007700">(</span><span style="color: #0000BB">$opts</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;http://example.com/submit.php&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$context</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-context.curl-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="context.socket.html" class="xref">Socket context options</a></li>
+   </ul>
+  </p>
+ </div>
+
+

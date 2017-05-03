@@ -1,0 +1,157 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">iconv_mime_decode</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">iconv_mime_decode</span> &#x2014; <span class="dc-title">Decodes a <em>MIME</em> header field</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.iconv-mime-decode-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>iconv_mime_decode</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$encoded_header</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$charset</code><span class="initializer"> = ini_get(&quot;iconv.internal_encoding&quot;)</span></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Decodes a <em>MIME</em> header field.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.iconv-mime-decode-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">encoded_header</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The encoded header, as a string.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mode</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">mode</code> determines the behaviour in the event
+       <span class="function"><strong>iconv_mime_decode()</strong></span> encounters a malformed
+       <em>MIME</em> header field. You can specify any combination
+       of the following bitmasks.
+       <table class="doctable table">
+        <caption><strong>Bitmasks acceptable to <span class="function"><strong>iconv_mime_decode()</strong></span></strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Value</th>
+           <th>Constant</th>
+           <th>Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td>1</td>
+           <td>ICONV_MIME_DECODE_STRICT</td>
+           <td>
+            If set, the given header is decoded in full conformance with the
+            standards defined in <a href="http://www.faqs.org/rfcs/rfc2047" class="link external">&#xBB;&#xA0;RFC2047</a>.
+            This option is disabled by default because there are a lot of
+            broken mail user agents that don&apos;t follow the specification and don&apos;t
+            produce correct <em>MIME</em> headers.
+           </td>
+          </tr>
+
+          <tr>
+           <td>2</td>
+           <td>ICONV_MIME_DECODE_CONTINUE_ON_ERROR</td>
+           <td>
+            If set, <span class="function"><a href="function.iconv-mime-decode-headers.html" class="function">iconv_mime_decode_headers()</a></span>
+            attempts to ignore any grammatical errors and continue to process
+            a given header.
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">charset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The optional <code class="parameter">charset</code> parameter specifies the
+       character set to represent the result by. If omitted,
+       <a href="iconv.configuration.html" class="link">iconv.internal_encoding</a>
+       will be used.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.iconv-mime-decode-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a decoded <em>MIME</em> field on success,
+   or <strong><code>FALSE</code></strong> if an error occurs during the decoding.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.iconv-mime-decode-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2734">
+    <p><strong>Example #1 <span class="function"><strong>iconv_mime_decode()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;This&#xA0;yields&#xA0;&quot;Subject:&#xA0;Pr&#xFC;fung&#xA0;Pr&#xFC;fung&quot;<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">iconv_mime_decode</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Subject:&#xA0;=?UTF-8?B?UHLDvGZ1bmcgUHLDvGZ1bmc=?=&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;ISO-8859-1&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.iconv-mime-decode-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.iconv-mime-decode-headers.html" class="function" rel="rdfs-seeAlso">iconv_mime_decode_headers()</a> - Decodes multiple MIME header fields at once</span></li>
+    <li class="member"><span class="function"><a href="function.mb-decode-mimeheader.html" class="function" rel="rdfs-seeAlso">mb_decode_mimeheader()</a> - Decode string in MIME header field</span></li>
+    <li class="member"><span class="function"><a href="function.imap-mime-header-decode.html" class="function" rel="rdfs-seeAlso">imap_mime_header_decode()</a> - Decode MIME header elements</span></li>
+    <li class="member"><span class="function"><a href="function.imap-base64.html" class="function" rel="rdfs-seeAlso">imap_base64()</a> - Decode BASE64 encoded text</span></li>
+    <li class="member"><span class="function"><a href="function.imap-qprint.html" class="function" rel="rdfs-seeAlso">imap_qprint()</a> - Convert a quoted-printable string to an 8 bit string</span></li>
+   </ul>
+  </p>
+ </div>
+
+

@@ -1,0 +1,106 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_changes</h1>
+  <h1 class="refname">SQLiteDatabase::changes</h1>
+  <p class="verinfo">(PHP 5 &lt; 5.4.0, PECL sqlite &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">sqlite_changes</span> -- <span class="refname">SQLiteDatabase::changes</span> &#x2014; <span class="dc-title">
+   Returns the number of rows that were changed by the most
+   recent SQL statement
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.sqlite-changes-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>sqlite_changes</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$dbhandle</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">int</span> <span class="methodname"><strong>SQLiteDatabase::changes</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the numbers of rows that were changed by the most recent SQL
+   statement executed against the <code class="parameter">dbhandle</code> database
+   handle.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.sqlite-changes-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">dbhandle</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The SQLite Database resource; returned from <span class="function"><a href="function.sqlite-open.html" class="function">sqlite_open()</a></span>
+       when used procedurally.  This parameter is not required
+       when using the object-oriented method.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlite-changes-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of changed rows.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.sqlite-changes-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2377">
+    <p><strong>Example #1 Procedural style</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$dbhandle&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sqlite_open</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;mysqlitedb&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$query&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sqlite_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;UPDATE&#xA0;users&#xA0;SET&#xA0;email=&apos;jDoe@example.com&apos;&#xA0;WHERE&#xA0;username=&apos;jDoe&apos;&quot;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$query</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;exit(</span><span style="color: #DD0000">&apos;Error&#xA0;in&#xA0;query.&apos;</span><span style="color: #007700">);<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Number&#xA0;of&#xA0;rows&#xA0;modified:&#xA0;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">sqlite_changes</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">);<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2378">
+    <p><strong>Example #2 Object oriented style</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$dbhandle&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SQLiteDatabase</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;mysqlitedb&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$query&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;UPDATE&#xA0;users&#xA0;SET&#xA0;email=&apos;jDoe@example.com&apos;&#xA0;WHERE&#xA0;username=&apos;jDoe&apos;&quot;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$query</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;exit(</span><span style="color: #DD0000">&apos;Error&#xA0;in&#xA0;query.&apos;</span><span style="color: #007700">);<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Number&#xA0;of&#xA0;rows&#xA0;modified:&#xA0;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">changes</span><span style="color: #007700">();<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.sqlite-changes-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.sqlite-open.html" class="function" rel="rdfs-seeAlso">sqlite_open()</a> - Opens an SQLite database and create the database if it does not exist</span></li>
+   </ul>
+  </p>
+ </div>
+

@@ -1,0 +1,183 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MultipleIterator::__construct</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7)</p><p class="refpurpose"><span class="refname">MultipleIterator::__construct</span> &#x2014; <span class="dc-title">Constructs a new MultipleIterator</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-multipleiterator.construct-description">
+  <h3 class="title">Description</h3>
+  <div class="constructorsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="methodname"><strong>MultipleIterator::__construct</strong></span>
+    ([ <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$flags</code>
+    <span class="initializer"> = MultipleIterator::MIT_NEED_ALL|MultipleIterator::MIT_KEYS_NUMERIC</span>
+   </span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Construct a new MultipleIterator.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-multipleiterator.construct-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The flags to set, according to the
+       <a href="class.multipleiterator.html#multipleiterator.constants" class="link">Flag Constants</a>.
+       <ul class="simplelist">
+        <li class="member">
+         <strong><code>MultipleIterator::MIT_NEED_ALL</code></strong> or <strong><code>MultipleIterator::MIT_NEED_ANY</code></strong>
+        </li>
+        <li class="member">
+         <strong><code>MultipleIterator::MIT_KEYS_NUMERIC</code></strong> or <strong><code>MultipleIterator::MIT_KEYS_ASSOC</code></strong>
+        </li>
+       </ul>
+      </p>
+      <p class="para">       Defaults to <strong><code>MultipleIterator::MIT_NEED_ALL</code></strong>|<strong><code>MultipleIterator::MIT_KEYS_NUMERIC</code></strong>.</p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-multipleiterator.construct-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-multipleiterator.construct-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4473">
+    <p><strong>Example #1 Iterating a MultipleIterator</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$people&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ArrayIterator</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&apos;John&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Jane&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Jack&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Judy&apos;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$roles&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ArrayIterator</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&apos;Developer&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Scrum&#xA0;Master&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Project&#xA0;Owner&apos;</span><span style="color: #007700">));<br><br></span><span style="color: #0000BB">$team&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MultipleIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$flags</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$team</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">attachIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$people</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;person&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$team</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">attachIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$roles</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;role&apos;</span><span style="color: #007700">);<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$team&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$member</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$member</span><span style="color: #007700">);<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+ 
+    <div class="example-contents"><p>Output with <em>$flags = MIT_NEED_ALL|MIT_KEYS_NUMERIC</em></p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; John
+    [1] =&gt; Developer
+)
+Array
+(
+    [0] =&gt; Jane
+    [1] =&gt; Scrum Master
+)
+Array
+(
+    [0] =&gt; Jack
+    [1] =&gt; Project Owner
+)</pre></div>
+    </div>
+    <div class="example-contents"><p>Output with <em>$flags = MIT_NEED_ANY|MIT_KEYS_NUMERIC</em></p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; John
+    [1] =&gt; Developer
+)
+Array
+(
+    [0] =&gt; Jane
+    [1] =&gt; Scrum Master
+)
+Array
+(
+    [0] =&gt; Jack
+    [1] =&gt; Project Owner
+)
+Array
+(
+    [0] =&gt; Judy
+    [1] =&gt;
+)</pre></div>
+    </div>
+    <div class="example-contents"><p>Output with <em>$flags = MIT_NEED_ALL|MIT_KEYS_ASSOC</em></p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [person] =&gt; John
+    [role] =&gt; Developer
+)
+Array
+(
+    [person] =&gt; Jane
+    [role] =&gt; Scrum Master
+)
+Array
+(
+    [person] =&gt; Jack
+    [role] =&gt; Project Owner
+)</pre></div>
+    </div>
+    <div class="example-contents"><p>Output with <em>$flags = MIT_NEED_ANY|MIT_KEYS_ASSOC</em></p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [person] =&gt; John
+    [role] =&gt; Developer
+)
+Array
+(
+    [person] =&gt; Jane
+    [role] =&gt; Scrum Master
+)
+Array
+(
+    [person] =&gt; Jack
+    [role] =&gt; Project Owner
+)
+Array
+(
+    [person] =&gt; Judy
+    [role] =&gt;
+)</pre></div>
+    </div>    
+   </div>
+  </p>
+ </div>
+   
+
+ <div class="refsect1 seealso" id="refsect1-multipleiterator.construct-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="class.multipleiterator.html#multipleiterator.constants" class="link">Flag Constants</a></li>
+    <li class="member"><span class="methodname"><a href="multipleiterator.valid.html" class="methodname" rel="rdfs-seeAlso">MultipleIterator::valid()</a> - Checks the validity of sub iterators</span></li>
+   </ul>
+  </p>
+ </div>
+
+ 

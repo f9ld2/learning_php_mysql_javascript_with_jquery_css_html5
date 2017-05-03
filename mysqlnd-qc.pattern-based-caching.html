@@ -1,0 +1,71 @@
+---
+layout: default
+---
+
+  <h2 class="title">Pattern based caching</h2>
+  <p class="para">
+   An application has three options for telling PECL/mysqlnd_qc whether a particular
+   statement shall be used. The most basic approach is to cache all statements by
+   setting <em><a href="mysqlnd-qc.configuration.html" class="link">
+   mysqlnd_qc.cache_by_default = 1</a></em>. This approach is often of little
+   practical value. But it enables users to make a quick estimation about
+   the maximum performance gains from caching. An application designed to
+   use a cache may be able to prefix selected statements with the appropriate SQL
+   hints. However, altering an applications source code may not always be possible
+   or desired, for example, to avoid problems with software updates. Therefore,
+   PECL/mysqlnd_qc allows setting a callback which decides if a query is to be
+   cached.
+  </p>
+  <p class="para">
+   The callback is installed with the <span class="function"><a href="function.mysqlnd-qc-set-is-select.html" class="function">mysqlnd_qc_set_is_select()</a></span>
+   function. The callback is given the statement string of every statement
+   inspected by the plugin. Then, the callback can decide whether to cache
+   the function. The callback is supposed to return <strong><code>FALSE</code></strong>
+   if the statement shall not be cached. A return value of <strong><code>TRUE</code></strong>
+   makes the plugin try to add the statement into the cache. The cache entry
+   will be given the default TTL (<em><a href="mysqlnd-qc.configuration.html" class="link">
+   mysqlnd_qc.ttl</a></em>). If the callback returns
+   a numerical value it is used as the TTL instead of the global default.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2096">
+    <p><strong>Example #1 Setting a callback with <span class="function"><a href="function.mysqlnd-qc-set-is-select.html" class="function">mysqlnd_qc_set_is_select()</a></span></strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">mysqlnd_qc.enable_qc=1
+mysqlnd_qc.collect_statistics=1</pre>
+</div>
+    </div>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;callback&#xA0;which&#xA0;decides&#xA0;if&#xA0;query&#xA0;is&#xA0;cached&#xA0;*/<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">is_select</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;static&#xA0;</span><span style="color: #0000BB">$patterns&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;true&#xA0;-&#xA0;use&#xA0;default&#xA0;from&#xA0;mysqlnd_qc.ttl&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;@SELECT\s+.*\s+FROM\s+test@ismU&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;3&#xA0;-&#xA0;use&#xA0;TTL&#xA0;=&#xA0;3&#xA0;seconds&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;@SELECT\s+.*\s+FROM\s+news@ismU&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">3<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;check&#xA0;if&#xA0;query&#xA0;does&#xA0;match&#xA0;pattern&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$patterns&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$pattern&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$ttl</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #0000BB">$pattern</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;is_select(%45s):&#xA0;cache\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$ttl</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;is_select(%45s):&#xA0;do&#xA0;not&#xA0;cache\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">;<br>}<br></span><span style="color: #FF8000">/*&#xA0;install&#xA0;callback&#xA0;*/<br></span><span style="color: #0000BB">mysqlnd_qc_set_is_select</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;is_select&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Connect,&#xA0;create&#xA0;and&#xA0;populate&#xA0;test&#xA0;table&#xA0;*/<br></span><span style="color: #0000BB">$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;host&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;schema&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;port&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;socket&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;DROP&#xA0;TABLE&#xA0;IF&#xA0;EXISTS&#xA0;test&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;test(id&#xA0;INT)&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;INSERT&#xA0;INTO&#xA0;test(id)&#xA0;VALUES&#xA0;(1),&#xA0;(2),&#xA0;(3)&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;cache&#xA0;put&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;id&#xA0;FROM&#xA0;test&#xA0;WHERE&#xA0;id&#xA0;=&#xA0;1&quot;</span><span style="color: #007700">);<br></span><span style="color: #FF8000">/*&#xA0;cache&#xA0;hit&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;id&#xA0;FROM&#xA0;test&#xA0;WHERE&#xA0;id&#xA0;=&#xA0;1&quot;</span><span style="color: #007700">);<br></span><span style="color: #FF8000">/*&#xA0;cache&#xA0;put&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;test&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$stats&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysqlnd_qc_get_core_stats</span><span style="color: #007700">();<br></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Cache&#xA0;put:&#xA0;%d\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$stats</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;cache_put&apos;</span><span style="color: #007700">]);<br></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Cache&#xA0;hit:&#xA0;%d\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$stats</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;cache_hit&apos;</span><span style="color: #007700">]);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   <div class="example-contents"><p>The above examples will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+is_select(                    DROP TABLE IF EXISTS test): do not cache
+is_select(                    CREATE TABLE test(id INT)): do not cache
+is_select(    INSERT INTO test(id) VALUES (1), (2), (3)): do not cache
+is_select(             SELECT id FROM test WHERE id = 1): cache
+is_select(             SELECT id FROM test WHERE id = 1): cache
+is_select(                           SELECT * FROM test): cache
+Cache put: 2
+Cache hit: 1
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   The examples callback tests if a statement string matches a pattern.
+   If this is the case, it either returns <strong><code>TRUE</code></strong> to cache
+   the statement using the global default TTL or an alternative TTL.
+  </p>
+  <p class="para">
+   To minimize application changes the callback can put into and registered
+   in an auto prepend file.
+  </p>
+ 

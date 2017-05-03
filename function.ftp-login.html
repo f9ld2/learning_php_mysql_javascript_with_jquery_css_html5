@@ -1,0 +1,93 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ftp_login</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ftp_login</span> &#x2014; <span class="dc-title">Logs in to an FTP connection</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.ftp-login-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>ftp_login</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$ftp_stream</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$username</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$password</code></span>
+   )</div>
+
+  <p class="para rdfs-comment"> 
+   Logs in to the given FTP stream.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.ftp-login-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">ftp_stream</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The link identifier of the FTP connection.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">username</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The username (<em>USER</em>).
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">password</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The password (<em>PASS</em>).
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ftp-login-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+   If login fails, PHP will also throw a warning.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.ftp-login-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4870">
+    <p><strong>Example #1 <span class="function"><strong>ftp_login()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br>$ftp_server&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;ftp.example.com&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$ftp_user&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;foo&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$ftp_pass&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;bar&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;set&#xA0;up&#xA0;a&#xA0;connection&#xA0;or&#xA0;die<br></span><span style="color: #0000BB">$conn_id&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ftp_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$ftp_server</span><span style="color: #007700">)&#xA0;or&#xA0;die(</span><span style="color: #DD0000">&quot;Couldn&apos;t&#xA0;connect&#xA0;to&#xA0;</span><span style="color: #0000BB">$ftp_server</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">);&#xA0;<br><br></span><span style="color: #FF8000">//&#xA0;try&#xA0;to&#xA0;login<br></span><span style="color: #007700">if&#xA0;(@</span><span style="color: #0000BB">ftp_login</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ftp_user</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ftp_pass</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Connected&#xA0;as&#xA0;</span><span style="color: #0000BB">$ftp_user</span><span style="color: #DD0000">@</span><span style="color: #0000BB">$ftp_server</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Couldn&apos;t&#xA0;connect&#xA0;as&#xA0;</span><span style="color: #0000BB">$ftp_user</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;close&#xA0;the&#xA0;connection<br></span><span style="color: #0000BB">ftp_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">);&#xA0;&#xA0;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>  
+    </div>
+
+   </div>
+  </p>
+ </div>
+

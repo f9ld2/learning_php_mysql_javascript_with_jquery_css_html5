@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ibase_num_fields</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ibase_num_fields</span> &#x2014; <span class="dc-title">Get the number of fields in a result set</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.ibase-num-fields-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>ibase_num_fields</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$result_id</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Get the number of fields in a result set.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ibase-num-fields-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">result_id</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An InterBase result identifier.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ibase-num-fields-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of fields as an integer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ibase-num-fields-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-1200">
+    <p><strong>Example #1 <span class="function"><strong>ibase_num_fields()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$rs&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ibase_query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;tablename&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$coln&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ibase_num_fields</span><span style="color: #007700">(</span><span style="color: #0000BB">$rs</span><span style="color: #007700">);<br>for&#xA0;(</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">&lt;&#xA0;</span><span style="color: #0000BB">$coln</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$col_info&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ibase_field_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$rs</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;name:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$col_info</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;name&apos;</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;alias:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$col_info</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;alias&apos;</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;relation:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$col_info</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;relation&apos;</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;length:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$col_info</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;length&apos;</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;type:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$col_info</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;type&apos;</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>   
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ibase-num-fields-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ibase-field-info.html" class="function" rel="rdfs-seeAlso">ibase_field_info()</a> - Get information about a field</span></li>
+   </ul>
+  </p>
+ </div>
+
+

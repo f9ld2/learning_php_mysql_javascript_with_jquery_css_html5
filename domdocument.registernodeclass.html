@@ -1,0 +1,175 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">DOMDocument::registerNodeClass</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.2.0, PHP 7)</p><p class="refpurpose"><span class="refname">DOMDocument::registerNodeClass</span> &#x2014; <span class="dc-title">Register extended class used to create base node type</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-domdocument.registernodeclass-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><strong>DOMDocument::registerNodeClass</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$baseclass</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$extendedclass</code></span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   This method allows you to register your own extended DOM class to be used
+   afterward by the PHP DOM extension.
+  </p>
+  <p class="para">
+   This method is not part of the DOM standard.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-domdocument.registernodeclass-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">baseclass</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The DOM class that you want to extend. You can find a list of these 
+       classes in the <a href="book.dom.html" class="link">chapter introduction</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">extendedclass</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Your extended class name. If <strong><code>NULL</code></strong> is provided, any previously 
+       registered class extending <code class="parameter">baseclass</code> will
+       be removed.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-domdocument.registernodeclass-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-domdocument.registernodeclass-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.2.2</td>
+       <td>
+        Prior to 5.2.2, a previously registered <code class="parameter">extendedclass</code>
+        had to be unregistered before being able to register a new class extending
+        the same <code class="parameter">baseclass</code>.
+       </td>
+      </tr>
+
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-domdocument.registernodeclass-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-6265">
+    <p><strong>Example #1 Adding a new method to DOMElement to ease our code</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">myElement&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">DOMElement&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;function&#xA0;</span><span style="color: #0000BB">appendElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">)&#xA0;{&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">appendChild</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">myElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;}<br>}<br><br>class&#xA0;</span><span style="color: #0000BB">myDocument&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">DOMDocument&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;function&#xA0;</span><span style="color: #0000BB">setRoot</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">)&#xA0;{&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">appendChild</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">myElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">$doc&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">myDocument</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">registerNodeClass</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;DOMElement&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;myElement&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;From&#xA0;now&#xA0;on,&#xA0;adding&#xA0;an&#xA0;element&#xA0;to&#xA0;another&#xA0;costs&#xA0;only&#xA0;one&#xA0;method&#xA0;call&#xA0;!&#xA0;<br></span><span style="color: #0000BB">$root&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setRoot</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;root&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$child&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$root</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">appendElement</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;child&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$child</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setAttribute</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;foo&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;bar&apos;</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">saveXML</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;root&gt;&lt;child foo=&quot;bar&quot;/&gt;&lt;/root&gt;
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-6266">
+    <p><strong>Example #2 Retrieving elements as custom class</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">myElement&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">DOMElement&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">__toString</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">nodeValue</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">$doc&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">DOMDocument</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadXML</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;&lt;root&gt;&lt;element&gt;&lt;child&gt;text&#xA0;in&#xA0;child&lt;/child&gt;&lt;/element&gt;&lt;/root&gt;&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">registerNodeClass</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;DOMElement&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;myElement&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$element&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getElementsByTagName</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;child&quot;</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">item</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$element</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">//&#xA0;And&#xA0;take&#xA0;advantage&#xA0;of&#xA0;the&#xA0;__toString&#xA0;method..<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">$element</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+string(9) &quot;myElement&quot;
+text in child
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-6267">
+    <p><strong>Example #3 Retrieving owner document</strong></p>
+    <div class="example-contents"><p>
+     When instantiating a custom <a href="class.domdocument.html" class="classname">DOMDocument</a> the
+     <var class="varname"><var class="varname">ownerDocument</var></var> property will refer to the instantiated
+     class, meaning there is no need (and in fact not possible) to use
+     <span class="function"><strong>DOMDocument::registerNodeClass()</strong></span> with
+     <a href="class.domdocument.html" class="classname">DOMDocument</a>
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">myDOMDocument&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">DOMDocument&#xA0;</span><span style="color: #007700">{<br>}<br><br>class&#xA0;</span><span style="color: #0000BB">myOtherDOMDocument&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">DOMDocument&#xA0;</span><span style="color: #007700">{<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;myDOMDocument&#xA0;with&#xA0;some&#xA0;XML<br></span><span style="color: #0000BB">$doc&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">myDOMDocument</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadXML</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;&lt;root&gt;&lt;element&gt;&lt;child&gt;text&#xA0;in&#xA0;child&lt;/child&gt;&lt;/element&gt;&lt;/root&gt;&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$child&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getElementsByTagName</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;child&quot;</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">item</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;The&#xA0;current&#xA0;owner&#xA0;of&#xA0;the&#xA0;node&#xA0;is&#xA0;myDOMDocument<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$child</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ownerDocument</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">//&#xA0;Import&#xA0;a&#xA0;node&#xA0;from&#xA0;myDOMDocument<br></span><span style="color: #0000BB">$newdoc&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">myOtherDOMDocument</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$child&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$newdoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">importNode</span><span style="color: #007700">(</span><span style="color: #0000BB">$child</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;The&#xA0;new&#xA0;owner&#xA0;of&#xA0;the&#xA0;node&#xA0;has&#xA0;changed&#xA0;to&#xA0;myOtherDOMDocument<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$child</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ownerDocument</span><span style="color: #007700">));<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+string(13) &quot;myDOMDocument&quot;
+string(18) &quot;myOtherDOMDocument&quot;
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+

@@ -1,0 +1,167 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">curl_share_setopt</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.5.0, PHP 7)</p><p class="refpurpose"><span class="refname">curl_share_setopt</span> &#x2014; <span class="dc-title">Set an option for a cURL share handle.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.curl-share-setopt-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>curl_share_setopt</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$sh</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$option</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$value</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets an option on the given cURL share handle.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.curl-share-setopt-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">sh</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A cURL share handle returned by <span class="function"><a href="function.curl-share-init.html" class="function">curl_share_init()</a></span>.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">option</code></dt>
+
+    <dd>
+
+     <p class="para">
+      <table class="doctable informaltable">
+        
+         <thead>
+          <tr>
+           <th>Option</th>
+           <th>Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td style="vertical-align: top;"><strong><code>CURLSHOPT_SHARE</code></strong></td>
+           <td style="vertical-align: top;">
+               Specifies a type of data that should be shared.
+           </td>
+          </tr>
+
+          <tr>
+           <td style="vertical-align: top;"><strong><code>CURLSHOPT_UNSHARE</code></strong></td>
+           <td style="vertical-align: top;">
+               Specifies a type of data that will be no longer shared.
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">value</code></dt>
+
+    <dd>
+
+     <p class="para">
+      <table class="doctable informaltable">
+        
+         <thead>
+          <tr>
+           <th>Value</th>
+           <th>Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td style="vertical-align: top;"><strong><code>CURL_LOCK_DATA_COOKIE</code></strong></td>
+           <td style="vertical-align: top;">
+               Shares cookie data.
+           </td>
+          </tr>
+
+          <tr>
+           <td style="vertical-align: top;"><strong><code>CURL_LOCK_DATA_DNS</code></strong></td>
+           <td style="vertical-align: top;">
+               Shares DNS cache. Note that when you use cURL multi handles,
+               all handles added to the same multi handle will share DNS cache
+               by default.
+           </td>
+          </tr>
+
+          <tr>
+           <td style="vertical-align: top;"><strong><code>CURL_LOCK_DATA_SSL_SESSION</code></strong></td>
+           <td style="vertical-align: top;">
+               Shares SSL session IDs, reducing the time spent on the SSL
+               handshake when reconnecting to the same server. Note that SSL
+               session IDs are reused within the same handle by default.
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.curl-share-setopt-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+ 
+<div class="refsect1 examples" id="refsect1-function.curl-share-setopt-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4811">
+    <p><strong>Example #1 <span class="function"><strong>curl_share_setopt()</strong></span> example</strong></p>
+    <div class="example-contents"><p>
+     This example will create a cURL share handle, add two cURL handles to it,
+     and then run them with cookie data sharing.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;cURL&#xA0;share&#xA0;handle&#xA0;and&#xA0;set&#xA0;it&#xA0;to&#xA0;share&#xA0;cookie&#xA0;data<br></span><span style="color: #0000BB">$sh&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">curl_share_init</span><span style="color: #007700">();<br></span><span style="color: #0000BB">curl_share_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$sh</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">CURLSHOPT_SHARE</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">CURL_LOCK_DATA_COOKIE</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Initialize&#xA0;the&#xA0;first&#xA0;cURL&#xA0;handle&#xA0;and&#xA0;assign&#xA0;the&#xA0;share&#xA0;handle&#xA0;to&#xA0;it<br></span><span style="color: #0000BB">$ch1&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">curl_init</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;http://example.com/&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">CURLOPT_SHARE</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$sh</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Execute&#xA0;the&#xA0;first&#xA0;cURL&#xA0;handle<br></span><span style="color: #0000BB">curl_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch1</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Initialize&#xA0;the&#xA0;second&#xA0;cURL&#xA0;handle&#xA0;and&#xA0;assign&#xA0;the&#xA0;share&#xA0;handle&#xA0;to&#xA0;it<br></span><span style="color: #0000BB">$ch2&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">curl_init</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;http://php.net/&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">CURLOPT_SHARE</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$sh</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Execute&#xA0;the&#xA0;second&#xA0;cURL&#xA0;handle<br>//&#xA0;&#xA0;all&#xA0;cookies&#xA0;from&#xA0;$ch1&#xA0;handle&#xA0;are&#xA0;shared&#xA0;with&#xA0;$ch2&#xA0;handle<br></span><span style="color: #0000BB">curl_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch2</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Close&#xA0;the&#xA0;cURL&#xA0;share&#xA0;handle<br></span><span style="color: #0000BB">curl_share_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$sh</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Close&#xA0;the&#xA0;cURL&#xA0;handles<br></span><span style="color: #0000BB">curl_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch1</span><span style="color: #007700">);<br></span><span style="color: #0000BB">curl_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch2</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+

@@ -1,0 +1,174 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">oci_define_by_name</h1>
+  <p class="verinfo">(PHP 5, PHP 7, PECL OCI8 &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">oci_define_by_name</span> &#x2014; <span class="dc-title">Associates a PHP variable with a column for query fetches</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.oci-define-by-name-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>oci_define_by_name</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$statement</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$column_name</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&amp;$variable</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$type</code><span class="initializer"> = SQLT_CHR</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Associates a PHP variable with a column for query fetches using <span class="function"><a href="function.oci-fetch.html" class="function">oci_fetch()</a></span>.
+  </p>
+  <p class="para">
+    The <span class="function"><strong>oci_define_by_name()</strong></span> call must occur before
+    executing <span class="function"><a href="function.oci-execute.html" class="function">oci_execute()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.oci-define-by-name-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">statement</code></dt>
+
+     <dd>
+
+       <p class="para">A valid OCI8 statement
+identifier created by <span class="function"><a href="function.oci-parse.html" class="function">oci_parse()</a></span> and executed
+by <span class="function"><a href="function.oci-execute.html" class="function">oci_execute()</a></span>, or a <em>REF
+CURSOR</em> statement identifier.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">column_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The column name used in the query.
+      </p>
+      <p class="para">
+       Use uppercase for Oracle&apos;s default, non-case sensitive column
+       names.  Use the exact column name case for case-sensitive
+       column names.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">variable</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The PHP variable that will contain the returned column value.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">type</code></dt>
+
+     <dd>
+
+      <p class="para">
+        The data type to be returned.  Generally not needed.  Note that
+        Oracle-style data conversions are not performed.  For example,
+        <em>SQLT_INT</em> will be ignored and the returned
+        data type will still be <em>SQLT_CHR</em>.
+      </p>
+      <p class="para">
+       You can optionally use <span class="function"><a href="function.oci-new-descriptor.html" class="function">oci_new_descriptor()</a></span>
+       to allocate LOB/ROWID/BFILE descriptors.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.oci-define-by-name-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.oci-define-by-name-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2212">
+    <p><strong>Example #1 <span class="function"><strong>oci_define_by_name()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$e&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;location_id,&#xA0;city&#xA0;FROM&#xA0;locations&#xA0;WHERE&#xA0;location_id&#xA0;&lt;&#xA0;1200&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;The&#xA0;defines&#xA0;MUST&#xA0;be&#xA0;done&#xA0;before&#xA0;executing<br></span><span style="color: #0000BB">oci_define_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;LOCATION_ID&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$locid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_define_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;CITY&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$city</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Each&#xA0;fetch&#xA0;populates&#xA0;the&#xA0;previously&#xA0;defined&#xA0;variables&#xA0;with&#xA0;the&#xA0;next&#xA0;row&apos;s&#xA0;data<br></span><span style="color: #007700">while&#xA0;(</span><span style="color: #0000BB">oci_fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Location&#xA0;id&#xA0;</span><span style="color: #0000BB">$locid</span><span style="color: #DD0000">&#xA0;is&#xA0;</span><span style="color: #0000BB">$city</span><span style="color: #DD0000">&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Displays:<br>//&#xA0;&#xA0;&#xA0;Location&#xA0;id&#xA0;1000&#xA0;is&#xA0;Roma<br>//&#xA0;&#xA0;&#xA0;Location&#xA0;id&#xA0;1100&#xA0;is&#xA0;Venice<br><br></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2213">
+    <p><strong>Example #2 <span class="function"><strong>oci_define_by_name()</strong></span> with case sensitive column names</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">/*<br>&#xA0;&#xA0;Before&#xA0;running,&#xA0;create&#xA0;the&#xA0;table&#xA0;with&#xA0;a&#xA0;case&#xA0;sensitive&#xA0;column&#xA0;name:<br>&#xA0;&#xA0;&#xA0;&#xA0;CREATE&#xA0;TABLE&#xA0;mytab&#xA0;(id&#xA0;NUMBER,&#xA0;&quot;MyDescription&quot;&#xA0;VARCHAR2(30));<br>&#xA0;&#xA0;&#xA0;&#xA0;INSERT&#xA0;INTO&#xA0;mytab&#xA0;(id,&#xA0;&quot;MyDescription&quot;)&#xA0;values&#xA0;(1,&#xA0;&apos;Iced&#xA0;Coffee&apos;);<br>&#xA0;&#xA0;&#xA0;&#xA0;COMMIT;<br>*/<br><br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$e&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;*&#xA0;FROM&#xA0;mytab&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Use&#xA0;uppercase&#xA0;for&#xA0;non&#xA0;case-sensitive&#xA0;column&#xA0;names<br></span><span style="color: #0000BB">oci_define_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;ID&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$id</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Use&#xA0;the&#xA0;exact&#xA0;case&#xA0;for&#xA0;case-sensitive&#xA0;column&#xA0;names<br></span><span style="color: #0000BB">oci_define_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;MyDescription&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mydesc</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br>while&#xA0;(</span><span style="color: #0000BB">oci_fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;id&#xA0;</span><span style="color: #0000BB">$id</span><span style="color: #DD0000">&#xA0;is&#xA0;</span><span style="color: #0000BB">$mydesc</span><span style="color: #DD0000">&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Displays:<br>//&#xA0;&#xA0;&#xA0;id&#xA0;1&#xA0;is&#xA0;Iced&#xA0;Coffee<br><br></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2214">
+    <p><strong>Example #3 <span class="function"><strong>oci_define_by_name()</strong></span> with LOB columns</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">/*<br>&#xA0;&#xA0;Before&#xA0;running,&#xA0;create&#xA0;the&#xA0;table:<br>&#xA0;&#xA0;&#xA0;&#xA0;CREATE&#xA0;TABLE&#xA0;mytab&#xA0;(id&#xA0;NUMBER,&#xA0;fruit&#xA0;CLOB);<br>&#xA0;&#xA0;&#xA0;&#xA0;INSERT&#xA0;INTO&#xA0;mytab&#xA0;(id,&#xA0;fruit)&#xA0;values&#xA0;(1,&#xA0;&apos;apple&apos;);<br>&#xA0;&#xA0;&#xA0;&#xA0;INSERT&#xA0;INTO&#xA0;mytab&#xA0;(id,&#xA0;fruit)&#xA0;values&#xA0;(2,&#xA0;&apos;orange&apos;);<br>&#xA0;&#xA0;&#xA0;&#xA0;COMMIT;<br>*/<br><br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$e&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;*&#xA0;FROM&#xA0;mytab&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;The&#xA0;defines&#xA0;MUST&#xA0;be&#xA0;done&#xA0;before&#xA0;executing<br></span><span style="color: #0000BB">oci_define_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;ID&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$id</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_define_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;FRUIT&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$fruit</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;$fruit&#xA0;will&#xA0;become&#xA0;a&#xA0;LOB&#xA0;descriptor<br><br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br>while&#xA0;(</span><span style="color: #0000BB">oci_fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$id&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;is&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$fruit</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">load</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Displays:<br>//&#xA0;&#xA0;&#xA0;1&#xA0;is&#xA0;apple<br>//&#xA0;&#xA0;&#xA0;2&#xA0;is&#xA0;orange<br><br></span><span style="color: #0000BB">$fruit</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2215">
+    <p><strong>Example #4 <span class="function"><strong>oci_define_by_name()</strong></span> with an explicit type</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">/*<br>&#xA0;&#xA0;Before&#xA0;running,&#xA0;create&#xA0;the&#xA0;table:<br>&#xA0;&#xA0;&#xA0;&#xA0;CREATE&#xA0;TABLE&#xA0;mytab&#xA0;(id&#xA0;NUMBER,&#xA0;fruit&#xA0;CLOB);<br>&#xA0;&#xA0;&#xA0;&#xA0;INSERT&#xA0;INTO&#xA0;mytab&#xA0;(id,&#xA0;fruit)&#xA0;values&#xA0;(1,&#xA0;&apos;apple&apos;);<br>&#xA0;&#xA0;&#xA0;&#xA0;INSERT&#xA0;INTO&#xA0;mytab&#xA0;(id,&#xA0;fruit)&#xA0;values&#xA0;(2,&#xA0;&apos;orange&apos;);<br>&#xA0;&#xA0;&#xA0;&#xA0;COMMIT;<br>*/<br><br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$e&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;*&#xA0;FROM&#xA0;mytab&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;The&#xA0;defines&#xA0;MUST&#xA0;be&#xA0;done&#xA0;before&#xA0;executing<br></span><span style="color: #0000BB">oci_define_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;ID&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$id</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$fruit&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_new_descriptor</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_D_LOB</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_define_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;FRUIT&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$fruit</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_D_CLOB</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br>while&#xA0;(</span><span style="color: #0000BB">oci_fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$id&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;is&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$fruit</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">load</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Displays:<br>//&#xA0;&#xA0;&#xA0;1&#xA0;is&#xA0;apple<br>//&#xA0;&#xA0;&#xA0;2&#xA0;is&#xA0;orange<br><br></span><span style="color: #0000BB">$fruit</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.oci-define-by-name-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.oci-fetch.html" class="function" rel="rdfs-seeAlso">oci_fetch()</a> - Fetches the next row from a query into internal buffers</span></li>
+    <li class="member"><span class="function"><a href="function.oci-new-descriptor.html" class="function" rel="rdfs-seeAlso">oci_new_descriptor()</a> - Initializes a new empty LOB or FILE descriptor</span></li>
+   </ul>
+  </p>
+ </div>
+
+

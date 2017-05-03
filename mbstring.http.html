@@ -1,0 +1,96 @@
+---
+layout: default
+---
+
+ <h1>HTTP Input and Output</h1>
+
+ <p class="para">
+  HTTP input/output character encoding conversion may convert
+  binary data also. Users are supposed to control character
+  encoding conversion if binary data is used for HTTP
+  input/output.
+ </p>
+ <blockquote class="note"><p><strong class="note">Note</strong>: 
+  </p><p class="para">
+   If <em>enctype</em> for HTML form is
+   set to <em>multipart/form-data</em> and
+   <em>mbstring.encoding_translation</em> is set to On
+   in <var class="filename">php.ini</var> the POST&apos;ed variables and the names of uploaded files
+   will be converted to the internal character encoding as well.
+   However, the conversion isn&apos;t applied to the query keys.
+  </p>
+ <p></p></blockquote>
+ <p class="para">
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     HTTP Input
+    </span>
+    <p class="para"> 
+     There is no way to control HTTP input character
+     conversion from a PHP script. To disable HTTP input character
+     conversion, it has to be done in <var class="filename">php.ini</var>.
+     <div class="example" id="example-3013">
+      <p><strong>Example #1 
+       Disable HTTP input conversion in <var class="filename">php.ini</var>
+      </strong></p>
+      <div class="example-contents">
+<div class="php.inicode"><pre class="php.inicode">;; Disable HTTP Input conversion
+mbstring.http_input = pass
+;; Disable HTTP Input conversion
+mbstring.encoding_translation = Off</pre>
+</div>
+      </div>
+
+     </div>
+    </p>
+    <p class="para">
+     When using PHP as an Apache module, it is possible to
+     override those settings in each Virtual Host directive in
+     <var class="filename">httpd.conf</var> or per directory with <var class="filename">.htaccess</var>. Refer to the <a href="configuration.html" class="link">Configuration</a> section and
+     Apache Manual for details.
+    </p>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     HTTP Output
+    </span>
+    <p class="para">
+     There are several ways to enable output character encoding
+     conversion. One is using <var class="filename">php.ini</var>, another
+     is using <span class="function"><a href="function.ob-start.html" class="function">ob_start()</a></span> with
+     <span class="function"><a href="function.mb-output-handler.html" class="function">mb_output_handler()</a></span> as the 
+     <em>ob_start</em> callback function.
+    </p>
+   </li>
+  </ul>
+ </p>
+ <p class="para">
+  <div class="example" id="example-3014">
+   <p><strong>Example #2 <var class="filename">php.ini</var> setting example</strong></p>
+   <div class="example-contents">
+<div class="cdata"><pre>
+;; Enable output character encoding conversion for all PHP pages
+
+;; Enable Output Buffering
+output_buffering    = On
+
+;; Set mb_output_handler to enable output conversion
+output_handler      = mb_output_handler
+</pre></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  <div class="example" id="example-3015">
+   <p><strong>Example #3 Script example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;Enable&#xA0;output&#xA0;character&#xA0;encoding&#xA0;conversion&#xA0;only&#xA0;for&#xA0;this&#xA0;page<br><br>//&#xA0;Set&#xA0;HTTP&#xA0;output&#xA0;character&#xA0;encoding&#xA0;to&#xA0;SJIS<br></span><span style="color: #0000BB">mb_http_output</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;SJIS&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Start&#xA0;buffering&#xA0;and&#xA0;specify&#xA0;&quot;mb_output_handler&quot;&#xA0;as<br>//&#xA0;callback&#xA0;function<br></span><span style="color: #0000BB">ob_start</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;mb_output_handler&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>

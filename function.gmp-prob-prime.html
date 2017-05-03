@@ -1,0 +1,100 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">gmp_prob_prime</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">gmp_prob_prime</span> &#x2014; <span class="dc-title">Check if number is &quot;probably prime&quot;</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.gmp-prob-prime-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>gmp_prob_prime</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.gmp.html" class="type GMP">GMP</a></span> <code class="parameter">$a</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$reps</code><span class="initializer"> = 10</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   The function uses Miller-Rabin&apos;s probabilistic test to check if a number is a prime.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.gmp-prob-prime-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">a</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The number being checked as a prime.
+      </p>
+      <p class="para">Either a GMP number <span class="type"><a href="language.types.resource.html" class="type resource">resource</a></span> in PHP 5.5 and earlier, a <a href="class.gmp.html" class="classname">GMP</a> object in PHP 5.6 and later, or a numeric string provided that it is possible to convert the latter to a number.</p> 
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">reps</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Reasonable values
+       of <code class="parameter">reps</code> vary from 5 to 10 (default being
+       10); a higher value lowers the probability for a non-prime to
+       pass as a &quot;probable&quot; prime.
+      </p>
+      <p class="para">Either a GMP number <span class="type"><a href="language.types.resource.html" class="type resource">resource</a></span> in PHP 5.5 and earlier, a <a href="class.gmp.html" class="classname">GMP</a> object in PHP 5.6 and later, or a numeric string provided that it is possible to convert the latter to a number.</p> 
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.gmp-prob-prime-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   If this function returns 0, <code class="parameter">a</code> is
+   definitely not prime. If it returns 1, then
+   <code class="parameter">a</code> is &quot;probably&quot; prime.  If it returns 2,
+   then <code class="parameter">a</code> is surely prime. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.gmp-prob-prime-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-3975">
+    <p><strong>Example #1 <span class="function"><strong>gmp_prob_prime()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;definitely&#xA0;not&#xA0;a&#xA0;prime<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">gmp_prob_prime</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;6&quot;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;probably&#xA0;a&#xA0;prime<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">gmp_prob_prime</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;1111111111111111111&quot;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;definitely&#xA0;a&#xA0;prime<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">gmp_prob_prime</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;11&quot;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+0
+1
+2
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+

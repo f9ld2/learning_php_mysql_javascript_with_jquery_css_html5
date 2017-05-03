@@ -1,0 +1,82 @@
+---
+layout: default
+---
+
+  <h2 class="title">Example that implements inclued into an application</h2>
+  <p class="para">
+   This example demonstrates the process of implementing inclued into
+   an existing application, and viewing the results.
+  </p>
+  <p class="para">
+   <div class="example" id="example-499">
+    <p><strong>Example #1 Getting the data within the PHP application itself (function)</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;File&#xA0;to&#xA0;store&#xA0;the&#xA0;inclued&#xA0;information<br></span><span style="color: #0000BB">$fp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;/tmp/wp.ser&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;w&apos;</span><span style="color: #007700">);<br>if&#xA0;(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$clue&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">inclued_get_data</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$clue</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">serialize</span><span style="color: #007700">(</span><span style="color: #0000BB">$clue</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Now that some data exists, it&apos;s time to make sense of it in the form of
+   a graph. The inclued extension includes a PHP file named
+   <var class="filename">gengraph.php</var> that creates a dot file that 
+   requires the <a href="http://www.graphviz.org/" class="link external">&#xBB;&#xA0;graphviz</a> library.
+   However, this form is not required.
+  </p>
+  <p class="para">
+   <div class="example" id="example-500">
+    <p><strong>Example #2 Example use of gengraph.php</strong></p>
+    <div class="example-contents"><p>
+     This example creates an image named inclued.png that
+     shows the inclued data.
+    </p></div>
+    <div class="example-contents">
+<div class="shellcode"><pre class="shellcode"># First, create the dot file
+$ php gengraph.php -i /tmp/wp.ser -o wp.dot
+
+# Next, create the image
+$ dot -Tpng -o inclued.png wp.dot</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-501">
+    <p><strong>Example #3 Listing data via inclued dumps (configuration)</strong></p>
+    <div class="example-contents"><p>
+     When using the <a href="inclued.configuration.html#ini.inclued.dumpdir" class="link">inclued.dumpdir</a>
+     directive, files (include clues) are dumped with every request. Here&apos;s one
+     way to list those files, and <span class="function"><a href="function.unserialize.html" class="function">unserialize()</a></span> them.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$path&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ini_get</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;inclued.dumpdir&apos;</span><span style="color: #007700">);<br>if&#xA0;(</span><span style="color: #0000BB">$path&#xA0;</span><span style="color: #007700">&amp;&amp;&#xA0;</span><span style="color: #0000BB">is_dir</span><span style="color: #007700">(</span><span style="color: #0000BB">$path</span><span style="color: #007700">))&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Path:&#xA0;</span><span style="color: #0000BB">$path</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$inclues&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">GlobIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$path&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">DIRECTORY_SEPARATOR&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&apos;inclued*&apos;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$inclues</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">count</span><span style="color: #007700">()&#xA0;===&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;No&#xA0;clues&#xA0;today&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;exit;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;foreach&#xA0;(</span><span style="color: #0000BB">$inclues&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$inclue</span><span style="color: #007700">)&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Inclued&#xA0;file:&#xA0;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$inclue</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getFilename</span><span style="color: #007700">(),&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$data&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #0000BB">$inclue</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getPathname</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$data</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$inc&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">unserialize</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;--&#xA0;filename:&#xA0;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$inc</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;request&apos;</span><span style="color: #007700">][</span><span style="color: #DD0000">&apos;SCRIPT_FILENAME&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;--&#xA0;number&#xA0;of&#xA0;includes:&#xA0;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$inc</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;includes&apos;</span><span style="color: #007700">]),&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;I&#xA0;am&#xA0;totally&#xA0;clueless&#xA0;today.&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+PATH: /tmp/inclued
+Inclued file: inclued.56521.1
+ -- filename: /Users/philip/test.php
+ -- number of includes: 1
+
+Inclued file: inclued.56563.1
+ -- filename: /tmp/none.php
+ -- number of includes: 0
+
+Inclued file: inclued.56636.1
+ -- filename: /tmp/three.php
+ -- number of includes: 3
+</pre></div>
+    </div>
+   </div>
+  </p>
+ 

@@ -1,0 +1,113 @@
+---
+layout: default
+---
+
+ <h2 class="title">Using Phar Archives: Introduction</h2>
+ <p class="para">
+  Phar archives are similar in concept to Java JAR archives, but are tailored
+  to the needs and to the flexibility of PHP applications.  A Phar archive is
+  used to distribute a complete PHP application or library in a single file. A
+  Phar archive application is used exactly like any other PHP application:
+ </p>
+ <div class="example-contents screen">
+  <div class="cdata"><pre>
+php coolapplication.phar
+  </pre></div>
+ </div>
+ <p class="para">
+  Using a Phar archive library is identical to using any other PHP library:
+ </p>
+ <p class="para">
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">include&#xA0;</span><span style="color: #DD0000">&apos;coollibrary.phar&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  The <em>phar</em> stream wrapper provides the core of the phar extension, and
+  is explained in detail <a href="phar.using.stream.html" class="link">here</a>.
+  The phar stream wrapper allows accessing the files within a phar archive using
+  PHP&apos;s standard file functions <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>, <span class="function"><a href="function.opendir.html" class="function">opendir()</a></span>, and
+  others that work on regular files.  The <em>phar</em> stream wrapper supports all
+  read/write operations on both files and directories.
+ </p>
+ <p class="para">
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">include&#xA0;</span><span style="color: #DD0000">&apos;phar://coollibrary.phar/internal/file.php&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Content-type:&#xA0;image/jpeg&apos;</span><span style="color: #007700">);<br></span><span style="color: #FF8000">//&#xA0;phars&#xA0;can&#xA0;be&#xA0;accessed&#xA0;by&#xA0;full&#xA0;path&#xA0;or&#xA0;by&#xA0;alias<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;phar:///fullpath/to/coollibrary.phar/images/wow.jpg&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  The <a href="class.phar.html" class="classname">Phar</a> class implements advanced functionality for accessing
+  files and for creating phar archives.  The Phar class is explained in detail
+  <a href="phar.using.object.html" class="link">here</a>.
+ </p>
+ <p class="para">
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;open&#xA0;an&#xA0;existing&#xA0;phar<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;coollibrary.phar&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Phar&#xA0;extends&#xA0;SPL&apos;s&#xA0;DirectoryIterator&#xA0;class<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">foreach&#xA0;(new&#xA0;</span><span style="color: #0000BB">RecursiveIteratorIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$p</span><span style="color: #007700">)&#xA0;as&#xA0;</span><span style="color: #0000BB">$file</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;$file&#xA0;is&#xA0;a&#xA0;PharFileInfo&#xA0;class,&#xA0;and&#xA0;inherits&#xA0;from&#xA0;SplFileInfo<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">$file</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getFileName</span><span style="color: #007700">()&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getPathName</span><span style="color: #007700">())&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;display&#xA0;contents;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">}<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(isset(</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;internal/file.php&apos;</span><span style="color: #007700">]))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;internal/file.php&apos;</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">getMetadata</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;create&#xA0;a&#xA0;new&#xA0;phar&#xA0;-&#xA0;phar.readonly&#xA0;must&#xA0;be&#xA0;0&#xA0;in&#xA0;php.ini<br>&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;phar.readonly&#xA0;is&#xA0;enabled&#xA0;by&#xA0;default&#xA0;for&#xA0;security&#xA0;reasons.<br>&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;On&#xA0;production&#xA0;servers,&#xA0;Phars&#xA0;need&#xA0;never&#xA0;be&#xA0;created,<br>&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;only&#xA0;executed.<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">canWrite</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;newphar.tar.phar&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;newphar.tar.phar&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;make&#xA0;this&#xA0;a&#xA0;tar-based&#xA0;phar&#xA0;archive,&#xA0;compressed&#xA0;with&#xA0;gzip&#xA0;compression&#xA0;(.tar.gz)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">convertToExecutable</span><span style="color: #007700">(</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">TAR</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">GZ</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;create&#xA0;transaction&#xA0;-&#xA0;nothing&#xA0;is&#xA0;written&#xA0;to&#xA0;newphar.phar<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;until&#xA0;stopBuffering()&#xA0;is&#xA0;called,&#xA0;although&#xA0;temporary&#xA0;storage&#xA0;is&#xA0;needed<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">startBuffering</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;add&#xA0;all&#xA0;files&#xA0;in&#xA0;/path/to/project,&#xA0;saving&#xA0;in&#xA0;the&#xA0;phar&#xA0;with&#xA0;the&#xA0;prefix&#xA0;&quot;project&quot;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">buildFromIterator</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">RecursiveIteratorIterator</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">DirectoryIterator</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;/path/to/project&apos;</span><span style="color: #007700">)),&#xA0;</span><span style="color: #DD0000">&apos;/path/to/&apos;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;add&#xA0;a&#xA0;new&#xA0;file&#xA0;via&#xA0;the&#xA0;array&#xA0;access&#xA0;API<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;file1.txt&apos;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;Information&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$fp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hugefile.dat&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;rb&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;copy&#xA0;all&#xA0;data&#xA0;from&#xA0;the&#xA0;stream<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;data/hugefile.dat&apos;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #0000BB">$fp</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">canCompress</span><span style="color: #007700">(</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">GZ</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;data/hugefile.dat&apos;</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">compress</span><span style="color: #007700">(</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">GZ</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;images/wow.jpg&apos;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;images/wow.jpg&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;any&#xA0;value&#xA0;can&#xA0;be&#xA0;saved&#xA0;as&#xA0;file-specific&#xA0;meta-data<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;images/wow.jpg&apos;</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">setMetadata</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&apos;mime-type&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;image/jpeg&apos;</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;index.php&apos;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;index.php&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setMetadata</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&apos;bootstrap&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;index.php&apos;</span><span style="color: #007700">));<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;save&#xA0;the&#xA0;phar&#xA0;archive&#xA0;to&#xA0;disk<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">stopBuffering</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}&#xA0;catch&#xA0;(</span><span style="color: #0000BB">Exception&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Could&#xA0;not&#xA0;open&#xA0;Phar:&#xA0;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  In addition, verification of phar file contents can be done using any of the
+  supported symmetric hash algorithms (MD5, SHA1, SHA256 and SHA512 if ext/hash is enabled)
+  and using asymmetric public/private key signing using OpenSSL (new in Phar 2.0.0).  To
+  take advantage of OpenSSL signing, you need to generate a public/private key pair, and
+  use the private key to set the signature using
+  <span class="function"><a href="phardata.setsignaturealgorithm.html" class="function">Phar::setSignatureAlgorithm()</a></span>.  In addition, the public key
+  as extracted using this code:
+  <div class="example-contents">
+   <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$public&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">openssl_get_publickey</span><span style="color: #007700">(</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;private.pem&apos;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$pkey&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">openssl_pkey_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$public</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$pkey</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+  must be saved adjacent to the phar archive it verifies.  If the phar archive
+  is saved as <em>/path/to/my.phar</em>, the public key must be saved
+  as <em>/path/to/my.phar.pubkey</em>, or phar will be unable to verify
+  the OpenSSL signature.
+ </p>
+ <p class="para">
+  As of version 2.0.0, The <a href="class.phar.html" class="classname">Phar</a> class also provides 3 static methods, <span class="function"><a href="phar.webphar.html" class="function">Phar::webPhar()</a></span>,
+  <span class="function"><a href="phar.mungserver.html" class="function">Phar::mungServer()</a></span> and <span class="function"><a href="phar.interceptfilefuncs.html" class="function">Phar::interceptFileFuncs()</a></span> that are crucial
+  to packaging up PHP applications designed for usage on regular filesystems and for web-based applications.
+  <span class="function"><a href="phar.webphar.html" class="function">Phar::webPhar()</a></span> implements a front controller that routes HTTP calls to the correct
+  location within the phar archive.  <span class="function"><a href="phar.mungserver.html" class="function">Phar::mungServer()</a></span> is used to modify the values of
+  the <var class="varname"><var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var></var> array to trick applications that process these values.
+  <span class="function"><a href="phar.interceptfilefuncs.html" class="function">Phar::interceptFileFuncs()</a></span> instructs Phar to intercept calls to
+  <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>, <span class="function"><a href="function.file-get-contents.html" class="function">file_get_contents()</a></span>, <span class="function"><a href="function.opendir.html" class="function">opendir()</a></span>, and
+  all of the stat-based functions (<span class="function"><a href="function.file-exists.html" class="function">file_exists()</a></span>, <span class="function"><a href="function.is-readable.html" class="function">is_readable()</a></span> and so on) and
+  route all relative paths to locations within the phar archive.
+ </p>
+ <p class="para">
+  As an example, packaging up a release of the popular phpMyAdmin application for use as a phar archive requires
+  only this simple script and then <em>phpMyAdmin.phar.tar.php</em> can be accessed as a regular file
+  from your web server after modifying the user/password:
+ </p>
+ <p class="para">
+  <div class="informalexample">
+   <div class="example-contents">
+    <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">@</span><span style="color: #0000BB">unlink</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;phpMyAdmin.phar.tar.php&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">copy</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;phpMyAdmin-2.11.3-english.tar.gz&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;phpMyAdmin.phar.tar.php&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;phpMyAdmin.phar.tar.php&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">startBuffering</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;phpMyAdmin-2.11.3-english/config.inc.php&quot;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;&lt;?php<br>/*&#xA0;Servers&#xA0;configuration&#xA0;*/<br>$i&#xA0;=&#xA0;0;<br><br>/*&#xA0;Server&#xA0;localhost&#xA0;(config:root)&#xA0;[1]&#xA0;*/<br>$i++;<br>$cfg[\&apos;Servers\&apos;][$i][\&apos;host\&apos;]&#xA0;=&#xA0;\&apos;localhost\&apos;;<br>$cfg[\&apos;Servers\&apos;][$i][\&apos;extension\&apos;]&#xA0;=&#xA0;\&apos;mysqli\&apos;;<br>$cfg[\&apos;Servers\&apos;][$i][\&apos;connect_type\&apos;]&#xA0;=&#xA0;\&apos;tcp\&apos;;<br>$cfg[\&apos;Servers\&apos;][$i][\&apos;compress\&apos;]&#xA0;=&#xA0;false;<br>$cfg[\&apos;Servers\&apos;][$i][\&apos;auth_type\&apos;]&#xA0;=&#xA0;\&apos;config\&apos;;<br>$cfg[\&apos;Servers\&apos;][$i][\&apos;user\&apos;]&#xA0;=&#xA0;\&apos;root\&apos;;<br>$cfg[\&apos;Servers\&apos;][$i][\&apos;password\&apos;]&#xA0;=&#xA0;\&apos;\&apos;;<br><br><br>/*&#xA0;End&#xA0;of&#xA0;servers&#xA0;configuration&#xA0;*/<br>if&#xA0;(strpos(PHP_OS,&#xA0;\&apos;WIN\&apos;)&#xA0;!==&#xA0;false)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;$cfg[\&apos;UploadDir\&apos;]&#xA0;=&#xA0;getcwd();<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;$cfg[\&apos;UploadDir\&apos;]&#xA0;=&#xA0;\&apos;/tmp/pharphpmyadmin\&apos;;<br>&#xA0;&#xA0;&#xA0;&#xA0;@mkdir(\&apos;/tmp/pharphpmyadmin\&apos;);<br>&#xA0;&#xA0;&#xA0;&#xA0;@chmod(\&apos;/tmp/pharphpmyadmin\&apos;,&#xA0;0777);<br>}&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setStub</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;&lt;?php<br>Phar::interceptFileFuncs();<br>Phar::webPhar(&quot;phpMyAdmin.phar&quot;,&#xA0;&quot;phpMyAdmin-2.11.3-english/index.php&quot;);<br>echo&#xA0;&quot;phpMyAdmin&#xA0;is&#xA0;intended&#xA0;to&#xA0;be&#xA0;executed&#xA0;from&#xA0;a&#xA0;web&#xA0;browser\n&quot;;<br>exit&#xA0;-1;<br>__HALT_COMPILER();<br>&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">stopBuffering</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>

@@ -1,0 +1,263 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">substr</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">substr</span> &#x2014; <span class="dc-title">Return part of a string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.substr-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>substr</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$string</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$start</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$length</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns the portion of <code class="parameter">string</code> specified by the
+   <code class="parameter">start</code> and <code class="parameter">length</code> parameters.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.substr-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">string</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The input string. Must be one character or longer.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">start</code></dt>
+
+     <dd>
+
+      <p class="para">
+       If <code class="parameter">start</code> is non-negative, the returned string
+       will start at the <code class="parameter">start</code>&apos;th position in
+       <code class="parameter">string</code>, counting from zero. For instance,
+       in the string &apos;<em>abcdef</em>&apos;, the character at
+       position <em>0</em> is &apos;<em>a</em>&apos;, the
+       character at position <em>2</em> is
+       &apos;<em>c</em>&apos;, and so forth.
+      </p>
+      <p class="para">
+       If <code class="parameter">start</code> is negative, the returned string
+       will start at the <code class="parameter">start</code>&apos;th character
+       from the end of <code class="parameter">string</code>.
+      </p>
+      <p class="para">
+       If <code class="parameter">string</code> is less than
+       <code class="parameter">start</code> characters long, <strong><code>FALSE</code></strong> will be returned.
+      </p>
+      <p class="para">
+       <div class="example" id="example-5535">
+        <p><strong>Example #1 Using a negative <code class="parameter">start</code></strong></p>
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$rest&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;abcdef&quot;</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;returns&#xA0;&quot;f&quot;<br></span><span style="color: #0000BB">$rest&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;abcdef&quot;</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">2</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;returns&#xA0;&quot;ef&quot;<br></span><span style="color: #0000BB">$rest&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;abcdef&quot;</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;returns&#xA0;&quot;d&quot;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+        </div>
+
+       </div>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">length</code></dt>
+
+     <dd>
+
+      <p class="para">
+       If <code class="parameter">length</code> is given and is positive, the string
+       returned will contain at most <code class="parameter">length</code> characters
+       beginning from <code class="parameter">start</code> (depending on the length of
+       <code class="parameter">string</code>).
+      </p>
+      <p class="para">
+       If <code class="parameter">length</code> is given and is negative, then that many
+       characters will be omitted from the end of <code class="parameter">string</code>
+       (after the start position has been calculated when a
+       <code class="parameter">start</code> is negative).  If
+       <code class="parameter">start</code> denotes the position of this truncation or
+       beyond, <strong><code>FALSE</code></strong> will be returned.
+      </p>
+      <p class="para">
+       If <code class="parameter">length</code> is given and is <em>0</em>,
+       <strong><code>FALSE</code></strong> or <strong><code>NULL</code></strong>, an empty string will be returned.
+      </p>
+      <p class="para">
+       If <code class="parameter">length</code> is omitted, the substring starting from
+       <code class="parameter">start</code> until the end of the string will be
+       returned.
+      </p>
+      <div class="example" id="example-5536">
+       <p><strong>Example #2 Using a negative <code class="parameter">length</code></strong></p>
+       <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$rest&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;abcdef&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;returns&#xA0;&quot;abcde&quot;<br></span><span style="color: #0000BB">$rest&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;abcdef&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;returns&#xA0;&quot;cde&quot;<br></span><span style="color: #0000BB">$rest&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;abcdef&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">4</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;returns&#xA0;false<br></span><span style="color: #0000BB">$rest&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;abcdef&quot;</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;returns&#xA0;&quot;de&quot;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       </div>
+
+      </div>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.substr-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the extracted part of <code class="parameter">string</code>;  or <strong><code>FALSE</code></strong> on failure, or
+   an empty string.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-function.substr-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.0.0</td>
+       <td>
+        If <code class="parameter">string</code> is equal to
+        <code class="parameter">start</code> characters long, an empty string will be
+        returned. Prior to this version, <strong><code>FALSE</code></strong> was returned in this case.
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.2.2 - 5.2.6</td>
+       <td>
+        If the <code class="parameter">start</code> parameter indicates the position of
+        a negative truncation or beyond, false is returned. Other versions get
+        the string from start.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.substr-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-5537">
+    <p><strong>Example #3 Basic <span class="function"><strong>substr()</strong></span> usage</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;abcdef&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;bcdef<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;abcdef&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;bcd<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;abcdef&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;abcd<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;abcdef&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">8</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;abcdef<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;abcdef&apos;</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;f<br><br>//&#xA0;Accessing&#xA0;single&#xA0;characters&#xA0;in&#xA0;a&#xA0;string<br>//&#xA0;can&#xA0;also&#xA0;be&#xA0;achieved&#xA0;using&#xA0;&quot;square&#xA0;brackets&quot;<br></span><span style="color: #0000BB">$string&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;abcdef&apos;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #0000BB">$string</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;a<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">$string</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">];&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;d<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">$string</span><span style="color: #007700">[</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">)-</span><span style="color: #0000BB">1</span><span style="color: #007700">];&#xA0;</span><span style="color: #FF8000">//&#xA0;f<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div> 
+   <div class="example" id="example-5538">
+    <p><strong>Example #4 <span class="function"><strong>substr()</strong></span> casting behaviour</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">apple&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">__toString</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #DD0000">&quot;green&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;1)&#xA0;&quot;</span><span style="color: #007700">.</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;pear&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">).</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;2)&#xA0;&quot;</span><span style="color: #007700">.</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">54321</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">).</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;3)&#xA0;&quot;</span><span style="color: #007700">.</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">substr</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">apple</span><span style="color: #007700">(),&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">).</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;4)&#xA0;&quot;</span><span style="color: #007700">.</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">).</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;5)&#xA0;&quot;</span><span style="color: #007700">.</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">false</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">).</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;6)&#xA0;&quot;</span><span style="color: #007700">.</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">).</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;7)&#xA0;&quot;</span><span style="color: #007700">.</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">1.2e3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">).</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>Output of the above example in PHP 7:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+1) &apos;pe&apos;
+2) &apos;54&apos;
+3) &apos;gr&apos;
+4) &apos;1&apos;
+5) &apos;&apos;
+6) &apos;&apos;
+7) &apos;1200&apos;
+</pre></div>
+    </div>
+    <div class="example-contents"><p>Output of the above example in PHP 5:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+1) &apos;pe&apos;
+2) &apos;54&apos;
+3) &apos;gr&apos;
+4) &apos;1&apos;
+5) false
+6) false
+7) &apos;1200&apos;
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-function.substr-errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Returns <strong><code>FALSE</code></strong> on error.
+   <div class="example" id="example-5539">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;a&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">));&#xA0;</span><span style="color: #FF8000">//&#xA0;bool(false)<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>   
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.substr-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.strrchr.html" class="function" rel="rdfs-seeAlso">strrchr()</a> - Find the last occurrence of a character in a string</span></li>
+    <li class="member"><span class="function"><a href="function.substr-replace.html" class="function" rel="rdfs-seeAlso">substr_replace()</a> - Replace text within a portion of a string</span></li>
+    <li class="member"><span class="function"><a href="function.preg-match.html" class="function" rel="rdfs-seeAlso">preg_match()</a> - Perform a regular expression match</span></li>
+    <li class="member"><span class="function"><a href="function.trim.html" class="function" rel="rdfs-seeAlso">trim()</a> - Strip whitespace (or other characters) from the beginning and end of a string</span></li>
+    <li class="member"><span class="function"><a href="function.mb-substr.html" class="function" rel="rdfs-seeAlso">mb_substr()</a> - Get part of string</span></li>
+    <li class="member"><span class="function"><a href="function.wordwrap.html" class="function" rel="rdfs-seeAlso">wordwrap()</a> - Wraps a string to a given number of characters</span></li>
+    <li class="member"><a href="language.types.string.html#language.types.string.substr" class="link">String access and modification by character</a></li>
+   </ul>
+  </p>
+ </div>
+
+

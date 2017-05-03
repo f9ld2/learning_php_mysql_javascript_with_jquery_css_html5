@@ -1,0 +1,89 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::getImageProperties</h1>
+  <p class="verinfo">(PECL imagick 2.0.0)</p><p class="refpurpose"><span class="refname">Imagick::getImageProperties</span> &#x2014; <span class="dc-title">Returns the image properties</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-imagick.getimageproperties-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><strong>Imagick::getImageProperties</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$pattern</code><span class="initializer"> = &quot;*&quot;</span></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$include_values</code><span class="initializer"> = true</span></span>
+  ]] )</div>
+
+
+  <p class="para rdfs-comment">
+   Returns all associated properties that match the pattern. If <strong><code>FALSE</code></strong> is passed as second parameter
+   only the property names are returned. This method is available if Imagick has been compiled against ImageMagick version 6.3.6 or newer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-imagick.getimageproperties-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">pattern</code></dt>
+
+     <dd>
+
+      <p class="para">
+      The pattern for property names.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">include_values</code></dt>
+
+     <dd>
+
+      <p class="para">
+      Whether to return only property names. If <strong><code>FALSE</code></strong> then only property names will be returned.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-imagick.getimageproperties-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  Returns an array containing the image properties or property names.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-imagick.getimageproperties-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-3685">
+    <p><strong>Example #1 Using <span class="function"><strong>Imagick::getImageProperties()</strong></span>:</strong></p>
+    <div class="example-contents"><p>
+     An example of extracting EXIF information.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">/*&#xA0;Create&#xA0;the&#xA0;object&#xA0;*/<br></span><span style="color: #0000BB">$im&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">imagick</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;/path/to/example.jpg&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Get&#xA0;the&#xA0;EXIF&#xA0;information&#xA0;*/<br></span><span style="color: #0000BB">$exifArray&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$im</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageProperties</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;exif:*&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Loop&#xA0;trough&#xA0;the&#xA0;EXIF&#xA0;properties&#xA0;*/<br></span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$exifArray&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$name&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$property</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">{</span><span style="color: #0000BB">$name</span><span style="color: #007700">}</span><span style="color: #DD0000">&#xA0;=&gt;&#xA0;</span><span style="color: #007700">{</span><span style="color: #0000BB">$property</span><span style="color: #007700">}</span><span style="color: #DD0000">&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;&#xA0;<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+

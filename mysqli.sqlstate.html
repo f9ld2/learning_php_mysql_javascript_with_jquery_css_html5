@@ -1,0 +1,106 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">mysqli::$sqlstate</h1>
+  <h1 class="refname">mysqli_sqlstate</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">mysqli::$sqlstate</span> -- <span class="refname">mysqli_sqlstate</span> &#x2014; <span class="dc-title">Returns the SQLSTATE error from previous MySQL operation</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli.sqlstate-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Object oriented style</p>
+  <div class="fieldsynopsis"><span class="type">string</span> <var class="varname"><a href="mysqli.sqlstate.html">$mysqli-&gt;sqlstate</a></var>;</div>
+
+  <p class="para">Procedural style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>mysqli_sqlstate</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli.html" class="type mysqli">mysqli</a></span> <code class="parameter">$link</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns a string containing the SQLSTATE error code for the last error.
+   The error code consists of five characters. <em>&apos;00000&apos;</em> means no error.
+   The values are specified by ANSI SQL and ODBC. For a list of possible values, see
+   <a href="http://dev.mysql.com/doc/mysql/en/error-handling.html" class="link external">&#xBB;&#xA0;http://dev.mysql.com/doc/mysql/en/error-handling.html</a>.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    Note that not all MySQL errors are yet mapped to SQLSTATE&apos;s.
+    The value <em>HY000</em> (general error) is used for unmapped errors.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli.sqlstate-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+link</code></dt>
+<dd>
+<p class="para">Procedural style only: A link identifier
+returned by <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span> or <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span>
+</p></dd>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli.sqlstate-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing the SQLSTATE error code for the last error.
+   The error code consists of five characters. <em>&apos;00000&apos;</em> means no error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli.sqlstate-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1860">
+   <p><strong>Example #1 <var class="varname"><var class="varname">$mysqli-&gt;sqlstate</var></var> example</strong></p>
+   <div class="example-contents"><p>Object oriented style</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;world&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;Table&#xA0;City&#xA0;already&#xA0;exists,&#xA0;so&#xA0;we&#xA0;should&#xA0;get&#xA0;an&#xA0;error&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;City&#xA0;(ID&#xA0;INT,&#xA0;Name&#xA0;VARCHAR(30))&quot;</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Error&#xA0;-&#xA0;SQLSTATE&#xA0;%s.\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sqlstate</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Procedural style</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$link&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;world&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;Table&#xA0;City&#xA0;already&#xA0;exists,&#xA0;so&#xA0;we&#xA0;should&#xA0;get&#xA0;an&#xA0;error&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;City&#xA0;(ID&#xA0;INT,&#xA0;Name&#xA0;VARCHAR(30))&quot;</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Error&#xA0;-&#xA0;SQLSTATE&#xA0;%s.\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">mysqli_sqlstate</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br>}<br><br></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above examples will output:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Error - SQLSTATE 42S01.
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli.sqlstate-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mysqli.errno.html" class="function" rel="rdfs-seeAlso">mysqli_errno()</a> - Returns the error code for the most recent function call</span></li>
+    <li class="member"><span class="function"><a href="mysqli.error.html" class="function" rel="rdfs-seeAlso">mysqli_error()</a> - Returns a string description of the last error</span></li>
+   </ul>
+  </p>
+ </div>
+
+

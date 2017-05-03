@@ -1,0 +1,174 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MysqlndUhConnection::simpleCommand</h1>
+  <p class="verinfo">(PECL mysqlnd-uh &gt;= 1.0.0-alpha)</p><p class="refpurpose"><span class="refname">MysqlndUhConnection::simpleCommand</span> &#x2014; <span class="dc-title">Sends a basic COM_* command</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqlnduhconnection.simplecommand-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><strong>MysqlndUhConnection::simpleCommand</strong></span>
+    ( <span class="methodparam"><span class="type"><span class="type mysqlnd_connection">mysqlnd_connection</span></span> <code class="parameter">$connection</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$command</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$arg</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$ok_packet</code></span>
+   , <span class="methodparam"><span class="type">bool</span> <code class="parameter">$silent</code></span>
+   , <span class="methodparam"><span class="type">bool</span> <code class="parameter">$ignore_upsert_status</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sends a basic COM_* command to MySQL.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqlnduhconnection.simplecommand-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">connection</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Mysqlnd connection handle. Do not modify!
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">command</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The COM command to be send.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">arg</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Optional COM command arguments.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">ok_packet</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The OK packet type.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">silent</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Whether mysqlnd may emit errors.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">ignore_upsert_status</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Whether to ignore <em>UPDATE</em>/<em>INSERT</em> status.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+<div class="refsect1 returnvalues" id="refsect1-mysqlnduhconnection.simplecommand-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success.
+   Otherwise, returns <strong><code>FALSE</code></strong>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqlnduhconnection.simplecommand-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2163">
+    <p><strong>Example #1 <span class="function"><strong>MysqlndUhConnection::simpleCommand()</strong></span> example</strong></p>
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">server_cmd_2_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$command</span><span style="color: #007700">)&#xA0;{<br>&#xA0;</span><span style="color: #0000BB">$mapping&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_SLEEP&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_SLEEP&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_QUIT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_QUIT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_INIT_DB&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_INIT_DB&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_QUERY&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_QUERY&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_FIELD_LIST&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_FIELD_LIST&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_CREATE_DB&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_CREATE_DB&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_DROP_DB&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_DROP_DB&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_REFRESH&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_REFRESH&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_SHUTDOWN&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_SHUTDOWN&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_STATISTICS&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_STATISTICS&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_PROCESS_INFO&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_PROCESS_INFO&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_CONNECT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_CONNECT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_PROCESS_KILL&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_PROCESS_KILL&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_DEBUG&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_DEBUG&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_PING&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_PING&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_TIME&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_TIME&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_DELAYED_INSERT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_DELAYED_INSERT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_CHANGE_USER&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_CHANGE_USER&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_BINLOG_DUMP&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_BINLOG_DUMP&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_TABLE_DUMP&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_TABLE_DUMP&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_CONNECT_OUT&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_CONNECT_OUT&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_REGISTER_SLAVED&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_REGISTER_SLAVED&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_STMT_PREPARE&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_STMT_PREPARE&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_STMT_EXECUTE&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_STMT_EXECUTE&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_STMT_SEND_LONG_DATA&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_STMT_SEND_LONG_DATA&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_STMT_CLOSE&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_STMT_CLOSE&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_STMT_RESET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_STMT_RESET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_SET_OPTION&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_SET_OPTION&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_STMT_FETCH&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_STMT_FETCH&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_DAEMON&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_DAEMON&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_COM_END&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_COM_END&quot;</span><span style="color: #007700">,<br>&#xA0;);<br>&#xA0;return&#xA0;(isset(</span><span style="color: #0000BB">$mapping</span><span style="color: #007700">[</span><span style="color: #0000BB">$command</span><span style="color: #007700">]))&#xA0;?&#xA0;</span><span style="color: #0000BB">$mapping</span><span style="color: #007700">[</span><span style="color: #0000BB">$command</span><span style="color: #007700">]&#xA0;:&#xA0;</span><span style="color: #DD0000">&apos;unknown&apos;</span><span style="color: #007700">;<br>}<br><br>function&#xA0;</span><span style="color: #0000BB">ok_packet_2_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$ok_packet</span><span style="color: #007700">)&#xA0;{<br>&#xA0;</span><span style="color: #0000BB">$mapping&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PROT_GREET_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PROT_GREET_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PROT_AUTH_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PROT_AUTH_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PROT_OK_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PROT_OK_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PROT_EOF_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PROT_EOF_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PROT_CMD_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PROT_CMD_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PROT_RSET_HEADER_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PROT_RSET_HEADER_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PROT_RSET_FLD_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PROT_RSET_FLD_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PROT_ROW_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PROT_ROW_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PROT_STATS_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PROT_STATS_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PREPARE_RESP_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PREPARE_RESP_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_CHG_USER_RESP_PACKET&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_CHG_USER_RESP_PACKET&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;</span><span style="color: #0000BB">MYSQLND_UH_MYSQLND_PROT_LAST&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;MYSQLND_UH_MYSQLND_PROT_LAST&quot;</span><span style="color: #007700">,<br>&#xA0;);<br>&#xA0;return&#xA0;(isset(</span><span style="color: #0000BB">$mapping</span><span style="color: #007700">[</span><span style="color: #0000BB">$ok_packet</span><span style="color: #007700">]))&#xA0;?&#xA0;</span><span style="color: #0000BB">$mapping</span><span style="color: #007700">[</span><span style="color: #0000BB">$ok_packet</span><span style="color: #007700">]&#xA0;:&#xA0;</span><span style="color: #DD0000">&apos;unknown&apos;</span><span style="color: #007700">;<br>}<br><br>class&#xA0;</span><span style="color: #0000BB">proxy&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">MysqlndUhConnection&#xA0;</span><span style="color: #007700">{<br>&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">simpleCommand</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$command</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$arg</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ok_packet</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$silent</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ignore_upsert_status</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;%s(%s)\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">func_get_args</span><span style="color: #007700">(),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br>&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Command&#xA0;&apos;%s&apos;\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">server_cmd_2_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$command</span><span style="color: #007700">));<br>&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;OK&#xA0;packet&#xA0;&apos;%s&apos;\n&quot;</span><span style="color: #007700">,&#xA0;&#xA0;</span><span style="color: #0000BB">ok_packet_2_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$ok_packet</span><span style="color: #007700">));<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$ret&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">simpleCommand</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$command</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$arg</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ok_packet</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$silent</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ignore_upsert_status</span><span style="color: #007700">);<br>&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;%s&#xA0;returns&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$ret</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br>&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$ret</span><span style="color: #007700">;<br>&#xA0;}<br>}<br></span><span style="color: #0000BB">mysqlnd_uh_set_connection_proxy</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">proxy</span><span style="color: #007700">());<br></span><span style="color: #0000BB">$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;root&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;test&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;1&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+proxy::simpleCommand(array (
+  0 =&gt; NULL,
+  1 =&gt; 3,
+  2 =&gt; &apos;SELECT 1&apos;,
+  3 =&gt; 13,
+  4 =&gt; false,
+  5 =&gt; false,
+))
+Command &apos;MYSQLND_UH_MYSQLND_COM_QUERY&apos;
+OK packet &apos;MYSQLND_UH_MYSQLND_PROT_LAST&apos;
+proxy::simpleCommand returns true
+:)proxy::simpleCommand(array (
+  0 =&gt; NULL,
+  1 =&gt; 1,
+  2 =&gt; &apos;&apos;,
+  3 =&gt; 13,
+  4 =&gt; true,
+  5 =&gt; true,
+))
+Command &apos;MYSQLND_UH_MYSQLND_COM_QUIT&apos;
+OK packet &apos;MYSQLND_UH_MYSQLND_PROT_LAST&apos;
+proxy::simpleCommand returns true
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqlnduhconnection.simplecommand-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <span class="function"><a href="function.mysqlnd-uh-set-connection-proxy.html" class="function" rel="rdfs-seeAlso">mysqlnd_uh_set_connection_proxy()</a> - Installs a proxy for mysqlnd connections</span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+

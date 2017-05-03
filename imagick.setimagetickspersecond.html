@@ -1,0 +1,87 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::setImageTicksPerSecond</h1>
+  <p class="verinfo">(PECL imagick 2.0.0)</p><p class="refpurpose"><span class="refname">Imagick::setImageTicksPerSecond</span> &#x2014; <span class="dc-title">Sets the image ticks-per-second</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-imagick.setimagetickspersecond-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>Imagick::setImageTicksPerSecond</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$ticks_per_second</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Adjust the amount of time that a frame of an animated image is displayed for.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    For animated GIFs, this function does not change the number of &apos;image ticks&apos;
+    per second, which is always defined as 100. Instead it adjusts the amount of
+    time that the frame is displayed for to simulate the change in &apos;ticks per
+    second&apos;.
+   </p>
+   <p class="para">
+    For example, for an animated GIF where each frame is displayed for 20 ticks
+    (1/5 of a second) when this method is called on each frame of that image
+    with an argument of <em>50</em> the frames are adjusted to be
+    displayed for 40 ticks (2/5 of a second) and the animation will play at half
+    the original speed.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-imagick.setimagetickspersecond-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">ticks_per_second</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The duration for which an image should be displayed expressed in ticks
+       per second.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-imagick.setimagetickspersecond-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-imagick.setimagetickspersecond-examples">
+    <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-3774">
+    <p><strong>Example #1 Modify animated Gif with <span class="function"><strong>Imagick::setImageTicksPerSecond()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;Modify&#xA0;an&#xA0;animated&#xA0;gif&#xA0;so&#xA0;the&#xA0;first&#xA0;half&#xA0;of&#xA0;the&#xA0;gif&#xA0;is&#xA0;played&#xA0;at&#xA0;half&#xA0;the<br>//&#xA0;speed&#xA0;it&#xA0;currently&#xA0;is,&#xA0;and&#xA0;the&#xA0;second&#xA0;half&#xA0;to&#xA0;be&#xA0;played&#xA0;at&#xA0;double&#xA0;the&#xA0;speed<br>//&#xA0;it&#xA0;currently&#xA0;is<br><br></span><span style="color: #0000BB">$imagick&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">(</span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Test.gif&quot;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$imagick&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">coalesceImages</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">$totalFrames&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getNumberImages</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">$frameCount&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$imagick&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$frame</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setImageTicksPerSecond</span><span style="color: #007700">(</span><span style="color: #0000BB">50</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$frameCount&#xA0;</span><span style="color: #007700">&lt;&#xA0;(</span><span style="color: #0000BB">$totalFrames&#xA0;</span><span style="color: #007700">/&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Modify&#xA0;the&#xA0;frame&#xA0;to&#xA0;be&#xA0;displayed&#xA0;for&#xA0;twice&#xA0;as&#xA0;long&#xA0;as&#xA0;it&#xA0;currently&#xA0;is<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setImageTicksPerSecond</span><span style="color: #007700">(</span><span style="color: #0000BB">50</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Modify&#xA0;the&#xA0;frame&#xA0;to&#xA0;be&#xA0;displayed&#xA0;for&#xA0;half&#xA0;as&#xA0;long&#xA0;as&#xA0;it&#xA0;currently&#xA0;is<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setImageTicksPerSecond</span><span style="color: #007700">(</span><span style="color: #0000BB">200</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$frameCount</span><span style="color: #007700">++;<br>}<br><br></span><span style="color: #0000BB">$imagick&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">deconstructImages</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">writeImages</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;/path/to/save/output.gif&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+

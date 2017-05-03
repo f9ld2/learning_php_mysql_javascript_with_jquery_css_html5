@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::forwardFourierTransformImage</h1>
+  <p class="verinfo">(No version information available, might only be in Git)</p><p class="refpurpose"><span class="refname">Imagick::forwardFourierTransformImage</span> &#x2014; <span class="dc-title">Description</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-imagick.forwardfouriertransformimage-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>Imagick::forwardFourierTransformimage</strong></span>
+    ( <span class="methodparam"><span class="type">bool</span> <code class="parameter">$magnitude</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Implements the discrete Fourier transform (DFT) of the image either as a magnitude / phase or real / imaginary image pair.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-imagick.forwardfouriertransformimage-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">magnitude</code></dt>
+
+    <dd>
+
+     <p class="para">
+      If true, return as magnitude / phase pair otherwise a real / imaginary image pair.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-imagick.forwardfouriertransformimage-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   
+  </p>
+ </div>
+
+
+
+
+
+ <div class="refsect1 examples" id="refsect1-imagick.forwardfouriertransformimage-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+    <div class="example" id="example-3674">
+      <p><strong>Example #1  <span class="function"><strong>Imagick::forwardFourierTransformImage()</strong></span></strong></p>
+      <div class="example-contents">
+      <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//Utility&#xA0;function&#xA0;for&#xA0;forwardTransformImage<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">createMask</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$draw&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;\</span><span style="color: #0000BB">ImagickDraw</span><span style="color: #007700">();<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$draw</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setStrokeOpacity</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$draw</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setStrokeColor</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;rgb(255,&#xA0;255,&#xA0;255)&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$draw</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFillColor</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;rgb(255,&#xA0;255,&#xA0;255)&apos;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//Draw&#xA0;a&#xA0;circle&#xA0;on&#xA0;the&#xA0;y-axis,&#xA0;with&#xA0;it&apos;s&#xA0;centre<br>&#xA0;&#xA0;&#xA0;&#xA0;//at&#xA0;x,&#xA0;y&#xA0;that&#xA0;touches&#xA0;the&#xA0;origin<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$draw</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">circle</span><span style="color: #007700">(</span><span style="color: #0000BB">250</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">250</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">220</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">250</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;\</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">newImage</span><span style="color: #007700">(</span><span style="color: #0000BB">512</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">512</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;black&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawImage</span><span style="color: #007700">(</span><span style="color: #0000BB">$draw</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">gaussianBlurImage</span><span style="color: #007700">(</span><span style="color: #0000BB">20</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">20</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">autoLevelImage</span><span style="color: #007700">();<br><br>&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">;<br>}<br><br><br>function&#xA0;</span><span style="color: #0000BB">forwardFourierTransformImage</span><span style="color: #007700">(</span><span style="color: #0000BB">$imagePath</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;\</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">(</span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #0000BB">$imagePath</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">resizeimage</span><span style="color: #007700">(</span><span style="color: #0000BB">512</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">512</span><span style="color: #007700">,&#xA0;\</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">::</span><span style="color: #0000BB">FILTER_LANCZOS</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$mask&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">createMask</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">forwardFourierTransformImage</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;@</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setimageindex</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$magnitude&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getimage</span><span style="color: #007700">();<br><br>&#xA0;&#xA0;&#xA0;&#xA0;@</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setimageindex</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagickPhase&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$imagick</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getimage</span><span style="color: #007700">();<br><br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$imagickPhase</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">compositeImage</span><span style="color: #007700">(</span><span style="color: #0000BB">$mask</span><span style="color: #007700">,&#xA0;\</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">::</span><span style="color: #0000BB">COMPOSITE_MULTIPLY</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">false</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$output&#xA0;</span><span style="color: #007700">=&#xA0;clone&#xA0;</span><span style="color: #0000BB">$imagickPhase</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$output</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setimageformat</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;png&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Content-Type:&#xA0;image/png&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$output</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageBlob</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$magnitude</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">inverseFourierTransformImage</span><span style="color: #007700">(</span><span style="color: #0000BB">$imagickPhase</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$magnitude</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setimageformat</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;png&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Content-Type:&#xA0;image/png&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$magnitude</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageBlob</span><span style="color: #007700">();<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+    </div>
+  </p>
+ </div>
+
+

@@ -1,0 +1,115 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">mysqlnd_qc_set_is_select</h1>
+  <p class="verinfo">(PECL mysqlnd_qc &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">mysqlnd_qc_set_is_select</span> &#x2014; <span class="dc-title">Installs a callback which decides whether a statement is cached</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.mysqlnd-qc-set-is-select-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> 
+   <span class="methodname"><strong>mysqlnd_qc_set_is_select</strong></span>
+    ( <span class="methodparam">
+    <span class="type">string</span>
+     <code class="parameter">$callback</code>
+   </span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Installs a callback which decides whether a statement is cached.
+  </p>
+  <p class="para">
+   There are several ways of hinting PELC/mysqlnd_qc to cache a query.
+   By default, PECL/mysqlnd_qc attempts to cache a if caching of all statements
+   is enabled or the query string begins with a certain SQL hint.
+   The plugin internally calls a function named <em>is_select()</em>
+   to find out. This internal function can be replaced with a user-defined callback.
+   Then, the user-defined callback is responsible to decide whether the plugin
+   attempts to cache a statement. Because the internal function is replaced
+   with the callback, the callback gains full control. The callback is free
+   to ignore the configuration setting <em>mysqlnd_qc.cache_by_default</em>
+   and SQL hints.
+  </p>
+  <p class="para">
+   The callback is invoked for every statement inspected by the plugin.
+   It is given the statements string as a parameter. The callback returns
+   <strong><code>FALSE</code></strong> if the statement shall not be cached. It returns <strong><code>TRUE</code></strong> to
+   make the plugin attempt to cache the statements result set, if any.
+   A so-created cache entry is given the default TTL set with the
+   PHP configuration directive <em>mysqlnd_qc.ttl</em>.
+   If a different TTL shall be used, the callback returns a numeric
+   value to be used as the TTL.
+  </p>
+  <p class="para">
+   The internal <em>is_select</em> function is part of the internal
+   cache storage handler interface. Thus, a user-defined storage handler
+   offers the same capabilities.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mysqlnd-qc-set-is-select-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mysqlnd-qc-set-is-select-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mysqlnd-qc-set-is-select-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-2112">
+   <p><strong>Example #1 <span class="function"><strong>mysqlnd_qc_set_is_select()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;callback&#xA0;which&#xA0;decides&#xA0;if&#xA0;query&#xA0;is&#xA0;cached&#xA0;*/<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">is_select</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;static&#xA0;</span><span style="color: #0000BB">$patterns&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;true&#xA0;-&#xA0;use&#xA0;default&#xA0;from&#xA0;mysqlnd_qc.ttl&#xA0;*/<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;@SELECT\s+.*\s+FROM\s+test@ismU&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;3&#xA0;-&#xA0;use&#xA0;TTL&#xA0;=&#xA0;3&#xA0;seconds&#xA0;*/<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;@SELECT\s+.*\s+FROM\s+news@ismU&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">3<br>&#xA0;&#xA0;</span><span style="color: #007700">);<br>&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;check&#xA0;if&#xA0;query&#xA0;does&#xA0;match&#xA0;pattern&#xA0;*/<br>&#xA0;&#xA0;</span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$patterns&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$pattern&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$ttl</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #0000BB">$pattern</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;is_select(%45s):&#xA0;cache\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$ttl</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;}<br>&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;is_select(%45s):&#xA0;do&#xA0;not&#xA0;cache\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br>&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">mysqlnd_qc_set_is_select</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;is_select&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Connect,&#xA0;create&#xA0;and&#xA0;populate&#xA0;test&#xA0;table&#xA0;*/<br></span><span style="color: #0000BB">$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;host&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;schema&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;DROP&#xA0;TABLE&#xA0;IF&#xA0;EXISTS&#xA0;test&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;test(id&#xA0;INT)&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;INSERT&#xA0;INTO&#xA0;test(id)&#xA0;VALUES&#xA0;(1),&#xA0;(2),&#xA0;(3)&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;cache&#xA0;put&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;id&#xA0;FROM&#xA0;test&#xA0;WHERE&#xA0;id&#xA0;=&#xA0;1&quot;</span><span style="color: #007700">);<br></span><span style="color: #FF8000">/*&#xA0;cache&#xA0;hit&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;id&#xA0;FROM&#xA0;test&#xA0;WHERE&#xA0;id&#xA0;=&#xA0;1&quot;</span><span style="color: #007700">);<br></span><span style="color: #FF8000">/*&#xA0;cache&#xA0;put&#xA0;*/<br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;test&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above examples will output:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+is_select(                    DROP TABLE IF EXISTS test): do not cache
+is_select(                    CREATE TABLE test(id INT)): do not cache
+is_select(    INSERT INTO test(id) VALUES (1), (2), (3)): do not cache
+is_select(             SELECT id FROM test WHERE id = 1): cache
+is_select(             SELECT id FROM test WHERE id = 1): cache
+is_select(                           SELECT * FROM test): cache
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mysqlnd-qc-set-is-select-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <a href="mysqlnd-qc.configuration.html" class="link">Runtime configuration</a>
+    </li>
+    <li class="member">
+     <a href="mysqlnd-qc.configuration.html#ini.mysqlnd-qc.ttl" class="link">mysqlnd_qc.ttl</a>
+    </li>
+    <li class="member">
+     <a href="mysqlnd-qc.configuration.html#ini.mysqlnd-qc.cache-by-default" class="link">mysqlnd_qc.cache_by_default</a>
+    </li>
+    <li class="member">
+     <span class="function"><a href="function.mysqlnd-qc-set-user-handlers.html" class="function" rel="rdfs-seeAlso">mysqlnd_qc_set_user_handlers()</a> - Sets the callback functions for a user-defined procedural storage handler</span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+

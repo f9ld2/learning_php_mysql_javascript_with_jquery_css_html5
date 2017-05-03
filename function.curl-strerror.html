@@ -1,0 +1,89 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">curl_strerror</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.5.0, PHP 7)</p><p class="refpurpose"><span class="refname">curl_strerror</span> &#x2014; <span class="dc-title">Return string describing the given error code</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.curl-strerror-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>curl_strerror</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$errornum</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns a text error message describing the given error code.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.curl-strerror-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">errornum</code></dt>
+
+    <dd>
+
+     <p class="para">
+      One of the <a href="http://curl.haxx.se/libcurl/c/libcurl-errors.html" class="link external">&#xBB;&#xA0;cURL error codes</a> constants.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.curl-strerror-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns error description or <strong><code>NULL</code></strong> for invalid error code.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.curl-strerror-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4812">
+    <p><strong>Example #1 <span class="function"><a href="function.curl-errno.html" class="function">curl_errno()</a></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;a&#xA0;curl&#xA0;handle&#xA0;with&#xA0;a&#xA0;mispelled&#xA0;protocol&#xA0;in&#xA0;URL<br></span><span style="color: #0000BB">$ch&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">curl_init</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;htp://example.com/&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Send&#xA0;request<br></span><span style="color: #0000BB">curl_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Check&#xA0;for&#xA0;errors&#xA0;and&#xA0;display&#xA0;the&#xA0;error&#xA0;message<br></span><span style="color: #007700">if(</span><span style="color: #0000BB">$errno&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">curl_errno</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$error_message&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">curl_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">$errno</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;cURL&#xA0;error&#xA0;(</span><span style="color: #007700">{</span><span style="color: #0000BB">$errno</span><span style="color: #007700">}</span><span style="color: #DD0000">):\n&#xA0;</span><span style="color: #007700">{</span><span style="color: #0000BB">$error_message</span><span style="color: #007700">}</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Close&#xA0;the&#xA0;handle<br></span><span style="color: #0000BB">curl_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+cURL error (1):
+ Unsupported protocol
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.curl-strerror-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.curl-errno.html" class="function" rel="rdfs-seeAlso">curl_errno()</a> - Return the last error number</span></li>
+    <li class="member"><span class="function"><a href="function.curl-error.html" class="function" rel="rdfs-seeAlso">curl_error()</a> - Return a string containing the last error for the current session</span></li>
+    <li class="member"><a href="http://curl.haxx.se/libcurl/c/libcurl-errors.html" class="link external">&#xBB;&#xA0;Curl error codes</a></li>
+   </ul>
+  </p>
+ </div>
+
+

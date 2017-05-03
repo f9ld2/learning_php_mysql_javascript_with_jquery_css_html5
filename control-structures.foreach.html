@@ -1,0 +1,271 @@
+---
+layout: default
+---
+
+ <h2 class="title"><em>foreach</em></h2>
+ <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p>
+ <p class="para">
+  The <em>foreach</em> construct provides an easy way to
+  iterate over arrays. <em>foreach</em> works only on arrays
+  and objects, and will issue an error when you try to use it on a variable
+  with a different data type or an uninitialized variable. There are two
+  syntaxes:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="cdata"><pre>
+foreach (array_expression as $value)
+    statement
+foreach (array_expression as $key =&gt; $value)
+    statement
+</pre></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="simpara">
+  The first form loops over the array given by
+  <em>array_expression</em>. On each iteration, the value of
+  the current element is assigned to <em>$value</em> and
+  the internal array pointer is advanced by one (so on the next
+  iteration, you&apos;ll be looking at the next element).
+ </p>
+ <p class="simpara">
+  The second form will additionally assign the current element&apos;s key to
+  the <em>$key</em> variable on each iteration.
+ </p>
+ <p class="simpara">
+  It is possible to
+  <a href="language.oop5.iterations.html" class="link">customize object iteration</a>.
+ </p>
+ <p class="para">
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    In PHP 5, when <em>foreach</em> first starts executing, the
+    internal array pointer is automatically reset to the first element of the
+    array. This means that you do not need to call <span class="function"><a href="function.reset.html" class="function">reset()</a></span>
+    before a <em>foreach</em> loop.
+   </p>
+   <p class="para">
+    As <em>foreach</em> relies on the internal array pointer in PHP
+    5, changing it within the loop may lead to unexpected behavior.
+   </p>
+   <p class="para">
+    In PHP 7, <em>foreach</em> does not use the internal array
+    pointer.
+   </p>
+  </blockquote></p>
+ <p></p>
+ <p class="para">
+  In order to be able to directly modify array elements within the loop precede
+ <em>$value</em> with &amp;. In that case the value will be assigned by
+ <a href="language.references.html" class="link">reference</a>.
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$arr&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">);<br>foreach&#xA0;(</span><span style="color: #0000BB">$arr&#xA0;</span><span style="color: #007700">as&#xA0;&amp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$value&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$value&#xA0;</span><span style="color: #007700">*&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br>}<br></span><span style="color: #FF8000">//&#xA0;$arr&#xA0;is&#xA0;now&#xA0;array(2,&#xA0;4,&#xA0;6,&#xA0;8)<br></span><span style="color: #007700">unset(</span><span style="color: #0000BB">$value</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;break&#xA0;the&#xA0;reference&#xA0;with&#xA0;the&#xA0;last&#xA0;element<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <div class="warning"><strong class="warning">Warning</strong>
+  <p class="para">
+   Reference of a <em>$value</em> and the last array element
+   remain even after the <em>foreach</em> loop. It is recommended
+   to destroy it by <span class="function"><a href="function.unset.html" class="function">unset()</a></span>.
+   Otherwise you will experience the following behavior:
+  </p>
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$arr&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">);<br>foreach&#xA0;(</span><span style="color: #0000BB">$arr&#xA0;</span><span style="color: #007700">as&#xA0;&amp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$value&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$value&#xA0;</span><span style="color: #007700">*&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br>}<br></span><span style="color: #FF8000">//&#xA0;$arr&#xA0;is&#xA0;now&#xA0;array(2,&#xA0;4,&#xA0;6,&#xA0;8)<br><br>//&#xA0;without&#xA0;an&#xA0;unset($value),&#xA0;$value&#xA0;is&#xA0;still&#xA0;a&#xA0;reference&#xA0;to&#xA0;the&#xA0;last&#xA0;item:&#xA0;$arr[3]<br><br></span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$arr&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$key&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;$arr[3]&#xA0;will&#xA0;be&#xA0;updated&#xA0;with&#xA0;each&#xA0;value&#xA0;from&#xA0;$arr...<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">{</span><span style="color: #0000BB">$key</span><span style="color: #007700">}</span><span style="color: #DD0000">&#xA0;=&gt;&#xA0;</span><span style="color: #007700">{</span><span style="color: #0000BB">$value</span><span style="color: #007700">}</span><span style="color: #DD0000">&#xA0;&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">);<br>}<br></span><span style="color: #FF8000">//&#xA0;...until&#xA0;ultimately&#xA0;the&#xA0;second-to-last&#xA0;value&#xA0;is&#xA0;copied&#xA0;onto&#xA0;the&#xA0;last&#xA0;value<br><br>//&#xA0;output:<br>//&#xA0;0&#xA0;=&gt;&#xA0;2&#xA0;Array&#xA0;(&#xA0;[0]&#xA0;=&gt;&#xA0;2,&#xA0;[1]&#xA0;=&gt;&#xA0;4,&#xA0;[2]&#xA0;=&gt;&#xA0;6,&#xA0;[3]&#xA0;=&gt;&#xA0;2&#xA0;)<br>//&#xA0;1&#xA0;=&gt;&#xA0;4&#xA0;Array&#xA0;(&#xA0;[0]&#xA0;=&gt;&#xA0;2,&#xA0;[1]&#xA0;=&gt;&#xA0;4,&#xA0;[2]&#xA0;=&gt;&#xA0;6,&#xA0;[3]&#xA0;=&gt;&#xA0;4&#xA0;)<br>//&#xA0;2&#xA0;=&gt;&#xA0;6&#xA0;Array&#xA0;(&#xA0;[0]&#xA0;=&gt;&#xA0;2,&#xA0;[1]&#xA0;=&gt;&#xA0;4,&#xA0;[2]&#xA0;=&gt;&#xA0;6,&#xA0;[3]&#xA0;=&gt;&#xA0;6&#xA0;)<br>//&#xA0;3&#xA0;=&gt;&#xA0;6&#xA0;Array&#xA0;(&#xA0;[0]&#xA0;=&gt;&#xA0;2,&#xA0;[1]&#xA0;=&gt;&#xA0;4,&#xA0;[2]&#xA0;=&gt;&#xA0;6,&#xA0;[3]&#xA0;=&gt;&#xA0;6&#xA0;)<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+ <p class="para">
+  Before PHP 5.5.0, referencing <em>$value</em> is only possible if the iterated array can be
+  referenced (i.e. if it is a variable). The following code works only as of PHP 5.5.0:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">foreach&#xA0;(array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">)&#xA0;as&#xA0;&amp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$value&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$value&#xA0;</span><span style="color: #007700">*&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    <em>foreach</em> does not support the ability to
+    suppress error messages using &apos;@&apos;.
+   </p>
+  </blockquote></p>
+ <p></p>
+ <p class="para">
+  You may have noticed that the following are functionally
+  identical:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$arr&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;one&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;two&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;three&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">reset</span><span style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">);<br>while&#xA0;(list(,&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;=&#xA0;</span><span style="color: #0000BB">each</span><span style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Value:&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #DD0000">&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$arr&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Value:&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #DD0000">&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  The following are also functionally identical:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$arr&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;one&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;two&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;three&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">reset</span><span style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">);<br>while&#xA0;(list(</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;=&#xA0;</span><span style="color: #0000BB">each</span><span style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Key:&#xA0;</span><span style="color: #0000BB">$key</span><span style="color: #DD0000">;&#xA0;Value:&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #DD0000">&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$arr&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$key&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Key:&#xA0;</span><span style="color: #0000BB">$key</span><span style="color: #DD0000">;&#xA0;Value:&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #DD0000">&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  Some more examples to demonstrate usage:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;foreach&#xA0;example&#xA0;1:&#xA0;value&#xA0;only&#xA0;*/<br><br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">17</span><span style="color: #007700">);<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$v</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Current&#xA0;value&#xA0;of&#xA0;\$a:&#xA0;</span><span style="color: #0000BB">$v</span><span style="color: #DD0000">.\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;foreach&#xA0;example&#xA0;2:&#xA0;value&#xA0;(with&#xA0;its&#xA0;manual&#xA0;access&#xA0;notation&#xA0;printed&#xA0;for&#xA0;illustration)&#xA0;*/<br><br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">17</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">/*&#xA0;for&#xA0;illustrative&#xA0;purposes&#xA0;only&#xA0;*/<br><br></span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$v</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;\$a[</span><span style="color: #0000BB">$i</span><span style="color: #DD0000">]&#xA0;=&gt;&#xA0;</span><span style="color: #0000BB">$v</span><span style="color: #DD0000">.\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++;<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;foreach&#xA0;example&#xA0;3:&#xA0;key&#xA0;and&#xA0;value&#xA0;*/<br><br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;one&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;two&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;three&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;seventeen&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">17<br></span><span style="color: #007700">);<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$k&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$v</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;\$a[</span><span style="color: #0000BB">$k</span><span style="color: #DD0000">]&#xA0;=&gt;&#xA0;</span><span style="color: #0000BB">$v</span><span style="color: #DD0000">.\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;foreach&#xA0;example&#xA0;4:&#xA0;multi-dimensional&#xA0;arrays&#xA0;*/<br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;array();<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">0</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;a&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">1</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;b&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">][</span><span style="color: #0000BB">0</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;y&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">][</span><span style="color: #0000BB">1</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;z&quot;</span><span style="color: #007700">;<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$v1</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;foreach&#xA0;(</span><span style="color: #0000BB">$v1&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$v2</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$v2</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;foreach&#xA0;example&#xA0;5:&#xA0;dynamic&#xA0;arrays&#xA0;*/<br><br></span><span style="color: #007700">foreach&#xA0;(array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">)&#xA0;as&#xA0;</span><span style="color: #0000BB">$v</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$v</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+
+ <div class="sect2" id="control-structures.foreach.list">
+  <h3 class="title">Unpacking nested arrays with list()</h3>
+  <p class="verinfo">(PHP 5 &gt;= 5.5.0, PHP 7)</p>
+
+  <p class="para">
+   PHP 5.5 added the ability to iterate over an array of arrays and unpack the
+   nested array into loop variables by providing a <span class="function"><a href="function.list.html" class="function">list()</a></span>
+   as the value.
+  </p>
+
+  <p class="para">
+   For example:
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$array&#xA0;</span><span style="color: #007700">=&#xA0;[<br>&#xA0;&#xA0;&#xA0;&#xA0;[</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">],<br>&#xA0;&#xA0;&#xA0;&#xA0;[</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">],<br>];<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">as&#xA0;list(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$b</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;$a&#xA0;contains&#xA0;the&#xA0;first&#xA0;element&#xA0;of&#xA0;the&#xA0;nested&#xA0;array,<br>&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;and&#xA0;$b&#xA0;contains&#xA0;the&#xA0;second&#xA0;element.<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;A:&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #DD0000">;&#xA0;B:&#xA0;</span><span style="color: #0000BB">$b</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <p class="para">The above example will output:</p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+A: 1; B: 2
+A: 3; B: 4
+</pre></div>
+    </div>
+   </div>
+  </p>
+
+  <p class="para">
+   You can provide fewer elements in the <span class="function"><a href="function.list.html" class="function">list()</a></span> than there
+   are in the nested array, in which case the leftover array values will be
+   ignored:
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$array&#xA0;</span><span style="color: #007700">=&#xA0;[<br>&#xA0;&#xA0;&#xA0;&#xA0;[</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">],<br>&#xA0;&#xA0;&#xA0;&#xA0;[</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">],<br>];<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">as&#xA0;list(</span><span style="color: #0000BB">$a</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Note&#xA0;that&#xA0;there&#xA0;is&#xA0;no&#xA0;$b&#xA0;here.<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$a</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <p class="para">The above example will output:</p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+1
+3
+</pre></div>
+    </div>
+   </div>
+  </p>
+
+  <p class="para">
+   A notice will be generated if there aren&apos;t enough array elements to fill
+   the <span class="function"><a href="function.list.html" class="function">list()</a></span>:
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$array&#xA0;</span><span style="color: #007700">=&#xA0;[<br>&#xA0;&#xA0;&#xA0;&#xA0;[</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">],<br>&#xA0;&#xA0;&#xA0;&#xA0;[</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">],<br>];<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">as&#xA0;list(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$b</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$c</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;A:&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #DD0000">;&#xA0;B:&#xA0;</span><span style="color: #0000BB">$b</span><span style="color: #DD0000">;&#xA0;C:&#xA0;</span><span style="color: #0000BB">$c</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <p class="para">The above example will output:</p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+
+Notice: Undefined offset: 2 in example.php on line 7
+A: 1; B: 2; C: 
+
+Notice: Undefined offset: 2 in example.php on line 7
+A: 3; B: 4; C: 
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ <div class="sect2">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.0.0</td>
+       <td>
+        <em>foreach</em> does not use the internal array pointer anymore.
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.5.0</td>
+       <td>
+        Referencing of <em>$value</em> is supported for expressions.
+        Formerly, only variables have been supported.
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.5.0</td>
+       <td>
+        Unpacking nested arrays with <span class="function"><a href="function.list.html" class="function">list()</a></span> is supported.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+

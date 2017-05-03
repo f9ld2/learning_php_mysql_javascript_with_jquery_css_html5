@@ -1,0 +1,84 @@
+---
+layout: default
+---
+
+
+ <h1 class="title">The Hashable interface</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(No version information available, might only be in Git)</p>
+
+
+  <div class="section" id="ds-hashable.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+        Hashable is an interface which allows objects to be used as keys.
+        It&#x2019;s an alternative to <span class="function"><a href="function.spl-object-hash.html" class="function">spl_object_hash()</a></span>,
+        which determines an object&#x2019;s hash based on its handle:
+        this means that two objects that are considered equal by an implicit
+        definition would not treated as equal because they are not the same instance.
+   </p>
+   <p class="para">
+        <span class="function"><a href="function.hash.html" class="function">hash()</a></span> is used to return a scalar value to be used as
+        the object&apos;s hash value, which determines where it goes in the hash table.
+        While this value does not have to be unique, objects which are equal must
+        have the same hash value.
+    </p>
+    <p class="para">
+        <span class="function"><strong>equals()</strong></span> is used to determine if two objects are equal.
+        It&apos;s guaranteed that the comparing object will be an instance of the same class
+        as the subject.
+    </p>
+
+  </div>
+
+
+  <div class="section" id="ds-hashable.synopsis">
+   <h2 class="title">Interface synopsis</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">Ds\Hashable</strong>
+     </span>
+     {</div>
+
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Methods */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><a href="ds-hashable.equals.html" class="methodname">equals</a></span>
+    ( <span class="methodparam"><span class="type">object</span> <code class="parameter">$obj</code></span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type">mixed</span> <span class="methodname"><a href="ds-hashable.hash.html" class="methodname">hash</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+   }</div>
+
+
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="ds-hashable.equals.html">Ds\Hashable::equals</a> &#x2014; Determines whether an object is equal to the current instance.</li><li><a href="ds-hashable.hash.html">Ds\Hashable::hash</a> &#x2014; Returns a scalar value to be used as a hash value.</li></ul>

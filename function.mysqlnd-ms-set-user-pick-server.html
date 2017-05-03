@@ -1,0 +1,173 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">mysqlnd_ms_set_user_pick_server</h1>
+  <p class="verinfo">(PECL mysqlnd_ms &lt; 1.1.0)</p><p class="refpurpose"><span class="refname">mysqlnd_ms_set_user_pick_server</span> &#x2014; <span class="dc-title">Sets a callback for user-defined read/write splitting</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.mysqlnd-ms-set-user-pick-server-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> 
+   <span class="methodname"><strong>mysqlnd_ms_set_user_pick_server</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$function</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets a callback for user-defined read/write splitting. The plugin will
+   call the callback only if <em>pick[]=user</em> is the default
+   rule for server picking in the relevant section of the plugins configuration
+   file.
+  </p>
+  <p class="para">
+   The plugins built-in read/write query split mechanism decisions can be
+   overwritten in two ways. The easiest way is to prepend the query string
+   with the SQL hints <strong><code>MYSQLND_MS_MASTER_SWITCH</code></strong>,
+   <strong><code>MYSQLND_MS_SLAVE_SWITCH</code></strong> or
+   <strong><code>MYSQLND_MS_LAST_USED_SWITCH</code></strong>. Using SQL hints one can
+   control, for example, whether a query shall be send to the MySQL replication
+   master server or one of the slave servers. By help of SQL hints it is
+   not possible to pick a certain slave server for query execution.
+  </p>
+  <p class="para">
+   Full control on server selection can be gained using a callback function.
+   Use of a callback is recommended to expert users only because the callback
+   has to cover all cases otherwise handled by the plugin.
+  </p>
+  <p class="para">
+   The plugin will invoke the callback function for selecting a server from the
+   lists of configured master and slave servers. The callback function
+   inspects the query to run and picks a server for query execution by returning
+   the hosts URI, as found in the master and slave list.
+  </p>
+  <p class="para">
+   If the lazy connections are enabled and the callback chooses a slave server for
+   which no connection has been established so far and establishing the connection
+   to the slave fails, the plugin will return an error upon the next action
+   on the failed connection, for example, when running a query. It is the
+   responsibility of the application developer to handle the error. For example,
+   the application can re-run the query to trigger a new server selection and
+   callback invocation. If so, the callback must make sure to select
+   a different slave, or check slave availability, before returning to
+   the plugin to prevent an endless loop.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mysqlnd-ms-set-user-pick-server-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">function</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The function to be called. Class methods may also be invoked
+      statically using this function by passing
+      <em>array($classname, $methodname)</em> to this parameter.
+      Additionally class methods of an object instance may be called by passing
+      <em>array($objectinstance, $methodname)</em> to this parameter.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mysqlnd-ms-set-user-pick-server-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Host to run the query on. The host URI is to be taken from the
+   master and slave connection lists passed to the callback function.
+   If callback returns a value neither found in the master nor in the slave
+   connection lists the plugin will fallback to the second pick method configured
+   via the <em>pick[]</em> setting in the plugin configuration file.
+   If not second pick method is given, the plugin falls back to the build-in
+   default pick method for server selection.
+  </p>
+ </div>
+
+
+ <div class="refsect1 unknown-returnvaluet" id="refsect1-function.mysqlnd-ms-set-user-pick-server-unknown-returnvaluet">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    <span class="function"><strong>mysqlnd_ms_set_user_pick_server()</strong></span> is available
+    with PECL mysqlnd_ms &lt; 1.1.0.  It has been replaced by the
+    <em>user</em> filter. Please, check the
+    <a href="mysqlnd-ms.changes-one-one.html" class="link">Change History</a>
+    for upgrade notes.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mysqlnd-ms-set-user-pick-server-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2088">
+    <p><strong>Example #1 <span class="function"><strong>mysqlnd_ms_set_user_pick_server()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">[myapp]
+master[] = localhost
+slave[] = 192.168.2.27:3306
+slave[] = 192.168.78.136:3306
+pick[] = user</pre>
+</div>
+    </div>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">pick_server</span><span style="color: #007700">(</span><span style="color: #0000BB">$connected</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$master</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$slaves</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$last_used</span><span style="color: #007700">)<br>{<br>&#xA0;static&#xA0;</span><span style="color: #0000BB">$slave_idx&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>&#xA0;static&#xA0;</span><span style="color: #0000BB">$num_slaves&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br>&#xA0;if&#xA0;(</span><span style="color: #0000BB">is_null</span><span style="color: #007700">(</span><span style="color: #0000BB">$num_slaves</span><span style="color: #007700">))<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$num_slaves&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$slaves</span><span style="color: #007700">);<br><br>&#xA0;</span><span style="color: #FF8000">/*&#xA0;default:&#xA0;fallback&#xA0;to&#xA0;the&#xA0;plugins&#xA0;build-in&#xA0;logic&#xA0;*/<br>&#xA0;</span><span style="color: #0000BB">$ret&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;User&#xA0;has&#xA0;connected&#xA0;to&#xA0;&apos;%s&apos;...\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$connected</span><span style="color: #007700">);<br>&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;...&#xA0;deciding&#xA0;where&#xA0;to&#xA0;run&#xA0;&apos;%s&apos;\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br><br>&#xA0;</span><span style="color: #0000BB">$where&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysqlnd_ms_query_is_select</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br>&#xA0;switch&#xA0;(</span><span style="color: #0000BB">$where</span><span style="color: #007700">)<br>&#xA0;{<br>&#xA0;&#xA0;case&#xA0;</span><span style="color: #0000BB">MYSQLND_MS_QUERY_USE_MASTER</span><span style="color: #007700">:<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;...&#xA0;using&#xA0;master\n&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$ret&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$master</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br>&#xA0;&#xA0;&#xA0;break;<br>&#xA0;&#xA0;case&#xA0;</span><span style="color: #0000BB">MYSQLND_MS_QUERY_USE_SLAVE</span><span style="color: #007700">:<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;SELECT&#xA0;or&#xA0;SQL&#xA0;hint&#xA0;for&#xA0;using&#xA0;slave&#xA0;*/<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">stristr</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;FROM&#xA0;table_on_slave_a_only&quot;</span><span style="color: #007700">))<br>&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;a&#xA0;table&#xA0;which&#xA0;is&#xA0;only&#xA0;on&#xA0;the&#xA0;first&#xA0;configured&#xA0;slave&#xA0;&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;...&#xA0;access&#xA0;to&#xA0;table&#xA0;available&#xA0;only&#xA0;on&#xA0;slave&#xA0;A&#xA0;detected\n&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$ret&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$slaves</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br>&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;else<br>&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;round&#xA0;robin&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;...&#xA0;some&#xA0;read-only&#xA0;query&#xA0;for&#xA0;a&#xA0;slave\n&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$ret&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$slaves</span><span style="color: #007700">[</span><span style="color: #0000BB">$slave_idx</span><span style="color: #007700">++&#xA0;%&#xA0;</span><span style="color: #0000BB">$num_slaves</span><span style="color: #007700">];<br>&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;break;<br>&#xA0;&#xA0;case&#xA0;</span><span style="color: #0000BB">MYSQLND_MS_QUERY_LAST_USED</span><span style="color: #007700">:<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;...&#xA0;using&#xA0;last&#xA0;used&#xA0;server\n&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$ret&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$last_used</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;break;<br>&#xA0;}<br><br>&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;...&#xA0;ret&#xA0;=&#xA0;&apos;%s&apos;\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ret</span><span style="color: #007700">);<br>&#xA0;return&#xA0;</span><span style="color: #0000BB">$ret</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">mysqlnd_ms_set_user_pick_server</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;pick_server&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;myapp&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;root&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;root&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;test&quot;</span><span style="color: #007700">);<br><br>if&#xA0;(!(</span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;1&#xA0;FROM&#xA0;DUAL&quot;</span><span style="color: #007700">)))<br>&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;[%d]&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br>else<br>&#xA0;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br><br>if&#xA0;(!(</span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;2&#xA0;FROM&#xA0;DUAL&quot;</span><span style="color: #007700">)))<br>&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;[%d]&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br>else<br>&#xA0;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br><br><br>if&#xA0;(!(</span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;table_on_slave_a_only&quot;</span><span style="color: #007700">)))<br>&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;[%d]&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br>else<br>&#xA0;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+User has connected to &apos;myapp&apos;...
+... deciding where to run &apos;SELECT 1 FROM DUAL&apos;
+... some read-only query for a slave
+... ret = &apos;tcp://192.168.2.27:3306&apos;
+User has connected to &apos;myapp&apos;...
+... deciding where to run &apos;SELECT 2 FROM DUAL&apos;
+... some read-only query for a slave
+... ret = &apos;tcp://192.168.78.136:3306&apos;
+User has connected to &apos;myapp&apos;...
+... deciding where to run &apos;SELECT * FROM table_on_slave_a_only&apos;
+... access to table available only on slave A detected
+... ret = &apos;tcp://192.168.2.27:3306&apos;
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mysqlnd-ms-set-user-pick-server-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <span class="function"><a href="function.mysqlnd-ms-query-is-select.html" class="function" rel="rdfs-seeAlso">mysqlnd_ms_query_is_select()</a> - Find whether to send the query to the master, the slave or the last used MySQL server</span>
+    </li>
+    <li class="member">
+     <a href="mysqlnd-ms.filter.html" class="link">Filter concept</a>
+    </li>
+    <li class="member">
+     <a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.filter-user" class="link"><em>user</em></a> filter
+    </li>
+   </ul>
+  </p>
+ </div>
+
+

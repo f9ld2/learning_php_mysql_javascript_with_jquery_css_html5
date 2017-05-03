@@ -1,0 +1,217 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">EventListener::__construct</h1>
+  <p class="verinfo">(PECL event &gt;= 1.2.6-beta)</p><p class="refpurpose"><span class="refname">EventListener::__construct</span> &#x2014; <span class="dc-title">Creates new connection listener associated with an event base</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-eventlistener.construct-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="methodname"><strong>EventListener::__construct</strong></span>
+    ( <span class="methodparam">
+    <span class="type"><a href="class.eventbase.html" class="type EventBase">EventBase</a></span>
+     <code class="parameter">$base</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>
+     <code class="parameter">$cb</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span>
+     <code class="parameter">$data</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$flags</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$backlog</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span>
+     <code class="parameter">$target</code>
+   </span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Creates new connection listener associated with an event base.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-eventlistener.construct-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+
+     <code class="parameter">base</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Associated event base.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+
+     <code class="parameter">cb</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      A
+      <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>
+      that will be invoked when new connection received.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+
+     <code class="parameter">data</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Custom user data attached to
+      <code class="parameter">cb</code>
+      .
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+
+     <code class="parameter">flags</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Bit mask of
+      <em>EventListener::OPT_*</em>
+      constants. See
+      <a href="class.eventlistener.html#eventlistener.constants" class="link">EventListener constants</a>
+      .
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+
+     <code class="parameter">backlog</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Controls the maximum number of pending connections that the network
+      stack should allow to wait in a not-yet-accepted state at any time; see
+      documentation for your system&#x2019;s
+      <em>listen</em>
+      function for more details. If
+      <code class="parameter">backlog</code>
+      is negative, Libevent tries to pick a good value for the
+      <code class="parameter">backlog</code>
+      ; if it is zero, Event assumes that
+      <em>listen</em>
+      is already called on the socket(
+      <code class="parameter">target</code>
+      )
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+
+     <code class="parameter">target</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      May be string, socket resource, or a stream associated with a socket. In
+      case if
+      <code class="parameter">target</code>
+      is a string, the string will be parsed as network address. It will be
+      interpreted as a UNIX domain socket path, if prefixed with
+      <em>&apos;unix:&apos;</em>
+      , e.g.
+      <em>&apos;unix:/tmp/my.sock&apos;</em>
+      .
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-eventlistener.construct-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns
+   <a href="class.eventlistener.html" class="classname">EventListener</a>
+   object representing the event connection listener.
+  </p>
+ </div>
+
+ <div class="refsect1 changelog" id="refsect1-eventlistener.construct-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.5.0</td>
+       <td>
+        UNIX domain sockets&apos; support added.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-eventlistener.construct-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-4855">
+   <p><strong>Example #1 
+    <span class="function"><strong>EventListener::__construct()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*<br>&#xA0;*&#xA0;Simple&#xA0;echo&#xA0;server&#xA0;based&#xA0;on&#xA0;libevent&apos;s&#xA0;connection&#xA0;listener.<br>&#xA0;*<br>&#xA0;*&#xA0;Usage:<br>&#xA0;*&#xA0;1)&#xA0;In&#xA0;one&#xA0;terminal&#xA0;window&#xA0;run:<br>&#xA0;*<br>&#xA0;*&#xA0;$&#xA0;php&#xA0;listener.php&#xA0;9881<br>&#xA0;*<br>&#xA0;*&#xA0;2)&#xA0;In&#xA0;another&#xA0;terminal&#xA0;window&#xA0;open&#xA0;up&#xA0;connection,&#xA0;e.g.:<br>&#xA0;*<br>&#xA0;*&#xA0;$&#xA0;nc&#xA0;127.0.0.1&#xA0;9881<br>&#xA0;*<br>&#xA0;*&#xA0;3)&#xA0;start&#xA0;typing.&#xA0;The&#xA0;server&#xA0;should&#xA0;repeat&#xA0;the&#xA0;input.<br>&#xA0;*/<br><br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">MyListenerConnection&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;</span><span style="color: #0000BB">$bev</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$base</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">__destruct</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bev</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$base</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$fd</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">base&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$base</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bev&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">EventBufferEvent</span><span style="color: #007700">(</span><span style="color: #0000BB">$base</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$fd</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">EventBufferEvent</span><span style="color: #007700">::</span><span style="color: #0000BB">OPT_CLOSE_ON_FREE</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bev</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setCallbacks</span><span style="color: #007700">(array(</span><span style="color: #0000BB">$this</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;echoReadCallback&quot;</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(</span><span style="color: #0000BB">$this</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;echoEventCallback&quot;</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(!</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bev</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">enable</span><span style="color: #007700">(</span><span style="color: #0000BB">Event</span><span style="color: #007700">::</span><span style="color: #0000BB">READ</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Failed&#xA0;to&#xA0;enable&#xA0;READ\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">echoReadCallback</span><span style="color: #007700">(</span><span style="color: #0000BB">$bev</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ctx</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Copy&#xA0;all&#xA0;the&#xA0;data&#xA0;from&#xA0;the&#xA0;input&#xA0;buffer&#xA0;to&#xA0;the&#xA0;output&#xA0;buffer<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Variant&#xA0;#1<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$bev</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">output</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addBuffer</span><span style="color: #007700">(</span><span style="color: #0000BB">$bev</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">input</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;Variant&#xA0;#2&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;/*<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;$input&#xA0;&#xA0;&#xA0;&#xA0;=&#xA0;$bev-&gt;getInput();<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;$output&#xA0;=&#xA0;$bev-&gt;getOutput();<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;$output-&gt;addBuffer($input);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">echoEventCallback</span><span style="color: #007700">(</span><span style="color: #0000BB">$bev</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$events</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ctx</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$events&#xA0;</span><span style="color: #007700">&amp;&#xA0;</span><span style="color: #0000BB">EventBufferEvent</span><span style="color: #007700">::</span><span style="color: #0000BB">ERROR</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Error&#xA0;from&#xA0;bufferevent\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$events&#xA0;</span><span style="color: #007700">&amp;&#xA0;(</span><span style="color: #0000BB">EventBufferEvent</span><span style="color: #007700">::</span><span style="color: #0000BB">EOF&#xA0;</span><span style="color: #007700">|&#xA0;</span><span style="color: #0000BB">EventBufferEvent</span><span style="color: #007700">::</span><span style="color: #0000BB">ERROR</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//$bev-&gt;free();<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">__destruct</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br>class&#xA0;</span><span style="color: #0000BB">MyListener&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;</span><span style="color: #0000BB">$base</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$listener</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$socket</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;</span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;array();<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">__destruct</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;foreach&#xA0;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">conn&#xA0;</span><span style="color: #007700">as&#xA0;&amp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">)&#xA0;</span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$port</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">base&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">EventBase</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(!</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">base</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Couldn&apos;t&#xA0;open&#xA0;event&#xA0;base&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;exit(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Variant&#xA0;#1<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;/*<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;$this-&gt;socket&#xA0;=&#xA0;socket_create(AF_INET,&#xA0;SOCK_STREAM,&#xA0;SOL_TCP);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(!socket_bind($this-&gt;socket,&#xA0;&apos;0.0.0.0&apos;,&#xA0;$port))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;&quot;Unable&#xA0;to&#xA0;bind&#xA0;socket\n&quot;;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;exit(1);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;$this-&gt;listener&#xA0;=&#xA0;new&#xA0;EventListener($this-&gt;base,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array($this,&#xA0;&quot;acceptConnCallback&quot;),&#xA0;$this-&gt;base,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;EventListener::OPT_CLOSE_ON_FREE&#xA0;|&#xA0;EventListener::OPT_REUSEABLE,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;-1,&#xA0;$this-&gt;socket);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*/<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Variant&#xA0;#2<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">listener&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">EventListener</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">base</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(</span><span style="color: #0000BB">$this</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;acceptConnCallback&quot;</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">base</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">EventListener</span><span style="color: #007700">::</span><span style="color: #0000BB">OPT_CLOSE_ON_FREE&#xA0;</span><span style="color: #007700">|&#xA0;</span><span style="color: #0000BB">EventListener</span><span style="color: #007700">::</span><span style="color: #0000BB">OPT_REUSEABLE</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;0.0.0.0:</span><span style="color: #0000BB">$port</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(!</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">listener</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Couldn&apos;t&#xA0;create&#xA0;listener&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;exit(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">listener</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setErrorCallback</span><span style="color: #007700">(array(</span><span style="color: #0000BB">$this</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;accept_error_cb&quot;</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">dispatch</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">base</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dispatch</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;callback&#xA0;is&#xA0;invoked&#xA0;when&#xA0;there&#xA0;is&#xA0;data&#xA0;to&#xA0;read&#xA0;on&#xA0;$bev<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">public&#xA0;function&#xA0;</span><span style="color: #0000BB">acceptConnCallback</span><span style="color: #007700">(</span><span style="color: #0000BB">$listener</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$fd</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$address</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ctx</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;We&#xA0;got&#xA0;a&#xA0;new&#xA0;connection!&#xA0;Set&#xA0;up&#xA0;a&#xA0;bufferevent&#xA0;for&#xA0;it.&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$base&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">base</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">conn</span><span style="color: #007700">[]&#xA0;=&#xA0;new&#xA0;</span><span style="color: #0000BB">MyListenerConnection</span><span style="color: #007700">(</span><span style="color: #0000BB">$base</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$fd</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">accept_error_cb</span><span style="color: #007700">(</span><span style="color: #0000BB">$listener</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ctx</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$base&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">base</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">fprintf</span><span style="color: #007700">(</span><span style="color: #0000BB">STDERR</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;Got&#xA0;an&#xA0;error&#xA0;%d&#xA0;(%s)&#xA0;on&#xA0;the&#xA0;listener.&#xA0;&quot;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">.</span><span style="color: #DD0000">&quot;Shutting&#xA0;down.\n&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">EventUtil</span><span style="color: #007700">::</span><span style="color: #0000BB">getLastSocketErrno</span><span style="color: #007700">(),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">EventUtil</span><span style="color: #007700">::</span><span style="color: #0000BB">getLastSocketError</span><span style="color: #007700">());<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$base</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exit</span><span style="color: #007700">(</span><span style="color: #0000BB">NULL</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">$port&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">9808</span><span style="color: #007700">;<br><br>if&#xA0;(</span><span style="color: #0000BB">$argc&#xA0;</span><span style="color: #007700">&gt;&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$port&#xA0;</span><span style="color: #007700">=&#xA0;(int)&#xA0;</span><span style="color: #0000BB">$argv</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br>}<br>if&#xA0;(</span><span style="color: #0000BB">$port&#xA0;</span><span style="color: #007700">&lt;=&#xA0;</span><span style="color: #0000BB">0&#xA0;</span><span style="color: #007700">||&#xA0;</span><span style="color: #0000BB">$port&#xA0;</span><span style="color: #007700">&gt;&#xA0;</span><span style="color: #0000BB">65535</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;exit(</span><span style="color: #DD0000">&quot;Invalid&#xA0;port&quot;</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$l&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MyListener</span><span style="color: #007700">(</span><span style="color: #0000BB">$port</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$l</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dispatch</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+

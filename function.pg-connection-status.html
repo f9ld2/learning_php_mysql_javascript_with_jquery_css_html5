@@ -1,0 +1,84 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">pg_connection_status</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">pg_connection_status</span> &#x2014; <span class="dc-title">
+   Get connection status
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.pg-connection-status-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>pg_connection_status</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$connection</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>pg_connection_status()</strong></span> returns the status of
+   the specified <code class="parameter">connection</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.pg-connection-status-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">connection</code></dt>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.pg-connection-status-returnvalues">
+  <h3 class="title">Return Values</h3>
+   <p class="para">
+    <strong><code>PGSQL_CONNECTION_OK</code></strong> or 
+    <strong><code>PGSQL_CONNECTION_BAD</code></strong>.
+   </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.pg-connection-status-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2294">
+    <p><strong>Example #1 <span class="function"><strong>pg_connection_status()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>&#xA0;&#xA0;$dbconn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;dbname=publisher&quot;</span><span style="color: #007700">)&#xA0;or&#xA0;die(</span><span style="color: #DD0000">&quot;Could&#xA0;not&#xA0;connect&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$stat&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">pg_connection_status</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">);<br>&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$stat&#xA0;</span><span style="color: #007700">===&#xA0;</span><span style="color: #0000BB">PGSQL_CONNECTION_OK</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Connection&#xA0;status&#xA0;ok&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Connection&#xA0;status&#xA0;bad&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;}&#xA0;&#xA0;&#xA0;&#xA0;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.pg-connection-status-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.pg-connection-busy.html" class="function" rel="rdfs-seeAlso">pg_connection_busy()</a> - Get connection is busy or not</span></li>
+   </ul>
+  </p>
+ </div>
+

@@ -1,0 +1,139 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">SoapVar::SoapVar</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.0.1, PHP 7)</p><p class="refpurpose"><span class="refname">SoapVar::SoapVar</span> &#x2014; <span class="dc-title">SoapVar constructor</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-soapvar.soapvar-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>SoapVar::SoapVar</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$data</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$encoding</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$type_name</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$type_namespace</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$node_name</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$node_namespace</code></span>
+  ]]]] )</div>
+
+  <p class="para rdfs-comment">
+   Constructs a new <a href="class.soapvar.html" class="classname">SoapVar</a> object.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-soapvar.soapvar-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">data</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The data to pass or return.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">encoding</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The encoding ID, one of the <em>XSD_...</em> constants.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">type_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The type name.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">type_namespace</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The type namespace.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">node_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The XML node name.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">node_namespace</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The XML node namespace.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-soapvar.soapvar-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-6212">
+    <p><strong>Example #1 <span class="function"><strong>SoapVar::SoapVar()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">SOAPStruct&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;function&#xA0;</span><span style="color: #0000BB">SOAPStruct</span><span style="color: #007700">(</span><span style="color: #0000BB">$s</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$f</span><span style="color: #007700">)&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">varString&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$s</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">varInt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">varFloat&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$f</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br></span><span style="color: #0000BB">$client&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SoapClient</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&apos;location&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;http://localhost/soap.php&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;uri&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;http://test-uri/&quot;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$struct&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SOAPStruct</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;arg&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">34</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">325.325</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$soapstruct&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SoapVar</span><span style="color: #007700">(</span><span style="color: #0000BB">$struct</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">SOAP_ENC_OBJECT</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;SOAPStruct&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;http://soapinterop.org/xsd&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">echoStruct</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">SoapParam</span><span style="color: #007700">(</span><span style="color: #0000BB">$soapstruct</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;inputStruct&quot;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-soapvar.soapvar-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="soapclient.soapcall.html" class="methodname" rel="rdfs-seeAlso">SoapClient::__soapCall()</a> - Calls a SOAP function</span></li>
+    <li class="member"><span class="methodname"><a href="soapparam.soapparam.html" class="methodname" rel="rdfs-seeAlso">SoapParam::SoapParam()</a> - SoapParam constructor</span></li>
+   </ul>
+  </p>
+ </div>
+
+

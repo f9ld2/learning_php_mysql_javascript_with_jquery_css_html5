@@ -1,0 +1,95 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ingres_escape_string</h1>
+  <p class="verinfo">(PECL ingres &gt;= 2.1.0)</p><p class="refpurpose"><span class="refname">ingres_escape_string</span> &#x2014; <span class="dc-title">Escape special characters for use in a query</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.ingres-escape-string-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>ingres_escape_string</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$link</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$source_string</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>ingres_escape_string()</strong></span> is used to escape certain
+   characters within a string before it is sent to the database server.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ingres-escape-string-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">link</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The connection link identifier
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">source_string</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The source string to be parsed
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ingres-escape-string-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing the escaped data.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ingres-escape-string-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-1302">
+    <p><strong>Example #1 Escape special characters for use in a query</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$link&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ingres_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$last_name&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;O&apos;Connor&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;select&#xA0;*&#xA0;from&#xA0;user_profile&#xA0;where&#xA0;up_last&#xA0;=&#xA0;&apos;%s&apos;&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">ingres_escape_string</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$last_name</span><span style="color: #007700">));<br><br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ingres_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br><br>while&#xA0;(</span><span style="color: #0000BB">$user&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ingres_fetch_object</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">))<br>{<br>&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$user</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">up_first&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&apos;&lt;BR/&gt;&apos;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">ingres_commit</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">ingres_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ingres-escape-string-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ingres-query.html" class="function" rel="rdfs-seeAlso">ingres_query()</a> - Send an SQL query to Ingres</span></li>
+   </ul>
+  </p>
+ </div>
+
+

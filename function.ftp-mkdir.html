@@ -1,0 +1,88 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ftp_mkdir</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ftp_mkdir</span> &#x2014; <span class="dc-title">Creates a directory</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.ftp-mkdir-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>ftp_mkdir</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$ftp_stream</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$directory</code></span>
+   )</div>
+
+  <p class="para rdfs-comment"> 
+   Creates the specified <code class="parameter">directory</code> on the FTP server.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.ftp-mkdir-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">ftp_stream</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The link identifier of the FTP connection.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">directory</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The name of the directory that will be created.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ftp-mkdir-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the newly created directory name on success or <strong><code>FALSE</code></strong> on error.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.ftp-mkdir-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4872">
+    <p><strong>Example #1 <span class="function"><strong>ftp_mkdir()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$dir&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;www&apos;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;set&#xA0;up&#xA0;basic&#xA0;connection<br></span><span style="color: #0000BB">$conn_id&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ftp_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$ftp_server</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;login&#xA0;with&#xA0;username&#xA0;and&#xA0;password<br></span><span style="color: #0000BB">$login_result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ftp_login</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ftp_user_name</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ftp_user_pass</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;try&#xA0;to&#xA0;create&#xA0;the&#xA0;directory&#xA0;$dir<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">ftp_mkdir</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$dir</span><span style="color: #007700">))&#xA0;{<br>&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;successfully&#xA0;created&#xA0;</span><span style="color: #0000BB">$dir</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}&#xA0;else&#xA0;{<br>&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;There&#xA0;was&#xA0;a&#xA0;problem&#xA0;while&#xA0;creating&#xA0;</span><span style="color: #0000BB">$dir</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;close&#xA0;the&#xA0;connection<br></span><span style="color: #0000BB">ftp_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.ftp-mkdir-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ftp-rmdir.html" class="function" rel="rdfs-seeAlso">ftp_rmdir()</a> - Removes a directory</span></li>
+   </ul>
+  </p>
+ </div>
+

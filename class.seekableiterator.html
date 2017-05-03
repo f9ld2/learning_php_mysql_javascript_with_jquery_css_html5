@@ -1,0 +1,112 @@
+---
+layout: default
+---
+
+
+ <h1 class="title">The SeekableIterator interface</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7)</p>
+
+
+  <div class="section" id="seekableiterator.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    The Seekable iterator.
+   </p>
+  </div>
+
+
+  <div class="section" id="seekableiterator.synopsis">
+   <h2 class="title">Interface synopsis</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">SeekableIterator</strong>
+     </span>
+     
+     <span class="ooclass">
+      <span class="modifier">extends</span>
+      <a href="class.iterator.html" class="classname">Iterator</a>
+     </span>
+     {</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Methods */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type">void</span> <span class="methodname"><a href="seekableiterator.seek.html" class="methodname">seek</a></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$position</code></span>
+   )</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Inherited methods */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type">mixed</span> <span class="methodname"><a href="iterator.current.html" class="methodname">Iterator::current</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type">scalar</span> <span class="methodname"><a href="iterator.key.html" class="methodname">Iterator::key</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type">void</span> <span class="methodname"><a href="iterator.next.html" class="methodname">Iterator::next</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type">void</span> <span class="methodname"><a href="iterator.rewind.html" class="methodname">Iterator::rewind</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type">boolean</span> <span class="methodname"><a href="iterator.valid.html" class="methodname">Iterator::valid</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+   }</div>
+
+
+  </div>
+
+  <div class="section" id="seekableiterator.examples">
+   <div class="example" id="example-4497">
+    <p><strong>Example #1 Basic usage</strong></p>
+    <div class="example-contents"><p>
+     This example demonstrates creating a custom <strong class="classname">SeekableIterator</strong>, 
+     seeking to a position and handling an invalid position.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">MySeekableIterator&#xA0;</span><span style="color: #007700">implements&#xA0;</span><span style="color: #0000BB">SeekableIterator&#xA0;</span><span style="color: #007700">{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;</span><span style="color: #0000BB">$position</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;</span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;first&#xA0;element&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;second&#xA0;element&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;third&#xA0;element&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;fourth&#xA0;element&quot;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;Method&#xA0;required&#xA0;for&#xA0;SeekableIterator&#xA0;interface&#xA0;*/<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">public&#xA0;function&#xA0;</span><span style="color: #0000BB">seek</span><span style="color: #007700">(</span><span style="color: #0000BB">$position</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(!isset(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">array</span><span style="color: #007700">[</span><span style="color: #0000BB">$position</span><span style="color: #007700">]))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;throw&#xA0;new&#xA0;</span><span style="color: #0000BB">OutOfBoundsException</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;invalid&#xA0;seek&#xA0;position&#xA0;(</span><span style="color: #0000BB">$position</span><span style="color: #DD0000">)&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">position&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$position</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;Methods&#xA0;required&#xA0;for&#xA0;Iterator&#xA0;interface&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">public&#xA0;function&#xA0;</span><span style="color: #0000BB">rewind</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">position&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">current</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">array</span><span style="color: #007700">[</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">position</span><span style="color: #007700">];<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">key</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">position</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">next</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;++</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">position</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">valid</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;isset(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">array</span><span style="color: #007700">[</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">position</span><span style="color: #007700">]);<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br>try&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$it&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MySeekableIterator</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$it</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">current</span><span style="color: #007700">(),&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$it</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">seek</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$it</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">current</span><span style="color: #007700">(),&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$it</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">seek</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$it</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">current</span><span style="color: #007700">(),&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$it</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">seek</span><span style="color: #007700">(</span><span style="color: #0000BB">10</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>}&#xA0;catch&#xA0;(</span><span style="color: #0000BB">OutOfBoundsException&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">();<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+first element
+third element
+second element
+invalid seek position (10)
+</pre></div>
+    </div>
+   </div>
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="seekableiterator.seek.html">SeekableIterator::seek</a> &#x2014; Seeks to a position</li></ul>

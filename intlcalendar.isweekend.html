@@ -1,0 +1,117 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">IntlCalendar::isWeekend</h1>
+  <p class="verinfo">(PHP 5.5.0, PHP 7, PECL &gt;= 3.0.0a1)</p><p class="refpurpose"><span class="refname">IntlCalendar::isWeekend</span> &#x2014; <span class="dc-title">Whether a certain date/time is in the weekend</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-intlcalendar.isweekend-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Object oriented style
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><strong>IntlCalendar::isWeekend</strong></span>
+    ([ <span class="methodparam"><span class="type">float</span> <code class="parameter">$date</code><span class="initializer"> = NULL</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Procedural style
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>intlcal_is_weekend</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.intlcalendar.html" class="type IntlCalendar">IntlCalendar</a></span> <code class="parameter">$cal</code></span>
+   [, <span class="methodparam"><span class="type">float</span> <code class="parameter">$date</code><span class="initializer"> = NULL</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns whether either the obejct&#x2BC;s current time or the provided timestamp
+   occur during a weekend in this object&#x2BC;s calendar system.
+  </p>
+  <p class="para">
+   This function requires ICU 4.4 or later.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-intlcalendar.isweekend-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">cal</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The IntlCalendar resource.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">date</code></dt>
+
+    <dd>
+
+     <p class="para">
+      An optional timestamp representing the number of milliseconds since the
+      epoch, excluding leap seconds. If <strong><code>NULL</code></strong>, this object&#x2BC;s current time is
+      used instead.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-intlcalendar.isweekend-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A <span class="type"><a href="language.types.boolean.html" class="type bool">bool</a></span> indicating whether the given or this object&#x2BC;s time occurs
+   in a weekend.
+  </p>
+  <p class="para">
+   The value <strong><code>FALSE</code></strong> may also be returned on failure, for instance after giving
+   a date out of bounds on non-lenient mode; use <a href="intl.configuration.html#ini.intl.use-exceptions" class="link">exceptions</a> or query
+   <span class="function"><a href="function.intl-get-error-code.html" class="function">intl_get_error_code()</a></span> to disambiguate.
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 examples" id="refsect1-intlcalendar.isweekend-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2875">
+   <p><strong>Example #1 <span class="function"><strong>IntlCalendar::isWeekend()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;date.timezone&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Europe/Lisbon&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$cal&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">IntlGregorianCalendar</span><span style="color: #007700">(</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;en_US&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #0000BB">2013</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">6&#xA0;</span><span style="color: #FF8000">/*&#xA0;July&#xA0;*/</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;a&#xA0;Sunday&#xA0;<br><br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isWeekend</span><span style="color: #007700">());&#xA0;</span><span style="color: #FF8000">//&#xA0;true<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isWeekend</span><span style="color: #007700">(</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;2013-07-01&#xA0;00:00:00&apos;</span><span style="color: #007700">)));&#xA0;</span><span style="color: #FF8000">//&#xA0;false,&#xA0;Monday<br><br></span><span style="color: #0000BB">$cal&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">IntlGregorianCalendar</span><span style="color: #007700">(</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;ar_SA&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #0000BB">2013</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">6&#xA0;</span><span style="color: #FF8000">/*&#xA0;July&#xA0;*/</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;a&#xA0;Sunday&#xA0;<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isWeekend</span><span style="color: #007700">());&#xA0;</span><span style="color: #FF8000">//&#xA0;false,&#xA0;Sunday&#xA0;not&#xA0;in&#xA0;weekend&#xA0;in&#xA0;this&#xA0;calendar</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-intlcalendar.isweekend-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="intlcalendar.getdayofweektype.html" class="methodname" rel="rdfs-seeAlso">IntlCalendar::getDayOfWeekType()</a> - Tell whether a day is a weekday, weekend or a day that has a transition between the two</span></li>
+    <li class="member"><span class="methodname"><a href="intlcalendar.getweekendtransition.html" class="methodname" rel="rdfs-seeAlso">IntlCalendar::getWeekendTransition()</a> - Get time of the day at which weekend begins or ends</span></li>
+   </ul>
+  </p>
+ </div>
+
+

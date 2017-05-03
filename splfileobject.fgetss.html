@@ -1,0 +1,97 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">SplFileObject::fgetss</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7)</p><p class="refpurpose"><span class="refname">SplFileObject::fgetss</span> &#x2014; <span class="dc-title">Gets line from file and strip HTML tags</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-splfileobject.fgetss-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">string</span> <span class="methodname"><strong>SplFileObject::fgetss</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$allowable_tags</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Identical to <span class="methodname"><a href="splfileobject.fgets.html" class="methodname">SplFileObject::fgets()</a></span>, except that
+   <span class="methodname"><strong>SplFileObject::fgetss()</strong></span> attempts to strip any HTML and PHP tags from
+   the text it reads.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-splfileobject.fgetss-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">allowable_tags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Optional parameter to specify tags which should not be stripped. 
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-splfileobject.fgetss-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing the next line of the file with HTML and PHP
+   code stripped, or <strong><code>FALSE</code></strong> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-splfileobject.fgetss-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4543">
+    <p><strong>Example #1 <span class="methodname"><strong>SplFileObject::fgetss()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$str&#xA0;</span><span style="color: #007700">=&#xA0;&lt;&lt;&lt;EOD<br></span><span style="color: #DD0000">&lt;html&gt;&lt;body&gt;<br>&#xA0;&lt;p&gt;Welcome!&#xA0;Today&#xA0;is&#xA0;the&#xA0;&lt;?php&#xA0;echo(date(&apos;jS&apos;));&#xA0;?&gt;&#xA0;of&#xA0;&lt;?=&#xA0;date(&apos;F&apos;);&#xA0;?&gt;.&lt;/p&gt;<br>&lt;/body&gt;&lt;/html&gt;<br>Text&#xA0;outside&#xA0;of&#xA0;the&#xA0;HTML&#xA0;block.<br></span><span style="color: #007700">EOD;<br></span><span style="color: #0000BB">file_put_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;sample.php&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$file&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SplFileObject</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;sample.php&quot;</span><span style="color: #007700">);<br>while&#xA0;(!</span><span style="color: #0000BB">$file</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">eof</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$file</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fgetss</span><span style="color: #007700">();<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+
+ Welcome! Today is the  of .
+
+Text outside of the HTML block.
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-splfileobject.fgetss-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.fgetss.html" class="function" rel="rdfs-seeAlso">fgetss()</a> - Gets line from file pointer and strip HTML tags</span></li>
+    <li class="member"><span class="methodname"><a href="splfileobject.fgets.html" class="methodname" rel="rdfs-seeAlso">SplFileObject::fgets()</a> - Gets line from file</span></li>
+    <li class="member"><span class="methodname"><a href="splfileobject.fgetc.html" class="methodname" rel="rdfs-seeAlso">SplFileObject::fgetc()</a> - Gets character from file</span></li>
+    <li class="member"><span class="methodname"><a href="splfileobject.current.html" class="methodname" rel="rdfs-seeAlso">SplFileObject::current()</a> - Retrieve current line of file</span></li>
+   </ul>
+  </p>
+ </div>
+
+

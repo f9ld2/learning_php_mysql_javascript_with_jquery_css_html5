@@ -1,0 +1,181 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">mysqli_driver::$report_mode</h1>
+  <h1 class="refname">mysqli_report</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">mysqli_driver::$report_mode</span> -- <span class="refname">mysqli_report</span> &#x2014; <span class="dc-title">Enables or disables internal report functions</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli-driver.report-mode-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Object oriented style</p>
+  <div class="fieldsynopsis">
+   <span class="type">int</span> <var class="varname"><a href="mysqli-driver.report-mode.html">$mysqli_driver-&gt;report_mode</a></var>
+  ;</div>
+
+  <p class="para">Procedural style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><a href="function.mysqli-report.html" class="methodname">mysqli_report</a></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   A function helpful in improving queries during code development and testing. 
+   Depending on the flags, it reports errors from mysqli function calls or 
+   queries that don&apos;t use an index (or use a bad index).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli-driver.report-mode-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <table class="doctable table">
+        <caption><strong>Supported flags</strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Name</th>
+           <th>Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td><strong><code>MYSQLI_REPORT_OFF</code></strong></td>
+           <td>Turns reporting off</td>
+          </tr>
+
+          <tr>
+           <td><strong><code>MYSQLI_REPORT_ERROR</code></strong></td>
+           <td>Report errors from mysqli function calls</td>
+          </tr>
+
+          <tr>
+           <td><strong><code>MYSQLI_REPORT_STRICT</code></strong></td>
+           <td>
+            Throw <a href="class.mysqli-sql-exception.html" class="classname">mysqli_sql_exception</a> for errors
+            instead of warnings
+           </td>
+          </tr>
+
+          <tr>
+           <td><strong><code>MYSQLI_REPORT_INDEX</code></strong></td>
+           <td>Report if no index or bad index was used in a query</td>
+          </tr>
+
+          <tr>
+           <td><strong><code>MYSQLI_REPORT_ALL</code></strong></td>
+           <td>Set all options (report all)</td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli-driver.report-mode-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-mysqli-driver.report-mode-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.3.4</td>
+       <td>
+        Changing the reporting mode is now be per-request, rather than per-process.
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.2.15</td>
+       <td>
+        Changing the reporting mode is now be per-request, rather than per-process.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli-driver.report-mode-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1925">
+   <p><strong>Example #1 Object oriented style</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$mysqli&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;world&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;activate&#xA0;reporting&#xA0;*/<br></span><span style="color: #0000BB">$driver&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">mysqli_driver</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$driver</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">report_mode&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">MYSQLI_REPORT_ALL</span><span style="color: #007700">;<br><br>try&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;this&#xA0;query&#xA0;should&#xA0;report&#xA0;an&#xA0;error&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;Name&#xA0;FROM&#xA0;Nonexistingtable&#xA0;WHERE&#xA0;population&#xA0;&gt;&#xA0;50000&quot;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;this&#xA0;query&#xA0;should&#xA0;report&#xA0;a&#xA0;bad&#xA0;index&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;Name&#xA0;FROM&#xA0;City&#xA0;WHERE&#xA0;population&#xA0;&gt;&#xA0;50000&quot;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br><br>}&#xA0;catch&#xA0;(</span><span style="color: #0000BB">mysqli_sql_exception&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">__toString</span><span style="color: #007700">();<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-1926">
+   <p><strong>Example #2 Procedural style</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;activate&#xA0;reporting&#xA0;*/<br></span><span style="color: #0000BB">mysqli_report</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLI_REPORT_ALL</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$link&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_user&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;my_password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;world&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;this&#xA0;query&#xA0;should&#xA0;report&#xA0;an&#xA0;error&#xA0;*/<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;Name&#xA0;FROM&#xA0;Nonexistingtable&#xA0;WHERE&#xA0;population&#xA0;&gt;&#xA0;50000&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;this&#xA0;query&#xA0;should&#xA0;report&#xA0;a&#xA0;bad&#xA0;index&#xA0;*/<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;Name&#xA0;FROM&#xA0;City&#xA0;WHERE&#xA0;population&#xA0;&gt;&#xA0;50000&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">mysqli_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli-driver.report-mode-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mysqli.debug.html" class="function" rel="rdfs-seeAlso">mysqli_debug()</a> - Performs debugging operations</span></li>
+    <li class="member"><span class="function"><a href="mysqli.dump-debug-info.html" class="function" rel="rdfs-seeAlso">mysqli_dump_debug_info()</a> - Dump debugging information into the log</span></li>
+    <li class="member"><a href="class.mysqli-sql-exception.html" class="classname">mysqli_sql_exception</a></li>
+    <li class="member"><span class="function"><a href="function.set-exception-handler.html" class="function" rel="rdfs-seeAlso">set_exception_handler()</a> - Sets a user-defined exception handler function</span></li>
+    <li class="member"><span class="function"><a href="function.error-reporting.html" class="function" rel="rdfs-seeAlso">error_reporting()</a> - Sets which PHP errors are reported</span></li>
+   </ul>
+  </p>
+ </div>
+
+

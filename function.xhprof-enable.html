@@ -1,0 +1,125 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">xhprof_enable</h1>
+  <p class="verinfo">(PECL xhprof &gt;= 0.9.0)</p><p class="refpurpose"><span class="refname">xhprof_enable</span> &#x2014; <span class="dc-title">Start xhprof profiler</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.xhprof-enable-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>xhprof_enable</strong></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Start xhprof profiling.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.xhprof-enable-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Optional flags to add additional information to the profiling. See the
+       <a href="xhprof.constants.html" class="link">XHprof constants</a> for further
+       information about these flags, e.g., <strong><code>XHPROF_FLAGS_MEMORY</code></strong>
+       to enable memory profiling.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">options</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An <span class="type"><a href="language.types.array.html" class="type array">array</a></span> of optional options, namely, the
+       &apos;ignored_functions&apos; option to pass in functions to be ignored
+       during profiling.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.xhprof-enable-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <strong><code>NULL</code></strong>
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.xhprof-enable-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Version</th>
+      <th>Description</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>0.9.2</td>
+      <td>
+       The optional <code class="parameter">options</code> parameter was added.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+
+ <div class="refsect1 examples" id="refsect1-function.xhprof-enable-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-651">
+   <p><strong>Example #1 <span class="function"><strong>xhprof_enable()</strong></span> examples</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;1.&#xA0;elapsed&#xA0;time&#xA0;+&#xA0;memory&#xA0;+&#xA0;CPU&#xA0;profiling;&#xA0;and&#xA0;ignore&#xA0;built-in&#xA0;(internal)&#xA0;functions<br></span><span style="color: #0000BB">xhprof_enable</span><span style="color: #007700">(</span><span style="color: #0000BB">XHPROF_FLAGS_NO_BUILTINS&#xA0;</span><span style="color: #007700">|&#xA0;</span><span style="color: #0000BB">XHPROF_FLAGS_CPU&#xA0;</span><span style="color: #007700">|&#xA0;</span><span style="color: #0000BB">XHPROF_FLAGS_MEMORY</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;2.&#xA0;elapsed&#xA0;time&#xA0;profiling;&#xA0;ignore&#xA0;call_user_func*&#xA0;during&#xA0;profiling<br></span><span style="color: #0000BB">xhprof_enable</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;array(</span><span style="color: #DD0000">&apos;ignored_functions&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;&#xA0;array(</span><span style="color: #DD0000">&apos;call_user_func&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;call_user_func_array&apos;</span><span style="color: #007700">)));<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br></span><span style="color: #FF8000">//&#xA0;3.&#xA0;elapsed&#xA0;time&#xA0;+&#xA0;memory&#xA0;profiling;&#xA0;ignore&#xA0;call_user_func*&#xA0;during&#xA0;profiling<br></span><span style="color: #0000BB">xhprof_enable</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">XHPROF_FLAGS_MEMORY</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;array(</span><span style="color: #DD0000">&apos;ignored_functions&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;&#xA0;array(</span><span style="color: #DD0000">&apos;call_user_func&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;call_user_func_array&apos;</span><span style="color: #007700">)));<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.xhprof-enable-seealso">
+  <h3 class="title">See Also</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="function"><a href="function.xhprof-disable.html" class="function" rel="rdfs-seeAlso">xhprof_disable()</a> - Stops xhprof profiler</span></li>
+   <li class="member"><span class="function"><a href="function.xhprof-sample-enable.html" class="function" rel="rdfs-seeAlso">xhprof_sample_enable()</a> - Start XHProf profiling in sampling mode</span></li>
+   <li class="member"><span class="function"><a href="function.memory-get-usage.html" class="function" rel="rdfs-seeAlso">memory_get_usage()</a> - Returns the amount of memory allocated to PHP</span></li>
+   <li class="member"><span class="function"><a href="function.getrusage.html" class="function" rel="rdfs-seeAlso">getrusage()</a> - Gets the current resource usages</span></li>
+  </ul>
+ </div>
+

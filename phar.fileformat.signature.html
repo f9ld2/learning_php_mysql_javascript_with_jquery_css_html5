@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+ <h2 class="title">Phar Signature format</h2>
+ <p class="para">
+  Phars containing a signature always have the signature appended to the
+  end of the Phar archive after the loader, manifest, and file contents.
+  The two signature formats supported at this time are MD5 and SHA1.
+ </p>
+ <p class="para">
+  <table class="doctable table">
+   <caption><strong>Signature format</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Length in bytes</th>
+      <th>Description</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>16 or 20 bytes</td>
+      <td>
+       The actual signature, 20 bytes for an SHA1 signature,
+       16 bytes for an MD5 signature, 32 bytes for an SHA256 signature,
+       and 64 bytes for an SHA512 signature.
+      </td>
+     </tr>
+
+     <tr>
+      <td>4 bytes</td>
+      <td>
+       Signature flags.  <em>0x0001</em> is used to
+       define an MD5 signature, <em>0x0002</em> is used
+       to define an SHA1 signature, <em>0x0004</em> is used
+       to define an SHA256 signature, and <em>0x0008</em> is
+       used to define an SHA512 signature.  The SHA256 and SHA512 signature
+       support was introduced with API version 1.1.0.
+      </td>
+     </tr>
+
+     <tr>
+      <td>4 bytes</td>
+      <td>
+       Magic <em>GBMB</em> used to define the presence of a signature.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </p>

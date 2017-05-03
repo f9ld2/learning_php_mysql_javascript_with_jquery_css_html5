@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Lapack::solveLinearEquation</h1>
+  <p class="verinfo">(PECL lapack &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">Lapack::solveLinearEquation</span> &#x2014; <span class="dc-title">Solve a system of linear equations</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-lapack.solvelinearequation-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="type">array</span> <span class="methodname"><strong>Lapack::solveLinearEquation</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$a</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$b</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+    This function computes the solution to the system of linear
+    equations with a square matrix A and multiple
+    right-hand sides B. Solves A * X = B for multiple B. 
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-lapack.solvelinearequation-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">a</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Square matrix of linear equations
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">b</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Right hand side to be solved for
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-lapack.solvelinearequation-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+    Matrix X
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-lapack.solvelinearequation-examples">
+      <h3 class="title">Examples</h3>
+      <p class="para">
+       <div class="example" id="example-3997">
+        <p><strong>Example #1 Using <span class="function"><a href="lapack.singularvalues.html" class="function">Lapack::singularValues()</a></span>:</strong></p>
+        <div class="example-contents">
+    <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>&#xA0;&#xA0;&#xA0;&#xA0;$a&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(&#xA0;</span><span style="color: #0000BB">6.80</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">6.05</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">0.45</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">8.32</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">9.67&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(-</span><span style="color: #0000BB">2.11</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">3.30</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">2.58</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">2.71</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">5.14&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(&#xA0;</span><span style="color: #0000BB">5.66</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">5.36</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">2.70</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">4.35</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">7.26&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(&#xA0;</span><span style="color: #0000BB">5.97</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">4.44</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">0.27</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">7.17</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">6.08&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(&#xA0;</span><span style="color: #0000BB">8.23</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">1.08</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">9.04</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">2.14</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">6.87&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$b&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(&#xA0;&#xA0;</span><span style="color: #0000BB">4.02</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">1.56</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">9.81&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(&#xA0;&#xA0;</span><span style="color: #0000BB">6.19</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">4.00</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">4.09&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(&#xA0;-</span><span style="color: #0000BB">8.22</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">8.67</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">4.57&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(&#xA0;-</span><span style="color: #0000BB">7.57</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">1.75</span><span style="color: #007700">,&#xA0;&#xA0;-</span><span style="color: #0000BB">8.61&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(&#xA0;-</span><span style="color: #0000BB">3.03</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">2.86</span><span style="color: #007700">,&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">8.99&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">Lapack</span><span style="color: #007700">::</span><span style="color: #0000BB">solveLinearEquation</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$b</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+        </div>
+
+       </div>
+      </p>
+     </div>
+
+
+

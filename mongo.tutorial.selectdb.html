@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+   <h2 class="title">Getting a Database</h2>
+   <p class="para">
+    To select a database, use:
+   </p>
+   <div class="example" id="example-1444">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$connection&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$db&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$connection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dbname</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <p class="para">
+    The database does not need to be created in advance, you can create new
+    databases by selecting them.
+   </p>
+   <p class="para">
+    Be careful of typos! You can inadvertently create a new database, which can
+    cause confusing errors (here <em>name</em> is misspelled as
+    <em>anme</em> in the second selection:
+
+    <div class="example" id="example-1445">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$connection&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">$db&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$connection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">mybiglongdbname</span><span style="color: #007700">;<br></span><span style="color: #FF8000">//&#xA0;do&#xA0;some&#xA0;stuff<br><br></span><span style="color: #0000BB">$db&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$connection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">mybiglongdbanme</span><span style="color: #007700">;<br></span><span style="color: #FF8000">//&#xA0;now&#xA0;connected&#xA0;to&#xA0;a&#xA0;different&#xA0;database!<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <div class="section" id="mongo.tutorial.selectdb.seealso">
+    <h2 class="title">See Also</h2>
+    <p class="para">
+     The API documentation on the <a href="class.mongodb.html" class="classname">MongoDB</a> class contains
+     more information about database objects.
+    </p>
+   </div>
+  

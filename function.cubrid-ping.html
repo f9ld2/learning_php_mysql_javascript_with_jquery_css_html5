@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">cubrid_ping</h1>
+  <p class="verinfo">(PECL CUBRID &gt;= 8.3.1)</p><p class="refpurpose"><span class="refname">cubrid_ping</span> &#x2014; <span class="dc-title">Ping a server connection or reconnect if there is no connection</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.cubrid-ping-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>cubrid_ping</strong></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <code class="parameter">$conn_identifier</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Checks whether or not the connection to the server is working.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.cubrid-ping-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">conn_identifier</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The CUBRID connection identifier. If the connection identifier is not
+       specified, the last connection opened by
+       <span class="function"><a href="function.cubrid-connect.html" class="function">cubrid_connect()</a></span> is assumed.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.cubrid-ping-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> if the connection to the server CUBRID server is working, otherwise <strong><code>FALSE</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.cubrid-ping-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-1173">
+    <p><strong>Example #1 <span class="function"><strong>cubrid_ping()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>set_time_limit</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">cubrid_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;localhost&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">33000</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;demodb&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Assuming&#xA0;this&#xA0;query&#xA0;will&#xA0;take&#xA0;a&#xA0;long&#xA0;time&#xA0;*/<br></span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;select&#xA0;*&#xA0;from&#xA0;athlete&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">cubrid_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Query&#xA0;#1&#xA0;failed,&#xA0;exiting.&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;exit;<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;Make&#xA0;sure&#xA0;the&#xA0;connection&#xA0;is&#xA0;still&#xA0;alive,&#xA0;if&#xA0;not,&#xA0;try&#xA0;to&#xA0;reconnect&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">cubrid_ping</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Lost&#xA0;connection,&#xA0;exiting&#xA0;after&#xA0;query&#xA0;#1&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;exit;<br>}<br></span><span style="color: #0000BB">cubrid_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;So&#xA0;the&#xA0;connection&#xA0;is&#xA0;still&#xA0;alive,&#xA0;let&apos;s&#xA0;run&#xA0;another&#xA0;query&#xA0;*/<br></span><span style="color: #0000BB">$sql2&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;select&#xA0;*&#xA0;from&#xA0;code&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$result2&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">cubrid_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql2</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+

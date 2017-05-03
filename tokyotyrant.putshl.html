@@ -1,0 +1,115 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">TokyoTyrant::putShl</h1>
+  <p class="verinfo">(PECL tokyo_tyrant &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">TokyoTyrant::putShl</span> &#x2014; <span class="dc-title">Concatenates to a record</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-tokyotyrant.putshl-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>TokyoTyrant::putShl</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$value</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$width</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Concatenate to a record and shift to left. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-tokyotyrant.putshl-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">key</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A string key
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">value</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The value to concatenate
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">width</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The width of the record
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-tokyotyrant.putshl-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This method returns a reference to the current object and throws TokyoTyrantException on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-tokyotyrant.putshl-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2462">
+    <p><strong>Example #1 <span class="methodname"><strong>TokyoTyrant::putShl()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;Connect&#xA0;to&#xA0;a&#xA0;database&#xA0;on&#xA0;default&#xA0;port&#xA0;*/<br></span><span style="color: #0000BB">$tt&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">TokyoTyrant</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Create&#xA0;a&#xA0;new&#xA0;key&#xA0;*/<br></span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">put</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;key&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;just&#xA0;a&#xA0;long&#xA0;piece&#xA0;of&#xA0;data&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Concatenate&#xA0;and&#xA0;shift&#xA0;to&#xA0;left&#xA0;*/<br></span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">putShl</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;key&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;and&#xA0;string&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">15</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Echo&#xA0;the&#xA0;key&#xA0;*/<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">$tt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;key&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+data and string
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-tokyotyrant.putshl-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="tokyotyrant.put.html" class="methodname" rel="rdfs-seeAlso">TokyoTyrant::put()</a> - Puts values</span></li>
+    <li class="member"><span class="methodname"><a href="tokyotyrant.putkeep.html" class="methodname" rel="rdfs-seeAlso">TokyoTyrant::putKeep()</a> - Puts a record</span></li>
+    <li class="member"><span class="methodname"><a href="tokyotyrant.putcat.html" class="methodname" rel="rdfs-seeAlso">TokyoTyrant::putCat()</a> - Concatenates to a record</span></li>
+   </ul>
+  </p>
+ </div>
+
+

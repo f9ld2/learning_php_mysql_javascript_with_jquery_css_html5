@@ -1,0 +1,116 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">CairoContext::setFontFace</h1>
+  <h1 class="refname">cairo_set_font_face</h1>
+  <p class="verinfo">(PECL cairo &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">CairoContext::setFontFace</span> -- <span class="refname">cairo_set_font_face</span> &#x2014; <span class="dc-title">The setFontFace purpose</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-cairocontext.setfontface-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Object oriented style (method):</p>
+   <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>CairoContext::setFontFace</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.cairofontface.html" class="type CairoFontFace">CairoFontFace</a></span> <code class="parameter">$fontface</code></span>
+    )</div>
+
+  <p class="para rdfs-comment">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>cairo_set_font_face</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.cairocontext.html" class="type CairoContext">CairoContext</a></span> <code class="parameter">$context</code></span>
+   , <span class="methodparam"><span class="type"><a href="class.cairofontface.html" class="type CairoFontFace">CairoFontFace</a></span> <code class="parameter">$fontface</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+  Sets the font-face for a given context.
+  </p>
+ 
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-cairocontext.setfontface-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">context</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A CairoContext object to change the font-face for.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">fontface</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A CairoFontFace object
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-cairocontext.setfontface-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-cairocontext.setfontface-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-3297">
+    <p><strong>Example #1 Object oriented style</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;New&#xA0;surface&#xA0;with&#xA0;white&#xA0;background<br></span><span style="color: #0000BB">$s&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">CairoImageSurface</span><span style="color: #007700">(</span><span style="color: #0000BB">CairoFormat</span><span style="color: #007700">::</span><span style="color: #0000BB">ARGB32</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">300</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">CairoContext</span><span style="color: #007700">(</span><span style="color: #0000BB">$s</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setSourceRgb</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">paint</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Draw&#xA0;some&#xA0;text<br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setSourceRgb</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">moveTo</span><span style="color: #007700">(</span><span style="color: #0000BB">10</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">60</span><span style="color: #007700">);<br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;a&#xA0;new&#xA0;font&#xA0;face<br></span><span style="color: #0000BB">$f&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">CairoToyFontFace</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;sans-serif&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">CairoFontSlant</span><span style="color: #007700">::</span><span style="color: #0000BB">NORMAL</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">CairoFontWeight</span><span style="color: #007700">::</span><span style="color: #0000BB">NORMAL</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFontFace</span><span style="color: #007700">(</span><span style="color: #0000BB">$f</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFontSize</span><span style="color: #007700">(</span><span style="color: #0000BB">30</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">showText</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Hello,&#xA0;World!&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">writeToPng</span><span style="color: #007700">(</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&apos;/setFontFace.png&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-3298">
+    <p><strong>Example #2 Procedural style</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;...&#xA0;*/<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-cairocontext.setfontface-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="cairocontext.setfontsize.html" class="methodname" rel="rdfs-seeAlso">CairoContext::setFontSize()</a> - The setFontSize purpose</span></li>
+    <li class="member"><span class="methodname"><a href="cairocontext.showtext.html" class="methodname" rel="rdfs-seeAlso">CairoContext::showText()</a> - The showText purpose</span></li>
+   </ul>
+  </p>
+ </div>
+
+

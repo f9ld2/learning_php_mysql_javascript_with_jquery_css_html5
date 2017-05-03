@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+  <h2 class="title">WinCache Statistics Script</h2>
+  <p class="para">
+   The installation package for WinCache includes a PHP script, 
+   <var class="filename">wincache.php</var>, that can be used to obtain cache information 
+   and statistics.
+  </p>
+  <p class="para">
+   If the WinCache extension was installed via the Microsoft Web Platform Installer, 
+   then this script is located in 
+   <var class="filename">%SystemDrive%\Program Files\IIS\Windows Cache for PHP\</var>. 
+   On a 64-bit version of the Windows Server operating system, the script is located in 
+   <var class="filename">%SystemDrive%\Program Files (x86)\IIS\Windows Cache for PHP</var>. 
+   If the extension was installed manually, then the <var class="filename">wincache.php</var> 
+   will be located in the same folder from which the content of the installation package was extracted.
+  </p>
+  <p class="para">
+   To use <var class="filename">wincache.php</var>, copy it into a root folder of a Web site or 
+   into any subfolder. To protect the script, open it in any text editor and replace the values for 
+   <em class="emphasis">USERNAME</em> and <em class="emphasis">PASSWORD</em> constants. 
+   If any other IIS authentication is enabled on the server, then
+   follow the instructions in the comments:
+   <div class="example" id="example-618">
+    <p><strong>Example #1 Authentication configuration for <var class="filename">wincache.php</var></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/**<br>&#xA0;*&#xA0;========================&#xA0;CONFIGURATION&#xA0;SETTINGS&#xA0;==============================<br>&#xA0;*&#xA0;If&#xA0;you&#xA0;do&#xA0;not&#xA0;want&#xA0;to&#xA0;use&#xA0;authentication&#xA0;for&#xA0;this&#xA0;page,&#xA0;set&#xA0;USE_AUTHENTICATION&#xA0;to&#xA0;0.<br>&#xA0;*&#xA0;If&#xA0;you&#xA0;use&#xA0;authentication&#xA0;then&#xA0;replace&#xA0;the&#xA0;default&#xA0;password.<br>&#xA0;*/<br></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;USE_AUTHENTICATION&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;USERNAME&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;wincache&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;PASSWORD&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;wincache&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/**<br>&#xA0;*&#xA0;The&#xA0;Basic&#xA0;PHP&#xA0;authentication&#xA0;will&#xA0;work&#xA0;only&#xA0;when&#xA0;IIS&#xA0;is&#xA0;configured&#xA0;to&#xA0;support&#xA0;<br>&#xA0;*&#xA0;Anonymous&#xA0;Authentication&apos;&#xA0;and&#xA0;nothing&#xA0;else.&#xA0;If&#xA0;IIS&#xA0;is&#xA0;configured&#xA0;to&#xA0;support/use<br>&#xA0;*&#xA0;any&#xA0;other&#xA0;kind&#xA0;of&#xA0;authentication&#xA0;like&#xA0;Basic/Negotiate/Digest&#xA0;etc,&#xA0;this&#xA0;will&#xA0;not&#xA0;work.<br>&#xA0;*&#xA0;In&#xA0;that&#xA0;case&#xA0;use&#xA0;the&#xA0;array&#xA0;below&#xA0;to&#xA0;define&#xA0;the&#xA0;names&#xA0;of&#xA0;users&#xA0;in&#xA0;your&#xA0;<br>&#xA0;*&#xA0;domain/network/workgroup&#xA0;which&#xA0;you&#xA0;want&#xA0;to&#xA0;grant&#xA0;access&#xA0;to.<br>&#xA0;*/<br></span><span style="color: #0000BB">$user_allowed&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&apos;DOMAIN\user1&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;DOMAIN\user2&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;DOMAIN\user3&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/**<br>&#xA0;*&#xA0;If&#xA0;the&#xA0;array&#xA0;contains&#xA0;string&#xA0;&apos;all&apos;,&#xA0;then&#xA0;all&#xA0;the&#xA0;users&#xA0;authenticated&#xA0;by&#xA0;IIS<br>&#xA0;*&#xA0;will&#xA0;have&#xA0;access&#xA0;to&#xA0;the&#xA0;page.&#xA0;Uncomment&#xA0;the&#xA0;below&#xA0;line&#xA0;and&#xA0;comment&#xA0;above&#xA0;line<br>&#xA0;*&#xA0;to&#xA0;grant&#xA0;access&#xA0;to&#xA0;all&#xA0;users&#xA0;who&#xA0;gets&#xA0;authenticated&#xA0;by&#xA0;IIS.<br>&#xA0;*/<br>/*&#xA0;$user_allowed&#xA0;=&#xA0;array(&apos;all&apos;);&#xA0;*/<br><br>/**&#xA0;=====================&#xA0;END&#xA0;OF&#xA0;CONFIGURATION&#xA0;SETTINGS&#xA0;==========================&#xA0;*/<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <span class="simpara">
+     Always protect the <var class="filename">wincache.php</var> script by using either 
+     the built-in authentication or the server&apos;s authentication mechanism. 
+     Leaving this script unprotected may compromise the security of your 
+     web application and web server.
+    </span>
+   </p></blockquote>
+  </p>
+ 

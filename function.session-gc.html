@@ -1,0 +1,90 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">session_gc</h1>
+  <p class="verinfo">(PHP 7 &gt;= 7.1.0)</p><p class="refpurpose"><span class="refname">session_gc</span> &#x2014; <span class="dc-title">Perform session data garbage collection</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.session-gc-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>session_gc</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>session_gc()</strong></span> is used to perform session data
+   GC(garbage collection). PHP does probability based session GC by
+   default.
+  </p>
+  <p class="para">
+   Probability based GC works somewhat but it has few problems. 1) Low
+   traffic site&apos;s session data may not be deleted within preferred
+   duration. 2) High traffic site&apos;s may have too frequent GC. 3) GC is
+   performed on the user&apos;s request and the user will experience GC
+   delay.
+  </p>
+  <p class="para">
+   Therefore, it is recommended to execute GC periodically for
+   production systems. e.g. Use &quot;cron&quot; for UNIX like systems.
+   Make sure to disable probability based GC by setting 
+   <a href="session.configuration.html#ini.session.gc-probability" class="link">session.gc_probability</a> 
+   to 0.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.session-gc-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <span class="function"><strong>session_gc()</strong></span> returns number of deleted session
+   data for success, <strong><code>FALSE</code></strong> for failure.
+  </p>
+  <p class="para">
+   Old save handlers do not return number of deleted session data, but 
+   only success/failure flag. If this is the case, number of deleted
+   session data became 1 regardless of actually deleted data.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.session-gc-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-5377">
+    <p><strong>Example #1 <span class="function"><strong>session_gc()</strong></span> example for task managers like cron</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Note:&#xA0;This&#xA0;script&#xA0;should&#xA0;be&#xA0;executed&#xA0;by&#xA0;the&#xA0;same&#xA0;user&#xA0;of&#xA0;web&#xA0;server&#xA0;process.<br><br>//&#xA0;Need&#xA0;active&#xA0;session&#xA0;to&#xA0;initialize&#xA0;session&#xA0;data&#xA0;storage&#xA0;access.<br></span><span style="color: #0000BB">session_start</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Executes&#xA0;GC&#xA0;immediately<br></span><span style="color: #0000BB">session_gc</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Clean&#xA0;up&#xA0;session&#xA0;ID&#xA0;created&#xA0;by&#xA0;session_gc()<br></span><span style="color: #0000BB">session_destroy</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-5378">
+    <p><strong>Example #2 <span class="function"><strong>session_gc()</strong></span> example for user accessible script</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Note:&#xA0;session_gc()&#xA0;is&#xA0;recommended&#xA0;to&#xA0;be&#xA0;used&#xA0;by&#xA0;task&#xA0;manager&#xA0;script,&#xA0;but<br>//&#xA0;it&#xA0;may&#xA0;be&#xA0;used&#xA0;as&#xA0;follows.<br><br>//&#xA0;Used&#xA0;for&#xA0;last&#xA0;GC&#xA0;time&#xA0;check<br></span><span style="color: #0000BB">$gc_time&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;/tmp/php_session_last_gc&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$gc_period&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">1800</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">session_start</span><span style="color: #007700">();<br></span><span style="color: #FF8000">//&#xA0;Execute&#xA0;GC&#xA0;only&#xA0;when&#xA0;GC&#xA0;period&#xA0;elapsed.&#xA0;<br>//&#xA0;i.e.&#xA0;Calling&#xA0;session_gc()&#xA0;every&#xA0;request&#xA0;is&#xA0;waste&#xA0;of&#xA0;resources.&#xA0;<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">file_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$gc_time</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">filemtime</span><span style="color: #007700">(</span><span style="color: #0000BB">$gc_time</span><span style="color: #007700">)&#xA0;&lt;&#xA0;</span><span style="color: #0000BB">time</span><span style="color: #007700">()&#xA0;-&#xA0;</span><span style="color: #0000BB">$gc_period</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">session_gc</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">touch</span><span style="color: #007700">(</span><span style="color: #0000BB">$gc_time</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">touch</span><span style="color: #007700">(</span><span style="color: #0000BB">$gc_time</span><span style="color: #007700">);<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.session-gc-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.session-start.html" class="function" rel="rdfs-seeAlso">session_start()</a> - Start new or resume existing session</span></li>
+    <li class="member"><span class="function"><a href="function.session-destroy.html" class="function" rel="rdfs-seeAlso">session_destroy()</a> - Destroys all data registered to a session</span></li>
+    <li class="member"><a href="session.configuration.html#ini.session.gc-probability" class="link">session.gc_probability</a></li>
+   </ul>
+  </p>
+ </div>
+

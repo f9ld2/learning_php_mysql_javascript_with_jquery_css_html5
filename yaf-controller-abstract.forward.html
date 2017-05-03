@@ -1,0 +1,142 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Yaf_Controller_Abstract::forward</h1>
+  <p class="verinfo">(Yaf &gt;=1.0.0)</p><p class="refpurpose"><span class="refname">Yaf_Controller_Abstract::forward</span> &#x2014; <span class="dc-title">foward to another action</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-yaf-controller-abstract.forward-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>Yaf_Controller_Abstract::forward</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$action</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$paramters</code></span>
+  ] )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>Yaf_Controller_Abstract::forward</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$controller</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$action</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$paramters</code></span>
+  ] )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><span class="type void">void</span></span> <span class="methodname"><strong>Yaf_Controller_Abstract::forward</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$module</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$controller</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$action</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$paramters</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   forward current execution process to other action.
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    </p><p class="para">
+      this method doesn&apos;t switch to the destination action immediately, it
+      will take place after current flow finish.
+    </p>
+   </blockquote></p>
+  <p></p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-yaf-controller-abstract.forward-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">module</code></dt>
+
+    <dd>
+
+     <p class="para">
+       destination module name, if NULL was given, then default module name
+       is assumed
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">controller</code></dt>
+
+    <dd>
+
+     <p class="para">
+       destination controller name
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">action</code></dt>
+
+    <dd>
+
+     <p class="para">
+       destination action name
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">paramters</code></dt>
+
+    <dd>
+
+     <p class="para">
+      calling arguments
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-yaf-controller-abstract.forward-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-4728">
+   <p><strong>Example #1 <span class="function"><strong>Yaf_Controller_Abstract::forward()</strong></span>example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">IndexController&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">Yaf_Controller_Abstract<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">indexAction</span><span style="color: #007700">(){&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$logined&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;login&quot;</span><span style="color: #007700">];<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(!</span><span style="color: #0000BB">$logined</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">forward</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;login&quot;</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;from&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;Index&quot;</span><span style="color: #007700">));&#xA0;</span><span style="color: #FF8000">//&#xA0;forward&#xA0;to&#xA0;login&#xA0;action<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">return&#xA0;</span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;this&#xA0;is&#xA0;important,&#xA0;this&#xA0;finish&#xA0;current&#xA0;working&#xA0;flow<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;and&#xA0;tell&#xA0;the&#xA0;Yaf&#xA0;do&#xA0;not&#xA0;doing&#xA0;auto-render<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;other&#xA0;processes<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">loginAction</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;login,&#xA0;redirected&#xA0;from&#xA0;&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_request</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getParam</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;from&quot;</span><span style="color: #007700">)&#xA0;,&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;action&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+   login, redirected from Index action
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+
+ <div class="refsect1 returnvalues" id="refsect1-yaf-controller-abstract.forward-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+    return FALSE on failure
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-yaf-controller-abstract.forward-seealso">
+  <h3 class="title">See Also</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="methodname"><strong>Yaf_Request_Abstrace::getParam()</strong></span></li>
+  </ul>
+ </div>
+
+

@@ -1,0 +1,58 @@
+---
+layout: default
+---
+
+  <h2 class="title">Checking for <strong><code>E_STRICT</code></strong></h2>
+  <div class="informalexample">
+   <p class="para">
+    If you only have a single script to check, you can pick up
+    <strong><code>E_STRICT</code></strong> errors using PHP&apos;s commandline lint
+    facility:
+   </p>
+   <div class="example-contents"><div class="shellcode"><pre class="shellcode">php -d error_reporting=4095 -l script_to_check.php</pre>
+</div></div>
+
+   <p class="para">
+    For larger projects, the shell script below will achieve the same task:
+   </p>
+   <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">#!/bin/sh
+
+directory=$1
+
+shift
+
+# These extensions are checked
+extensions=&quot;php inc&quot;
+
+check_file ()
+{
+  echo -ne &quot;Doing PHP syntax check on $1 ...&quot;
+
+  # Options:
+  ERRORS=`/www/php/bin/php -d display_errors=1 -d html_errors=0 -d error_prepend_string=&quot; &quot; -d error_append_string=&quot; &quot; -d error_reporting=4095 -l $1 | grep -v &quot;No syntax errors detected&quot;`
+
+  if test -z &quot;$ERRORS&quot;; then
+    echo -ne &quot;OK.&quot;
+  else
+    echo -e &quot;Errors found!\n$ERRORS&quot;
+  fi
+
+  echo
+}
+
+# loop over remaining file args
+for FILE in &quot;$@&quot; ; do
+  for ext in $extensions; do
+     if echo $FILE | grep &quot;\.$ext$&quot; &gt; /dev/null; then
+       if test -f $FILE; then
+         check_file &quot;$FILE&quot;
+       fi
+     fi
+  done
+done</pre>
+</div>
+   </div>
+
+  </div>
+ 

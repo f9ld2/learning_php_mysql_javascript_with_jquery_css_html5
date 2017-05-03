@@ -1,0 +1,141 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ReflectionMethod::__construct</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ReflectionMethod::__construct</span> &#x2014; <span class="dc-title">Constructs a ReflectionMethod</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-reflectionmethod.construct-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>ReflectionMethod::__construct</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$class</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+   )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>ReflectionMethod::__construct</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$class_method</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Constructs a new <a href="class.reflectionmethod.html" class="classname">ReflectionMethod</a>.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-reflectionmethod.construct-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">class</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Classname or object (instance of the class) that contains the method.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Name of the method.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">class_method</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Class name and method name delimited by <em>::</em>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-reflectionmethod.construct-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-reflectionmethod.construct-errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   A <a href="class.reflectionexception.html" class="classname">ReflectionException</a> is thrown if the given method does not exist.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-reflectionmethod.construct-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-6091">
+    <p><strong>Example #1 <span class="methodname"><strong>ReflectionMethod::__construct()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Counter<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;static&#xA0;</span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/**<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;Increment&#xA0;counter<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;@final<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;@static<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;@access&#xA0;&#xA0;public<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;@return&#xA0;&#xA0;int<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">final&#xA0;public&#xA0;static&#xA0;function&#xA0;</span><span style="color: #0000BB">increment</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;++</span><span style="color: #0000BB">self</span><span style="color: #007700">::</span><span style="color: #0000BB">$c</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;an&#xA0;instance&#xA0;of&#xA0;the&#xA0;ReflectionMethod&#xA0;class<br></span><span style="color: #0000BB">$method&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ReflectionMethod</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Counter&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;increment&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Print&#xA0;out&#xA0;basic&#xA0;information<br></span><span style="color: #0000BB">printf</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;===&gt;&#xA0;The&#xA0;%s%s%s%s%s%s%s&#xA0;method&#xA0;&apos;%s&apos;&#xA0;(which&#xA0;is&#xA0;%s)\n&quot;&#xA0;</span><span style="color: #007700">.<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;declared&#xA0;in&#xA0;%s\n&quot;&#xA0;</span><span style="color: #007700">.<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;lines&#xA0;%d&#xA0;to&#xA0;%d\n&quot;&#xA0;</span><span style="color: #007700">.<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;having&#xA0;the&#xA0;modifiers&#xA0;%d[%s]\n&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isInternal</span><span style="color: #007700">()&#xA0;?&#xA0;</span><span style="color: #DD0000">&apos;internal&apos;&#xA0;</span><span style="color: #007700">:&#xA0;</span><span style="color: #DD0000">&apos;user-defined&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isAbstract</span><span style="color: #007700">()&#xA0;?&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;abstract&apos;&#xA0;</span><span style="color: #007700">:&#xA0;</span><span style="color: #DD0000">&apos;&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isFinal</span><span style="color: #007700">()&#xA0;?&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;final&apos;&#xA0;</span><span style="color: #007700">:&#xA0;</span><span style="color: #DD0000">&apos;&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isPublic</span><span style="color: #007700">()&#xA0;?&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;public&apos;&#xA0;</span><span style="color: #007700">:&#xA0;</span><span style="color: #DD0000">&apos;&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isPrivate</span><span style="color: #007700">()&#xA0;?&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;private&apos;&#xA0;</span><span style="color: #007700">:&#xA0;</span><span style="color: #DD0000">&apos;&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isProtected</span><span style="color: #007700">()&#xA0;?&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;protected&apos;&#xA0;</span><span style="color: #007700">:&#xA0;</span><span style="color: #DD0000">&apos;&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isStatic</span><span style="color: #007700">()&#xA0;?&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;static&apos;&#xA0;</span><span style="color: #007700">:&#xA0;</span><span style="color: #DD0000">&apos;&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getName</span><span style="color: #007700">(),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isConstructor</span><span style="color: #007700">()&#xA0;?&#xA0;</span><span style="color: #DD0000">&apos;the&#xA0;constructor&apos;&#xA0;</span><span style="color: #007700">:&#xA0;</span><span style="color: #DD0000">&apos;a&#xA0;regular&#xA0;method&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getFileName</span><span style="color: #007700">(),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getStartLine</span><span style="color: #007700">(),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getEndline</span><span style="color: #007700">(),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getModifiers</span><span style="color: #007700">(),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">implode</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;&#xA0;&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">Reflection</span><span style="color: #007700">::</span><span style="color: #0000BB">getModifierNames</span><span style="color: #007700">(</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getModifiers</span><span style="color: #007700">()))<br>);<br><br></span><span style="color: #FF8000">//&#xA0;Print&#xA0;documentation&#xA0;comment<br></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;---&gt;&#xA0;Documentation:\n&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getDocComment</span><span style="color: #007700">(),&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">//&#xA0;Print&#xA0;static&#xA0;variables&#xA0;if&#xA0;existant<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$statics</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getStaticVariables</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;---&gt;&#xA0;Static&#xA0;variables:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$statics</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Invoke&#xA0;the&#xA0;method<br></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;---&gt;&#xA0;Invocation&#xA0;results&#xA0;in:&#xA0;&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">invoke</span><span style="color: #007700">(</span><span style="color: #0000BB">NULL</span><span style="color: #007700">));<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+===&gt; The user-defined final public static method &apos;increment&apos; (which is a regular method)
+     declared in /Users/philip/cvs/phpdoc/test.php
+     lines 14 to 17
+     having the modifiers 261[final public static]
+---&gt; Documentation:
+ &apos;/**
+     * Increment counter
+     *
+     * @final
+     * @static
+     * @access  public
+     * @return  int
+     */&apos;
+---&gt; Invocation results in: int(1)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-reflectionmethod.construct-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="reflectionmethod.export.html" class="methodname" rel="rdfs-seeAlso">ReflectionMethod::export()</a> - Export a reflection method.</span></li>
+    <li class="member"><a href="language.oop5.decon.html#language.oop5.decon.constructor" class="link">Constructors</a></li>
+   </ul>
+  </p>
+ </div>
+
+

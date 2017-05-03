@@ -1,0 +1,99 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">IntlCalendar::fromDateTime</h1>
+  <p class="verinfo">(PHP 5.5.0, PHP 7, PECL &gt;= 3.0.0a2)</p><p class="refpurpose"><span class="refname">IntlCalendar::fromDateTime</span> &#x2014; <span class="dc-title">Create an IntlCalendar from a DateTime object or string</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-intlcalendar.fromdatetime-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Object oriented style
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="type"><a href="class.intlcalendar.html" class="type IntlCalendar">IntlCalendar</a></span> <span class="methodname"><strong>IntlCalendar::fromDateTime</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$dateTime</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Procedural style
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="class.intlcalendar.html" class="type IntlCalendar">IntlCalendar</a></span> <span class="methodname"><strong>intlcal_from_date_time</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$dateTime</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Creates an <a href="class.intlcalendar.html" class="classname">IntlCalendar</a> object either from a
+   <a href="class.datetime.html" class="classname">DateTime</a> object or from a string from which a
+   <a href="class.datetime.html" class="classname">DateTime</a> object can be built.
+  </p>
+  <p class="para">
+   The new calendar will represent not only the same instant as the
+   given <a href="class.datetime.html" class="classname">DateTime</a> (subject to precision loss for dates
+   very far into the past or future), but also the same timezone (subject to
+   the caveat that different timezone databases will be used, and therefore
+   the results may differ).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-intlcalendar.fromdatetime-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">dateTime</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A <a href="class.datetime.html" class="classname">DateTime</a> object or a <span class="type"><a href="language.types.string.html" class="type string">string</a></span> that
+      can be passed to <span class="function"><a href="datetime.construct.html" class="function">DateTime::__construct()</a></span>.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-intlcalendar.fromdatetime-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The created <a href="class.intlcalendar.html" class="classname">IntlCalendar</a> object or <strong><code>NULL</code></strong> in case of
+   failure. If a <span class="type"><a href="language.types.string.html" class="type string">string</a></span> is passed, any exception that occurs
+   inside the <a href="class.datetime.html" class="classname">DateTime</a> constructor is propagated.
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 examples" id="refsect1-intlcalendar.fromdatetime-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2854">
+   <p><strong>Example #1 <span class="function"><strong>IntlCalendar::fromDateTime()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;date.timezone&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Europe/Lisbon&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//same&#xA0;as&#xA0;IntlCalendar::fromDateTime(new&#xA0;DateTime(...))<br></span><span style="color: #0000BB">$cal1&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">fromDateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;2013-02-28&#xA0;00:01:02&#xA0;Europe/Berlin&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//Note&#xA0;the&#xA0;timezone&#xA0;is&#xA0;Europe/Berlin,&#xA0;not&#xA0;the&#xA0;default&#xA0;Europe/Lisbon<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">formatObject</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal1</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;yyyy&#xA0;MMMM&#xA0;d&#xA0;HH:mm:ss&#xA0;VVVV&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;de_DE&apos;</span><span style="color: #007700">),&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+2013 Februar 28 00:01:02 Deutschland Zeit
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+

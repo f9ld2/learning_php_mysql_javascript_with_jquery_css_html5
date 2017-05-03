@@ -1,0 +1,235 @@
+---
+layout: default
+---
+
+   <h2 class="title">Anonymous functions</h2>
+
+   <p class="simpara">
+    Anonymous functions, also known as <em>closures</em>, allow the
+    creation of functions which have no specified name. They are most useful as
+    the value of <a href="language.pseudo-types.html#language.types.callback" class="link">callback</a>
+    parameters, but they have many other uses.
+   </p>
+   <p class="simpara">
+    Anonymous functions are implemented using the <a href="class.closure.html" class="link">
+    <a href="class.closure.html" class="classname">Closure</a></a> class.
+   </p>
+
+   <div class="example" id="example-163">
+    <p><strong>Example #1 Anonymous function example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">preg_replace_callback</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;~-([a-z])~&apos;</span><span style="color: #007700">,&#xA0;function&#xA0;(</span><span style="color: #0000BB">$match</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">strtoupper</span><span style="color: #007700">(</span><span style="color: #0000BB">$match</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]);<br>},&#xA0;</span><span style="color: #DD0000">&apos;hello-world&apos;</span><span style="color: #007700">);<br></span><span style="color: #FF8000">//&#xA0;outputs&#xA0;helloWorld<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+
+   <p class="simpara">
+    Closures can also be used as the values of variables; PHP automatically 
+    converts such expressions into instances of the
+    <a href="class.closure.html" class="classname">Closure</a> internal class. Assigning a closure to a
+    variable uses the same syntax as any other assignment, including the
+    trailing semicolon:
+   </p>
+
+   <div class="example" id="example-164">
+    <p><strong>Example #2 Anonymous function variable assignment example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$greet&#xA0;</span><span style="color: #007700">=&#xA0;function(</span><span style="color: #0000BB">$name</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Hello&#xA0;%s\r\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$name</span><span style="color: #007700">);<br>};<br><br></span><span style="color: #0000BB">$greet</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;World&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$greet</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;PHP&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   
+   <p class="simpara">
+    Closures may also inherit variables from the parent scope. Any such
+    variables must be passed to the <em>use</em> language construct.
+    From PHP 7.1, these variables must not include <a href="language.variables.predefined.html" class="link">superglobals</a>,
+    <var class="varname"><var class="varname">$this</var></var>, or variables with the same name as a parameter.
+   </p>
+
+   <div class="example" id="example-165">
+    <p><strong>Example #3 Inheriting variables from the parent scope</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$message&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;hello&apos;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;No&#xA0;&quot;use&quot;<br></span><span style="color: #0000BB">$example&#xA0;</span><span style="color: #007700">=&#xA0;function&#xA0;()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$message</span><span style="color: #007700">);<br>};<br></span><span style="color: #0000BB">$example</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Inherit&#xA0;$message<br></span><span style="color: #0000BB">$example&#xA0;</span><span style="color: #007700">=&#xA0;function&#xA0;()&#xA0;use&#xA0;(</span><span style="color: #0000BB">$message</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$message</span><span style="color: #007700">);<br>};<br></span><span style="color: #0000BB">$example</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Inherited&#xA0;variable&apos;s&#xA0;value&#xA0;is&#xA0;from&#xA0;when&#xA0;the&#xA0;function<br>//&#xA0;is&#xA0;defined,&#xA0;not&#xA0;when&#xA0;called<br></span><span style="color: #0000BB">$message&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;world&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$example</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Reset&#xA0;message<br></span><span style="color: #0000BB">$message&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;hello&apos;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;Inherit&#xA0;by-reference<br></span><span style="color: #0000BB">$example&#xA0;</span><span style="color: #007700">=&#xA0;function&#xA0;()&#xA0;use&#xA0;(&amp;</span><span style="color: #0000BB">$message</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$message</span><span style="color: #007700">);<br>};<br></span><span style="color: #0000BB">$example</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;The&#xA0;changed&#xA0;value&#xA0;in&#xA0;the&#xA0;parent&#xA0;scope<br>//&#xA0;is&#xA0;reflected&#xA0;inside&#xA0;the&#xA0;function&#xA0;call<br></span><span style="color: #0000BB">$message&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;world&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$example</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Closures&#xA0;can&#xA0;also&#xA0;accept&#xA0;regular&#xA0;arguments<br></span><span style="color: #0000BB">$example&#xA0;</span><span style="color: #007700">=&#xA0;function&#xA0;(</span><span style="color: #0000BB">$arg</span><span style="color: #007700">)&#xA0;use&#xA0;(</span><span style="color: #0000BB">$message</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$arg&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$message</span><span style="color: #007700">);<br>};<br></span><span style="color: #0000BB">$example</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;hello&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Notice: Undefined variable: message in /example.php on line 6
+NULL
+string(5) &quot;hello&quot;
+string(5) &quot;hello&quot;
+string(5) &quot;hello&quot;
+string(5) &quot;world&quot;
+string(11) &quot;hello world&quot;
+</pre></div>
+    </div>
+   </div>
+
+   <p class="simpara">
+    Inheriting variables from the parent scope is <em class="emphasis">not</em> 
+    the same as using global variables. 
+    Global variables exist in the global scope, which is the same no
+    matter what function is executing. The parent scope of a closure is the
+    function in which the closure was declared (not necessarily the function it
+    was called from). See the following example:
+   </p>
+
+   <div class="example" id="example-166">
+    <p><strong>Example #4 Closures and scoping</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;A&#xA0;basic&#xA0;shopping&#xA0;cart&#xA0;which&#xA0;contains&#xA0;a&#xA0;list&#xA0;of&#xA0;added&#xA0;products<br>//&#xA0;and&#xA0;the&#xA0;quantity&#xA0;of&#xA0;each&#xA0;product.&#xA0;Includes&#xA0;a&#xA0;method&#xA0;which<br>//&#xA0;calculates&#xA0;the&#xA0;total&#xA0;price&#xA0;of&#xA0;the&#xA0;items&#xA0;in&#xA0;the&#xA0;cart&#xA0;using&#xA0;a<br>//&#xA0;closure&#xA0;as&#xA0;a&#xA0;callback.<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Cart<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;const&#xA0;</span><span style="color: #0000BB">PRICE_BUTTER&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">1.00</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;const&#xA0;</span><span style="color: #0000BB">PRICE_MILK&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">3.00</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;const&#xA0;</span><span style="color: #0000BB">PRICE_EGGS&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">6.95</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;protected&#xA0;</span><span style="color: #0000BB">$products&#xA0;</span><span style="color: #007700">=&#xA0;array();<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #0000BB">$product</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$quantity</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">products</span><span style="color: #007700">[</span><span style="color: #0000BB">$product</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #0000BB">$quantity</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">getQuantity</span><span style="color: #007700">(</span><span style="color: #0000BB">$product</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;isset(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">products</span><span style="color: #007700">[</span><span style="color: #0000BB">$product</span><span style="color: #007700">])&#xA0;?&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">products</span><span style="color: #007700">[</span><span style="color: #0000BB">$product</span><span style="color: #007700">]&#xA0;:<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">getTotal</span><span style="color: #007700">(</span><span style="color: #0000BB">$tax</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$total&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0.00</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$callback&#xA0;</span><span style="color: #007700">=<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;function&#xA0;(</span><span style="color: #0000BB">$quantity</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$product</span><span style="color: #007700">)&#xA0;use&#xA0;(</span><span style="color: #0000BB">$tax</span><span style="color: #007700">,&#xA0;&amp;</span><span style="color: #0000BB">$total</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$pricePerItem&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">constant</span><span style="color: #007700">(</span><span style="color: #0000BB">__CLASS__&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;::PRICE_&quot;&#xA0;</span><span style="color: #007700">.<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">strtoupper</span><span style="color: #007700">(</span><span style="color: #0000BB">$product</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$total&#xA0;</span><span style="color: #007700">+=&#xA0;(</span><span style="color: #0000BB">$pricePerItem&#xA0;</span><span style="color: #007700">*&#xA0;</span><span style="color: #0000BB">$quantity</span><span style="color: #007700">)&#xA0;*&#xA0;(</span><span style="color: #0000BB">$tax&#xA0;</span><span style="color: #007700">+&#xA0;</span><span style="color: #0000BB">1.0</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;};<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">array_walk</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">products</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$callback</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">$total</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">$my_cart&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Cart</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;Add&#xA0;some&#xA0;items&#xA0;to&#xA0;the&#xA0;cart<br></span><span style="color: #0000BB">$my_cart</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;butter&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$my_cart</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;milk&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$my_cart</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;eggs&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">6</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Print&#xA0;the&#xA0;total&#xA0;with&#xA0;a&#xA0;5%&#xA0;sales&#xA0;tax.<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #0000BB">$my_cart</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getTotal</span><span style="color: #007700">(</span><span style="color: #0000BB">0.05</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #FF8000">//&#xA0;The&#xA0;result&#xA0;is&#xA0;54.29<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+
+   <div class="example" id="example-167">
+    <p><strong>Example #5 Automatic binding of <em>$this</em></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Test<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">testing</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;function()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;};<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">$object&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Test</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$function&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$object</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">testing</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$function</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+object(Test)#1 (0) {
+}
+</pre></div>
+    </div>
+    <div class="example-contents"><p>Output of the above example in PHP 5.3:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Notice: Undefined variable: this in script.php on line 8
+NULL</pre></div>
+    </div>
+   </div>
+
+   <p class="para">
+    As of PHP 5.4.0, when declared in the context of a class, the current class is
+    automatically bound to it, making <em>$this</em> available
+    inside of the function&apos;s scope. If this automatic binding of the current
+    class is not wanted, then
+    <a href="functions.anonymous.html#functions.anonymous-functions.static" class="link">static anonymous
+    functions</a> may be used instead.
+   </p>
+
+   <div class="sect2" id="functions.anonymous-functions.static">
+    <h3 class="title">Static anonymous functions</h3>
+    <p class="para">
+     As of PHP 5.4, anonymous functions may be declared statically. This
+     prevents them from having the current class automatically bound to
+     them. Objects may also not be bound to them at runtime.
+    </p>
+    <p class="para">
+     <div class="example" id="example-168">
+      <p><strong>Example #6 Attempting to use <em>$this</em> inside a static anonymous function</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Foo<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;function&#xA0;</span><span style="color: #0000BB">__construct</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$func&#xA0;</span><span style="color: #007700">=&#xA0;static&#xA0;function()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;};<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$func</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>};<br>new&#xA0;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="example-contents"><p>The above example will output:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+Notice: Undefined variable: this in %s on line %d
+NULL
+</pre></div>
+      </div>
+     </div>
+    </p>
+
+    <p class="para">
+     <div class="example" id="example-169">
+      <p><strong>Example #7 Attempting to bind an object to a static anonymous function</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$func&#xA0;</span><span style="color: #007700">=&#xA0;static&#xA0;function()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;function&#xA0;body<br></span><span style="color: #007700">};<br></span><span style="color: #0000BB">$func&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$func</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindTo</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">StdClass</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$func</span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="example-contents"><p>The above example will output:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+Warning: Cannot bind an instance to a static closure in %s on line %d
+</pre></div>
+      </div>
+     </div>
+    </p>
+   </div>
+   
+   <div class="sect2">
+    <h3 class="title">Changelog</h3>
+    <p class="para">
+     <table class="doctable informaltable">
+      
+       <thead>
+        <tr>
+         <th>Version</th>
+         <th>Description</th>
+        </tr>
+
+       </thead>
+
+       <tbody class="tbody">
+        <tr>
+         <td>7.1.0</td>
+         <td>
+          Anonymous functions may not close over <a href="language.variables.predefined.html" class="link">superglobals</a>,
+          <var class="varname"><var class="varname">$this</var></var>, or any variable with the same name as a
+          parameter.
+         </td>
+        </tr>
+
+        <tr>
+         <td>5.4.0</td>
+         <td>
+          Anonymous functions may use <var class="varname"><var class="varname">$this</var></var>, as well as be
+          declared statically.
+         </td>
+        </tr>
+
+        <tr>
+         <td>5.3.0</td>
+         <td>
+          Anonymous functions become available.
+         </td>
+        </tr>
+
+       </tbody>
+      
+     </table>
+
+    </p>
+   </div>
+
+   <div class="sect2">
+    <h3 class="title">Notes</h3>
+    <blockquote class="note"><p><strong class="note">Note</strong>: 
+     <span class="simpara">
+      It is possible to use <span class="function"><a href="function.func-num-args.html" class="function">func_num_args()</a></span>,
+      <span class="function"><a href="function.func-get-arg.html" class="function">func_get_arg()</a></span>, and <span class="function"><a href="function.func-get-args.html" class="function">func_get_args()</a></span>
+      from within a closure.
+     </span>
+    </p></blockquote>
+   </div>
+
+  

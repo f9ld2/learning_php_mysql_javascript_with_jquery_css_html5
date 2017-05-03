@@ -1,0 +1,58 @@
+---
+layout: default
+---
+
+   <h2 class="title">Comparing Objects</h2>
+   <p class="para">
+    When using the comparison operator (<em>==</em>), 
+    object variables are compared in a simple manner, namely: Two object
+    instances are equal if they have the same attributes and values (values are compared with <em>==</em>), and are
+    instances of the same class.
+   </p>
+   <p class="para">
+    When using the identity operator (<em>===</em>),
+    object variables are identical if and only if they refer to the same
+    instance of the same class.
+   </p>
+   <p class="para">
+    An example will clarify these rules.
+    <div class="example" id="language.oop5.traits.properties.conflicts">
+     <p><strong>Example #1 Example of object comparison in PHP 5</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">bool2str</span><span style="color: #007700">(</span><span style="color: #0000BB">$bool</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$bool&#xA0;</span><span style="color: #007700">===&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #DD0000">&apos;FALSE&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #DD0000">&apos;TRUE&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br>function&#xA0;</span><span style="color: #0000BB">compareObjects</span><span style="color: #007700">(&amp;</span><span style="color: #0000BB">$o1</span><span style="color: #007700">,&#xA0;&amp;</span><span style="color: #0000BB">$o2</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;o1&#xA0;==&#xA0;o2&#xA0;:&#xA0;&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">bool2str</span><span style="color: #007700">(</span><span style="color: #0000BB">$o1&#xA0;</span><span style="color: #007700">==&#xA0;</span><span style="color: #0000BB">$o2</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;o1&#xA0;!=&#xA0;o2&#xA0;:&#xA0;&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">bool2str</span><span style="color: #007700">(</span><span style="color: #0000BB">$o1&#xA0;</span><span style="color: #007700">!=&#xA0;</span><span style="color: #0000BB">$o2</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;o1&#xA0;===&#xA0;o2&#xA0;:&#xA0;&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">bool2str</span><span style="color: #007700">(</span><span style="color: #0000BB">$o1&#xA0;</span><span style="color: #007700">===&#xA0;</span><span style="color: #0000BB">$o2</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;o1&#xA0;!==&#xA0;o2&#xA0;:&#xA0;&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">bool2str</span><span style="color: #007700">(</span><span style="color: #0000BB">$o1&#xA0;</span><span style="color: #007700">!==&#xA0;</span><span style="color: #0000BB">$o2</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>}<br><br>class&#xA0;</span><span style="color: #0000BB">Flag<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;</span><span style="color: #0000BB">$flag</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;function&#xA0;</span><span style="color: #0000BB">Flag</span><span style="color: #007700">(</span><span style="color: #0000BB">$flag&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flag&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$flag</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br>class&#xA0;</span><span style="color: #0000BB">OtherFlag<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;</span><span style="color: #0000BB">$flag</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;function&#xA0;</span><span style="color: #0000BB">OtherFlag</span><span style="color: #007700">(</span><span style="color: #0000BB">$flag&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flag&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$flag</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">$o&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Flag</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$p&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Flag</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$q&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$o</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$r&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">OtherFlag</span><span style="color: #007700">();<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;Two&#xA0;instances&#xA0;of&#xA0;the&#xA0;same&#xA0;class\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">compareObjects</span><span style="color: #007700">(</span><span style="color: #0000BB">$o</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$p</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;\nTwo&#xA0;references&#xA0;to&#xA0;the&#xA0;same&#xA0;instance\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">compareObjects</span><span style="color: #007700">(</span><span style="color: #0000BB">$o</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$q</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;\nInstances&#xA0;of&#xA0;two&#xA0;different&#xA0;classes\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">compareObjects</span><span style="color: #007700">(</span><span style="color: #0000BB">$o</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$r</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>The above example will output:</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Two instances of the same class
+o1 == o2 : TRUE
+o1 != o2 : FALSE
+o1 === o2 : FALSE
+o1 !== o2 : TRUE
+
+Two references to the same instance
+o1 == o2 : TRUE
+o1 != o2 : FALSE
+o1 === o2 : TRUE
+o1 !== o2 : FALSE
+
+Instances of two different classes
+o1 == o2 : FALSE
+o1 != o2 : TRUE
+o1 === o2 : FALSE
+o1 !== o2 : TRUE
+</pre></div>
+     </div>
+    </div>
+   </p>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    </p><p class="para">
+     Extensions can define own rules for their objects comparison
+     (<em>==</em>).
+    </p>
+   <p></p></blockquote>
+  

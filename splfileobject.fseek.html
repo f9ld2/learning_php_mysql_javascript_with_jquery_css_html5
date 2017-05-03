@@ -1,0 +1,107 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">SplFileObject::fseek</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7)</p><p class="refpurpose"><span class="refname">SplFileObject::fseek</span> &#x2014; <span class="dc-title">Seek to a position</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-splfileobject.fseek-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">int</span> <span class="methodname"><strong>SplFileObject::fseek</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$whence</code><span class="initializer"> = SEEK_SET</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Seek to a position in the file measured in bytes
+   from the beginning of the file, obtained by adding
+   <code class="parameter">offset</code> to the position specified by
+   <code class="parameter">whence</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-splfileobject.fseek-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">offset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The offset. A negative value can be used to move backwards through the file which
+       is useful when SEEK_END is used as the <code class="parameter">whence</code> value.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">whence</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">whence</code> values are:
+       <ul class="simplelist">
+        <li class="member"><strong><code>SEEK_SET</code></strong> - Set position equal to <code class="parameter">offset</code> bytes.</li>
+        <li class="member"><strong><code>SEEK_CUR</code></strong> - Set position to current location plus <code class="parameter">offset</code>.</li>
+        <li class="member"><strong><code>SEEK_END</code></strong> - Set position to end-of-file plus <code class="parameter">offset</code>.</li>
+       </ul>
+      </p>
+      <p class="para">
+       If <code class="parameter">whence</code> is not specified, it is assumed to be <strong><code>SEEK_SET</code></strong>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-splfileobject.fseek-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns 0 if the seek was successful, -1 otherwise. Note that seeking
+   past EOF is not considered an error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-splfileobject.fseek-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4549">
+    <p><strong>Example #1 <span class="methodname"><strong>SplFileObject::fseek()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$file&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SplFileObject</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;somefile.txt&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Read&#xA0;first&#xA0;line<br></span><span style="color: #0000BB">$data&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$file</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fgets</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Move&#xA0;back&#xA0;to&#xA0;the&#xA0;beginning&#xA0;of&#xA0;the&#xA0;file<br>//&#xA0;Same&#xA0;as&#xA0;$file-&gt;rewind();<br></span><span style="color: #0000BB">$file</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fseek</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-splfileobject.fseek-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.fseek.html" class="function" rel="rdfs-seeAlso">fseek()</a> - Seeks on a file pointer</span></li>
+   </ul>
+  </p>
+ </div>
+
+

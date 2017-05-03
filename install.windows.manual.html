@@ -1,0 +1,96 @@
+---
+layout: default
+---
+
+  <h2 class="title">Manual PHP Installation on Windows</h2>
+  <div class="sect2">
+    <h3 class="title">Choose Web Server</h3>
+    <p class="para">
+      <ul class="itemizedlist">
+	<li class="listitem">
+	  <p class="para">
+    IIS is builtin to Windows.
+
+    On Windows Server, use Server Manager to add the IIS role. Be sure to include the CGI Role Feature.
+
+    On Windows Desktop, use Control Panel&apos;s Add/Remove Programs to add IIS. See: <a href="https://msdn.microsoft.com/en-us/library/ms181052%28v=vs.80%29.aspx?f=255&amp;MSPPError=-2147217396" class="link external">&#xBB;&#xA0;https://msdn.microsoft.com/en-us/library/ms181052%28v=vs.80%29.aspx?f=255&amp;MSPPError=-2147217396</a>
+
+    For desktop web apps and web-development, you can also use IIS/Express or PHP Desktop
+    
+    <div class="example" id="install.unix.nginx.configure.nginx.php">
+     <p><strong>Example #1 Command line to configure IIS and PHP</strong></p>
+     <div class="example-contents">
+<div class="cdata"><pre>
+    
+    @echo off
+
+    REM download .ZIP file of PHP build from http://windows.php.net/downloads/
+    REM
+    REM path to directory you decompressed PHP .ZIP file into
+set phpdir=c:\php
+set phppath=php-5.6.19-nts-Win32-VC11-x86
+
+REM Clear current PHP handlers
+%windir%\system32\inetsrv\appcmd clear config /section:system.webServer/fastCGI
+%windir%\system32\inetsrv\appcmd set config /section:system.webServer/handlers /-[name=&apos;PHP_via_FastCGI&apos;]
+
+REM Set up the PHP handler
+%windir%\system32\inetsrv\appcmd set config /section:system.webServer/fastCGI /+[fullPath=&apos;%phpdir%\%phppath%\php-cgi.exe&apos;]
+%windir%\system32\inetsrv\appcmd set config /section:system.webServer/handlers /+[name=&apos;PHP_via_FastCGI&apos;,path=&apos;*.php&apos;,verb=&apos;*&apos;,modules=&apos;FastCgiModule&apos;,scriptProcessor=&apos;%phpdir%\%phppath%\php-cgi.exe&apos;,resourceType=&apos;Unspecified&apos;]
+%windir%\system32\inetsrv\appcmd set config /section:system.webServer/handlers /accessPolicy:Read,Script
+
+REM Configure FastCGI Variables
+%windir%\system32\inetsrv\appcmd set config -section:system.webServer/fastCgi /[fullPath=&apos;%phpdir%\%phppath%\php-cgi.exe&apos;].instanceMaxRequests:10000
+%windir%\system32\inetsrv\appcmd.exe set config -section:system.webServer/fastCgi /+&quot;[fullPath=&apos;%phpdir%\%phppath%\php-cgi.exe&apos;].environmentVariables.[name=&apos;PHP_FCGI_MAX_REQUESTS&apos;,value=&apos;10000&apos;]&quot;
+%windir%\system32\inetsrv\appcmd.exe set config -section:system.webServer/fastCgi /+&quot;[fullPath=&apos;%phpdir%\%phppath%\php-cgi.exe&apos;].environmentVariables.[name=&apos;PHPRC&apos;,value=&apos;%phpdir%\%phppath%\php.ini&apos;]&quot;
+
+</pre></div>
+     </div>
+
+    </div>
+    
+    <a href="install.windows.legacy.index.html#install.windows.legacy.iis7" class="link">How to manually configure IIS</a>
+  </p>
+</li>
+<li class="listitem">
+  <p class="para">
+
+    There are several builds of Apache2 for Windows.
+
+    We support ApacheLounge, but other options include XAMPP, WampServer and BitNami, which provide automatic installer tools.
+
+    You may use mod_php or mod_fastcgi to load PHP on Apache.
+
+    If you use mod_php, you MUST use a TS build of Apache built with same version of Visual C and same CPU (x86 or x64).
+
+    <a href="install.windows.legacy.index.html#install.windows.legacy.apache2" class="link">How to manually configure Apache2</a>
+  </p>
+  </li>
+  </ul>
+  </p>
+</div>
+
+<div class="sect2">
+  <h3 class="title">Choose Build</h3>
+  <p class="para">
+    Download PHP production releases from <a href="http://windows.php.net/download/" class="link external">&#xBB;&#xA0;http://windows.php.net/download/</a>.
+
+    A lot of testing and optimization is already done on the snapshot and qa releases, but you are welcome to help us do more.
+
+    There are 4 types of PHP builds:
+    <ul class="itemizedlist">
+      <li class="listitem">
+	<p class="para">Thread-Safe(TS) - use for single process web serves, like Apache with mod_php</p>
+      </li>
+      <li class="listitem">
+	<p class="para">Non-Thread-Safe(NTS) - use for IIS and other FastCGI web servers (Apache with mod_fastcgi) and recommended for command-line scripts</p>
+      </li>
+      <li class="listitem">
+	<p class="para">x86 - production use of PHP 5.5 or 5.6 or 7.0.</p>
+      </li>
+      <li class="listitem">
+	<p class="para">x64 - production use of PHP 7.0+ unless its a 32-bit only version of Windows. 5.5 and 5.6 x64 are expiremental.</p>
+	</li>
+    </ul>
+  </p>
+</div>

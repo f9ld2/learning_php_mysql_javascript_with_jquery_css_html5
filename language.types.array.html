@@ -1,0 +1,847 @@
+---
+layout: default
+---
+
+ <h2 class="title">Arrays</h2>
+
+ <p class="para">
+  An <span class="type"><a href="language.types.array.html" class="type array">array</a></span> in PHP is actually an ordered map. A map is a type that
+  associates <em class="emphasis">values</em> to <em class="emphasis">keys</em>. This type
+  is optimized for several different uses; it can be treated as an array,
+  list (vector), hash table (an implementation of a map), dictionary,
+  collection, stack, queue, and probably more. As <span class="type"><a href="language.types.array.html" class="type array">array</a></span> values can
+  be other <span class="type"><a href="language.types.array.html" class="type array">array</a></span>s, trees and multidimensional <span class="type"><a href="language.types.array.html" class="type array">array</a></span>s
+  are also possible.
+ </p>
+
+ <p class="para">
+  Explanation of those data structures is beyond the scope of this manual, but
+  at least one example is provided for each of them. For more information, look
+  towards the considerable literature that exists about this broad topic.
+ </p>
+   
+ <div class="sect2" id="language.types.array.syntax">
+  <h3 class="title">Syntax</h3>
+  
+  <div class="sect3" id="language.types.array.syntax.array-func">
+   <h4 class="title">Specifying with <span class="function"><a href="function.array.html" class="function">array()</a></span></h4>
+
+   <p class="para">
+    An <span class="type"><a href="language.types.array.html" class="type array">array</a></span> can be created using the <span class="function"><a href="function.array.html" class="function">array()</a></span>
+    language construct. It takes any number of comma-separated
+    <em><span class="replaceable">key</span> =&gt; <span class="replaceable">value</span></em> pairs
+    as arguments.
+   </p>
+
+   <pre class="synopsis">
+array(
+    <span class="optional"><span class="replaceable">key</span>  =&gt; </span><span class="replaceable">value</span>,
+    <span class="optional"><span class="replaceable">key2</span> =&gt; </span><span class="replaceable">value2</span>,
+    <span class="optional"><span class="replaceable">key3</span> =&gt; </span><span class="replaceable">value3</span>,
+    ...
+)</pre>
+   
+
+   <p class="para">
+    The comma after the last array element is optional and can be omitted. This is usually done
+    for single-line arrays, i.e. <em>array(1, 2)</em> is preferred over
+    <em>array(1, 2, )</em>. For multi-line arrays on the other hand the trailing comma
+    is commonly used, as it allows easier addition of new elements at the end.
+   </p>
+   
+   <p class="para">
+    As of PHP 5.4 you can also use the short array syntax, which replaces
+    <em>array()</em> with <em>[]</em>.
+   </p>
+   
+   <div class="example" id="example-56">
+    <p><strong>Example #1 A simple array</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$array&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;foo&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;bar&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;bar&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;foo&quot;</span><span style="color: #007700">,<br>);<br><br></span><span style="color: #FF8000">//&#xA0;as&#xA0;of&#xA0;PHP&#xA0;5.4<br></span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">=&#xA0;[<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;foo&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;bar&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;bar&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;foo&quot;</span><span style="color: #007700">,<br>];<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   
+   <p class="para">
+    The <span class="replaceable">key</span> can either be an <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>
+    or a <span class="type"><a href="language.types.string.html" class="type string">string</a></span>. The <span class="replaceable">value</span> can be
+    of any type.
+   </p>
+   
+   <p class="para">
+    Additionally the following <span class="replaceable">key</span> casts will occur:
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <span class="type"><a href="language.types.string.html" class="type String">String</a></span>s containing valid <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>s will be cast to the
+       <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span> type. E.g. the key <em>&quot;8&quot;</em> will actually be
+       stored under <em>8</em>. On the other hand <em>&quot;08&quot;</em> will
+       not be cast, as it isn&apos;t a valid decimal integer.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <span class="type"><a href="language.types.float.html" class="type Float">Float</a></span>s are also cast to <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>s, which means that the
+       fractional part will be truncated. E.g. the key <em>8.7</em> will actually
+       be stored under <em>8</em>.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <span class="type"><a href="language.types.boolean.html" class="type Bool">Bool</a></span>s are cast to <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>s, too, i.e. the key
+       <em>true</em> will actually be stored under <em>1</em>
+       and the key <em>false</em> under <em>0</em>.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <span class="type"><a href="language.types.null.html" class="type Null">Null</a></span> will be cast to the empty string, i.e. the key
+       <em>null</em> will actually be stored under <em>&quot;&quot;</em>.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <span class="type"><a href="language.types.array.html" class="type Array">Array</a></span>s and <span class="type"><a href="language.types.object.html" class="type object">object</a></span>s <em class="emphasis">can not</em> be used as keys.
+       Doing so will result in a warning: <em>Illegal offset type</em>.
+      </span>
+     </li>
+    </ul>
+   </p>
+   
+   <p class="para">
+    If multiple elements in the array declaration use the same key, only the last one
+    will be used as all others are overwritten.
+   </p>
+   
+   <div class="example" id="example-57">
+    <p><strong>Example #2 Type Casting and Overwriting example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$array&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">1&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;a&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;1&quot;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;b&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">1.5&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;c&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">true&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;d&quot;</span><span style="color: #007700">,<br>);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(1) {
+  [1]=&gt;
+  string(1) &quot;d&quot;
+}
+</pre></div>
+    </div>
+    <div class="example-contents"><p>
+     As all the keys in the above example are cast to <em>1</em>, the value will be overwritten
+     on every new element and the last assigned value <em>&quot;d&quot;</em> is the only one left over.
+    </p></div>
+   </div>  
+   
+   <p class="para">
+    PHP arrays can contain <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span> and <span class="type"><a href="language.types.string.html" class="type string">string</a></span> keys at the same time
+    as PHP does not distinguish between indexed and associative arrays.
+   </p>
+   
+   <div class="example" id="example-58">
+    <p><strong>Example #3 Mixed <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span> and <span class="type"><a href="language.types.string.html" class="type string">string</a></span> keys</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$array&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;foo&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;bar&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;bar&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;foo&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">100&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;-</span><span style="color: #0000BB">100</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;-</span><span style="color: #0000BB">100&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">100</span><span style="color: #007700">,<br>);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(4) {
+  [&quot;foo&quot;]=&gt;
+  string(3) &quot;bar&quot;
+  [&quot;bar&quot;]=&gt;
+  string(3) &quot;foo&quot;
+  [100]=&gt;
+  int(-100)
+  [-100]=&gt;
+  int(100)
+}
+</pre></div>
+    </div>
+   </div>
+   
+   <p class="para">
+    The <span class="replaceable">key</span> is optional. If it is not specified, PHP will
+    use the increment of the largest previously used <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span> key.
+   </p>
+   
+   <div class="example" id="example-59">
+    <p><strong>Example #4 Indexed arrays without key</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$array&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;foo&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;bar&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;hello&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;world&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(4) {
+  [0]=&gt;
+  string(3) &quot;foo&quot;
+  [1]=&gt;
+  string(3) &quot;bar&quot;
+  [2]=&gt;
+  string(5) &quot;hello&quot;
+  [3]=&gt;
+  string(5) &quot;world&quot;
+}
+</pre></div>
+    </div>
+   </div>
+   
+   <p class="para">
+    It is possible to specify the key only for some elements and leave it out for others:
+   </p>
+   
+   <div class="example" id="example-60">
+    <p><strong>Example #5 Keys not on all elements</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$array&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;a&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;b&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">6&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;c&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;d&quot;</span><span style="color: #007700">,<br>);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(4) {
+  [0]=&gt;
+  string(1) &quot;a&quot;
+  [1]=&gt;
+  string(1) &quot;b&quot;
+  [6]=&gt;
+  string(1) &quot;c&quot;
+  [7]=&gt;
+  string(1) &quot;d&quot;
+}
+</pre></div>
+    </div>
+    <div class="example-contents"><p>
+     As you can see the last value <em>&quot;d&quot;</em> was assigned the key
+     <em>7</em>. This is because the largest integer key before that
+     was <em>6</em>.
+    </p></div>
+   </div>
+  </div>
+  
+  <div class="sect3" id="language.types.array.syntax.accessing">
+   <h4 class="title">Accessing array elements with square bracket syntax</h4>
+   
+   <p class="para">
+    Array elements can be accessed using the <em>array[key]</em> syntax.
+   </p>
+   
+   <div class="example" id="example-61">
+    <p><strong>Example #6 Accessing array elements</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$array&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;foo&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;bar&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">42&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">24</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;multi&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;dimensional&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;array&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;foo&quot;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;)<br>);<br><br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;foo&quot;</span><span style="color: #007700">]);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #0000BB">42</span><span style="color: #007700">]);<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;multi&quot;</span><span style="color: #007700">][</span><span style="color: #DD0000">&quot;dimensional&quot;</span><span style="color: #007700">][</span><span style="color: #DD0000">&quot;array&quot;</span><span style="color: #007700">]);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+string(3) &quot;bar&quot;
+int(24)
+string(3) &quot;foo&quot;
+</pre></div>
+    </div>
+   </div>
+   
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    </p><p class="para">
+     Both square brackets and curly braces can be used interchangeably
+     for accessing array elements (e.g. <em>$array[42]</em> and <em>$array{42}</em> will
+     both do the same thing in the example above).
+    </p>
+   <p></p></blockquote>
+
+   <p class="para">
+    As of PHP 5.4 it is possible to array dereference the result of a function
+    or method call directly. Before it was only possible using a temporary
+    variable.
+   </p>
+   
+   <p class="para">
+    As of PHP 5.5 it is possible to array dereference an array literal.
+   </p>
+   
+   <div class="example" id="example-62">
+    <p><strong>Example #7 Array dereferencing</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">getArray</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #FF8000">//&#xA0;on&#xA0;PHP&#xA0;5.4<br></span><span style="color: #0000BB">$secondElement&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">getArray</span><span style="color: #007700">()[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br><br></span><span style="color: #FF8000">//&#xA0;previously<br></span><span style="color: #0000BB">$tmp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">getArray</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$secondElement&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$tmp</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br><br></span><span style="color: #FF8000">//&#xA0;or<br></span><span style="color: #007700">list(,&#xA0;</span><span style="color: #0000BB">$secondElement</span><span style="color: #007700">)&#xA0;=&#xA0;</span><span style="color: #0000BB">getArray</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    </p><p class="para">
+      Attempting to access an array key which has not been defined is
+      the same as accessing any other undefined variable:
+      an <strong><code>E_NOTICE</code></strong>-level error message will be
+      issued, and the result will be <strong><code>NULL</code></strong>.
+    </p>
+   <p></p></blockquote>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    </p><p class="para">
+     Array dereferencing a scalar value which is not a <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+     silently yields <strong><code>NULL</code></strong>, i.e. without issuing an error message.
+    </p>
+   <p></p></blockquote>
+  </div>
+  
+  <div class="sect3" id="language.types.array.syntax.modifying">
+   <h4 class="title">Creating/modifying with square bracket syntax</h4>
+
+   <p class="para">
+    An existing <span class="type"><a href="language.types.array.html" class="type array">array</a></span> can be modified by explicitly setting values
+    in it.
+   </p>
+
+   <p class="para">
+    This is done by assigning values to the <span class="type"><a href="language.types.array.html" class="type array">array</a></span>, specifying the
+    key in brackets. The key can also be omitted, resulting in an empty pair of
+    brackets (<em>[]</em>).
+   </p>
+   
+   <pre class="synopsis">
+$arr[<span class="replaceable">key</span>] = <span class="replaceable">value</span>;
+$arr[] = <span class="replaceable">value</span>;
+// <span class="replaceable">key</span> may be an <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span> or <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+// <span class="replaceable">value</span> may be any value of any type</pre>
+   
+   <p class="para">
+    If <var class="varname"><var class="varname">$arr</var></var> doesn&apos;t exist yet, it will be created, so this is
+    also an alternative way to create an <span class="type"><a href="language.types.array.html" class="type array">array</a></span>. This practice is
+    however discouraged because if <var class="varname"><var class="varname">$arr</var></var> already contains
+    some value (e.g. <span class="type"><a href="language.types.string.html" class="type string">string</a></span> from request variable) then this
+    value will stay in the place and <em>[]</em> may actually stand
+    for <a href="language.types.string.html#language.types.string.substr" class="link">string access
+    operator</a>. It is always better to initialize a variable by a direct
+    assignment.
+   </p>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <span class="simpara">
+     As of PHP 7.1.0, applying the empty index operator on a string throws a fatal
+     error. Formerly, the string was silently converted to an array.
+    </span>
+   </p></blockquote>
+
+   <p class="para">
+    To change a certain
+    value, assign a new value to that element using its key. To remove a
+    key/value pair, call the <span class="function"><a href="function.unset.html" class="function">unset()</a></span> function on it.
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$arr&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #0000BB">5&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">12&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$arr</span><span style="color: #007700">[]&#xA0;=&#xA0;</span><span style="color: #0000BB">56</span><span style="color: #007700">;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;is&#xA0;the&#xA0;same&#xA0;as&#xA0;$arr[13]&#xA0;=&#xA0;56;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;at&#xA0;this&#xA0;point&#xA0;of&#xA0;the&#xA0;script<br><br></span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;x&quot;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #0000BB">42</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;adds&#xA0;a&#xA0;new&#xA0;element&#xA0;to<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;the&#xA0;array&#xA0;with&#xA0;key&#xA0;&quot;x&quot;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br></span><span style="color: #007700">unset(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">5</span><span style="color: #007700">]);&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;removes&#xA0;the&#xA0;element&#xA0;from&#xA0;the&#xA0;array<br><br></span><span style="color: #007700">unset(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">);&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;deletes&#xA0;the&#xA0;whole&#xA0;array<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div> 
+    </div>
+
+   </div>
+
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    </p><p class="para">
+     As mentioned above, if no key is specified, the maximum of the existing
+     <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span> indices is taken, and the new key will be that maximum
+     value plus 1 (but at least 0). If no <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span> indices exist yet, the key will
+     be <em>0</em> (zero). 
+    </p>
+
+    <p class="para">
+     Note that the maximum integer key used for this <em class="emphasis">need not
+     currently exist in the <span class="type"><a href="language.types.array.html" class="type array">array</a></span></em>. It need only have
+     existed in the <span class="type"><a href="language.types.array.html" class="type array">array</a></span> at some time since the last time the
+     <span class="type"><a href="language.types.array.html" class="type array">array</a></span> was re-indexed. The following example illustrates:
+    </p>
+
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;a&#xA0;simple&#xA0;array.<br></span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">);<br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Now&#xA0;delete&#xA0;every&#xA0;item,&#xA0;but&#xA0;leave&#xA0;the&#xA0;array&#xA0;itself&#xA0;intact:<br></span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;unset(</span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">]);<br>}<br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Append&#xA0;an&#xA0;item&#xA0;(note&#xA0;that&#xA0;the&#xA0;new&#xA0;key&#xA0;is&#xA0;5,&#xA0;instead&#xA0;of&#xA0;0).<br></span><span style="color: #0000BB">$array</span><span style="color: #007700">[]&#xA0;=&#xA0;</span><span style="color: #0000BB">6</span><span style="color: #007700">;<br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Re-index:<br></span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">array_values</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$array</span><span style="color: #007700">[]&#xA0;=&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">;<br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div> 
+     </div>
+
+     <p class="para">The above example will output:</p>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; 1
+    [1] =&gt; 2
+    [2] =&gt; 3
+    [3] =&gt; 4
+    [4] =&gt; 5
+)
+Array
+(
+)
+Array
+(
+    [5] =&gt; 6
+)
+Array
+(
+    [0] =&gt; 6
+    [1] =&gt; 7
+)
+</pre></div>
+     </div>
+    </div>       
+
+   <p></p></blockquote>
+
+  </div>
+ </div>
+ 
+ <div class="sect2" id="language.types.array.useful-funcs">
+  <h3 class="title">Useful functions</h3>
+
+  <p class="para">
+   There are quite a few useful functions for working with arrays. See the
+   <a href="ref.array.html" class="link">array functions</a> section.
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    The <span class="function"><a href="function.unset.html" class="function">unset()</a></span> function allows removing keys from an
+    <span class="type"><a href="language.types.array.html" class="type array">array</a></span>. Be aware that the array will <em class="emphasis">not</em> be
+    reindexed. If a true &quot;remove and shift&quot; behavior is desired, the
+    <span class="type"><a href="language.types.array.html" class="type array">array</a></span> can be reindexed using the
+    <span class="function"><a href="function.array-values.html" class="function">array_values()</a></span> function.
+   </p>
+   
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$a&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #0000BB">1&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;one&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;two&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;three&apos;</span><span style="color: #007700">);<br>unset(</span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]);<br></span><span style="color: #FF8000">/*&#xA0;will&#xA0;produce&#xA0;an&#xA0;array&#xA0;that&#xA0;would&#xA0;have&#xA0;been&#xA0;defined&#xA0;as<br>&#xA0;&#xA0;&#xA0;$a&#xA0;=&#xA0;array(1&#xA0;=&gt;&#xA0;&apos;one&apos;,&#xA0;3&#xA0;=&gt;&#xA0;&apos;three&apos;);<br>&#xA0;&#xA0;&#xA0;and&#xA0;NOT<br>&#xA0;&#xA0;&#xA0;$a&#xA0;=&#xA0;array(1&#xA0;=&gt;&#xA0;&apos;one&apos;,&#xA0;2&#xA0;=&gt;&apos;three&apos;);<br>*/<br><br></span><span style="color: #0000BB">$b&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">array_values</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">);<br></span><span style="color: #FF8000">//&#xA0;Now&#xA0;$b&#xA0;is&#xA0;array(0&#xA0;=&gt;&#xA0;&apos;one&apos;,&#xA0;1&#xA0;=&gt;&apos;three&apos;)<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  <p></p></blockquote> 
+
+  <p class="para">
+   The <a href="control-structures.foreach.html" class="link">foreach</a> control
+   structure exists specifically for <span class="type"><a href="language.types.array.html" class="type array">array</a></span>s. It provides an easy
+   way to traverse an <span class="type"><a href="language.types.array.html" class="type array">array</a></span>.
+  </p>
+ </div>
+ 
+ <div class="sect2" id="language.types.array.donts">
+  <h3 class="title">Array do&apos;s and don&apos;ts</h3>
+
+  <div class="sect3" id="language.types.array.foo-bar">
+   <h4 class="title">Why is <em>$foo[bar]</em> wrong?</h4>
+
+   <p class="para">
+    Always use quotes around a string literal array index. For example,
+    <em>$foo[&apos;bar&apos;]</em> is correct, while
+    <em>$foo[bar]</em> is not. But why? It is common to encounter this
+    kind of syntax in old scripts:
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$foo</span><span style="color: #007700">[</span><span style="color: #0000BB">bar</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;enemy&apos;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #0000BB">$foo</span><span style="color: #007700">[</span><span style="color: #0000BB">bar</span><span style="color: #007700">];<br></span><span style="color: #FF8000">//&#xA0;etc<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   
+   <p class="para">
+    This is wrong, but it works. The reason is that this code has an undefined
+    constant (<em>bar</em>) rather than a <span class="type"><a href="language.types.string.html" class="type string">string</a></span> (<em>&apos;bar&apos;</em> - notice the
+    quotes). It works because PHP automatically converts a
+    <em class="emphasis">bare string</em> (an unquoted <span class="type"><a href="language.types.string.html" class="type string">string</a></span> which does
+    not correspond to any known symbol) into a <span class="type"><a href="language.types.string.html" class="type string">string</a></span> which
+    contains the bare <span class="type"><a href="language.types.string.html" class="type string">string</a></span>. For instance, if there is no defined 
+    constant named <strong><code>bar</code></strong>, then PHP will substitute in the
+    <span class="type"><a href="language.types.string.html" class="type string">string</a></span> <em>&apos;bar&apos;</em> and use that.
+   </p>
+
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <span class="simpara">
+     This does not mean to <em class="emphasis">always</em> quote the key. Do not
+     quote keys which are <a href="language.constants.html" class="link">constants</a> or
+     <a href="language.variables.html" class="link">variables</a>, as this will prevent
+     PHP from interpreting them.
+    </span>
+
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>error_reporting</span><span style="color: #007700">(</span><span style="color: #0000BB">E_ALL</span><span style="color: #007700">);<br></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;display_errors&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;html_errors&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br></span><span style="color: #FF8000">//&#xA0;Simple&#xA0;array:<br></span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$count&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br>for&#xA0;(</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">&lt;&#xA0;</span><span style="color: #0000BB">$count</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;\nChecking&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #DD0000">:&#xA0;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Bad:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;$i&apos;</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Good:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Bad:&#xA0;</span><span style="color: #007700">{</span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;$i&apos;</span><span style="color: #007700">]}</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Good:&#xA0;</span><span style="color: #007700">{</span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">]}</span><span style="color: #DD0000">\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+    </p><p class="para">The above example will output:</p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Checking 0: 
+Notice: Undefined index:  $i in /path/to/script.html on line 9
+Bad: 
+Good: 1
+Notice: Undefined index:  $i in /path/to/script.html on line 11
+Bad: 
+Good: 1
+
+Checking 1: 
+Notice: Undefined index:  $i in /path/to/script.html on line 9
+Bad: 
+Good: 2
+Notice: Undefined index:  $i in /path/to/script.html on line 11
+Bad: 
+Good: 2
+</pre></div>        
+    </div>
+   <p></p></blockquote>
+
+   <p class="para">
+    More examples to demonstrate this behaviour:
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Show&#xA0;all&#xA0;errors<br></span><span style="color: #0000BB">error_reporting</span><span style="color: #007700">(</span><span style="color: #0000BB">E_ALL</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$arr&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&apos;fruit&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;apple&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;veggie&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;carrot&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Correct<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;fruit&apos;</span><span style="color: #007700">];&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;apple<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;veggie&apos;</span><span style="color: #007700">];&#xA0;</span><span style="color: #FF8000">//&#xA0;carrot<br><br>//&#xA0;Incorrect.&#xA0;&#xA0;This&#xA0;works&#xA0;but&#xA0;also&#xA0;throws&#xA0;a&#xA0;PHP&#xA0;error&#xA0;of&#xA0;level&#xA0;E_NOTICE&#xA0;because<br>//&#xA0;of&#xA0;an&#xA0;undefined&#xA0;constant&#xA0;named&#xA0;fruit<br>//&#xA0;<br>//&#xA0;Notice:&#xA0;Use&#xA0;of&#xA0;undefined&#xA0;constant&#xA0;fruit&#xA0;-&#xA0;assumed&#xA0;&apos;fruit&apos;&#xA0;in...<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">fruit</span><span style="color: #007700">];&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;apple<br><br>//&#xA0;This&#xA0;defines&#xA0;a&#xA0;constant&#xA0;to&#xA0;demonstrate&#xA0;what&apos;s&#xA0;going&#xA0;on.&#xA0;&#xA0;The&#xA0;value&#xA0;&apos;veggie&apos;<br>//&#xA0;is&#xA0;assigned&#xA0;to&#xA0;a&#xA0;constant&#xA0;named&#xA0;fruit.<br></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;fruit&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;veggie&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Notice&#xA0;the&#xA0;difference&#xA0;now<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;fruit&apos;</span><span style="color: #007700">];&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;apple<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">fruit</span><span style="color: #007700">];&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;carrot<br><br>//&#xA0;The&#xA0;following&#xA0;is&#xA0;okay,&#xA0;as&#xA0;it&apos;s&#xA0;inside&#xA0;a&#xA0;string.&#xA0;Constants&#xA0;are&#xA0;not&#xA0;looked&#xA0;for<br>//&#xA0;within&#xA0;strings,&#xA0;so&#xA0;no&#xA0;E_NOTICE&#xA0;occurs&#xA0;here<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #DD0000">&quot;Hello&#xA0;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">fruit</span><span style="color: #007700">]</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Hello&#xA0;apple<br><br>//&#xA0;With&#xA0;one&#xA0;exception:&#xA0;braces&#xA0;surrounding&#xA0;arrays&#xA0;within&#xA0;strings&#xA0;allows&#xA0;constants<br>//&#xA0;to&#xA0;be&#xA0;interpreted<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #DD0000">&quot;Hello&#xA0;</span><span style="color: #007700">{</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">fruit</span><span style="color: #007700">]}</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Hello&#xA0;carrot<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #DD0000">&quot;Hello&#xA0;</span><span style="color: #007700">{</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;fruit&apos;</span><span style="color: #007700">]}</span><span style="color: #DD0000">&quot;</span><span style="color: #007700">;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Hello&#xA0;apple<br><br>//&#xA0;This&#xA0;will&#xA0;not&#xA0;work,&#xA0;and&#xA0;will&#xA0;result&#xA0;in&#xA0;a&#xA0;parse&#xA0;error,&#xA0;such&#xA0;as:<br>//&#xA0;Parse&#xA0;error:&#xA0;parse&#xA0;error,&#xA0;expecting&#xA0;T_STRING&apos;&#xA0;or&#xA0;T_VARIABLE&apos;&#xA0;or&#xA0;T_NUM_STRING&apos;<br>//&#xA0;This&#xA0;of&#xA0;course&#xA0;applies&#xA0;to&#xA0;using&#xA0;superglobals&#xA0;in&#xA0;strings&#xA0;as&#xA0;well<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #DD0000">&quot;Hello&#xA0;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;fruit&apos;]&quot;</span><span style="color: #007700">;<br>print&#xA0;</span><span style="color: #DD0000">&quot;Hello&#xA0;</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;foo&apos;]&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;Concatenation&#xA0;is&#xA0;another&#xA0;option<br></span><span style="color: #007700">print&#xA0;</span><span style="color: #DD0000">&quot;Hello&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;fruit&apos;</span><span style="color: #007700">];&#xA0;</span><span style="color: #FF8000">//&#xA0;Hello&#xA0;apple<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+
+   <p class="para">
+    When <a href="errorfunc.configuration.html#ini.error-reporting" class="link">error_reporting</a> is set to
+    show <strong><code>E_NOTICE</code></strong> level errors (by setting it to
+    <strong><code>E_ALL</code></strong>, for example), such uses will become immediately
+    visible. By default,
+    <a href="errorfunc.configuration.html#ini.error-reporting" class="link">error_reporting</a> is set not to
+    show notices.
+   </p>
+
+   <p class="para">
+    As stated in the <a href="language.types.array.html#language.types.array.syntax" class="link">syntax</a>
+    section, what&apos;s inside the square brackets (&apos;<em>[</em>&apos; and
+    &apos;<em>]</em>&apos;) must be an expression. This means that code like
+    this works:
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">somefunc</span><span style="color: #007700">(</span><span style="color: #0000BB">$bar</span><span style="color: #007700">)];<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   
+   <p class="para">
+    This is an example of using a function return value as the array index. PHP
+    also knows about constants:
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$error_descriptions</span><span style="color: #007700">[</span><span style="color: #0000BB">E_ERROR</span><span style="color: #007700">]&#xA0;&#xA0;&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;A&#xA0;fatal&#xA0;error&#xA0;has&#xA0;occurred&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$error_descriptions</span><span style="color: #007700">[</span><span style="color: #0000BB">E_WARNING</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;PHP&#xA0;issued&#xA0;a&#xA0;warning&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$error_descriptions</span><span style="color: #007700">[</span><span style="color: #0000BB">E_NOTICE</span><span style="color: #007700">]&#xA0;&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;This&#xA0;is&#xA0;just&#xA0;an&#xA0;informal&#xA0;notice&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   
+   <p class="para">
+    Note that <strong><code>E_ERROR</code></strong> is also a valid identifier, just like
+    <em>bar</em> in the first example. But the last example is in fact
+    the same as writing:
+   </p>
+  
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$error_descriptions</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;A&#xA0;fatal&#xA0;error&#xA0;has&#xA0;occurred&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$error_descriptions</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;PHP&#xA0;issued&#xA0;a&#xA0;warning&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$error_descriptions</span><span style="color: #007700">[</span><span style="color: #0000BB">8</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;This&#xA0;is&#xA0;just&#xA0;an&#xA0;informal&#xA0;notice&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   
+   <p class="para">
+    because <strong><code>E_ERROR</code></strong> equals <em>1</em>, etc.
+   </p>
+
+   <div class="sect4" id="language.types.array.foo-bar.why">
+    <h5 class="title">So why is it bad then?</h5>
+
+    <p class="para">
+     At some point in the future, the PHP team might want to add another
+     constant or keyword, or a constant in other code may interfere. For
+     example, it is already wrong to use the words <em>empty</em> and
+     <em>default</em> this way, since they are
+     <a href="reserved.html" class="link">reserved keywords</a>.
+    </p>
+
+    <blockquote class="note"><p><strong class="note">Note</strong>: 
+     <span class="simpara">
+      To reiterate, inside a double-quoted <span class="type"><a href="language.types.string.html" class="type string">string</a></span>, it&apos;s valid to
+      not surround array indexes with quotes so <em>&quot;$foo[bar]&quot;</em>
+      is valid. See the above examples for details on why as well as the section
+      on <a href="language.types.string.html#language.types.string.parsing" class="link">variable parsing in
+      strings</a>.
+     </span>
+    </p></blockquote>
+
+   </div>
+  </div>
+ </div>
+
+ <div class="sect2" id="language.types.array.casting">
+  <h3 class="title">Converting to array</h3>
+  
+  <p class="para">
+   For any of the types <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>, <span class="type"><a href="language.types.float.html" class="type float">float</a></span>,
+   <span class="type"><a href="language.types.string.html" class="type string">string</a></span>, <span class="type"><a href="language.types.boolean.html" class="type boolean">boolean</a></span> and <span class="type"><a href="language.types.resource.html" class="type resource">resource</a></span>,
+   converting a value to an <span class="type"><a href="language.types.array.html" class="type array">array</a></span> results in an array with a single
+   element with index zero and the value of the scalar which was converted. In
+   other words, <em>(array)$scalarValue</em> is exactly the same as
+   <em>array($scalarValue)</em>.
+  </p>
+  
+  <p class="para">
+   If an <span class="type"><a href="language.types.object.html" class="type object">object</a></span> is converted to an <span class="type"><a href="language.types.array.html" class="type array">array</a></span>, the result
+   is an <span class="type"><a href="language.types.array.html" class="type array">array</a></span> whose elements are the <span class="type"><a href="language.types.object.html" class="type object">object</a></span>&apos;s
+   properties. The keys are the member variable names, with a few notable
+   exceptions: integer properties are unaccessible;
+   private variables have the class name prepended to the variable
+   name; protected variables have a &apos;*&apos; prepended to the variable name. These
+   prepended values have null bytes on either side. This can result in some
+   unexpected behaviour:
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">A&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;</span><span style="color: #0000BB">$A</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;will&#xA0;become&#xA0;&apos;\0A\0A&apos;<br></span><span style="color: #007700">}<br><br>class&#xA0;</span><span style="color: #0000BB">B&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">A&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;</span><span style="color: #0000BB">$A</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;will&#xA0;become&#xA0;&apos;\0B\0A&apos;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">public&#xA0;</span><span style="color: #0000BB">$AA</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;This&#xA0;will&#xA0;become&#xA0;&apos;AA&apos;<br></span><span style="color: #007700">}<br><br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">((array)&#xA0;new&#xA0;</span><span style="color: #0000BB">B</span><span style="color: #007700">());<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   The above will appear to have two keys named &apos;AA&apos;, although one of them is
+   actually named &apos;\0A\0A&apos;.
+  </p>
+  
+  <p class="para">
+   Converting <strong><code>NULL</code></strong> to an <span class="type"><a href="language.types.array.html" class="type array">array</a></span> results in an empty
+   <span class="type"><a href="language.types.array.html" class="type array">array</a></span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="language.types.array.comparing">
+  <h3 class="title">Comparing</h3>
+
+  <p class="para">
+   It is possible to compare arrays with the <span class="function"><a href="function.array-diff.html" class="function">array_diff()</a></span>
+   function and with
+   <a href="language.operators.array.html" class="link">array operators</a>.
+  </p>
+ </div>
+
+ <div class="sect2" id="language.types.array.examples">
+  <h3 class="title">Examples</h3>
+
+  <p class="para">
+   The array type in PHP is very versatile. Here are some examples:
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;This:<br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;array(&#xA0;</span><span style="color: #DD0000">&apos;color&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;red&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;taste&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;sweet&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;shape&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;round&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;name&apos;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;apple&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">4&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;key&#xA0;will&#xA0;be&#xA0;0<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$b&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&apos;a&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;b&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;c&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;.&#xA0;.&#xA0;.is&#xA0;completely&#xA0;equivalent&#xA0;with&#xA0;this:<br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;array();<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;color&apos;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;red&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;taste&apos;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;sweet&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;shape&apos;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;round&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;name&apos;</span><span style="color: #007700">]&#xA0;&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;apple&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a</span><span style="color: #007700">[]&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;=&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;key&#xA0;will&#xA0;be&#xA0;0<br><br></span><span style="color: #0000BB">$b&#xA0;</span><span style="color: #007700">=&#xA0;array();<br></span><span style="color: #0000BB">$b</span><span style="color: #007700">[]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;a&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$b</span><span style="color: #007700">[]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;b&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$b</span><span style="color: #007700">[]&#xA0;=&#xA0;</span><span style="color: #DD0000">&apos;c&apos;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;After&#xA0;the&#xA0;above&#xA0;code&#xA0;is&#xA0;executed,&#xA0;$a&#xA0;will&#xA0;be&#xA0;the&#xA0;array<br>//&#xA0;array(&apos;color&apos;&#xA0;=&gt;&#xA0;&apos;red&apos;,&#xA0;&apos;taste&apos;&#xA0;=&gt;&#xA0;&apos;sweet&apos;,&#xA0;&apos;shape&apos;&#xA0;=&gt;&#xA0;&apos;round&apos;,&#xA0;<br>//&#xA0;&apos;name&apos;&#xA0;=&gt;&#xA0;&apos;apple&apos;,&#xA0;0&#xA0;=&gt;&#xA0;4),&#xA0;and&#xA0;$b&#xA0;will&#xA0;be&#xA0;the&#xA0;array&#xA0;<br>//&#xA0;array(0&#xA0;=&gt;&#xA0;&apos;a&apos;,&#xA0;1&#xA0;=&gt;&#xA0;&apos;b&apos;,&#xA0;2&#xA0;=&gt;&#xA0;&apos;c&apos;),&#xA0;or&#xA0;simply&#xA0;array(&apos;a&apos;,&#xA0;&apos;b&apos;,&#xA0;&apos;c&apos;).<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="example" id="example-63">
+   <p><strong>Example #8 Using array()</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Array&#xA0;as&#xA0;(property-)map<br></span><span style="color: #0000BB">$map&#xA0;</span><span style="color: #007700">=&#xA0;array(&#xA0;</span><span style="color: #DD0000">&apos;version&apos;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;OS&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;Linux&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;lang&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;english&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;short_tags&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">true<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br></span><span style="color: #FF8000">//&#xA0;strictly&#xA0;numerical&#xA0;keys<br></span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">=&#xA0;array(&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">8</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">156</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;-</span><span style="color: #0000BB">10<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">);<br></span><span style="color: #FF8000">//&#xA0;this&#xA0;is&#xA0;the&#xA0;same&#xA0;as&#xA0;array(0&#xA0;=&gt;&#xA0;7,&#xA0;1&#xA0;=&gt;&#xA0;8,&#xA0;...)<br><br></span><span style="color: #0000BB">$switching&#xA0;</span><span style="color: #007700">=&#xA0;array(&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">10</span><span style="color: #007700">,&#xA0;</span><span style="color: #FF8000">//&#xA0;key&#xA0;=&#xA0;0<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">5&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;&#xA0;</span><span style="color: #0000BB">6</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">3&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;&#xA0;</span><span style="color: #0000BB">7</span><span style="color: #007700">,&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;a&apos;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">11</span><span style="color: #007700">,&#xA0;</span><span style="color: #FF8000">//&#xA0;key&#xA0;=&#xA0;6&#xA0;(maximum&#xA0;of&#xA0;integer-indices&#xA0;was&#xA0;5)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;8&apos;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #FF8000">//&#xA0;key&#xA0;=&#xA0;8&#xA0;(integer!)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;02&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">77</span><span style="color: #007700">,&#xA0;</span><span style="color: #FF8000">//&#xA0;key&#xA0;=&#xA0;&apos;02&apos;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">0&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">12&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;the&#xA0;value&#xA0;10&#xA0;will&#xA0;be&#xA0;overwritten&#xA0;by&#xA0;12<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br></span><span style="color: #FF8000">//&#xA0;empty&#xA0;array<br></span><span style="color: #0000BB">$empty&#xA0;</span><span style="color: #007700">=&#xA0;array();&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+
+   </div>
+
+  </div>
+
+  <div class="example" id="example-64">
+   <p><strong>Example #9 Collection</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$colors&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&apos;red&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;blue&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;green&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;yellow&apos;</span><span style="color: #007700">);<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$colors&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$color</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Do&#xA0;you&#xA0;like&#xA0;</span><span style="color: #0000BB">$color</span><span style="color: #DD0000">?\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Do you like red?
+Do you like blue?
+Do you like green?
+Do you like yellow?
+</pre></div>
+   </div>
+  </div>
+  
+  <p class="para">
+   Changing the values of the <span class="type"><a href="language.types.array.html" class="type array">array</a></span> directly is possible
+   by passing them by reference.
+  </p>
+
+  <div class="example" id="example-65">
+   <p><strong>Example #10 Changing element in the loop</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">foreach&#xA0;(</span><span style="color: #0000BB">$colors&#xA0;</span><span style="color: #007700">as&#xA0;&amp;</span><span style="color: #0000BB">$color</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$color&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">strtoupper</span><span style="color: #007700">(</span><span style="color: #0000BB">$color</span><span style="color: #007700">);<br>}<br>unset(</span><span style="color: #0000BB">$color</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">/*&#xA0;ensure&#xA0;that&#xA0;following&#xA0;writes&#xA0;to<br>$color&#xA0;will&#xA0;not&#xA0;modify&#xA0;the&#xA0;last&#xA0;array&#xA0;element&#xA0;*/<br><br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$colors</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; RED
+    [1] =&gt; BLUE
+    [2] =&gt; GREEN
+    [3] =&gt; YELLOW
+)
+</pre></div>
+   </div>
+  </div>
+
+  <p class="para">
+   This example creates a one-based array.
+  </p>
+
+  <div class="example" id="example-66">
+   <p><strong>Example #11 One-based index</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$firstquarter&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #0000BB">1&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;January&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;February&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;March&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$firstquarter</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Array 
+(
+    [1] =&gt; &apos;January&apos;
+    [2] =&gt; &apos;February&apos;
+    [3] =&gt; &apos;March&apos;
+)
+</pre></div>   
+   </div>
+  </div>
+
+  <div class="example" id="example-67">
+   <p><strong>Example #12 Filling an array</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;fill&#xA0;an&#xA0;array&#xA0;with&#xA0;all&#xA0;items&#xA0;from&#xA0;a&#xA0;directory<br></span><span style="color: #0000BB">$handle&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">opendir</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;.&apos;</span><span style="color: #007700">);<br>while&#xA0;(</span><span style="color: #0000BB">false&#xA0;</span><span style="color: #007700">!==&#xA0;(</span><span style="color: #0000BB">$file&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">readdir</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">)))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$files</span><span style="color: #007700">[]&#xA0;=&#xA0;</span><span style="color: #0000BB">$file</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">closedir</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);&#xA0;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   <span class="type"><a href="language.types.array.html" class="type Array">Array</a></span>s are ordered. The order can be changed using various
+   sorting functions. See the <a href="ref.array.html" class="link">array functions</a>
+   section for more information. The <span class="function"><a href="function.count.html" class="function">count()</a></span> function can be
+   used to count the number of items in an <span class="type"><a href="language.types.array.html" class="type array">array</a></span>.
+  </p>
+
+  <div class="example" id="example-68">
+   <p><strong>Example #13 Sorting an array</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>sort</span><span style="color: #007700">(</span><span style="color: #0000BB">$files</span><span style="color: #007700">);<br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$files</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   Because the value of an <span class="type"><a href="language.types.array.html" class="type array">array</a></span> can be anything, it can also be
+   another <span class="type"><a href="language.types.array.html" class="type array">array</a></span>. This enables the creation of recursive and
+   multi-dimensional <span class="type"><a href="language.types.array.html" class="type array">array</a></span>s.
+  </p>
+
+  <div class="example" id="example-69">
+   <p><strong>Example #14 Recursive and multi-dimensional arrays</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$fruits&#xA0;</span><span style="color: #007700">=&#xA0;array&#xA0;(&#xA0;</span><span style="color: #DD0000">&quot;fruits&quot;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array&#xA0;(&#xA0;</span><span style="color: #DD0000">&quot;a&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;orange&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;b&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;banana&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;c&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;apple&quot;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;numbers&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array&#xA0;(&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">6<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;holes&quot;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array&#xA0;(&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;first&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">5&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;second&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;third&quot;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;);<br><br></span><span style="color: #FF8000">//&#xA0;Some&#xA0;examples&#xA0;to&#xA0;address&#xA0;values&#xA0;in&#xA0;the&#xA0;array&#xA0;above&#xA0;<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">$fruits</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;holes&quot;</span><span style="color: #007700">][</span><span style="color: #0000BB">5</span><span style="color: #007700">];&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;prints&#xA0;&quot;second&quot;<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">$fruits</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;fruits&quot;</span><span style="color: #007700">][</span><span style="color: #DD0000">&quot;a&quot;</span><span style="color: #007700">];&#xA0;</span><span style="color: #FF8000">//&#xA0;prints&#xA0;&quot;orange&quot;<br></span><span style="color: #007700">unset(</span><span style="color: #0000BB">$fruits</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;holes&quot;</span><span style="color: #007700">][</span><span style="color: #0000BB">0</span><span style="color: #007700">]);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;remove&#xA0;&quot;first&quot;<br><br>//&#xA0;Create&#xA0;a&#xA0;new&#xA0;multi-dimensional&#xA0;array<br></span><span style="color: #0000BB">$juices</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;apple&quot;</span><span style="color: #007700">][</span><span style="color: #DD0000">&quot;green&quot;</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;good&quot;</span><span style="color: #007700">;&#xA0;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   <span class="type"><a href="language.types.array.html" class="type Array">Array</a></span> assignment always involves value copying. Use the
+   <a href="language.operators.html" class="link">reference operator</a> to copy an
+   <span class="type"><a href="language.types.array.html" class="type array">array</a></span> by reference.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$arr1&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$arr2&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$arr1</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$arr2</span><span style="color: #007700">[]&#xA0;=&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;$arr2&#xA0;is&#xA0;changed,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;$arr1&#xA0;is&#xA0;still&#xA0;array(2,&#xA0;3)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br></span><span style="color: #0000BB">$arr3&#xA0;</span><span style="color: #007700">=&#xA0;&amp;</span><span style="color: #0000BB">$arr1</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$arr3</span><span style="color: #007700">[]&#xA0;=&#xA0;</span><span style="color: #0000BB">4</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;now&#xA0;$arr1&#xA0;and&#xA0;$arr3&#xA0;are&#xA0;the&#xA0;same<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+ </div>

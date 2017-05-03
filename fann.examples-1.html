@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+  <h2 class="title">XOR training</h2>
+  <p class="para">
+   This example shows how to train data for XOR function
+   <div class="example" id="example-4330">
+    <p><strong>Example #1 xor.data file</strong></p>
+    <div class="example-contents">
+<div class="txtcode"><pre class="txtcode">4 2 1
+-1 -1
+-1
+-1 1
+1
+1 -1
+1
+1 1
+-1</pre>
+</div>
+    </div>
+
+   </div>
+   <div class="example" id="example-4331">
+    <p><strong>Example #2 Simple train</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$num_input&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$num_output&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$num_layers&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$num_neurons_hidden&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$desired_error&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0.001</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$max_epochs&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">500000</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$epochs_between_reports&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">1000</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$ann&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fann_create_standard</span><span style="color: #007700">(</span><span style="color: #0000BB">$num_layers</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$num_input</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$num_neurons_hidden</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$num_output</span><span style="color: #007700">);<br><br>if&#xA0;(</span><span style="color: #0000BB">$ann</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">fann_set_activation_function_hidden</span><span style="color: #007700">(</span><span style="color: #0000BB">$ann</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">FANN_SIGMOID_SYMMETRIC</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">fann_set_activation_function_output</span><span style="color: #007700">(</span><span style="color: #0000BB">$ann</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">FANN_SIGMOID_SYMMETRIC</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$filename&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;/xor.data&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">fann_train_on_file</span><span style="color: #007700">(</span><span style="color: #0000BB">$ann</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$max_epochs</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$epochs_between_reports</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$desired_error</span><span style="color: #007700">))<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">fann_save</span><span style="color: #007700">(</span><span style="color: #0000BB">$ann</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;/xor_float.net&quot;</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">fann_destroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$ann</span><span style="color: #007700">);<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   This example shows how to read and run data for XOR function
+   <div class="example" id="example-4332">
+    <p><strong>Example #3 Simple test</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$train_file&#xA0;</span><span style="color: #007700">=&#xA0;(</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;/xor_float.net&quot;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">is_file</span><span style="color: #007700">(</span><span style="color: #0000BB">$train_file</span><span style="color: #007700">))<br>&#xA0;&#xA0;&#xA0;&#xA0;die(</span><span style="color: #DD0000">&quot;The&#xA0;file&#xA0;xor_float.net&#xA0;has&#xA0;not&#xA0;been&#xA0;created!&#xA0;Please&#xA0;run&#xA0;simple_train.php&#xA0;to&#xA0;generate&#xA0;it&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$ann&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fann_create_from_file</span><span style="color: #007700">(</span><span style="color: #0000BB">$train_file</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$ann</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;die(</span><span style="color: #DD0000">&quot;ANN&#xA0;could&#xA0;not&#xA0;be&#xA0;created&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$input&#xA0;</span><span style="color: #007700">=&#xA0;array(-</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$calc_out&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fann_run</span><span style="color: #007700">(</span><span style="color: #0000BB">$ann</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$input</span><span style="color: #007700">);<br></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;xor&#xA0;test&#xA0;(%f,%f)&#xA0;-&gt;&#xA0;%f\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$input</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">$input</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">$calc_out</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br></span><span style="color: #0000BB">fann_destroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$ann</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ 

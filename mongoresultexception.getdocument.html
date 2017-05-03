@@ -1,0 +1,79 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MongoResultException::getDocument</h1>
+  <p class="verinfo">(PECL mongo &gt;=1.3.0)</p><p class="refpurpose"><span class="refname">MongoResultException::getDocument</span> &#x2014; <span class="dc-title">Retrieve the full result document</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongoresultexception.getdocument-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">array</span> <span class="methodname"><strong>MongoResultException::getDocument</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Retrieves the full error result document.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongoresultexception.getdocument-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongoresultexception.getdocument-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The full result document as an array, including partial data if available and
+   additional keys.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongoresultexception.getdocument-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1643">
+   <p><strong>Example #1 <span class="methodname"><strong>MongoResultException::getDocument()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$mc&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">selectCollection</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;test&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;test&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;name&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;Next&#xA0;promo&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;inprogress&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;priority&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;tasks&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(&#xA0;</span><span style="color: #DD0000">&quot;select&#xA0;product&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;add&#xA0;inventory&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;do&#xA0;placement&quot;</span><span style="color: #007700">),<br>)&#xA0;);<br><br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;name&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;Biz&#xA0;report&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;inprogress&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;priority&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;tasks&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(&#xA0;</span><span style="color: #DD0000">&quot;run&#xA0;sales&#xA0;report&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;email&#xA0;report&quot;&#xA0;</span><span style="color: #007700">)<br>)&#xA0;);<br><br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;name&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;Biz&#xA0;report&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;inprogress&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;priority&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;tasks&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(&#xA0;</span><span style="color: #DD0000">&quot;run&#xA0;marketing&#xA0;report&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;email&#xA0;report&quot;&#xA0;</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;),<br>&#xA0;&#xA0;&#xA0;&#xA0;array(</span><span style="color: #DD0000">&quot;w&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">)<br>);<br><br>try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$retval&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">findAndModify</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(</span><span style="color: #DD0000">&quot;inprogress&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;name&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;Biz&#xA0;report&quot;</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(</span><span style="color: #DD0000">&apos;$set&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(</span><span style="color: #DD0000">&apos;$set&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(</span><span style="color: #DD0000">&apos;inprogress&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;started&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoDate</span><span style="color: #007700">()))),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">null</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;sort&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;array(</span><span style="color: #DD0000">&quot;priority&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">),<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;new&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;)<br>&#xA0;&#xA0;&#xA0;&#xA0;);<br>}&#xA0;catch(</span><span style="color: #0000BB">MongoResultException&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">(),&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$res&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getDocument</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">);<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above examples will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+$set is not valid for storage.
+array(3) {
+  [&quot;lastErrorObject&quot;]=&gt;
+  array(5) {
+    [&quot;connectionId&quot;]=&gt;
+    int(6)
+    [&quot;err&quot;]=&gt;
+    string(30) &quot;$set is not valid for storage.&quot;
+    [&quot;code&quot;]=&gt;
+    int(52)
+    [&quot;n&quot;]=&gt;
+    int(0)
+    [&quot;ok&quot;]=&gt;
+    float(1)
+  }
+  [&quot;ok&quot;]=&gt;
+  float(0)
+  [&quot;errmsg&quot;]=&gt;
+  string(30) &quot;$set is not valid for storage.&quot;
+}
+</pre></div>
+   </div>
+  </div>
+ </div>
+

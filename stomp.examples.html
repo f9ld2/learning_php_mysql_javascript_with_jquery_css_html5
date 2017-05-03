@@ -1,0 +1,84 @@
+---
+layout: default
+---
+
+ <h1>Examples</h1>
+
+ 
+  <p class="para">
+   <div class="example" id="example-5188">
+    <p><strong>Example #1 Object oriented style</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$queue&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;/queue/foo&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$msg&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;bar&apos;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">/*&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stomp&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Stomp</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;tcp://localhost:61613&apos;</span><span style="color: #007700">);<br>}&#xA0;catch(</span><span style="color: #0000BB">StompException&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;die(</span><span style="color: #DD0000">&apos;Connection&#xA0;failed:&#xA0;&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">());<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;send&#xA0;a&#xA0;message&#xA0;to&#xA0;the&#xA0;queue&#xA0;&apos;foo&apos;&#xA0;*/<br></span><span style="color: #0000BB">$stomp</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">send</span><span style="color: #007700">(</span><span style="color: #0000BB">$queue</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$msg</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;subscribe&#xA0;to&#xA0;messages&#xA0;from&#xA0;the&#xA0;queue&#xA0;&apos;foo&apos;&#xA0;*/<br></span><span style="color: #0000BB">$stomp</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">subscribe</span><span style="color: #007700">(</span><span style="color: #0000BB">$queue</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;read&#xA0;a&#xA0;frame&#xA0;*/<br></span><span style="color: #0000BB">$frame&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$stomp</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">readFrame</span><span style="color: #007700">();<br><br>if&#xA0;(</span><span style="color: #0000BB">$frame</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">body&#xA0;</span><span style="color: #007700">===&#xA0;</span><span style="color: #0000BB">$msg</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$frame</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;acknowledge&#xA0;that&#xA0;the&#xA0;frame&#xA0;was&#xA0;received&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stomp</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ack</span><span style="color: #007700">(</span><span style="color: #0000BB">$frame</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;close&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">unset(</span><span style="color: #0000BB">$stomp</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+object(StompFrame)#2 (3) {
+  [&quot;command&quot;]=&gt;
+  string(7) &quot;MESSAGE&quot;
+  [&quot;headers&quot;]=&gt;
+  array(5) {
+    [&quot;message-id&quot;]=&gt;
+    string(41) &quot;ID:php.net-55293-1257226743606-4:2:-1:1:1&quot;
+    [&quot;destination&quot;]=&gt;
+    string(10) &quot;/queue/foo&quot;
+    [&quot;timestamp&quot;]=&gt;
+    string(13) &quot;1257226805828&quot;
+    [&quot;expires&quot;]=&gt;
+    string(1) &quot;0&quot;
+    [&quot;priority&quot;]=&gt;
+    string(1) &quot;0&quot;
+  }
+  [&quot;body&quot;]=&gt;
+  string(3) &quot;bar&quot;
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5189">
+   <p><strong>Example #2 Procedural style</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$queue&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;/queue/foo&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$msg&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;bar&apos;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">/*&#xA0;connection&#xA0;*/<br></span><span style="color: #0000BB">$link&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">stomp_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;ssl://localhost:61612&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;die(</span><span style="color: #DD0000">&apos;Connection&#xA0;failed:&#xA0;&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">stomp_connect_error</span><span style="color: #007700">());<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;begin&#xA0;a&#xA0;transaction&#xA0;*/<br></span><span style="color: #0000BB">stomp_begin</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;t1&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;send&#xA0;a&#xA0;message&#xA0;to&#xA0;the&#xA0;queue&#xA0;&apos;foo&apos;&#xA0;*/<br></span><span style="color: #0000BB">stomp_send</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$queue</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$msg</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&apos;transaction&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;t1&apos;</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">/*&#xA0;commit&#xA0;a&#xA0;transaction&#xA0;*/<br></span><span style="color: #0000BB">stomp_commit</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;t1&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;subscribe&#xA0;to&#xA0;messages&#xA0;from&#xA0;the&#xA0;queue&#xA0;&apos;foo&apos;&#xA0;*/<br></span><span style="color: #0000BB">stomp_subscribe</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$queue</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;read&#xA0;a&#xA0;frame&#xA0;*/<br></span><span style="color: #0000BB">$frame&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">stomp_read_frame</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br><br>if&#xA0;(</span><span style="color: #0000BB">$frame</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;body&apos;</span><span style="color: #007700">]&#xA0;===&#xA0;</span><span style="color: #0000BB">$msg</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$frame</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;acknowledge&#xA0;that&#xA0;the&#xA0;frame&#xA0;was&#xA0;received&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">stomp_ack</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$frame</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;headers&apos;</span><span style="color: #007700">][</span><span style="color: #DD0000">&apos;message-id&apos;</span><span style="color: #007700">]);<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;close&#xA0;connection&#xA0;*/<br></span><span style="color: #0000BB">stomp_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(3) {
+  [&quot;command&quot;]=&gt;
+  string(7) &quot;MESSAGE&quot;
+  [&quot;body&quot;]=&gt;
+  string(3) &quot;bar&quot;
+  [&quot;headers&quot;]=&gt;
+  array(6) {
+    [&quot;transaction&quot;]=&gt;
+    string(2) &quot;t1&quot;
+    [&quot;message-id&quot;]=&gt;
+    string(41) &quot;ID:php.net-55293-1257226743606-4:3:-1:1:1&quot;
+    [&quot;destination&quot;]=&gt;
+    string(10) &quot;/queue/foo&quot;
+    [&quot;timestamp&quot;]=&gt;
+    string(13) &quot;1257227037059&quot;
+    [&quot;expires&quot;]=&gt;
+    string(1) &quot;0&quot;
+    [&quot;priority&quot;]=&gt;
+    string(1) &quot;0&quot;
+  }
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+ 

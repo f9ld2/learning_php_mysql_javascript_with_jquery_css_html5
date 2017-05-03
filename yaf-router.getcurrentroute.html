@@ -1,0 +1,97 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Yaf_Router::getCurrentRoute</h1>
+  <p class="verinfo">(Yaf &gt;=1.0.0)</p><p class="refpurpose"><span class="refname">Yaf_Router::getCurrentRoute</span> &#x2014; <span class="dc-title">Get the effective route name</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-yaf-router.getcurrentroute-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">string</span> <span class="methodname"><strong>Yaf_Router::getCurrentRoute</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Get the name of the route which is effective in the route process.
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    </p><p class="para">
+     You should call this method after the route process finished, since
+     before that, this method will always return <strong><code>NULL</code></strong>.
+    </p>
+   </blockquote></p>
+  <p></p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-yaf-router.getcurrentroute-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-yaf-router.getcurrentroute-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   String, the name of the effective route.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-yaf-router.getcurrentroute-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-4774">
+   <p><strong>Example #1 Register some routes in Bootstrap</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Bootstrap&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">Yaf_Bootstrap_Abstract</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">_initConfig</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$config&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">Yaf_Application</span><span style="color: #007700">::</span><span style="color: #0000BB">app</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">getConfig</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">Yaf_Registry</span><span style="color: #007700">::</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;config&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$config</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">_initRoute</span><span style="color: #007700">(</span><span style="color: #0000BB">Yaf_Dispatcher&#xA0;$dispatcher</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$router&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$dispatcher</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRouter</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$rewrite_route&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Yaf_Route_Rewrite</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;/product/list/:page&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;controller&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;product&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;action&quot;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;list&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;);&#xA0;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$regex_route&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">Yaf_Route_Rewrite</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;#^/product/info/(\d+)&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;controller&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;product&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&quot;action&quot;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;info&quot;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;);&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$router</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addRoute</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;rewrite&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$rewrite_route</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">addRoute</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;regex&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$regex_route</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/**<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;register&#xA0;plugin&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">public&#xA0;function&#xA0;</span><span style="color: #0000BB">__initPlugins</span><span style="color: #007700">(</span><span style="color: #0000BB">Yaf_Dispatcher&#xA0;$dispatcher</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$dispatcher</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">registerPlugin</span><span style="color: #007700">(new&#xA0;</span><span style="color: #0000BB">DummyPlugin</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-4775">
+   <p><strong>Example #2 plugin Dummy.php (under <a href="yaf.appconfig.html#configuration.yaf.directory" class="link">application.directory</a>/plugins)</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">DummyPlugin&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">Yaf_Plugin_Abstract&#xA0;</span><span style="color: #007700">{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">routerShutdown</span><span style="color: #007700">(</span><span style="color: #0000BB">Yaf_Request_Abstract&#xA0;$request</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">Yaf_Response_Abstract&#xA0;$response</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">Yaf_Dispatcher</span><span style="color: #007700">::</span><span style="color: #0000BB">getInstance</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">getRouter</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">getCurrentRoute</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br></span><span style="color: #0000BB">?&gt;<br></span>?&gt;</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+/* for http://yourdomain.com/product/list/1
+ * DummyPlugin will output:
+ */
+string(7) &quot;rewrite&quot;
+
+/* for http://yourdomain.com/product/info/34
+ * DummyPlugin will output:
+ */
+string(5) &quot;regex&quot;
+
+/* for other request URI
+ * DummyPlugin will output:
+ */
+string(8) &quot;_default&quot;
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-yaf-router.getcurrentroute-seealso">
+  <h3 class="title">See Also</h3>
+  <ul class="simplelist">
+   <li class="member"><a href="class.yaf-bootstrap-abstract.html" class="classname">Yaf_Bootstrap_Abstract</a></li>
+   <li class="member"><a href="class.yaf-plugin-abstract.html" class="classname">Yaf_Plugin_Abstract</a></li>
+   <li class="member"><span class="methodname"><a href="yaf-router.addroute.html" class="methodname" rel="rdfs-seeAlso">Yaf_Router::addRoute()</a> - Add new Route into Router</span></li>
+  </ul>                       
+ </div>
+  
+

@@ -1,0 +1,111 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">IntlCalendar::setFirstDayOfWeek</h1>
+  <p class="verinfo">(PHP 5.5.0, PHP 7, PECL &gt;= 3.0.0a1)</p><p class="refpurpose"><span class="refname">IntlCalendar::setFirstDayOfWeek</span> &#x2014; <span class="dc-title">Set the day on which the week is deemed to start</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-intlcalendar.setfirstdayofweek-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Object oriented style
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><strong>IntlCalendar::setFirstDayOfWeek</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$dayOfWeek</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Procedural style
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>intlcal_set_first_day_of_week</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.intlcalendar.html" class="type IntlCalendar">IntlCalendar</a></span> <code class="parameter">$cal</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$dayOfWeek</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Defines the day of week deemed to start the week. This affects the behavior
+   of fields that depend on the concept of week start and end such as
+   <strong><code>IntlCalendar::FIELD_WEEK_OF_YEAR</code></strong> and
+   <strong><code>IntlCalendar::FIELD_YEAR_WOY</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-intlcalendar.setfirstdayofweek-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">cal</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The IntlCalendar resource.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">dayOfWeek</code></dt>
+
+    <dd>
+
+     <p class="para">
+      One of the constants <strong><code>IntlCalendar::DOW_SUNDAY</code></strong>,
+      <strong><code>IntlCalendar::DOW_MONDAY</code></strong>, &#x2026;,
+      <strong><code>IntlCalendar::DOW_SATURDAY</code></strong>.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-intlcalendar.setfirstdayofweek-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success. Failure can only happen due to invalid parameters.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-intlcalendar.setfirstdayofweek-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2878">
+   <p><strong>Example #1 <span class="function"><strong>IntlCalendar::setFirstDayOfWeek()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;date.timezone&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Europe/Lisbon&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;intl.default_locale&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;es_ES&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$cal&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">createInstance</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #0000BB">2013</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">5&#xA0;</span><span style="color: #FF8000">/*&#xA0;June&#xA0;*/</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">30</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;A&#xA0;Sunday<br><br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getFirstDayOfWeek</span><span style="color: #007700">());&#xA0;</span><span style="color: #FF8000">//&#xA0;2&#xA0;(Monday)<br><br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">formatObject</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">,&#xA0;&lt;&lt;&lt;EOD<br></span><span style="color: #DD0000">&apos;local&#xA0;day&#xA0;of&#xA0;week:&#xA0;&apos;cc&apos;<br>week&#xA0;of&#xA0;month&#xA0;&#xA0;&#xA0;&#xA0;:&#xA0;&apos;W&apos;<br>week&#xA0;of&#xA0;year&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;:&#xA0;&apos;ww<br></span><span style="color: #007700">EOD<br>),&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFirstDayOfWeek</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">DOW_SUNDAY</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">formatObject</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">,&#xA0;&lt;&lt;&lt;EOD<br></span><span style="color: #DD0000">&apos;local&#xA0;day&#xA0;of&#xA0;week:&#xA0;&apos;cc&apos;<br>week&#xA0;of&#xA0;month&#xA0;&#xA0;&#xA0;&#xA0;:&#xA0;&apos;W&apos;<br>week&#xA0;of&#xA0;year&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;:&#xA0;&apos;ww<br></span><span style="color: #007700">EOD<br>),&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+int(2)
+local day of week: 7
+week of month    : 4
+week of year     : 26
+local day of week: 1
+week of month    : 5
+week of year     : 27
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+

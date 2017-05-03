@@ -1,0 +1,152 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">stream_copy_to_stream</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">stream_copy_to_stream</span> &#x2014; <span class="dc-title">Copies data from one stream to another</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.stream-copy-to-stream-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>stream_copy_to_stream</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$source</code></span>
+   , <span class="methodparam"><span class="type">resource</span> <code class="parameter">$dest</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$maxlength</code><span class="initializer"> = -1</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code><span class="initializer"> = 0</span></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Makes a copy of up to <code class="parameter">maxlength</code> bytes
+   of data from the current position (or from the
+   <code class="parameter">offset</code> position, if specified) in
+   <code class="parameter">source</code> to <code class="parameter">dest</code>. If
+   <code class="parameter">maxlength</code> is not specified, all remaining content in
+   <code class="parameter">source</code> will be copied.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.stream-copy-to-stream-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">source</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The source stream
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">dest</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The destination stream
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">maxlength</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Maximum bytes to copy
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">offset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The offset where to start to copy data
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.stream-copy-to-stream-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the total count of bytes copied,  or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.stream-copy-to-stream-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.1.0</td>
+       <td>
+        Added the <code class="parameter">offset</code> parameter
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.stream-copy-to-stream-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4605">
+    <p><strong>Example #1 A <span class="function"><strong>stream_copy_to_stream()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$src&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;http://www.example.com&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;r&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$dest1&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;first1k.txt&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;w&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$dest2&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;remainder.txt&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;w&apos;</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #0000BB">stream_copy_to_stream</span><span style="color: #007700">(</span><span style="color: #0000BB">$src</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$dest1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">1024</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;bytes&#xA0;copied&#xA0;to&#xA0;first1k.txt\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #0000BB">stream_copy_to_stream</span><span style="color: #007700">(</span><span style="color: #0000BB">$src</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$dest2</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;bytes&#xA0;copied&#xA0;to&#xA0;remainder.txt\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.stream-copy-to-stream-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.copy.html" class="function" rel="rdfs-seeAlso">copy()</a> - Copies file</span></li>
+   </ul>
+  </p>
+ </div>
+

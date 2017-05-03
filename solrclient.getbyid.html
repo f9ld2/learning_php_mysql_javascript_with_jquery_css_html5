@@ -1,0 +1,115 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">SolrClient::getById</h1>
+  <p class="verinfo">(PECL solr &gt;= 2.2.0)</p><p class="refpurpose"><span class="refname">SolrClient::getById</span> &#x2014; <span class="dc-title">Get Document By Id. Utilizes Solr Realtime Get (RTG).</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-solrclient.getbyid-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="class.solrqueryresponse.html" class="type SolrQueryResponse">SolrQueryResponse</a></span> <span class="methodname"><strong>SolrClient::getById</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$id</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+    Get Document By Id. Utilizes Solr Realtime Get (RTG).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-solrclient.getbyid-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">id</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Document ID
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-solrclient.getbyid-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <span class="type"><a href="class.solrqueryresponse.html" class="type SolrQueryResponse">SolrQueryResponse</a></span>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-solrclient.getbyid-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-5296">
+   <p><strong>Example #1 <span class="function"><strong>SolrClient::getById()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #007700">include&#xA0;</span><span style="color: #DD0000">&quot;bootstrap.php&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">$options&#xA0;</span><span style="color: #007700">=&#xA0;array<br>(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;hostname&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">SOLR_SERVER_HOSTNAME</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;login&apos;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">SOLR_SERVER_USERNAME</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;password&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">SOLR_SERVER_PASSWORD</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;port&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">SOLR_SERVER_PORT</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;path&apos;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">SOLR_SERVER_PATH<br></span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$client&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SolrClient</span><span style="color: #007700">(</span><span style="color: #0000BB">$options</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$response&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getById</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;GB18030TEST&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$response</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getResponse</span><span style="color: #007700">());<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+SolrObject Object
+(
+    [doc] =&gt; SolrObject Object
+        (
+            [id] =&gt; GB18030TEST
+            [name] =&gt; Array
+                (
+                    [0] =&gt; Test with some GB18030 encoded characters
+                )
+
+            [features] =&gt; Array
+                (
+                    [0] =&gt; No accents here
+                    [1] =&gt; &#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x529F;&#x80FD;
+                    [2] =&gt; This is a feature (translated)
+                    [3] =&gt; &#x8FD9;&#x4EFD;&#x6587;&#x4EF6;&#x662F;&#x5F88;&#x6709;&#x5149;&#x6CFD;
+                    [4] =&gt; This document is very shiny (translated)
+                )
+
+            [price] =&gt; Array
+                (
+                    [0] =&gt; 0
+                )
+
+            [inStock] =&gt; Array
+                (
+                    [0] =&gt; 1
+                )
+
+            [_version_] =&gt; 1510294336239042560
+        )
+
+)
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+
+ <div class="refsect1 seealso" id="refsect1-solrclient.getbyid-seealso">
+  <h3 class="title">See Also</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="methodname"><a href="solrclient.getbyids.html" class="methodname" rel="rdfs-seeAlso">SolrClient::getByIds()</a> - Get Documents by their Ids. Utilizes Solr Realtime Get (RTG).</span></li>
+  </ul>
+ </div>
+
+

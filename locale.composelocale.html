@@ -1,0 +1,130 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Locale::composeLocale</h1>
+  <h1 class="refname">locale_compose</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PECL intl &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">Locale::composeLocale</span> -- <span class="refname">locale_compose</span> &#x2014; <span class="dc-title">Returns a correctly ordered and delimited locale ID</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-locale.composelocale-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Object oriented style
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="modifier">static</span>
+   <span class="type">string</span> 
+   <span class="methodname"><strong>Locale::composeLocale</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$subtags</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Procedural style
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> 
+   <span class="methodname"><strong>locale_compose</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$subtags</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns a correctly ordered and delimited locale ID the keys identify the
+   particular locale ID subtags, and the values are the associated subtag
+   values.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-locale.composelocale-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">subtags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       an array containing a list of key-value pairs, where the keys identify
+       the particular locale ID subtags, and the values are the associated
+       subtag values. 
+       <blockquote class="note"><p><strong class="note">Note</strong>: 
+        </p><p class="para">
+         The &apos;variant&apos; and &apos;private&apos; subtags can take maximum 15 values
+         whereas &apos;extlang&apos; can take maximum 3 values.e.g. Variants are allowed
+         with the suffix ranging from 0-14. Hence the keys for the input array
+         can be variant0, variant1, ...,variant14. In the returned locale id,
+         the subtag is ordered by suffix resulting in variant0 followed by
+         variant1 followed by variant2 and so on.
+        </p>
+        <p class="para">
+         The &apos;variant&apos;, &apos;private&apos; and &apos;extlang&apos; multiple values can be specified both
+         as array under specific key (e.g. &apos;variant&apos;) and as multiple numbered keys
+         (e.g. &apos;variant0&apos;, &apos;variant1&apos;, etc.).
+        </p>
+       </blockquote></p>
+      </dd></dl></p>
+     
+
+    
+   
+
+  <p></p>
+ </div>
+
+
+
+ <div class="refsect1 returnvalues" id="refsect1-locale.composelocale-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The corresponding locale identifier.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-locale.composelocale-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-2792">
+   <p><strong>Example #1 <span class="function"><strong>locale_compose()</strong></span> example</strong></p>
+   <div class="example-contents">
+    <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$arr&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;language&apos;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;en&apos;&#xA0;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;script&apos;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;Hans&apos;&#xA0;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;region&apos;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;CN&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;variant2&apos;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;rozaj&apos;&#xA0;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;variant1&apos;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;nedis&apos;&#xA0;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;private1&apos;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;prv1&apos;&#xA0;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;private2&apos;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;prv2&apos;<br></span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #0000BB">locale_compose</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$arr&#xA0;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-2793">
+   <p><strong>Example #2 OO example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$arr&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;language&apos;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;en&apos;&#xA0;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;script&apos;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;Hans&apos;&#xA0;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;region&apos;&#xA0;&#xA0;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;CN&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;variant2&apos;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;rozaj&apos;&#xA0;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;variant1&apos;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;nedis&apos;&#xA0;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;private1&apos;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;prv1&apos;&#xA0;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;private2&apos;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&apos;prv2&apos;<br></span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #0000BB">Locale</span><span style="color: #007700">::</span><span style="color: #0000BB">composeLocale</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$arr&#xA0;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output:</p>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+Locale: en_Hans_CN_nedis_rozaj_x_prv1_prv2
+</pre></div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-locale.composelocale-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="locale.parselocale.html" class="function" rel="rdfs-seeAlso">locale_parse()</a> - Returns a key-value array of locale ID subtag elements.</span></li>
+   </ul>
+  </p>
+ </div>
+

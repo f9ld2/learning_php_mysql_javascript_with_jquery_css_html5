@@ -1,0 +1,134 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">curl_version</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">curl_version</span> &#x2014; <span class="dc-title">Gets cURL version information</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.curl-version-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><strong>curl_version</strong></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$age</code><span class="initializer"> = CURLVERSION_NOW</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns information about the cURL version.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.curl-version-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">age</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.curl-version-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative array with the following elements: 
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Indice</th>
+       <th>Value description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>version_number</td>
+       <td>cURL 24 bit version number</td>
+      </tr>
+
+      <tr>
+       <td>version</td>
+       <td>cURL version number, as a string</td>
+      </tr>
+
+      <tr>
+       <td>ssl_version_number</td>
+       <td>OpenSSL 24 bit version number</td>
+      </tr>
+
+      <tr>
+       <td>ssl_version</td>
+       <td>OpenSSL version number, as a string</td>
+      </tr>
+
+      <tr>
+       <td>libz_version</td>
+       <td>zlib version number, as a string</td>
+      </tr>
+
+      <tr>
+       <td>host</td>
+       <td>Information about the host where cURL was built</td>
+      </tr>
+
+      <tr>
+       <td>age</td>
+       <td class="empty">&#xA0;</td>
+      </tr>
+
+      <tr>
+       <td>features</td>
+       <td>A bitmask of the <em>CURL_VERSION_XXX</em> constants</td>
+      </tr>
+
+      <tr>
+       <td>protocols</td>
+       <td>An array of protocols names supported by cURL</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.curl-version-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4814">
+    <p><strong>Example #1 <span class="function"><strong>curl_version()</strong></span> example</strong></p>
+    <div class="example-contents"><p>
+     This example will check which features that&apos;s available 
+     in cURL build by using the <em>&apos;features&apos;</em> bitmask returned 
+     by <span class="function"><strong>curl_version()</strong></span>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Get&#xA0;curl&#xA0;version&#xA0;array<br></span><span style="color: #0000BB">$version&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">curl_version</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;These&#xA0;are&#xA0;the&#xA0;bitfields&#xA0;that&#xA0;can&#xA0;be&#xA0;used&#xA0;<br>//&#xA0;to&#xA0;check&#xA0;for&#xA0;features&#xA0;in&#xA0;the&#xA0;curl&#xA0;build<br></span><span style="color: #0000BB">$bitfields&#xA0;</span><span style="color: #007700">=&#xA0;Array(<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;CURL_VERSION_IPV6&apos;</span><span style="color: #007700">,&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;CURL_VERSION_KERBEROS4&apos;</span><span style="color: #007700">,&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;CURL_VERSION_SSL&apos;</span><span style="color: #007700">,&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;CURL_VERSION_LIBZ&apos;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">);<br><br><br>foreach(</span><span style="color: #0000BB">$bitfields&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$feature</span><span style="color: #007700">)<br>{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$feature&#xA0;</span><span style="color: #007700">.&#xA0;(</span><span style="color: #0000BB">$version</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;features&apos;</span><span style="color: #007700">]&#xA0;&amp;&#xA0;</span><span style="color: #0000BB">constant</span><span style="color: #007700">(</span><span style="color: #0000BB">$feature</span><span style="color: #007700">)&#xA0;?&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;matches&apos;&#xA0;</span><span style="color: #007700">:&#xA0;</span><span style="color: #DD0000">&apos;&#xA0;does&#xA0;not&#xA0;match&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+

@@ -1,0 +1,117 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">mb_convert_encoding</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">mb_convert_encoding</span> &#x2014; <span class="dc-title">Convert character encoding</span></p>
+
+ </div>
+   
+ <div class="refsect1 description" id="refsect1-function.mb-convert-encoding-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>mb_convert_encoding</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$str</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$to_encoding</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$from_encoding</code><span class="initializer"> = mb_internal_encoding()</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Converts the character encoding of <span class="type"><a href="language.types.string.html" class="type string">string</a></span> <code class="parameter">str</code>
+   to <code class="parameter">to_encoding</code>
+   from optionally <code class="parameter">from_encoding</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mb-convert-encoding-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">str</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The <span class="type"><a href="language.types.string.html" class="type string">string</a></span> being encoded.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">to_encoding</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The type of encoding that <code class="parameter">str</code> is being converted to.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">from_encoding</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Is specified by character code names before conversion. It is either
+       an <span class="type"><a href="language.types.array.html" class="type array">array</a></span>, or a comma separated enumerated list.
+       If <code class="parameter">from_encoding</code> is not specified, the internal 
+       encoding will be used.
+       
+      </p>
+      <p class="para">
+      See <a href="mbstring.supported-encodings.html" class="link">supported
+      encodings</a>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.mb-convert-encoding-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The encoded <span class="type"><a href="language.types.string.html" class="type string">string</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mb-convert-encoding-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-3018">
+    <p><strong>Example #1 <span class="function"><strong>mb_convert_encoding()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">/*&#xA0;Convert&#xA0;internal&#xA0;character&#xA0;encoding&#xA0;to&#xA0;SJIS&#xA0;*/<br></span><span style="color: #0000BB">$str&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mb_convert_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;SJIS&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Convert&#xA0;EUC-JP&#xA0;to&#xA0;UTF-7&#xA0;*/<br></span><span style="color: #0000BB">$str&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mb_convert_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;UTF-7&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;EUC-JP&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;Auto&#xA0;detect&#xA0;encoding&#xA0;from&#xA0;JIS,&#xA0;eucjp-win,&#xA0;sjis-win,&#xA0;then&#xA0;convert&#xA0;str&#xA0;to&#xA0;UCS-2LE&#xA0;*/<br></span><span style="color: #0000BB">$str&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mb_convert_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;UCS-2LE&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;JIS,&#xA0;eucjp-win,&#xA0;sjis-win&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;&quot;auto&quot;&#xA0;is&#xA0;expanded&#xA0;to&#xA0;&quot;ASCII,JIS,UTF-8,EUC-JP,SJIS&quot;&#xA0;*/<br></span><span style="color: #0000BB">$str&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mb_convert_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;EUC-JP&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;auto&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+  
+ <div class="refsect1 seealso" id="refsect1-function.mb-convert-encoding-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.mb-detect-order.html" class="function" rel="rdfs-seeAlso">mb_detect_order()</a> - Set/Get character encoding detection order</span></li>
+   </ul>
+  </p>
+ </div>
+
+ 

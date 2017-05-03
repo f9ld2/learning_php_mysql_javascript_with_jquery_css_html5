@@ -1,0 +1,87 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">EventConfig::requireFeatures</h1>
+  <p class="verinfo">(PECL event &gt;= 1.2.6-beta)</p><p class="refpurpose"><span class="refname">EventConfig::requireFeatures</span> &#x2014; <span class="dc-title">Enters a required event method feature that the application demands</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-eventconfig.requirefeatures-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="type">bool</span> 
+   <span class="methodname"><strong>EventConfig::requireFeatures</strong></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$feature</code>
+   </span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Enters a required event method feature that the application demands
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-eventconfig.requirefeatures-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+
+     <code class="parameter">feature</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Bitmask of required features. See
+      <a href="class.eventconfig.html#eventconfig.constants" class="link">
+       <em>EventConfig::FEATURE_*</em> constants</a>
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-eventconfig.requirefeatures-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+ </p></div>
+
+ <div class="refsect1 examples" id="refsect1-eventconfig.requirefeatures-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-4844">
+   <p><strong>Example #1 
+    <span class="function"><strong>EventConfig::requireFeatures()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$cfg&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">EventConfig</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;event_base&#xA0;associated&#xA0;with&#xA0;the&#xA0;config<br></span><span style="color: #0000BB">$base&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">EventBase</span><span style="color: #007700">(</span><span style="color: #0000BB">$cfg</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Require&#xA0;FDS&#xA0;feature<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$cfg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">requireFeatures</span><span style="color: #007700">(</span><span style="color: #0000BB">EventConfig</span><span style="color: #007700">::</span><span style="color: #0000BB">FEATURE_FDS</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;FDS&#xA0;feature&#xA0;is&#xA0;now&#xA0;requried\n&quot;</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$base&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">EventBase</span><span style="color: #007700">(</span><span style="color: #0000BB">$cfg</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;(</span><span style="color: #0000BB">$base</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getFeatures</span><span style="color: #007700">()&#xA0;&amp;&#xA0;</span><span style="color: #0000BB">EventConfig</span><span style="color: #007700">::</span><span style="color: #0000BB">FEATURE_FDS</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;and&#xA0;print(</span><span style="color: #DD0000">&quot;FDS&#xA0;-&#xA0;arbitrary&#xA0;file&#xA0;descriptor&#xA0;types,&#xA0;and&#xA0;not&#xA0;just&#xA0;sockets\n&quot;</span><span style="color: #007700">);<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+FDS feature is now requried
+FDS - arbitrary file descriptor types, and not just sockets
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-eventconfig.requirefeatures-seealso">
+  <h3 class="title">See Also</h3>
+  <ul class="simplelist">
+   <li class="member">
+    <span class="methodname"><a href="eventbase.getfeatures.html" class="methodname" rel="rdfs-seeAlso">EventBase::getFeatures()</a> - Returns bitmask of features supported</span>
+   </li>
+  </ul>
+ </div>
+

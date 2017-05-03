@@ -1,0 +1,180 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_encrypt</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">mcrypt_encrypt</span> &#x2014; <span class="dc-title">Encrypts plaintext with given parameters</span></p>
+
+ </div>
+ 
+ <div id="function.mcrypt-encrypt-refsynopsisdiv">
+  <div class="warning"><strong class="warning">Warning</strong><p class="simpara">This function has been
+<em class="emphasis">DEPRECATED</em> as of PHP 7.1.0. Relying on this function
+is highly discouraged.</p></div>
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.mcrypt-encrypt-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>mcrypt_encrypt</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$cipher</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$data</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$mode</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$iv</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Encrypts the data and returns it.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mcrypt-encrypt-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">cipher</code></dt>
+
+     <dd>
+
+      <p class="para">One of the <strong><code>MCRYPT_ciphername</code></strong> constants, or the name of the algorithm as string.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">key</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The key with which the data will be encrypted. If the provided key size is
+       not supported by the cipher, the function will emit a warning and return <strong><code>FALSE</code></strong>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">data</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The data that will be encrypted with the given <code class="parameter">cipher</code>
+       and <code class="parameter">mode</code>. If the size of the data is not n * blocksize,
+       the data will be padded with &apos;<em>\0</em>&apos;.
+      </p>
+      <p class="para">
+       The returned crypttext can be larger than the size of the data that was
+       given by <code class="parameter">data</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mode</code></dt>
+
+     <dd>
+
+      <p class="para">One of the <strong><code>MCRYPT_MODE_modename</code></strong> constants, or one of the following strings: &quot;ecb&quot;, &quot;cbc&quot;, &quot;cfb&quot;, &quot;ofb&quot;, &quot;nofb&quot; or &quot;stream&quot;.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">iv</code></dt>
+
+     <dd>
+
+      <p class="para">Used for the initialization in CBC, CFB, OFB modes, and in some algorithms in STREAM mode. If the provided IV size is not supported by the chaining mode or no IV was provided, but the chaining mode requires one, the function will emit a warning and return <strong><code>FALSE</code></strong>.</p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mcrypt-encrypt-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the encrypted data as a string  or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-function.mcrypt-encrypt-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.6.0</td>
+       <td>
+        Invalid <code class="parameter">key</code> and <code class="parameter">iv</code> sizes
+        are no longer accepted. <span class="function"><strong>mcrypt_encrypt()</strong></span> will now throw
+        a warning and return <strong><code>FALSE</code></strong> if the inputs are invalid. Previously keys and
+        IVs were padded with &apos;<em>\0</em>&apos; bytes to the next valid size.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mcrypt-encrypt-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-918">
+    <p><strong>Example #1 <span class="function"><strong>mcrypt_encrypt()</strong></span> Example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">#&#xA0;---&#xA0;ENCRYPTION&#xA0;---<br><br>&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;the&#xA0;key&#xA0;should&#xA0;be&#xA0;random&#xA0;binary,&#xA0;use&#xA0;scrypt,&#xA0;bcrypt&#xA0;or&#xA0;PBKDF2&#xA0;to<br>&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;convert&#xA0;a&#xA0;string&#xA0;into&#xA0;a&#xA0;key<br>&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;key&#xA0;is&#xA0;specified&#xA0;using&#xA0;hexadecimal<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$key&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">pack</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;H*&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;bcb04b7e103a0cd8b54763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3&quot;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">#&#xA0;show&#xA0;key&#xA0;size&#xA0;use&#xA0;either&#xA0;16,&#xA0;24&#xA0;or&#xA0;32&#xA0;byte&#xA0;keys&#xA0;for&#xA0;AES-128,&#xA0;192<br>&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;and&#xA0;256&#xA0;respectively<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$key_size&#xA0;</span><span style="color: #007700">=&#xA0;&#xA0;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$key</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Key&#xA0;size:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$key_size&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$plaintext&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;This&#xA0;string&#xA0;was&#xA0;AES-256&#xA0;/&#xA0;CBC&#xA0;/&#xA0;ZeroBytePadding&#xA0;encrypted.&quot;</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">#&#xA0;create&#xA0;a&#xA0;random&#xA0;IV&#xA0;to&#xA0;use&#xA0;with&#xA0;CBC&#xA0;encoding<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$iv_size&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mcrypt_get_iv_size</span><span style="color: #007700">(</span><span style="color: #0000BB">MCRYPT_RIJNDAEL_128</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">MCRYPT_MODE_CBC</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$iv&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mcrypt_create_iv</span><span style="color: #007700">(</span><span style="color: #0000BB">$iv_size</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">MCRYPT_RAND</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">#&#xA0;creates&#xA0;a&#xA0;cipher&#xA0;text&#xA0;compatible&#xA0;with&#xA0;AES&#xA0;(Rijndael&#xA0;block&#xA0;size&#xA0;=&#xA0;128)<br>&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;to&#xA0;keep&#xA0;the&#xA0;text&#xA0;confidential&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;only&#xA0;suitable&#xA0;for&#xA0;encoded&#xA0;input&#xA0;that&#xA0;never&#xA0;ends&#xA0;with&#xA0;value&#xA0;00h<br>&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;(because&#xA0;of&#xA0;default&#xA0;zero&#xA0;padding)<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$ciphertext&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mcrypt_encrypt</span><span style="color: #007700">(</span><span style="color: #0000BB">MCRYPT_RIJNDAEL_128</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$plaintext</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">MCRYPT_MODE_CBC</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$iv</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">#&#xA0;prepend&#xA0;the&#xA0;IV&#xA0;for&#xA0;it&#xA0;to&#xA0;be&#xA0;available&#xA0;for&#xA0;decryption<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$ciphertext&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$iv&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$ciphertext</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">#&#xA0;encode&#xA0;the&#xA0;resulting&#xA0;cipher&#xA0;text&#xA0;so&#xA0;it&#xA0;can&#xA0;be&#xA0;represented&#xA0;by&#xA0;a&#xA0;string<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$ciphertext_base64&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">base64_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$ciphertext</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;&#xA0;</span><span style="color: #0000BB">$ciphertext_base64&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">#&#xA0;===&#xA0;WARNING&#xA0;===<br><br>&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;Resulting&#xA0;cipher&#xA0;text&#xA0;has&#xA0;no&#xA0;integrity&#xA0;or&#xA0;authenticity&#xA0;added<br>&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;and&#xA0;is&#xA0;not&#xA0;protected&#xA0;against&#xA0;padding&#xA0;oracle&#xA0;attacks.<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;---&#xA0;DECRYPTION&#xA0;---<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$ciphertext_dec&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">base64_decode</span><span style="color: #007700">(</span><span style="color: #0000BB">$ciphertext_base64</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">#&#xA0;retrieves&#xA0;the&#xA0;IV,&#xA0;iv_size&#xA0;should&#xA0;be&#xA0;created&#xA0;using&#xA0;mcrypt_get_iv_size()<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$iv_dec&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$ciphertext_dec</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$iv_size</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">#&#xA0;retrieves&#xA0;the&#xA0;cipher&#xA0;text&#xA0;(everything&#xA0;except&#xA0;the&#xA0;$iv_size&#xA0;in&#xA0;the&#xA0;front)<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$ciphertext_dec&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$ciphertext_dec</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$iv_size</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">#&#xA0;may&#xA0;remove&#xA0;00h&#xA0;valued&#xA0;characters&#xA0;from&#xA0;end&#xA0;of&#xA0;plain&#xA0;text<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$plaintext_dec&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mcrypt_decrypt</span><span style="color: #007700">(</span><span style="color: #0000BB">MCRYPT_RIJNDAEL_128</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$ciphertext_dec</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">MCRYPT_MODE_CBC</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$iv_dec</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;&#xA0;</span><span style="color: #0000BB">$plaintext_dec&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Key size: 32
+ENJW8mS2KaJoNB5E5CoSAAu0xARgsR1bdzFWpEn+poYw45q+73az5kYi4j+0haevext1dGrcW8Qi59txfCBV8BBj3bzRP3dFCp3CPQSJ8eU=
+This string was AES-256 / CBC / ZeroBytePadding encrypted.
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mcrypt-encrypt-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.mcrypt-decrypt.html" class="function" rel="rdfs-seeAlso">mcrypt_decrypt()</a> - Decrypts crypttext with given parameters</span></li>
+    <li class="member"><span class="function"><a href="function.mcrypt-module-open.html" class="function" rel="rdfs-seeAlso">mcrypt_module_open()</a> - Opens the module of the algorithm and the mode to be used</span></li>
+   </ul>
+  </p>
+ </div>
+

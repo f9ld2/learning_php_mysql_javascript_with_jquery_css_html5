@@ -1,0 +1,90 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">sqlsrv_num_rows</h1>
+  <p class="verinfo">(No version information available, might only be in Git)</p><p class="refpurpose"><span class="refname">sqlsrv_num_rows</span> &#x2014; <span class="dc-title">Retrieves the number of rows in a result set</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.sqlsrv-num-rows-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>sqlsrv_num_rows</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$stmt</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Retrieves the number of rows in a result set. This function requires that the 
+   statment resource be created with a static or keyset cursor. For more information, 
+   see <span class="function"><a href="function.sqlsrv-query.html" class="function">sqlsrv_query()</a></span>, <span class="function"><a href="function.sqlsrv-prepare.html" class="function">sqlsrv_prepare()</a></span>, 
+   or <a href="http://msdn.microsoft.com/en-us/library/ee376927.aspx" class="link external">&#xBB;&#xA0;Specifying a Cursor Type and Selecting Rows</a> 
+   in the Microsoft SQLSRV documentation.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.sqlsrv-num-rows-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">stmt</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The statement for which the row count is returned. The statment resource 
+       must be created with a static or keyset cursor. For more information, see 
+       <span class="function"><a href="function.sqlsrv-query.html" class="function">sqlsrv_query()</a></span>, <span class="function"><a href="function.sqlsrv-prepare.html" class="function">sqlsrv_prepare()</a></span>, or 
+       <a href="http://msdn.microsoft.com/en-us/library/ee376927.aspx" class="link external">&#xBB;&#xA0;Specifying a Cursor Type and Selecting Rows</a> 
+       in the Microsoft SQLSRV documentation.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlsrv-num-rows-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of rows retrieved on success and <strong><code>FALSE</code></strong> if an error occurred. 
+   If a forward cursor (the default) or dynamic cursor is used, <strong><code>FALSE</code></strong> is returned.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.sqlsrv-num-rows-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2432">
+    <p><strong>Example #1 <span class="function"><strong>sqlsrv_num_rows()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$server&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;serverName\sqlexpress&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$connectionInfo&#xA0;</span><span style="color: #007700">=&#xA0;array(&#xA0;</span><span style="color: #DD0000">&quot;Database&quot;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&quot;dbName&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;UID&quot;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&quot;username&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;PWD&quot;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&quot;password&quot;&#xA0;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sqlsrv_connect</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$server</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$connectionInfo&#xA0;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;Table_1&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$params&#xA0;</span><span style="color: #007700">=&#xA0;array();<br></span><span style="color: #0000BB">$options&#xA0;</span><span style="color: #007700">=&#xA0;&#xA0;array(&#xA0;</span><span style="color: #DD0000">&quot;Scrollable&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">SQLSRV_CURSOR_KEYSET&#xA0;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$stmt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sqlsrv_query</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$params</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$options&#xA0;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$row_count&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sqlsrv_num_rows</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$stmt&#xA0;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;<br>if&#xA0;(</span><span style="color: #0000BB">$row_count&#xA0;</span><span style="color: #007700">===&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Error&#xA0;in&#xA0;retrieveing&#xA0;row&#xA0;count.&quot;</span><span style="color: #007700">;<br>else<br>&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$row_count</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.sqlsrv-num-rows-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.sqlsrv-has-rows.html" class="function" rel="rdfs-seeAlso">sqlsrv_has_rows()</a> - Indicates whether the specified statement has rows</span></li>
+    <li class="member"><span class="function"><a href="function.sqlsrv-rows-affected.html" class="function" rel="rdfs-seeAlso">sqlsrv_rows_affected()</a> - Returns the number of rows modified by the last INSERT, UPDATE, or 
+  DELETE query executed</span></li>
+   </ul>
+  </p>
+ </div>
+

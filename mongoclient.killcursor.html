@@ -1,0 +1,119 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MongoClient::killCursor</h1>
+  <p class="verinfo">(PECL mongo &gt;=1.5.0)</p><p class="refpurpose"><span class="refname">MongoClient::killCursor</span> &#x2014; <span class="dc-title">Kills a specific cursor on the server</span></p>
+
+ </div>
+
+ <div id="mongoclient.killcursor-soft-deprecation-notice" class="soft-deprecation-notice">
+  <p class="para">This extension that defines this method
+is deprecated. Instead, the <a href="set.mongodb.html" class="link">MongoDB</a> extension should be used.
+There is no equivalent for this method in the new extension.</p>
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongoclient.killcursor-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><strong>MongoClient::killCursor</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$server_hash</code></span>
+   , <span class="methodparam"><span class="type"><span class="type int|MongoInt64">int|MongoInt64</span></span> <code class="parameter">$id</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   In certain situations it might be needed to kill a cursor on the server.
+   Usually cursors time out after 10 minutes of inactivity, but it is possible
+   to create an immortal cursor with
+   <span class="methodname"><a href="mongocursor.immortal.html" class="methodname">MongoCursor::immortal()</a></span> that never times out. In
+   order to be able to kill such an immortal cursor, you can call this
+   method with the information supplied by
+   <span class="methodname"><a href="mongocursor.info.html" class="methodname">MongoCursor::info()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongoclient.killcursor-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">server_hash</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       The server hash that has the cursor. This can be obtained through
+       <span class="methodname"><a href="mongocursor.info.html" class="methodname">MongoCursor::info()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+
+      <code class="parameter">id</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       The ID of the cursor to kill. You can either supply an <span class="type"><a href="language.types.integer.html" class="type int">int</a></span>
+       containing the 64 bit cursor ID, or an object of the
+       <a href="class.mongoint64.html" class="classname">MongoInt64</a> class. The latter is necessary on 32
+       bit platforms (and Windows).
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongoclient.killcursor-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> if the method attempted to kill a cursor, and <strong><code>FALSE</code></strong> if
+   there was something wrong with the arguments (such as a wrong
+   <code class="parameter">server_hash</code>). The return status does <em class="emphasis">not
+   reflect</em> where the cursor was actually killed as the server does
+   not provide that information.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongoclient.killcursor-errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   This method displays a warning if the supplied
+   <code class="parameter">server_hash</code> does not match up with an existing
+   connection. No attempt to kill a cursor is attempted in that case either.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="mongo.mongoclient.killcursor.examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="mongo.queries.arrays-example">
+   <p><strong>Example #1 <span class="function"><strong>MongoClient::killCursor()</strong></span> example</strong></p>
+   <div class="example-contents"><p>
+    This example shows how to connect, do a query, obtain the cursor
+    information and then kill the cursor.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$m&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">testdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">collection</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$cursor&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">next</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Now&#xA0;the&#xA0;cursor&#xA0;is&#xA0;valid,&#xA0;so&#xA0;we&#xA0;can&#xA0;get&#xA0;the&#xA0;hash&#xA0;and&#xA0;ID&#xA0;out:<br></span><span style="color: #0000BB">$info&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">info</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">//&#xA0;Kill&#xA0;the&#xA0;cursor<br></span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">::</span><span style="color: #0000BB">killCursor</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$info</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;server&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">$info</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;id&apos;</span><span style="color: #007700">]&#xA0;);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+

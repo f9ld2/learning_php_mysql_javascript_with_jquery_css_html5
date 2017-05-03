@@ -1,0 +1,95 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">imagesavealpha</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.2, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">imagesavealpha</span> &#x2014; <span class="dc-title">Set the flag to save full alpha channel information (as opposed to single-color transparency) when saving PNG images</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.imagesavealpha-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>imagesavealpha</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$image</code></span>
+   , <span class="methodparam"><span class="type">bool</span> <code class="parameter">$saveflag</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>imagesavealpha()</strong></span> sets the flag to attempt to save
+   full alpha channel information (as opposed to single-color transparency)
+   when saving PNG images.
+  </p>
+  <p class="para">
+   You have to unset alphablending
+   (<em>imagealphablending($im, false)</em>), to use it.
+  </p>
+  <p class="para">
+   Alpha channel is not supported by all browsers, if you have problem with
+   your browser, try to load your script with an alpha channel compliant
+   browser, e.g. latest Mozilla.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.imagesavealpha-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+image</code></dt>
+<dd>
+<p class="para">An image resource, returned by one of the image creation functions,
+such as <span class="function"><a href="function.imagecreatetruecolor.html" class="function">imagecreatetruecolor()</a></span>.</p></dd>
+
+    
+     <dt>
+<code class="parameter">saveflag</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Whether to save the alpha channel or not. Default to <strong><code>FALSE</code></strong>. 
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.imagesavealpha-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.imagesavealpha-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-3600">
+    <p><strong>Example #1 <span class="function"><strong>imagesavealpha()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;Load&#xA0;a&#xA0;png&#xA0;image&#xA0;with&#xA0;alpha&#xA0;channels<br></span><span style="color: #0000BB">$png&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">imagecreatefrompng</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;./alphachannel_example.png&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Do&#xA0;required&#xA0;operations<br><br>//&#xA0;Turn&#xA0;off&#xA0;alpha&#xA0;blending&#xA0;and&#xA0;set&#xA0;alpha&#xA0;flag<br></span><span style="color: #0000BB">imagealphablending</span><span style="color: #007700">(</span><span style="color: #0000BB">$png</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br></span><span style="color: #0000BB">imagesavealpha</span><span style="color: #007700">(</span><span style="color: #0000BB">$png</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Output&#xA0;image&#xA0;to&#xA0;browser<br></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;Content-Type:&#xA0;image/png&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">imagepng</span><span style="color: #007700">(</span><span style="color: #0000BB">$png</span><span style="color: #007700">);<br></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$png</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.imagesavealpha-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.imagealphablending.html" class="function" rel="rdfs-seeAlso">imagealphablending()</a> - Set the blending mode for an image</span></li>
+   </ul>
+  </p>
+ </div>
+

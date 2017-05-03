@@ -1,0 +1,140 @@
+---
+layout: default
+---
+
+
+ <h1 class="title">The RecursiveCallbackFilterIterator class</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(PHP 5 &gt;= 5.4.0, PHP 7)</p>
+
+
+  <div class="section" id="recursivecallbackfilteriterator.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+
+   </p>
+  </div>
+
+
+  <div class="section" id="recursivecallbackfilteriterator.synopsis">
+   <h2 class="title">Class synopsis</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">RecursiveCallbackFilterIterator</strong>
+     </span>
+     
+     <span class="ooclass">
+      <span class="modifier">extends</span>
+      <a href="class.callbackfilteriterator.html" class="classname">CallbackFilterIterator</a>
+     </span>
+     
+     <span class="oointerface">implements 
+      <span class="interfacename"><a href="class.outeriterator.html" class="interfacename">OuterIterator</a></span>
+     </span>
+
+     <span class="oointerface">, 
+      <span class="interfacename"><a href="class.recursiveiterator.html" class="interfacename">RecursiveIterator</a></span>
+     </span>
+     {</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Methods */</div>
+    <div class="constructorsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="methodname"><a href="recursivecallbackfilteriterator.construct.html" class="methodname">__construct</a></span>
+    ( <span class="methodparam"><span class="type"><a href="class.recursiveiterator.html" class="type RecursiveIterator">RecursiveIterator</a></span> <code class="parameter">$iterator</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$callback</code></span>
+   )</div>
+
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">RecursiveCallbackFilterIterator</span> <span class="methodname"><a href="recursivecallbackfilteriterator.getchildren.html" class="methodname">getChildren</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><a href="recursivecallbackfilteriterator.haschildren.html" class="methodname">hasChildren</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Inherited methods */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">string</span> <span class="methodname"><a href="callbackfilteriterator.accept.html" class="methodname">CallbackFilterIterator::accept</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+
+   }</div>
+
+
+  </div>
+
+  
+  <div class="section" id="recursivecallbackfilteriterator.examples">
+   <h2 class="title">Examples</h2>
+   <p class="para">
+    The callback should accept up to three arguments:
+    the current item, the current key and the iterator, respectively.
+   </p>
+   <div class="example" id="example-4478">
+    <p><strong>Example #1 Available callback arguments</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">/**<br>&#xA0;*&#xA0;Callback&#xA0;for&#xA0;RecursiveCallbackFilterIterator<br>&#xA0;*<br>&#xA0;*&#xA0;@param&#xA0;$current&#xA0;&#xA0;&#xA0;Current&#xA0;item&apos;s&#xA0;value<br>&#xA0;*&#xA0;@param&#xA0;$key&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Current&#xA0;item&apos;s&#xA0;key<br>&#xA0;*&#xA0;@param&#xA0;$iterator&#xA0;&#xA0;Iterator&#xA0;being&#xA0;filtered<br>&#xA0;*&#xA0;@return&#xA0;boolean&#xA0;&#xA0;&#xA0;TRUE&#xA0;to&#xA0;accept&#xA0;the&#xA0;current&#xA0;item,&#xA0;FALSE&#xA0;otherwise<br>&#xA0;*/<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">my_callback</span><span style="color: #007700">(</span><span style="color: #0000BB">$current</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$iterator</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Your&#xA0;filtering&#xA0;code&#xA0;here<br></span><span style="color: #007700">}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <p class="para">
+    Filtering a recursive iterator generally involves two conditions.
+    The first is that, to allow recursion, the callback function should return <strong><code>TRUE</code></strong>
+    if the current iterator item has children.
+    The second is the normal filter condition, such as a file size or extension 
+    check as in the example below.
+   </p>
+   <div class="example" id="example-4479">
+    <p><strong>Example #2 Recursive callback basic example</strong></p>
+<div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$dir&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">RecursiveDirectoryIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">__DIR__</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Filter&#xA0;large&#xA0;files&#xA0;(&#xA0;&gt;&#xA0;100MB)<br></span><span style="color: #0000BB">$files&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">RecursiveCallbackFilterIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$dir</span><span style="color: #007700">,&#xA0;function&#xA0;(</span><span style="color: #0000BB">$current</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$iterator</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Allow&#xA0;recursion<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$iterator</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">hasChildren</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Check&#xA0;for&#xA0;large&#xA0;file<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$current</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isFile</span><span style="color: #007700">()&#xA0;&amp;&amp;&#xA0;</span><span style="color: #0000BB">$current</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getSize</span><span style="color: #007700">()&#xA0;&gt;&#xA0;</span><span style="color: #0000BB">104857600</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>});<br>&#xA0;<br>foreach&#xA0;(new&#xA0;</span><span style="color: #0000BB">RecursiveIteratorIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$files</span><span style="color: #007700">)&#xA0;as&#xA0;</span><span style="color: #0000BB">$file</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$file</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getPathname</span><span style="color: #007700">()&#xA0;.&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </div>
+  
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="recursivecallbackfilteriterator.construct.html">RecursiveCallbackFilterIterator::__construct</a> &#x2014; Create a RecursiveCallbackFilterIterator from a RecursiveIterator</li><li><a href="recursivecallbackfilteriterator.getchildren.html">RecursiveCallbackFilterIterator::getChildren</a> &#x2014; Return the inner iterator&apos;s children contained in a RecursiveCallbackFilterIterator</li><li><a href="recursivecallbackfilteriterator.haschildren.html">RecursiveCallbackFilterIterator::hasChildren</a> &#x2014; Check whether the inner iterator&apos;s current element has children</li></ul>

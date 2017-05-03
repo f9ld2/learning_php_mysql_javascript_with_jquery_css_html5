@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">Ds\Hashable::hash</h1>
+  <p class="verinfo">(PECL ds &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">Ds\Hashable::hash</span> &#x2014; <span class="dc-title">Returns a scalar value to be used as a hash value.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-ds-hashable.hash-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>Ds\Hashable::hash</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+    Returns a scalar value to be used as the hash value of the objects.
+  </p>
+  <p class="para">
+    While the hash value does not define equality, all objects that are equal according to <span class="function"><a href="ds-hashable.equals.html" class="function">Ds\Hashable::equals()</a></span>
+    must have the same hash value. Hash values of equal objects don&apos;t have to be unique, for example
+    you could just return <strong><code>TRUE</code></strong> for all objects and nothing would break - the only
+    implication would be that hash tables then turn into linked lists because all
+    your objects will be hashed to the same bucket. It&apos;s therefore very important
+    that you pick a good hash value, such as an ID or email address.
+ </p>
+
+  <p class="para">
+    This method allows objects to be used as keys in structures such as
+    <strong class="classname">Ds\Map</strong> and <strong class="classname">Ds\Set</strong>, or any
+    other lookup structure that honors this interface.
+  </p>
+
+  <div class="caution"><strong class="caution">Caution</strong>
+    <p class="para">
+        Do not pick a value that might change within the object, such as a public
+        property. Hash table lookups would fail because the hash has changed.
+    </p>
+  </div>
+
+  <div class="caution"><strong class="caution">Caution</strong>
+    <p class="para">
+        All objects that are equal must have the same hash value.
+    </p>
+  </div>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-ds-hashable.hash-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-ds-hashable.hash-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+    A scalar value to be used as this object&apos;s hash value.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-ds-hashable.hash-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-5714">
+   <p><strong>Example #1 <span class="function"><strong>Ds\Hashable::hash()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">HashableObject&#xA0;</span><span style="color: #007700">implements&#xA0;\</span><span style="color: #0000BB">Ds</span><span style="color: #007700">\</span><span style="color: #0000BB">Hashable<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;</span><span style="color: #0000BB">$name</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;</span><span style="color: #0000BB">$email</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$email</span><span style="color: #007700">)<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name&#xA0;&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$name</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">email&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$email</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/**<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;Should&#xA0;return&#xA0;the&#xA0;same&#xA0;value&#xA0;for&#xA0;all&#xA0;equal&#xA0;objects,&#xA0;but&#xA0;doesn&apos;t&#xA0;have&#xA0;to<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;be&#xA0;unique.&#xA0;This&#xA0;value&#xA0;will&#xA0;not&#xA0;be&#xA0;used&#xA0;to&#xA0;determine&#xA0;equality.<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">public&#xA0;function&#xA0;</span><span style="color: #0000BB">hash</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">email</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/**<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;This&#xA0;determines&#xA0;equality,&#xA0;usually&#xA0;during&#xA0;a&#xA0;hash&#xA0;table&#xA0;lookup&#xA0;to&#xA0;determine<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;if&#xA0;the&#xA0;bucket&apos;s&#xA0;key&#xA0;matches&#xA0;the&#xA0;lookup&#xA0;key.&#xA0;The&#xA0;hash&#xA0;has&#xA0;to&#xA0;be&#xA0;equal&#xA0;if<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*&#xA0;the&#xA0;objects&#xA0;are&#xA0;equal,&#xA0;otherwise&#xA0;this&#xA0;determination&#xA0;wouldn&apos;t&#xA0;be&#xA0;reached.<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;*/<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">public&#xA0;function&#xA0;</span><span style="color: #0000BB">equals</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj</span><span style="color: #007700">):&#xA0;</span><span style="color: #0000BB">bool<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name&#xA0;&#xA0;</span><span style="color: #007700">===&#xA0;</span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">&amp;&amp;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">email&#xA0;</span><span style="color: #007700">===&#xA0;</span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">email</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+
+

@@ -1,0 +1,79 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">sqlsrv_close</h1>
+  <p class="verinfo">(No version information available, might only be in Git)</p><p class="refpurpose"><span class="refname">sqlsrv_close</span> &#x2014; <span class="dc-title">Closes an open connection and releases resourses associated with the connection</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.sqlsrv-close-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>sqlsrv_close</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$conn</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Closes an open connection and releases resourses associated with the connection.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.sqlsrv-close-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">conn</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The connection to be closed.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlsrv-close-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.sqlsrv-close-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2415">
+    <p><strong>Example #1 <span class="function"><strong>sqlsrv_close()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$serverName&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;serverName\sqlexpres&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$connOptions&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;UID&quot;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&quot;username&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;PWD&quot;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&quot;password&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;Database&quot;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">&quot;dbname&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">sqlsrv_connect</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$serverName</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$connOptions&#xA0;</span><span style="color: #007700">);<br>if(&#xA0;</span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">===&#xA0;</span><span style="color: #0000BB">false&#xA0;</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;die(&#xA0;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&#xA0;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br>}<br><br></span><span style="color: #FF8000">//-------------------------------------<br>//&#xA0;Perform&#xA0;database&#xA0;operations&#xA0;here.<br>//-------------------------------------<br><br>//&#xA0;Close&#xA0;the&#xA0;connection.<br></span><span style="color: #0000BB">sqlsrv_close</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.sqlsrv-close-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.sqlsrv-connect.html" class="function" rel="rdfs-seeAlso">sqlsrv_connect()</a> - Opens a connection to a Microsoft SQL Server database</span></li>
+   </ul>
+  </p>
+ </div>
+

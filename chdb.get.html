@@ -1,0 +1,77 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">chdb::get</h1>
+  <p class="verinfo">(PECL chdb &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">chdb::get</span> &#x2014; <span class="dc-title">Gets the value associated with a key</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-chdb.get-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">string</span> <span class="methodname"><strong>chdb::get</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets the value associated with a key from a chdb database.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-chdb.get-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">key</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The key for which to get the value.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-chdb.get-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing the value associated with the given
+   <code class="parameter">key</code>, or <strong><code>NULL</code></strong> if not found.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-chdb.get-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-4786">
+   <p><strong>Example #1 <span class="function"><strong>chdb::get()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$data&#xA0;</span><span style="color: #007700">=&#xA0;array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;key1&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;value1&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;key2&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;value2&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;...<br></span><span style="color: #007700">);<br></span><span style="color: #0000BB">chdb_create</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;data.chdb&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$chdb&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">chdb</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;data.chdb&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$value1&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$chdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;key1&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$value2&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$chdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;key2&apos;</span><span style="color: #007700">);<br><br>echo&#xA0;</span><span style="color: #0000BB">$value1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #0000BB">$value2</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+value1
+value2
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+

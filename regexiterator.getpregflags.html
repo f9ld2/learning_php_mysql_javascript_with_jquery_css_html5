@@ -1,0 +1,64 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">RegexIterator::getPregFlags</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.2.0, PHP 7)</p><p class="refpurpose"><span class="refname">RegexIterator::getPregFlags</span> &#x2014; <span class="dc-title">Returns the regular expression flags.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-regexiterator.getpregflags-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">int</span> <span class="methodname"><strong>RegexIterator::getPregFlags</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the regular expression flags, see <span class="methodname"><a href="regexiterator.construct.html" class="methodname">RegexIterator::__construct()</a></span>
+   for the list of flags.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-regexiterator.getpregflags-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a bitmask of the regular expression flags.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-regexiterator.getpregflags-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4492">
+    <p><strong>Example #1 <span class="methodname"><strong>RegexIterator::getPregFlags()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$test&#xA0;</span><span style="color: #007700">=&#xA0;array&#xA0;(</span><span style="color: #DD0000">&apos;str1&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;test&#xA0;1&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;teststr2&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;another&#xA0;test&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;str3&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;test&#xA0;123&apos;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$arrayIterator&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ArrayIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$test</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$regexIterator&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">RegexIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$arrayIterator</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;/\s/&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">RegexIterator</span><span style="color: #007700">::</span><span style="color: #0000BB">SPLIT</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$regexIterator</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setPregFlags</span><span style="color: #007700">(</span><span style="color: #0000BB">PREG_SPLIT_NO_EMPTY&#xA0;</span><span style="color: #007700">|&#xA0;</span><span style="color: #0000BB">PREG_SPLIT_OFFSET_CAPTURE</span><span style="color: #007700">);<br><br>if&#xA0;(</span><span style="color: #0000BB">$regexIterator</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getPregFlags</span><span style="color: #007700">()&#xA0;&amp;&#xA0;</span><span style="color: #0000BB">PREG_SPLIT_NO_EMPTY</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Ignoring&#xA0;empty&#xA0;pieces&apos;</span><span style="color: #007700">;<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&apos;Not&#xA0;ignoring&#xA0;empty&#xA0;pieces&apos;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Ignoring empty pieces
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-regexiterator.getpregflags-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="regexiterator.setpregflags.html" class="methodname" rel="rdfs-seeAlso">RegexIterator::setPregFlags()</a> - Sets the regular expression flags.</span></li>
+   </ul>
+  </p>
+ </div>
+

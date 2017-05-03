@@ -1,0 +1,85 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">oci_new_cursor</h1>
+  <p class="verinfo">(PHP 5, PHP 7, PECL OCI8 &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">oci_new_cursor</span> &#x2014; <span class="dc-title">Allocates and returns a new cursor (statement handle)</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.oci-new-cursor-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><strong>oci_new_cursor</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$connection</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Allocates a new statement handle on the specified connection.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.oci-new-cursor-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">connection</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An Oracle connection identifier, returned by 
+       <span class="function"><a href="function.oci-connect.html" class="function">oci_connect()</a></span> or <span class="function"><a href="function.oci-pconnect.html" class="function">oci_pconnect()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.oci-new-cursor-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a new statement handle, or <strong><code>FALSE</code></strong> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.oci-new-cursor-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2257">
+    <p><strong>Example #1 Binding a REF CURSOR in an Oracle stored procedure call</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;Precreate:<br>//&#xA0;&#xA0;&#xA0;create&#xA0;or&#xA0;replace&#xA0;procedure&#xA0;myproc(myrc&#xA0;out&#xA0;sys_refcursor)&#xA0;as<br>//&#xA0;&#xA0;&#xA0;begin<br>//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;open&#xA0;myrc&#xA0;for&#xA0;select&#xA0;first_name&#xA0;from&#xA0;employees;<br>//&#xA0;&#xA0;&#xA0;end;<br><br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;hr&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;hrpwd&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;localhost/XE&quot;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$m&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$m</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">]),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$curs&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_new_cursor</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;begin&#xA0;myproc(:cursbv);&#xA0;end;&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_bind_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;:cursbv&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$curs</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_B_CURSOR</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$curs</span><span style="color: #007700">);&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Execute&#xA0;the&#xA0;REF&#xA0;CURSOR&#xA0;like&#xA0;a&#xA0;normal&#xA0;statement&#xA0;id<br></span><span style="color: #007700">while&#xA0;((</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$curs</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_ASSOC</span><span style="color: #007700">+</span><span style="color: #0000BB">OCI_RETURN_NULLS</span><span style="color: #007700">))&#xA0;!=&#xA0;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;FIRST_NAME&apos;</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$curs</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 notes" id="refsect1-function.oci-new-cursor-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    In PHP versions before 5.0.0 you must use <span class="function"><a href="function.ocinewcursor.html" class="function">ocinewcursor()</a></span> instead.
+    This name still can be used, it was left as alias of
+    <span class="function"><strong>oci_new_cursor()</strong></span> for downwards compatability.
+    This, however, is deprecated and not recommended.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+

@@ -1,0 +1,62 @@
+---
+layout: default
+---
+
+ <h2 class="title"><em>do-while</em></h2>
+ <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p>
+ <p class="simpara">
+  <em>do-while</em> loops are very similar to
+  <em>while</em> loops, except the truth expression is
+  checked at the end of each iteration instead of in the beginning.
+  The main difference from regular <em>while</em> loops is
+  that the first iteration of a <em>do-while</em> loop is
+  guaranteed to run (the truth expression is only checked at the end
+  of the iteration), whereas it may not necessarily run with a
+  regular <em>while</em> loop (the truth expression is
+  checked at the beginning of each iteration, if it evaluates to
+  <strong><code>FALSE</code></strong> right from the beginning, the loop
+  execution would end immediately).
+ </p>
+ <p class="para">
+  There is just one syntax for <em>do-while</em> loops:
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$i&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>do&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">;<br>}&#xA0;while&#xA0;(</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">&gt;&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="simpara">
+   The above loop would run one time exactly, since after the first
+   iteration, when truth expression is checked, it evaluates to
+   <strong><code>FALSE</code></strong> (<var class="varname"><var class="varname">$i</var></var> is not bigger than 0) and the loop
+   execution ends.
+ </p>
+ <p class="para">
+  Advanced C users may be familiar with a different usage of the
+  <em>do-while</em> loop, to allow stopping execution in
+  the middle of code blocks, by encapsulating them with
+  <em>do-while</em> (0), and using the <a href="control-structures.break.html" class="link"><em>break</em></a>
+  statement.  The following code fragment demonstrates this:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">do&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">&lt;&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;i&#xA0;is&#xA0;not&#xA0;big&#xA0;enough&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;break;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">*=&#xA0;</span><span style="color: #0000BB">$factor</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">&lt;&#xA0;</span><span style="color: #0000BB">$minimum_limit</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;break;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;i&#xA0;is&#xA0;ok&quot;</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;process&#xA0;i&#xA0;*/<br><br></span><span style="color: #007700">}&#xA0;while&#xA0;(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="simpara">
+  Don&apos;t worry if you don&apos;t understand this right away or at all.
+  You can code scripts and even powerful scripts without using this
+  &apos;feature&apos;.
+  Since PHP 5.3.0, it is possible to use
+  <a href="control-structures.goto.html" class="link"><em>goto</em></a>
+  operator instead of this hack.
+ </p>

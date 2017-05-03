@@ -1,0 +1,156 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MongoCommandCursor::createFromDocument</h1>
+  <p class="verinfo">(PECL mongo &gt;=1.5.0)</p><p class="refpurpose"><span class="refname">MongoCommandCursor::createFromDocument</span> &#x2014; <span class="dc-title">Create a new command cursor from an existing command response document</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongocommandcursor.createfromdocument-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="type"><a href="class.mongocommandcursor.html" class="type MongoCommandCursor">MongoCommandCursor</a></span> <span class="methodname"><strong>MongoCommandCursor::createFromDocument</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mongoclient.html" class="type MongoClient">MongoClient</a></span> <code class="parameter">$connection</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$hash</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$document</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Use this method if you have a raw command result with cursor information in
+   it. Note that cursors created with this method cannot be iterated multiple
+   times, as they will lack the original command necessary for re-execution.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongocommandcursor.createfromdocument-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">connection</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Database connection.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+
+      <code class="parameter">hash</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       The connection hash, as obtained through the third by-reference argument
+       to <span class="methodname"><a href="mongodb.command.html" class="methodname">MongoDB::command()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+
+      <code class="parameter">document</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Document with cursor information in it. This document needs to contain
+       the <em>id</em>, <em>ns</em> and
+       <em>firstBatch</em> fields. Such a document is obtained by
+       calling the <span class="methodname"><a href="mongodb.command.html" class="methodname">MongoDB::command()</a></span> with appropriate
+       arguments to return a cursor, and not just an inline result. See the
+       example below.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongocommandcursor.createfromdocument-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the new cursor.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongocommandcursor.createfromdocument-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1601">
+   <p><strong>Example #1 <span class="function"><strong>MongoCommandCursor::createFromDocument()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$m&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$d&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">demo</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;Define&#xA0;the&#xA0;aggregation&#xA0;pipeline<br></span><span style="color: #0000BB">$pipeline&#xA0;</span><span style="color: #007700">=&#xA0;[<br>&#xA0;&#xA0;&#xA0;&#xA0;[&#xA0;</span><span style="color: #DD0000">&apos;$group&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;[<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;_id&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;$country_code&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;timezones&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;[&#xA0;</span><span style="color: #DD0000">&apos;$addToSet&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;$timezone&apos;&#xA0;</span><span style="color: #007700">]<br>&#xA0;&#xA0;&#xA0;&#xA0;]&#xA0;],<br>&#xA0;&#xA0;&#xA0;&#xA0;[&#xA0;</span><span style="color: #DD0000">&apos;$sort&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;[&#xA0;</span><span style="color: #DD0000">&apos;_id&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1&#xA0;</span><span style="color: #007700">]&#xA0;],<br>];<br><br></span><span style="color: #FF8000">//&#xA0;Execute&#xA0;the&#xA0;command.&#xA0;The&#xA0;&quot;cursor&quot;&#xA0;option&#xA0;instructs&#xA0;the&#xA0;server&#xA0;to&#xA0;return<br>//&#xA0;cursor&#xA0;information&#xA0;in&#xA0;the&#xA0;response&#xA0;instead&#xA0;of&#xA0;inline&#xA0;results.<br></span><span style="color: #0000BB">$r&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$d</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">command</span><span style="color: #007700">(<br>&#xA0;&#xA0;&#xA0;&#xA0;[<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;aggregate&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&apos;cities&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;pipeline&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$pipeline</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;cursor&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;[&#xA0;</span><span style="color: #DD0000">&apos;batchSize&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1&#xA0;</span><span style="color: #007700">],<br>&#xA0;&#xA0;&#xA0;&#xA0;],<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">null</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$hash<br></span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Show&#xA0;result&#xA0;and&#xA0;hash<br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$r</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$hash&#xA0;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Construct&#xA0;the&#xA0;command&#xA0;cursor<br></span><span style="color: #0000BB">$cursor&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">MongoCommandCursor</span><span style="color: #007700">::</span><span style="color: #0000BB">createFromDocument</span><span style="color: #007700">(&#xA0;</span><span style="color: #0000BB">$m</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$hash</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$r&#xA0;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+array(2) {
+  [&quot;cursor&quot;]=&gt;
+  array(3) {
+    [&quot;id&quot;]=&gt;
+    object(MongoInt64)#5 (1) {
+      [&quot;value&quot;]=&gt;
+      string(12) &quot;392143983421&quot;
+    }
+    [&quot;ns&quot;]=&gt;
+    string(11) &quot;demo.cities&quot;
+    [&quot;firstBatch&quot;]=&gt;
+    array(1) {
+      [0]=&gt;
+      array(2) {
+        [&quot;_id&quot;]=&gt;
+        string(2) &quot;AD&quot;
+        [&quot;timezones&quot;]=&gt;
+        array(1) {
+          [0]=&gt;
+          string(14) &quot;Europe/Andorra&quot;
+        }
+      }
+    }
+  }
+  [&quot;ok&quot;]=&gt;
+  float(1)
+}
+string(25) &quot;localhost:27017;-;.;17617&quot;
+</pre></div>
+   </div>
+   <div class="example-contents"><p>
+    As you can see, the returned cursor information has the
+    <em>id</em>, <em>ns</em> and
+    <em>firstBatch</em> fields.
+   </p></div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mongocommandcursor.createfromdocument-seealso">
+  <h3 class="title">See Also</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="function"><a href="mongocommandcursor.construct.html" class="function" rel="rdfs-seeAlso">MongoCommandCursor::__construct()</a> - Create a new command cursor</span></li>
+  </ul>
+ </div>
+
+

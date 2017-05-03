@@ -1,0 +1,90 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_query</h1>
+  <h1 class="refname">maxdb::query</h1>
+  <p class="verinfo">(PECL maxdb &gt;= 1.0)</p><p class="refpurpose"><span class="refname">maxdb_query</span> -- <span class="refname">maxdb::query</span> &#x2014; <span class="dc-title">Performs a query on the database</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.maxdb-query-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>maxdb_query</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$link</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$resultmode</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">Object oriented style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>maxdb::query</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The <span class="function"><strong>maxdb_query()</strong></span> function is used to simplify the
+   act of performing a query against the database represented by the
+   <code class="parameter">link</code> parameter.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.maxdb-query-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure. For <em>SELECT, SHOW, DESCRIBE</em> or
+   <em>EXPLAIN</em> <span class="function"><strong>maxdb_query()</strong></span> will return
+   a result resource.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.maxdb-query-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1390">
+   <p><strong>Example #1 Object oriented style</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$maxdb&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">maxdb</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;MONA&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;RED&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;DEMODB&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;Create&#xA0;table&#xA0;doesn&apos;t&#xA0;return&#xA0;a&#xA0;resultset&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;temp.mycity&#xA0;LIKE&#xA0;hotel.city&quot;</span><span style="color: #007700">)&#xA0;===&#xA0;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Table&#xA0;mycity&#xA0;successfully&#xA0;created.\n&quot;</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;Select&#xA0;queries&#xA0;return&#xA0;a&#xA0;resultset&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;name&#xA0;FROM&#xA0;hotel.city&quot;</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Select&#xA0;returned&#xA0;%d&#xA0;rows.\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">num_rows</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;free&#xA0;result&#xA0;set&#xA0;*/<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;If&#xA0;we&#xA0;have&#xA0;to&#xA0;retrieve&#xA0;large&#xA0;amount&#xA0;of&#xA0;data&#xA0;we&#xA0;use&#xA0;MAXDB_USE_RESULT&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;hotel.city&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">MAXDB_USE_RESULT</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br>}<br><br></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-1391">
+   <p><strong>Example #2 Procedural style</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$link&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;MONA&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;RED&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;DEMODB&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;Create&#xA0;table&#xA0;doesn&apos;t&#xA0;return&#xA0;a&#xA0;resultset&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;temp.mycity&#xA0;LIKE&#xA0;hotel.city&quot;</span><span style="color: #007700">)&#xA0;===&#xA0;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Table&#xA0;mycity&#xA0;successfully&#xA0;created.\n&quot;</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;Select&#xA0;queries&#xA0;return&#xA0;a&#xA0;resultset&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;SELECT&#xA0;name&#xA0;FROM&#xA0;hotel.city&quot;</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Select&#xA0;returned&#xA0;%d&#xA0;rows.\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">maxdb_num_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">));<br><br>&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;free&#xA0;result&#xA0;set&#xA0;*/<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">maxdb_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;If&#xA0;we&#xA0;have&#xA0;to&#xA0;retrieve&#xA0;large&#xA0;amount&#xA0;of&#xA0;data&#xA0;we&#xA0;use&#xA0;MAXDB_USE_RESULT&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;hotel.city&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">MAXDB_USE_RESULT</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">maxdb_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output
+something similar to:</p>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+Table mycity successfully created.
+Select returned 25 rows.
+</pre></div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.maxdb-query-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.maxdb-real-query.html" class="function" rel="rdfs-seeAlso">maxdb_real_query()</a> - Execute an SQL query</span></li>
+    <li class="member"><span class="function"><a href="function.maxdb-multi-query.html" class="function" rel="rdfs-seeAlso">maxdb_multi_query()</a> - Performs a query on the database</span></li>
+    <li class="member"><span class="function"><a href="function.maxdb-free-result.html" class="function" rel="rdfs-seeAlso">maxdb_free_result()</a> - Frees the memory associated with a result</span></li>
+   </ul>
+  </p>
+ </div>
+
+

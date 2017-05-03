@@ -1,0 +1,97 @@
+---
+layout: default
+---
+
+
+ <h1 class="title">The MongoDuplicateKeyException class</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(PECL mongo &gt;= 1.5.0)</p>
+
+
+  <div class="section" id="mongoduplicatekeyexception.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    Thrown when attempting to insert a document into a collection which already contains the same values for the <a href="mongocollection.ensureindex.html" class="link">unique keys</a>.
+   </p>
+  </div>
+
+
+  <div class="section" id="mongoduplicatekeyexception.synopsis">
+   <h2 class="title">Class synopsis</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">MongoDuplicateKeyException</strong>
+     </span>
+     
+     <span class="ooclass">
+      <span class="modifier">extends</span>
+      <a href="class.mongowriteconcernexception.html" class="classname">MongoWriteConcernException</a>
+     </span>
+     {</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Inherited properties */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">protected</span>
+     <span class="type">string</span>
+      <var class="varname"><a href="class.exception.html#exception.props.message">$<var class="varname">message</var></a></var>
+    ;</div>
+<div class="fieldsynopsis">
+     <span class="modifier">protected</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="class.exception.html#exception.props.code">$<var class="varname">code</var></a></var>
+    ;</div>
+<div class="fieldsynopsis">
+     <span class="modifier">protected</span>
+     <span class="type">string</span>
+      <var class="varname"><a href="class.exception.html#exception.props.file">$<var class="varname">file</var></a></var>
+    ;</div>
+<div class="fieldsynopsis">
+     <span class="modifier">protected</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="class.exception.html#exception.props.line">$<var class="varname">line</var></a></var>
+    ;</div>
+
+
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Inherited methods */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">array</span> <span class="methodname"><a href="mongowriteconcernexception.getdocument.html" class="methodname">MongoWriteConcernException::getDocument</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+
+   }</div>
+
+
+  </div>
+
+  <div class="section" id="mongoduplicatekeyexception.examples">
+   <h2 class="title">Examples</h2>
+   <div class="example" id="example-1644">
+    <p><strong>Example #1 Catching MongoDuplicateKeyException</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$mc&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$mc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">selectCollection</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;test&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;test&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&apos;_id&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br>try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&apos;_id&apos;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br>}&#xA0;catch&#xA0;(</span><span style="color: #0000BB">MongoWriteConcernException&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">(),&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above examples will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+localhost:27017: insertDocument :: caused by :: 11000 E11000 duplicate key error index: test.test.$_id_  dup key: { : 1 }
+</pre></div>
+    </div>
+   </div>
+  </div>
+
+ </div>
+

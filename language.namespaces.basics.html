@@ -1,0 +1,110 @@
+---
+layout: default
+---
+
+  <h2 class="title">Using namespaces: Basics</h2>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7)</p>
+  <p class="para">
+   Before discussing the use of namespaces, it is important to understand how PHP
+   knows which namespaced element your code is requesting.  A simple analogy can be made
+   between PHP namespaces and a filesystem.  There are three ways to access a file in a
+   file system:
+   <ol type="1">
+    <li class="listitem">
+     <span class="simpara">
+      Relative file name like <em>foo.txt</em>.  This resolves to
+      <em>currentdirectory/foo.txt</em> where currentdirectory is the
+      directory currently occupied.  So if the current directory is
+      <em>/home/foo</em>, the name resolves to <em>/home/foo/foo.txt</em>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Relative path name like <em>subdirectory/foo.txt</em>.  This resolves
+      to <em>currentdirectory/subdirectory/foo.txt</em>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Absolute path name like <em>/main/foo.txt</em>.  This resolves
+      to <em>/main/foo.txt</em>.
+     </span>
+    </li>
+   </ol>
+   The same principle can be applied to namespaced elements in PHP.  For
+   example, a class name can be referred to in three ways:
+   <ol type="1">
+    <li class="listitem">
+     <span class="simpara">
+      Unqualified name, or an unprefixed class name like
+      <em>$a = new foo();</em> or
+      <em>foo::staticmethod();</em>.  If the current namespace is
+      <em>currentnamespace</em>, this resolves to
+      <em>currentnamespace\foo</em>.  If
+      the code is global, non-namespaced code, this resolves to <em>foo</em>.
+     </span>
+     <span class="simpara">
+      One caveat: unqualified names for functions and constants will
+      resolve to global functions and constants if the namespaced function or constant
+      is not defined.  See <a href="language.namespaces.fallback.html" class="link">Using namespaces:
+      fallback to global function/constant</a> for details.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Qualified name, or a prefixed class name like
+      <em>$a = new subnamespace\foo();</em> or
+      <em>subnamespace\foo::staticmethod();</em>.  If the current namespace is
+      <em>currentnamespace</em>, this resolves to
+      <em>currentnamespace\subnamespace\foo</em>.  If
+      the code is global, non-namespaced code, this resolves to <em>subnamespace\foo</em>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Fully qualified name, or a prefixed name with global prefix operator like
+      <em>$a = new \currentnamespace\foo();</em> or
+      <em>\currentnamespace\foo::staticmethod();</em>.  This always resolves
+      to the literal name specified in the code, <em>currentnamespace\foo</em>.
+     </span>
+    </li>
+   </ol>
+  </p>
+  <p class="para">
+   Here is an example of the three kinds of syntax in actual code:
+   <div class="informalexample">
+    <p class="simpara">file1.php</p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">namespace&#xA0;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">\</span><span style="color: #0000BB">Bar</span><span style="color: #007700">\</span><span style="color: #0000BB">subnamespace</span><span style="color: #007700">;<br><br>const&#xA0;</span><span style="color: #0000BB">FOO&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>function&#xA0;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()&#xA0;{}<br>class&#xA0;</span><span style="color: #0000BB">foo<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;static&#xA0;function&#xA0;</span><span style="color: #0000BB">staticmethod</span><span style="color: #007700">()&#xA0;{}<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <p class="simpara">file2.php</p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">namespace&#xA0;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">\</span><span style="color: #0000BB">Bar</span><span style="color: #007700">;<br>include&#xA0;</span><span style="color: #DD0000">&apos;file1.php&apos;</span><span style="color: #007700">;<br><br>const&#xA0;</span><span style="color: #0000BB">FOO&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br>function&#xA0;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()&#xA0;{}<br>class&#xA0;</span><span style="color: #0000BB">foo<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;static&#xA0;function&#xA0;</span><span style="color: #0000BB">staticmethod</span><span style="color: #007700">()&#xA0;{}<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;Unqualified&#xA0;name&#xA0;*/<br></span><span style="color: #0000BB">foo</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;resolves&#xA0;to&#xA0;function&#xA0;Foo\Bar\foo<br></span><span style="color: #0000BB">foo</span><span style="color: #007700">::</span><span style="color: #0000BB">staticmethod</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;resolves&#xA0;to&#xA0;class&#xA0;Foo\Bar\foo,&#xA0;method&#xA0;staticmethod<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">FOO</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;resolves&#xA0;to&#xA0;constant&#xA0;Foo\Bar\FOO<br><br>/*&#xA0;Qualified&#xA0;name&#xA0;*/<br></span><span style="color: #0000BB">subnamespace</span><span style="color: #007700">\</span><span style="color: #0000BB">foo</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;resolves&#xA0;to&#xA0;function&#xA0;Foo\Bar\subnamespace\foo<br></span><span style="color: #0000BB">subnamespace</span><span style="color: #007700">\</span><span style="color: #0000BB">foo</span><span style="color: #007700">::</span><span style="color: #0000BB">staticmethod</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;resolves&#xA0;to&#xA0;class&#xA0;Foo\Bar\subnamespace\foo,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;method&#xA0;staticmethod<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #0000BB">subnamespace</span><span style="color: #007700">\</span><span style="color: #0000BB">FOO</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;resolves&#xA0;to&#xA0;constant&#xA0;Foo\Bar\subnamespace\FOO<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<br>/*&#xA0;Fully&#xA0;qualified&#xA0;name&#xA0;*/<br></span><span style="color: #007700">\</span><span style="color: #0000BB">Foo</span><span style="color: #007700">\</span><span style="color: #0000BB">Bar</span><span style="color: #007700">\</span><span style="color: #0000BB">foo</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;resolves&#xA0;to&#xA0;function&#xA0;Foo\Bar\foo<br></span><span style="color: #007700">\</span><span style="color: #0000BB">Foo</span><span style="color: #007700">\</span><span style="color: #0000BB">Bar</span><span style="color: #007700">\</span><span style="color: #0000BB">foo</span><span style="color: #007700">::</span><span style="color: #0000BB">staticmethod</span><span style="color: #007700">();&#xA0;</span><span style="color: #FF8000">//&#xA0;resolves&#xA0;to&#xA0;class&#xA0;Foo\Bar\foo,&#xA0;method&#xA0;staticmethod<br></span><span style="color: #007700">echo&#xA0;\</span><span style="color: #0000BB">Foo</span><span style="color: #007700">\</span><span style="color: #0000BB">Bar</span><span style="color: #007700">\</span><span style="color: #0000BB">FOO</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;resolves&#xA0;to&#xA0;constant&#xA0;Foo\Bar\FOO<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Note that to access any global
+   class, function or constant, a fully qualified name can be used, such as
+   <span class="function"><strong>\strlen()</strong></span> or <strong class="classname">\Exception</strong> or
+   <em>\INI_ALL</em>.
+   <div class="example" id="example-250">
+    <p><strong>Example #1 Accessing global classes, functions and constants from within a namespace</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">namespace&#xA0;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">;<br><br>function&#xA0;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">()&#xA0;{}<br>const&#xA0;</span><span style="color: #0000BB">INI_ALL&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>class&#xA0;</span><span style="color: #0000BB">Exception&#xA0;</span><span style="color: #007700">{}<br><br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;\</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hi&apos;</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;calls&#xA0;global&#xA0;function&#xA0;strlen<br></span><span style="color: #0000BB">$b&#xA0;</span><span style="color: #007700">=&#xA0;\</span><span style="color: #0000BB">INI_ALL</span><span style="color: #007700">;&#xA0;</span><span style="color: #FF8000">//&#xA0;accesses&#xA0;global&#xA0;constant&#xA0;INI_ALL<br></span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;\</span><span style="color: #0000BB">Exception</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;error&apos;</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;instantiates&#xA0;global&#xA0;class&#xA0;Exception<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ 

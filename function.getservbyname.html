@@ -1,0 +1,103 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">getservbyname</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">getservbyname</span> &#x2014; <span class="dc-title">Get port number associated with an Internet service and protocol</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.getservbyname-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>getservbyname</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$service</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$protocol</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>getservbyname()</strong></span> returns the Internet port
+   which corresponds to <code class="parameter">service</code> for the
+   specified <code class="parameter">protocol</code> as per
+   <var class="filename">/etc/services</var>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.getservbyname-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">service</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The Internet service name, as a string.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">protocol</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">protocol</code> is either <em>&quot;tcp&quot;</em>
+       or <em>&quot;udp&quot;</em> (in lowercase).
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.getservbyname-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the port number, or <strong><code>FALSE</code></strong> if <code class="parameter">service</code> or
+   <code class="parameter">protocol</code> is not found.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.getservbyname-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-5034">
+    <p><strong>Example #1 <span class="function"><strong>getservbyname()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$services&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&apos;http&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;ftp&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;ssh&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;telnet&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;imap&apos;</span><span style="color: #007700">,<br></span><span style="color: #DD0000">&apos;smtp&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;nicname&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;gopher&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;finger&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;pop3&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;www&apos;</span><span style="color: #007700">);<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$services&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$service</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$port&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">getservbyname</span><span style="color: #007700">(</span><span style="color: #0000BB">$service</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;tcp&apos;</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$service&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$port&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.getservbyname-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.getservbyport.html" class="function" rel="rdfs-seeAlso">getservbyport()</a> - Get Internet service which corresponds to port and protocol</span></li>
+    <li class="member">
+     <a href="http://www.iana.org/assignments/port-numbers" class="link external">&#xBB;&#xA0;http://www.iana.org/assignments/port-numbers</a>
+     for a complete list of port numbers.
+    </li>
+   </ul>
+  </p>
+ </div>
+
+

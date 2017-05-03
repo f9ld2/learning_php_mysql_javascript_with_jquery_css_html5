@@ -1,0 +1,185 @@
+---
+layout: default
+---
+
+ <h1 class="title">The LimitIterator class</h1>
+ 
+ 
+ <div class="partintro"><p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7)</p>
+ 
+
+  <div class="section" id="limititerator.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    The <strong class="classname">LimitIterator</strong> class allows iteration over 
+    a limited subset of items in an <a href="class.iterator.html" class="classname">Iterator</a>.
+   </p>
+  </div>
+
+ 
+  <div class="section" id="limititerator.synopsis">
+   <h2 class="title">Class synopsis</h2>
+ 
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+ 
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">LimitIterator</strong>
+     </span>
+
+     <span class="ooclass">
+      <span class="modifier">extends</span>
+      <a href="class.iteratoriterator.html" class="classname">IteratorIterator</a>
+     </span>
+
+     <span class="oointerface">implements 
+      <span class="interfacename"><a href="class.outeriterator.html" class="interfacename">OuterIterator</a></span>
+     </span>
+ 
+     {</div>
+
+ 
+    
+ 
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Methods */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="limititerator.construct.html" class="methodname">__construct</a></span>
+    ( <span class="methodparam"><span class="type"><a href="class.iterator.html" class="type Iterator">Iterator</a></span> <code class="parameter">$iterator</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$count</code><span class="initializer"> = -1</span></span>
+  ]] )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">mixed</span> <span class="methodname"><a href="limititerator.current.html" class="methodname">current</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">Iterator</span> <span class="methodname"><a href="limititerator.getinneriterator.html" class="methodname">getInnerIterator</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">int</span> <span class="methodname"><a href="limititerator.getposition.html" class="methodname">getPosition</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">mixed</span> <span class="methodname"><a href="limititerator.key.html" class="methodname">key</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">void</span> <span class="methodname"><a href="limititerator.next.html" class="methodname">next</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">void</span> <span class="methodname"><a href="limititerator.rewind.html" class="methodname">rewind</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">int</span> <span class="methodname"><a href="limititerator.seek.html" class="methodname">seek</a></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$position</code></span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><a href="limititerator.valid.html" class="methodname">valid</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+   }</div>
+ 
+  </div>
+ 
+
+ 
+ 
+  <div class="section" id="limititerator.examples">
+   <h2 class="title">Examples</h2>
+   <p class="para">
+    <div class="example" id="example-4470">
+     <p><strong>Example #1 <strong class="classname">LimitIterator</strong> usage example</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;an&#xA0;iterator&#xA0;to&#xA0;be&#xA0;limited<br></span><span style="color: #0000BB">$fruits&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ArrayIterator</span><span style="color: #007700">(array(<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;apple&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;banana&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;cherry&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;damson&apos;</span><span style="color: #007700">,<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #DD0000">&apos;elderberry&apos;<br></span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">//&#xA0;Loop&#xA0;over&#xA0;first&#xA0;three&#xA0;fruits&#xA0;only<br></span><span style="color: #007700">foreach&#xA0;(new&#xA0;</span><span style="color: #0000BB">LimitIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">3</span><span style="color: #007700">)&#xA0;as&#xA0;</span><span style="color: #0000BB">$fruit</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$fruit</span><span style="color: #007700">);<br>}<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;Loop&#xA0;from&#xA0;third&#xA0;fruit&#xA0;until&#xA0;the&#xA0;end<br>//&#xA0;Note:&#xA0;offset&#xA0;starts&#xA0;from&#xA0;zero&#xA0;for&#xA0;apple<br></span><span style="color: #007700">foreach&#xA0;(new&#xA0;</span><span style="color: #0000BB">LimitIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">2</span><span style="color: #007700">)&#xA0;as&#xA0;</span><span style="color: #0000BB">$fruit</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$fruit</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+string(5) &quot;apple&quot;
+string(6) &quot;banana&quot;
+string(6) &quot;cherry&quot;
+
+string(6) &quot;cherry&quot;
+string(6) &quot;damson&quot;
+string(10) &quot;elderberry&quot;
+</pre></div>
+     </div>
+    </div>
+   </p>
+  </div>
+ 
+ 
+ </div>
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="limititerator.construct.html">LimitIterator::__construct</a> &#x2014; Construct a LimitIterator</li><li><a href="limititerator.current.html">LimitIterator::current</a> &#x2014; Get current element</li><li><a href="limititerator.getinneriterator.html">LimitIterator::getInnerIterator</a> &#x2014; Get inner iterator</li><li><a href="limititerator.getposition.html">LimitIterator::getPosition</a> &#x2014; Return the current position</li><li><a href="limititerator.key.html">LimitIterator::key</a> &#x2014; Get current key</li><li><a href="limititerator.next.html">LimitIterator::next</a> &#x2014; Move the iterator forward</li><li><a href="limititerator.rewind.html">LimitIterator::rewind</a> &#x2014; Rewind the iterator to the specified starting offset</li><li><a href="limititerator.seek.html">LimitIterator::seek</a> &#x2014; Seek to the given position</li><li><a href="limititerator.valid.html">LimitIterator::valid</a> &#x2014; Check whether the current element is valid</li></ul>

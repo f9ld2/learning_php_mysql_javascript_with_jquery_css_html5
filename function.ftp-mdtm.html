@@ -1,0 +1,91 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">ftp_mdtm</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ftp_mdtm</span> &#x2014; <span class="dc-title">Returns the last modified time of the given file</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.ftp-mdtm-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>ftp_mdtm</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$ftp_stream</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$remote_file</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>ftp_mdtm()</strong></span> gets the last modified time for a remote
+   file.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    Not all servers support this feature!
+   </p>
+  <p></p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    <span class="function"><strong>ftp_mdtm()</strong></span> does not work with directories.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.ftp-mdtm-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">ftp_stream</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The link identifier of the FTP connection.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">remote_file</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The file from which to extract the last modification time.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ftp-mdtm-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the last modified time as a Unix timestamp on success, or -1 on 
+   error.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.ftp-mdtm-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4871">
+    <p><strong>Example #1 <span class="function"><strong>ftp_mdtm()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$file&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;somefile.txt&apos;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;set&#xA0;up&#xA0;basic&#xA0;connection<br></span><span style="color: #0000BB">$conn_id&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ftp_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$ftp_server</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;login&#xA0;with&#xA0;username&#xA0;and&#xA0;password<br></span><span style="color: #0000BB">$login_result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ftp_login</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ftp_user_name</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$ftp_user_pass</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;&#xA0;get&#xA0;the&#xA0;last&#xA0;modified&#xA0;time<br></span><span style="color: #0000BB">$buff&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">ftp_mdtm</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$file</span><span style="color: #007700">);<br><br>if&#xA0;(</span><span style="color: #0000BB">$buff&#xA0;</span><span style="color: #007700">!=&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;somefile.txt&#xA0;was&#xA0;last&#xA0;modified&#xA0;on:&#xA0;March&#xA0;26&#xA0;2003&#xA0;14:16:41.<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;</span><span style="color: #0000BB">$file</span><span style="color: #DD0000">&#xA0;was&#xA0;last&#xA0;modified&#xA0;on&#xA0;:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;F&#xA0;d&#xA0;Y&#xA0;H:i:s.&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$buff</span><span style="color: #007700">);<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Couldn&apos;t&#xA0;get&#xA0;mdtime&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;close&#xA0;the&#xA0;connection<br></span><span style="color: #0000BB">ftp_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+

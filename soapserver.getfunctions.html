@@ -1,0 +1,69 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">SoapServer::getFunctions</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.0.1, PHP 7)</p><p class="refpurpose"><span class="refname">SoapServer::getFunctions</span> &#x2014; <span class="dc-title">Returns list of defined functions</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-soapserver.getfunctions-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">array</span> <span class="methodname"><strong>SoapServer::getFunctions</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+    Returns a list of the defined functions in the SoapServer object.
+   This method returns the list of all functions added by 
+   <span class="methodname"><a href="soapserver.addfunction.html" class="methodname">SoapServer::addFunction()</a></span> or 
+   <span class="methodname"><a href="soapserver.setclass.html" class="methodname">SoapServer::setClass()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-soapserver.getfunctions-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-soapserver.getfunctions-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An <em>array</em> of the defined functions.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-soapserver.getfunctions-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-6204">
+    <p><strong>Example #1 <span class="function"><strong>SoapServer::getFunctions()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$server&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">SoapServer</span><span style="color: #007700">(</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;uri&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #DD0000">&quot;http://test-uri&quot;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$server</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addFunction</span><span style="color: #007700">(</span><span style="color: #0000BB">SOAP_FUNCTIONS_ALL</span><span style="color: #007700">);<br>if&#xA0;(</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">&quot;REQUEST_METHOD&quot;</span><span style="color: #007700">]&#xA0;==&#xA0;</span><span style="color: #DD0000">&quot;POST&quot;</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$server</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">();<br>}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;This&#xA0;SOAP&#xA0;server&#xA0;can&#xA0;handle&#xA0;following&#xA0;functions:&#xA0;&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$functions&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$server</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getFunctions</span><span style="color: #007700">();<br>&#xA0;&#xA0;foreach(</span><span style="color: #0000BB">$functions&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$func</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$func&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;}<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-soapserver.getfunctions-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="soapserver.soapserver.html" class="methodname" rel="rdfs-seeAlso">SoapServer::SoapServer()</a> - SoapServer constructor</span></li>
+    <li class="member"><span class="methodname"><a href="soapserver.addfunction.html" class="methodname" rel="rdfs-seeAlso">SoapServer::addFunction()</a> - Adds one or more functions to handle SOAP requests</span></li>
+    <li class="member"><span class="methodname"><a href="soapserver.setclass.html" class="methodname" rel="rdfs-seeAlso">SoapServer::setClass()</a> - Sets the class which handles SOAP requests</span></li>
+   </ul>
+  </p>
+ </div>
+
+

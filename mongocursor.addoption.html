@@ -1,0 +1,174 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">MongoCursor::addOption</h1>
+  <p class="verinfo">(PECL mongo &gt;=1.0.4)</p><p class="refpurpose"><span class="refname">MongoCursor::addOption</span> &#x2014; <span class="dc-title">Adds a top-level key/value pair to a query</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongocursor.addoption-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="class.mongocursor.html" class="type MongoCursor">MongoCursor</a></span> <span class="methodname"><strong>MongoCursor::addOption</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This is an advanced function and should not be used unless you know what 
+   you&apos;re doing.
+  </p>
+  <p class="para">
+   A query can optionally be nested in a &quot;query&quot; field if other options, such as
+   a sort or hint, are given.  For instance, adding a sort causes the query 
+   to become a subfield of a bigger query object, like:
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$query&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;query&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;orderby&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$sort</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </p>
+  <p class="para">
+   This method is for adding a top-level field to a query.  It makes the query a
+   subobject (if it isn&apos;t already) and adds the key/value pair of your chosing
+   to the top level.
+  </p>
+  <div class="warning"><strong class="warning">Warning</strong>
+   <p class="para">
+    It cannot be used to add extra criteria to a query on the fly.  For instance,
+    this <em class="emphasis">will not</em> work:
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;NOT&#xA0;CORRECT<br></span><span style="color: #0000BB">$cursor&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$users</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">addOption</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;name&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;joe&quot;</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">addOption</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;age&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">20</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    This <em class="emphasis">does not</em> query for a user named &quot;joe&quot; with an age of 20.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongocursor.addoption-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">key</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Fieldname to add.
+      </p>
+     </dd>
+
+       
+    
+     <dt>
+
+      <code class="parameter">value</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Value to add.
+      </p>
+     </dd>
+
+       
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongocursor.addoption-returnvalues">
+  <h3 class="title">Return Values</h3>  
+  <p class="para">
+   Returns this cursor.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongocursor.addoption-errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws <a href="class.mongocursorexception.html" class="classname">MongoCursorException</a> if this cursor has started iterating.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongocursor.addoption-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1582">
+   <p><strong>Example #1 Adding a comment with <span class="function"><strong>MongoCursor::addOption()</strong></span> example</strong></p>
+   <div class="example-contents"><p>
+    MongoDB supports special options to be send to the server. The shell uses
+    the <em>_addSpecial</em> option to send a
+    <em>$comment</em> to the server. This comment will show up in
+    the profiling log (for slow queries f.e.). In the PHP driver, you use the
+    <span class="function"><strong>MongoCursor::addOption()</strong></span> method.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$m&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">demo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">demo</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$cursor&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addOption</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;$comment&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;This&#xA0;comment&#xA0;will&#xA0;show&#xA0;up&#xA0;in&#xA0;the&#xA0;profiling&#xA0;log&quot;</span><span style="color: #007700">);<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$cursor&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$document</span><span style="color: #007700">)&#xA0;{&#xA0;</span><span style="color: #FF8000">/*&#xA0;empty&#xA0;*/&#xA0;</span><span style="color: #007700">}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+{
+    &quot;op&quot; : &quot;query&quot;,
+    &quot;ns&quot; : &quot;demo.demo&quot;,
+    &quot;query&quot; : {
+        &quot;$query&quot; : {
+             
+        },
+        &quot;$comment&quot; : &quot;This comment will show up in the profiling log&quot;
+    },
+    &quot;cursorid&quot; : 168463566447,
+    &quot;ntoreturn&quot; : 0,
+    &quot;ntoskip&quot; : 0,
+    &quot;nscanned&quot; : 101,
+    &quot;nscannedObjects&quot; : 101,
+    &quot;keyUpdates&quot; : 0,
+    &quot;numYield&quot; : 0,
+&#x2026;
+</pre></div>
+   </div>
+  </div>
+
+  <div class="example" id="example-1583">
+   <p><strong>Example #2 <span class="function"><strong>MongoCursor::addOption()</strong></span> example</strong></p>
+   <div class="example-contents"><p>
+    Using <span class="function"><a href="mongocursor.skip.html" class="function">MongoCursor::skip()</a></span> to skip over millions of 
+    results can become slow.  One way around this is to use 
+    <em>$min</em> or <em>$max</em> options for the query.
+    These can be handy, but they require an index on exactly the fields being 
+    searched for.  This is an example of how to use <em>$min</em> as
+    an alternative to <span class="function"><a href="mongocursor.skip.html" class="function">MongoCursor::skip()</a></span>.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;make&#xA0;sure&#xA0;we&#xA0;have&#xA0;an&#xA0;index<br></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ensureIndex</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&quot;ts&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br><br></span><span style="color: #FF8000">//&#xA0;you&#xA0;may&#xA0;have&#xA0;to&#xA0;modify&#xA0;this&#xA0;to&#xA0;run&#xA0;in&#xA0;a&#xA0;reasonable&#xA0;amount&#xA0;of&#xA0;time&#xA0;on&#xA0;slow&#xA0;<br>//&#xA0;machines&#xA0;(should&#xA0;take&#xA0;about&#xA0;30&#xA0;seconds&#xA0;on&#xA0;a&#xA0;good&#xA0;machine)<br></span><span style="color: #007700">for&#xA0;(</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">&lt;&#xA0;</span><span style="color: #0000BB">30000000</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&quot;ts&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;new&#xA0;</span><span style="color: #0000BB">MongoDate</span><span style="color: #007700">(),&#xA0;</span><span style="color: #DD0000">&quot;i&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">));<br>}<br><br></span><span style="color: #0000BB">$now&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;now&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;find&#xA0;documents&#xA0;inserted&#xA0;in&#xA0;the&#xA0;last&#xA0;2&#xA0;seconds<br></span><span style="color: #0000BB">$cursor&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">addOption</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;$min&apos;</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #DD0000">&quot;ts&quot;&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">$now</span><span style="color: #007700">-</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+

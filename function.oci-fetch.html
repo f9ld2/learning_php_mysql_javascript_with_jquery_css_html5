@@ -1,0 +1,120 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">oci_fetch</h1>
+  <p class="verinfo">(PHP 5, PHP 7, PECL OCI8 &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">oci_fetch</span> &#x2014; <span class="dc-title">Fetches the next row from a query into internal buffers</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.oci-fetch-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>oci_fetch</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$statement</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Fetches the next row from a query into internal buffers accessible
+   either with <span class="function"><a href="function.oci-result.html" class="function">oci_result()</a></span>, or by using variables
+   previously defined with <span class="function"><a href="function.oci-define-by-name.html" class="function">oci_define_by_name()</a></span>.
+  </p>
+  <p class="para">
+    See <span class="function"><a href="function.oci-fetch-array.html" class="function">oci_fetch_array()</a></span> for general information
+    about fetching data.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.oci-fetch-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">statement</code></dt>
+
+     <dd>
+
+       <p class="para">A valid OCI8 statement
+identifier created by <span class="function"><a href="function.oci-parse.html" class="function">oci_parse()</a></span> and executed
+by <span class="function"><a href="function.oci-execute.html" class="function">oci_execute()</a></span>, or a <em>REF
+CURSOR</em> statement identifier.</p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.oci-fetch-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> if there are no more rows in the
+   <code class="parameter">statement</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.oci-fetch-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2243">
+    <p><strong>Example #1 <span class="function"><strong>oci_fetch()</strong></span> with defined variables</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$e&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;location_id,&#xA0;city&#xA0;FROM&#xA0;locations&#xA0;WHERE&#xA0;location_id&#xA0;&lt;&#xA0;1200&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;The&#xA0;defines&#xA0;MUST&#xA0;be&#xA0;done&#xA0;before&#xA0;executing<br></span><span style="color: #0000BB">oci_define_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;LOCATION_ID&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$locid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_define_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;CITY&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$city</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">//&#xA0;Each&#xA0;fetch&#xA0;populates&#xA0;the&#xA0;previously&#xA0;defined&#xA0;variables&#xA0;with&#xA0;the&#xA0;next&#xA0;row&apos;s&#xA0;data<br></span><span style="color: #007700">while&#xA0;(</span><span style="color: #0000BB">oci_fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;Location&#xA0;id&#xA0;</span><span style="color: #0000BB">$locid</span><span style="color: #DD0000">&#xA0;is&#xA0;</span><span style="color: #0000BB">$city</span><span style="color: #DD0000">&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Displays:<br>//&#xA0;&#xA0;&#xA0;Location&#xA0;id&#xA0;1000&#xA0;is&#xA0;Roma<br>//&#xA0;&#xA0;&#xA0;Location&#xA0;id&#xA0;1100&#xA0;is&#xA0;Venice<br><br></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2244">
+    <p><strong>Example #2 <span class="function"><strong>oci_fetch()</strong></span> with <span class="function"><a href="function.oci-result.html" class="function">oci_result()</a></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&apos;hr&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;welcome&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;localhost/XE&apos;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$e&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">],&#xA0;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;location_id,&#xA0;city&#xA0;FROM&#xA0;locations&#xA0;WHERE&#xA0;location_id&#xA0;&lt;&#xA0;1200&apos;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br>while&#xA0;(</span><span style="color: #0000BB">oci_fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">oci_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;LOCATION_ID&apos;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;is&#xA0;&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">oci_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;CITY&apos;</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Displays:<br>//&#xA0;&#xA0;&#xA0;1000&#xA0;is&#xA0;Roma<br>//&#xA0;&#xA0;&#xA0;1100&#xA0;is&#xA0;Venice<br><br></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.oci-fetch-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    Will not return rows from Oracle Database 12<em class="emphasis">c</em>
+    Implicit Result Sets.  Use <span class="function"><a href="function.oci-fetch-array.html" class="function">oci_fetch_array()</a></span>
+    instead.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.oci-fetch-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.oci-define-by-name.html" class="function" rel="rdfs-seeAlso">oci_define_by_name()</a> - Associates a PHP variable with a column for query fetches</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-all.html" class="function" rel="rdfs-seeAlso">oci_fetch_all()</a> - Fetches multiple rows from a query into a two-dimensional array</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-array.html" class="function" rel="rdfs-seeAlso">oci_fetch_array()</a> - Returns the next row from a query as an associative or numeric array</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-assoc.html" class="function" rel="rdfs-seeAlso">oci_fetch_assoc()</a> - Returns the next row from a query as an associative array</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-object.html" class="function" rel="rdfs-seeAlso">oci_fetch_object()</a> - Returns the next row from a query as an object</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-row.html" class="function" rel="rdfs-seeAlso">oci_fetch_row()</a> - Returns the next row from a query as a numeric array</span></li>
+    <li class="member"><span class="function"><a href="function.oci-result.html" class="function" rel="rdfs-seeAlso">oci_result()</a> - Returns field&apos;s value from the fetched row</span></li>
+   </ul>
+  </p>
+ </div>
+
+

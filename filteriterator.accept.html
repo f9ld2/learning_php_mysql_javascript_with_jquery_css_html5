@@ -1,0 +1,62 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">FilterIterator::accept</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7)</p><p class="refpurpose"><span class="refname">FilterIterator::accept</span> &#x2014; <span class="dc-title">Check whether the current element of the iterator is acceptable</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-filteriterator.accept-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="modifier">abstract</span>
+   <span class="type">bool</span> <span class="methodname"><strong>FilterIterator::accept</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns whether the current element of the iterator is acceptable through this filter.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-filteriterator.accept-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-filteriterator.accept-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <strong><code>TRUE</code></strong> if the current element is acceptable, otherwise <strong><code>FALSE</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-filteriterator.accept-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-4466">
+    <p><strong>Example #1 <span class="function"><strong>FilterIterator::accept()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;This&#xA0;iterator&#xA0;filters&#xA0;all&#xA0;values&#xA0;with&#xA0;less&#xA0;than&#xA0;10&#xA0;characters<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">LengthFilterIterator&#xA0;</span><span style="color: #007700">extends&#xA0;</span><span style="color: #0000BB">FilterIterator&#xA0;</span><span style="color: #007700">{<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">accept</span><span style="color: #007700">()&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">//&#xA0;Only&#xA0;accept&#xA0;strings&#xA0;with&#xA0;a&#xA0;length&#xA0;of&#xA0;10&#xA0;and&#xA0;greater<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #007700">return&#xA0;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">current</span><span style="color: #007700">())&#xA0;&gt;=&#xA0;</span><span style="color: #0000BB">10</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>}<br><br></span><span style="color: #0000BB">$arrayIterator&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">ArrayIterator</span><span style="color: #007700">(array(</span><span style="color: #DD0000">&apos;test1&apos;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;more&#xA0;than&#xA0;10&#xA0;characters&apos;</span><span style="color: #007700">));<br></span><span style="color: #0000BB">$lengthFilter&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">LengthFilterIterator</span><span style="color: #007700">(</span><span style="color: #0000BB">$arrayIterator</span><span style="color: #007700">);<br><br>foreach&#xA0;(</span><span style="color: #0000BB">$lengthFilter&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">$value&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+more than 10 characters
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+

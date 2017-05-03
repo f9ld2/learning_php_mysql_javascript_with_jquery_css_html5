@@ -1,0 +1,84 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">oci_num_fields</h1>
+  <p class="verinfo">(PHP 5, PHP 7, PECL OCI8 &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">oci_num_fields</span> &#x2014; <span class="dc-title">Returns the number of result columns in a statement</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.oci-num-fields-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>oci_num_fields</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$statement</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets the number of columns in the given <code class="parameter">statement</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.oci-num-fields-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">statement</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A valid OCI statement identifier.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.oci-num-fields-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of columns as an integer, or <strong><code>FALSE</code></strong> on errors.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.oci-num-fields-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2260">
+    <p><strong>Example #1 <span class="function"><strong>oci_num_fields()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br></span><span style="color: #FF8000">//&#xA0;Create&#xA0;the&#xA0;table&#xA0;with:<br>//&#xA0;&#xA0;&#xA0;CREATE&#xA0;TABLE&#xA0;mytab&#xA0;(id&#xA0;NUMBER,&#xA0;quantity&#xA0;NUMBER);<br><br></span><span style="color: #0000BB">$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;hr&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;hrpwd&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;localhost/XE&quot;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$m&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$m</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">]),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;mytab&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">OCI_DESCRIBE_ONLY</span><span style="color: #007700">);&#xA0;</span><span style="color: #FF8000">//&#xA0;Use&#xA0;OCI_DESCRIBE_ONLY&#xA0;if&#xA0;not&#xA0;fetching&#xA0;rows<br><br></span><span style="color: #0000BB">$ncols&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_num_fields</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br>for&#xA0;(</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">1</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i&#xA0;</span><span style="color: #007700">&lt;=&#xA0;</span><span style="color: #0000BB">$ncols</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #0000BB">oci_field_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">oci_field_type</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$i</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&gt;\n&quot;</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #FF8000">//&#xA0;Outputs:<br>//&#xA0;&#xA0;&#xA0;&#xA0;ID&#xA0;NUMBER<br>//&#xA0;&#xA0;&#xA0;&#xA0;QUANTITY&#xA0;NUMBER<br><br></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.oci-num-fields-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   </p><p class="para">
+    In PHP versions before 5.0.0 you must use <span class="function"><a href="function.ocinumcols.html" class="function">ocinumcols()</a></span> instead.
+    This name still can be used, it was left as alias of
+    <span class="function"><strong>oci_num_fields()</strong></span> for downwards compatability.
+    This, however, is deprecated and not recommended.
+   </p>
+  <p></p></blockquote>
+ </div>
+
+

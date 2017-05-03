@@ -1,0 +1,274 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">PDOStatement::fetch</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7, PECL pdo &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">PDOStatement::fetch</span> &#x2014; <span class="dc-title">
+   Fetches the next row from a result set
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-pdostatement.fetch-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>PDOStatement::fetch</strong></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$fetch_style</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$cursor_orientation</code><span class="initializer"> = PDO::FETCH_ORI_NEXT</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$cursor_offset</code><span class="initializer"> = 0</span></span>
+  ]]] )</div>
+
+
+  <p class="para rdfs-comment">
+   Fetches a row from a result set associated with a PDOStatement object. The
+   <code class="parameter">fetch_style</code> parameter determines how PDO returns
+   the row.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-pdostatement.fetch-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">fetch_style</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Controls how the next row will be returned to the caller. This value
+       must be one of the <em>PDO::FETCH_*</em> constants,
+       defaulting to value of <em>PDO::ATTR_DEFAULT_FETCH_MODE</em>
+       (which defaults to <em>PDO::FETCH_BOTH</em>).
+       <ul class="itemizedlist">
+        <li class="listitem"><p class="para">
+         <em>PDO::FETCH_ASSOC</em>: returns an array indexed by column
+         name as returned in your result set
+        </p></li>
+        <li class="listitem"><p class="para">
+         <em>PDO::FETCH_BOTH</em> (default): returns an array indexed by
+         both column name and 0-indexed column number as returned in your
+         result set
+        </p></li>
+        <li class="listitem"><p class="para">
+         <em>PDO::FETCH_BOUND</em>: returns <strong><code>TRUE</code></strong> and assigns the
+         values of the columns in your result set to the PHP variables to which
+         they were bound with the <span class="function"><a href="pdostatement.bindcolumn.html" class="function">PDOStatement::bindColumn()</a></span>
+         method
+        </p></li>
+        <li class="listitem"><p class="para">
+         <em>PDO::FETCH_CLASS</em>: returns a new instance of the
+         requested class, mapping the columns of the result set to named
+         properties in the class, and calling the constructor afterwards, unless
+         <em>PDO::FETCH_PROPS_LATE</em> is also given.
+         If <code class="parameter">fetch_style</code>
+         includes PDO::FETCH_CLASSTYPE (e.g. <em>PDO::FETCH_CLASS |
+         PDO::FETCH_CLASSTYPE</em>) then the name of the class is
+         determined from a value of the first column.
+        </p></li>
+        <li class="listitem"><p class="para">
+         <em>PDO::FETCH_INTO</em>: updates an existing instance
+         of the requested class, mapping the columns of the result set to
+         named properties in the class
+        </p></li>
+        <li class="listitem"><p class="para">
+         <em>PDO::FETCH_LAZY</em>: combines
+         <em>PDO::FETCH_BOTH</em> and <em>PDO::FETCH_OBJ</em>,
+         creating the object variable names as they are accessed
+        </p></li>
+        <li class="listitem"><p class="para">
+         <em>PDO::FETCH_NAMED</em>: returns an array with the same
+         form as <em>PDO::FETCH_ASSOC</em>, except that if there are
+         multiple columns with the same name, the value referred to by that
+         key will be an array of all the values in the row that had that
+         column name
+        </p></li>
+        <li class="listitem"><p class="para">
+         <em>PDO::FETCH_NUM</em>: returns an array indexed by column
+         number as returned in your result set, starting at column 0
+        </p></li>
+        <li class="listitem"><p class="para">
+         <em>PDO::FETCH_OBJ</em>: returns an anonymous object with
+         property names that correspond to the column names returned in your
+         result set
+        </p></li>
+        <li class="listitem"><p class="para">
+         <em>PDO::FETCH_PROPS_LATE</em>: when used with
+         <em>PDO::FETCH_CLASS</em>, the constructor of the class is
+         called before the properties are assigned from the respective column
+         values.
+        </p></li>
+       </ul>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">cursor_orientation</code></dt>
+
+     <dd>
+
+      <p class="para">
+       For a PDOStatement object representing a scrollable cursor, this
+       value determines which row will be returned to the caller. This value
+       must be one of the <em>PDO::FETCH_ORI_*</em> constants,
+       defaulting to <em>PDO::FETCH_ORI_NEXT</em>. To request a
+       scrollable cursor for your PDOStatement object, you must set the
+       <em>PDO::ATTR_CURSOR</em> attribute to
+       <em>PDO::CURSOR_SCROLL</em> when you prepare the SQL
+       statement with <span class="function"><a href="pdo.prepare.html" class="function">PDO::prepare()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">offset</code></dt>
+
+     <dd>
+
+      <p class="para"> 
+       For a PDOStatement object representing a scrollable cursor for which
+       the <em>cursor_orientation</em> parameter is set to
+       <em>PDO::FETCH_ORI_ABS</em>, this value specifies the
+       absolute number of the row in the result set that shall be fetched.
+      </p>
+      <p class="para">
+       For a PDOStatement object representing a scrollable cursor for which
+       the <em>cursor_orientation</em> parameter is set to
+       <em>PDO::FETCH_ORI_REL</em>, this value specifies the
+       row to fetch relative to the cursor position before
+       <span class="function"><strong>PDOStatement::fetch()</strong></span> was called.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-pdostatement.fetch-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The return value of this function on success depends on the fetch type. In
+   all cases, <strong><code>FALSE</code></strong> is returned on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-pdostatement.fetch-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-1037"><p><strong>Example #1 Fetching rows using different fetch styles</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$sth&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;name,&#xA0;colour&#xA0;FROM&#xA0;fruit&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br><br></span><span style="color: #FF8000">/*&#xA0;Exercise&#xA0;PDOStatement::fetch&#xA0;styles&#xA0;*/<br></span><span style="color: #007700">print(</span><span style="color: #DD0000">&quot;PDO::FETCH_ASSOC:&#xA0;&quot;</span><span style="color: #007700">);<br>print(</span><span style="color: #DD0000">&quot;Return&#xA0;next&#xA0;row&#xA0;as&#xA0;an&#xA0;array&#xA0;indexed&#xA0;by&#xA0;column&#xA0;name\n&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_ASSOC</span><span style="color: #007700">);<br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br>print(</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">);<br><br>print(</span><span style="color: #DD0000">&quot;PDO::FETCH_BOTH:&#xA0;&quot;</span><span style="color: #007700">);<br>print(</span><span style="color: #DD0000">&quot;Return&#xA0;next&#xA0;row&#xA0;as&#xA0;an&#xA0;array&#xA0;indexed&#xA0;by&#xA0;both&#xA0;column&#xA0;name&#xA0;and&#xA0;number\n&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_BOTH</span><span style="color: #007700">);<br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br>print(</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">);<br><br>print(</span><span style="color: #DD0000">&quot;PDO::FETCH_LAZY:&#xA0;&quot;</span><span style="color: #007700">);<br>print(</span><span style="color: #DD0000">&quot;Return&#xA0;next&#xA0;row&#xA0;as&#xA0;an&#xA0;anonymous&#xA0;object&#xA0;with&#xA0;column&#xA0;names&#xA0;as&#xA0;properties\n&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_LAZY</span><span style="color: #007700">);<br></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br>print(</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">);<br><br>print(</span><span style="color: #DD0000">&quot;PDO::FETCH_OBJ:&#xA0;&quot;</span><span style="color: #007700">);<br>print(</span><span style="color: #DD0000">&quot;Return&#xA0;next&#xA0;row&#xA0;as&#xA0;an&#xA0;anonymous&#xA0;object&#xA0;with&#xA0;column&#xA0;names&#xA0;as&#xA0;properties\n&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_OBJ</span><span style="color: #007700">);<br>print&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">;<br>print(</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+PDO::FETCH_ASSOC: Return next row as an array indexed by column name
+Array
+(
+    [name] =&gt; apple
+    [colour] =&gt; red
+)
+
+PDO::FETCH_BOTH: Return next row as an array indexed by both column name and number
+Array
+(
+    [name] =&gt; banana
+    [0] =&gt; banana
+    [colour] =&gt; yellow
+    [1] =&gt; yellow
+)
+
+PDO::FETCH_LAZY: Return next row as an anonymous object with column names as properties
+PDORow Object
+(
+    [name] =&gt; orange
+    [colour] =&gt; orange
+)
+
+PDO::FETCH_OBJ: Return next row as an anonymous object with column names as properties
+kiwi
+</pre></div>
+    </div>
+   </div>
+   <div class="example" id="example-1038"><p><strong>Example #2 Fetching rows with a scrollable cursor</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">function&#xA0;</span><span style="color: #0000BB">readDataForwards</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;hand,&#xA0;won,&#xA0;bet&#xA0;FROM&#xA0;mynumbers&#xA0;ORDER&#xA0;BY&#xA0;BET&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stmt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">ATTR_CURSOR&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">CURSOR_SCROLL</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;while&#xA0;(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_NUM</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_ORI_NEXT</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$data&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\t&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\t&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;print&#xA0;</span><span style="color: #0000BB">$data</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stmt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">null</span><span style="color: #007700">;<br>&#xA0;&#xA0;}<br>&#xA0;&#xA0;catch&#xA0;(</span><span style="color: #0000BB">PDOException&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;print&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">();<br>&#xA0;&#xA0;}<br>}<br>function&#xA0;</span><span style="color: #0000BB">readDataBackwards</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;</span><span style="color: #0000BB">$sql&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;SELECT&#xA0;hand,&#xA0;won,&#xA0;bet&#xA0;FROM&#xA0;mynumbers&#xA0;ORDER&#xA0;BY&#xA0;bet&apos;</span><span style="color: #007700">;<br>&#xA0;&#xA0;try&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stmt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">,&#xA0;array(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">ATTR_CURSOR&#xA0;</span><span style="color: #007700">=&gt;&#xA0;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">CURSOR_SCROLL</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_NUM</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_ORI_LAST</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;do&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$data&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\t&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\t&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;print&#xA0;</span><span style="color: #0000BB">$data</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;while&#xA0;(</span><span style="color: #0000BB">$row&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_NUM</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_ORI_PRIOR</span><span style="color: #007700">));<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$stmt&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">null</span><span style="color: #007700">;<br>&#xA0;&#xA0;}<br>&#xA0;&#xA0;catch&#xA0;(</span><span style="color: #0000BB">PDOException&#xA0;$e</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;print&#xA0;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">();<br>&#xA0;&#xA0;}<br>}<br><br>print&#xA0;</span><span style="color: #DD0000">&quot;Reading&#xA0;forwards:\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">readDataForwards</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br><br>print&#xA0;</span><span style="color: #DD0000">&quot;Reading&#xA0;backwards:\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">readDataBackwards</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Reading forwards:
+21    10    5
+16    0     5
+19    20    10
+
+Reading backwards:
+19    20    10
+16    0     5
+21    10    5
+</pre></div>
+    </div>
+   </div>
+
+   <div class="example" id="example-1039"><p><strong>Example #3 Construction order</strong></p>
+    <div class="example-contents"><p>
+     When objects are fetched via <em>PDO::FETCH_CLASS</em> the object
+     properties are assigned first, and then the constructor of the class is
+     invoked. If <em>PDO::FETCH_PROPS_LATE</em> is also given, this
+     order is reversed, i.e. first the constructor is called, and afterwards the
+     properties are assigned.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">class&#xA0;</span><span style="color: #0000BB">Person<br></span><span style="color: #007700">{<br>&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;</span><span style="color: #0000BB">$name</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">__construct</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">tell</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br><br>&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;function&#xA0;</span><span style="color: #0000BB">tell</span><span style="color: #007700">()<br>&#xA0;&#xA0;&#xA0;&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if&#xA0;(isset(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">))&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;I&#xA0;am&#xA0;</span><span style="color: #007700">{</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">}</span><span style="color: #DD0000">.\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;else&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;I&#xA0;don&apos;t&#xA0;have&#xA0;a&#xA0;name&#xA0;yet.\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br><br></span><span style="color: #0000BB">$sth&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;SELECT&#xA0;*&#xA0;FROM&#xA0;people&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFetchMode</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_CLASS</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Person&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$person&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$person</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">tell</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFetchMode</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_CLASS</span><span style="color: #007700">|</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_PROPS_LATE</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&apos;Person&apos;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$person&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">();<br></span><span style="color: #0000BB">$person</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">tell</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+I am Alice.
+I am Alice.
+I don&apos;t have a name yet.
+I am Bob.
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-pdostatement.fetch-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="pdo.prepare.html" class="function" rel="rdfs-seeAlso">PDO::prepare()</a> - Prepares a statement for execution and returns a statement object</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.execute.html" class="function" rel="rdfs-seeAlso">PDOStatement::execute()</a> - Executes a prepared statement</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.fetchall.html" class="function" rel="rdfs-seeAlso">PDOStatement::fetchAll()</a> - Returns an array containing all of the result set rows</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.fetchcolumn.html" class="function" rel="rdfs-seeAlso">PDOStatement::fetchColumn()</a> - Returns a single column from the next row of a result set</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.fetchobject.html" class="function" rel="rdfs-seeAlso">PDOStatement::fetchObject()</a> - Fetches the next row and returns it as an object.</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.setfetchmode.html" class="function" rel="rdfs-seeAlso">PDOStatement::setFetchMode()</a> - Set the default fetch mode for this statement</span></li>
+   </ul>
+  </p>
+ </div>
+

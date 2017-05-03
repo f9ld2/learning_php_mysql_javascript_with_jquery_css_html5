@@ -1,0 +1,102 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">db2_escape_string</h1>
+  <p class="verinfo">(PECL ibm_db2 &gt;= 1.6.0)</p><p class="refpurpose"><span class="refname">db2_escape_string</span> &#x2014; <span class="dc-title">
+   Used to escape certain characters
+  </span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.db2-escape-string-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>db2_escape_string</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$string_literal</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Prepends backslashes to special characters in the string argument.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.db2-escape-string-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">string_literal</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The string that contains special characters that need to be modified. 
+       Characters that are prepended with a backslash are <em>\x00</em>, 
+       <em>\n</em>, <em>\r</em>, <em>\</em>, 
+       <em>&apos;</em>, <em>&quot;</em> and <em>\x1a</em>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.db2-escape-string-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <code class="parameter">string_literal</code> with the special characters 
+   noted above prepended with backslashes.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.db2-escape-string-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-1241">
+    <p><strong>Example #1 A <span class="function"><strong>db2_escape_string()</strong></span> example</strong></p>
+    <div class="example-contents"><p>
+     Result of using the <span class="function"><strong>db2_escape_string()</strong></span> function
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br><br>if&#xA0;(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;All&#xA0;characters:&#xA0;\x00&#xA0;,&#xA0;\n&#xA0;,&#xA0;\r&#xA0;,&#xA0;\&#xA0;,&#xA0;&apos;&#xA0;,&#xA0;\&quot;&#xA0;,&#xA0;\x1a&#xA0;.&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;Backslash&#xA0;(\).&#xA0;Single&#xA0;quote&#xA0;(&apos;).&#xA0;Double&#xA0;quote&#xA0;(\&quot;)&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;The&#xA0;NULL&#xA0;character&#xA0;\0&#xA0;must&#xA0;be&#xA0;quoted&#xA0;as&#xA0;well&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;Intersting&#xA0;characters:&#xA0;\x1a&#xA0;,&#xA0;\x00&#xA0;.&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">4</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;Nothing&#xA0;to&#xA0;quote&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">5</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #0000BB">200676</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">6</span><span style="color: #007700">]&#xA0;=&#xA0;</span><span style="color: #DD0000">&quot;&quot;</span><span style="color: #007700">;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;foreach(&#xA0;</span><span style="color: #0000BB">$str&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$string&#xA0;</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;</span><span style="color: #DD0000">&quot;db2_escape_string:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">db2_escape_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">).&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br>&#xA0;&#xA0;&#xA0;&#xA0;}<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+db2_escape_string: All characters: \0 , \n , \r , \\ , \&apos; , \&quot; , \Z .
+db2_escape_string: Backslash (\\). Single quote (\&apos;). Double quote (\&quot;)
+db2_escape_string: The NULL character \0 must be quoted as well
+db2_escape_string: Intersting characters: \Z , \0 .
+db2_escape_string: Nothing to quote
+db2_escape_string: 200676
+db2_escape_string:
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.db2-escape-string-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.db2-prepare.html" class="function" rel="rdfs-seeAlso">db2_prepare()</a> - Prepares an SQL statement to be executed</span></li>
+   </ul>
+  </p>
+ </div>
+
+

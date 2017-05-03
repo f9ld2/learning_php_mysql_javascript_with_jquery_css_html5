@@ -1,0 +1,199 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">oci_bind_array_by_name</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.2, PHP 7, PECL OCI8 &gt;= 1.2.0)</p><p class="refpurpose"><span class="refname">oci_bind_array_by_name</span> &#x2014; <span class="dc-title">Binds a PHP array to an Oracle PL/SQL array parameter</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.oci-bind-array-by-name-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>oci_bind_array_by_name</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$statement</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter reference">&amp;$var_array</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$max_table_length</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$max_item_length</code><span class="initializer"> = -1</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$type</code><span class="initializer"> = SQLT_AFC</span></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Binds the PHP array <code class="parameter">var_array</code> to the Oracle
+   placeholder <code class="parameter">name</code>, which points to an Oracle PL/SQL
+   array. Whether it will be used for input or output will be determined at
+   run-time. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.oci-bind-array-by-name-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">statement</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A valid OCI statement identifier.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The Oracle placeholder.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">var_array</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An array.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">max_table_length</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Sets the maximum length both for incoming and result arrays.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">max_item_length</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Sets maximum length for array items. If not specified or equals to -1,
+       <span class="function"><strong>oci_bind_array_by_name()</strong></span> will find the longest
+       element in the incoming array and will use it as the maximum length.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Should be used to set the type of PL/SQL array items. See list of
+       available types below:
+      </p>
+      <p class="para">
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          <strong><code>SQLT_NUM</code></strong> - for arrays of NUMBER.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <strong><code>SQLT_INT</code></strong> - for arrays of INTEGER (Note: INTEGER
+          it is actually a synonym for NUMBER(38), but
+          <strong><code>SQLT_NUM</code></strong> type won&apos;t work in this case even
+          though they are synonyms).
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <strong><code>SQLT_FLT</code></strong> - for arrays of FLOAT.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <strong><code>SQLT_AFC</code></strong> - for arrays of CHAR.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <strong><code>SQLT_CHR</code></strong> - for arrays of VARCHAR2.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <strong><code>SQLT_VCS</code></strong> - for arrays of VARCHAR.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <strong><code>SQLT_AVC</code></strong> - for arrays of CHARZ.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <strong><code>SQLT_STR</code></strong> - for arrays of STRING.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <strong><code>SQLT_LVC</code></strong> - for arrays of LONG VARCHAR.
+         </p>
+        </li>
+       <li class="listitem">
+         <p class="para">
+          <strong><code>SQLT_ODT</code></strong> - for arrays of DATE.
+         </p>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.oci-bind-array-by-name-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <strong><code>TRUE</code></strong> on success or <strong><code>FALSE</code></strong> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.oci-bind-array-by-name-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-2188">
+    <p><strong>Example #1 <span class="function"><strong>oci_bind_array_by_name()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br><br>$conn&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;hr&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;hrpwd&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;localhost/XE&quot;</span><span style="color: #007700">);<br>if&#xA0;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$m&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br>&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$m</span><span style="color: #007700">[</span><span style="color: #DD0000">&apos;message&apos;</span><span style="color: #007700">]),&#xA0;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #0000BB">$create&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;CREATE&#xA0;TABLE&#xA0;bind_example(name&#xA0;VARCHAR(20))&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$create</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$create_pkg&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;<br>CREATE&#xA0;OR&#xA0;REPLACE&#xA0;PACKAGE&#xA0;ARRAYBINDPKG1&#xA0;AS<br>&#xA0;&#xA0;TYPE&#xA0;ARRTYPE&#xA0;IS&#xA0;TABLE&#xA0;OF&#xA0;VARCHAR(20)&#xA0;INDEX&#xA0;BY&#xA0;BINARY_INTEGER;<br>&#xA0;&#xA0;PROCEDURE&#xA0;iobind(c1&#xA0;IN&#xA0;OUT&#xA0;ARRTYPE);<br>END&#xA0;ARRAYBINDPKG1;&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$create_pkg</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$create_pkg_body&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;<br>CREATE&#xA0;OR&#xA0;REPLACE&#xA0;PACKAGE&#xA0;BODY&#xA0;ARRAYBINDPKG1&#xA0;AS<br>&#xA0;&#xA0;CURSOR&#xA0;CUR&#xA0;IS&#xA0;SELECT&#xA0;name&#xA0;FROM&#xA0;bind_example;<br>&#xA0;&#xA0;PROCEDURE&#xA0;iobind(c1&#xA0;IN&#xA0;OUT&#xA0;ARRTYPE)&#xA0;IS<br>&#xA0;&#xA0;&#xA0;&#xA0;BEGIN<br>&#xA0;&#xA0;&#xA0;&#xA0;--&#xA0;Bulk&#xA0;Insert<br>&#xA0;&#xA0;&#xA0;&#xA0;FORALL&#xA0;i&#xA0;IN&#xA0;INDICES&#xA0;OF&#xA0;c1<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;INSERT&#xA0;INTO&#xA0;bind_example&#xA0;VALUES&#xA0;(c1(i));<br><br>&#xA0;&#xA0;&#xA0;&#xA0;--&#xA0;Fetch&#xA0;and&#xA0;reverse<br>&#xA0;&#xA0;&#xA0;&#xA0;IF&#xA0;NOT&#xA0;CUR%ISOPEN&#xA0;THEN<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;OPEN&#xA0;CUR;<br>&#xA0;&#xA0;&#xA0;&#xA0;END&#xA0;IF;<br>&#xA0;&#xA0;&#xA0;&#xA0;FOR&#xA0;i&#xA0;IN&#xA0;REVERSE&#xA0;1..5&#xA0;LOOP<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;FETCH&#xA0;CUR&#xA0;INTO&#xA0;c1(i);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;IF&#xA0;CUR%NOTFOUND&#xA0;THEN<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;CLOSE&#xA0;CUR;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;EXIT;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;END&#xA0;IF;<br>&#xA0;&#xA0;&#xA0;&#xA0;END&#xA0;LOOP;<br>&#xA0;&#xA0;END&#xA0;iobind;<br>END&#xA0;ARRAYBINDPKG1;&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$create_pkg_body</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">$stid&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;BEGIN&#xA0;arraybindpkg1.iobind(:c1);&#xA0;END;&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$array&#xA0;</span><span style="color: #007700">=&#xA0;array(</span><span style="color: #DD0000">&quot;one&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;two&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;three&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;four&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;five&quot;</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_bind_array_by_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;:c1&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$array</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&#xA0;-</span><span style="color: #0000BB">1</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">SQLT_CHR</span><span style="color: #007700">);<br></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+

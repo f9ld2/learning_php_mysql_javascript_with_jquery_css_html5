@@ -1,0 +1,134 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_fetch_fields</h1>
+  <h1 class="refname">maxdb_result::fetch_fields</h1>
+  <p class="verinfo">(PECL maxdb &gt;= 1.0)</p><p class="refpurpose"><span class="refname">maxdb_fetch_fields</span> -- <span class="refname">maxdb_result::fetch_fields</span> &#x2014; <span class="dc-title">Returns an array of resources representing the fields in a result set</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.maxdb-fetch-fields-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>maxdb_fetch_fields</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$result</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>maxdb_result::fetch_fields</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function serves an identical purpose to the <span class="function"><a href="function.maxdb-fetch-field.html" class="function">maxdb_fetch_field()</a></span>
+   function with the single difference that, instead of returning one resource at a time for
+   each field, the columns are returned as an array of resources.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.maxdb-fetch-fields-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array of resources which contains field definition information or <strong><code>FALSE</code></strong> if no field information
+   is available.
+  </p>
+  <p class="para">
+  <table class="doctable table">
+   <caption><strong>Object properties</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Property</th>
+      <th>Description</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>name</td>
+      <td>The name of the column</td>
+     </tr>
+
+     <tr>
+      <td>max_length</td>
+      <td>The maximum width of the field for the result set.</td>
+     </tr>
+
+     <tr>
+      <td>type</td>
+      <td>The data type used for this field</td>
+     </tr>
+
+     <tr>
+      <td>decimals</td>
+      <td>The number of decimals used (for integer fields)</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.maxdb-fetch-fields-examples">
+  <h3 class="title">Examples</h3>
+  <div class="example" id="example-1350">
+   <p><strong>Example #1 Object oriented style</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$maxdb&#xA0;</span><span style="color: #007700">=&#xA0;new&#xA0;</span><span style="color: #0000BB">maxdb</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;MONA&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;RED&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;DEMODB&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #0000BB">$query&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;SELECT&#xA0;name,&#xA0;cno&#xA0;from&#xA0;hotel.customer&#xA0;ORDER&#xA0;BY&#xA0;cno&quot;</span><span style="color: #007700">;<br><br>if&#xA0;(</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;Get&#xA0;field&#xA0;information&#xA0;for&#xA0;all&#xA0;columns&#xA0;*/<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$finfo&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_fields</span><span style="color: #007700">();<br><br>&#xA0;&#xA0;&#xA0;foreach&#xA0;(</span><span style="color: #0000BB">$finfo&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Name:&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Table:&#xA0;&#xA0;&#xA0;&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">table</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;max.&#xA0;Len:&#xA0;%d\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">max_length</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Flags:&#xA0;&#xA0;&#xA0;&#xA0;%d\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flags</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Type:&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;%d\n\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">type</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;close&#xA0;connection&#xA0;*/<br></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-1351">
+   <p><strong>Example #2 Procedural style</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$link&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;localhost&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;MONA&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;RED&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;DEMODB&quot;</span><span style="color: #007700">);<br><br></span><span style="color: #FF8000">/*&#xA0;check&#xA0;connection&#xA0;*/<br></span><span style="color: #007700">if&#xA0;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&#xA0;{<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Connect&#xA0;failed:&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br>&#xA0;&#xA0;&#xA0;exit();<br>}<br><br></span><span style="color: #0000BB">$query&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&quot;SELECT&#xA0;name,&#xA0;cno&#xA0;from&#xA0;hotel.customer&#xA0;ORDER&#xA0;BY&#xA0;cno&quot;</span><span style="color: #007700">;<br><br>if&#xA0;(</span><span style="color: #0000BB">$result&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&#xA0;{<br><br>&#xA0;&#xA0;&#xA0;</span><span style="color: #FF8000">/*&#xA0;Get&#xA0;field&#xA0;information&#xA0;for&#xA0;all&#xA0;columns&#xA0;*/<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">$finfo&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">maxdb_fetch_fields</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br><br>&#xA0;&#xA0;&#xA0;foreach&#xA0;(</span><span style="color: #0000BB">$finfo&#xA0;</span><span style="color: #007700">as&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Name:&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Table:&#xA0;&#xA0;&#xA0;&#xA0;%s\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">table</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;max.&#xA0;Len:&#xA0;%d\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">max_length</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Flags:&#xA0;&#xA0;&#xA0;&#xA0;%d\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flags</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;Type:&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;%d\n\n&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">type</span><span style="color: #007700">);<br>&#xA0;&#xA0;&#xA0;}<br>&#xA0;&#xA0;&#xA0;</span><span style="color: #0000BB">maxdb_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br>}<br><br></span><span style="color: #FF8000">/*&#xA0;close&#xA0;connection&#xA0;*/<br></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output
+something similar to:</p>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+Name:     NAME
+Table:
+max. Len: 10
+Flags:    -1
+Type:     2
+
+Name:     CNO
+Table:
+max. Len: 4
+Flags:    -1
+Type:     0
+</pre></div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.maxdb-fetch-fields-seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.maxdb-num-fields.html" class="function" rel="rdfs-seeAlso">maxdb_num_fields()</a> - Get the number of fields in a result</span></li>
+    <li class="member"><span class="function"><a href="function.maxdb-fetch-field.html" class="function" rel="rdfs-seeAlso">maxdb_fetch_field()</a> - Returns the next field in the result set</span></li>
+    <li class="member"><span class="function"><a href="function.maxdb-fetch-field-direct.html" class="function" rel="rdfs-seeAlso">maxdb_fetch_field_direct()</a> - Fetch meta-data for a single field</span></li>
+   </ul>
+  </p>
+ </div>
+
+

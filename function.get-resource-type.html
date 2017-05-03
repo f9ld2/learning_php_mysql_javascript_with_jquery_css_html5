@@ -1,0 +1,107 @@
+---
+layout: default
+---
+
+ <div class="refnamediv">
+  <h1 class="refname">get_resource_type</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">get_resource_type</span> &#x2014; <span class="dc-title">
+   Returns the resource type
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.get-resource-type-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>get_resource_type</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$handle</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function gets the type of the given resource.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.get-resource-type-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">handle</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The evaluated resource handle.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.get-resource-type-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   If the given <code class="parameter">handle</code> is a resource, this function
+   will return a string representing its type. If the type is not identified
+   by this function, the return value will be the string 
+   <em>Unknown</em>.
+  </p>
+  <p class="para">
+   This function will return <strong><code>NULL</code></strong> and generate an error if 
+   <code class="parameter">handle</code> is not a <span class="type"><a href="language.types.resource.html" class="type resource">resource</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.get-resource-type-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Version</th>
+      <th>Description</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>PHP 5.3.0</td>
+      <td>
+       If <code class="parameter">handle</code> is not a <span class="type"><a href="language.types.resource.html" class="type resource">resource</a></span> this
+       functions returns <strong><code>NULL</code></strong>. Formerly, <strong><code>FALSE</code></strong> has been returned.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.get-resource-type-examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example" id="example-6129">
+    <p><strong>Example #1 <span class="function"><strong>get_resource_type()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #FF8000">//&#xA0;prints:&#xA0;mysql&#xA0;link<br></span><span style="color: #0000BB">$c&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">();<br>echo&#xA0;</span><span style="color: #0000BB">get_resource_type</span><span style="color: #007700">(</span><span style="color: #0000BB">$c</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;prints:&#xA0;stream<br></span><span style="color: #0000BB">$fp&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;foo&quot;</span><span style="color: #007700">,&#xA0;</span><span style="color: #DD0000">&quot;w&quot;</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #0000BB">get_resource_type</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br><br></span><span style="color: #FF8000">//&#xA0;prints:&#xA0;domxml&#xA0;document<br></span><span style="color: #0000BB">$doc&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">new_xmldoc</span><span style="color: #007700">(</span><span style="color: #DD0000">&quot;1.0&quot;</span><span style="color: #007700">);<br>echo&#xA0;</span><span style="color: #0000BB">get_resource_type</span><span style="color: #007700">(</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">doc</span><span style="color: #007700">)&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+

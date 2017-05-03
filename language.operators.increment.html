@@ -1,0 +1,120 @@
+---
+layout: default
+---
+
+   <h2 class="title">Incrementing/Decrementing Operators</h2>
+   <p class="para">
+    PHP supports C-style pre- and post-increment and decrement
+    operators.
+   </p>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <span class="simpara">
+     The increment/decrement operators only affect numbers and strings.
+     Arrays, objects and resources are not affected.
+     Decrementing <strong><code>NULL</code></strong> values has no effect too, but incrementing them
+     results in <em>1</em>.
+    </span>
+   </p></blockquote>
+   <table class="doctable table">
+    <caption><strong>Increment/decrement Operators</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Example</th>
+       <th>Name</th>
+       <th>Effect</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>++$a</td>
+       <td>Pre-increment</td>
+       <td>Increments <var class="varname"><var class="varname">$a</var></var> by one, then returns <var class="varname"><var class="varname">$a</var></var>.</td>
+      </tr>
+
+      <tr>
+       <td>$a++</td>
+       <td>Post-increment</td>
+       <td>Returns <var class="varname"><var class="varname">$a</var></var>, then increments <var class="varname"><var class="varname">$a</var></var> by one.</td>
+      </tr>
+
+      <tr>
+       <td>--$a</td>
+       <td>Pre-decrement</td>
+       <td>Decrements <var class="varname"><var class="varname">$a</var></var> by one, then returns <var class="varname"><var class="varname">$a</var></var>.</td>
+      </tr>
+
+      <tr>
+       <td>$a--</td>
+       <td>Post-decrement</td>
+       <td>Returns <var class="varname"><var class="varname">$a</var></var>, then decrements <var class="varname"><var class="varname">$a</var></var> by one.</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+   <p class="para">
+    Here&apos;s a simple example script:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;h3&gt;Postincrement&lt;/h3&gt;&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Should&#xA0;be&#xA0;5:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #007700">++&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Should&#xA0;be&#xA0;6:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;h3&gt;Preincrement&lt;/h3&gt;&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Should&#xA0;be&#xA0;6:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;++</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Should&#xA0;be&#xA0;6:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;h3&gt;Postdecrement&lt;/h3&gt;&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Should&#xA0;be&#xA0;5:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$a</span><span style="color: #007700">--&#xA0;.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Should&#xA0;be&#xA0;4:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br><br>echo&#xA0;</span><span style="color: #DD0000">&quot;&lt;h3&gt;Predecrement&lt;/h3&gt;&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Should&#xA0;be&#xA0;4:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;--</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br>echo&#xA0;</span><span style="color: #DD0000">&quot;Should&#xA0;be&#xA0;4:&#xA0;&quot;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">$a&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #DD0000">&quot;&lt;br&#xA0;/&gt;\n&quot;</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    PHP follows Perl&apos;s convention when dealing with arithmetic operations
+    on character variables and not C&apos;s.  For example, in PHP and Perl
+    <em>$a = &apos;Z&apos;; $a++;</em> turns <em>$a</em> into <em>&apos;AA&apos;</em>, while in C
+    <em>a = &apos;Z&apos;; a++;</em> turns <em>a</em> into <em>&apos;[&apos;</em>
+    (ASCII value of <em>&apos;Z&apos;</em> is 90, ASCII value of <em>&apos;[&apos;</em> is 91).
+    Note that character variables can be incremented but not decremented and
+    even so only plain ASCII alphabets and digits (a-z, A-Z and 0-9) are supported.
+    Incrementing/decrementing other character variables has no effect, the
+    original string is unchanged.
+    <div class="example" id="example-107">
+     <p><strong>Example #1 Arithmetic Operations on Character Variables</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&apos;==&#xA0;Alphabets&#xA0;==&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$s&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;W&apos;</span><span style="color: #007700">;<br>for&#xA0;(</span><span style="color: #0000BB">$n</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$n</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">6</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$n</span><span style="color: #007700">++)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;++</span><span style="color: #0000BB">$s&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>}<br></span><span style="color: #FF8000">//&#xA0;Digit&#xA0;characters&#xA0;behave&#xA0;differently<br></span><span style="color: #007700">echo&#xA0;</span><span style="color: #DD0000">&apos;==&#xA0;Digits&#xA0;==&apos;&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$d&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;A8&apos;</span><span style="color: #007700">;<br>for&#xA0;(</span><span style="color: #0000BB">$n</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$n</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">6</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$n</span><span style="color: #007700">++)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;++</span><span style="color: #0000BB">$d&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">$d&#xA0;</span><span style="color: #007700">=&#xA0;</span><span style="color: #DD0000">&apos;A08&apos;</span><span style="color: #007700">;<br>for&#xA0;(</span><span style="color: #0000BB">$n</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$n</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">6</span><span style="color: #007700">;&#xA0;</span><span style="color: #0000BB">$n</span><span style="color: #007700">++)&#xA0;{<br>&#xA0;&#xA0;&#xA0;&#xA0;echo&#xA0;++</span><span style="color: #0000BB">$d&#xA0;</span><span style="color: #007700">.&#xA0;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br>}<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>The above example will output:</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+== Characters ==
+X
+Y
+Z
+AA
+AB
+AC
+== Digits ==
+A9
+B0
+B1
+B2
+B3
+B4
+A09
+A10
+A11
+A12
+A13
+A14
+</pre></div>
+     </div>
+    </div>
+   </p>
+   <p class="para">
+    Incrementing or decrementing booleans has no effect.
+   </p>
+  
