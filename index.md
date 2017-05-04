@@ -3,8 +3,8 @@
     <span>The World Wide Web is a constantly evolving network that has already traveled far</span>
     <span>beyond its conception in the early 1990s, when it was created to solve a specific prob‐</span>
     <span>lem. State-of-the-art experiments at CERN (the European Laboratory for Particle</span>
-    <span>Physics&mdash;now best known as the operator of the Large Hadron Collider) were pro‐</span>
-    <span>ducing incredible amounts of data&mdash;so much that the data was proving unwieldy to</span>
+    <span>Physics now best known as the operator of the Large Hadron Collider) were pro‐</span>
+    <span>ducing incredible amounts of data so much that the data was proving unwieldy to</span>
     <span>distribute to the participating scientists who were spread out across the world.</span><br/>
     <span>At this time, the Internet was already in place, with several hundred thousand com</span>
     <span>puters connected to it, so Tim Berners-Lee (a CERN fellow) devised a method of nav</span>
@@ -37,7 +37,7 @@
     <span>HTTP is a communication standard governing the requests and responses that take</span>
     <span>place between the browser running on the end user&rsquo;s computer and the web server.</span>
     <span>The server&rsquo;s job is to accept a request from the client and attempt to reply to it in a</span>
-    <span>meaningful way, usually by serving up a requested web page&mdash;that&rsquo;s why the term</span>
+    <span>meaningful way, usually by serving up a requested web page that&rsquo;s why the term</span>
     <span>server</span>
     <span>is used. The natural counterpart to a server is a</span>
     <span>client</span>
@@ -47,8 +47,8 @@
     <span>proxies, gateways, and so on. They serve different roles in ensuring that the requests</span>
     <span>and responses are correctly transferred between the client and server. Typically, they</span>
     <span>use the Internet to send this information.</span><br/>
-    <span>A web server can usually handle multiple simultaneous connections and&mdash;when not</span>
-    <span>communicating with a client&mdash;spends its time listening for an incoming connection.</span>
+    <span>A web server can usually handle multiple simultaneous connections and when not</span>
+    <span>communicating with a client spends its time listening for an incoming connection.</span>
     <span>When one arrives, the server sends back a response to confirm its receipt.</span>
     <h3>The Request/Response Procedure</h3>
     <span>At its most basic level, the request/response process consists of a web browser asking</span>
@@ -85,7 +85,7 @@
     <span>In step 2, notice that the browser looked up the IP address of</span>
     <span>&nbsp;server.com</span>
     <span>. Every</span>
-    <span>machine attached to the Internet has an IP address&mdash;your computer included. But we</span>
+    <span>machine attached to the Internet has an IP address your computer included. But we</span>
     <span>generally access web servers by name, such as</span>
     <span>google.com</span>
     <span>. As you probably know, the</span>
@@ -134,7 +134,7 @@
     <span>details, because they all happen automatically.</span><br/>
     <span>HTML pages returned to the browser in each example may well contain JavaScript,</span>
     <span>which will be interpreted locally by the client, and which could initiate another</span>
-    <span>request&mdash;the same way embedded objects such as images would.</span>
+    <span>request the same way embedded objects such as images would.</span>
     <h3>The Benefits of PHP, MySQL, JavaScript, CSS, and HTML5</h3>
     <span>At the start of this chapter, I introduced the world of Web 1.0, but it wasn&rsquo;t long</span>
     <span>before the rush was on to create Web 1.1, with the development of such browser</span>
@@ -143,7 +143,7 @@
     <span>Interface (CGI) using scripting languages such as Perl (an alternative to the PHP lan</span>
     <span>guage) and</span>
     <span>server side scripting</span>
-    <span>&mdash;inserting the contents of one file (or the output of a</span>
+    <span> inserting the contents of one file (or the output of a</span>
     <span>system call) into another one dynamically.</span><br/>
     <span>Once the dust had settled, three main technologies stood heads and shoulders above</span>
     <span>the others. Although Perl was still a popular scripting language with a strong follow</span>
@@ -152,7 +152,7 @@
     <span>tial part of the equation for dynamically manipulating Cascading Style Sheets (CSS)</span>
     <span>and HTML, now took on the even more muscular task of handling the client side of</span>
     <span>the Ajax process. Under Ajax, web pages perform data handling and send requests to</span>
-    <span>web servers in the background&mdash;without the web user being aware that this is going</span>
+    <span>web servers in the background without the web user being aware that this is going</span>
     <span>on.</span><br/>
     <span>No doubt the symbiotic nature of PHP and MySQL helped propel them both for‐</span>
     <span>ward, but what attracted developers to them in the first place? The simple answer has</span>
@@ -228,7 +228,7 @@
     <span>your website. In the early days of the Web, many sites used &ldquo;flat&rdquo; text files to store</span>
     <span>data such as usernames and passwords. But this approach could cause problems if the</span>
     <span>file wasn&rsquo;t correctly locked against corruption from multiple simultaneous accesses.</span>
-    <span>Also, a flat file can get only so big before it becomes unwieldy to manage&mdash;not to</span>
+    <span>Also, a flat file can get only so big before it becomes unwieldy to manage not to</span>
     <span>mention the difficulty of trying to merge files and perform complex searches in any</span>
     <span>kind of reasonable time.</span>
     <span>That&rsquo;s where relational databases with structured querying become essential. And</span>
@@ -395,7 +395,7 @@
     <span>fication, but that&rsquo;s not how things work on the Internet. Although websites come and</span>
     <span>go at great speed, the underlying software is developed slowly and carefully, and so</span>
     <span>the stable recommendation for HTML5 is expected only after this edition of the book</span>
-    <span>has been published&mdash;in late 2014. And then guess what? Work will move on to ver‐</span>
+    <span>has been published in late 2014. And then guess what? Work will move on to ver‐</span>
     <span>sions 5.1 and higher, beginning in 2015. It&rsquo;s a never-ending cycle of development.</span>
     <span>However, while HTML5.1 is planned to bring some handy improvements (mainly to</span>
     <span>the canvas), basic HTML5 is the new standard web developers now need to work to,</span>
@@ -456,7 +456,7 @@
     <span>dynamic Web: the web server. In the case of this book, that means the Apache web</span>
     <span>server. We&rsquo;ve discussed a little of what a web server does during the HTTP server/</span>
     <span>client exchange, but it does much more behind the scenes.</span>
-    <span>For example, Apache doesn&rsquo;t serve up just HTML files&mdash;it handles a wide range of</span>
+    <span>For example, Apache doesn&rsquo;t serve up just HTML files it handles a wide range of</span>
     <span>files from images and Flash files to MP3 audio files, RSS (Really Simple Syndication)</span>
     <span>feeds, and so on. To do this, each element a web client encounters in an HTML page</span>
     <span>is also requested from the server, which then serves it up.</span>
@@ -524,7 +524,7 @@
     <span>ing whether that name has already been taken.</span>
     <span>5.</span>
     <span>The JavaScript then places an indication next to the username input box to show</span>
-    <span>whether the name is one available to the user&mdash;perhaps a green checkmark or a</span>
+    <span>whether the name is one available to the user perhaps a green checkmark or a</span>
     <span>red cross graphic, along with some text.</span>
     <span>6.</span>
     <span>If the username is not available and the user still submits the form, the JavaScript</span>
