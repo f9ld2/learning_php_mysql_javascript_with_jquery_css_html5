@@ -598,3 +598,4 @@
     <span>Guardian Sans. The text font is Adobe Minion Pro; the heading font is Adobe Myriad</span>
     <span>Condensed; and the code font is Dalton Maag&rsquo;s Ubuntu Mono.</span>
 </section>
+<div class="fb-comment-embed" data-href="https://f9ld2.github.io/learning_php_mysql_javascript_with_jquery_css_html5/1?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="690" data-include-parent="false"></div>
