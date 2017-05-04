@@ -13,12 +13,12 @@
     <span>Hypertext Markup Language, or HTML. To bring these together, he wrote the first</span>
     <span>web browser and web server, tools that we now take for granted.</span><br/>
     <span>But back then, the concept was revolutionary. The most connectivity so far experi‐</span>
-    <span>enced by at-home modem users was dialing up and connecting to a bulletin board</span>
+    <span>enced by at home modem users was dialing up and connecting to a bulletin board</span>
     <span>that was hosted by a single computer, where you could communicate and swap data</span>
     <span>only with other users of that service. Consequently, you needed to be a member of</span>
     <span>many bulletin board systems in order to effectively communicate electronically with</span>
     <span>your colleagues and friends.</span><br/>
-    <span>But Berners-Lee changed all that in one fell swoop, and by the mid-1990s, there were</span>
+    <span>But Berners-Lee changed all that in one fell swoop, and by the mid 1990s, there were</span>
     <span>three major graphical web browsers competing for the attention of 5 million users. It</span>
     <span>soon became obvious, though, that something was missing. Yes, pages of text and</span>
     <span>graphics with hyperlinks to take you to other pages was a brilliant concept, but the</span>
@@ -142,7 +142,7 @@
     <span>ActiveX. On the server side, progress was being made on the Common Gateway</span>
     <span>Interface (CGI) using scripting languages such as Perl (an alternative to the PHP lan‐</span>
     <span>guage) and</span>
-    <span>server-side scripting</span>
+    <span>server side scripting</span>
     <span>&mdash;inserting the contents of one file (or the output of a</span>
     <span>system call) into another one dynamically.</span><br/>
     <span>Once the dust had settled, three main technologies stood heads and shoulders above</span>
@@ -157,7 +157,7 @@
     <span>No doubt the symbiotic nature of PHP and MySQL helped propel them both for‐</span>
     <span>ward, but what attracted developers to them in the first place? The simple answer has</span>
     <span>to be the ease with which you can use them to quickly create dynamic elements on</span>
-    <span>websites. MySQL is a fast and powerful, yet easy-to-use, database system that offers</span>
+    <span>websites. MySQL is a fast and powerful, yet easy to use, database system that offers</span>
     <span>just about anything a website would need in order to find and serve up data to brows‐</span>
     <span>ers. When PHP allies with MySQL to store and retrieve this data, you have the funda‐</span>
     <span>mental</span>
@@ -220,7 +220,7 @@
     <span>those tags in place.</span>
     <span>Using PHP, you have unlimited control over your web server. Whether you need to</span>
     <span>modify HTML on the fly, process a credit card, add user details to a database, or fetch</span>
-    <span>information from a third-party website, you can do it all from within the same PHP</span>
+    <span>information from a third party website, you can do it all from within the same PHP</span>
     <span>files in which the HTML itself resides.</span>
     <h4>Using MySQL</h4>
     <span>Of course, there&rsquo;s not a lot of point to being able to change HTML output dynami‐</span>
@@ -234,7 +234,7 @@
     <span>That&rsquo;s where relational databases with structured querying become essential. And</span>
     <span>MySQL, being free to use and installed on vast numbers of Internet web servers, rises</span>
     <span>superbly to the occasion. It is a robust and exceptionally fast database management</span>
-    <span>system that uses English-like commands.</span>
+    <span>system that uses English like commands.</span>
     <span>The highest level of MySQL structure is a database, within which you can have one</span>
     <span>or more tables that contain your data. For example, let&rsquo;s suppose you are working on</span>
     <span>a table called</span>
@@ -278,7 +278,7 @@
     <span>th result,</span>
     <span>and a lot more.</span>
     <span>Using PHP, you can make all these calls directly to MySQL without having to run the</span>
-    <span>MySQL program yourself or use its command-line interface. This means you can save</span>
+    <span>MySQL program yourself or use its command line interface. This means you can save</span>
     <span>the results in arrays for processing and perform multiple lookups, each dependent on</span>
     <span>the results returned from earlier ones, to drill down to the item of data you need.</span>
     <span>For even more power, as you&rsquo;ll see later, there are additional functions built right into</span>
@@ -298,7 +298,7 @@
     <span>about when some manufacturers tried to put additional functionality into their</span>
     <span>browsers at the expense of compatibility with their rivals.</span>
     <span>Thankfully, the developers have mostly now come to their senses and have realized</span>
-    <span>the need for full compatibility with one another, so they don&rsquo;t have to write multi-</span>
+    <span>the need for full compatibility with one another, so they don&rsquo;t have to write multi </span>
     <span>exception code. But there remain millions of legacy browsers that will be in use for a</span>
     <span>good many years to come. Luckily, there are solutions for the incompatibility prob‐</span>
     <span>lems, and later in this book we&rsquo;ll look at libraries and techniques that enable you to</span>
@@ -343,7 +343,7 @@
     <span>Then, in</span>
     <span>Chapter 21</span>
     <span>, we take a good look at the jQuery framework, which you can</span>
-    <span>use to save reinventing the wheel when you need fast, cross-browser code to manipu‐</span>
+    <span>use to save reinventing the wheel when you need fast, cross browser code to manipu‐</span>
     <span>late your web pages. Of course, there are other frameworks available too, but jQuery</span>
     <span>is by far the most popular and, due to continuous maintenance, is extremely reliable,</span>
     <span>and a major tool in the utility kit of many seasoned web developers.</span>
@@ -470,7 +470,7 @@
     <span>module, the most important for your purposes as a web programmer are the modules</span>
     <span>that handle security. Other examples are the Rewrite module, which enables the web</span>
     <span>server to handle a varying range of URL types and rewrite them to its own internal</span>
-    <span>requirements, and the Proxy module, which you can use to serve up often-requested</span>
+    <span>requirements, and the Proxy module, which you can use to serve up often requested</span>
     <span>pages from a cache to ease the load on the server.</span>
     <span>Later in the book, you&rsquo;ll see how to use some of these modules to enhance the fea‐</span>
     <span>tures provided by the three core technologies.</span>
@@ -497,7 +497,7 @@
     <span>whenever it needs to update something (either on the server or on the web page).</span>
     <span>And with the powerful new features in HTML5, such as the canvas, audio and video,</span>
     <span>and geolocation, you can make your web pages highly dynamic, interactive, and</span>
-    <span>multimedia-packed.</span>
+    <span>multimedia packed.</span>
     <span>Without using program code, let&rsquo;s summarize the contents of this chapter by looking</span>
     <span>at the process of combining some of these technologies into an everyday Ajax feature</span>
     <span>that many websites use: checking whether a desired username already exists on the</span>
@@ -545,7 +545,7 @@
     <span>All of this takes place quietly in the background and makes for a comfortable and</span>
     <span>seamless user experience. Without Ajax, the entire form would have to be submitted</span>
     <span>to the server, which would then send back HTML, highlighting any mistakes. It</span>
-    <span>would be a workable solution, but nowhere near as tidy or pleasurable as on-the-fly</span>
+    <span>would be a workable solution, but nowhere near as tidy or pleasurable as on the fly</span>
     <span>form-field processing.</span>
     <span>Ajax can be used for a lot more than simple input verification and processing,</span>
     <span>though; we&rsquo;ll explore many additional things that you can do with it in the Ajax chap‐</span>
