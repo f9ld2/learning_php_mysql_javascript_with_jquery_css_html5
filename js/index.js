@@ -47,3 +47,14 @@ function toHtml(data){
     
     console.log(html);
 }
+
+function toUrl(str){
+    return str.toLocaleString().toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/([\-]+)/gi, '-');
+}
+
+$('#sidebar > h4').each(function(){
+    var name = toUrl($(this).text()) + '.html';
+    $(this).next('ul').find('a').each(function(){
+        
+    });
+});
