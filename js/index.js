@@ -58,3 +58,22 @@ $('#sidebar > h4').each(function(){
         
     });
 });
+
+var content = '';
+$("#page31 > div").each(function(){
+  content += $.trim($(this).text());
+});
+
+$("#main-content > *").each(function(){
+  for(var i=1;i<=3;i++){
+    $("> *", this).each(function(){
+      $(this).replaceWith($(this).html())
+    });
+  }
+  
+
+  $("> *", this).each(function(){
+    var cls = $(this).attr("class");
+    $(this).replaceWith($('<p/>', {'class': cls}).html($(this).html()));
+  });
+});
