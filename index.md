@@ -6,8 +6,8 @@
     <span>Physics&mdash;now best known as the operator of the Large Hadron Collider) were pro‐</span>
     <span>ducing incredible amounts of data&mdash;so much that the data was proving unwieldy to</span>
     <span>distribute to the participating scientists who were spread out across the world.</span><br/>
-    <span>At this time, the Internet was already in place, with several hundred thousand com‐</span>
-    <span>puters connected to it, so Tim Berners-Lee (a CERN fellow) devised a method of nav‐</span>
+    <span>At this time, the Internet was already in place, with several hundred thousand com</span>
+    <span>puters connected to it, so Tim Berners-Lee (a CERN fellow) devised a method of nav</span>
     <span>igating between them using a hyperlinking framework, which came to be known as</span>
     <span>Hypertext Transfer Protocol, or HTTP. He also created a markup language called</span>
     <span>Hypertext Markup Language, or HTML. To bring these together, he wrote the first</span>
@@ -115,7 +115,7 @@
     <span>The web server, having received the request, fetches the home page from its hard</span>
     <span>disk.</span><br/>
     <span>6.</span>
-    <span>With the home page now in memory, the web server notices that it is a file incor‐</span>
+    <span>With the home page now in memory, the web server notices that it is a file incor</span>
     <span>porating PHP scripting and passes the page to the PHP interpreter.</span><br/>
     <span>7.</span>
     <span>The PHP interpreter executes the PHP code.</span><br/>
@@ -129,7 +129,7 @@
     <span>results from the MySQL database, to the web server.</span><br/>
     <span>11.</span>
     <span>The web server returns the page to the requesting client, which displays it.</span>
-    <span>Although it&rsquo;s helpful to be aware of this process so that you know how the three ele‐</span>
+    <span>Although it&rsquo;s helpful to be aware of this process so that you know how the three ele</span>
     <span>ments work together, in practice you don&rsquo;t really need to concern yourself with these</span>
     <span>details, because they all happen automatically.</span><br/>
     <span>HTML pages returned to the browser in each example may well contain JavaScript,</span>
@@ -140,13 +140,13 @@
     <span>before the rush was on to create Web 1.1, with the development of such browser</span>
     <span>enhancements as Java, JavaScript, JScript (Microsoft&rsquo;s slight variant of JavaScript), and</span>
     <span>ActiveX. On the server side, progress was being made on the Common Gateway</span>
-    <span>Interface (CGI) using scripting languages such as Perl (an alternative to the PHP lan‐</span>
+    <span>Interface (CGI) using scripting languages such as Perl (an alternative to the PHP lan</span>
     <span>guage) and</span>
     <span>server side scripting</span>
     <span>&mdash;inserting the contents of one file (or the output of a</span>
     <span>system call) into another one dynamically.</span><br/>
     <span>Once the dust had settled, three main technologies stood heads and shoulders above</span>
-    <span>the others. Although Perl was still a popular scripting language with a strong follow‐</span>
+    <span>the others. Although Perl was still a popular scripting language with a strong follow</span>
     <span>ing, PHP&rsquo;s simplicity and built-in links to the MySQL database program had earned it</span>
     <span>more than double the number of users. And JavaScript, which had become an essen‐</span>
     <span>tial part of the equation for dynamically manipulating Cascading Style Sheets (CSS)</span>
@@ -158,8 +158,8 @@
     <span>ward, but what attracted developers to them in the first place? The simple answer has</span>
     <span>to be the ease with which you can use them to quickly create dynamic elements on</span>
     <span>websites. MySQL is a fast and powerful, yet easy to use, database system that offers</span>
-    <span>just about anything a website would need in order to find and serve up data to brows‐</span>
-    <span>ers. When PHP allies with MySQL to store and retrieve this data, you have the funda‐</span>
+    <span>just about anything a website would need in order to find and serve up data to brows</span>
+    <span>ers. When PHP allies with MySQL to store and retrieve this data, you have the funda</span>
     <span>mental</span>
     <span>parts</span>
     <span>required</span>
@@ -173,7 +173,7 @@
     <span>and</span>
     <span>the</span>
     <span>beginnings of Web 2.0.</span><br/>
-    <span>And when you bring JavaScript and CSS into the mix too, you have a recipe for build‐</span>
+    <span>And when you bring JavaScript and CSS into the mix too, you have a recipe for build-</span>
     <span>ing highly dynamic and interactive websites.</span>
     <h4>Using PHP</h4>
     <span>With PHP, it&rsquo;s a simple matter to embed dynamic activity in web pages. When you</span>
