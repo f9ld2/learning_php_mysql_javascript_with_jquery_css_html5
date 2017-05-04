@@ -5,19 +5,19 @@
     <span>lem. State-of-the-art experiments at CERN (the European Laboratory for Particle</span>
     <span>Physics&mdash;now best known as the operator of the Large Hadron Collider) were pro‐</span>
     <span>ducing incredible amounts of data&mdash;so much that the data was proving unwieldy to</span>
-    <span>distribute to the participating scientists who were spread out across the world.</span>
+    <span>distribute to the participating scientists who were spread out across the world.</span><br/>
     <span>At this time, the Internet was already in place, with several hundred thousand com‐</span>
     <span>puters connected to it, so Tim Berners-Lee (a CERN fellow) devised a method of nav‐</span>
     <span>igating between them using a hyperlinking framework, which came to be known as</span>
     <span>Hypertext Transfer Protocol, or HTTP. He also created a markup language called</span>
     <span>Hypertext Markup Language, or HTML. To bring these together, he wrote the first</span>
-    <span>web browser and web server, tools that we now take for granted.</span>
+    <span>web browser and web server, tools that we now take for granted.</span><br/>
     <span>But back then, the concept was revolutionary. The most connectivity so far experi‐</span>
     <span>enced by at-home modem users was dialing up and connecting to a bulletin board</span>
     <span>that was hosted by a single computer, where you could communicate and swap data</span>
     <span>only with other users of that service. Consequently, you needed to be a member of</span>
     <span>many bulletin board systems in order to effectively communicate electronically with</span>
-    <span>your colleagues and friends.</span>
+    <span>your colleagues and friends.</span><br/>
     <span>But Berners-Lee changed all that in one fell swoop, and by the mid-1990s, there were</span>
     <span>three major graphical web browsers competing for the attention of 5 million users. It</span>
     <span>soon became obvious, though, that something was missing. Yes, pages of text and</span>
@@ -25,10 +25,10 @@
     <span>results didn&rsquo;t reflect the instantaneous potential of computers and the Internet to</span>
     <span>meet the particular needs of each user with dynamically changing content. Using the</span>
     <span>Web was a very dry and plain experience, even if we did now have scrolling text and</span>
-    <span>animated GIFs!</span>
+    <span>animated GIFs!</span><br/>
     <span>Shopping carts, search engines, and social networks have clearly altered how we use</span>
     <span>the Web. In this chapter, we&rsquo;ll take a brief look at the various components that make</span>
-    <span>up the Web, and the software that helps make it a rich and dynamic experience.</span>
+    <span>up the Web, and the software that helps make it a rich and dynamic experience.</span><br/>
     <span>It is necessary to start using some acronyms more or less right</span>
     <span>away. I have tried to clearly explain them before proceeding. But</span>
     <span>don&rsquo;t worry too much about what they stand for or what these</span>
@@ -42,11 +42,11 @@
     <span>is used. The natural counterpart to a server is a</span>
     <span>client</span>
     <span>, so that term is applied</span>
-    <span>both to the web browser and the computer on which it&rsquo;s running.</span>
+    <span>both to the web browser and the computer on which it&rsquo;s running.</span><br/>
     <span>Between the client and the server there can be several other devices, such as routers,</span>
     <span>proxies, gateways, and so on. They serve different roles in ensuring that the requests</span>
     <span>and responses are correctly transferred between the client and server. Typically, they</span>
-    <span>use the Internet to send this information.</span>
+    <span>use the Internet to send this information.</span><br/>
     <span>A web server can usually handle multiple simultaneous connections and&mdash;when not</span>
     <span>communicating with a client&mdash;spends its time listening for an incoming connection.</span>
     <span>When one arrives, the server sends back a response to confirm its receipt.</span>
@@ -55,33 +55,33 @@
     <span>the web server to send it a web page and the server sending back the page. The</span>
     <span>browser then takes care of displaying the page (see</span>
     <span>Figure 1-1</span>
-    <span>).</span>
-    <span>Figure 1-1. The basic client/server request/response sequence</span>
-    <span>Each step in the request and response sequence is as follows:</span>
+    <span>).</span><br/>
+    <span>Figure 1-1. The basic client/server request/response sequence</span><br/>
+    <span>Each step in the request and response sequence is as follows:</span><br/>
     <span>1.</span>
     <span>You enter</span>
     <span>http://server.com</span>
-    <span>into your browser&rsquo;s address bar.</span>
+    <span>into your browser&rsquo;s address bar.</span><br/>
     <span>2.</span>
     <span>Your browser looks up the IP address for</span>
     <span>server.com</span>
-    <span>.</span>
+    <span>.</span><br/>
     <span>3.</span>
     <span>Your browser issues a request for the home page at</span>
     <span>server.com</span>
-    <span>.</span>
+    <span>.</span><br/>
     <span>4.</span>
     <span>The request crosses the Internet and arrives at the</span>
     <span>server.com</span>
-    <span>web server.</span>
+    <span>web server.</span><br/>
     <span>5.</span>
-    <span>The web server, having received the request, looks for the web page on its disk.</span>
+    <span>The web server, having received the request, looks for the web page on its disk.</span><br/>
     <span>6.</span>
-    <span>The web page is retrieved by the server and returned to the browser.</span>
+    <span>The web page is retrieved by the server and returned to the browser.</span><br/>
     <span>7.</span>
-    <span>Your browser displays the web page.</span>
+    <span>Your browser displays the web page.</span><br/>
     <span>For an average web page, this process takes place once for each object within the</span>
-    <span>page: a graphic, an embedded video or Flash file, and even a CSS template.</span>
+    <span>page: a graphic, an embedded video or Flash file, and even a CSS template.</span><br/>
     <span>In step 2, notice that the browser looked up the IP address of</span>
     <span>&nbsp;server.com</span>
     <span>. Every</span>
@@ -91,47 +91,47 @@
     <span>. As you probably know, the</span>
     <span>browser consults an additional Internet service called the Domain Name Service</span>
     <span>(DNS) to find its associated IP address and then uses it to communicate with the</span>
-    <span>computer.</span>
+    <span>computer.</span><br/>
     <span>For dynamic web pages, the procedure is a little more involved, because it may bring</span>
     <span>both PHP and MySQL into the mix (see</span>
     <span>Figure 1-2</span>
-    <span>).</span>
-    <span>Figure 1-2. A dynamic client/server request/response sequence</span>
+    <span>).</span><br/>
+    <span>Figure 1-2. A dynamic client/server request/response sequence</span><br/>
     <span>1.</span>
     <span>You enter</span>
     <span>http://server.com</span>
-    <span>into your browser&rsquo;s address bar.</span>
+    <span>into your browser&rsquo;s address bar.</span><br/>
     <span>2.</span>
     <span>Your browser looks up the IP address for</span>
     <span>server.com</span>
-    <span>.</span>
+    <span>.</span><br/>
     <span>3.</span>
-    <span>Your browser issues a request to that address for the web server&rsquo;s home page.</span>
+    <span>Your browser issues a request to that address for the web server&rsquo;s home page.</span><br/>
     <span>4.</span>
     <span>The request crosses the Internet and arrives at the</span>
     <span>server.com</span>
-    <span>web server.</span>
+    <span>web server.</span><br/>
     <span>5.</span>
     <span>The web server, having received the request, fetches the home page from its hard</span>
-    <span>disk.</span>
+    <span>disk.</span><br/>
     <span>6.</span>
     <span>With the home page now in memory, the web server notices that it is a file incor‐</span>
-    <span>porating PHP scripting and passes the page to the PHP interpreter.</span>
+    <span>porating PHP scripting and passes the page to the PHP interpreter.</span><br/>
     <span>7.</span>
-    <span>The PHP interpreter executes the PHP code.</span>
+    <span>The PHP interpreter executes the PHP code.</span><br/>
     <span>8.</span>
     <span>Some of the PHP contains MySQL statements, which the PHP interpreter now</span>
-    <span>passes to the MySQL database engine.</span>
+    <span>passes to the MySQL database engine.</span><br/>
     <span>9.</span>
-    <span>The MySQL database returns the results of the statements to the PHP interpreter.</span>
+    <span>The MySQL database returns the results of the statements to the PHP interpreter.</span><br/>
     <span>10.</span>
     <span>The PHP interpreter returns the results of the executed PHP code, along with the</span>
-    <span>results from the MySQL database, to the web server.</span>
+    <span>results from the MySQL database, to the web server.</span><br/>
     <span>11.</span>
     <span>The web server returns the page to the requesting client, which displays it.</span>
     <span>Although it&rsquo;s helpful to be aware of this process so that you know how the three ele‐</span>
     <span>ments work together, in practice you don&rsquo;t really need to concern yourself with these</span>
-    <span>details, because they all happen automatically.</span>
+    <span>details, because they all happen automatically.</span><br/>
     <span>HTML pages returned to the browser in each example may well contain JavaScript,</span>
     <span>which will be interpreted locally by the client, and which could initiate another</span>
     <span>request&mdash;the same way embedded objects such as images would.</span>
@@ -144,7 +144,7 @@
     <span>guage) and</span>
     <span>server-side scripting</span>
     <span>&mdash;inserting the contents of one file (or the output of a</span>
-    <span>system call) into another one dynamically.</span>
+    <span>system call) into another one dynamically.</span><br/>
     <span>Once the dust had settled, three main technologies stood heads and shoulders above</span>
     <span>the others. Although Perl was still a popular scripting language with a strong follow‐</span>
     <span>ing, PHP&rsquo;s simplicity and built-in links to the MySQL database program had earned it</span>
@@ -153,7 +153,7 @@
     <span>and HTML, now took on the even more muscular task of handling the client side of</span>
     <span>the Ajax process. Under Ajax, web pages perform data handling and send requests to</span>
     <span>web servers in the background&mdash;without the web user being aware that this is going</span>
-    <span>on.</span>
+    <span>on.</span><br/>
     <span>No doubt the symbiotic nature of PHP and MySQL helped propel them both for‐</span>
     <span>ward, but what attracted developers to them in the first place? The simple answer has</span>
     <span>to be the ease with which you can use them to quickly create dynamic elements on</span>
@@ -172,7 +172,7 @@
     <span>sites</span>
     <span>and</span>
     <span>the</span>
-    <span>beginnings of Web 2.0.</span>
+    <span>beginnings of Web 2.0.</span><br/>
     <span>And when you bring JavaScript and CSS into the mix too, you have a recipe for build‐</span>
     <span>ing highly dynamic and interactive websites.</span>
     <h4>Using PHP</h4>
