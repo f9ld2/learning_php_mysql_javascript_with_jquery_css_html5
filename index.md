@@ -404,7 +404,7 @@ Here's the latest news.
     <span>about it now will stand you in very good stead.</span><br/>
     <span>There&rsquo;s actually a great deal of new stuff in HTML (and quite a few things that have</span>
     <span>been changed or removed), but in summary, here&rsquo;s what you get:</span><br/>
-    <span>Markup</span><br/>
+    <i>Markup</i><br/>
     <span>Including new elements such as</span>
     <span>&lt;nav&gt;</span>
     <span>and</span>
@@ -414,7 +414,7 @@ Here's the latest news.
     <span>and</span>
     <span>&lt;center&gt;</span>
     <span>.</span><br/>
-    <span>New APIs</span><br/>
+    <i>New APIs</i><br/>
     <span>Such as the</span>
     <span>&lt;canvas&gt;</span>
     <span>element for writing and drawing on a graphics canvas,</span>
@@ -422,7 +422,7 @@ Here's the latest news.
     <span>and</span>
     <span>&lt;video&gt;</span>
     <span>elements, offline web applications, microdata, and local storage.</span><br/>
-    <span>Applications</span><br/>
+    <i>Applications</i><br/>
     <span>Including two new rendering technologies: MathML (Math Markup Language) for</span>
     <span>displaying mathematical formulae and SVG (Scalable Vector Graphics) for creating</span>
     <span>graphical elements outside of the new</span>
