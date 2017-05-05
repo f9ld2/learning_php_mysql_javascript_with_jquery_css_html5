@@ -187,7 +187,7 @@
 &lt;?php
     echo " Today is " . date("l") . ". ";
 ?&gt;
-    Here's the latest news.</code></pre>
+Here's the latest news.</code></pre>
     <span>The opening</span>
     <span>&lt;?php</span>
     <span>tells the web server to allow the PHP program to interpret all the</span>
