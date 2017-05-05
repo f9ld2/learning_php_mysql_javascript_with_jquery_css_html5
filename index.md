@@ -303,12 +303,12 @@
     <span>good many years to come. Luckily, there are solutions for the incompatibility prob‐</span>
     <span>lems, and later in this book we&rsquo;ll look at libraries and techniques that enable you to</span>
     <span>safely ignore these differences.</span><br/>
-    <span>For now, let&rsquo;s take a look at how to use basic JavaScript, accepted by all browsers:</span><br/>
+    <span>For now, let&rsquo;s take a look at how to use basic JavaScript, accepted by all browsers:</span>
     <pre><code class="javascript">
 &lt;script type="text/javascript"&gt;
   document.write("Today is " + Date() );
 &lt;/script&gt;
-        </code></pre><br/>
+        </code></pre>
     <span>This code snippet tells the web browser to interpret everything within the</span>
     <span>script</span>
     <span>tags</span>
