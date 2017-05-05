@@ -1,3 +1,1970 @@
 ---
 layout: default
 ---
+<h2>Introduction to CSS</h2>
+<span>Using</span>
+<span>CSS (Cascading Style Sheets)</span>
+<span>, you can apply styles to your web pages to make</span>
+<span>them look exactly how you want. This works because CSS is connected to the DOM</span>
+<span>(Document Object Model), which I explained in</span>
+<span>Chapter 13</span>
+<span>.</span>
+<span>With CSS and its integration with the DOM, you can quickly and easily restyle any</span>
+<span>element. For example, if you don&rsquo;t like the default look of the</span>
+<span>&lt;h1&gt;</span>
+<span>,</span>
+<span>&lt;h2&gt;</span>
+<span>, and other</span>
+<span>heading tags, you can assign new styles to override the default settings for the font</span>
+<span>family and size used, or whether bold or italics should be set, and many more proper‐</span>
+<span>ties too.</span>
+<span>One way you can add styling to a web page is by inserting the required statements</span>
+<span>into the head of a web page between the</span>
+<span>&lt;head&gt;</span>
+<span>and</span>
+<span>&lt;/head&gt;</span>
+<span>tags. So, to change the</span>
+<span>style of the</span>
+<span>&lt;h1&gt;</span>
+<span>tag, you might use the following code (I&rsquo;ll explain the syntax later):</span>
+<span>&lt;style&gt;</span>
+<span>h1 { color:red; font-size:3em; font-family:Arial; }</span>
+<span>&lt;/style&gt;</span>
+<span>Within an HTML page, this might look like</span>
+<span>Example 18-1</span>
+<span>(see</span>
+<span>Figure 18-1</span>
+<span>), which,</span>
+<span>like all the examples in this chapter, uses the standard HTML5</span>
+<span>DOCTYPE</span>
+<span>declaration.</span>
+<span>Example 18-1. A simple HTML page</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;Hello World&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>h1 { color:red; font-size:3em; font-family:Arial; }</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;h1&gt;Hello there&lt;/h1&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 18-1. Styling a tag, with the original style shown in the inset</span>
+<h3>Importing a Style Sheet</h3>
+<span>When you wish to style a whole site, rather than a single page, a better way to manage</span>
+<span>style sheets is to move them completely out of your web pages to separate files, and</span>
+<span>then import the ones you need. This lets you apply different style sheets for different</span>
+<span>layouts (such as web and print), without changing the HTML.</span>
+<span>There are a couple of different ways you can achieve this, the first of which is by using</span>
+<span>the CSS</span>
+<span>@import</span>
+<span>directive, like this:</span>
+<span>&lt;style&gt;</span>
+<span>@import url('styles.css');</span>
+<span>&lt;/style&gt;</span>
+<span>This statement tells the browser to fetch a style sheet with the name</span>
+<span>&nbsp;styles.css</span>
+<span>. The</span>
+<span>@import</span>
+<span>command is quite flexible in that you can create style sheets that themselves</span>
+<span>pull in other style sheets, and so on. Just make sure that there are no</span>
+<span>&lt;style&gt;</span>
+<span>or</span>
+<span>&lt;/style&gt;</span>
+<span>tags in any of your external style sheets, or they will not work.</span>
+<h4>Importing CSS from Within HTML</h4>
+<span>You can also include a style sheet with the HTML</span>
+<span>&lt;link&gt;</span>
+<span>tag, like this:</span>
+<span>&lt;link rel='stylesheet' type='text/css' href='styles.css'&gt;</span>
+<span>This has the exact same effect as the</span>
+<span>@import</span>
+<span>directive, except that</span>
+<span>&lt;link&gt;</span>
+<span>is an</span>
+<span>HTML-only tag and is not a valid style directive, so it cannot be used from within one</span>
+<span>style</span>
+<span>sheet</span>
+<span>to</span>
+<span>pull</span>
+<span>in</span>
+<span>another,</span>
+<span>and</span>
+<span>also</span>
+<span>cannot</span>
+<span>be</span>
+<span>placed</span>
+<span>within</span>
+<span>a</span>
+<span>pair</span>
+<span>of</span>
+<span>&lt;style&gt;...&lt;/style&gt;</span>
+<span>tags.</span>
+<span>Just as you can use multiple</span>
+<span>@import</span>
+<span>directives within your CSS to include multiple</span>
+<span>external style sheets, you can also use as many</span>
+<span>&lt;link&gt;</span>
+<span>elements as you like in your</span>
+<span>HTML.</span>
+<h4>Embedded Style Settings</h4>
+<span>There&rsquo;s also nothing stopping you from individually setting or overriding certain</span>
+<span>styles for the current page on a case-by-case basis by inserting style declarations</span>
+<span>directly within HTML, like this (which results in italic, blue text within the tags):</span>
+<span>&lt;div style='font-style:italic; color:blue;'&gt;Hello there&lt;/div&gt;</span>
+<span>But this should be reserved only for the most exceptional circumstances, as it breaks</span>
+<span>the separation of content and presentation.</span>
+<h3>Using IDs</h3>
+<span>A better solution for setting the style of an element is to assign an ID to it in the</span>
+<span>HTML, like this:</span>
+<span>&lt;div id='welcome'&gt;Hello there&lt;/div&gt;</span>
+<span>This states that the contents of the</span>
+<span>&lt;div&gt;</span>
+<span>with the ID</span>
+<span>welcome</span>
+<span>should have applied to</span>
+<span>them the style defined in the</span>
+<span>welcome</span>
+<span>style setting. The matching CSS statement for</span>
+<span>this might look like the following</span>
+<span>#welcome { font-style:italic; color:blue; }</span>
+<span>Note the use of the</span>
+<span>#</span>
+<span>symbol, which specifies that only the ID with</span>
+<span>the name</span>
+<span>welcome</span>
+<span>should be styled with this statement.</span>
+<h3>Using Classes</h3>
+<span>If you would like to apply the same style to many elements, you do not have to give</span>
+<span>each one a different ID because you can specify a class to manage them all, like this:</span>
+<span>&lt;div class='welcome'&gt;Hello&lt;/div&gt;</span>
+<span>This states that the contents of this element (and any others that use the class) should</span>
+<span>have applied to them the style defined in the</span>
+<span>welcome</span>
+<span>class. Once a class is applied,</span>
+<span>you can use the following rule, either in the page header or within an external style</span>
+<span>sheet for setting the styles for the class:</span>
+<span>.welcome { font-style:italic; color:blue; }</span>
+<span>Instead of the</span>
+<span>#</span>
+<span>symbol, which is reserved for IDs, class statements are prefaced with</span>
+<span>a</span>
+<span>.</span>
+<span>(period).</span>
+<h3>Using Semicolons</h3>
+<span>In CSS, semicolons are used to separate multiple CSS statements on the same line.</span>
+<span>But if there is only one statement in a rule (or in an inline style setting within an</span>
+<span>HTML tag), you can omit the semicolon, as you can for the final statement in a</span>
+<span>group.</span>
+<span>However, to avoid hard-to-find CSS errors, you may prefer to always use a semicolon</span>
+<span>after every CSS setting. You can then copy and paste them, and otherwise modify</span>
+<span>properties, without worrying about removing semicolons where they aren&rsquo;t strictly</span>
+<span>necessary or having to add them where they are required.</span>
+<h3>CSS Rules</h3>
+<span>Each statement in a CSS rule starts with a</span>
+<span>selector</span>
+<span>, which is the item to which the rule</span>
+<span>will be applied. For example, in this assignment,</span>
+<span>h1</span>
+<span>is the selector being given a font</span>
+<span>size 240 percent larger than the default:</span>
+<span>h1 { font-size:240%; }</span>
+<span>font-size</span>
+<span>is a</span>
+<span>property</span>
+<span>. Providing a value of</span>
+<span>240%</span>
+<span>to the</span>
+<span>font-size</span>
+<span>property of the</span>
+<span>selector ensures that the contents of all</span>
+<span>&lt;h1&gt;...&lt;/h1&gt;</span>
+<span>pairs of tags will be displayed at</span>
+<span>a font size that is 240 percent of the default size. All changes in rules must be within</span>
+<span>the</span>
+<span>{</span>
+<span>and</span>
+<span>}</span>
+<span>symbols that follow the selector. In</span>
+<span>font-size:240%;</span>
+<span>the part before the</span>
+<span>:</span>
+<span>(colon) is the property, while the remainder is the value applied to it.</span>
+<span>Last comes a</span>
+<span>;</span>
+<span>(semicolon) to end the statement. In this instance, because</span>
+<span>font-size</span>
+<span>is the last property in the rule, the semicolon is not required (but it would be if</span>
+<span>another assignment were to follow).</span>
+<h4>Multiple Assignments</h4>
+<span>You can create multiple style declarations in a couple of different ways. First, you can</span>
+<span>concatenate them on the same line, like this:</span>
+<span>h1 { font-size:240%; color:blue; }</span>
+<span>This adds a second assignment that changes the color of all</span>
+<span>&lt;h1&gt;</span>
+<span>headings to blue.</span>
+<span>You can also place the assignments one per line, like the following:</span>
+<span>h1 { font-size:240%;</span>
+<span>color:blue; }</span>
+<span>Or you can space out the assignments a little more, so that they line up below each</span>
+<span>other in a column at the colons, like this:</span>
+<span>h1 {</span>
+<span>font-size:240%;</span>
+<span>color :blue;</span>
+<span>}</span>
+<span>This way, you can easily see where each new set of rules begins, because the selector is</span>
+<span>always in the first column, and the assignments that follow are neatly lined up with all</span>
+<span>property values starting at the same horizontal offset. In the preceding examples, the</span>
+<span>final semicolon is unnecessary, but should you ever want to concatenate any such</span>
+<span>groups of statements into a single line, it is very quick to do with all semicolons</span>
+<span>already in place.</span>
+<span>You can specify the same selector as many times as you want, and CSS combines all</span>
+<span>the properties. So the previous example could also be specified as follows:</span>
+<span>h1 { font-size: 240%; }</span>
+<span>h1 { color : blue; }</span>
+<span>There is no right or wrong way to lay out your CSS, but I recom‐</span>
+<span>mend that you at least try to keep each block of CSS consistent with</span>
+<span>itself, so that other people can take it in at a glance.</span>
+<span>What if you specified the same property to the same selector twice?</span>
+<span>h1 { color : red; }</span>
+<span>h1 { color : blue; }</span>
+<span>The last value specified&mdash;in this case, blue&mdash;would apply. In a single file, repeating the</span>
+<span>same property for the same selector would be pointless, but such repetition happens</span>
+<span>frequently in real-life web pages when multiple style sheets are applied. It&rsquo;s one of the</span>
+<span>valuable features of CSS, and where the term</span>
+<span>cascading</span>
+<span>comes from.</span>
+<h4>Using Comments</h4>
+<span>It is a good idea to comment your CSS rules, even if you describe only the main</span>
+<span>groups of statements rather than all or most of them. You can do this in two different</span>
+<span>ways. First, you can place a comment within a pair of</span>
+<span>/*...*/</span>
+<span>tags, like this:</span>
+<span>/* This is a CSS comment */</span>
+<span>Or you can extend a comment over many lines, like this:</span>
+<span>/*</span>
+<span>A Multi</span>
+<span>line</span>
+<span>comment</span>
+<span>*/</span>
+<span>When using multiline comments, note that you cannot nest single-</span>
+<span>line (or any other) comments within them. Doing so can lead to</span>
+<span>unpredictable errors.</span>
+<h3>Style Types</h3>
+<span>There are a number of different style types, ranging from the default styles set up by</span>
+<span>your browser (and any user styles you may have applied in your browser to override</span>
+<span>its defaults), through inline or embedded styles, to external style sheets. The styles</span>
+<span>defined in each type have a hierarchy of precedence, from low to high.</span>
+<h4>Default Styles</h4>
+<span>The lowest level of style precedence is the default styling applied by a web browser.</span>
+<span>These styles are created as a fallback for when a web page doesn&rsquo;t have any styles, and</span>
+<span>they are intended to be a generic set of styles that will display reasonably well in most</span>
+<span>instances.</span>
+<span>Pre-CSS, these were the only styles applied to a document, and only a handful of</span>
+<span>them could be changed by a web page (such as font face, color, and size, and a few</span>
+<span>element sizing arguments).</span>
+<h4>User Styles</h4>
+<span>These are the next highest precedence of styles, and they are supported by most</span>
+<span>modern browsers but are implemented differently by each. If you would like to learn</span>
+<span>how to create your own default styles for browsing, use a search engine to enter your</span>
+<span>browser name followed by &ldquo;user styles&rdquo; (for example, &ldquo;Firefox user styles&rdquo; or &ldquo;Opera</span>
+<span>user styles&rdquo;) to find out how.</span>
+<span>&nbsp;Figure 18-2</span>
+<span>&nbsp;shows a user style sheet being applied to</span>
+<span>Microsoft Internet Explorer.</span>
+<span>Figure 18-2. Applying a user style to Internet Explorer</span>
+<span>If a user style is assigned that has already been defined as a browser default, it will</span>
+<span>then override the browser&rsquo;s default setting. Any styles not defined in a user style sheet</span>
+<span>will retain their default values as set up in the browser.</span>
+<h4>External Style Sheets</h4>
+<span>The next types of styles are those assigned in an external style sheet. These settings</span>
+<span>will override any assigned either by the user or by the browser. External style sheets</span>
+<span>are the recommended way to create your styles because you can produce different</span>
+<span>style sheets for different purposes such as styling for general web use, for viewing on a</span>
+<span>mobile browser with a smaller screen, for printing purposes, and so on. Just apply the</span>
+<span>one needed for each type of media when you create the web page.</span>
+<h4>Internal Styles</h4>
+<span>Then there are internal styles, which you create within</span>
+<span>&lt;style&gt;</span>
+<span>...</span>
+<span>&lt;/style&gt;</span>
+<span>tags, and</span>
+<span>which take precedence over all the preceding style types. At this point, though, you</span>
+<span>are beginning to break the separation between styling and content, as any external</span>
+<span>style sheets loaded in at the same time will have a lower precedence.</span>
+<h4>Inline Styles</h4>
+<span>Finally, inline styles are where you assign a property directly to an element. They have</span>
+<span>the highest precedence of any style type, and are used like this:</span>
+<span>&lt;a href="http://google.com" style="color:green;"&gt;Visit Google&lt;/a&gt;</span>
+<span>In this example, the link specified will be displayed in green, regardless of any default</span>
+<span>or other color settings applied by any other type of style sheet, whether directly to this</span>
+<span>link or generically for all links.</span>
+<span>When you use this type of styling, you are breaking the separation</span>
+<span>between layout and content; therefore, it is recommended that you</span>
+<span>do so only when you have a very good reason.</span>
+<h3>CSS Selectors</h3>
+<span>The means by which you access one or more elements is called</span>
+<span>selection</span>
+<span>, and the part</span>
+<span>of a CSS rule that does this is known as a</span>
+<span>&nbsp;selector</span>
+<span>. As you might expect, there are</span>
+<span>many varieties of selector.</span>
+<h4>The Type Selector</h4>
+<span>The type selector works on types of HTML elements such as</span>
+<span>&lt;p&gt;</span>
+<span>or</span>
+<span>&lt;i&gt;</span>
+<span>. For example,</span>
+<span>the following rule will ensure that all text within</span>
+<span>&lt;p&gt;...&lt;/p&gt;</span>
+<span>tags is fully justified:</span>
+<span>p { text-align:justify; }</span>
+<h4>The Descendant Selector</h4>
+<span>Descendant selectors let you apply styles to elements that are contained within other</span>
+<span>elements. For example, the following rule sets all text within</span>
+<span>&lt;b&gt;</span>
+<span>...</span>
+<span>&lt;/b&gt;</span>
+<span>tags to red,</span>
+<span>but only if they occur within</span>
+<span>&lt;p&gt;</span>
+<span>...</span>
+<span>&lt;/p&gt;</span>
+<span>tags (like this:</span>
+<span>&lt;p&gt;&lt;b&gt;Hello&lt;/b&gt; there&lt;/p&gt;</span>
+<span>):</span>
+<span>p b { color:red; }</span>
+<span>Descendant selectors can continue nesting indefinitely, so the following is a perfectly</span>
+<span>valid rule to make the text blue within bold text, inside a list element of an unordered</span>
+<span>list:</span>
+<span>ul li b { color:blue; }</span>
+<span>As a practical example, suppose you want to use a different numbering system for an</span>
+<span>ordered list that is nested within another ordered list. You can achieve this in the fol‐</span>
+<span>lowing way, which will replace the default numeric numbering (starting from</span>
+<span>1</span>
+<span>) with</span>
+<span>lowercase letters (starting from</span>
+<span>a</span>
+<span>):</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>ol ol { list-style-type:lower-alpha; }</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;ol&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;One&lt;/li&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;Two&lt;/li&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;Three</span>
+<span>&nbsp;</span>
+<span>&lt;ol&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;One&lt;/li&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;Two&lt;/li&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;Three&lt;/li&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;/ol&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;/li&gt;</span>
+<span>&lt;/ol&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>The result of loading this HTML into a web browser is as follows, in which you can</span>
+<span>see that the second list elements display differently:</span>
+<span>1. One</span>
+<span>2. Two</span>
+<span>3. Three</span>
+<span>a. One</span>
+<span>b. Two</span>
+<span>c. Three</span>
+<h4>The Child Selector</h4>
+<span>The child selector is similar to the descendant selector but is more restrictive about</span>
+<span>when the style will be applied, by selecting only those elements that are direct chil‐</span>
+<span>dren of another element. For example, the following code uses a descendant selector</span>
+<span>that will change any bold text within a paragraph to red, even if the bold text is itself</span>
+<span>within italics (like this</span>
+<span>&lt;p&gt;&lt;i&gt;&lt;b&gt;Hello&lt;/b&gt; there&lt;/i&gt;&lt;/p&gt;</span>
+<span>):</span>
+<span>p b { color:red; }</span>
+<span>In this instance, the word</span>
+<span>Hello</span>
+<span>displays in red. However, when this more general</span>
+<span>type of behavior is not required, a child selector can be used to narrow the scope of</span>
+<span>the selector. For example, the following child selector will set bold text to red only if</span>
+<span>the element is a direct child of a paragraph, and is not itself contained within another</span>
+<span>element:</span>
+<span>p &gt; b { color:red; }</span>
+<span>Now</span>
+<span>Hello</span>
+<span>will not change color because it is not a direct child of the paragraph.</span>
+<span>For a practical example, suppose you wish to make bold only those</span>
+<span>&lt;li&gt;</span>
+<span>elements</span>
+<span>that are direct children of</span>
+<span>&lt;ol&gt;</span>
+<span>elements. You can achieve this as follows, where the</span>
+<span>&lt;li&gt;</span>
+<span>elements that are direct children of</span>
+<span>&lt;ul&gt;</span>
+<span>elements are not made bold:</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>ol &gt; li { font-weight:bold; }</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;ol&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;One&lt;/li&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;Two&lt;/li&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;Three&lt;/li&gt;</span>
+<span>&lt;/ol&gt;</span>
+<span>&lt;ul&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;One&lt;/li&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;Two&lt;/li&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;li&gt;Three&lt;/li&gt;</span>
+<span>&lt;/ul&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>The result of loading this HTML into a browser will be as follows:</span>
+<span>1. One</span>
+<span>2. Two</span>
+<span>3. Three</span>
+<span>&bull;</span>
+<span>One</span>
+<span>&bull;</span>
+<span>Two</span>
+<span>&bull;</span>
+<span>Three</span>
+<h4>The ID Selector</h4>
+<span>If you give an element an ID name (like this:</span>
+<span>&lt;div id='mydiv'&gt;</span>
+<span>), you can directly</span>
+<span>access it from CSS in the following way, which changes all text in the element to italic:</span>
+<span>#mydiv { font-style:italic; }</span>
+<span>IDs can be used only once within a document, so only the first occurrence found will</span>
+<span>receive the new property value assigned by a CSS rule. But in CSS you can directly</span>
+<span>reference any IDs that have the same name, as long as they occur within different ele‐</span>
+<span>ment types, like this:</span>
+<span>&lt;div id='myid'&gt;Hello&lt;/div&gt; &lt;span id='myid'&gt;Hello&lt;/span&gt;</span>
+<span>Because IDs normally apply only to unique elements, the following rule will apply an</span>
+<span>underline to only the first occurrence of</span>
+<span>myid</span>
+<span>:</span>
+<span>#myid { text-decoration:underline; }</span>
+<span>However, you can ensure that CSS applies the rule to both occurrences, like this:</span>
+<span>span#myid { text-decoration:underline; }</span>
+<span>div#myid { text-decoration:underline; }</span>
+<span>Or more succinctly, like this (see</span>
+<span>&ldquo;Selecting by Group&rdquo; on page 425</span>
+<span>):</span>
+<span>span#myid, div#myid { text-decoration:underline; }</span>
+<span>I don&rsquo;t recommend using this form of selection because any Java‐</span>
+<span>Script that also must access these elements cannot easily do so</span>
+<span>because</span>
+<span>the</span>
+<span>commonly</span>
+<span>used</span>
+<span>getElementByID()</span>
+<span>function</span>
+<span>will</span>
+<span>return only the first occurrence. To reference any other instances, a</span>
+<span>program would have to search through the whole list of elements</span>
+<span>in the document&mdash;a trickier task to undertake. So it&rsquo;s generally bet‐</span>
+<span>ter to always use unique ID names.</span>
+<h4>The Class Selector</h4>
+<span>When there are a number of elements in a page that you want to share the same styl‐</span>
+<span>ing, you can assign them all the same class name (like this:</span>
+<span>&lt;span class='my</span>
+<span>class'&gt;</span>
+<span>); then, create a single rule to modify all those elements at once, as in the</span>
+<span>following rule, which creates a 10-pixel left margin offset for all elements using the</span>
+<span>class:</span>
+<span>.myclass { margin-left:10px; }</span>
+<span>In modern browsers, you can have HTML elements use more than one class by sepa‐</span>
+<span>rating</span>
+<span>the</span>
+<span>class</span>
+<span>names</span>
+<span>with</span>
+<span>spaces,</span>
+<span>like</span>
+<span>this:</span>
+<span>&lt;span class='class1 class2</span>
+<span>class3'&gt;</span>
+<span>. Remember, though, that some very old browsers allow only a single class</span>
+<span>name in a</span>
+<span>class</span>
+<span>argument.</span>
+<span>You can narrow the scope of action of a class by specifying the types of elements to</span>
+<span>which it should apply. For example, the following rule applies the setting only to</span>
+<span>paragraphs that use the class</span>
+<span>main</span>
+<span>:</span>
+<span>p.main { text-indent:30px; }</span>
+<span>In this example, only paragraphs using the class</span>
+<span>main</span>
+<span>(like this:</span>
+<span>&lt;p class="main"&gt;</span>
+<span>)</span>
+<span>will receive the new property value. Any other element types that may try to use the</span>
+<span>class (such as</span>
+<span>&lt;div class="main"&gt;</span>
+<span>) will not be affected by this rule.</span>
+<h4>The Attribute Selector</h4>
+<span>Many HTML tags support attributes, and using this type of selector can save you</span>
+<span>from having to use IDs and classes to refer to them. For example, you can directly</span>
+<span>reference</span>
+<span>attributes</span>
+<span>in</span>
+<span>the</span>
+<span>following</span>
+<span>manner,</span>
+<span>which</span>
+<span>sets</span>
+<span>all</span>
+<span>elements</span>
+<span>with</span>
+<span>the</span>
+<span>attribute</span>
+<span>type="submit"</span>
+<span>to a width of 100 pixels:</span>
+<span>[type="submit"] { width:100px; }</span>
+<span>If you wish to narrow down the scope of the selector to, for example, only</span>
+<span>form</span>
+<span>input</span>
+<span>elements with that attribute type, you could use the following rule instead:</span>
+<span>form input[type="submit"] { width:100px; }</span>
+<span>Attribute selectors also work on IDs and classes so that, for exam‐</span>
+<span>ple,</span>
+<span>[class~="classname"]</span>
+<span>works</span>
+<span>exactly</span>
+<span>like</span>
+<span>the</span>
+<span>class</span>
+<span>selec‐</span>
+<span>tor</span>
+<span>.classname</span>
+<span>(except that the latter has a higher precedence).</span>
+<span>Likewise,</span>
+<span>[id="idname"]</span>
+<span>is equivalent to using the ID selector</span>
+<span>#idname</span>
+<span>. The class and ID selectors prefaced by</span>
+<span>#</span>
+<span>and</span>
+<span>.</span>
+<span>can there‐</span>
+<span>fore be viewed as shorthand for attribute selectors, but with a</span>
+<span>higher precedence. The</span>
+<span>~=</span>
+<span>operator matches an attribute even if it</span>
+<span>is one of a space-separated group of attributes.</span>
+<h4>The Universal Selector</h4>
+<span>The</span>
+<span>*</span>
+<span>wildcard or universal selector matches any element, so the following rule will</span>
+<span>make a complete mess of a document by giving a green border to all of its elements:</span>
+<span>* { border:1px solid green; }</span>
+<span>It&rsquo;s therefore unlikely that you will use the</span>
+<span>*</span>
+<span>on its own, but as part of a compound</span>
+<span>rule it can be very powerful. For example, the following rule will apply the same styl‐</span>
+<span>ing as the preceding one, but only to all paragraphs that are subelements of the ele‐</span>
+<span>ment with the ID</span>
+<span>boxout</span>
+<span>, and only as long as they are not direct children:</span>
+<span>#boxout * p {border:1px solid green; }</span>
+<span>Let&rsquo;s look at what&rsquo;s going on here. The first selector following</span>
+<span>#boxout</span>
+<span>is a</span>
+<span>*</span>
+<span>symbol,</span>
+<span>so it refers to any element within the</span>
+<span>boxout</span>
+<span>object. The following</span>
+<span>p</span>
+<span>selector then</span>
+<span>narrows down the selection focus by changing the selector to apply only to para‐</span>
+<span>graphs (as defined by the</span>
+<span>p</span>
+<span>) that are subelements of elements returned by the</span>
+<span>*</span>
+<span>selec‐</span>
+<span>tor. Therefore, this CSS rule performs the following actions (in which I use the terms</span>
+<span>object</span>
+<span>and</span>
+<span>element</span>
+<span>interchangeably):</span>
+<span>1.</span>
+<span>Find the object with the ID of</span>
+<span>boxout</span>
+<span>.</span>
+<span>2.</span>
+<span>Find all subelements of the object returned in step 1.</span>
+<span>3.</span>
+<span>Find all</span>
+<span>p</span>
+<span>subelements of the objects returned in step 2 and, since this is the final</span>
+<span>selector in the group, also find all</span>
+<span>p</span>
+<span>sub- and sub-subelements (and so on) of the</span>
+<span>objects returned in step 2.</span>
+<span>4.</span>
+<span>Apply the styles within the</span>
+<span>{</span>
+<span>and</span>
+<span>}</span>
+<span>characters to the objects returned in step 3.</span>
+<span>The net result of this is that the green border is applied only to paragraphs that are</span>
+<span>grandchildren (or great-grandchildren, and so on) of the main element.</span>
+<h4>Selecting by Group</h4>
+<span>Using CSS, you can apply a rule to more than one element, class, or any other type of</span>
+<span>selector at the same time by separating the selectors with commas. So, for example,</span>
+<span>the following rule will place a dotted orange line underneath all paragraphs, the ele‐</span>
+<span>ment with the ID of</span>
+<span>idname</span>
+<span>, and all elements that use the class</span>
+<span>classname</span>
+<span>:</span>
+<span>p, #idname, .classname { border-bottom:1px dotted orange; }</span>
+<span>Figure 18-3</span>
+<span>shows various selectors in use, with the rules applied to them alongside.</span>
+<span>Figure 18-3. Some HTML and the CSS rules used by it</span>
+<h3>The CSS Cascade</h3>
+<span>One of the most fundamental things about CSS properties is that they cascade, which</span>
+<span>is why they are called Cascading Style Sheets. But what does this mean?</span>
+<span>Cascading is a method used to resolve potential conflicts between the various types of</span>
+<span>style sheet a browser supports, and apply them in order of precedence by who created</span>
+<span>them, the method used to create the style, and the types of properties selected.</span>
+<h4>Style Sheet Creators</h4>
+<span>There are three main types of style sheet supported by all modern browsers. In order</span>
+<span>of precedence from high to low, they are as follows:</span>
+<span>1.</span>
+<span>Those created by a document&rsquo;s author</span>
+<span>2.</span>
+<span>Those created by the user</span>
+<span>3.</span>
+<span>Those created by the browser</span>
+<span>These three sets of style sheets are processed in reverse order. First, the defaults in the</span>
+<span>web browser are applied to the document. Without these defaults, web pages that</span>
+<span>don&rsquo;t use style sheets would look terrible. They include the font face, size, and color;</span>
+<span>element spacing; table borders and spacing; and all the other reasonable standards a</span>
+<span>user would expect.</span>
+<span>Next, if the user has created any styles to use instead of the standard ones, these are</span>
+<span>applied, replacing any of the browser&rsquo;s default styles that may conflict.</span>
+<span>Last, any styles created by the current document&rsquo;s author are then applied, replacing</span>
+<span>any that have been created either as browser defaults or by the user.</span>
+<h4>Style Sheet Methods</h4>
+<span>Style sheets can be created via three different methods. In order of precedence from</span>
+<span>high to low, they are as follows:</span>
+<span>1.</span>
+<span>As inline styles</span>
+<span>2.</span>
+<span>In an embedded style sheet</span>
+<span>3.</span>
+<span>As an external style sheet</span>
+<span>Again, these methods of style sheet creation are applied in reverse order of prece‐</span>
+<span>dence. Therefore, all external style sheets are processed first, and their styles are</span>
+<span>applied to the document.</span>
+<span>Next, any embedded styles (within</span>
+<span>&lt;style&gt;</span>
+<span>...</span>
+<span>&lt;/style&gt;</span>
+<span>tags) are processed, and any</span>
+<span>that conflict with external rules are given precedence and will override them.</span>
+<span>Last, any styles applied directly to an element as an inline style (such as</span>
+<span>&lt;div</span>
+<span>style="..."&gt;</span>
+<span>...</span>
+<span>&lt;/div&gt;</span>
+<span>) are given the highest precedence, and override all previously</span>
+<span>assigned properties.</span>
+<h4>Style Sheet Selectors</h4>
+<span>There are three different ways of selecting elements to be styled. Going from highest</span>
+<span>to lowest order of precedence, they are as follows:</span>
+<span>1.</span>
+<span>Referencing by individual ID or attribute selector</span>
+<span>2.</span>
+<span>Referencing in groups by class</span>
+<span>3.</span>
+<span>Referencing by element tags (such as</span>
+<span>&lt;p&gt;</span>
+<span>or</span>
+<span>&lt;b&gt;</span>
+<span>)</span>
+<span>Selectors are processed according to the number and types of elements affected by a</span>
+<span>rule, which is a little different from the previous two methods for resolving conflicts.</span>
+<span>This is because rules do not have to apply only to one type of selector at a time, and</span>
+<span>may reference many different selectors.</span>
+<span>Therefore, we need a method to determine the precedence of rules that can contain</span>
+<span>any combinations of selectors. It does this by calculating the specificity of each rule by</span>
+<span>ordering them from the widest to narrowest scope of action.</span>
+<h4>Calculating</h4>
+<h4>Specificity</h4>
+<span>We calculate the specificity of a rule by creating three-part numbers based on the</span>
+<span>selector types in the preceding numbered list. These compound numbers start off</span>
+<span>looking like</span>
+<span>[0,0,0]</span>
+<span>. When processing a rule, each selector that references an ID</span>
+<span>increments the first number by 1, so that the compound number would become</span>
+<span>[1,0,0]</span>
+<span>.</span>
+<span>Let&rsquo;s look at the following rule, which has seven references, with three of them to the</span>
+<span>IDs</span>
+<span>#heading</span>
+<span>,</span>
+<span>#main</span>
+<span>, and</span>
+<span>#menu</span>
+<span>. So the compound number becomes</span>
+<span>[3,0,0]</span>
+<span>.</span>
+<span>#heading #main #menu .text .quote p span {</span>
+<span>// Rules go here;</span>
+<span>}</span>
+<span>Then the number of classes in the selector is placed in the second part of the com‐</span>
+<span>pound number. In this example, there are two of them (</span>
+<span>.text</span>
+<span>and</span>
+<span>.quote</span>
+<span>), so the</span>
+<span>compound number becomes</span>
+<span>[3,2,0]</span>
+<span>.</span>
+<span>Finally, all selectors that reference element tags are counted, and this number is</span>
+<span>placed in the last part of the compound number. In the example, there are two (</span>
+<span>p</span>
+<span>and</span>
+<span>span</span>
+<span>), so the final compound number becomes</span>
+<span>[3,2,2]</span>
+<span>, which is all that is needed to</span>
+<span>compare this rule&rsquo;s specificity with another, such as the following:</span>
+<span>#heading #main .text .quote .news p span {</span>
+<span>// Rules go here;</span>
+<span>}</span>
+<span>Here, although seven elements are also referenced, there are now only two ID refer‐</span>
+<span>ences, but three class references, which results in the compound number</span>
+<span>[2,3,2]</span>
+<span>.</span>
+<span>Since 322 is greater than 232, the former example has precedence over the latter.</span>
+<span>In cases where there are nine or fewer of each type in a compound number, you can</span>
+<span>convert it directly to a decimal number, which in this case is 352. Rules with a lower</span>
+<span>number than this will have lower precedence, and those with a higher number will</span>
+<span>have greater precedence. Where two rules share the same value, the most recently</span>
+<span>applied one wins.</span>
+<span>Using a</span>
+<span>different number base</span>
+<span>Where there are more than nine of a type in a number, you have to work in a higher</span>
+<span>number base. For example, you can&rsquo;t convert the compound number</span>
+<span>[11,7,19]</span>
+<span>to</span>
+<span>decimal by simply concatenating the three parts. Instead, you can convert the number</span>
+<span>to a higher base such as base 20 (or higher if there are more than 19 of any type).</span>
+<span>To do this, multiply the three parts out and add the results like this, starting with the</span>
+<span>rightmost number and working left:</span>
+<span>&nbsp;</span>
+<span>20 &times; 19 = 380</span>
+<span>&nbsp;</span>
+<span>20&times;20 &times; 7 = 2800</span>
+<span>20&times;20&times;20 &times; 11 = 88000</span>
+<span>Total in decimal = 91180</span>
+<span>On the left, replace the values of</span>
+<span>20</span>
+<span>with the base you are using. Once all of the com‐</span>
+<span>pound numbers of a set of rules are converted from this base to decimal, it is easy to</span>
+<span>determine the specificity, and therefore the precedence, of each.</span>
+<span>Thankfully, the CSS processor handles all of this for you, but knowing how it works</span>
+<span>helps you to properly construct rules and understand what precedence they will have.</span>
+<span>If all this precedence calculation sounds rather complicated, you&rsquo;ll</span>
+<span>be pleased to know that in most cases you can usually get by with</span>
+<span>this simple rule of thumb: in general, the fewer elements that there</span>
+<span>are to be modified, and the more specific they are, the greater the</span>
+<span>precedence that is given to a rule.</span>
+<span>Some rules are more equal than others</span>
+<span>Where two or more style rules are exactly equivalent, only the most recently pro‐</span>
+<span>cessed rule will take precedence. However, you can force a rule to a higher precedence</span>
+<span>than other equivalent rules by using the</span>
+<span>!important</span>
+<span>declaration, like this:</span>
+<span>p { color:#ff0000 !important; }</span>
+<span>When you do this, all previous equivalent settings are overridden (even ones using</span>
+<span>!</span>
+<span>important</span>
+<span>) and any equivalent rules that are processed later will be ignored. So, for</span>
+<span>example, the second of the two following rules would normally take precedence, but</span>
+<span>because of the use of</span>
+<span>!important</span>
+<span>in the prior assignment, the second one is ignored:</span>
+<span>p { color:#ff0000 !important; }</span>
+<span>p { color:#ffff00 }</span>
+<span>User style sheets can be created for specifying default browser</span>
+<span>styles, and they may use the</span>
+<span>!important</span>
+<span>declaration, in which case</span>
+<span>the user&rsquo;s style setting will take precedence over the same proper‐</span>
+<span>ties specified in the current web page. However, on very old brows‐</span>
+<span>ers using CSS 1, this feature isn&rsquo;t supported.</span>
+<h4>The</h4>
+<h4>Difference Between Div and Span Elements</h4>
+<span>Both</span>
+<span>&lt;div&gt;</span>
+<span>and</span>
+<span>&lt;span&gt;</span>
+<span>elements are types of containers, but with some different</span>
+<span>qualities. By default, a</span>
+<span>&lt;div&gt;</span>
+<span>element has infinite width (at least to the browser edge),</span>
+<span>which you can see by applying a border to one, like this:</span>
+<span>&lt;div style="border:1px solid green;"&gt;Hello&lt;/div&gt;</span>
+<span>A</span>
+<span>&lt;span&gt;</span>
+<span>element, however, is only as wide as the text it contains. Therefore, the fol‐</span>
+<span>lowing line of HTML creates a border only around the word</span>
+<span>Hello</span>
+<span>, which does not</span>
+<span>extend to the righthand edge of the browser.</span>
+<span>&lt;span style="border:1px solid green;"&gt;Hello&lt;/span&gt;</span>
+<span>Also,</span>
+<span>&lt;span&gt;</span>
+<span>elements follow text or other objects as they wrap around, and can</span>
+<span>therefore have a complicated border. For example, in</span>
+<span>&nbsp;Example 18-2</span>
+<span>, I used CSS to</span>
+<span>make the background of all</span>
+<span>&lt;div&gt;</span>
+<span>elements yellow, to make all</span>
+<span>&lt;span&gt;</span>
+<span>elements cyan,</span>
+<span>and to add a border to both, before then creating a few example</span>
+<span>&lt;span&gt;</span>
+<span>and</span>
+<span>&lt;div&gt;</span>
+<span>sections.</span>
+<span>Example 18-2. Div and span example</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;Div and span example&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>div, span { border :1px solid black; }</span>
+<span>&nbsp;</span>
+<span>div { background-color:yellow; }</span>
+<span>&nbsp;</span>
+<span>span { background-color:cyan; }</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;div&gt;This text is within a div tag&lt;/div&gt;</span>
+<span>This isn't. &lt;div&gt;And this is again.&lt;/div&gt;&lt;br&gt;</span>
+<span>&lt;span&gt;This text is inside a span tag.&lt;/span&gt;</span>
+<span>This isn't. &lt;span&gt;And this is again.&lt;/span&gt;&lt;br&gt;&lt;br&gt;</span>
+<span>&lt;div&gt;This is a larger amount of text in a div that wraps around</span>
+<span>to the next line of the browser&lt;/div&gt;&lt;br&gt;</span>
+<span>&lt;span&gt;This is a larger amount of text in a span that wraps around</span>
+<span>to the next line of the browser&lt;/span&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 18-4</span>
+<span>&nbsp;shows what this example looks like in a web browser. Although it is</span>
+<span>printed only in shades of gray in this book, the figure clearly shows how</span>
+<span>&lt;div&gt;</span>
+<span>ele‐</span>
+<span>ments extend to the righthand edge of a browser, and force the following content to</span>
+<span>appear at the start of the first available position below them.</span>
+<span>Figure 18-4. A variety of elements of differing width</span>
+<span>The figure also shows how</span>
+<span>&lt;span&gt;</span>
+<span>elements keep to themselves and take up only the</span>
+<span>space required to hold their content, without forcing subsequent content to appear</span>
+<span>below them.</span>
+<span>For example, in the bottom two examples of the figure, you can also see that when</span>
+<span>&lt;div&gt;</span>
+<span>elements</span>
+<span>wrap</span>
+<span>around</span>
+<span>the</span>
+<span>screen</span>
+<span>edge,</span>
+<span>they</span>
+<span>retain</span>
+<span>a</span>
+<span>rectangular</span>
+<span>shape,</span>
+<span>whereas</span>
+<span>&lt;span&gt;</span>
+<span>elements simply follow the flow of the text (or other contents) they</span>
+<span>contain.</span>
+<span>Since</span>
+<span>&lt;div&gt;</span>
+<span>tags can be only rectangular, they are better suited for</span>
+<span>containing objects such as images, boxouts, quotations, and so on,</span>
+<span>while</span>
+<span>&lt;span&gt;</span>
+<span>tags are best used for holding text or other attributes</span>
+<span>that are placed one after another inline, and which should flow</span>
+<span>from left to right (or right to left in some languages).</span>
+<h3>Measurements</h3>
+<span>CSS supports an impressive range of units of measurement, enabling you to tailor</span>
+<span>your web pages precisely to specific values, or by relative dimensions. The ones I gen‐</span>
+<span>erally use (and believe you will also find the most useful) are pixels, points, ems, and</span>
+<span>percent, but here&rsquo;s the complete list:</span>
+<span>Pixels</span>
+<span>The size of a pixel varies according to the dimensions and pixel depth of the user&rsquo;s</span>
+<span>monitor. One pixel equals the width/height of a single dot on the screen, and so this</span>
+<span>measurement is best suited to monitors. For example:</span>
+<span>.classname { margin:5px; }</span>
+<span>Points</span>
+<span>A point is equivalent in size to 1/72 of an inch. The measurement comes from a print</span>
+<span>design background and is best suited for that medium, but is also commonly used on</span>
+<span>monitors. For example:</span>
+<span>.classname { font-size:14pt; }</span>
+<span>Inches</span>
+<span>An inch is the equivalent of 72 points and is also a measurement type best suited for</span>
+<span>print. For example:</span>
+<span>.classname { width:3in; }</span>
+<span>Centimeters</span>
+<span>Centimeters are another unit of measurement best suited for print. One centimeter is</span>
+<span>a little over 28 points. For example:</span>
+<span>.classname { height:2cm; }</span>
+<span>Millimeters</span>
+<span>A millimeter is 1/10 of a centimeter (or almost 3 points). Millimeters are another</span>
+<span>measure best suited to print. For example:</span>
+<span>.classname { font-size:5mm; }</span>
+<span>Picas</span>
+<span>A pica is another print typographic measurement, which is equivalent to 12 points.</span>
+<span>For example:</span>
+<span>.classname { font-size:1pc; }</span>
+<span>Ems</span>
+<span>An em is equal to the current font size and is therefore one of the more useful meas‐</span>
+<span>urements for CSS since it is used to describe relative dimensions. For example:</span>
+<span>.classname { font-size:2em; }</span>
+<span>Exs</span>
+<span>An ex is also related to the current font size; it is equivalent to the height of a</span>
+<span>lowercase letter</span>
+<span>x</span>
+<span>. This is a less popular unit of measurement that is most often</span>
+<span>used as a good approximation for helping to set the width of a box that will con‐</span>
+<span>tain some text. For example:</span>
+<span>.classname { width:20ex; }</span>
+<span>Percent</span>
+<span>This unit is related to the em in that it is exactly 100 times greater (when used on a</span>
+<span>font). Whereas 1 em equals the current font size, the same size is 100 in percent.</span>
+<span>When not relating to a font, this unit is relative to the size of the container of the</span>
+<span>property being accessed. For example:</span>
+<span>.classname { height:120%; }</span>
+<span>Figure 18-5</span>
+<span>shows each of these measurement types in turn being used to display text</span>
+<span>in almost identical sizes.</span>
+<span>Figure 18-5. Different measurements that display almost the same</span>
+<h3>Fonts and Typography</h3>
+<span>There are four main font properties that you can style using CSS:</span>
+<span>family</span>
+<span>,</span>
+<span>style</span>
+<span>,</span>
+<span>size</span>
+<span>, and</span>
+<span>weight</span>
+<span>. Between them, you can fine-tune the way text displays in your web</span>
+<span>pages and/or when printed.</span>
+<h4>font-family</h4>
+<span>The</span>
+<span>font-family</span>
+<span>property assigns the font to use. It also supports listing a variety of</span>
+<span>fonts in order of preference from left to right, so that styling can fall back gracefully</span>
+<span>when the user doesn&rsquo;t have the preferred font installed. For example, to set the default</span>
+<span>font for paragraphs, you might use a CSS rule such as this:</span>
+<span>p { font-family:Verdana, Arial, Helvetica, sans-serif; }</span>
+<span>Where a font name is made up of two or more words, you must enclose the name in</span>
+<span>quotation marks, like this:</span>
+<span>p { font-family:"Times New Roman", Georgia, serif; }</span>
+<span>Because they should be available on virtually all web browsers and</span>
+<span>operating systems, the safest font families to use on a web page are</span>
+<span>Arial</span>
+<span>,</span>
+<span>Helvetica</span>
+<span>,</span>
+<span>Times New Roman</span>
+<span>,</span>
+<span>Times</span>
+<span>,</span>
+<span>Courier New</span>
+<span>, and</span>
+<span>Cou‐</span>
+<span>rier</span>
+<span>. The</span>
+<span>&nbsp;Verdana</span>
+<span>,</span>
+<span>&nbsp;Georgia</span>
+<span>,</span>
+<span>&nbsp;Comic Sans MS</span>
+<span>,</span>
+<span>&nbsp;Trebuchet MS</span>
+<span>,</span>
+<span>&nbsp;Arial</span>
+<span>Black</span>
+<span>, and</span>
+<span>Impact</span>
+<span>fonts are safe for Mac and PC use, but may not</span>
+<span>be installed on other operating systems such as Linux. Other com‐</span>
+<span>mon but less safe fonts are</span>
+<span>&nbsp;Palatino</span>
+<span>,</span>
+<span>&nbsp;Garamond</span>
+<span>,</span>
+<span>&nbsp;Bookman</span>
+<span>, and</span>
+<span>Avant Garde</span>
+<span>. If you use one of the less safe fonts, make sure you</span>
+<span>offer fallbacks of one or more safer fonts in your CSS so that your</span>
+<span>web pages will degrade gracefully on browsers without your prefer‐</span>
+<span>red fonts.</span>
+<span>Figure 18-6</span>
+<span>shows these two sets of CSS rules being applied.</span>
+<span>Figure 18-6. Selecting font families</span>
+<h4>font-style</h4>
+<span>With the</span>
+<span>font-style</span>
+<span>property, you can choose to display a font normally, in italics,</span>
+<span>or obliquely. The following rules create three classes (</span>
+<span>normal</span>
+<span>,</span>
+<span>italic</span>
+<span>, and</span>
+<span>oblique</span>
+<span>)</span>
+<span>that can be applied to elements to create these effects:</span>
+<span>.normal { font-style:normal; }</span>
+<span>.italic { font-style:italic; }</span>
+<span>.oblique { font-style:oblique; }</span>
+<h4>font-size</h4>
+<span>As described in the earlier section on measurements, there are a large number of ways</span>
+<span>you can change a font&rsquo;s size. But these all boil down to two main types: fixed and rela‐</span>
+<span>tive. A fixed setting looks like the following rule, which sets the default paragraph</span>
+<span>font size to 14 point:</span>
+<span>p { font-size:14pt; }</span>
+<span>Alternatively, you may wish to work with the current default font size, using it to style</span>
+<span>various types of text such as headings. In the following rules, relative sizes of some</span>
+<span>headers are defined, with the</span>
+<span>&lt;h4&gt;</span>
+<span>tag starting off 20 percent bigger than the default,</span>
+<span>and with each greater size another 40 percent larger than the previous one:</span>
+<span>h1 { font-size:240%; }</span>
+<span>h2 { font-size:200%; }</span>
+<span>h3 { font-size:160%; }</span>
+<span>h4 { font-size:120%; }</span>
+<span>Figure 18-7</span>
+<span>shows a selection of font sizes in use.</span>
+<span>Figure 18-7. Setting four heading sizes and the default paragraph size</span>
+<h4>font-weight</h4>
+<span>Using the</span>
+<span>font-weight</span>
+<span>property, you can choose how boldly to display a font. It sup‐</span>
+<span>ports a number of values, but the main ones you will use are likely to be</span>
+<span>normal</span>
+<span>and</span>
+<span>bold</span>
+<span>, like this:</span>
+<span>.bold { font-weight:bold; }</span>
+<h3>Managing Text Styles</h3>
+<span>Regardless of the font in use, you can further modify the way text displays by altering</span>
+<span>its decoration, spacing, and alignment. There is a crossover between the text and font</span>
+<span>properties, though, in that effects such as italics or bold text are achieved via the</span>
+<span>font-style</span>
+<span>and</span>
+<span>font-weight</span>
+<span>properties, while others such as underlining require</span>
+<span>the</span>
+<span>text-decoration</span>
+<span>property.</span>
+<h4>Decoration</h4>
+<span>With the</span>
+<span>text-decoration</span>
+<span>property, you can apply effects to text such as</span>
+<span>underline</span>
+<span>,</span>
+<span>line-through</span>
+<span>,</span>
+<span>overline</span>
+<span>, and</span>
+<span>blink</span>
+<span>. The following rule creates a new class called</span>
+<span>over</span>
+<span>that applies overlines to text (the weight of over, under, and through lines will</span>
+<span>match that of the font):</span>
+<span>.over { text-decoration:overline; }</span>
+<span>In</span>
+<span>Figure 18-8</span>
+<span>you can see a selection of font styles, weight, and decorations.</span>
+<span>Figure 18-8. Examples of the styles and decoration rules available</span>
+<h4>Spacing</h4>
+<span>A number of different properties allow you to modify line, word, and letter spacing.</span>
+<span>For example, the following rules change the line spacing for paragraphs by modifying</span>
+<span>the</span>
+<span>line-height</span>
+<span>property to be 25 percent greater, the</span>
+<span>word-spacing</span>
+<span>property is set</span>
+<span>to 30 pixels, and</span>
+<span>letter-spacing</span>
+<span>is set to 3 pixels:</span>
+<span>p {</span>
+<span>line-height :125%;</span>
+<span>word-spacing :30px;</span>
+<span>letter-spacing:3px;</span>
+<span>}</span>
+<h4>Alignment</h4>
+<span>There are four types of text alignment available in CSS:</span>
+<span>left</span>
+<span>,</span>
+<span>right</span>
+<span>,</span>
+<span>center</span>
+<span>, and</span>
+<span>jus</span>
+<span>tify</span>
+<span>. In the following rule, default paragraph text is set to full justification:</span>
+<span>p { text-align:justify; }</span>
+<h4>Transformation</h4>
+<span>There are four properties available for transforming your text:</span>
+<span>none</span>
+<span>,</span>
+<span>capitalize</span>
+<span>,</span>
+<span>uppercase</span>
+<span>, and</span>
+<span>lowercase</span>
+<span>. The following rule creates a class called</span>
+<span>upper</span>
+<span>that will</span>
+<span>ensure that all text is displayed in uppercase when it is used:</span>
+<span>.upper { text-transform:uppercase; }</span>
+<h4>Indenting</h4>
+<span>Using the</span>
+<span>text-indent</span>
+<span>property, you can indent the first line of a block of text by a</span>
+<span>specified amount. The following rule indents the first line of every paragraph by 20</span>
+<span>pixels, although a different unit of measurement or a percent increase could also be</span>
+<span>applied:</span>
+<span>p { text-indent:20px; }</span>
+<span>In</span>
+<span>Figure 18-9</span>
+<span>the following rules have been applied to a section of text:</span>
+<span>p { line-height :150%;</span>
+<span>&nbsp;</span>
+<span>word-spacing :10px;</span>
+<span>&nbsp;</span>
+<span>letter-spacing:1px;</span>
+<span>}</span>
+<span>.justify { text-align :justify; }</span>
+<span>.uppercase { text-transform:uppercase; }</span>
+<span>.indent { text-indent :20px; }</span>
+<span>Figure 18-9. Indenting, uppercase, and spacing rules being applied</span>
+<h3>CSS Colors</h3>
+<span>You can apply colors to the foreground and background of text and objects by using</span>
+<span>the</span>
+<span>color</span>
+<span>and</span>
+<span>background-color</span>
+<span>properties (or by supplying a single argument to</span>
+<span>the</span>
+<span>background</span>
+<span>property). The colors specified can be one of the named colors (such</span>
+<span>as</span>
+<span>red</span>
+<span>or</span>
+<span>blue</span>
+<span>), colors created from hexadecimal RGB triplets (such as</span>
+<span>#ff0000</span>
+<span>or</span>
+<span>#0000ff</span>
+<span>), or colors created using the</span>
+<span>rgb</span>
+<span>CSS function.</span>
+<span>The standard 16 color names as defined by the W3C (</span>
+<span>http://www.w3.org/</span>
+<span>) standards</span>
+<span>organization are</span>
+<span>aqua</span>
+<span>,</span>
+<span>black</span>
+<span>,</span>
+<span>blue</span>
+<span>,</span>
+<span>fuchsia</span>
+<span>,</span>
+<span>gray</span>
+<span>,</span>
+<span>green</span>
+<span>,</span>
+<span>lime</span>
+<span>,</span>
+<span>maroon</span>
+<span>,</span>
+<span>navy</span>
+<span>,</span>
+<span>olive</span>
+<span>,</span>
+<span>purple</span>
+<span>,</span>
+<span>red</span>
+<span>,</span>
+<span>silver</span>
+<span>,</span>
+<span>teal</span>
+<span>,</span>
+<span>white</span>
+<span>, and</span>
+<span>yellow</span>
+<span>. The following rule uses one of these</span>
+<span>names to set the background color for an object with the ID of</span>
+<span>object</span>
+<span>.</span>
+<span>#object { background-color:silver; }</span>
+<span>In this rule, the foreground color of text in all</span>
+<span>&lt;div&gt;</span>
+<span>elements is set to yellow (because</span>
+<span>on a computer display, hexadecimal levels of</span>
+<span>ff</span>
+<span>red, plus</span>
+<span>ff</span>
+<span>green, plus</span>
+<span>00</span>
+<span>blue cre‐</span>
+<span>ates the color yellow):</span>
+<span>div { color:#ffff00; }</span>
+<span>Or, if you don&rsquo;t wish to work in hexadecimal, you can specify your color triplets by</span>
+<span>using the</span>
+<span>rgb</span>
+<span>function, as in the following rule, which changes the background color</span>
+<span>of the current document to aqua:</span>
+<span>body { background-color:rgb(0, 255, 255); }</span>
+<span>If you prefer not to work in ranges of 256 levels per color, you can</span>
+<span>use percentages in the</span>
+<span>rgb</span>
+<span>function instead, with values from</span>
+<span>0</span>
+<span>to</span>
+<span>100</span>
+<span>ranging</span>
+<span>from</span>
+<span>the</span>
+<span>lowest</span>
+<span>(</span>
+<span>0</span>
+<span>)</span>
+<span>amount</span>
+<span>of</span>
+<span>a</span>
+<span>primary</span>
+<span>color,</span>
+<span>through to the highest (</span>
+<span>100</span>
+<span>), like this:</span>
+<span>rgb(58%, 95%, 74%)</span>
+<span>. You</span>
+<span>can also use floating-point values for even finer color control, like</span>
+<span>this:</span>
+<span>rgb(23.4%, 67.6%, 15.5%)</span>
+<span>.</span>
+<h4>Short Color Strings</h4>
+<span>There is also a short form of the hex digit string in which only the first of each 2-byte</span>
+<span>pair is used for each color. For example, instead of assigning the color</span>
+<span>#fe4692</span>
+<span>, you</span>
+<span>instead use</span>
+<span>#f49</span>
+<span>, omitting the second hex digit from each pair, which equates to a</span>
+<span>color value of</span>
+<span>#ff4499</span>
+<span>.</span>
+<span>This results in almost the same color and is useful where exact colors are not</span>
+<span>required. The difference between a six-digit and three-digit string is that the former</span>
+<span>supports 16 million different colors, while the latter supports four thousand.</span>
+<span>Wherever you intend to use a color such as</span>
+<span>#883366</span>
+<span>, this is the direct equivalent of</span>
+<span>#836</span>
+<span>(since the repeated digits are implied by the shorter version), and you can use</span>
+<span>either string to create the exact same color.</span>
+<h4>Gradients</h4>
+<span>In place of using a solid background color, you can choose to apply a gradient, which</span>
+<span>will then automatically flow from a given initial color to a final color of your choice.</span>
+<span>It is best used in conjunction with a simple color rule so that browsers that don&rsquo;t sup‐</span>
+<span>port gradients will at least display a solid color.</span>
+<span>Example 18-3</span>
+<span>&nbsp;uses a rule to display an orange gradient (or simply plain orange on</span>
+<span>nonsupporting browsers), as shown in the middle section of</span>
+<span>Figure 18-10</span>
+<span>.</span>
+<span>Example 18-3. Creating a linear gradient</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;Creating a linear gradient&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>.orangegrad {</span>
+<span>&nbsp;</span>
+<span>background:orange;</span>
+<span>&nbsp;</span>
+<span>background:linear-gradient(top, #fb0, #f50);</span>
+<span>&nbsp;</span>
+<span>background:-moz-linear-gradient(top, #fb0, #f50);</span>
+<span>&nbsp;</span>
+<span>background:-webkit-linear-gradient(top, #fb0, #f50);</span>
+<span>&nbsp;</span>
+<span>background:-o-linear-gradient(top, #fb0, #f50);</span>
+<span>&nbsp;</span>
+<span>background:-ms-linear-gradient(top, #fb0, #f50); }</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;div class='orangegrad'&gt;Black text&lt;br&gt;</span>
+<span>on an orange&lt;br&gt;linear gradient&lt;/div&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 18-10. A solid background color, a linear gradient, and a radial gradient</span>
+<span>As</span>
+<span>shown</span>
+<span>in</span>
+<span>the</span>
+<span>preceding</span>
+<span>example,</span>
+<span>many</span>
+<span>CSS</span>
+<span>rules</span>
+<span>require</span>
+<span>browser-specific prefixes such as</span>
+<span>-moz-</span>
+<span>,</span>
+<span>-webkit-</span>
+<span>,</span>
+<span>-o-</span>
+<span>, and</span>
+<span>-ms-</span>
+<span>(for Mozilla-based browsers such as Firefox; WebKit-based brows‐</span>
+<span>ers such as Apple Safari, Google Chrome, and the iOS and Android</span>
+<span>browsers; and the Opera and Microsoft browsers). The website at</span>
+<span>http://caniuse.com</span>
+<span>&nbsp;lists the major CSS rules and attributes, and</span>
+<span>whether browser-specific versions are required.</span>
+<span>To create a gradient, choose where it will begin out of</span>
+<span>top</span>
+<span>,</span>
+<span>bottom</span>
+<span>,</span>
+<span>left</span>
+<span>,</span>
+<span>right</span>
+<span>, and</span>
+<span>center</span>
+<span>(or any combination, such as</span>
+<span>top left</span>
+<span>or</span>
+<span>center right</span>
+<span>), enter the start and</span>
+<span>end colors you require, and then apply either the</span>
+<span>linear-gradient</span>
+<span>or</span>
+<span>radial-</span>
+<span>gradient</span>
+<span>rule, making sure you also supply rules for all browsers you are targeting.</span>
+<span>You can also use more than just a start and end color by supplying what are termed</span>
+<span>stop</span>
+<span>colors in between as additional arguments. In this case, for example, if five argu‐</span>
+<span>ments are supplied, each argument will control the color change over a fifth of the</span>
+<span>area represented by its location in the argument list.</span>
+<h3>Positioning Elements</h3>
+<span>Elements within a web page fall where they are placed in the document, but you can</span>
+<span>move them about by changing an element&rsquo;s</span>
+<span>position</span>
+<span>property from the default of</span>
+<span>static</span>
+<span>to one of</span>
+<span>absolute</span>
+<span>,</span>
+<span>relative</span>
+<span>, or</span>
+<span>fixed</span>
+<span>.</span>
+<h4>Absolute Positioning</h4>
+<span>An element with absolute positioning is removed from the document, and any other</span>
+<span>elements that are capable will flow into its released space. You can then position the</span>
+<span>object anywhere you like within the document by using the</span>
+<span>top</span>
+<span>,</span>
+<span>right</span>
+<span>,</span>
+<span>bottom</span>
+<span>, and</span>
+<span>left</span>
+<span>properties. It will then rest on top of (or behind) other elements.</span>
+<span>So, for example, to move an object with the ID of</span>
+<span>object</span>
+<span>to the absolute location of</span>
+<span>100 pixels down from the document start and 200 pixels in from the left, you would</span>
+<span>apply the following rules to it (you can also use any of the other units of measurement</span>
+<span>supported by CSS):</span>
+<span>#object {</span>
+<span>position:absolute;</span>
+<span>top :100px;</span>
+<span>left :200px;</span>
+<span>}</span>
+<h4>Relative Positioning</h4>
+<span>Likewise, you can move the object relative to the location it would occupy in the nor‐</span>
+<span>mal document flow. So, for example, to move</span>
+<span>object</span>
+<span>10 pixels down and 10 pixels to</span>
+<span>the right of its normal location, you would use the following rules:</span>
+<span>#object {</span>
+<span>position:relative;</span>
+<span>top :10px;</span>
+<span>left :10px;</span>
+<span>}</span>
+<h4>Fixed Positioning</h4>
+<span>The final positioning property setting lets you move an object to an absolute location,</span>
+<span>but only within the current browser viewport. Then, when the document is scrolled,</span>
+<span>the object remains exactly where it has been placed, with the main document scroll‐</span>
+<span>ing beneath it&mdash;a great way to create dock bars and other similar devices. To fix the</span>
+<span>object to the top-left corner of the browser window, you use the following rules:</span>
+<span>#object {</span>
+<span>position:fixed;</span>
+<span>top :0px;</span>
+<span>left :0px;</span>
+<span>}</span>
+<span>In</span>
+<span>Figure 18-11</span>
+<span>,</span>
+<span>Example 18-4</span>
+<span>has been loaded into a browser, and the browser has</span>
+<span>been reduced in width and height so that you must scroll down to see all of the web</span>
+<span>page.</span>
+<span>Figure 18-11. Using different positioning values</span>
+<span>When this is done, it is immediately obvious that the element with fixed positioning</span>
+<span>remains in place even through scrolling. You can also see that the element with abso‐</span>
+<span>lute positioning is located exactly at 100 pixels down, with 0 horizontal offset, while</span>
+<span>the element with relative positioning is actually moved up by 8 pixels and then offset</span>
+<span>from the left margin by 110 pixels in order to line up alongside the first element.</span>
+<span>Example 18-4. Applying</span>
+<span>different positioning values</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;Positioning&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>#object1 {</span>
+<span>&nbsp;</span>
+<span>position :absolute;</span>
+<span>&nbsp;</span>
+<span>background:pink;</span>
+<span>&nbsp;</span>
+<span>width :100px;</span>
+<span>&nbsp;</span>
+<span>height :100px;</span>
+<span>&nbsp;</span>
+<span>top :100px;</span>
+<span>&nbsp;</span>
+<span>left :0px;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>#object2 {</span>
+<span>&nbsp;</span>
+<span>position :relative;</span>
+<span>&nbsp;</span>
+<span>background:lightgreen;</span>
+<span>&nbsp;</span>
+<span>width :100px;</span>
+<span>&nbsp;</span>
+<span>height :100px;</span>
+<span>&nbsp;</span>
+<span>top :-8px;</span>
+<span>&nbsp;</span>
+<span>left :110px;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>#object3 {</span>
+<span>&nbsp;</span>
+<span>position :fixed;</span>
+<span>&nbsp;</span>
+<span>background:yellow;</span>
+<span>&nbsp;</span>
+<span>width :100px;</span>
+<span>&nbsp;</span>
+<span>height :100px;</span>
+<span>&nbsp;</span>
+<span>top :100px;</span>
+<span>&nbsp;</span>
+<span>left :236px;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</span>
+<span>&lt;div id='object1'&gt;Absolute Positioning&lt;/div&gt;</span>
+<span>&lt;div id='object2'&gt;Relative Positioning&lt;/div&gt;</span>
+<span>&lt;div id='object3'&gt;Fixed Positioning&lt;/div&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>In the figure, the element with fixed positioning initially lines up with the other two</span>
+<span>elements, but has stayed put while the others have been scrolled up the page, and now</span>
+<span>appears offset below them.</span>
+<h3>Pseudoclasses</h3>
+<span>A number of selectors and classes are used only within a style sheet and do not have</span>
+<span>any matching tags or attributes within any HTML. Their task is to classify elements</span>
+<span>using characteristics other than their name, attributes, or content&mdash;that is, character‐</span>
+<span>istics that cannot be deduced from the document tree. These include</span>
+<span>&nbsp;pseudoclasses</span>
+<span>such as</span>
+<span>link</span>
+<span>and</span>
+<span>visited</span>
+<span>. There are also pseudoelements that make a selection,</span>
+<span>which may consist of partial elements such as</span>
+<span>first-line</span>
+<span>or</span>
+<span>first-letter</span>
+<span>.</span>
+<span>Pseudoclasses and pseudoelements are separated by a</span>
+<span>:</span>
+<span>(colon) character. For exam‐</span>
+<span>ple, to create a class called</span>
+<span>bigfirst</span>
+<span>for emphasizing the first letter of an element,</span>
+<span>you would use a rule such as the following:</span>
+<span>.bigfirst:first-letter {</span>
+<span>font-size:400%;</span>
+<span>float :left;</span>
+<span>}</span>
+<span>When the</span>
+<span>bigfirst</span>
+<span>class is applied to an element, the first letter will be displayed</span>
+<span>much enlarged, with the remaining text shown at normal size, neatly flowing around</span>
+<span>it (due to the</span>
+<span>float</span>
+<span>property) as if the first letter were an image or other object. Pseu‐</span>
+<span>doclasses include</span>
+<span>hover</span>
+<span>,</span>
+<span>link</span>
+<span>,</span>
+<span>active</span>
+<span>, and</span>
+<span>visited</span>
+<span>, all of which are mostly useful for</span>
+<span>applying to anchor elements, as in the following rules, which set the default color of</span>
+<span>all links to blue, and that of links that have already been visited to light blue:</span>
+<span>a:link { color:blue; }</span>
+<span>a:visited { color:lightblue; }</span>
+<span>The following rules are interesting in that they use the</span>
+<span>hover</span>
+<span>pseudoclass so that they</span>
+<span>are applied only when the mouse is placed over the element. In this example, they</span>
+<span>change the link to white text on a red background, providing a dynamic effect you</span>
+<span>would normally expect only from using JavaScript code:</span>
+<span>a:hover {</span>
+<span>color :white;</span>
+<span>background:red;</span>
+<span>}</span>
+<span>Here I have used the</span>
+<span>background</span>
+<span>property with a single argument, instead of the</span>
+<span>longer</span>
+<span>background-color</span>
+<span>property.</span>
+<span>The</span>
+<span>active</span>
+<span>pseudoclass is also dynamic in that it effects a change to a link during the</span>
+<span>time between the mouse button being clicked and released, as with this rule, which</span>
+<span>changes the link color to dark blue:</span>
+<span>a:active { color:darkblue; }</span>
+<span>Another interesting dynamic pseudoclass is</span>
+<span>focus</span>
+<span>, which is applied only when an ele‐</span>
+<span>ment is given focus by the user selecting it with the keyboard or mouse. The follow‐</span>
+<span>ing rule uses the universal selector to always place a mid-gray, dotted, 2-pixel border</span>
+<span>around the currently focused object:</span>
+<span>*:focus { border:2px dotted #888888; }</span>
+<span>Example 18-5</span>
+<span>&nbsp;displays two links and an input field, as shown in</span>
+<span>Figure 18-12</span>
+<span>. The</span>
+<span>first link shows up as gray since it has already been visited in this browser, but the</span>
+<span>second link has not and displays in blue. The Tab key has been pressed, and the focus</span>
+<span>of input is now the input field, so its background has changed to yellow. When either</span>
+<span>link is clicked, it will display in purple, and when hovered over, it will appear red.</span>
+<span>Example 18-5. Link and focus pseudoclasses</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;Pseudo-classes&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>a:link { color:blue; }</span>
+<span>&nbsp;</span>
+<span>a:visited { color:gray; }</span>
+<span>&nbsp;</span>
+<span>a:hover { color:red; }</span>
+<span>&nbsp;</span>
+<span>a:active { color:purple; }</span>
+<span>&nbsp;</span>
+<span>*:focus { background:yellow; }</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;a href='http://google.com'&gt;Link to Google'&lt;/a&gt;&lt;br&gt;</span>
+<span>&lt;a href='nowhere'&gt;Link to nowhere'&lt;/a&gt;&lt;br&gt;</span>
+<span>&lt;input type='text'&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 18-12. Pseudoclasses applied to a selection of elements</span>
+<span>Other pseudoclasses are also available, and you can get more information on them at</span>
+<span>http://tinyurl.com/pseudoclasses</span>
+<span>.</span>
+<span>Beware of applying the</span>
+<span>focus</span>
+<span>pseudoclass to the universal selector,</span>
+<span>*</span>
+<span>, as shown in this example; Internet Explorer regards an unfo‐</span>
+<span>cused document as having focus applied to the entire web page,</span>
+<span>and (in this instance) the whole page will turn yellow until Tab is</span>
+<span>pressed or focus is otherwise applied to one of the page&rsquo;s elements.</span>
+<h3>Shorthand Rules</h3>
+<span>To save space, groups of related CSS properties can be concatenated into a single</span>
+<span>shorthand assignment. For example, I have already used the shorthand for creating a</span>
+<span>border a few times, as in the</span>
+<span>focus</span>
+<span>rule in the previous section:</span>
+<span>*:focus { border:2px dotted #ff8800; }</span>
+<span>This is actually a shorthand concatenation of the following rule set:</span>
+<span>*:focus {</span>
+<span>border-width:2px;</span>
+<span>border-style:dotted;</span>
+<span>border-color:#ff8800;</span>
+<span>}</span>
+<span>When using a shorthand rule, you need only apply the properties up to the point</span>
+<span>where you wish to change values. So you could use the following to set only a border&rsquo;s</span>
+<span>width and style, choosing not to set its color:</span>
+<span>*:focus { border:2px dotted; }</span>
+<span>The order in which the properties are placed in a shorthand rule</span>
+<span>can be important, and misplacing them is a common way to get</span>
+<span>unexpected results. Since there are far too many to detail in this</span>
+<span>chapter, if you wish to use shorthand CSS, you will need to look up</span>
+<span>the default properties and their order of application using a CSS</span>
+<span>manual or search engine. To get you started, I recommend visiting</span>
+<span>http://dustindiaz.com/css-shorthand</span>
+<span>.</span>
+<h3>The Box Model and Layout</h3>
+<span>The CSS properties affecting the layout of a page are based around the</span>
+<span>box model</span>
+<span>(see</span>
+<span>Chapter 13</span>
+<span>for more details), a nested set of properties surrounding an element. Vir‐</span>
+<span>tually all elements have (or can have) these properties, including the document body,</span>
+<span>whose margin you can (for example) remove with the following rule:</span>
+<span>body { margin:0px; }</span>
+<span>The box model of an object starts at the outside, with the object&rsquo;s margin. Inside this</span>
+<span>is the border, then there is padding between the border and the inner contents, and</span>
+<span>finally there&rsquo;s the object&rsquo;s contents.</span>
+<span>Once you have the hang of the box model, you will be well on your way to creating</span>
+<span>professionally laid-out pages, since these properties alone will make up much of your</span>
+<span>page styling.</span>
+<h4>Setting Margins</h4>
+<span>The margin is the outermost level of the box model. It separates elements from each</span>
+<span>other and its use is quite smart. For example, assume you give a number of elements a</span>
+<span>default margin of 10 pixels around each. When they are placed on top of each other,</span>
+<span>this would create a gap of 20 pixels (the total of the adjacent border widths).</span>
+<span>CSS overcomes this potential issue, however: when two elements with borders are</span>
+<span>positioned directly one above the other, only the larger of the two margins is used to</span>
+<span>separate them. If both margins are the same width, just one of the widths is used.</span>
+<span>This way, you are much more likely to get the result you want. But you should note</span>
+<span>that the margins of absolutely positioned or inline elements do not collapse.</span>
+<span>The margins of an element can be changed en masse with the</span>
+<span>margin</span>
+<span>property, or</span>
+<span>individually</span>
+<span>with</span>
+<span>margin-left</span>
+<span>,</span>
+<span>margin-top</span>
+<span>,</span>
+<span>margin-right</span>
+<span>,</span>
+<span>and</span>
+<span>margin-bottom</span>
+<span>.</span>
+<span>When setting the</span>
+<span>margin</span>
+<span>property, you can supply one, two, three, or four arguments,</span>
+<span>which have the effects commented in the following rules:</span>
+<span>/* Set all margins to 1 pixel */</span>
+<span>margin:1px;</span>
+<span>/* Set top and bottom to 1 pixel, and left and right to 2 */</span>
+<span>margin:1px 2px;</span>
+<span>/* Set top to 1 pixel, left and right to 2, and bottom to 3 */</span>
+<span>margin:1px 2px 3px;</span>
+<span>/* Set top to 1 pixel, right to 2, bottom to 3, and left to 4 */</span>
+<span>margin:1px 2px 3px 4px;</span>
+<span>Figure 18-13</span>
+<span>&nbsp;shows</span>
+<span>&nbsp;Example 18-6</span>
+<span>&nbsp;loaded into a browser, with the</span>
+<span>margin</span>
+<span>property</span>
+<span>rule (highlighted in bold) applied to a square element that has been placed inside a</span>
+<span>table element. The table has been given no dimensions, so it will simply wrap as</span>
+<span>closely around the inner</span>
+<span>&lt;div&gt;</span>
+<span>element as it can. As a consequence, there is a margin</span>
+<span>of 10 pixels above it, 20 pixels to its right, 30 pixels below it, and 40 pixels to its left.</span>
+<span>Example 18-6. How margins are applied</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;Margins&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>#object1 {</span>
+<span>&nbsp;</span>
+<span>background :lightgreen;</span>
+<span>&nbsp;</span>
+<span>border-style:solid;</span>
+<span>&nbsp;</span>
+<span>border-width:1px;</span>
+<span>&nbsp;</span>
+<span>font-family :"Courier New";</span>
+<span>&nbsp;</span>
+<span>font-size :9px;</span>
+<span>&nbsp;</span>
+<span>width :100px;</span>
+<span>&nbsp;</span>
+<span>height :100px;</span>
+<span>&nbsp;</span>
+<span>padding :5px;</span>
+<span>margin :10px 20px 30px 40px;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>table {</span>
+<span>&nbsp;</span>
+<span>padding :0;</span>
+<span>&nbsp;</span>
+<span>border :1px solid black;</span>
+<span>&nbsp;</span>
+<span>background :cyan;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;table&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;tr&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;td&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;div id='object1'&gt;margin:&lt;br&gt;10px 20px 30px 40px;&lt;/div&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;/td&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;/tr&gt;</span>
+<span>&lt;/table&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 18-13. The outer table expands according to the margin widths</span>
+<h4>Applying Borders</h4>
+<span>The border level of the box model is similar to the margin except that there is no col‐</span>
+<span>lapsing. It is the next level as we move into the box model. The main properties used</span>
+<span>to</span>
+<span>modify</span>
+<span>borders</span>
+<span>are</span>
+<span>border</span>
+<span>,</span>
+<span>border-left</span>
+<span>,</span>
+<span>border-top</span>
+<span>,</span>
+<span>border-right</span>
+<span>,</span>
+<span>and</span>
+<span>border-bottom</span>
+<span>, and each of these can have other subproperties added as suffixes,</span>
+<span>such as</span>
+<span>-color</span>
+<span>,</span>
+<span>-style</span>
+<span>, and</span>
+<span>-width</span>
+<span>.</span>
+<span>The four ways of accessing individual property settings used for the</span>
+<span>margin</span>
+<span>property</span>
+<span>also apply with the</span>
+<span>border-width</span>
+<span>property, so all the following are valid rules:</span>
+<span>/* All borders */</span>
+<span>border-width:1px;</span>
+<span>/* Top/bottom left/right */</span>
+<span>border-width:1px 5px;</span>
+<span>/* Top left/right bottom */</span>
+<span>border-width:1px 5px 10px;</span>
+<span>/* Top right bottom left */</span>
+<span>border-width:1px 5px 10px 15px;</span>
+<span>Figure 18-14</span>
+<span>shows each of these rules applied in turn to a group of square elements.</span>
+<span>In the first one, you can clearly see that all borders have a width of 1 pixel. The sec‐</span>
+<span>ond element, however, has a top and bottom border width of 1 pixel, while its side</span>
+<span>widths are 5 pixels each.</span>
+<span>The third element has a 1-pixel-wide top, its sides are 5 pixels wide, and its bottom is</span>
+<span>10 pixels wide. The fourth element has a 1-pixel top border width, a 5-pixel right bor‐</span>
+<span>der width, a 10-pixel bottom border width, and a 15-pixel left border width.</span>
+<span>Figure 18-14. Applying long- and shorthand border rule values</span>
+<span>The final element, under the previous ones, doesn&rsquo;t use the shorthand rules; instead,</span>
+<span>it has each of the border widths set separately. As you can see, it takes a lot more typ‐</span>
+<span>ing to achieve the same result.</span>
+<h4>Adjusting Padding</h4>
+<span>The deepest of the box model levels (other than the contents of an element) is the</span>
+<span>padding, which is applied inside any borders and/or margins. The main properties</span>
+<span>used to modify padding are</span>
+<span>padding</span>
+<span>,</span>
+<span>padding-left</span>
+<span>,</span>
+<span>padding-top</span>
+<span>,</span>
+<span>padding-right</span>
+<span>,</span>
+<span>and</span>
+<span>padding-bottom</span>
+<span>.</span>
+<span>The four ways of accessing individual property settings used for the</span>
+<span>margin</span>
+<span>and the</span>
+<span>border</span>
+<span>properties also apply with the</span>
+<span>padding</span>
+<span>property, so all the following are valid</span>
+<span>rules:</span>
+<span>/* All padding */</span>
+<span>padding:1px;</span>
+<span>/* Top/bottom and left/right */</span>
+<span>padding:1px 2px;</span>
+<span>/* Top, left/right and bottom */</span>
+<span>padding:1px 2px 3px;</span>
+<span>/* Top, right, bottom and left */</span>
+<span>padding:1px 2px 3px 4px;</span>
+<span>Figure 18-15</span>
+<span>&nbsp;shows the padding rule (shown in bold) in</span>
+<span>&nbsp;Example 18-7</span>
+<span>&nbsp;applied to</span>
+<span>some text within a table cell (as defined by the rule</span>
+<span>display:table-cell;</span>
+<span>, which</span>
+<span>makes the encapsulating</span>
+<span>&lt;div&gt;</span>
+<span>element display like a table cell), which has been given</span>
+<span>no dimensions so it will simply wrap as closely around the text as it can. As a conse‐</span>
+<span>quence, there is padding of 10 pixels above the inner element, 20 pixels to its right, 30</span>
+<span>pixels below it, and 40 pixels to its left.</span>
+<span>Example 18-7. Applying padding</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;Padding&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>#object1 {</span>
+<span>&nbsp;</span>
+<span>border-style:solid;</span>
+<span>&nbsp;</span>
+<span>border-width:1px;</span>
+<span>&nbsp;</span>
+<span>background :orange;</span>
+<span>&nbsp;</span>
+<span>color :darkred;</span>
+<span>&nbsp;</span>
+<span>font-family :Arial;</span>
+<span>&nbsp;</span>
+<span>font-size :12px;</span>
+<span>&nbsp;</span>
+<span>text-align :justify;</span>
+<span>&nbsp;</span>
+<span>display :table-cell;</span>
+<span>&nbsp;</span>
+<span>width :148px;</span>
+<span>padding :10px 20px 30px 40px; }</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;div id='object1'&gt;To be, or not to be that is the question:</span>
+<span>Whether 'tis Nobler in the mind to suffer</span>
+<span>The Slings and Arrows of outrageous Fortune,</span>
+<span>Or to take Arms against a Sea of troubles,</span>
+<span>And by opposing end them.&lt;/div&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 18-15. Applying different padding values to an object</span>
+<h4>Object Contents</h4>
+<span>Deep within the box model levels, at its center, lies an element that can be styled in all</span>
+<span>the ways discussed in this chapter, and which can (and usually will) contain further</span>
+<span>subelements, which in turn may contain sub-subelements, and so on, each with its</span>
+<span>own styling and box model settings.</span>
+<h3>Questions</h3>
+<span>1.</span>
+<span>Which directive do you use to import one style sheet into another (or the</span>
+<span>&lt;style&gt;</span>
+<span>section of some HTML)?</span>
+<span>2.</span>
+<span>What HTML tag can you use to import a style sheet into a document?</span>
+<span>3.</span>
+<span>Which HTML tag attribute is used to directly embed a style into an element?</span>
+<span>4.</span>
+<span>What is the difference between a CSS ID and a CSS class?</span>
+<span>5.</span>
+<span>Which characters are used to prefix (a) IDs, and (b) class names in a CSS rule?</span>
+<span>6.</span>
+<span>In CSS rules, what is the purpose of the semicolon?</span>
+<span>7.</span>
+<span>How can you add a comment to a style sheet?</span>
+<span>8.</span>
+<span>Which character is used by CSS to represent any element?</span>
+<span>9.</span>
+<span>How can you select a group of different elements and/or element types in CSS?</span>
+<span>10.</span>
+<span>Given a pair of CSS rules with equal precedence, how can you make one have</span>
+<span>greater precedence over the other?</span>
+<span>See</span>
+<span>Chapter 18 Answers</span>
+<span>in</span>
+<span>Appendix A</span>
+<span>for the answers to these questions.</span>

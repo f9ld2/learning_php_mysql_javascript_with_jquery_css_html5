@@ -1,3 +1,1214 @@
 ---
 layout: default
 ---
+<h2>Expressions and Control Flow in JavaScript</h2>
+<span>In the previous chapter, I introduced the basics of JavaScript and the DOM. Now it&rsquo;s</span>
+<span>time to look at how to construct complex expressions in JavaScript and how to con‐</span>
+<span>trol the program flow of your scripts by using conditional statements.</span>
+<h3>Expressions</h3>
+<span>JavaScript expressions are very similar to those in PHP. As you learned in</span>
+<span>Chapter 4</span>
+<span>,</span>
+<span>an expression is a combination of values, variables, operators, and functions that</span>
+<span>results in a value; the result can be a number, a string, or a Boolean value (which eval‐</span>
+<span>uates to either</span>
+<span>true</span>
+<span>or</span>
+<span>false</span>
+<span>).</span>
+<span>Example 14-1</span>
+<span>&nbsp;shows some simple expressions. For each line, it prints out a letter</span>
+<span>between</span>
+<span>a</span>
+<span>and</span>
+<span>d</span>
+<span>, followed by a colon and the result of the expressions. The</span>
+<span>&lt;br&gt;</span>
+<span>tag is</span>
+<span>there to create a line break and separate the output into four lines (remember that</span>
+<span>both</span>
+<span>&lt;br&gt;</span>
+<span>and</span>
+<span>&lt;br /&gt;</span>
+<span>are acceptable in HTML5, so I chose to use the former style for</span>
+<span>brevity).</span>
+<span>Example 14-1. Four simple Boolean expressions</span>
+<span>&lt;script&gt;</span>
+<span>document.write("a: " + (42 &gt; 3) + "&lt;br&gt;")</span>
+<span>document.write("b: " + (91 &lt; 4) + "&lt;br&gt;")</span>
+<span>document.write("c: " + (8 == 2) + "&lt;br&gt;")</span>
+<span>document.write("d: " + (4 &lt; 17) + "&lt;br&gt;")</span>
+<span>&lt;/script&gt;</span>
+<span>The output from this code is as follows:</span>
+<span>a: true</span>
+<span>b: false</span>
+<span>c: false</span>
+<span>d: true</span>
+<span>Notice that both expressions</span>
+<span>a:</span>
+<span>and</span>
+<span>d:</span>
+<span>evaluate to</span>
+<span>true</span>
+<span>. But</span>
+<span>b:</span>
+<span>and</span>
+<span>c:</span>
+<span>evaluate to</span>
+<span>false</span>
+<span>. Unlike PHP (which would print the number</span>
+<span>1</span>
+<span>and nothing, respectively),</span>
+<span>actual strings of</span>
+<span>true</span>
+<span>and</span>
+<span>false</span>
+<span>are displayed.</span>
+<span>In JavaScript, when you are checking whether a value is</span>
+<span>true</span>
+<span>or</span>
+<span>false</span>
+<span>, all values eval‐</span>
+<span>uate to</span>
+<span>true</span>
+<span>except the following, which evaluate to</span>
+<span>false</span>
+<span>: the string</span>
+<span>false</span>
+<span>itself,</span>
+<span>0</span>
+<span>,</span>
+<span>&ndash;</span>
+<span>0</span>
+<span>, the empty string,</span>
+<span>null</span>
+<span>,</span>
+<span>undefined</span>
+<span>, and</span>
+<span>NaN</span>
+<span>(Not a Number, a computer engineer‐</span>
+<span>ing concept for an illegal floating-point operation such as division by zero).</span>
+<span>Note how I am referring to</span>
+<span>true</span>
+<span>and</span>
+<span>false</span>
+<span>in lowercase. This is because, unlike in</span>
+<span>PHP, these values</span>
+<span>must</span>
+<span>be in lowercase in JavaScript. Therefore, only the first of the</span>
+<span>two following statements will display, printing the lowercase word</span>
+<span>true</span>
+<span>, because the</span>
+<span>second will cause a</span>
+<span>'TRUE' is not defined</span>
+<span>error:</span>
+<span>if (1 == true) document.write('true') // True</span>
+<span>if (1 == TRUE) document.write('TRUE') // Will cause an error</span>
+<span>Remember that any code snippets you wish to type and try for</span>
+<span>yourself in an HTML file need to be enclosed within</span>
+<span>&lt;script&gt;</span>
+<span>and</span>
+<span>&lt;/script&gt;</span>
+<span>tags.</span>
+<h3>Literals and Variables</h3>
+<span>The simplest form of an expression is a</span>
+<span>literal</span>
+<span>, which means something that evaluates</span>
+<span>to itself, such as the number</span>
+<span>22</span>
+<span>or the string</span>
+<span>Press Enter</span>
+<span>. An expression could also</span>
+<span>be a variable, which evaluates to the value that has been assigned to it. They are both</span>
+<span>types of expressions, because they return a value.</span>
+<span>Example 14-2</span>
+<span>shows three different literals and two variables, all of which return val‐</span>
+<span>ues, albeit of different types.</span>
+<span>Example 14-2. Five types of literals</span>
+<span>&lt;script&gt;</span>
+<span>myname = "Peter"</span>
+<span>myage = 24</span>
+<span>document.write("a: " + 42 + "&lt;br&gt;") // Numeric literal</span>
+<span>document.write("b: " + "Hi" + "&lt;br&gt;") // String literal</span>
+<span>document.write("c: " + true + "&lt;br&gt;") // Constant literal</span>
+<span>document.write("d: " + myname + "&lt;br&gt;") // String variable</span>
+<span>document.write("e: " + myage + "&lt;br&gt;") // Numeric variable</span>
+<span>&lt;/script&gt;</span>
+<span>And, as you&rsquo;d expect, you see a return value from all of these in the following output:</span>
+<span>a: 42</span>
+<span>b: Hi</span>
+<span>c: true</span>
+<span>d: Peter</span>
+<span>e: 24</span>
+<span>Operators let you create more-complex expressions that evaluate to useful results.</span>
+<span>When you combine assignment or control-flow constructs with expressions, the</span>
+<span>result is a</span>
+<span>statement</span>
+<span>.</span>
+<span>Example 14-3</span>
+<span>shows one of each. The first assigns the result of the expression</span>
+<span>366 -</span>
+<span>day_number</span>
+<span>to the variable</span>
+<span>days_to_new_year</span>
+<span>, and the second outputs a friendly</span>
+<span>message only if the expression</span>
+<span>days_to_new_year &lt; 30</span>
+<span>evaluates to</span>
+<span>true</span>
+<span>.</span>
+<span>Example 14-3. Two simple JavaScript statements</span>
+<span>&lt;script&gt;</span>
+<span>days_to_new_year = 366 - day_number;</span>
+<span>if (days_to_new_year &lt; 30) document.write("It's nearly New Year")</span>
+<span>&lt;/script&gt;</span>
+<h3>Operators</h3>
+<span>JavaScript offers a lot of powerful operators that range from arithmetic, string, and</span>
+<span>logical operators to assignment, comparison, and more (see</span>
+<span>Table 14-1</span>
+<span>).</span>
+<span>Table 14-1. JavaScript operator types</span>
+<span>Operator</span>
+<span>Description</span>
+<span>Example</span>
+<span>Arithmetic</span>
+<span>Basic mathematics</span>
+<span>a + b</span>
+<span>Array</span>
+<span>Array manipulation</span>
+<span>a + b</span>
+<span>Assignment</span>
+<span>Assign values</span>
+<span>a = b + 23</span>
+<span>Bitwise</span>
+<span>Manipulate bits within bytes</span>
+<span>12 ^ 9</span>
+<span>Comparison</span>
+<span>Compare two values</span>
+<span>a &lt; b</span>
+<span>Increment/decrement</span>
+<span>Add or subtract one</span>
+<span>a++</span>
+<span>Logical</span>
+<span>Boolean</span>
+<span>a &amp;&amp; b</span>
+<span>String</span>
+<span>Concatenation</span>
+<span>a + 'string'</span>
+<span>Each operator takes a different number of operands:</span>
+<span>&bull;</span>
+<span>Unary</span>
+<span>&nbsp;operators, such as incrementing (</span>
+<span>a++</span>
+<span>) or negation (</span>
+<span>-a</span>
+<span>), take a single</span>
+<span>operand.</span>
+<span>&bull;</span>
+<span>Binary</span>
+<span>&nbsp;operators, which represent the bulk of JavaScript operators&mdash;including</span>
+<span>addition, subtraction, multiplication, and division&mdash;take two operands.</span>
+<span>&bull;</span>
+<span>One</span>
+<span>&nbsp;ternary</span>
+<span>&nbsp;operator, which takes the form</span>
+<span>? x : y</span>
+<span>. It&rsquo;s a terse single-line</span>
+<span>if</span>
+<span>statement that chooses between two expressions depending on a third one.</span>
+<h4>Operator Precedence</h4>
+<span>As with PHP, JavaScript utilizes operator precedence, in which some operators in an</span>
+<span>expression are considered more important than others and are therefore evaluated</span>
+<span>first.</span>
+<span>Table 14-2</span>
+<span>lists JavaScript&rsquo;s operators and their precedencies.</span>
+<span>Table 14-2. Precedence of JavaScript operators (high to low)</span>
+<span>Operator(s)</span>
+<span>Type(s)</span>
+<span>() [] .</span>
+<span>Parentheses, call, and member</span>
+<span>++ --</span>
+<span>Increment/decrement</span>
+<span>+ - ~ !</span>
+<span>Unary, bitwise, and logical</span>
+<span>* / %</span>
+<span>Arithmetic</span>
+<span>+ -</span>
+<span>Arithmetic and string</span>
+<span>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</span>
+<span>Bitwise</span>
+<span>&lt; &gt; &lt;= &gt;=</span>
+<span>Comparison</span>
+<span>== != === !==</span>
+<span>Comparison</span>
+<span>&amp; ^ |</span>
+<span>Bitwise</span>
+<span>&amp;&amp;</span>
+<span>Logical</span>
+<span>||</span>
+<span>Logical</span>
+<span>? :</span>
+<span>Ternary</span>
+<span>= += -= *= /= %=</span>
+<span>Assignment</span>
+<span>&lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</span>
+<span>Assignment</span>
+<span>,</span>
+<span>Separator</span>
+<h4>Associativity</h4>
+<span>Most JavaScript operators are processed in order from left to right in an equation.</span>
+<span>But some operators require processing from right to left instead. The direction of</span>
+<span>processing is called the operator&rsquo;s</span>
+<span>associativity</span>
+<span>.</span>
+<span>This associativity becomes important in cases where you do not explicitly force prece‐</span>
+<span>dence. For example, look at the following assignment operators, by which three vari‐</span>
+<span>ables are all set to the value</span>
+<span>0</span>
+<span>:</span>
+<span>level = score = time = 0</span>
+<span>This multiple assignment is possible only because the rightmost part of the expres‐</span>
+<span>sion is evaluated first and then processing continues in a right-to-left direction.</span>
+<span>Table 14-3</span>
+<span>lists operators and their associativity.</span>
+<span>Table 14-3. Operators and associativity</span>
+<span>Operator</span>
+<span>Description</span>
+<span>Associativity</span>
+<span>++ --</span>
+<span>Increment and decrement</span>
+<span>None</span>
+<span>new</span>
+<span>Create a new object</span>
+<span>Right</span>
+<span>+ - ~ !</span>
+<span>Unary and bitwise</span>
+<span>Right</span>
+<span>?:</span>
+<span>Ternary</span>
+<span>Right</span>
+<span>= *= /= %= += -=</span>
+<span>Assignment</span>
+<span>Right</span>
+<span>&lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</span>
+<span>Assignment</span>
+<span>Right</span>
+<span>,</span>
+<span>Separator</span>
+<span>Left</span>
+<span>+ - * / %</span>
+<span>Arithmetic</span>
+<span>Left</span>
+<span>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</span>
+<span>Bitwise</span>
+<span>Left</span>
+<span>&lt; &lt;= &gt; &gt;= == != === !==</span>
+<span>Arithmetic</span>
+<span>Left</span>
+<h4>Relational Operators</h4>
+<span>Relational operators</span>
+<span>test two operands and return a Boolean result of either</span>
+<span>true</span>
+<span>or</span>
+<span>false</span>
+<span>. There are three types of relational operators:</span>
+<span>equality</span>
+<span>,</span>
+<span>comparison</span>
+<span>, and</span>
+<span>logical</span>
+<span>.</span>
+<span>Equality operators</span>
+<span>The equality operator is</span>
+<span>==</span>
+<span>(which should not be confused with the</span>
+<span>=</span>
+<span>assignment</span>
+<span>operator). In</span>
+<span>Example 14-4</span>
+<span>, the first statement assigns a value, and the second tests it</span>
+<span>for equality. As it stands, nothing will be printed out, because</span>
+<span>month</span>
+<span>is assigned the</span>
+<span>string value</span>
+<span>July</span>
+<span>, and therefore the check for it having a value of</span>
+<span>October</span>
+<span>will fail.</span>
+<span>Example 14-4. Assigning a value and testing for equality</span>
+<span>&lt;script&gt;</span>
+<span>month = "July"</span>
+<span>if (month == "October") document.write("It's the Fall")</span>
+<span>&lt;/script&gt;</span>
+<span>If the two operands of an equality expression are of different types, JavaScript will</span>
+<span>convert them to whatever type makes best sense to it. For example, any strings com‐</span>
+<span>posed entirely of numbers will be converted to numbers whenever compared with a</span>
+<span>number. In</span>
+<span>Example 14-5</span>
+<span>,</span>
+<span>a</span>
+<span>and</span>
+<span>b</span>
+<span>are two different values (one is a number and the</span>
+<span>other is a string), and we would therefore normally expect neither of the</span>
+<span>if</span>
+<span>state‐</span>
+<span>ments to output a result.</span>
+<span>Example 14-5. The equality and identity operators</span>
+<span>&lt;script&gt;</span>
+<span>a = 3.1415927</span>
+<span>b = "3.1415927"</span>
+<span>if (a == b) document.write("1")</span>
+<span>if (a === b) document.write("2")</span>
+<span>&lt;/script&gt;</span>
+<span>However, if you run the example, you will see that it outputs the number</span>
+<span>1</span>
+<span>, which</span>
+<span>means that the first</span>
+<span>if</span>
+<span>statement evaluated to</span>
+<span>true</span>
+<span>. This is because the string value of</span>
+<span>b</span>
+<span>was first temporarily converted to a number, and therefore both halves of the equa‐</span>
+<span>tion had a numerical value of 3.1415927.</span>
+<span>In contrast, the second</span>
+<span>if</span>
+<span>statement uses the</span>
+<span>identity</span>
+<span>operator, three equals signs in a</span>
+<span>row, which prevents JavaScript from automatically converting types. This means that</span>
+<span>a</span>
+<span>and</span>
+<span>b</span>
+<span>are therefore found to be different, so nothing is output.</span>
+<span>As with forcing operator precedence, whenever you&rsquo;re in doubt about how JavaScript</span>
+<span>will convert operand types, you can use the identity operator to turn this behavior off.</span>
+<span>Comparison operators</span>
+<span>Using comparison operators, you can test for more than just equality and inequality.</span>
+<span>JavaScript also gives you</span>
+<span>&gt;</span>
+<span>(is greater than),</span>
+<span>&lt;</span>
+<span>(is less than),</span>
+<span>&gt;=</span>
+<span>(is greater than or</span>
+<span>equal to), and</span>
+<span>&lt;=</span>
+<span>(is less than or equal to) to play with.</span>
+<span>&nbsp;Example 14-6</span>
+<span>&nbsp;shows these</span>
+<span>operators in use.</span>
+<span>Example 14-6.</span>
+<span>The four comparison operators</span>
+<span>&lt;script&gt;</span>
+<span>a = 7; b = 11</span>
+<span>if (a &gt; b) document.write("a is greater than b&lt;br&gt;")</span>
+<span>if (a &lt; b) document.write("a is less than b&lt;br&gt;")</span>
+<span>if (a &gt;= b) document.write("a is greater than or equal to b&lt;br&gt;")</span>
+<span>if (a &lt;= b) document.write("a is less than or equal to b&lt;br&gt;")</span>
+<span>&lt;/script&gt;</span>
+<span>In this example, where</span>
+<span>a</span>
+<span>is 7 and</span>
+<span>b</span>
+<span>is 11, the following is output (because 7 is less than</span>
+<span>11, and also less than or equal to 11):</span>
+<span>a is less than b</span>
+<span>a is less than or equal to b</span>
+<span>Logical operators</span>
+<span>Logical operators produce true-or-false results, and are also known as</span>
+<span>Boolean</span>
+<span>opera‐</span>
+<span>tors. There are three of them in JavaScript (see</span>
+<span>Table 14-4</span>
+<span>).</span>
+<span>Table 14-4. JavaScript&rsquo;s logical operators</span>
+<span>Logical operator</span>
+<span>Description</span>
+<span>&amp;&amp;</span>
+<span>(and)</span>
+<span>true</span>
+<span>if both operands are</span>
+<span>true</span>
+<span>||</span>
+<span>(or)</span>
+<span>true</span>
+<span>if either operand is</span>
+<span>true</span>
+<span>!</span>
+<span>(not)</span>
+<span>true</span>
+<span>if the operand is</span>
+<span>false</span>
+<span>, or</span>
+<span>false</span>
+<span>if the operand is</span>
+<span>true</span>
+<span>You can see how these can be used in</span>
+<span>Example 14-7</span>
+<span>, which outputs</span>
+<span>0</span>
+<span>,</span>
+<span>1</span>
+<span>, and</span>
+<span>true</span>
+<span>.</span>
+<span>Example 14-7.</span>
+<span>The logical operators in use</span>
+<span>&lt;script&gt;</span>
+<span>a = 1; b = 0</span>
+<span>document.write((a &amp;&amp; b) + "&lt;br&gt;")</span>
+<span>document.write((a || b) + "&lt;br&gt;")</span>
+<span>document.write(( !b ) + "&lt;br&gt;")</span>
+<span>&lt;/script&gt;</span>
+<span>The</span>
+<span>&amp;&amp;</span>
+<span>statement requires both operands to be</span>
+<span>true</span>
+<span>if it is going to return a value of</span>
+<span>true</span>
+<span>, the</span>
+<span>||</span>
+<span>statement will be</span>
+<span>true</span>
+<span>if either value is</span>
+<span>true</span>
+<span>, and the third statement</span>
+<span>performs a</span>
+<span>NOT</span>
+<span>on the value of</span>
+<span>b</span>
+<span>, turning it from</span>
+<span>0</span>
+<span>into a value of</span>
+<span>true</span>
+<span>.</span>
+<span>The</span>
+<span>||</span>
+<span>operator can cause unintentional problems, because the second operand will</span>
+<span>not be evaluated if the first is evaluated as</span>
+<span>true</span>
+<span>. In</span>
+<span>Example 14-8</span>
+<span>, the</span>
+<span>getnext</span>
+<span>func‐</span>
+<span>tion will never be called if</span>
+<span>finished</span>
+<span>has a value of</span>
+<span>1</span>
+<span>.</span>
+<span>Example 14-8. A statement using the || operator</span>
+<span>&lt;script&gt;</span>
+<span>if (finished == 1 || getnext() == 1) done = 1</span>
+<span>&lt;/script&gt;</span>
+<span>If you</span>
+<span>need</span>
+<span>getnext</span>
+<span>to be called at each</span>
+<span>if</span>
+<span>statement, you should rewrite the code as</span>
+<span>shown in</span>
+<span>Example 14-9</span>
+<span>.</span>
+<span>Example 14-9.</span>
+<span>The if...or statement modified to ensure calling of getnext</span>
+<span>&lt;script&gt;</span>
+<span>gn = getnext()</span>
+<span>if (finished == 1 OR gn == 1) done = 1;</span>
+<span>&lt;/script&gt;</span>
+<span>In this case, the code in function</span>
+<span>getnext</span>
+<span>will be executed and its return value stored</span>
+<span>in</span>
+<span>gn</span>
+<span>before the</span>
+<span>if</span>
+<span>statement.</span>
+<span>Table 14-5</span>
+<span>shows all the possible variations of using the logical operators. You should</span>
+<span>also note that</span>
+<span>!true</span>
+<span>equals</span>
+<span>false</span>
+<span>, and</span>
+<span>!false</span>
+<span>equals</span>
+<span>true</span>
+<span>.</span>
+<span>Table 14-5. All possible logical expressions</span>
+<span>Inputs</span>
+<span>Operators and results</span>
+<span>A</span>
+<span>b</span>
+<span>&amp;&amp;</span>
+<span>||</span>
+<span>true</span>
+<span>true</span>
+<span>true</span>
+<span>true</span>
+<span>true</span>
+<span>false</span>
+<span>false</span>
+<span>true</span>
+<span>false</span>
+<span>true</span>
+<span>false</span>
+<span>true</span>
+<span>false</span>
+<span>false</span>
+<span>false</span>
+<span>false</span>
+<h3>The with Statement</h3>
+<span>The</span>
+<span>with</span>
+<span>statement is not one that you&rsquo;ve seen in earlier chapters on PHP, because it&rsquo;s</span>
+<span>exclusive to JavaScript. With it (if you see what I mean), you can simplify some types</span>
+<span>of JavaScript statements by reducing many references to an object to just one refer‐</span>
+<span>ence. References to properties and methods within the</span>
+<span>with</span>
+<span>block are assumed to</span>
+<span>apply to that object.</span>
+<span>For example, take the code in</span>
+<span>Example 14-10</span>
+<span>, in which the</span>
+<span>document.write</span>
+<span>function</span>
+<span>never references the variable</span>
+<span>string</span>
+<span>by name.</span>
+<span>Example 14-10. Using the with statement</span>
+<span>&lt;script&gt;</span>
+<span>string = "The quick brown fox jumps over the lazy dog"</span>
+<span>with (string)</span>
+<span>{</span>
+<span>document.write("The string is " + length + " characters&lt;br&gt;")</span>
+<span>document.write("In upper case it's: " + toUpperCase())</span>
+<span>}</span>
+<span>&lt;/script&gt;</span>
+<span>Even though</span>
+<span>string</span>
+<span>is never directly referenced by</span>
+<span>document.write</span>
+<span>, this code still</span>
+<span>manages to output the following:</span>
+<span>The string is 43 characters</span>
+<span>In upper case it's: THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG</span>
+<span>This is how the code works: the JavaScript interpreter recognizes that the</span>
+<span>length</span>
+<span>property and</span>
+<span>toUpperCase()</span>
+<span>method have to be applied to some object. Because they</span>
+<span>stand alone, the interpreter assumes they apply to the</span>
+<span>string</span>
+<span>object that you specified</span>
+<span>in the</span>
+<span>with</span>
+<span>statement.</span>
+<h3>Using onerror</h3>
+<span>There are more constructs not available in PHP. Using either the</span>
+<span>onerror</span>
+<span>event, or a</span>
+<span>combination of the</span>
+<span>try</span>
+<span>and</span>
+<span>catch</span>
+<span>keywords, you can catch JavaScript errors and deal</span>
+<span>with them yourself.</span>
+<span>Events</span>
+<span>are actions that can be detected by JavaScript. Every element on a web page has</span>
+<span>certain events that can trigger JavaScript functions. For example, the</span>
+<span>onclick</span>
+<span>event of</span>
+<span>a button element can be set to call a function and make it run whenever a user clicks</span>
+<span>the button.</span>
+<span>Example 14-11</span>
+<span>illustrates how to use the</span>
+<span>onerror</span>
+<span>event.</span>
+<span>Example 14-11. A script employing the onerror event</span>
+<span>&lt;script&gt;</span>
+<span>onerror = errorHandler</span>
+<span>document.writ("Welcome to this website") // Deliberate error</span>
+<span>function errorHandler(message, url, line)</span>
+<span>{</span>
+<span>out = "Sorry, an error was encountered.\n\n";</span>
+<span>out += "Error: " + message + "\n";</span>
+<span>out += "URL: " + url + "\n";</span>
+<span>out += "Line: " + line + "\n\n";</span>
+<span>out += "Click OK to continue.\n\n";</span>
+<span>alert(out);</span>
+<span>return true;</span>
+<span>}</span>
+<span>&lt;/script&gt;</span>
+<span>The first line of this script tells the error event to use the new</span>
+<span>errorHandler</span>
+<span>function</span>
+<span>from now onward. This function takes three parameters&mdash;a</span>
+<span>message</span>
+<span>, a</span>
+<span>url</span>
+<span>, and a</span>
+<span>line</span>
+<span>number&mdash;so it&rsquo;s a simple matter to display all these in an alert pop up.</span>
+<span>Then, to test the new function, we deliberately place a syntax error in the code with a</span>
+<span>call to</span>
+<span>document.writ</span>
+<span>instead of</span>
+<span>document.write</span>
+<span>(the final</span>
+<span>e</span>
+<span>is missing).</span>
+<span>Figure 14-1</span>
+<span>shows the result of running this script in a browser. Using</span>
+<span>onerror</span>
+<span>this way can also</span>
+<span>be quite useful during the debugging process.</span>
+<span>Figure 14-1. Using the onerror event with an alert method pop-up</span>
+<h3>Using try...catch</h3>
+<span>The</span>
+<span>try</span>
+<span>and</span>
+<span>catch</span>
+<span>keywords are more standard and more flexible than the</span>
+<span>onerror</span>
+<span>technique shown in the previous section. These keywords let you trap errors for a</span>
+<span>selected section of code, rather than all scripts in a document. However, they do not</span>
+<span>catch syntax errors, for which you need</span>
+<span>onerror</span>
+<span>.</span>
+<span>The</span>
+<span>try...catch</span>
+<span>construct is supported by all major browsers and is handy when</span>
+<span>you want to catch a certain condition that you are aware could occur in a specific part</span>
+<span>of your code.</span>
+<span>For example, in</span>
+<span>Chapter 17</span>
+<span>we&rsquo;ll be exploring Ajax techniques that make use of the</span>
+<span>XMLHttpRequest</span>
+<span>object. Unfortunately, this isn&rsquo;t available in the Internet Explorer</span>
+<span>browser (although it is in all other major browsers). Therefore, we can use</span>
+<span>try</span>
+<span>and</span>
+<span>catch</span>
+<span>to trap this case and do something else if the function is not available.</span>
+<span>Example 14-12</span>
+<span>shows how.</span>
+<span>Example 14-12. Trapping an error with try and catch</span>
+<span>&lt;script&gt;</span>
+<span>try</span>
+<span>{</span>
+<span>request = new XMLHTTPRequest()</span>
+<span>}</span>
+<span>catch(err)</span>
+<span>{</span>
+<span>// Use a different method to create an XML HTTP Request object</span>
+<span>}</span>
+<span>&lt;/script&gt;</span>
+<span>I won&rsquo;t go into how we implement the missing object in Internet Explorer here, but</span>
+<span>you can see how the system works. There&rsquo;s also another keyword associated with</span>
+<span>try</span>
+<span>and</span>
+<span>catch</span>
+<span>called</span>
+<span>finally</span>
+<span>that is always executed, regardless of whether an error</span>
+<span>occurs in the</span>
+<span>try</span>
+<span>clause. To use it, just add something like the following statements</span>
+<span>after a</span>
+<span>catch</span>
+<span>statement:</span>
+<span>finally</span>
+<span>{</span>
+<span>alert("The 'try' clause was encountered")</span>
+<span>}</span>
+<h3>Conditionals</h3>
+<span>Conditionals alter program flow. They enable you to ask questions about certain</span>
+<span>things and respond to the answers you get in different ways. There are three types of</span>
+<span>nonlooping conditionals: the</span>
+<span>if</span>
+<span>statement, the</span>
+<span>switch</span>
+<span>statement, and the</span>
+<span>?</span>
+<span>operator.</span>
+<h4>The if Statement</h4>
+<span>Several examples in this chapter have already made use of</span>
+<span>if</span>
+<span>statements. The code</span>
+<span>within such a statement is executed only if the given expression evaluates to</span>
+<span>true</span>
+<span>.</span>
+<span>Multiline</span>
+<span>if</span>
+<span>statements require curly braces around them, but as in PHP, you can</span>
+<span>omit the braces for single statements. Therefore, the following statements are valid:</span>
+<span>if (a &gt; 100)</span>
+<span>{</span>
+<span>b=2</span>
+<span>document.write("a is greater than 100")</span>
+<span>}</span>
+<span>if (b == 10) document.write("b is equal to 10")</span>
+<h4>The else Statement</h4>
+<span>When a condition has not been met, you can execute an alternative by using an</span>
+<span>else</span>
+<span>statement, like this:</span>
+<span>if (a &gt; 100)</span>
+<span>{</span>
+<span>document.write("a is greater than 100")</span>
+<span>}</span>
+<span>else</span>
+<span>{</span>
+<span>document.write("a is less than or equal to 100")</span>
+<span>}</span>
+<span>Unlike PHP, JavaScript has no</span>
+<span>elseif</span>
+<span>statement, but that&rsquo;s not a problem, because</span>
+<span>you can use an</span>
+<span>else</span>
+<span>followed by another</span>
+<span>if</span>
+<span>to form the equivalent of an</span>
+<span>elseif</span>
+<span>statement, like this:</span>
+<span>if (a &gt; 100)</span>
+<span>{</span>
+<span>document.write("a is greater than 100")</span>
+<span>}</span>
+<span>else if(a &lt; 100)</span>
+<span>{</span>
+<span>document.write("a is less than 100")</span>
+<span>}</span>
+<span>else</span>
+<span>{</span>
+<span>document.write("a is equal to 100")</span>
+<span>}</span>
+<span>As you can see, you can use another</span>
+<span>else</span>
+<span>after the new</span>
+<span>if</span>
+<span>, which could equally be</span>
+<span>followed by another</span>
+<span>if</span>
+<span>statement, and so on. Although I have shown braces on the</span>
+<span>statements, because each is a single line, the whole previous example could be written</span>
+<span>as follows:</span>
+<span>if (a &gt; 100) document.write("a is greater than 100")</span>
+<span>else if(a &lt; 100) document.write("a is less than 100")</span>
+<span>else document.write("a is equal to 100")</span>
+<h4>The switch Statement</h4>
+<span>The</span>
+<span>switch</span>
+<span>statement is useful when one variable or the result of an expression can</span>
+<span>have multiple values, and you want to perform a different function for each value.</span>
+<span>For example, the following code takes the PHP menu system we put together in</span>
+<span>Chapter 4</span>
+<span>and converts it to JavaScript. It works by passing a single string to the main</span>
+<span>menu code according to what the user requests. Let&rsquo;s say the options are Home,</span>
+<span>About, News, Login, and Links, and we set the variable</span>
+<span>page</span>
+<span>to one of these according</span>
+<span>to the user&rsquo;s input.</span>
+<span>The code for this written using</span>
+<span>if...else if...</span>
+<span>might look like</span>
+<span>Example 14-13</span>
+<span>.</span>
+<span>Example 14-13. A multiline if...else if... statement</span>
+<span>&lt;script&gt;</span>
+<span>if (page == "Home") document.write("You selected Home")</span>
+<span>else if (page == "About") document.write("You selected About")</span>
+<span>else if (page == "News") document.write("You selected News")</span>
+<span>else if (page == "Login") document.write("You selected Login")</span>
+<span>else if (page == "Links") document.write("You selected Links")</span>
+<span>&lt;/script&gt;</span>
+<span>But using a</span>
+<span>switch</span>
+<span>construct, the code could look like</span>
+<span>Example 14-14</span>
+<span>.</span>
+<span>Example 14-14. A switch construct</span>
+<span>&lt;script&gt;</span>
+<span>switch (page)</span>
+<span>{</span>
+<span>case "Home":</span>
+<span>&nbsp;</span>
+<span>document.write("You selected Home")</span>
+<span>&nbsp;</span>
+<span>break</span>
+<span>case "About":</span>
+<span>&nbsp;</span>
+<span>document.write("You selected About")</span>
+<span>&nbsp;</span>
+<span>break</span>
+<span>case "News":</span>
+<span>&nbsp;</span>
+<span>document.write("You selected News")</span>
+<span>&nbsp;</span>
+<span>break</span>
+<span>case "Login":</span>
+<span>&nbsp;</span>
+<span>document.write("You selected Login")</span>
+<span>&nbsp;</span>
+<span>break</span>
+<span>case "Links":</span>
+<span>&nbsp;</span>
+<span>document.write("You selected Links")</span>
+<span>&nbsp;</span>
+<span>break</span>
+<span>}</span>
+<span>&lt;/script&gt;</span>
+<span>The variable</span>
+<span>page</span>
+<span>is mentioned only once at the start of the</span>
+<span>switch</span>
+<span>statement. There‐</span>
+<span>after, the</span>
+<span>case</span>
+<span>command checks for matches. When one occurs, the matching condi‐</span>
+<span>tional statement is executed. Of course, a real program would have code here to</span>
+<span>display or jump to a page, rather than simply telling the user what was selected.</span>
+<span>Breaking out</span>
+<span>As you can see in</span>
+<span>Example 14-14</span>
+<span>, just as with PHP, the</span>
+<span>break</span>
+<span>command allows your</span>
+<span>code to break out of the</span>
+<span>switch</span>
+<span>statement once a condition has been satisfied.</span>
+<span>Remember to include the</span>
+<span>break</span>
+<span>unless you want to continue executing the statements</span>
+<span>under the next</span>
+<span>case</span>
+<span>.</span>
+<span>Default action</span>
+<span>When no condition is satisfied, you can specify a default action for a</span>
+<span>switch</span>
+<span>state‐</span>
+<span>ment by using the</span>
+<span>default</span>
+<span>keyword.</span>
+<span>Example 14-15</span>
+<span>shows a code snippet that could</span>
+<span>be inserted into</span>
+<span>Example 14-14</span>
+<span>.</span>
+<span>Example 14-15. A default statement to add to</span>
+<span>Example 14-14</span>
+<span>default:</span>
+<span>document.write("Unrecognized selection")</span>
+<span>break</span>
+<h4>The ? Operator</h4>
+<span>The</span>
+<span>ternary</span>
+<span>operator (</span>
+<span>?</span>
+<span>), combined with the</span>
+<span>:</span>
+<span>character, provides a quick way of</span>
+<span>doing</span>
+<span>if...else</span>
+<span>tests. With it you can write an expression to evaluate, and then fol‐</span>
+<span>low it with a</span>
+<span>?</span>
+<span>symbol and the code to execute if the expression is</span>
+<span>true</span>
+<span>. After that,</span>
+<span>place a</span>
+<span>:</span>
+<span>and the code to execute if the expression evaluates to</span>
+<span>false</span>
+<span>.</span>
+<span>Example 14-16</span>
+<span>shows a ternary operator being used to print out whether the variable</span>
+<span>a</span>
+<span>is less than or equal to 5, and prints something either way.</span>
+<span>Example 14-16. Using the ternary operator</span>
+<span>&lt;script&gt;</span>
+<span>document.write(</span>
+<span>a &lt;= 5 ?</span>
+<span>"a is less than or equal to 5" :</span>
+<span>"a is greater than 5"</span>
+<span>)</span>
+<span>&lt;/script&gt;</span>
+<span>The statement has been broken up into several lines for clarity, but you would be</span>
+<span>more likely to use such a statement on a single line, in this manner:</span>
+<span>size = a &lt;= 5 ? "short" : "long"</span>
+<h3>Looping</h3>
+<span>Again, you will find many close similarities between JavaScript and PHP when it</span>
+<span>comes to looping. Both languages support</span>
+<span>while</span>
+<span>,</span>
+<span>do...while</span>
+<span>, and</span>
+<span>for</span>
+<span>loops.</span>
+<h4>while Loops</h4>
+<span>A JavaScript</span>
+<span>while</span>
+<span>loop first checks the value of an expression and starts executing</span>
+<span>the statements within the loop only if that expression is</span>
+<span>true</span>
+<span>. If it is</span>
+<span>false</span>
+<span>, execution</span>
+<span>skips over to the next JavaScript statement (if any).</span>
+<span>Upon completing an iteration of the loop, the expression is again tested to see if it is</span>
+<span>true</span>
+<span>, and the process continues until such a time as the expression evaluates to</span>
+<span>false</span>
+<span>or until execution is otherwise halted.</span>
+<span>Example 14-17</span>
+<span>shows such a loop.</span>
+<span>Example 14-17. A while loop</span>
+<span>&lt;script&gt;</span>
+<span>counter=0</span>
+<span>while (counter &lt; 5)</span>
+<span>{</span>
+<span>document.write("Counter: " + counter + "&lt;br&gt;")</span>
+<span>++counter</span>
+<span>}</span>
+<span>&lt;/script&gt;</span>
+<span>This script outputs the following:</span>
+<span>Counter: 0</span>
+<span>Counter: 1</span>
+<span>Counter: 2</span>
+<span>Counter: 3</span>
+<span>Counter: 4</span>
+<span>If the variable</span>
+<span>counter</span>
+<span>were not incremented within the loop, it is</span>
+<span>quite possible that some browsers could become unresponsive due</span>
+<span>to a never-ending loop, and the page may not even be easy to ter‐</span>
+<span>minate with Escape or the Stop button. So be careful with your</span>
+<span>JavaScript loops.</span>
+<h4>do...while Loops</h4>
+<span>When you require a loop to iterate at least once before any tests are made, use a</span>
+<span>do...while</span>
+<span>loop, which is similar to a</span>
+<span>while</span>
+<span>loop, except that the test expression is</span>
+<span>checked only after each iteration of the loop. So, to output the first seven results in</span>
+<span>the 7 times table, you could use code such as that in</span>
+<span>Example 14-18</span>
+<span>.</span>
+<span>Example 14-18. A do...while loop</span>
+<span>&lt;script&gt;</span>
+<span>count = 1</span>
+<span>do</span>
+<span>{</span>
+<span>document.write(count + " times 7 is " + count * 7 + "&lt;br&gt;")</span>
+<span>} while (++count &lt;= 7)</span>
+<span>&lt;/script&gt;</span>
+<span>As you might expect, this loop outputs the following:</span>
+<span>1 times 7 is 7</span>
+<span>2 times 7 is 14</span>
+<span>3 times 7 is 21</span>
+<span>4 times 7 is 28</span>
+<span>5 times 7 is 35</span>
+<span>6 times 7 is 42</span>
+<span>7 times 7 is 49</span>
+<h4>for Loops</h4>
+<span>A</span>
+<span>for</span>
+<span>loop combines the best of all worlds into a single looping construct that allows</span>
+<span>you to pass three parameters for each statement:</span>
+<span>&bull;</span>
+<span>An initialization expression</span>
+<span>&bull;</span>
+<span>A condition expression</span>
+<span>&bull;</span>
+<span>A modification expression</span>
+<span>These are separated by semicolons, like this:</span>
+<span>for (</span>
+<span>expr1</span>
+<span>;</span>
+<span>expr2</span>
+<span>;</span>
+<span>expr3</span>
+<span>)</span>
+<span>. At the</span>
+<span>start of the first iteration of the loop, the initialization expression is executed. In the</span>
+<span>case of the code for the multiplication table for 7,</span>
+<span>count</span>
+<span>would be initialized to the</span>
+<span>value</span>
+<span>1</span>
+<span>. Then, each time around the loop, the condition expression (in this case,</span>
+<span>count &lt;= 7</span>
+<span>) is tested, and the loop is entered only if the condition is</span>
+<span>true</span>
+<span>. Finally, at</span>
+<span>the end of each iteration, the modification expression is executed. In the case of the</span>
+<span>multiplication table for 7, the variable</span>
+<span>count</span>
+<span>is incremented.</span>
+<span>&nbsp;Example 14-19</span>
+<span>&nbsp;shows</span>
+<span>what the code would look like.</span>
+<span>Example 14-19. Using a for loop</span>
+<span>&lt;script&gt;</span>
+<span>for (count = 1 ; count &lt;= 7 ; ++count)</span>
+<span>{</span>
+<span>document.write(count + "times 7 is " + count * 7 + "&lt;br&gt;");</span>
+<span>}</span>
+<span>&lt;/script&gt;</span>
+<span>As in PHP, you can assign multiple variables in the first parameter of a</span>
+<span>for</span>
+<span>loop by</span>
+<span>separating them with a comma, like this:</span>
+<span>for (i = 1, j = 1 ; i &lt; 10 ; i++)</span>
+<span>Likewise, you can perform multiple modifications in the last parameter, like this:</span>
+<span>for (i = 1 ; i &lt; 10 ; i++, --j)</span>
+<span>Or you can do both at the same time:</span>
+<span>for (i = 1, j = 1 ; i &lt; 10 ; i++, --j)</span>
+<h4>Breaking Out of a Loop</h4>
+<span>The</span>
+<span>break</span>
+<span>command, which you&rsquo;ll recall is important inside a</span>
+<span>switch</span>
+<span>statement, is</span>
+<span>also available within</span>
+<span>for</span>
+<span>loops. You might need to use this, for example, when search‐</span>
+<span>ing for a match of some kind. Once the match is found, you know that continuing to</span>
+<span>search will only waste time and make your visitor wait.</span>
+<span>Example 14-20</span>
+<span>shows how to</span>
+<span>use the</span>
+<span>break</span>
+<span>command.</span>
+<span>Example 14-20. Using the break command in a for loop</span>
+<span>&lt;script&gt;</span>
+<span>haystack = new Array()</span>
+<span>haystack[17] = "Needle"</span>
+<span>for (j = 0 ; j &lt; 20 ; ++j)</span>
+<span>{</span>
+<span>if (haystack[j] == "Needle")</span>
+<span>{</span>
+<span>&nbsp;</span>
+<span>document.write("&lt;br&gt;- Found at location " + j)</span>
+<span>break</span>
+<span>}</span>
+<span>else document.write(j + ", ")</span>
+<span>}</span>
+<span>&lt;/script&gt;</span>
+<span>This script outputs the following:</span>
+<span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,</span>
+<span>- Found at location 17</span>
+<h4>The continue Statement</h4>
+<span>Sometimes you don&rsquo;t want to entirely exit from a loop, but instead wish to skip the</span>
+<span>remaining statements just for this iteration of the loop. In such cases, you can use the</span>
+<span>continue</span>
+<span>command.</span>
+<span>Example 14-21</span>
+<span>shows this in use.</span>
+<span>Example 14-21. Using the continue command in a for loop</span>
+<span>&lt;script&gt;</span>
+<span>haystack = new Array()</span>
+<span>haystack[4] = "Needle"</span>
+<span>haystack[11] = "Needle"</span>
+<span>haystack[17] = "Needle"</span>
+<span>for (j = 0 ; j &lt; 20 ; ++j)</span>
+<span>{</span>
+<span>if (haystack[j] == "Needle")</span>
+<span>{</span>
+<span>&nbsp;</span>
+<span>document.write("&lt;br&gt;- Found at location " + j + "&lt;br&gt;")</span>
+<span>continue</span>
+<span>}</span>
+<span>document.write(j + ", ")</span>
+<span>}</span>
+<span>&lt;/script&gt;</span>
+<span>Notice how the second</span>
+<span>document.write</span>
+<span>call does not have to be enclosed in an</span>
+<span>else</span>
+<span>statement (as it did before), because the</span>
+<span>continue</span>
+<span>command will skip it if a match has</span>
+<span>been found. The output from this script is as follows:</span>
+<span>0, 1, 2, 3,</span>
+<span>- Found at location 4</span>
+<span>5, 6, 7, 8, 9, 10,</span>
+<span>- Found at location 11</span>
+<span>12, 13, 14, 15, 16,</span>
+<span>- Found at location 17</span>
+<span>18, 19,</span>
+<h3>Explicit Casting</h3>
+<span>Unlike PHP, JavaScript has no explicit casting of types such as</span>
+<span>(int)</span>
+<span>or</span>
+<span>(float)</span>
+<span>.</span>
+<span>Instead, when you need a value to be of a certain type, use one of JavaScript&rsquo;s built-in</span>
+<span>functions, shown in</span>
+<span>Table 14-6</span>
+<span>.</span>
+<span>Table 14-6. JavaScript&rsquo;s type-changing functions</span>
+<span>Change to type</span>
+<span>Function to use</span>
+<span>Int, Integer</span>
+<span>parseInt()</span>
+<span>Bool, Boolean</span>
+<span>Boolean()</span>
+<span>Float, Double, Real</span>
+<span>parseFloat()</span>
+<span>String</span>
+<span>String()</span>
+<span>Array</span>
+<span>split()</span>
+<span>So, for example, to change a floating-point number to an integer, you could use code</span>
+<span>such as the following (which displays the value</span>
+<span>3</span>
+<span>):</span>
+<span>n = 3.1415927</span>
+<span>i = parseInt(n)</span>
+<span>document.write(i)</span>
+<span>Or you can use the compound form:</span>
+<span>document.write(parseInt(3.1415927))</span>
+<span>That&rsquo;s it for control flow and expressions. The next chapter focuses on the use of</span>
+<span>functions, objects, and arrays in JavaScript.</span>
+<h3>Questions</h3>
+<span>1.</span>
+<span>How are Boolean values handled differently by PHP and JavaScript?</span>
+<span>2.</span>
+<span>What characters are used to define a JavaScript variable name?</span>
+<span>3.</span>
+<span>What is the difference between unary, binary, and ternary operators?</span>
+<span>4.</span>
+<span>What is the best way to force your own operator precedence?</span>
+<span>5.</span>
+<span>When would you use the</span>
+<span>===</span>
+<span>(identity) operator?</span>
+<span>6.</span>
+<span>What are the simplest two forms of expressions?</span>
+<span>7.</span>
+<span>Name the three conditional statement types.</span>
+<span>8.</span>
+<span>How do</span>
+<span>if</span>
+<span>and</span>
+<span>while</span>
+<span>statements interpret conditional expressions of different</span>
+<span>data types?</span>
+<span>9.</span>
+<span>Why is a</span>
+<span>for</span>
+<span>loop more powerful than a</span>
+<span>while</span>
+<span>loop?</span>
+<span>10.</span>
+<span>What is the purpose of the</span>
+<span>with</span>
+<span>statement?</span>
+<span>See</span>
+<span>Chapter 14 Answers</span>
+<span>in</span>
+<span>Appendix A</span>
+<span>for the answers to these questions.</span>

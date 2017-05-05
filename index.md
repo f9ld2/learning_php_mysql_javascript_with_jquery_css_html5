@@ -1,4 +1,3 @@
-<section>
     <h2>Introduction to Dynamic Web Content</h2>
     <span>The World Wide Web is a constantly evolving network that has already traveled far</span>
     <span>beyond its conception in the early 1990s, when it was created to solve a specific prob‐</span>
@@ -568,5 +567,4 @@ Here's the latest news.
     <span>work together. In</span>
     <span>Chapter 2</span>
     <span>, we&rsquo;ll look at how you can install your own web develop‐</span>
-    <span>ment server on which to practice everything that you will be learning.</span><br/>
-</section>
+    <span>ment server on which to practice everything that you will be learning.</span>

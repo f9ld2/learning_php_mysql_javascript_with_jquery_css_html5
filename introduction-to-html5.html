@@ -1,3 +1,355 @@
 ---
 layout: default
 ---
+<h2>Introduction to HTML5</h2>
+<span>HTML5 represents a substantial leap forward in web design, layout, and usability. It</span>
+<span>provides a simple way to manipulate graphics in a web browser without resorting to</span>
+<span>plug-ins such as Flash, offers methods to insert audio and video into web pages (again</span>
+<span>without plug-ins), and irons out several annoying inconsistencies that crept into</span>
+<span>HTML during its evolution.</span>
+<span>In addition, HTML5 includes numerous other enhancements such as geolocation</span>
+<span>handling, web workers to manage background tasks, improved form handling, access</span>
+<span>to bundles of local storage (far in excess of the limited capabilities of cookies), and</span>
+<span>even the facility to turn web pages into web applications for mobile browsers.</span>
+<span>What&rsquo;s curious about HTML5, though, is that it has been an ongoing evolution, in</span>
+<span>which browsers have adopted different features at different times. Fortunately, all the</span>
+<span>biggest and most popular HTML5 additions are finally supported by all major brows‐</span>
+<span>ers (those with more than 1 percent or so of the market, such as Chrome, Internet</span>
+<span>Explorer, Firefox, Safari, and Opera, and the Android and iOS browsers).</span>
+<span>But with HTML5 having been officially submitted to the W3C in only early 2013,</span>
+<span>there remain a number of features outstanding in several browsers, which I outline</span>
+<span>later in the book so you will be prepared when they are adopted.</span>
+<span>Nevertheless, we are now fully into the second big surge toward dynamic web interac‐</span>
+<span>tivity (the first being the adoption of what became known as Web 2.0). I would hesi‐</span>
+<span>tate to call it Web 3.0, though, because the term</span>
+<span>HTML5</span>
+<span>says it all to most people, and</span>
+<span>in my view it could be considered a later version of Web 2.0 (maybe something like</span>
+<span>Web 2.7).</span>
+<span>Actually, I think it will be very interesting to see what Web 3.0 will turn out to be. If I</span>
+<span>were to hazard a prediction, though, I would say it will result from the application of</span>
+<span>artificial intelligence (AI) in the form of much more capable versions of software such</span>
+<span>as Apple&rsquo;s Siri, Microsoft&rsquo;s Cortana, OK Google, and IBM&rsquo;s Watson, combined with</span>
+<span>wearable technology that uses visual and voice input&mdash;like Google Glass and the Gal‐</span>
+<span>axy Gear watch&mdash;rather than keyboards. I look forward to covering these things in</span>
+<span>future editions of this book.</span>
+<span>But for now, having written about what&rsquo;s to come in HTML5 for some years, and now</span>
+<span>that so many parts of the specification are usable on virtually all devices and brows‐</span>
+<span>ers, I&rsquo;m pleased to finally be able to bring it into this edition of the book. So let me</span>
+<span>take you on an overview of what&rsquo;s available to you in HTML5 right now.</span>
+<h3>The Canvas</h3>
+<span>Originally introduced by Apple for the WebKit rendering engine (which had itself</span>
+<span>originated in the KDE HTML layout engine) for its Safari browser (and now also</span>
+<span>implemented in iOS, Android, Kindle, Chrome, BlackBerry, Opera, and Tizen), the</span>
+<span>canvas</span>
+<span>element enables us to draw graphics in a web page without having to rely on a</span>
+<span>plug-in such as Java or Flash. After being standardized, the canvas was adopted by all</span>
+<span>other browsers and is now a mainstay of modern web development.</span>
+<span>Like other HTML elements, a canvas is simply an element within a web page with</span>
+<span>defined dimensions, and within which you can use JavaScript to draw graphics. You</span>
+<span>create a canvas by using the</span>
+<span>&lt;canvas&gt;</span>
+<span>tag, to which you must also assign an ID so that</span>
+<span>JavaScript will know which canvas it is accessing (as you can have more than one can‐</span>
+<span>vas on a page).</span>
+<span>In</span>
+<span>Example 22-1</span>
+<span>I&rsquo;ve created a</span>
+<span>&lt;canvas&gt;</span>
+<span>element, with the ID</span>
+<span>mycanvas</span>
+<span>, that contains</span>
+<span>some text that is displayed only in browsers that don&rsquo;t support the canvas. Beneath</span>
+<span>this there is a section of JavaScript, which draws the Japanese flag on the canvas (as</span>
+<span>shown in</span>
+<span>Figure 22-1</span>
+<span>).</span>
+<span>Example 22-1. Using the HTML5 canvas element</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;The HTML5 Canvas&lt;/title&gt;</span>
+<span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;canvas id='mycanvas' width='320' height='240'&gt;</span>
+<span>&nbsp;</span>
+<span>This is a canvas element given the ID &lt;i&gt;mycanvas&lt;/i&gt;</span>
+<span>&nbsp;</span>
+<span>This text is only visible in non-HTML5 browsers</span>
+<span>&lt;/canvas&gt;</span>
+<span>&lt;script&gt;</span>
+<span>&nbsp;</span>
+<span>canvas = O('mycanvas')</span>
+<span>&nbsp;</span>
+<span>context = canvas.getContext('2d')</span>
+<span>&nbsp;</span>
+<span>context.fillStyle = 'red'</span>
+<span>&nbsp;</span>
+<span>S(canvas).border = '1px solid black'</span>
+<span>&nbsp;</span>
+<span>context.beginPath()</span>
+<span>&nbsp;</span>
+<span>context.moveTo(160, 120)</span>
+<span>&nbsp;</span>
+<span>context.arc(160, 120, 70, 0, Math.PI * 2, false)</span>
+<span>&nbsp;</span>
+<span>context.closePath()</span>
+<span>&nbsp;</span>
+<span>context.fill()</span>
+<span>&lt;/script&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 22-1. Drawing the Japanese flag using an HTML5 canvas</span>
+<span>At this point, it&rsquo;s not necessary to detail exactly what is going on, as I explain that in</span>
+<span>the following chapter, but you should already see how using the canvas is not hard,</span>
+<span>but does require learning a few new JavaScript functions. Note that this example</span>
+<span>draws on the</span>
+<span>OSC.js</span>
+<span>set of functions from the previous chapter to help keep the code</span>
+<span>neat and compact.</span>
+<h3>Geolocation</h3>
+<span>Using</span>
+<span>geolocation</span>
+<span>, your browser can return information to a web server about your</span>
+<span>location. This information can come from a GPS chip in the computer or mobile</span>
+<span>device you&rsquo;re using, from your IP address, or from analysis of nearby Wi-Fi hotspots.</span>
+<span>For security purposes, the user is always in control and can refuse to provide this</span>
+<span>information on a one-off basis, or can enable settings to either permanently block or</span>
+<span>allow access to this data from one or all websites.</span>
+<span>There are numerous uses for this technology, including giving you turn-by-turn navi‐</span>
+<span>gation; providing local maps; notifying you of nearby restaurants, Wi-Fi hotspots, or</span>
+<span>other places; letting you know which friends are near you; directing you to the near‐</span>
+<span>est gas station; and more.</span>
+<span>Example 22-2</span>
+<span>will display a Google map of the user&rsquo;s location, as long as the browser</span>
+<span>supports</span>
+<span>geolocation</span>
+<span>and</span>
+<span>the</span>
+<span>user</span>
+<span>grants</span>
+<span>access</span>
+<span>to</span>
+<span>his</span>
+<span>location</span>
+<span>(as</span>
+<span>shown</span>
+<span>in</span>
+<span>Figure 22-2</span>
+<span>). Otherwise, it will display an error.</span>
+<span>Example 22-2. Displaying the map at a user&rsquo;s location</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;Geolocation Example&lt;/title&gt;</span>
+<span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
+<span>&lt;script src="https://maps.googleapis.com/maps/api/js?sensor=false"&gt;&lt;/script&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;div id='status'&gt;&lt;/div&gt;</span>
+<span>&lt;div id='map'&gt;&lt;/div&gt;</span>
+<span>&lt;script&gt;</span>
+<span>&nbsp;</span>
+<span>if (typeof navigator.geolocation == 'undefined')</span>
+<span>&nbsp;</span>
+<span>alert("Geolocation not supported.")</span>
+<span>&nbsp;</span>
+<span>else</span>
+<span>&nbsp;</span>
+<span>navigator.geolocation.getCurrentPosition(granted, denied)</span>
+<span>&nbsp;</span>
+<span>function granted(position)</span>
+<span>&nbsp;</span>
+<span>{</span>
+<span>&nbsp;</span>
+<span>O('status').innerHTML = 'Permission Granted'</span>
+<span>&nbsp;</span>
+<span>S('map').border = '1px solid black'</span>
+<span>&nbsp;</span>
+<span>S('map').width = '640px'</span>
+<span>&nbsp;</span>
+<span>S('map').height = '320px'</span>
+<span>&nbsp;</span>
+<span>var lat = position.coords.latitude</span>
+<span>&nbsp;</span>
+<span>var long = position.coords.longitude</span>
+<span>&nbsp;</span>
+<span>var gmap = O('map')</span>
+<span>&nbsp;</span>
+<span>var gopts =</span>
+<span>&nbsp;</span>
+<span>{</span>
+<span>&nbsp;</span>
+<span>center: new google.maps.LatLng(lat, long),</span>
+<span>&nbsp;</span>
+<span>zoom: 9, mapTypeId: google.maps.MapTypeId.ROADMAP</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>var map = new google.maps.Map(gmap, gopts)</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>function denied(error)</span>
+<span>&nbsp;</span>
+<span>{</span>
+<span>&nbsp;</span>
+<span>var message</span>
+<span>&nbsp;</span>
+<span>switch(error.code)</span>
+<span>&nbsp;</span>
+<span>{</span>
+<span>&nbsp;</span>
+<span>case 1: message = 'Permission Denied'; break;</span>
+<span>&nbsp;</span>
+<span>case 2: message = 'Position Unavailable'; break;</span>
+<span>&nbsp;</span>
+<span>case 3: message = 'Operation Timed Out'; break;</span>
+<span>&nbsp;</span>
+<span>case 4: message = 'Unknown Error'; break;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>O('status').innerHTML = message</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&lt;/script&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 22-2. The user&rsquo;s location has been used to display a map</span>
+<span>Again, here is not the place to describe how this all works, as I will detail that in</span>
+<span>Chapter 25</span>
+<span>. For now, though, this example serves to show you how easy managing</span>
+<span>geolocation can be, especially given that much of the code is dedicated to handling</span>
+<span>errors and calling up the Google map, so the core geolocation code you need is</span>
+<span>actually minimal.</span>
+<h3>Audio and Video</h3>
+<span>Another great addition to HTML5 is support for in-browser audio and video. While</span>
+<span>playing these types of media can be a little complicated due to the variety of encoding</span>
+<span>types and licenses, the</span>
+<span>&lt;audio&gt;</span>
+<span>and</span>
+<span>&lt;video&gt;</span>
+<span>elements provide the flexibility you need</span>
+<span>to display the types of media you have available.</span>
+<span>In</span>
+<span>Example 22-3</span>
+<span>, the same video file has been encoded in different formats to ensure</span>
+<span>that all major browsers are accounted for. Browsers will simply select the first type</span>
+<span>they recognize and play it, as shown in</span>
+<span>Figure 22-3</span>
+<span>.</span>
+<span>Example 22-3. Playing a video with HTML5</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;HTML5 Video&lt;/title&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;video width='560' height='320' controls&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;source src='movie.mp4' type='video/mp4'&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;source src='movie.webm' type='video/webm'&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;source src='movie.ogv' type='video/ogg'&gt;</span>
+<span>&lt;/video&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 22-3. Displaying video using HTML5</span>
+<span>Inserting audio into a web page is just as easy, as you will discover in</span>
+<span>Chapter 24</span>
+<span>.</span>
+<h3>Forms</h3>
+<span>As you already saw in</span>
+<span>&nbsp;Chapter 12</span>
+<span>, HTML5 forms are in the process of being</span>
+<span>enhanced, but support across all browsers remains patchy. What you</span>
+<span>can</span>
+<span>safely use</span>
+<span>today has been detailed in</span>
+<span>Chapter 12</span>
+<span>, and future editions of this book will include</span>
+<span>other aspects of forms as they become adopted across the board. In the meantime,</span>
+<span>you can keep up-to-date with the latest developments on HTML5 forms at</span>
+<span>&nbsp;http://</span>
+<span>tinyurl.com/h5forms</span>
+<span>.</span>
+<h3>Local Storage</h3>
+<span>With local storage, your ability to save data on a local device is substantially increased</span>
+<span>from the meager space provided by cookies. This opens up the possibility of your</span>
+<span>using web apps to work on documents offline and then syncing them with the web</span>
+<span>server only when an Internet connection is available. It also raises the prospect of</span>
+<span>storing small databases locally for access with WebSQL, perhaps for keeping a copy of</span>
+<span>your music collection&rsquo;s details, or all your personal statistics as part of a diet or weight</span>
+<span>loss plan, for example. In</span>
+<span>Chapter 25</span>
+<span>, I show you how to make the most of this new</span>
+<span>facility in your web projects.</span>
+<h3>Web Workers</h3>
+<span>It has been possible to run interrupt-driven applications in the background using</span>
+<span>JavaScript for many years, but it is a clumsy and inefficient process. It makes much</span>
+<span>more sense to let the underlying browser technology run background tasks on your</span>
+<span>behalf, which it can do far more quickly than you can by continuously interrupting</span>
+<span>the browser to check how things are going.</span>
+<span>Instead, with web workers you set everything up and pass your code to the web</span>
+<span>browser, which then runs it. When anything significant occurs, your code simply has</span>
+<span>to notify the browser, which then reports back to your main code. In the meantime,</span>
+<span>your web page can be doing nothing or a number of other tasks, and can forget about</span>
+<span>the background task until it makes itself known.</span>
+<span>In</span>
+<span>Chapter 25</span>
+<span>, I demonstrate how you can use web workers to create a simple clock</span>
+<span>and to calculate prime numbers.</span>
+<h3>Web Applications</h3>
+<span>More and more these days, web pages are beginning to resemble apps, and with</span>
+<span>HTML5 they can become web apps very easily. All you have to do is tell the web</span>
+<span>browser about the resources used in your application, and it will download them to</span>
+<span>where they can be run and accessed locally, offline, and without any Internet connec‐</span>
+<span>tion if necessary.</span>
+<span>Chapter 25</span>
+<span>shows how you can do this to turn the clock example in the web workers</span>
+<span>section into a web app.</span>
+<h3>Microdata</h3>
+<span>Also in</span>
+<span>Chapter 25</span>
+<span>I show how you can mark up your code with</span>
+<span>microdata</span>
+<span>to make it</span>
+<span>totally understandable to any browser or other technology that needs to access it.</span>
+<span>Microdata is sure to become more and more important to search engine optimization</span>
+<span>too, so it&rsquo;s important that you begin to incorporate it or at least understand what</span>
+<span>information it can provide about your websites.</span>
+<h3>Summary</h3>
+<span>As you can see, there&rsquo;s quite a lot to HTML5, and it&rsquo;s all goodies that many people</span>
+<span>waited a long time for&mdash;but they&rsquo;re finally here. Starting with the canvas, the follow‐</span>
+<span>ing few chapters will explain these features to you in glorious detail, so you can be up</span>
+<span>and running with them, and enhancing your websites, in no time.</span>
+<h3>Questions</h3>
+<span>1.</span>
+<span>What new HTML5 element enables drawing of graphics in web pages?</span>
+<span>2.</span>
+<span>What</span>
+<span>programming</span>
+<span>language</span>
+<span>is</span>
+<span>required</span>
+<span>to</span>
+<span>access</span>
+<span>many</span>
+<span>of</span>
+<span>the</span>
+<span>advanced</span>
+<span>HTML5 features?</span>
+<span>3.</span>
+<span>Which tags would you use to incorporate audio and video in a web page?</span>
+<span>4.</span>
+<span>What feature is new in HTML5 and offers greater capability than cookies?</span>
+<span>5.</span>
+<span>Which HTML5 technology supports running background JavaScript tasks?</span>
+<span>See</span>
+<span>Chapter 22 Answers</span>
+<span>in</span>
+<span>Appendix A</span>
+<span>for the answers to these questions.</span>

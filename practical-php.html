@@ -1,3 +1,1609 @@
 ---
 layout: default
 ---
+<h2>Practical PHP</h2>
+<span>Previous chapters went over the elements of the PHP language. This chapter builds</span>
+<span>on your new programming skills to teach you some common but important practical</span>
+<span>tasks. You will learn the best ways to manage string handling to achieve clear and</span>
+<span>concise code that displays in web browsers exactly how you want it to, including</span>
+<span>advanced date and time management. You&rsquo;ll also find out how to create and other‐</span>
+<span>wise modify files, including those uploaded by users.</span>
+<h3>Using printf</h3>
+<span>You&rsquo;ve already seen the</span>
+<span>print</span>
+<span>and</span>
+<span>echo</span>
+<span>functions, which simply output text to the</span>
+<span>browser. But a much more powerful function,</span>
+<span>printf</span>
+<span>, controls the format of the out‐</span>
+<span>put by letting you put special formatting characters in a string. For each formatting</span>
+<span>character,</span>
+<span>printf</span>
+<span>expects you to pass an argument that it will display using that for‐</span>
+<span>mat. For instance, the following example uses the</span>
+<span>%d</span>
+<span>conversion specifier to display</span>
+<span>the value</span>
+<span>3</span>
+<span>in decimal:</span>
+<span>printf("There are %d items in your basket", 3);</span>
+<span>If you replace the</span>
+<span>%d</span>
+<span>with</span>
+<span>%b</span>
+<span>, the value</span>
+<span>3</span>
+<span>would be displayed in binary (</span>
+<span>11</span>
+<span>).</span>
+<span>Table 7-1</span>
+<span>shows the conversion specifiers supported.</span>
+<span>Table 7-1. The printf conversion specifiers</span>
+<span>Specifier</span>
+<span>Conversion action on argument arg</span>
+<span>Example (for an arg of 123)</span>
+<span>%</span>
+<span>Display a % character (no</span>
+<span>arg</span>
+<span>required)</span>
+<span>%</span>
+<span>b</span>
+<span>Display</span>
+<span>arg</span>
+<span>as a binary integer</span>
+<span>1111011</span>
+<span>c</span>
+<span>Display ASCII character for the</span>
+<span>arg</span>
+<span>{</span>
+<span>d</span>
+<span>Display</span>
+<span>arg</span>
+<span>as a signed decimal integer</span>
+<span>123</span>
+<span>Specifier</span>
+<span>Conversion action on argument arg</span>
+<span>Example (for an arg of 123)</span>
+<span>e</span>
+<span>Display</span>
+<span>arg</span>
+<span>using scientific notation</span>
+<span>1.23000e+2</span>
+<span>f</span>
+<span>Display</span>
+<span>arg</span>
+<span>as floating point</span>
+<span>123.000000</span>
+<span>o</span>
+<span>Display</span>
+<span>arg</span>
+<span>as an octal integer</span>
+<span>173</span>
+<span>s</span>
+<span>Display</span>
+<span>arg</span>
+<span>as a string</span>
+<span>123</span>
+<span>u</span>
+<span>Display</span>
+<span>arg</span>
+<span>as an unsigned decimal</span>
+<span>123</span>
+<span>x</span>
+<span>Display</span>
+<span>arg</span>
+<span>in lowercase hexadecimal</span>
+<span>7b</span>
+<span>X</span>
+<span>Display</span>
+<span>arg</span>
+<span>in uppercase hexadecimal</span>
+<span>7B</span>
+<span>You can have as many specifiers as you like in a</span>
+<span>printf</span>
+<span>function, as long as you pass a</span>
+<span>matching number of arguments, and as long as each specifier is prefaced by a</span>
+<span>%</span>
+<span>sym‐</span>
+<span>bol. Therefore, the following code is valid, and will output</span>
+<span>"My name is Simon. I'm</span>
+<span>33 years old, which is 21 in hexadecimal"</span>
+<span>:</span>
+<span>printf("My name is %s. I'm %d years old, which is %X in hexadecimal",</span>
+<span>'Simon', 33, 33);</span>
+<span>If you leave out any arguments, you will receive a parse error informing you that a</span>
+<span>right bracket,</span>
+<span>)</span>
+<span>, was unexpectedly encountered.</span>
+<span>A more practical example of</span>
+<span>printf</span>
+<span>sets colors in HTML using decimal. For example,</span>
+<span>suppose you know you want a color that has a triplet value of 65 red, 127 green, and</span>
+<span>245 blue, but don&rsquo;t want to convert this to hexadecimal yourself. Here&rsquo;s an easy solu‐</span>
+<span>tion is:</span>
+<span>printf("&lt;span style='color:#%X%X%X'&gt;Hello&lt;/span&gt;", 65, 127, 245);</span>
+<span>Check the format of the color specification between the apostrophes (</span>
+<span>''</span>
+<span>) carefully.</span>
+<span>First comes the pound, or hash, sign (</span>
+<span>#</span>
+<span>) expected by the color specification. Then</span>
+<span>come three</span>
+<span>%X</span>
+<span>format specifiers, one for each of your numbers. The resulting output</span>
+<span>from this command is as follows:</span>
+<span>&lt;span style='color:#417FF5'&gt;Hello&lt;/span&gt;</span>
+<span>Usually, you&rsquo;ll find it convenient to use variables or expressions as arguments to</span>
+<span>printf</span>
+<span>. For instance, if you stored values for your colors in the three variables</span>
+<span>$r</span>
+<span>,</span>
+<span>$g</span>
+<span>,</span>
+<span>and</span>
+<span>$b</span>
+<span>, you could create a darker color with this:</span>
+<span>printf("&lt;span style='color:#%X%X%X'&gt;Hello&lt;/span&gt;", $r-20, $g-20, $b-20);</span>
+<h4>Precision Setting</h4>
+<span>Not only can you specify a conversion type, but you can also set the precision of the</span>
+<span>displayed result. For example, amounts of currency are usually displayed with only</span>
+<span>two digits of precision. However, after a calculation, a value may have a greater preci‐</span>
+<span>sion than this, such as 123.42 / 12, which results in 10.285. To ensure that such values</span>
+<span>are correctly stored internally, but displayed with only two digits of precision, you can</span>
+<span>insert the string</span>
+<span>".2"</span>
+<span>between the</span>
+<span>%</span>
+<span>symbol and the conversion specifier:</span>
+<span>printf("The result is: $%.2f", 123.42 / 12);</span>
+<span>The output from this command is as follows:</span>
+<span>The result is $10.29</span>
+<span>But you actually have even more control than that, because you can also specify</span>
+<span>whether to pad output with either zeros or spaces by prefacing the specifier with cer‐</span>
+<span>tain values.</span>
+<span>Example 7-1</span>
+<span>shows four possible combinations.</span>
+<span>Example 7-1. Precision setting</span>
+<span>&lt;?php</span>
+<span>echo "&lt;pre&gt;"; // Enables viewing of the spaces</span>
+<span>// Pad to 15 spaces</span>
+<span>printf("The result is $%15f\n", 123.42 / 12);</span>
+<span>// Pad to 15 spaces, fill with zeros</span>
+<span>printf("The result is $%015f\n", 123.42 / 12);</span>
+<span>// Pad to 15 spaces, 2 decimal places precision</span>
+<span>printf("The result is $%15.2f\n", 123.42 / 12);</span>
+<span>// Pad to 15 spaces, 2 decimal places precision, fill with zeros</span>
+<span>printf("The result is $%015.2f\n", 123.42 / 12);</span>
+<span>// Pad to 15 spaces, 2 decimal places precision, fill with # symbol</span>
+<span>printf("The result is $%'#15.2f\n", 123.42 / 12);</span>
+<span>?&gt;</span>
+<span>The output from this example looks like this:</span>
+<span>The result is $ 10.285000</span>
+<span>The result is $00000010.285000</span>
+<span>The result is $ 10.29</span>
+<span>The result is $000000000010.29</span>
+<span>The result is $##########10.29</span>
+<span>The way it works is simple if you go from right to left (see</span>
+<span>Table 7-2</span>
+<span>). Notice that:</span>
+<span>&bull;</span>
+<span>The rightmost character is the conversion specifier: in this case,</span>
+<span>f</span>
+<span>for floating</span>
+<span>point.</span>
+<span>&bull;</span>
+<span>Just before the conversion specifier, if there is a period and a number together,</span>
+<span>then the precision of the output is specified as the value of the number.</span>
+<span>&bull;</span>
+<span>Regardless of whether there&rsquo;s a precision specifier, if there is a number, then that</span>
+<span>represents the number of characters to which the output should be padded. In</span>
+<span>the previous example, this is 15 characters. If the output is already equal to or</span>
+<span>greater than the padding length, then this argument is ignored.</span>
+<span>&bull;</span>
+<span>The leftmost parameter allowed after the</span>
+<span>%</span>
+<span>symbol is a</span>
+<span>0</span>
+<span>, which is ignored unless</span>
+<span>a padding value has been set, in which case the output is padded with zeros</span>
+<span>instead of spaces. If a pad character other than zero or a space is required, you</span>
+<span>can use any one of your choices as long as you preface it with a single quotation</span>
+<span>mark, like this:</span>
+<span>'#</span>
+<span>.</span>
+<span>&bull;</span>
+<span>On the left is the</span>
+<span>%</span>
+<span>symbol, which starts the conversion.</span>
+<span>Table 7-2. Conversion specifier components</span>
+<span>Start conversion</span>
+<span>Pad character</span>
+<span>Number of pad</span>
+<span>characters</span>
+<span>Display precision</span>
+<span>Conversion</span>
+<span>specifier</span>
+<span>Examples</span>
+<span>%</span>
+<span>15</span>
+<span>f</span>
+<span>10.285000</span>
+<span>%</span>
+<span>0</span>
+<span>15</span>
+<span>.2</span>
+<span>f</span>
+<span>000000000010.29</span>
+<span>%</span>
+<span>'#</span>
+<span>15</span>
+<span>.4</span>
+<span>f</span>
+<span>########10.2850</span>
+<h4>String Padding</h4>
+<span>You can also pad strings to required lengths (as you can with numbers), select differ‐</span>
+<span>ent</span>
+<span>padding</span>
+<span>characters,</span>
+<span>and</span>
+<span>even</span>
+<span>choose</span>
+<span>between</span>
+<span>left</span>
+<span>and</span>
+<span>right</span>
+<span>justification.</span>
+<span>Example 7-2</span>
+<span>shows various examples.</span>
+<span>Example 7-2. String padding</span>
+<span>&lt;?php</span>
+<span>echo "&lt;pre&gt;"; // Enables viewing of the spaces</span>
+<span>$h = 'Rasmus';</span>
+<span>printf("[%s]\n", $h); // Standard string output</span>
+<span>printf("[%12s]\n", $h); // Right justify with spaces to width 12</span>
+<span>printf("[%-12s]\n", $h); // Left justify with spaces</span>
+<span>printf("[%012s]\n", $h); // Zero padding</span>
+<span>printf("[%'#12s]\n\n", $h); // Use the custom padding character '#'</span>
+<span>$d = 'Rasmus Lerdorf'; // The original creator of PHP</span>
+<span>printf("[%12.8s]\n", $d); // Right justify, cutoff of 8 characters</span>
+<span>printf("[%-12.12s]\n", $d); // Left justify, cutoff of 12 characters</span>
+<span>printf("[%-'@12.10s]\n", $d); // Left justify, pad '@', cutoff 10 chars</span>
+<span>?&gt;</span>
+<span>Note how for purposes of layout in a web page, I&rsquo;ve used the</span>
+<span>&lt;pre&gt;</span>
+<span>HTML tag to pre‐</span>
+<span>serve all the spaces and the</span>
+<span>\n</span>
+<span>newline character after each of the lines to be dis‐</span>
+<span>played. The output from this example is as follows:</span>
+<span>[Rasmus]</span>
+<span>[ Rasmus]</span>
+<span>[Rasmus ]</span>
+<span>[000000Rasmus]</span>
+<span>[######Rasmus]</span>
+<span>[ Rasmus L]</span>
+<span>[Rasmus Lerdo]</span>
+<span>[Rasmus Ler@@]</span>
+<span>When you are specifying a padding value, if a string is already of equal or greater</span>
+<span>length than that value, it will be ignored,</span>
+<span>unless</span>
+<span>a cutoff value is given that shortens</span>
+<span>the string back to less than the padding value.</span>
+<span>Table 7-3</span>
+<span>shows the components available to string conversion specifiers.</span>
+<span>Table 7-3. String conversion specifier components</span>
+<span>Start conversion</span>
+<span>Left/right</span>
+<span>justify</span>
+<span>Padding</span>
+<span>character</span>
+<span>Number of pad</span>
+<span>characters</span>
+<span>Cutoff</span>
+<span>Conversion</span>
+<span>specifier</span>
+<span>Examples</span>
+<span>(using &ldquo;Rasmus&rdquo;)</span>
+<span>%</span>
+<span>s</span>
+<span>[Rasmus]</span>
+<span>%</span>
+<span>-</span>
+<span>10</span>
+<span>s</span>
+<span>[Rasmus ]</span>
+<span>%</span>
+<span>'#</span>
+<span>8</span>
+<span>.4</span>
+<span>s</span>
+<span>[####Rasm]</span>
+<h4>Using sprintf</h4>
+<span>Often, you don&rsquo;t want to output the result of a conversion but need it to use elsewhere</span>
+<span>in your code. This is where the</span>
+<span>sprintf</span>
+<span>function comes in. With it, you can send the</span>
+<span>output to another variable rather than to the browser.</span>
+<span>You might use it to make a conversion, as in the following example, which returns the</span>
+<span>hexadecimal string value for the RGB color group 65, 127, 245 in</span>
+<span>$hexstring</span>
+<span>:</span>
+<span>$hexstring = sprintf("%X%X%X", 65, 127, 245);</span>
+<span>Or you may wish to store output ready to display later on:</span>
+<span>$out = sprintf("The result is: $%.2f", 123.42 / 12);</span>
+<span>echo $out;</span>
+<h3>Date and Time Functions</h3>
+<span>To keep track of the date and time, PHP uses standard Unix timestamps, which are</span>
+<span>simply the number of seconds since the start of January 1, 1970. To determine the</span>
+<span>current timestamp, you can use the</span>
+<span>time</span>
+<span>function:</span>
+<span>echo time();</span>
+<span>Because the value is stored as seconds, to obtain the timestamp for this time next</span>
+<span>week, you would use the following, which adds 7 days times 24 hours times 60</span>
+<span>minutes times 60 seconds to the returned value:</span>
+<span>echo time() + 7 * 24 * 60 * 60;</span>
+<span>If you wish to create a timestamp for a given date, you can use the</span>
+<span>mktime</span>
+<span>function.</span>
+<span>Its output is the timestamp</span>
+<span>946684800</span>
+<span>for the first second of the first minute of the</span>
+<span>first hour of the first day of the year 2000:</span>
+<span>echo mktime(0, 0, 0, 1, 1, 2000);</span>
+<span>The parameters to pass are, in order from left to right:</span>
+<span>&bull;</span>
+<span>The number of the hour (0&ndash;23)</span>
+<span>&bull;</span>
+<span>The number of the minute (0&ndash;59)</span>
+<span>&bull;</span>
+<span>The number of seconds (0&ndash;59)</span>
+<span>&bull;</span>
+<span>The number of the month (1&ndash;12)</span>
+<span>&bull;</span>
+<span>The number of the day (1&ndash;31)</span>
+<span>&bull;</span>
+<span>The year (1970&ndash;2038, or 1901&ndash;2038 with PHP 5.1.0+ on 32-bit signed systems)</span>
+<span>You may ask why you are limited to the years 1970 through 2038.</span>
+<span>Well, it&rsquo;s because the original developers of Unix chose the start of</span>
+<span>the year 1970 as the base date that no programmer should need to</span>
+<span>go before!</span>
+<span>Luckily, because (as of version 5.1.0) PHP supports systems using a</span>
+<span>signed 32-bit integer for the timestamp, dates from 1901 to 2038</span>
+<span>are allowed on them. However, that introduces a problem even</span>
+<span>worse than the original because the Unix designers also decided</span>
+<span>that nobody would be using Unix after about 70 years or so, and</span>
+<span>therefore believed they could get away with storing the timestamp</span>
+<span>as a 32-bit value&mdash;which will run out on January 19, 2038!</span>
+<span>This will create what has come to be known as the Y2K38 bug</span>
+<span>(much like the millennium bug, which was caused by storing years</span>
+<span>as two-digit values, and which also had to be fixed). PHP intro‐</span>
+<span>duced the</span>
+<span>DateTime</span>
+<span>class in version 5.2 to overcome this issue, but</span>
+<span>it will work only on 64-bit architecture.</span>
+<span>To display the date, use the</span>
+<span>date</span>
+<span>function, which supports a plethora of formatting</span>
+<span>options, enabling you to display the date any way you wish. The format is as follows:</span>
+<span>date($format, $timestamp);</span>
+<span>The parameter</span>
+<span>$format</span>
+<span>should be a string containing formatting specifiers as detailed</span>
+<span>in</span>
+<span>Table 7-4</span>
+<span>, and</span>
+<span>$timestamp</span>
+<span>should be a Unix timestamp. For the complete list of</span>
+<span>specifiers, please see</span>
+<span>http://php.net/manual/en/function.date.php</span>
+<span>. The following com‐</span>
+<span>mand will output the current date and time in the format</span>
+<span>"Thursday July 6th,</span>
+<span>2017 - 1:38pm"</span>
+<span>:</span>
+<span>echo date("l F jS, Y - g:ia", time());</span>
+<span>Table 7-4. The major date function format specifiers</span>
+<span>Format</span>
+<span>Description</span>
+<span>Returned value</span>
+<span>Day specifiers</span>
+<span>d</span>
+<span>Day of month, two digits, with leading zeros</span>
+<span>01</span>
+<span>to</span>
+<span>31</span>
+<span>D</span>
+<span>Day of the week, three letters</span>
+<span>Mon</span>
+<span>to</span>
+<span>Sun</span>
+<span>j</span>
+<span>Day of the month, no leading zeros</span>
+<span>1</span>
+<span>to</span>
+<span>31</span>
+<span>l</span>
+<span>Day of week, full names</span>
+<span>Sunday</span>
+<span>to</span>
+<span>Saturday</span>
+<span>N</span>
+<span>Day of week, numeric, Monday to Sunday</span>
+<span>1</span>
+<span>to</span>
+<span>7</span>
+<span>S</span>
+<span>Suffix for day of month (useful with specifier</span>
+<span>j</span>
+<span>)</span>
+<span>st</span>
+<span>,</span>
+<span>nd</span>
+<span>,</span>
+<span>rd</span>
+<span>, or</span>
+<span>th</span>
+<span>w</span>
+<span>Day of week, numeric, Sunday to Saturday</span>
+<span>0</span>
+<span>to</span>
+<span>6</span>
+<span>z</span>
+<span>Day of year</span>
+<span>0</span>
+<span>to</span>
+<span>365</span>
+<span>Week specifier</span>
+<span>W</span>
+<span>Week number of year</span>
+<span>01</span>
+<span>to</span>
+<span>52</span>
+<span>Month specifiers</span>
+<span>F</span>
+<span>Month name</span>
+<span>January</span>
+<span>to</span>
+<span>December</span>
+<span>m</span>
+<span>Month number with leading zeros</span>
+<span>01</span>
+<span>to</span>
+<span>12</span>
+<span>M</span>
+<span>Month name, three letters</span>
+<span>Jan</span>
+<span>to</span>
+<span>Dec</span>
+<span>n</span>
+<span>Month number, no leading zeros</span>
+<span>1</span>
+<span>to</span>
+<span>12</span>
+<span>t</span>
+<span>Number of days in given month</span>
+<span>28</span>
+<span>to</span>
+<span>31</span>
+<span>Year specifiers</span>
+<span>L</span>
+<span>Leap year</span>
+<span>1</span>
+<span>= Yes,</span>
+<span>0</span>
+<span>= No</span>
+<span>y</span>
+<span>Year, 2 digits</span>
+<span>00</span>
+<span>to</span>
+<span>99</span>
+<span>Y</span>
+<span>Year, 4 digits</span>
+<span>0000</span>
+<span>to</span>
+<span>9999</span>
+<span>Time specifiers</span>
+<span>a</span>
+<span>Before or after midday, lowercase</span>
+<span>am</span>
+<span>or</span>
+<span>pm</span>
+<span>A</span>
+<span>Before or after midday, uppercase</span>
+<span>AM</span>
+<span>or</span>
+<span>PM</span>
+<span>g</span>
+<span>Hour of day, 12-hour format, no leading zeros</span>
+<span>1</span>
+<span>to</span>
+<span>12</span>
+<span>G</span>
+<span>Hour of day, 24-hour format, no leading zeros</span>
+<span>00</span>
+<span>to</span>
+<span>23</span>
+<span>h</span>
+<span>Hour of day, 12-hour format, with leading zeros</span>
+<span>01</span>
+<span>to</span>
+<span>12</span>
+<span>H</span>
+<span>Hour of day, 24-hour format, with leading zeros</span>
+<span>00</span>
+<span>to</span>
+<span>23</span>
+<span>Format</span>
+<span>Description</span>
+<span>Returned value</span>
+<span>i</span>
+<span>Minutes, with leading zeros</span>
+<span>00</span>
+<span>to</span>
+<span>59</span>
+<span>s</span>
+<span>Seconds, with leading zeros</span>
+<span>00</span>
+<span>to</span>
+<span>59</span>
+<h4>Date Constants</h4>
+<span>There are a number of useful constants that you can use with the</span>
+<span>date</span>
+<span>command to</span>
+<span>return the date in specific formats. For example,</span>
+<span>date(DATE_RSS)</span>
+<span>returns the current</span>
+<span>date and time in the valid format for an RSS feed. Some of the more commonly used</span>
+<span>constants are as follows:</span>
+<span>DATE_ATOM</span>
+<span>This is the format for Atom feeds. The PHP format is</span>
+<span>"Y-m-d\TH:i:sP"</span>
+<span>and example</span>
+<span>output is</span>
+<span>"2018-08-16T12:00:00+00:00"</span>
+<span>.</span>
+<span>DATE_COOKIE</span>
+<span>This is the format for cookies set from a web server or JavaScript. The PHP format is</span>
+<span>"l, d-M-y H:i:s T"</span>
+<span>and example output is</span>
+<span>"Thursday, 16-Aug-18 12:00:00</span>
+<span>UTC"</span>
+<span>.</span>
+<span>DATE_RSS</span>
+<span>This is the format for RSS feeds. The PHP format is</span>
+<span>"D, d M Y H:i:s O"</span>
+<span>and exam‐</span>
+<span>ple output is</span>
+<span>"Thu, 16 Aug 2018 12:00:00 UTC"</span>
+<span>.</span>
+<span>DATE_W3C</span>
+<span>This is the format for the World Wide Web Consortium. The PHP format is</span>
+<span>"Y-m-d</span>
+<span>\TH:i:sP"</span>
+<span>and example output is</span>
+<span>"2018-08-16T12:00:00+00:00"</span>
+<span>.</span>
+<span>The complete list can be found at</span>
+<span>http://php.net/manual/en/class.datetime.php</span>
+<span>.</span>
+<h4>Using checkdate</h4>
+<span>You&rsquo;ve seen how to display a valid date in a variety of formats. But how can you check</span>
+<span>whether a user has submitted a valid date to your program? The answer is to pass the</span>
+<span>month, day, and year to the</span>
+<span>checkdate</span>
+<span>function, which returns a value of</span>
+<span>TRUE</span>
+<span>if the</span>
+<span>date is valid, or</span>
+<span>FALSE</span>
+<span>if it is not.</span>
+<span>For example, if February 30 of any year is input, it will always be an invalid date.</span>
+<span>Example 7-3</span>
+<span>shows code that you could use for this. As it stands, it will find the given</span>
+<span>date invalid.</span>
+<span>Example 7-3. Checking for the validity of a date</span>
+<span>&lt;?php</span>
+<span>$month = 9; // September (only has 30 days)</span>
+<span>$day = 31; // 31st</span>
+<span>$year = 2018; // 2018</span>
+<span>if (checkdate($month, $day, $year)) echo "Date is valid";</span>
+<span>else echo "Date is invalid";</span>
+<span>?&gt;</span>
+<h3>File Handling</h3>
+<span>Powerful as it is, MySQL is not the only (or necessarily the best) way to store all data</span>
+<span>on a web server. Sometimes it can be quicker and more convenient to directly access</span>
+<span>files on the hard disk. Cases in which you might need to do this are modifying images</span>
+<span>such as uploaded user avatars, or log files that you wish to process.</span>
+<span>First, though, a note about file naming: if you are writing code that may be used on</span>
+<span>various PHP installations, there is no way of knowing whether these systems are case-</span>
+<span>sensitive. For example, Windows and Mac OS X filenames are not case-sensitive, but</span>
+<span>Linux and Unix ones are. Therefore, you should always assume that the system is</span>
+<span>case-sensitive and stick to a convention such as all lowercase filenames.</span>
+<h4>Checking Whether a File Exists</h4>
+<span>To determine whether a file already exists, you can use the</span>
+<span>file_exists</span>
+<span>function,</span>
+<span>which returns either</span>
+<span>TRUE</span>
+<span>or</span>
+<span>FALSE</span>
+<span>, and is used like this:</span>
+<span>if (file_exists("testfile.txt")) echo "File exists";</span>
+<h4>Creating a File</h4>
+<span>At this point,</span>
+<span>testfile.txt</span>
+<span>doesn&rsquo;t exist, so let&rsquo;s create it and write a few lines to it. Type</span>
+<span>Example 7-4</span>
+<span>and save it as</span>
+<span>testfile.php</span>
+<span>.</span>
+<span>Example 7-4. Creating a simple text</span>
+<span>file</span>
+<span>&lt;?php // testfile.php</span>
+<span>$fh = fopen("testfile.txt", 'w') or die("Failed to create file");</span>
+<span>$text = &lt;&lt;&lt;_END</span>
+<span>Line 1</span>
+<span>Line 2</span>
+<span>Line 3</span>
+<span>_END;</span>
+<span>fwrite($fh, $text) or die("Could not write to file");</span>
+<span>fclose($fh);</span>
+<span>echo "File 'testfile.txt' written successfully";</span>
+<span>?&gt;</span>
+<span>When you run this in a browser, all being well, you will receive the message</span>
+<span>File</span>
+<span>'testfile.txt' written successfully</span>
+<span>. If you receive an error message, your hard</span>
+<span>disk may be full or, more likely, you may not have permission to create or write to the</span>
+<span>file, in which case you should modify the attributes of the destination folder accord‐</span>
+<span>ing to your operating system. Otherwise, the file</span>
+<span>testfile.txt</span>
+<span>should now be residing in</span>
+<span>the same folder in which you saved the</span>
+<span>testfile.php</span>
+<span>program. Try opening the file in a</span>
+<span>text or program editor&mdash;the contents will look like this:</span>
+<span>Line 1</span>
+<span>Line 2</span>
+<span>Line 3</span>
+<span>This simple example shows the sequence that all file handling takes:</span>
+<span>1.</span>
+<span>Always start by opening the file. You do this through a call to</span>
+<span>fopen</span>
+<span>.</span>
+<span>2.</span>
+<span>Then you can call other functions; here we write to the file (</span>
+<span>fwrite</span>
+<span>), but you can</span>
+<span>also read from an existing file (</span>
+<span>fread</span>
+<span>or</span>
+<span>fgets</span>
+<span>) and do other things.</span>
+<span>3.</span>
+<span>Finish by closing the file (</span>
+<span>fclose</span>
+<span>). Although the program does this for you when</span>
+<span>it ends, you should clean up by closing the file when you&rsquo;re finished.</span>
+<span>Every open file requires a file resource so that PHP can access and manage it. The</span>
+<span>preceding example sets the variable</span>
+<span>$fh</span>
+<span>(which I chose to stand for</span>
+<span>file handle</span>
+<span>) to the</span>
+<span>value returned by the</span>
+<span>fopen</span>
+<span>function. Thereafter, each file-handling function that</span>
+<span>accesses the opened file, such as</span>
+<span>fwrite</span>
+<span>or</span>
+<span>fclose</span>
+<span>, must be passed</span>
+<span>$fh</span>
+<span>as a parameter</span>
+<span>to identify the file being accessed. Don&rsquo;t worry about the content of the</span>
+<span>$fh</span>
+<span>variable;</span>
+<span>it&rsquo;s a number PHP uses to refer to internal information about the file&mdash;you just pass</span>
+<span>the variable to other functions.</span>
+<span>Upon failure,</span>
+<span>FALSE</span>
+<span>will be returned by</span>
+<span>fopen</span>
+<span>. The previous example shows a simple</span>
+<span>way to capture and respond to the failure: it calls the</span>
+<span>die</span>
+<span>function to end the program</span>
+<span>and give the user an error message. A web application would never abort in this crude</span>
+<span>way (you would create a web page with an error message instead), but this is fine for</span>
+<span>our testing purposes.</span>
+<span>Notice the second parameter to the</span>
+<span>fopen</span>
+<span>call. It is simply the character</span>
+<span>w</span>
+<span>, which tells</span>
+<span>the function to open the file for writing. The function creates the file if it doesn&rsquo;t</span>
+<span>already exist. Be careful when playing around with these functions: if the file already</span>
+<span>exists, the</span>
+<span>w</span>
+<span>mode parameter causes the</span>
+<span>fopen</span>
+<span>call to delete the old contents (even if</span>
+<span>you don&rsquo;t write anything new!).</span>
+<span>There are several different mode parameters that can be used here, as detailed in</span>
+<span>Table 7-5</span>
+<span>.</span>
+<span>Table 7-5. The supported fopen modes</span>
+<span>Mode</span>
+<span>Action</span>
+<span>Description</span>
+<span>'r'</span>
+<span>Read from file start</span>
+<span>Open for reading only; place the file pointer at the beginning of the file. Return</span>
+<span>FALSE</span>
+<span>if the</span>
+<span>file doesn&rsquo;t already exist.</span>
+<span>'r+'</span>
+<span>Read from file start and</span>
+<span>allow writing</span>
+<span>Open for reading and writing; place the file pointer at the beginning of the file. Return</span>
+<span>FALSE</span>
+<span>if the file doesn&rsquo;t already exist.</span>
+<span>'w'</span>
+<span>Write from file start and</span>
+<span>truncate file</span>
+<span>Open for writing only; place the file pointer at the beginning of the file and truncate the</span>
+<span>file to zero length. If the file doesn&rsquo;t exist, attempt to create it.</span>
+<span>'w+'</span>
+<span>Write from file start,</span>
+<span>truncate file, and allow</span>
+<span>reading</span>
+<span>Open for reading and writing; place the file pointer at the beginning of the file and</span>
+<span>truncate the file to zero length. If the file doesn&rsquo;t exist, attempt to create it.</span>
+<span>'a'</span>
+<span>Append to file end</span>
+<span>Open for writing only; place the file pointer at the end of the file. If the file doesn&rsquo;t exist,</span>
+<span>attempt to create it.</span>
+<span>'a+'</span>
+<span>Append to file end and</span>
+<span>allow reading</span>
+<span>Open for reading and writing; place the file pointer at the end of the file. If the file</span>
+<span>doesn&rsquo;t exist, attempt to create it.</span>
+<h4>Reading from Files</h4>
+<span>The easiest way to read from a text file is to grab a whole line through</span>
+<span>fgets</span>
+<span>(think of</span>
+<span>the final</span>
+<span>s</span>
+<span>as standing for</span>
+<span>string</span>
+<span>), as in</span>
+<span>Example 7-5</span>
+<span>.</span>
+<span>Example 7-5. Reading a</span>
+<span>file with fgets</span>
+<span>&lt;?php</span>
+<span>$fh = fopen("testfile.txt", 'r') or</span>
+<span>die("File does not exist or you lack permission to open it");</span>
+<span>$line = fgets($fh);</span>
+<span>fclose($fh);</span>
+<span>echo $line;</span>
+<span>?&gt;</span>
+<span>If you created the file as shown in</span>
+<span>Example 7-4</span>
+<span>, you&rsquo;ll get the first line:</span>
+<span>Line 1</span>
+<span>Or you can retrieve multiple lines or portions of lines through the</span>
+<span>fread</span>
+<span>function, as</span>
+<span>in</span>
+<span>Example 7-6</span>
+<span>.</span>
+<span>Example 7-6. Reading a</span>
+<span>file with fread</span>
+<span>&lt;?php</span>
+<span>$fh = fopen("testfile.txt", 'r') or</span>
+<span>die("File does not exist or you lack permission to open it");</span>
+<span>$text = fread($fh, 3);</span>
+<span>fclose($fh);</span>
+<span>echo $text;</span>
+<span>?&gt;</span>
+<span>I&rsquo;ve requested three characters in the</span>
+<span>fread</span>
+<span>call, so the program displays this:</span>
+<span>Lin</span>
+<span>The</span>
+<span>fread</span>
+<span>function is commonly used with binary data. But if you use it on text data</span>
+<span>that spans more than one line, remember to count newline characters.</span>
+<h4>Copying Files</h4>
+<span>Let&rsquo;s try out the PHP</span>
+<span>copy</span>
+<span>function to create a clone of</span>
+<span>testfile.txt</span>
+<span>. Type</span>
+<span>Example 7-7</span>
+<span>and save it as</span>
+<span>copyfile.php</span>
+<span>, and then call up the program in your browser.</span>
+<span>Example 7-7. Copying a</span>
+<span>file</span>
+<span>&lt;?php // copyfile.php</span>
+<span>copy('testfile.txt', 'testfile2.txt') or die("Could not copy file");</span>
+<span>echo "File successfully copied to 'testfile2.txt'";</span>
+<span>?&gt;</span>
+<span>If you check your folder again, you&rsquo;ll see that you now have the new file</span>
+<span>testfile2.txt</span>
+<span>in</span>
+<span>it. By the way, if you don&rsquo;t want your programs to exit on a failed copy attempt, you</span>
+<span>could try the alternate syntax in</span>
+<span>Example 7-8</span>
+<span>.</span>
+<span>Example 7-8. Alternate syntax for copying a</span>
+<span>file</span>
+<span>&lt;?php // copyfile2.php</span>
+<span>if (!copy('testfile.txt', 'testfile2.txt')) echo "Could not copy file";</span>
+<span>else echo "File successfully copied to 'testfile2.txt'";</span>
+<span>?&gt;</span>
+<h4>Moving a File</h4>
+<span>To move a file, rename it with the</span>
+<span>rename</span>
+<span>function, as in</span>
+<span>Example 7-9</span>
+<span>.</span>
+<span>Example 7-9. Moving a</span>
+<span>file</span>
+<span>&lt;?php // movefile.php</span>
+<span>if (!rename('testfile2.txt', 'testfile2.new'))</span>
+<span>echo "Could not rename file";</span>
+<span>else echo "File successfully renamed to 'testfile2.new'";</span>
+<span>?&gt;</span>
+<span>You can use the</span>
+<span>rename</span>
+<span>function on directories, too. To avoid any warning messages,</span>
+<span>if the original file doesn&rsquo;t exist, you can call the</span>
+<span>file_exists</span>
+<span>function first to check.</span>
+<h4>Deleting a File</h4>
+<span>Deleting a file is just a matter of using the</span>
+<span>unlink</span>
+<span>function to remove it from the file</span>
+<span>system, as in</span>
+<span>Example 7-10</span>
+<span>.</span>
+<span>Example 7-10. Deleting a</span>
+<span>file</span>
+<span>&lt;?php // deletefile.php</span>
+<span>if (!unlink('testfile2.new')) echo "Could not delete file";</span>
+<span>else echo "File 'testfile2.new' successfully deleted";</span>
+<span>?&gt;</span>
+<span>Whenever you access files on your hard disk directly, you must also</span>
+<span>always ensure that it is impossible for your file system to be com‐</span>
+<span>promised. For example, if you are deleting a file based on user</span>
+<span>input, you must make absolutely certain it is a file that can be safely</span>
+<span>deleted and that the user is allowed to delete it.</span>
+<span>As with moving a file, a warning message will be displayed if the file doesn&rsquo;t exist,</span>
+<span>which you can avoid by using</span>
+<span>file_exists</span>
+<span>to first check for its existence before call‐</span>
+<span>ing</span>
+<span>unlink</span>
+<span>.</span>
+<h4>Updating Files</h4>
+<span>Often, you will want to add more data to a saved file, which you can do in many ways.</span>
+<span>You can use one of the append write modes (see</span>
+<span>Table 7-5</span>
+<span>), or you can simply open a</span>
+<span>file for reading and writing with one of the other modes that supports writing, and</span>
+<span>move the file pointer to the correct place within the file that you wish to write to or</span>
+<span>read from.</span>
+<span>The</span>
+<span>file pointer</span>
+<span>is the position within a file at which the next file access will take place,</span>
+<span>whether it&rsquo;s a read or a write. It is not the same as the</span>
+<span>&nbsp;file handle</span>
+<span>&nbsp;(as stored in the</span>
+<span>variable</span>
+<span>$fh</span>
+<span>in</span>
+<span>Example 7-4</span>
+<span>), which contains details about the file being accessed.</span>
+<span>You can see this in action by typing</span>
+<span>Example 7-11</span>
+<span>and saving it as</span>
+<span>update.php</span>
+<span>. Then</span>
+<span>call it up in your browser.</span>
+<span>Example 7-11. Updating a</span>
+<span>file</span>
+<span>&lt;?php // update.php</span>
+<span>$fh = fopen("testfile.txt", 'r+') or die("Failed to open file");</span>
+<span>$text = fgets($fh);</span>
+<span>fseek($fh, 0, SEEK_END);</span>
+<span>fwrite($fh, "$text") or die("Could not write to file");</span>
+<span>fclose($fh);</span>
+<span>echo "File 'testfile.txt' successfully updated";</span>
+<span>?&gt;</span>
+<span>This program opens</span>
+<span>testfile.txt</span>
+<span>for both reading and writing by setting the mode with</span>
+<span>'r+'</span>
+<span>, which puts the file pointer right at the start. It then uses the</span>
+<span>fgets</span>
+<span>function to</span>
+<span>read in a single line from the file (up to the first line feed). After that, the</span>
+<span>fseek</span>
+<span>func‐</span>
+<span>tion is called to move the file pointer right to the file end, at which point the line of</span>
+<span>text that was extracted from the start of the file (stored in</span>
+<span>$text</span>
+<span>) is then appended to</span>
+<span>file&rsquo;s end and the file is closed. The resulting file now looks like this:</span>
+<span>Line 1</span>
+<span>Line 2</span>
+<span>Line 3</span>
+<span>Line 1</span>
+<span>The first line has successfully been copied and then appended to the file&rsquo;s end.</span>
+<span>As used here, in addition to the</span>
+<span>$fh</span>
+<span>file handle, the</span>
+<span>fseek</span>
+<span>function was passed two</span>
+<span>other parameters,</span>
+<span>0</span>
+<span>and</span>
+<span>SEEK_END</span>
+<span>.</span>
+<span>SEEK_END</span>
+<span>tells the function to move the file</span>
+<span>pointer to the end of the file, and</span>
+<span>0</span>
+<span>tells it how many positions it should then be</span>
+<span>moved backward from that point. In the case of</span>
+<span>Example 7-11</span>
+<span>, a value of</span>
+<span>0</span>
+<span>is used,</span>
+<span>because the pointer is required to remain at the file&rsquo;s end.</span>
+<span>There are two other seek options available to the</span>
+<span>fseek</span>
+<span>function:</span>
+<span>SEEK_SET</span>
+<span>and</span>
+<span>SEEK_CUR</span>
+<span>. The</span>
+<span>SEEK_SET</span>
+<span>option tells the function to set the file pointer to the exact</span>
+<span>position given by the preceding parameter. Thus, the following example moves the</span>
+<span>file pointer to position 18:</span>
+<span>fseek($fh, 18, SEEK_SET);</span>
+<span>SEEK_CUR</span>
+<span>sets the file pointer to the current position</span>
+<span>plus</span>
+<span>the value of the given offset.</span>
+<span>Therefore, if the file pointer is currently at position 18, the following call will move it</span>
+<span>to position 23:</span>
+<span>fseek($fh, 5, SEEK_CUR);</span>
+<span>Although this is not recommended unless you have very specific reasons for it, it is</span>
+<span>even possible to use text files such as this (but with fixed line lengths) as simple flat</span>
+<span>file databases. Your program can then use</span>
+<span>fseek</span>
+<span>to move back and forth within such</span>
+<span>a file to retrieve, update, and add new records. You can also delete records by over‐</span>
+<span>writing them with zero characters, and so on.</span>
+<h4>Locking Files for Multiple Accesses</h4>
+<span>Web programs are often called by many users at the same time. If more than one per‐</span>
+<span>son tries to write to a file simultaneously, it can become corrupted. And if one person</span>
+<span>writes to it while another is reading from it, the file is all right, but the person reading</span>
+<span>it can get odd results. To handle simultaneous users, you must use the file-locking</span>
+<span>flock</span>
+<span>function. This function queues up all other requests to access a file until your</span>
+<span>program releases the lock. So, whenever your programs use write access on files that</span>
+<span>may be accessed concurrently by multiple users, you should also add file locking to</span>
+<span>them, as in</span>
+<span>Example 7-12</span>
+<span>, which is an updated version of</span>
+<span>Example 7-11</span>
+<span>.</span>
+<span>Example 7-12. Updating a</span>
+<span>file with file locking</span>
+<span>&lt;?php</span>
+<span>$fh = fopen("testfile.txt", 'r+') or die("Failed to open file");</span>
+<span>$text = fgets($fh);</span>
+<span>if (flock($fh, LOCK_EX))</span>
+<span>{</span>
+<span>fseek($fh, 0, SEEK_END);</span>
+<span>fwrite($fh, "$text") or die("Could not write to file");</span>
+<span>flock($fh, LOCK_UN);</span>
+<span>}</span>
+<span>fclose($fh);</span>
+<span>echo "File 'testfile.txt' successfully updated";</span>
+<span>?&gt;</span>
+<span>There is a trick to file locking to preserve the best possible response time for your</span>
+<span>website visitors: perform it directly before a change you make to a file, and then</span>
+<span>unlock it immediately afterward. Having a file locked for any longer than this will</span>
+<span>slow</span>
+<span>down</span>
+<span>your</span>
+<span>application</span>
+<span>unnecessarily.</span>
+<span>This</span>
+<span>is</span>
+<span>why</span>
+<span>the</span>
+<span>calls</span>
+<span>to</span>
+<span>flock</span>
+<span>in</span>
+<span>Example 7-12</span>
+<span>are directly before and after the</span>
+<span>fwrite</span>
+<span>call.</span>
+<span>The first call to</span>
+<span>flock</span>
+<span>sets an exclusive file lock on the file referred to by</span>
+<span>$fh</span>
+<span>using the</span>
+<span>LOCK_EX</span>
+<span>parameter:</span>
+<span>flock($fh, LOCK_EX);</span>
+<span>From this point onward, no other processes can write to (or even read from) the file</span>
+<span>until you release the lock by using the</span>
+<span>LOCK_UN</span>
+<span>parameter, like this:</span>
+<span>flock($fh, LOCK_UN);</span>
+<span>As soon as the lock is released, other processes are again allowed access to the file.</span>
+<span>This is one reason why you should re-seek to the point you wish to access in a file</span>
+<span>each time you need to read or write data, because another process could have</span>
+<span>changed the file since the last access.</span>
+<span>However, did you notice that the call to request an exclusive lock is nested as part of</span>
+<span>an</span>
+<span>if</span>
+<span>statement? This is because</span>
+<span>flock</span>
+<span>is not supported on all systems; thus, it is wise</span>
+<span>to check whether you successfully secured a lock, just in case one could not be</span>
+<span>obtained.</span>
+<span>Something else you must consider is that</span>
+<span>flock</span>
+<span>is what is known as an</span>
+<span>advisory</span>
+<span>lock.</span>
+<span>This means that it locks out only other processes that call the function. If you have</span>
+<span>any code that goes right in and modifies files without implementing</span>
+<span>flock</span>
+<span>file lock‐</span>
+<span>ing, it will always override the locking and could wreak havoc on your files.</span>
+<span>By the way, implementing file locking and then accidentally leaving it out in one sec‐</span>
+<span>tion of code can lead to an extremely hard-to-locate bug.</span>
+<span>flock</span>
+<span>will not work on NFS and many other networked file sys‐</span>
+<span>tems. Also, when using a multithreaded server like ISAPI, you may</span>
+<span>not be able to rely on</span>
+<span>flock</span>
+<span>to protect files against other PHP</span>
+<span>scripts running in parallel threads of the same server instance.</span>
+<span>Additionally,</span>
+<span>flock</span>
+<span>is not supported on any system using the old</span>
+<span>FAT file system, such as older versions of Windows.</span>
+<h4>Reading an Entire File</h4>
+<span>A handy function for reading in an entire file without having to use file handles is</span>
+<span>file_get_contents</span>
+<span>. It&rsquo;s very easy to use, as you can see in</span>
+<span>Example 7-13</span>
+<span>.</span>
+<span>Example 7-13. Using</span>
+<span>file_get_contents</span>
+<span>&lt;?php</span>
+<span>echo "&lt;pre&gt;"; // Enables display of line feeds</span>
+<span>echo file_get_contents("testfile.txt");</span>
+<span>echo "&lt;/pre&gt;"; // Terminates pre tag</span>
+<span>?&gt;</span>
+<span>But the function is actually a lot more useful than that, because you can also use it to</span>
+<span>fetch a file from a server across the Internet, as in</span>
+<span>Example 7-14</span>
+<span>, which requests the</span>
+<span>HTML from the O&rsquo;Reilly home page, and then displays it as if the user had surfed to</span>
+<span>the page itself. The result will be similar to</span>
+<span>Figure 7-1</span>
+<span>.</span>
+<span>Example 7-14. Grabbing the O&rsquo;Reilly home page</span>
+<span>&lt;?php</span>
+<span>echo file_get_contents("http://oreilly.com");</span>
+<span>?&gt;</span>
+<span>Figure 7-1. The O&rsquo;Reilly home page grabbed with file_get_contents</span>
+<h4>Uploading Files</h4>
+<span>Uploading files to a web server is a subject that seems daunting to many people, but it</span>
+<span>actually couldn&rsquo;t be much easier. All you need to do to upload a file from a form is</span>
+<span>choose a special type of encoding called</span>
+<span>multipart/form-data</span>
+<span>, and your browser will</span>
+<span>handle the rest. To see how this works, type the program in</span>
+<span>Example 7-15</span>
+<span>and save it</span>
+<span>as</span>
+<span>upload.php</span>
+<span>. When you run it, you&rsquo;ll see a form in your browser that lets you upload</span>
+<span>a file of your choice.</span>
+<span>Example 7-15. Image uploader upload.php</span>
+<span>&lt;?php // upload.php</span>
+<span>echo &lt;&lt;&lt;_END</span>
+<span>&lt;html&gt;&lt;head&gt;&lt;title&gt;PHP Form Upload&lt;/title&gt;&lt;/head&gt;&lt;body&gt;</span>
+<span>&lt;form method='post' action='upload.php' enctype='multipart/form-data'&gt;</span>
+<span>Select File: &lt;input type='file' name='filename' size='10'&gt;</span>
+<span>&lt;input type='submit' value='Upload'&gt;</span>
+<span>&lt;/form&gt;</span>
+<span>_END;</span>
+<span>if ($_FILES)</span>
+<span>{</span>
+<span>$name = $_FILES['filename']['name'];</span>
+<span>move_uploaded_file($_FILES['filename']['tmp_name'], $name);</span>
+<span>echo "Uploaded image '$name'&lt;br&gt;&lt;img src='$name'&gt;";</span>
+<span>}</span>
+<span>echo "&lt;/body&gt;&lt;/html&gt;";</span>
+<span>?&gt;</span>
+<span>Let&rsquo;s examine this program a section at a time. The first line of the multiline</span>
+<span>echo</span>
+<span>statement starts an HTML document, displays the title, and then starts the docu‐</span>
+<span>ment&rsquo;s body.</span>
+<span>Next we come to the form that selects the Post method of form submission, sets the</span>
+<span>target for posted data to the program</span>
+<span>&nbsp;upload.php</span>
+<span>(the program itself), and tells the</span>
+<span>web browser that the data posted should be encoded via the content MIME type of</span>
+<span>multipart/form-data</span>
+<span>.</span>
+<span>With the form set up, the next lines display the prompt Select File: and then request</span>
+<span>two inputs. The first request is for a file; it uses an input type of</span>
+<span>file</span>
+<span>, a name of</span>
+<span>filename</span>
+<span>, and an input field with a width of 10 characters. The second requested</span>
+<span>input is just a Submit button that is given the label Upload (which replaces the default</span>
+<span>button text of Submit Query). And then the form is closed.</span>
+<span>This short program shows a common technique in web programming in which a sin‐</span>
+<span>gle program is called twice: once when the user first visits a page, and again when the</span>
+<span>user presses the Submit button.</span>
+<span>The PHP code to receive the uploaded data is fairly simple, because all uploaded files</span>
+<span>are placed into the associative system array</span>
+<span>$_FILES</span>
+<span>. Therefore, a quick check to see</span>
+<span>whether</span>
+<span>$_FILES</span>
+<span>contains anything is sufficient to determine whether the user has</span>
+<span>uploaded a file. This is done with the statement</span>
+<span>if ($_FILES)</span>
+<span>.</span>
+<span>The first time the user visits the page, before uploading a file,</span>
+<span>$_FILES</span>
+<span>is empty, so the</span>
+<span>program skips this block of code. When the user uploads a file, the program runs</span>
+<span>again and discovers an element in the</span>
+<span>$_FILES</span>
+<span>array.</span>
+<span>Once the program realizes that a file was uploaded, the actual name, as read from the</span>
+<span>uploading computer, is retrieved and placed into the variable</span>
+<span>$name</span>
+<span>. Now all that&rsquo;s</span>
+<span>necessary is to move the file from the temporary location in which PHP stored the</span>
+<span>uploaded file to a more permanent one. We do this using the</span>
+<span>move_uploaded_file</span>
+<span>function, passing it the original name of the file, with which it is saved to the current</span>
+<span>directory.</span>
+<span>Finally, the uploaded image is displayed within an</span>
+<span>IMG</span>
+<span>tag, and the result should look</span>
+<span>like</span>
+<span>Figure 7-2</span>
+<span>.</span>
+<span>If you run this program and receive warning messages such as</span>
+<span>Per</span>
+<span>mission denied</span>
+<span>for the</span>
+<span>move_uploaded_file</span>
+<span>function call, then</span>
+<span>you may not have the correct permissions set for the folder in</span>
+<span>which the program is running.</span>
+<span>Figure 7-2. Uploading an image as form data</span>
+<span>Using $_FILES</span>
+<span>Five things are stored in the</span>
+<span>$_FILES</span>
+<span>array when a file is uploaded, as shown in</span>
+<span>Table 7-6</span>
+<span>(where</span>
+<span>file</span>
+<span>is the file upload field name supplied by the submitting form).</span>
+<span>Table 7-6. The contents of the $_FILES array</span>
+<span>Array element</span>
+<span>Contents</span>
+<span>$_FILES['</span>
+<span>file</span>
+<span>']['</span>
+<span>name</span>
+<span>']</span>
+<span>The name of the uploaded file (e.g.,</span>
+<span>smiley.jpg</span>
+<span>)</span>
+<span>$_FILES['</span>
+<span>file</span>
+<span>']['</span>
+<span>type</span>
+<span>']</span>
+<span>The content type of the file (e.g.,</span>
+<span>image/jpeg</span>
+<span>)</span>
+<span>$_FILES['</span>
+<span>file</span>
+<span>']['</span>
+<span>size</span>
+<span>']</span>
+<span>The file&rsquo;s size in bytes</span>
+<span>$_FILES['</span>
+<span>file</span>
+<span>']['</span>
+<span>tmp_name</span>
+<span>']</span>
+<span>The name of the temporary file stored on the server</span>
+<span>$_FILES['</span>
+<span>file</span>
+<span>']['</span>
+<span>error</span>
+<span>']</span>
+<span>The error code resulting from the file upload</span>
+<span>Content types used to be known as</span>
+<span>&nbsp;MIME (Multipurpose Internet Mail Extension)</span>
+<span>types, but because their use later expanded to the whole Internet, now they are often</span>
+<span>called</span>
+<span>Internet media types</span>
+<span>.</span>
+<span>Table 7-7</span>
+<span>shows some of the more frequently used types</span>
+<span>that turn up in</span>
+<span>$_FILES['</span>
+<span>file</span>
+<span>']['</span>
+<span>type</span>
+<span>']</span>
+<span>.</span>
+<span>Table 7-7. Some common Internet media content types</span>
+<span>application/pdf</span>
+<span>image/gif</span>
+<span>multipart/form-data</span>
+<span>text/xml</span>
+<span>application/zip</span>
+<span>image/jpeg</span>
+<span>text/css</span>
+<span>video/mpeg</span>
+<span>audio/mpeg</span>
+<span>image/png</span>
+<span>text/html</span>
+<span>video/mp4</span>
+<span>audio/x-wav</span>
+<span>image/tiff</span>
+<span>text/plain</span>
+<span>video/quicktime</span>
+<span>Validation</span>
+<span>I hope it now goes without saying (although I&rsquo;ll do so anyway) that form data valida‐</span>
+<span>tion is of the utmost importance, due to the possibility of users attempting to hack</span>
+<span>into your server.</span>
+<span>In addition to maliciously formed input data, some of the things you also have to</span>
+<span>check are whether a file was actually received and, if so, whether the right type of data</span>
+<span>was sent.</span>
+<span>Taking all these things into account,</span>
+<span>&nbsp;Example 7-16</span>
+<span>,</span>
+<span>&nbsp;upload2.php</span>
+<span>, is a more secure</span>
+<span>rewrite of</span>
+<span>upload.php</span>
+<span>.</span>
+<span>Example 7-16. A more secure version of upload.php</span>
+<span>&lt;?php // upload2.php</span>
+<span>echo &lt;&lt;&lt;_END</span>
+<span>&lt;html&gt;&lt;head&gt;&lt;title&gt;PHP Form Upload&lt;/title&gt;&lt;/head&gt;&lt;body&gt;</span>
+<span>&lt;form method='post' action='upload2.php' enctype='multipart/form-data'&gt;</span>
+<span>Select a JPG, GIF, PNG or TIF File:</span>
+<span>&lt;input type='file' name='filename' size='10'&gt;</span>
+<span>&lt;input type='submit' value='Upload'&gt;&lt;/form&gt;</span>
+<span>_END;</span>
+<span>if ($_FILES)</span>
+<span>{</span>
+<span>$name = $_FILES['filename']['name'];</span>
+<span>switch($_FILES['filename']['type'])</span>
+<span>{</span>
+<span>&nbsp;</span>
+<span>case 'image/jpeg': $ext = 'jpg'; break;</span>
+<span>&nbsp;</span>
+<span>case 'image/gif': $ext = 'gif'; break;</span>
+<span>&nbsp;</span>
+<span>case 'image/png': $ext = 'png'; break;</span>
+<span>&nbsp;</span>
+<span>case 'image/tiff': $ext = 'tif'; break;</span>
+<span>&nbsp;</span>
+<span>default: $ext = ''; break;</span>
+<span>}</span>
+<span>if ($ext)</span>
+<span>{</span>
+<span>&nbsp;</span>
+<span>$n = "image.$ext";</span>
+<span>&nbsp;</span>
+<span>move_uploaded_file($_FILES['filename']['tmp_name'], $n);</span>
+<span>&nbsp;</span>
+<span>echo "Uploaded image '$name' as '$n':&lt;br&gt;";</span>
+<span>&nbsp;</span>
+<span>echo "&lt;img src='$n'&gt;";</span>
+<span>}</span>
+<span>else echo "'$name' is not an accepted image file";</span>
+<span>}</span>
+<span>else echo "No image has been uploaded";</span>
+<span>echo "&lt;/body&gt;&lt;/html&gt;";</span>
+<span>?&gt;</span>
+<span>The non-HTML section of code has been expanded from the half-dozen lines of</span>
+<span>Example 7-15</span>
+<span>to more than 20 lines, starting at</span>
+<span>if ($_FILES)</span>
+<span>.</span>
+<span>As with the previous version, this</span>
+<span>if</span>
+<span>line checks whether any data was actually pos‐</span>
+<span>ted, but there is now a matching</span>
+<span>else</span>
+<span>near the bottom of the program that echoes a</span>
+<span>message to screen when nothing has been uploaded.</span>
+<span>Within the</span>
+<span>if</span>
+<span>statement, the variable</span>
+<span>$name</span>
+<span>is assigned the value of the filename as</span>
+<span>retrieved from the uploading computer (just as before), but this time we won&rsquo;t rely on</span>
+<span>the user having sent us valid data. Instead a</span>
+<span>switch</span>
+<span>statement is used to check the</span>
+<span>uploaded content type against the four types of image this program supports. If a</span>
+<span>match is made, the variable</span>
+<span>$ext</span>
+<span>is set to the three-letter file extension for that type.</span>
+<span>Should no match be found, the file uploaded was not of an accepted type and the</span>
+<span>variable</span>
+<span>$ext</span>
+<span>is set to the empty string</span>
+<span>""</span>
+<span>.</span>
+<span>The next section of code then checks the variable</span>
+<span>$ext</span>
+<span>to see whether it contains a</span>
+<span>string and, if so, creates a new filename called</span>
+<span>$n</span>
+<span>with the base name</span>
+<span>image</span>
+<span>and the</span>
+<span>extension stored in</span>
+<span>$ext</span>
+<span>. This means that the program is in full control over the</span>
+<span>name of the file to be created, as it can be only one of</span>
+<span>image.jpg</span>
+<span>,</span>
+<span>image.gif</span>
+<span>,</span>
+<span>image.png</span>
+<span>,</span>
+<span>or</span>
+<span>image.tif</span>
+<span>.</span>
+<span>Safe in the knowledge that the program has not been compromised, the rest of the</span>
+<span>PHP code is much the same as in the previous version. It moves the uploaded tempo‐</span>
+<span>rary image to its new location and then displays it, while also displaying the old and</span>
+<span>new image names.</span>
+<span>Don&rsquo;t worry about having to delete the temporary file that PHP</span>
+<span>creates during the upload process, because if the file has not been</span>
+<span>moved or renamed, it will be automatically removed when the pro‐</span>
+<span>gram exits.</span>
+<span>After the</span>
+<span>if</span>
+<span>statement, there is a matching</span>
+<span>else</span>
+<span>, which is executed only if an unsup‐</span>
+<span>ported image type was uploaded, in which case it displays an appropriate error mes‐</span>
+<span>sage.</span>
+<span>When you write your own file-uploading routines, I strongly advise you to use a sim‐</span>
+<span>ilar approach and have pre-chosen names and locations for uploaded files. That way,</span>
+<span>no attempts to add pathnames and other malicious data to the variables you use can</span>
+<span>get through. If this means that more than one user could end up having a file uploa‐</span>
+<span>ded with the same name, you could prefix such files with their user&rsquo;s name, or save</span>
+<span>them to individually created folders for each user.</span>
+<span>But if you must use a supplied filename, you should sanitize it by allowing only</span>
+<span>alphanumeric characters and the period, which you can do with the following com‐</span>
+<span>mand, using a regular expression (see</span>
+<span>Chapter 17</span>
+<span>) to perform a search and replace on</span>
+<span>$name</span>
+<span>:</span>
+<span>$name = preg_replace("/[^A-Za-z0-9.]/", "", $name);</span>
+<span>This leaves only the characters A&ndash;Z, a&ndash;z, 0&ndash;9, and periods in the string</span>
+<span>$name</span>
+<span>, and</span>
+<span>strips out everything else.</span>
+<span>Even better, to ensure that your program will work on all systems, regardless of</span>
+<span>whether they are case-sensitive or case-insensitive, you should probably use the fol‐</span>
+<span>lowing command instead, which changes all uppercase characters to lowercase at the</span>
+<span>same time:</span>
+<span>$name = strtolower(ereg_replace("[^A-Za-z0-9.]", "", $name));</span>
+<span>Sometimes you may encounter the media type of</span>
+<span>image/pjpeg</span>
+<span>,</span>
+<span>which indicates a progressive JPEG, but you can safely add this to</span>
+<span>your code as an alias of</span>
+<span>image/jpeg</span>
+<span>, like this:</span>
+<span>case 'image/pjpeg':</span>
+<span>case 'image/jpeg': $ext = 'jpg'; break;</span>
+<h3>System Calls</h3>
+<span>Sometimes PHP will not have the function you need to perform a certain action, but</span>
+<span>the operating system it is running on may. In such cases, you can use the</span>
+<span>exec</span>
+<span>system</span>
+<span>call to do the job.</span>
+<span>For example, to quickly view the contents of the current directory, you can use a pro‐</span>
+<span>gram such as</span>
+<span>Example 7-17</span>
+<span>. If you are on a Windows system, it will run as is using</span>
+<span>the Windows</span>
+<span>dir</span>
+<span>command. On Linux, Unix, or Mac OS X, comment out or remove</span>
+<span>the first line and uncomment the second to use the</span>
+<span>ls</span>
+<span>system command. You may</span>
+<span>wish to type this program, save it as</span>
+<span>exec.php</span>
+<span>, and call it up in your browser.</span>
+<span>Example 7-17. Executing a system command</span>
+<span>&lt;?php // exec.php</span>
+<span>$cmd = "dir"; // Windows</span>
+<span>// $cmd = "ls"; // Linux, Unix &amp; Mac</span>
+<span>exec(escapeshellcmd($cmd), $output, $status);</span>
+<span>if ($status) echo "Exec command failed";</span>
+<span>else</span>
+<span>{</span>
+<span>echo "&lt;pre&gt;";</span>
+<span>foreach($output as $line) echo htmlspecialchars("$line\n");</span>
+<span>echo "&lt;/pre&gt;";</span>
+<span>?&gt;</span>
+<span>The</span>
+<span>htmlspecialchars</span>
+<span>function is called to turn any special characters returned by</span>
+<span>the system into ones that HTML can understand and properly display, neatening the</span>
+<span>output. Depending on the system you are using, the result of running this program</span>
+<span>will look something like this (from a Windows</span>
+<span>dir</span>
+<span>command):</span>
+<span>Volume in drive C is Hard Disk</span>
+<span>Volume Serial Number is DC63-0E29</span>
+<span>Directory of C:\xampp\htdocs</span>
+<span>09/07/2014 10:06 &lt;DIR&gt; .</span>
+<span>09/07/2014 10:06 &lt;DIR&gt; ..</span>
+<span>08/07/2014 09:16 &lt;DIR&gt; forbidden</span>
+<span>08/07/2014 09:16 &lt;DIR&gt; img</span>
+<span>30/03/2013 12:28 202 index.html</span>
+<span>30/03/2013 12:28 267 index.php</span>
+<span>08/07/2014 09:16 &lt;DIR&gt; restricted</span>
+<span>08/07/2014 09:56 110 test.html</span>
+<span>09/07/2014 08:46 &lt;DIR&gt; xampp</span>
+<span>&nbsp;</span>
+<span>3 File(s) 579 bytes</span>
+<span>&nbsp;</span>
+<span>6 Dir(s) 1,793,430,867,968 bytes free</span>
+<span>exec</span>
+<span>takes three arguments:</span>
+<span>&bull;</span>
+<span>The command itself (in the previous case,</span>
+<span>$cmd</span>
+<span>)</span>
+<span>&bull;</span>
+<span>An array in which the system will put the output from the command (in the pre‐</span>
+<span>vious case,</span>
+<span>$output</span>
+<span>)</span>
+<span>&bull;</span>
+<span>A variable to contain the returned status of the call (which, in the previous case,</span>
+<span>is</span>
+<span>$status</span>
+<span>)</span>
+<span>If you wish, you can omit the</span>
+<span>$output</span>
+<span>and</span>
+<span>$status</span>
+<span>parameters, but you will not</span>
+<span>know the output created by the call or even whether it completed successfully.</span>
+<span>You should also note the use of the</span>
+<span>escapeshellcmd</span>
+<span>function. It is a good habit to</span>
+<span>always use this when issuing an</span>
+<span>exec</span>
+<span>call, because it sanitizes the command string,</span>
+<span>preventing the execution of arbitrary commands, should you supply user input to the</span>
+<span>call.</span>
+<span>The system calling functions are typically disabled on shared web</span>
+<span>hosts, as they pose a security risk. You should always try to solve</span>
+<span>your problems within PHP if you can, and go to the system directly</span>
+<span>only if it is really necessary. Also, going to the system is relatively</span>
+<span>slow, and you need to code two implementations if your applica‐</span>
+<span>tion is expected to run on both Windows and Linux/Unix systems.</span>
+<h3>XHTML or HTML5?</h3>
+<span>Because XHTML documents need to be well formed, you can parse them using stan‐</span>
+<span>dard XML parsers&mdash;unlike HTML, which requires a lenient HTML-specific parser.</span>
+<span>For this reason, XHTML never really caught on, and when the time came to devise a</span>
+<span>new standard, the World Wide Web Consortium chose to support HTML5 rather</span>
+<span>than the newer XHTML2 standard.</span>
+<span>HTML5 has some of the features of both HTML4 and XHTML, but is much simpler</span>
+<span>to use and less strict to validate and, happily, there is now just a single document type</span>
+<span>you need to place at the head of an HTML5 document (instead of the variety of strict,</span>
+<span>transitional, and frameset types previously required), namely:</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>Just the simple word</span>
+<span>html</span>
+<span>is sufficient to tell the browser that your web page is</span>
+<span>designed for HTML5 and, because all the latest versions of the most popular browsers</span>
+<span>have been supporting most of the HTML5 specification since 2011 or so, this docu‐</span>
+<span>ment type is generally the only one you need, unless you choose to cater to older</span>
+<span>browsers.</span>
+<span>For all intents and purposes, when writing HTML documents, web developers can</span>
+<span>safely ignore the old XHTML document types and syntax (such as using</span>
+<span>&lt;br /&gt;</span>
+<span>instead of the simpler</span>
+<span>&lt;br&gt;</span>
+<span>tag). But if you find yourself having to cater to a very old</span>
+<span>browser or an unusual application that relies on XHTML, then you can get more</span>
+<span>information on how to do that at</span>
+<span>http://xhtml.com</span>
+<span>.</span>
+<h3>Questions</h3>
+<span>1.</span>
+<span>Which</span>
+<span>printf</span>
+<span>conversion specifier would you use to display a floating-point</span>
+<span>number?</span>
+<span>2.</span>
+<span>What</span>
+<span>printf</span>
+<span>statement could be used to take the input string</span>
+<span>"Happy Birthday"</span>
+<span>and output the string</span>
+<span>"**Happy"</span>
+<span>?</span>
+<span>3.</span>
+<span>To send the output from</span>
+<span>printf</span>
+<span>to a variable instead of to a browser, what alter‐</span>
+<span>native function would you use?</span>
+<span>4.</span>
+<span>How would you create a Unix timestamp for 7:11 a.m. on May 2, 2016?</span>
+<span>5.</span>
+<span>Which file access mode would you use with</span>
+<span>fopen</span>
+<span>to open a file in write and read</span>
+<span>mode, with the file truncated and the file pointer at the start?</span>
+<span>6.</span>
+<span>What is the PHP command for deleting the file</span>
+<span>file.txt</span>
+<span>?</span>
+<span>7.</span>
+<span>Which PHP function is used to read in an entire file in one go, even from across</span>
+<span>the Web?</span>
+<span>8.</span>
+<span>Which PHP superglobal variable holds the details on uploaded files?</span>
+<span>9.</span>
+<span>Which PHP function enables the running of system commands?</span>
+<span>10.</span>
+<span>Which of the following tag styles is preferred in HTML5:</span>
+<span>&lt;hr&gt;</span>
+<span>or</span>
+<span>&lt;hr /&gt;</span>
+<span>?</span>
+<span>See</span>
+<span>Chapter 7 Answers</span>
+<span>in</span>
+<span>Appendix A</span>
+<span>for the answers to these questions.</span>

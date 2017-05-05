@@ -1,3 +1,1059 @@
 ---
 layout: default
 ---
+<h2>Cookies, Sessions, and Authentication</h2>
+<span>As your web projects grow larger and more complicated, you will find an increasing</span>
+<span>need to keep track of your users. Even if you aren&rsquo;t offering logins and passwords, you</span>
+<span>will still often need to store details about a user&rsquo;s current session and possibly also</span>
+<span>recognize her when she returns to your site.</span>
+<span>Several technologies support this kind of interaction, ranging from simple browser</span>
+<span>cookies to session handling and HTTP authentication. Between them, they offer the</span>
+<span>opportunity for you to configure your site to your users&rsquo; preferences and ensure a</span>
+<span>smooth and enjoyable transition through it.</span>
+<h3>Using Cookies in PHP</h3>
+<span>A</span>
+<span>cookie</span>
+<span>is an item of data that a web server saves to your computer&rsquo;s hard disk via a</span>
+<span>web browser. It can contain almost any alphanumeric information (as long as it&rsquo;s</span>
+<span>under 4 KB) and can be retrieved from your computer and returned to the server.</span>
+<span>Common uses include session tracking, maintaining data across multiple visits, hold‐</span>
+<span>ing shopping cart contents, storing login details, and more.</span>
+<span>Because of their privacy implications, cookies can be read only from the issuing</span>
+<span>domain. In other words, if a cookie is issued by, for example,</span>
+<span>&nbsp;oreilly.com</span>
+<span>, it can be</span>
+<span>retrieved only by a web server using that domain. This prevents other websites from</span>
+<span>gaining access to details for which they are not authorized.</span>
+<span>Because of the way the Internet works, multiple elements on a web page can be</span>
+<span>embedded from multiple domains, each of which can issue its own cookies. When</span>
+<span>this happens, they are referred to as</span>
+<span>&nbsp;third-party cookies</span>
+<span>. Most commonly, these are</span>
+<span>created by advertising companies in order to track users across multiple websites.</span>
+<span>Because of this, most browsers allow users to turn cookies off either for the current</span>
+<span>server&rsquo;s domain, third-party servers, or both. Fortunately, most people who disable</span>
+<span>cookies do so only for third-party websites.</span>
+<span>Cookies are exchanged during the transfer of headers, before the actual HTML of a</span>
+<span>web page is sent, and it is impossible to send a cookie once any HTML has been</span>
+<span>transferred. Therefore, careful planning of cookie usage is important.</span>
+<span>&nbsp;Figure 12-1</span>
+<span>illustrates a typical request and response dialog between a web browser and web</span>
+<span>server passing cookies.</span>
+<span>Figure 12-1. A browser/server request/response dialog with cookies</span>
+<span>This exchange shows a browser receiving two pages:</span>
+<span>1.</span>
+<span>The browser issues a request to retrieve the main page,</span>
+<span>index.html</span>
+<span>, at the website</span>
+<span>http://www.webserver.com</span>
+<span>. The first header specifies the file, and the second</span>
+<span>header specifies the server.</span>
+<span>2.</span>
+<span>When the web server at</span>
+<span>&nbsp;webserver.com</span>
+<span>&nbsp;receives this pair of headers, it returns</span>
+<span>some of its own. The second header defines the type of content to be sent (</span>
+<span>text/</span>
+<span>html</span>
+<span>), and the third one sends a cookie of the name</span>
+<span>&nbsp;name</span>
+<span>&nbsp;and with the value</span>
+<span>value</span>
+<span>. Only then are the contents of the web page transferred.</span>
+<span>3.</span>
+<span>Once the browser has received the cookie, it will then return it with every future</span>
+<span>request made to the issuing server until the cookie expires or is deleted. So, when</span>
+<span>the browser requests the new page</span>
+<span>&nbsp;/news.html</span>
+<span>, it also returns the cookie</span>
+<span>&nbsp;name</span>
+<span>with the value</span>
+<span>value</span>
+<span>.</span>
+<span>4.</span>
+<span>Because the cookie has already been set, when the server receives the request to</span>
+<span>send</span>
+<span>&nbsp;/news.html</span>
+<span>, it does not have to resend the cookie, but just returns the</span>
+<span>requested page.</span>
+<h4>Setting a Cookie</h4>
+<span>Setting a cookie in PHP is a simple matter. As long as no HTML has yet been trans‐</span>
+<span>ferred, you can call the</span>
+<span>setcookie</span>
+<span>function, which has the following syntax (see</span>
+<span>Table 12-1</span>
+<span>):</span>
+<span>setcookie(name, value, expire, path, domain, secure, httponly);</span>
+<span>Table 12-1. The setcookie parameters</span>
+<span>Parameter</span>
+<span>Description</span>
+<span>Example</span>
+<span>name</span>
+<span>The name of the cookie. This is the name that your server will use to access the</span>
+<span>cookie on subsequent browser requests.</span>
+<span>username</span>
+<span>value</span>
+<span>The value of the cookie, or the cookie&rsquo;s contents. This can contain up to 4 KB of</span>
+<span>alphanumeric text.</span>
+<span>Hannah</span>
+<span>expire</span>
+<span>(</span>
+<span>Optional.</span>
+<span>) Unix timestamp of the expiration date. Generally, you will probably use</span>
+<span>time()</span>
+<span>plus a number of seconds. If not set, the cookie expires when the browser</span>
+<span>closes.</span>
+<span>time() + 2592000</span>
+<span>path</span>
+<span>(</span>
+<span>Optional.</span>
+<span>) The path of the cookie on the server. If this is a</span>
+<span>/</span>
+<span>(forward slash), the</span>
+<span>cookie is available over the entire domain, such as</span>
+<span>www.webserver.com</span>
+<span>. If it is a</span>
+<span>subdirectory, the cookie is available only within that subdirectory. The default is</span>
+<span>the current directory that the cookie is being set in, and this is the setting you will</span>
+<span>normally use.</span>
+<span>/</span>
+<span>domain</span>
+<span>(</span>
+<span>Optional.</span>
+<span>) The Internet domain of the cookie. If this is</span>
+<span>.webserver.com</span>
+<span>, the cookie is</span>
+<span>available to all of</span>
+<span>webserver.com</span>
+<span>and its subdomains, such as</span>
+<span>www.webserver.com</span>
+<span>and</span>
+<span>images.webserver.com</span>
+<span>. If it is</span>
+<span>images.webserver.com</span>
+<span>, the cookie is available</span>
+<span>only to</span>
+<span>images.webserver.com</span>
+<span>and its subdomains such as</span>
+<span>sub.images.webserver.com</span>
+<span>, but not, say, to</span>
+<span>www.webserver.com</span>
+<span>.</span>
+<span>.webserver.com</span>
+<span>secure</span>
+<span>(</span>
+<span>Optional.</span>
+<span>) Whether the cookie must use a secure connection (</span>
+<span>https://</span>
+<span>). If this value</span>
+<span>is</span>
+<span>TRUE</span>
+<span>, the cookie can be transferred only across a secure connection. The default</span>
+<span>is</span>
+<span>FALSE</span>
+<span>.</span>
+<span>FALSE</span>
+<span>httponly</span>
+<span>(</span>
+<span>Optional</span>
+<span>; implemented since PHP version 5.2.0.) Whether the cookie must use the</span>
+<span>HTTP protocol. If this value is</span>
+<span>TRUE</span>
+<span>, scripting languages such as JavaScript cannot</span>
+<span>access the cookie. (Not supported in all browsers.) The default is</span>
+<span>FALSE</span>
+<span>.</span>
+<span>FALSE</span>
+<span>So, to create a cookie with the name</span>
+<span>username</span>
+<span>and the value</span>
+<span>Hannah</span>
+<span>that is accessible</span>
+<span>across the entire web server on the current domain, and will be removed from the</span>
+<span>browser&rsquo;s cache in seven days, use the following:</span>
+<span>setcookie('username', 'Hannah', time() + 60 * 60 * 24 * 7, '/');</span>
+<h4>Accessing a Cookie</h4>
+<span>Reading the value of a cookie is as simple as accessing the</span>
+<span>$_COOKIE</span>
+<span>system array. For</span>
+<span>example, if you wish to see whether the current browser has the cookie called</span>
+<span>user</span>
+<span>name</span>
+<span>already stored and, if so, to read its value, use the following:</span>
+<span>if (isset($_COOKIE['username'])) $username = $_COOKIE['username'];</span>
+<span>Note that you can read a cookie back only after it has been sent to a web browser.</span>
+<span>This means that when you issue a cookie, you cannot read it in again until the</span>
+<span>browser reloads the page (or another with access to the cookie) from your website</span>
+<span>and passes the cookie back to the server in the process.</span>
+<h4>Destroying a Cookie</h4>
+<span>To delete a cookie, you must issue it again and set a date in the past. It is important</span>
+<span>for all parameters in your new</span>
+<span>setcookie</span>
+<span>call except the timestamp to be identical to</span>
+<span>the parameters when the cookie was first issued; otherwise, the deletion will fail.</span>
+<span>Therefore, to delete the cookie created earlier, you would use the following:</span>
+<span>setcookie('username', 'Hannah', time() - 2592000, '/');</span>
+<span>As long as the time given is in the past, the cookie should be deleted. However, I have</span>
+<span>used a time of 2,592,000 seconds (one month) in the past in case the client computer&rsquo;s</span>
+<span>date and time are not correctly set.</span>
+<h3>HTTP Authentication</h3>
+<span>HTTP authentication uses the web server to manage users and passwords for the</span>
+<span>application. It&rsquo;s adequate for most applications that ask users to log in, although some</span>
+<span>applications have specialized needs or more stringent security requirements that call</span>
+<span>for other techniques.</span>
+<span>To use HTTP authentication, PHP sends a header request asking to start an authenti‐</span>
+<span>cation dialog with the browser. The server must have this feature turned on in order</span>
+<span>for it to work, but because it&rsquo;s so common, your server is likely to offer the feature.</span>
+<span>Although it is usually installed with Apache, HTTP authentication</span>
+<span>may not necessarily be installed on the server you use. So attempt‐</span>
+<span>ing to run these examples may generate an error telling you that the</span>
+<span>feature is not enabled, in which case you must install the module,</span>
+<span>change the configuration file to load the module, or ask your sys‐</span>
+<span>tem administrator to do these fixes.</span>
+<span>After entering your URL into the browser or visiting via a link, the user will see an</span>
+<span>&ldquo;</span>
+<span>Authentication Required&rdquo; prompt pop up, requesting two fields: User Name and</span>
+<span>Password (</span>
+<span>Figure 12-2</span>
+<span>shows how this looks in Firefox).</span>
+<span>Figure 12-2. An HTTP authentication login prompt</span>
+<span>Example 12-1</span>
+<span>shows the code to make this happen.</span>
+<span>Example 12-1. PHP authentication</span>
+<span>&lt;?php</span>
+<span>if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;</span>
+<span>&nbsp;</span>
+<span>isset($_SERVER['PHP_AUTH_PW']))</span>
+<span>{</span>
+<span>echo "Welcome User: " . $_SERVER['PHP_AUTH_USER'] .</span>
+<span>&nbsp;</span>
+<span>" Password: " . $_SERVER['PHP_AUTH_PW'];</span>
+<span>}</span>
+<span>else</span>
+<span>{</span>
+<span>header('WWW-Authenticate: Basic realm="Restricted Section"');</span>
+<span>header('HTTP/1.0 401 Unauthorized');</span>
+<span>die("Please enter your username and password");</span>
+<span>}</span>
+<span>?&gt;</span>
+<span>By default, the type of interface Zend Server uses is</span>
+<span>cgi-fcgi</span>
+<span>, which</span>
+<span>is incompatible with basic authentication. However, configuring</span>
+<span>Zend is beyond the scope of this book, so if you are using it for</span>
+<span>Example 12-1</span>
+<span>through</span>
+<span>Example 12-5</span>
+<span>, you may prefer to test them</span>
+<span>on a different server. To determine the interface of a server, you can</span>
+<span>call the</span>
+<span>php_sapi_name</span>
+<span>function, which will return a string such as</span>
+<span>'cgi-fcgi'</span>
+<span>,</span>
+<span>'cli'</span>
+<span>, and so on. Basic authentication is not recom‐</span>
+<span>mended anyway on a production website, as it is very insecure, but</span>
+<span>you need to know how it works for maintaining legacy code. Please</span>
+<span>refer to</span>
+<span>http://php.net/php_sapi_name</span>
+<span>for further details.</span>
+<span>The</span>
+<span>first</span>
+<span>thing</span>
+<span>the</span>
+<span>program</span>
+<span>does</span>
+<span>is</span>
+<span>look</span>
+<span>for</span>
+<span>two</span>
+<span>particular</span>
+<span>array</span>
+<span>values:</span>
+<span>$_SERVER['PHP_AUTH_USER']</span>
+<span>and</span>
+<span>$_SERVER['PHP_AUTH_PW']</span>
+<span>. If they both exist, they</span>
+<span>represent the username and password entered by a user into an authentication</span>
+<span>prompt.</span>
+<span>If either value does not exist, the user has not yet been authenticated and you display</span>
+<span>the prompt in</span>
+<span>Figure 12-2</span>
+<span>by issuing the following header, where</span>
+<span>Basic realm</span>
+<span>is the</span>
+<span>name of the section that is protected and appears as part of the pop-up prompt:</span>
+<span>WWW-Authenticate: Basic realm="Restricted Area"</span>
+<span>If the user fills out the fields, the PHP program runs again from the top. But if the</span>
+<span>user clicks the Cancel button, the program proceeds to the following two lines, which</span>
+<span>send the following header and an error message:</span>
+<span>HTTP/1.0 401 Unauthorized</span>
+<span>The</span>
+<span>die</span>
+<span>statement causes the text &ldquo;Please enter your username and password&rdquo; to be</span>
+<span>displayed (see</span>
+<span>Figure 12-3</span>
+<span>).</span>
+<span>Figure 12-3. The result of clicking the Cancel button</span>
+<span>Once a user has been authenticated, you will not be able to get the</span>
+<span>authentication dialog to pop up again unless the user closes and</span>
+<span>reopens all browser windows, as the web browser will keep return‐</span>
+<span>ing the same username and password to PHP. You may need to</span>
+<span>close and reopen your browser a few times as you work through</span>
+<span>this section and try different things out.</span>
+<span>Now let&rsquo;s check for a valid username and password. The code in</span>
+<span>Example 12-1</span>
+<span>doesn&rsquo;t</span>
+<span>require you to change much to add this check, other than modifying the previous</span>
+<span>welcome message code to test for a correct username and password, and then issuing</span>
+<span>a welcome message. A failed authentication causes an error message to be sent (see</span>
+<span>Example 12-2</span>
+<span>).</span>
+<span>Example 12-2. PHP authentication with input checking</span>
+<span>&lt;?php</span>
+<span>$username = 'admin';</span>
+<span>$password = 'letmein';</span>
+<span>if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;</span>
+<span>&nbsp;</span>
+<span>isset($_SERVER['PHP_AUTH_PW']))</span>
+<span>{</span>
+<span>if ($_SERVER['PHP_AUTH_USER'] == $username &amp;&amp;</span>
+<span>&nbsp;</span>
+<span>$_SERVER['PHP_AUTH_PW'] == $password)</span>
+<span>&nbsp;</span>
+<span>echo "You are now logged in";</span>
+<span>else die("Invalid username / password combination");</span>
+<span>}</span>
+<span>else</span>
+<span>{</span>
+<span>header('WWW-Authenticate: Basic realm="Restricted Section"');</span>
+<span>header('HTTP/1.0 401 Unauthorized');</span>
+<span>die ("Please enter your username and password");</span>
+<span>}</span>
+<span>?&gt;</span>
+<span>Incidentally, take a look at the wording of the error message:</span>
+<span>Invalid username /</span>
+<span>password combination</span>
+<span>. It doesn&rsquo;t say whether the username or the password or both</span>
+<span>were wrong&mdash;the less information you can give to a potential hacker, the better.</span>
+<span>A mechanism is now in place to authenticate users, but only for a single username</span>
+<span>and password. Also, the password appears in clear text within the PHP file, and if</span>
+<span>someone managed to hack into your server, he would instantly know it. So let&rsquo;s look</span>
+<span>at a better way to handle usernames and passwords.</span>
+<h4>Storing Usernames and Passwords</h4>
+<span>Obviously, MySQL is the natural way to store usernames and passwords. But again,</span>
+<span>we don&rsquo;t want to store the passwords as clear text, because our website could be com‐</span>
+<span>promised if the database were accessed by a hacker. Instead, we&rsquo;ll use a neat trick</span>
+<span>called a</span>
+<span>one-way function</span>
+<span>.</span>
+<span>This type of function is easy to use and converts a string of text into a seemingly ran‐</span>
+<span>dom string. Because of their one-way nature, such functions are virtually impossible</span>
+<span>to reverse, so their output can be safely stored in a database&mdash;and anyone who steals</span>
+<span>it will be none the wiser as to the passwords used.</span>
+<span>In previous editions of this book, I recommended using the</span>
+<span>md5</span>
+<span>hashing algorithm</span>
+<span>for your data security. Time marches on, however, and now md5 is considered easily</span>
+<span>hackable and therefore unsafe, while even its previously recommended replacement</span>
+<span>of</span>
+<span>sha1</span>
+<span>can apparently be hacked (plus sha1 and sha2 were designed by the NSA and</span>
+<span>therefore considerable caution is recommended for their use in highly secure imple‐</span>
+<span>mentations).</span>
+<span>So now I have moved on to using the PHP</span>
+<span>hash</span>
+<span>function, passing it a version of the</span>
+<span>ripemd</span>
+<span>algorithm, which was designed by the open academic community and which</span>
+<span>(like md5) returns a 32-character hexadecimal number&mdash;so it can easily replace md5</span>
+<span>in most databases. Use it like this:</span>
+<span>$token = hash('ripemd128', 'mypassword');</span>
+<span>That example happens to give</span>
+<span>$token</span>
+<span>this value:</span>
+<span>7b694600c8a2a2b0897c719958713619</span>
+<span>By using the</span>
+<span>hash</span>
+<span>function, you can keep up with future developments in security</span>
+<span>and simply pass the hashing algorithm to it that you wish to implement, resulting in</span>
+<span>less code maintenance (although you will probably have to accommodate larger hash</span>
+<span>lengths than 32 characters in your databases).</span>
+<h4>Salting</h4>
+<span>Unfortunately,</span>
+<span>hash</span>
+<span>on its own is not enough to protect a database of passwords,</span>
+<span>because it could still be susceptible to a brute force attack that uses another database</span>
+<span>of known 32-character hexadecimal tokens. Such databases do exist, as a quick Goo‐</span>
+<span>gle search will verify, although probably only for md5 and sha1 or sha2 at the</span>
+<span>moment.</span>
+<span>Thankfully, though, we can put a spanner in the works of any such attempts by</span>
+<span>salting</span>
+<span>all the passwords before they are sent to</span>
+<span>hash</span>
+<span>. Salting is simply a matter of adding</span>
+<span>some text that only we know about to each parameter to be encrypted, like this (with</span>
+<span>the salt highlighted in bold):</span>
+<span>$token = hash('ripemd128', '</span>
+<span>saltstring</span>
+<span>mypassword');</span>
+<span>In this example, the text</span>
+<span>saltstring</span>
+<span>has been prepended to the password. Of course, the</span>
+<span>more obscure you can make the salt, the better. I like to use salts such as this:</span>
+<span>$token = hash('ripemd128', '</span>
+<span>hqb%$t</span>
+<span>mypassword</span>
+<span>cg*l</span>
+<span>');</span>
+<span>Here some random characters have been placed both before and after the password.</span>
+<span>Given just the database, and without access to your PHP code, it should now be next</span>
+<span>to impossible to work out the stored passwords.</span>
+<span>All you have to do when verifying someone&rsquo;s login password is to add these same ran‐</span>
+<span>dom strings back in before and after it, and then check the resulting token from a</span>
+<span>hash</span>
+<span>call against the one stored in the database for that user.</span>
+<span>Let&rsquo;s create a MySQL table to hold some user details and add a couple of accounts. So</span>
+<span>type and save the program in</span>
+<span>&nbsp;Example 12-3</span>
+<span>&nbsp;as</span>
+<span>&nbsp;setupusers.php</span>
+<span>, and then open it in</span>
+<span>your browser.</span>
+<span>Example 12-3. Creating a users table and adding two accounts</span>
+<span>&lt;?php // setupusers.php</span>
+<span>require_once 'login.php';</span>
+<span>$connection =</span>
+<span>new mysqli($db_hostname, $db_username, $db_password, $db_database);</span>
+<span>if ($connection-&gt;connect_error) die($connection-&gt;connect_error);</span>
+<span>$query = "CREATE TABLE users (</span>
+<span>forename VARCHAR(32) NOT NULL,</span>
+<span>surname VARCHAR(32) NOT NULL,</span>
+<span>username VARCHAR(32) NOT NULL UNIQUE,</span>
+<span>password VARCHAR(32) NOT NULL</span>
+<span>)";</span>
+<span>$result = $connection-&gt;query($query);</span>
+<span>if (!$result) die($connection-&gt;error);</span>
+<span>$salt1 = "qm&amp;h*";</span>
+<span>$salt2 = "pg!@";</span>
+<span>$forename = 'Bill';</span>
+<span>$surname = 'Smith';</span>
+<span>$username = 'bsmith';</span>
+<span>$password = 'mysecret';</span>
+<span>$token = hash('ripemd128', "$salt1$password$salt2");</span>
+<span>add_user($connection, $forename, $surname, $username, $token);</span>
+<span>$forename = 'Pauline';</span>
+<span>$surname = 'Jones';</span>
+<span>$username = 'pjones';</span>
+<span>$password = 'acrobat';</span>
+<span>$token = hash('ripemd128', "$salt1$password$salt2");</span>
+<span>add_user($connection, $forename, $surname, $username, $token);</span>
+<span>function add_user($connection, $fn, $sn, $un, $pw)</span>
+<span>{</span>
+<span>$query = "INSERT INTO users VALUES('$fn', '$sn', '$un', '$pw')";</span>
+<span>$result = $connection-&gt;query($query);</span>
+<span>if (!$result) die($connection-&gt;error);</span>
+<span>}</span>
+<span>?&gt;</span>
+<span>This</span>
+<span>program</span>
+<span>will</span>
+<span>create</span>
+<span>the</span>
+<span>table</span>
+<span>users</span>
+<span>within</span>
+<span>your</span>
+<span>publications</span>
+<span>database</span>
+<span>(or</span>
+<span>whichever database you set up for the</span>
+<span>login.php</span>
+<span>file in</span>
+<span>Chapter 10</span>
+<span>). In this table, it</span>
+<span>will create two users: Bill Smith and Pauline Jones. They have the usernames and</span>
+<span>passwords of</span>
+<span>bsmith/mysecret</span>
+<span>and</span>
+<span>pjones/acrobat</span>
+<span>, respectively.</span>
+<span>Using the data in this table, we can now modify</span>
+<span>Example 12-2</span>
+<span>to properly authenti‐</span>
+<span>cate users, and</span>
+<span>&nbsp;Example 12-4</span>
+<span>&nbsp;shows the code needed to do this. Type it, save it as</span>
+<span>authenticate.php</span>
+<span>, and call it up in your browser.</span>
+<span>Example 12-4. PHP authentication using MySQL</span>
+<span>&lt;?php // authenticate.php</span>
+<span>require_once 'login.php';</span>
+<span>$connection =</span>
+<span>new mysqli($db_hostname, $db_username, $db_password, $db_database);</span>
+<span>if ($connection-&gt;connect_error) die($connection-&gt;connect_error);</span>
+<span>if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;</span>
+<span>&nbsp;</span>
+<span>isset($_SERVER['PHP_AUTH_PW']))</span>
+<span>{</span>
+<span>$un_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_USER']);</span>
+<span>$pw_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_PW']);</span>
+<span>$query = "SELECT * FROM users WHERE username='$un_temp'";</span>
+<span>$result = $connection-&gt;query($query);</span>
+<span>if (!$result) die($connection-&gt;error);</span>
+<span>elseif ($result-&gt;num_rows)</span>
+<span>{</span>
+<span>$row = $result-&gt;fetch_array(MYSQLI_NUM);</span>
+<span>$result-&gt;close();</span>
+<span>$salt1 = "qm&amp;h*";</span>
+<span>$salt2 = "pg!@";</span>
+<span>$token = hash('ripemd128', "$salt1$pw_temp$salt2");</span>
+<span>if ($token == $row[3]) echo "$row[0] $row[1] :</span>
+<span>Hi $row[0], you are now logged in as '$row[2]'";</span>
+<span>else die("Invalid username/password combination");</span>
+<span>}</span>
+<span>else die("Invalid username/password combination");</span>
+<span>}</span>
+<span>else</span>
+<span>{</span>
+<span>header('WWW-Authenticate: Basic realm="Restricted Section"');</span>
+<span>header('HTTP/1.0 401 Unauthorized');</span>
+<span>die ("Please enter your username and password");</span>
+<span>}</span>
+<span>$connection-&gt;close();</span>
+<span>function mysql_entities_fix_string($connection, $string)</span>
+<span>{</span>
+<span>return htmlentities(mysql_fix_string($connection, $string));</span>
+<span>}</span>
+<span>function mysql_fix_string($connection, $string)</span>
+<span>{</span>
+<span>if (get_magic_quotes_gpc()) $string = stripslashes($string);</span>
+<span>return $connection-&gt;real_escape_string($string);</span>
+<span>}</span>
+<span>?&gt;</span>
+<span>As you might expect at this point in the book, some of these examples are starting to</span>
+<span>get quite a bit longer. But don&rsquo;t be put off. The final 10 lines are simply Example 10-22</span>
+<span>from</span>
+<span>Chapter 10</span>
+<span>. They are there to sanitize the user input&mdash;very important.</span>
+<span>The only lines to really concern yourself with at this point start with the assigning of</span>
+<span>two variables,</span>
+<span>$un_temp</span>
+<span>and</span>
+<span>$pw_temp</span>
+<span>, using the submitted username and password,</span>
+<span>highlighted in bold text. Next, a query is issued to MySQL to look up the user</span>
+<span>$un_temp</span>
+<span>and, if a result is returned, to assign the first row to</span>
+<span>$row</span>
+<span>. (Because user‐</span>
+<span>names are unique, there will be only one row.) Then the two salts are created in</span>
+<span>$salt1</span>
+<span>and</span>
+<span>$salt2</span>
+<span>, which are then added before and after the submitted password</span>
+<span>$pw_temp</span>
+<span>. This string is then passed to the</span>
+<span>hash</span>
+<span>function, which returns a 32-</span>
+<span>character hexadecimal value in</span>
+<span>$token</span>
+<span>.</span>
+<span>Now all that&rsquo;s necessary is to check</span>
+<span>$token</span>
+<span>against the value stored in the database,</span>
+<span>which happens to be in the fourth column&mdash;which is column 3 when starting from 0.</span>
+<span>So</span>
+<span>$row[3]</span>
+<span>contains the previous token calculated for the salted password. If the two</span>
+<span>match, a friendly welcome string is output, calling the user by his or her first name</span>
+<span>(see</span>
+<span>Figure 12-4</span>
+<span>). Otherwise, an error message is displayed. As mentioned before, the</span>
+<span>error message is the same regardless of whether such a username exists, as this pro‐</span>
+<span>vides minimal information to potential hackers or password guessers.</span>
+<span>Figure 12-4. Bill Smith has now been authenticated</span>
+<span>You can try this out for yourself by calling up the program in your browser and enter‐</span>
+<span>ing a username of</span>
+<span>bsmith</span>
+<span>and password of</span>
+<span>mysecret</span>
+<span>(or</span>
+<span>pjones</span>
+<span>and</span>
+<span>acrobat</span>
+<span>), the</span>
+<span>values that were saved in the database by</span>
+<span>Example 12-3</span>
+<span>.</span>
+<span>By sanitizing input immediately after it is encountered, you will</span>
+<span>block any malicious HTML, JavaScript, or MySQL attacks before</span>
+<span>they can get any further, and will not have to sanitize this data</span>
+<span>again. Remember, however, that if a user has characters such as</span>
+<span>&lt;</span>
+<span>or</span>
+<span>&amp;</span>
+<span>in a password (for example), these will be expanded to</span>
+<span>&amp;lt;</span>
+<span>or</span>
+<span>&amp;amp;</span>
+<span>by the</span>
+<span>htmlemtities</span>
+<span>function. But as long as your code</span>
+<span>allows for strings that may end up larger than the provided input</span>
+<span>width, and as long as you always run passwords through this sani‐</span>
+<span>tization, you&rsquo;ll be just fine.</span>
+<h3>Using Sessions</h3>
+<span>Because your program can&rsquo;t tell what variables were set in other programs&mdash;or even</span>
+<span>what values the same program set the previous time it ran&mdash;you&rsquo;ll sometimes want to</span>
+<span>track what your users are doing from one web page to another. You can do this by</span>
+<span>setting hidden fields in a form, as seen in</span>
+<span>Chapter 10</span>
+<span>, and checking the value of the</span>
+<span>fields after the form is submitted, but PHP provides a much more powerful and sim‐</span>
+<span>pler solution in the form of</span>
+<span>sessions</span>
+<span>. These are groups of variables that are stored on</span>
+<span>the server but relate only to the current user. To ensure that the right variables are</span>
+<span>applied to the right users, PHP saves a cookie in the users&rsquo; web browsers to uniquely</span>
+<span>identify them.</span>
+<span>This cookie has meaning only to the web server and cannot be used to ascertain any</span>
+<span>information about a user. You might ask about those users who have their cookies</span>
+<span>turned off. Well, that&rsquo;s not a problem as of PHP 4.2.0, because it will identify when</span>
+<span>this is the case and place a cookie token in the Get portion of each URL request</span>
+<span>instead. Either way, sessions provide a solid way of keeping track of your users.</span>
+<h4>Starting a Session</h4>
+<span>Starting a session requires calling the PHP function</span>
+<span>session_start</span>
+<span>before any</span>
+<span>HTML has been output, similarly to how cookies are sent during header exchanges.</span>
+<span>Then, to begin saving session variables, you just assign them as part of the</span>
+<span>$_SESSION</span>
+<span>array, like this:</span>
+<span>$_SESSION['variable'] = $value;</span>
+<span>They can then be read back just as easily in later program runs, like this:</span>
+<span>$variable = $_SESSION['variable'];</span>
+<span>Now assume that you have an application that always needs access to the username,</span>
+<span>password, first name, and last name of each user, as stored in the table</span>
+<span>users</span>
+<span>, which</span>
+<span>you should have created a little earlier. So let&rsquo;s further modify</span>
+<span>authenticate.php</span>
+<span>from</span>
+<span>Example 12-4</span>
+<span>to set up a session once a user has been authenticated.</span>
+<span>Example 12-5</span>
+<span>shows the changes needed. The only difference is the content of the</span>
+<span>if</span>
+<span>($token == $row[3])</span>
+<span>section, which we now start by opening a session and saving</span>
+<span>these four variables into it. Type this program (or modify</span>
+<span>Example 12-4</span>
+<span>) and save it</span>
+<span>as</span>
+<span>authenticate2.php</span>
+<span>. But don&rsquo;t run it in your browser yet, as you will also need to cre‐</span>
+<span>ate a second program in a moment.</span>
+<span>Example 12-5. Setting a session</span>
+<span>after successful authentication</span>
+<span>&lt;?php //authenticate2.php</span>
+<span>require_once 'login.php';</span>
+<span>$connection =</span>
+<span>new mysqli($db_hostname, $db_username, $db_password, $db_database);</span>
+<span>if ($connection-&gt;connect_error) die($connection-&gt;connect_error);</span>
+<span>if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;</span>
+<span>&nbsp;</span>
+<span>isset($_SERVER['PHP_AUTH_PW']))</span>
+<span>{</span>
+<span>$un_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_USER']);</span>
+<span>$pw_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_PW']);</span>
+<span>$query = "SELECT * FROM users WHERE username='$un_temp'";</span>
+<span>$result = $connection-&gt;query($query);</span>
+<span>if (!$result) die($connection-&gt;error);</span>
+<span>elseif ($result-&gt;num_rows)</span>
+<span>{</span>
+<span>&nbsp;</span>
+<span>$row = $result-&gt;fetch_array(MYSQLI_NUM);</span>
+<span>&nbsp;</span>
+<span>$result-&gt;close();</span>
+<span>&nbsp;</span>
+<span>$salt1 = "qm&amp;h*";</span>
+<span>&nbsp;</span>
+<span>$salt2 = "pg!@";</span>
+<span>&nbsp;</span>
+<span>$token = hash('ripemd128', "$salt1$pw_temp$salt2");</span>
+<span>if ($token == $row[3])</span>
+<span>{</span>
+<span>session_start();</span>
+<span>$_SESSION['username'] = $un_temp;</span>
+<span>$_SESSION['password'] = $pw_temp;</span>
+<span>$_SESSION['forename'] = $row[0];</span>
+<span>$_SESSION['surname'] = $row[1];</span>
+<span>echo "$row[0] $row[1] : Hi $row[0],</span>
+<span>you are now logged in as '$row[2]'";</span>
+<span>die ("&lt;p&gt;&lt;a href=continue.php&gt;Click here to continue&lt;/a&gt;&lt;/p&gt;");</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>else die("Invalid username/password combination");</span>
+<span>}</span>
+<span>else die("Invalid username/password combination");</span>
+<span>}</span>
+<span>else</span>
+<span>{</span>
+<span>header('WWW-Authenticate: Basic realm="Restricted Section"');</span>
+<span>header('HTTP/1.0 401 Unauthorized');</span>
+<span>die ("Please enter your username and password");</span>
+<span>}</span>
+<span>$connection-&gt;close();</span>
+<span>function mysql_entities_fix_string($connection, $string)</span>
+<span>{</span>
+<span>return htmlentities(mysql_fix_string($connection, $string));</span>
+<span>}</span>
+<span>function mysql_fix_string($connection, $string)</span>
+<span>{</span>
+<span>if (get_magic_quotes_gpc()) $string = stripslashes($string);</span>
+<span>return $connection-&gt;real_escape_string($string);</span>
+<span>}</span>
+<span>?&gt;</span>
+<span>One other addition to the program is the &ldquo;Click here to continue&rdquo; link with a destina‐</span>
+<span>tion URL of</span>
+<span>continue.php</span>
+<span>. This will be used to illustrate how the session will transfer</span>
+<span>to another program or PHP web page. So create</span>
+<span>continue.php</span>
+<span>by typing the program</span>
+<span>in</span>
+<span>Example 12-6</span>
+<span>and saving it.</span>
+<span>Example 12-6. Retrieving session variables</span>
+<span>&lt;?php // continue.php</span>
+<span>session_start();</span>
+<span>if (isset($_SESSION['username']))</span>
+<span>{</span>
+<span>$username = $_SESSION['username'];</span>
+<span>$password = $_SESSION['password'];</span>
+<span>$forename = $_SESSION['forename'];</span>
+<span>$surname = $_SESSION['surname'];</span>
+<span>echo "Welcome back $forename.&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>Your full name is $forename $surname.&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>Your username is '$username'</span>
+<span>&nbsp;</span>
+<span>and your password is '$password'.";</span>
+<span>}</span>
+<span>else echo "Please &lt;a href='authenticate2.php'&gt;click here&lt;/a&gt; to log in.";</span>
+<span>?&gt;</span>
+<span>Now you are ready to call up</span>
+<span>authenticate2.php</span>
+<span>into your browser. Enter a username</span>
+<span>of</span>
+<span>bsmith</span>
+<span>and password of</span>
+<span>mysecret</span>
+<span>(or</span>
+<span>pjones</span>
+<span>and</span>
+<span>acrobat</span>
+<span>) when prompted, and</span>
+<span>click the link to load in</span>
+<span>continue.php</span>
+<span>. When your browser calls it up, the result should</span>
+<span>be something like</span>
+<span>Figure 12-5</span>
+<span>.</span>
+<span>Figure 12-5. Maintaining user data with sessions</span>
+<span>Sessions neatly confine to a single program the extensive code required to authenti‐</span>
+<span>cate and log in a user. Once a user has been authenticated, and you have created a</span>
+<span>session, your program code becomes very simple indeed. You need only to call up</span>
+<span>session_start</span>
+<span>and look up any variables to which you need access from</span>
+<span>$_SESSION</span>
+<span>.</span>
+<span>In</span>
+<span>&nbsp;Example 12-6</span>
+<span>, a quick test of whether</span>
+<span>$_SESSION['username']</span>
+<span>has a value is</span>
+<span>enough to let you know that the current user is authenticated, because session vari‐</span>
+<span>ables are stored on the server (unlike cookies, which are stored on the web browser)</span>
+<span>and can therefore be trusted.</span>
+<span>If</span>
+<span>$_SESSION['username']</span>
+<span>has not been assigned a value, no session is active, so the</span>
+<span>last line of code in</span>
+<span>Example 12-6</span>
+<span>directs users to the login page at</span>
+<span>authenticate2.php</span>
+<span>.</span>
+<span>The</span>
+<span>continue.php</span>
+<span>program prints back the value of the user&rsquo;s pass‐</span>
+<span>word to show you how session variables work. In practice, you</span>
+<span>already know that the user is logged in, so you shouldn&rsquo;t need to</span>
+<span>keep track of (or display) any passwords, and in fact doing so</span>
+<span>would be a security risk.</span>
+<h4>Ending a Session</h4>
+<span>When the time comes to end a session, usually when a user requests to log out from</span>
+<span>your</span>
+<span>site,</span>
+<span>you</span>
+<span>can</span>
+<span>use</span>
+<span>the</span>
+<span>session_destroy</span>
+<span>function</span>
+<span>in</span>
+<span>association,</span>
+<span>as</span>
+<span>in</span>
+<span>Example 12-7</span>
+<span>. That example provides a useful function for totally destroying a ses‐</span>
+<span>sion, logging a user out, and unsetting all session variables.</span>
+<span>Example 12-7. A handy function to destroy a session and its data</span>
+<span>&lt;?php</span>
+<span>function destroy_session_and_data()</span>
+<span>{</span>
+<span>session_start();</span>
+<span>$_SESSION = array();</span>
+<span>setcookie(session_name(), '', time() - 2592000, '/');</span>
+<span>session_destroy();</span>
+<span>}</span>
+<span>?&gt;</span>
+<span>To see this in action, you could modify</span>
+<span>continue.php</span>
+<span>as in</span>
+<span>Example 12-8</span>
+<span>.</span>
+<span>Example 12-8. Retrieving session variables and then destroying the session</span>
+<span>&lt;?php</span>
+<span>session_start();</span>
+<span>if (isset($_SESSION['username']))</span>
+<span>{</span>
+<span>$username = $_SESSION['username'];</span>
+<span>$password = $_SESSION['password'];</span>
+<span>$forename = $_SESSION['forename'];</span>
+<span>$surname = $_SESSION['surname'];</span>
+<span>destroy_session_and_data();</span>
+<span>echo "Welcome back $forename.&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>Your full name is $forename $surname.&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>Your username is '$username'</span>
+<span>&nbsp;</span>
+<span>and your password is '$password'.";</span>
+<span>}</span>
+<span>else echo "Please &lt;a href='authenticate2.php'&gt;click here&lt;/a&gt; to log in.";</span>
+<span>function destroy_session_and_data()</span>
+<span>{</span>
+<span>$_SESSION = array();</span>
+<span>setcookie(session_name(), '', time() - 2592000, '/');</span>
+<span>session_destroy();</span>
+<span>}</span>
+<span>?&gt;</span>
+<span>The first time you navigate from</span>
+<span>authenticate2.php</span>
+<span>to</span>
+<span>continue.php</span>
+<span>, it will display all</span>
+<span>the session variables. But, because of the call to</span>
+<span>destroy_session_and_data</span>
+<span>, if you</span>
+<span>then click your browser&rsquo;s Reload button, the session will have been destroyed and</span>
+<span>you&rsquo;ll be prompted to return to the login page.</span>
+<h4>Setting a Time-Out</h4>
+<span>There are other times when you might wish to close a user&rsquo;s session yourself, such as</span>
+<span>when the user has forgotten or neglected to log out, and you want the program to do</span>
+<span>so for her for her own security. You do this by setting the time-out after which a log‐</span>
+<span>out will automatically occur if there has been no activity.</span>
+<span>To do this, use the</span>
+<span>ini_set</span>
+<span>function as follows. This example sets the time-out to</span>
+<span>exactly one day:</span>
+<span>ini_set('session.gc_maxlifetime', 60 * 60 * 24);</span>
+<span>If you wish to know what the current time-out period is, you can display it using the</span>
+<span>following:</span>
+<span>echo ini_get('session.gc_maxlifetime');</span>
+<h4>Session Security</h4>
+<span>Although I mentioned that once you had authenticated a user and set up a session,</span>
+<span>you could safely assume that the session variables were trustworthy, this isn&rsquo;t exactly</span>
+<span>the case. The reason is that it&rsquo;s possible to use</span>
+<span>&nbsp;packet</span>
+<span>sniffing</span>
+<span>&nbsp;(sampling of data) to</span>
+<span>discover session IDs passing across a network. Additionally, if the session ID is passed</span>
+<span>in the Get part of a URL, it might appear in external site server logs. The only truly</span>
+<span>secure way of preventing these from being discovered is to implement</span>
+<span>Secure Sockets</span>
+<span>Layer (SSL)</span>
+<span>and run HTTPS instead of HTTP web pages. That&rsquo;s beyond the scope of</span>
+<span>this book, although you may like to take a look at</span>
+<span>http://apache-ssl.org</span>
+<span>for details on</span>
+<span>setting up a secure web server.</span>
+<span>Preventing session hijacking</span>
+<span>When SSL is not a possibility, you can further authenticate users by storing their IP</span>
+<span>address along with their other details by adding a line such as the following when you</span>
+<span>store their session:</span>
+<span>$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];</span>
+<span>Then, as an extra check, whenever any page loads and a session is available, perform</span>
+<span>the following check. It calls the function</span>
+<span>different_user</span>
+<span>if the stored IP address</span>
+<span>doesn&rsquo;t match the current one:</span>
+<span>if ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) different_user();</span>
+<span>What code you place in your</span>
+<span>different_user</span>
+<span>function is up to you. I recommend</span>
+<span>that you simply delete the current session and ask the user to log in again due to a</span>
+<span>technical error. Don&rsquo;t say any more than that, or you&rsquo;re giving away potentially useful</span>
+<span>information.</span>
+<span>Of course, you need to be aware that users on the same proxy server, or sharing the</span>
+<span>same IP address on a home or business network, will have the same IP address.</span>
+<span>Again, if this is a problem for you, use SSL. You can also store a copy of the browser</span>
+<span>user agent string</span>
+<span>(a string that developers put in their browsers to identify them by</span>
+<span>type and version), which might also distinguish users due to the wide variety of</span>
+<span>browser types, versions, and computer platforms. Use the following to store the user</span>
+<span>agent:</span>
+<span>$_SESSION['ua'] = $_SERVER['HTTP_USER_AGENT'];</span>
+<span>And use this to compare the current agent string with the saved one:</span>
+<span>if ($_SESSION['ua'] != $_SERVER['HTTP_USER_AGENT']) different_user();</span>
+<span>Or, better still, combine the two checks like this and save the combination as a</span>
+<span>hash</span>
+<span>hexadecimal string:</span>
+<span>$_SESSION['check'] = hash('ripemd128', $_SERVER['REMOTE_ADDR'] .</span>
+<span>$_SERVER['HTTP_USER_AGENT']);</span>
+<span>And use this to compare the current and stored strings:</span>
+<span>if ($_SESSION['check'] != hash('ripemd128', $_SERVER['REMOTE_ADDR'] .</span>
+<span>$_SERVER['HTTP_USER_AGENT'])) different_user();</span>
+<span>Preventing session</span>
+<span>fixation</span>
+<span>Session fixation</span>
+<span>&nbsp;happens when a malicious user tries to present a session ID to the</span>
+<span>server rather than letting the server create one. It can happen when a user takes</span>
+<span>advantage of the ability to pass a session ID in the Get part of a URL, like this:</span>
+<span>http://yourserver.com/authenticate.php?PHPSESSID=123456789</span>
+<span>In this example, the made-up session ID of 123456789 is being passed to the server.</span>
+<span>Now, consider</span>
+<span>Example 12-9</span>
+<span>, which is susceptible to session fixation. To see how, type</span>
+<span>it and save it as</span>
+<span>sessiontest.php</span>
+<span>.</span>
+<span>Example 12-9. A session susceptible to session</span>
+<span>fixation</span>
+<span>&lt;?php // sessiontest.php</span>
+<span>session_start();</span>
+<span>if (!isset($_SESSION['count'])) $_SESSION['count'] = 0;</span>
+<span>else ++$_SESSION['count'];</span>
+<span>echo $_SESSION['count'];</span>
+<span>?&gt;</span>
+<span>Once it&rsquo;s saved, call it up in your browser using the following URL (prefacing it with</span>
+<span>the correct pathname, such as</span>
+<span>http://localhost/web/</span>
+<span>):</span>
+<span>sessiontest.php?PHPSESSID=1234</span>
+<span>Press Reload a few times, and you&rsquo;ll see the counter increase. Now try browsing to</span>
+<span>sessiontest.php?PHPSESSID=5678</span>
+<span>Press Reload a few times here, and you should see it count up again from 0. Leave the</span>
+<span>counter on a different number than the first URL and then go back to the first URL</span>
+<span>and see how the number changes back. You have created two different sessions of</span>
+<span>your own choosing here, and you could easily create as many as you needed.</span>
+<span>The reason this approach is so dangerous is that a malicious attacker could try to dis‐</span>
+<span>tribute these types of URLs to unsuspecting users, and if any of them followed these</span>
+<span>links, the attacker would be able to come back and take over any sessions that had not</span>
+<span>been deleted or expired!</span>
+<span>To prevent this, add a simple check to change the session ID using</span>
+<span>session_regener</span>
+<span>ate_id</span>
+<span>. This function keeps all current session variable values, but replaces the ses‐</span>
+<span>sion ID with a new one that an attacker cannot know.</span>
+<span>To do this, check for a special session variable that you arbitrarily invent. If it doesn&rsquo;t</span>
+<span>exist, you know that this is a new session, so you simply change the session ID and set</span>
+<span>the special session variable to note the change.</span>
+<span>Example 12-10</span>
+<span>shows how the code to do this might look, using the session variable</span>
+<span>initiated</span>
+<span>.</span>
+<span>Example 12-10. Session regeneration</span>
+<span>&lt;?php</span>
+<span>session_start();</span>
+<span>if (!isset($_SESSION['initiated']))</span>
+<span>{</span>
+<span>session_regenerate_id();</span>
+<span>$_SESSION['initiated'] = 1;</span>
+<span>}</span>
+<span>if (!isset($_SESSION['count'])) $_SESSION['count'] = 0;</span>
+<span>else ++$_SESSION['count'];</span>
+<span>echo $_SESSION['count'];</span>
+<span>?&gt;</span>
+<span>This way, an attacker can come back to your site using any of the session IDs that he</span>
+<span>or she generated, but none of them will call up another user&rsquo;s session, as they will all</span>
+<span>have been replaced with regenerated IDs. If you want to be ultra-paranoid, you can</span>
+<span>even regenerate the session ID on each request.</span>
+<span>Forcing cookie-only sessions</span>
+<span>If you are prepared to require your users to enable cookies on your website, you can</span>
+<span>use the</span>
+<span>ini_set</span>
+<span>function, like this:</span>
+<span>ini_set('session.use_only_cookies', 1);</span>
+<span>With that setting, the</span>
+<span>?PHPSESSID=</span>
+<span>trick will be completely ignored. If you use this</span>
+<span>security measure, I also recommend that you inform your users that your site</span>
+<span>requires cookies, so they know what&rsquo;s wrong if they don&rsquo;t get the results they want.</span>
+<span>Using a shared server</span>
+<span>On a server shared with other accounts, you will not want to have all your session</span>
+<span>data saved into the same directory as theirs. Instead, you should choose a directory to</span>
+<span>which only your account has access (and that is not web-visible) to store your ses‐</span>
+<span>sions, by placing an</span>
+<span>ini_set</span>
+<span>call near the start of a program, like this:</span>
+<span>ini_set('session.save_path', '/home/user/myaccount/sessions');</span>
+<span>The configuration option will keep this new value only during the program&rsquo;s execu‐</span>
+<span>tion, and the original configuration will be restored at the program&rsquo;s ending.</span>
+<span>This sessions folder can fill up quickly; you may wish to periodically clear out older</span>
+<span>sessions according to how busy your server gets. The more it&rsquo;s used, the less time you</span>
+<span>will want to keep a session stored.</span>
+<span>Remember that your websites can and will be subject to hacking</span>
+<span>attempts. There are automated bots running riot around the Inter‐</span>
+<span>net, trying to find sites vulnerable to exploits. So whatever you do,</span>
+<span>whenever you are handling data that is not 100 percent generated</span>
+<span>within your own program, you should always treat it with the</span>
+<span>utmost caution.</span>
+<span>At this point, you should now have a very good grasp of both PHP and MySQL, so in</span>
+<span>the next chapter it&rsquo;s time to introduce the third major technology covered by this</span>
+<span>book, JavaScript.</span>
+<h3>Questions</h3>
+<span>1.</span>
+<span>Why must a cookie be transferred at the start of a program?</span>
+<span>2.</span>
+<span>Which PHP function stores a cookie on a web browser?</span>
+<span>3.</span>
+<span>How can you destroy a cookie?</span>
+<span>4.</span>
+<span>Where are the username and password stored in a PHP program when you are</span>
+<span>using HTTP authentication?</span>
+<span>5.</span>
+<span>Why is the</span>
+<span>hash</span>
+<span>function a powerful security measure?</span>
+<span>6.</span>
+<span>What is meant by</span>
+<span>salting</span>
+<span>a string?</span>
+<span>7.</span>
+<span>What is a PHP session?</span>
+<span>8.</span>
+<span>How do you initiate a PHP session?</span>
+<span>9.</span>
+<span>What is session hijacking?</span>
+<span>10.</span>
+<span>What is session fixation?</span>
+<span>See</span>
+<span>Chapter 12 Answers</span>
+<span>in</span>
+<span>Appendix A</span>
+<span>for the answers to these questions.</span>

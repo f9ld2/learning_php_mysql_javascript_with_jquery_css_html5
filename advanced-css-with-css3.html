@@ -1,3 +1,1298 @@
 ---
 layout: default
 ---
+<h2>Advanced CSS with CSS3</h2>
+<span>The first implementation of CSS was drawn up in 1996, was released in 1999, and has</span>
+<span>been supported by all browser releases since 2001. The standard for this version,</span>
+<span>CSS1, was revised in 2008. Beginning in 1998, developers began drawing up the sec‐</span>
+<span>ond specification, CSS2; its standard was completed in 2007 and revised in 2009.</span>
+<span>Development for the CSS3 specification commenced in 2001, with some features</span>
+<span>being proposed as recently as 2009. Therefore, the development process will likely</span>
+<span>continue for some time before a final recommendation for CSS3 is approved. And</span>
+<span>even though CSS3 isn&rsquo;t yet complete, people are already beginning to put forward</span>
+<span>suggestions for CSS4.</span>
+<span>In this chapter, I&rsquo;ll take you through the CSS3 features that have already been gener‐</span>
+<span>ally adopted by the major browsers. Some of these features provide functionality that</span>
+<span>hitherto could be provided only with JavaScript.</span>
+<span>I recommend using CSS3 to implement dynamic features where you can, instead of</span>
+<span>JavaScript. The features provided by CSS make document attributes part of the docu‐</span>
+<span>ment itself, instead of being tacked on through JavaScript. Making them part of the</span>
+<span>document is a cleaner design.</span>
+<h3>Attribute Selectors</h3>
+<span>In the previous chapter, I detailed the various CSS attribute selectors, which I will</span>
+<span>now quickly recap. Selectors are used in CSS to match HTML elements, and there are</span>
+<span>10 different types, as detailed in</span>
+<span>Table 19-1</span>
+<span>.</span>
+<span>Table 19-1. CSS selectors, pseudoclasses, and pseudoelements</span>
+<span>Selector type</span>
+<span>Example</span>
+<span>Universal selector</span>
+<span>* { color:#555; }</span>
+<span>Type selectors</span>
+<span>b { color:red; }</span>
+<span>Class selectors</span>
+<span>.classname { color:blue; }</span>
+<span>ID selectors</span>
+<span>#idname { background:cyan; }</span>
+<span>Descendant selectors</span>
+<span>span em { color:green; }</span>
+<span>Child selectors</span>
+<span>div &gt; em { background:lime; }</span>
+<span>Adjacent sibling selectors</span>
+<span>i + b { color:gray; }</span>
+<span>Attribute selectors</span>
+<span>a[href='info.htm'] { color:red; }</span>
+<span>Pseudoclasses</span>
+<span>a:hover { font-weight:bold; }</span>
+<span>Pseudoelements</span>
+<span>P::first-letter { font-size:300%; }</span>
+<span>The CSS3 designers decided that most of these selectors work just fine the way they</span>
+<span>are, but three enhancements have been made so that you can more easily match ele‐</span>
+<span>ments based on the contents of their attributes.</span>
+<h4>Matching Parts of Strings</h4>
+<span>In CSS2 you can use a selector such as</span>
+<span>a[href='info.htm']</span>
+<span>to match the string</span>
+<span>info.htm</span>
+<span>when found in an</span>
+<span>href</span>
+<span>attribute, but there&rsquo;s no way to match only a portion</span>
+<span>of a string. However, CSS3 comes to the rescue with three new operators:</span>
+<span>^</span>
+<span>,</span>
+<span>$</span>
+<span>, and</span>
+<span>*</span>
+<span>.</span>
+<span>If one directly precedes the</span>
+<span>=</span>
+<span>symbol, you can match the start, end, or any part of a</span>
+<span>string, respectively.</span>
+<span>The ^ operator</span>
+<span>This operator matches at the start of a string so, for example, the following will match</span>
+<span>any</span>
+<span>href</span>
+<span>attribute whose value begins with the string</span>
+<span>http://website</span>
+<span>:</span>
+<span>a[href^='http://website']</span>
+<span>Therefore, the following element will match:</span>
+<span>&lt;a href='http://website.com'&gt;</span>
+<span>But this will not:</span>
+<span>&lt;a href='http://mywebsite.com'&gt;</span>
+<span>The $ operator</span>
+<span>To match only at the end of a string, you can use a selector such as the following,</span>
+<span>which will match any</span>
+<span>img</span>
+<span>tag whose</span>
+<span>src</span>
+<span>attribute ends with</span>
+<span>.png</span>
+<span>:</span>
+<span>img[src$='.png']</span>
+<span>For example, the following will match</span>
+<span>:</span>
+<span>&lt;img src='photo.png'&gt;</span>
+<span>But this will not:</span>
+<span>&lt;img src='snapshot.jpg'&gt;</span>
+<span>The * operator</span>
+<span>To match any substring anywhere in the attribute, you can use a selector such as the</span>
+<span>following to find any links on a page that have the string</span>
+<span>google</span>
+<span>anywhere within</span>
+<span>them:</span>
+<span>a[href*='google']</span>
+<span>For example, the HTML segment</span>
+<span>&lt;a href='http://google.com'&gt;</span>
+<span>will match, while</span>
+<span>the segment</span>
+<span>&lt;a href='http://gmail.com'&gt;</span>
+<span>will not.</span>
+<h3>The box-sizing Property</h3>
+<span>The W3C box model specifies that the width and height of an object should refer only</span>
+<span>to the dimensions of an element&rsquo;s content, ignoring any padding or border. But some</span>
+<span>web designers have expressed a desire to specify dimensions that refer to an entire</span>
+<span>element, including any padding and border.</span>
+<span>To provide this feature, CSS3 lets you choose the box model you wish to use with the</span>
+<span>box-sizing</span>
+<span>property. For example, to use the total width and height of an object</span>
+<span>including padding and borders, you would use this declaration:</span>
+<span>box-sizing:border-box;</span>
+<span>Or, to have an object&rsquo;s width and height refer only to its content, you would use this</span>
+<span>declaration (the default):</span>
+<span>box-sizing:content-box;</span>
+<span>Safari and Mozilla-based browsers (such as Firefox) require their</span>
+<span>own prefixes to this declaration (</span>
+<span>-webkit-</span>
+<span>and</span>
+<span>&ndash;</span>
+<span>moz-</span>
+<span>), as detailed</span>
+<span>at</span>
+<span>http://caniuse.com</span>
+<span>.</span>
+<h3>CSS3 Backgrounds</h3>
+<span>CSS3</span>
+<span>provides</span>
+<span>two</span>
+<span>new</span>
+<span>properties:</span>
+<span>background-clip</span>
+<span>and</span>
+<span>background-origin</span>
+<span>.</span>
+<span>Between them, you can specify where a background should start within an element,</span>
+<span>and how to clip the background so that it doesn&rsquo;t appear in parts of the box model</span>
+<span>where you don&rsquo;t want it to.</span>
+<span>To accomplish these, both properties support the following values:</span>
+<span>border-box</span>
+<span>Refers to the outer edge of the border</span>
+<span>padding-box</span>
+<span>Refers to the outer edge of the padding area</span>
+<span>content-box</span>
+<span>Refers to the outer edge of the content area</span>
+<h4>The background-clip Property</h4>
+<span>The</span>
+<span>background-clip</span>
+<span>property specifies whether the background should be ignored</span>
+<span>(clipped) if it appears within either the border or padding area of an element. For</span>
+<span>example, the following declaration states that the background may display in all parts</span>
+<span>of an element, all the way to the outer edge of the border:</span>
+<span>background-clip:border-box;</span>
+<span>To keep the background from appearing within the border area of an element, you</span>
+<span>can restrict it to only the section of an element inside the outer edge of its padding</span>
+<span>area, like this:</span>
+<span>background-clip:padding-box;</span>
+<span>Or to restrict the background to display only within the content area of an element,</span>
+<span>you would use this declaration:</span>
+<span>background-clip:content-box;</span>
+<span>Figure 19-1</span>
+<span>&nbsp;shows three rows of elements displayed in the Safari web browser, in</span>
+<span>which the first row uses</span>
+<span>border-box</span>
+<span>for the</span>
+<span>background-clip</span>
+<span>property, the second</span>
+<span>uses</span>
+<span>padding-box</span>
+<span>, and the third uses</span>
+<span>content-box</span>
+<span>.</span>
+<span>Figure 19-1. Different ways of combining CSS3 background properties</span>
+<span>In the first row, the inner box (an image file that has been loaded into the top left of</span>
+<span>the element, with repeating disabled) is allowed to display anywhere in the element.</span>
+<span>You can also clearly see it displayed in the border area of the first box because the</span>
+<span>border has been set to dotted.</span>
+<span>In the second row, neither the background image nor the background shading dis‐</span>
+<span>plays in the border area, because they have been clipped to the padding area with a</span>
+<span>background-clip</span>
+<span>property value of</span>
+<span>padding-box</span>
+<span>.</span>
+<span>Then, in the third row, both the background shading and the image have been clip‐</span>
+<span>ped to display only within the inner content area of each element (shown inside a</span>
+<span>light-colored, dotted box), using a</span>
+<span>background-clip</span>
+<span>property of</span>
+<span>content-box</span>
+<span>.</span>
+<h4>The background-origin Property</h4>
+<span>With the</span>
+<span>background-origin</span>
+<span>property, you can control where a background image</span>
+<span>will be located by specifying where the top left of the image should start. For example,</span>
+<span>the following declaration states that the background image&rsquo;s origin should be the top-</span>
+<span>left corner of the outer edge of the border:</span>
+<span>background-origin:border-box;</span>
+<span>To set the origin of an image to the top-left outer corner of the padding area, you</span>
+<span>would use this declaration:</span>
+<span>background-origin:padding-box;</span>
+<span>Or to set the origin of an image to the top-left corner of an element&rsquo;s inner content</span>
+<span>section, you would use this declaration:</span>
+<span>background-origin:content-box;</span>
+<span>Looking</span>
+<span>again</span>
+<span>at</span>
+<span>Figure</span>
+<span>19-1</span>
+<span>,</span>
+<span>you</span>
+<span>can</span>
+<span>see</span>
+<span>in</span>
+<span>each</span>
+<span>row</span>
+<span>the</span>
+<span>first</span>
+<span>box</span>
+<span>uses</span>
+<span>a</span>
+<span>background-origin</span>
+<span>property of</span>
+<span>border-box</span>
+<span>, the second uses</span>
+<span>padding-box</span>
+<span>, and the</span>
+<span>third uses</span>
+<span>content-box</span>
+<span>. Consequently, in each row the smaller inner box displays at</span>
+<span>the top left of the border in the first box, the top left of the padding in the second, and</span>
+<span>the top left of the content in the third box.</span>
+<span>The only differences to note between the rows, with regard to the</span>
+<span>origins of the inner box in</span>
+<span>Figure 19-1</span>
+<span>, are that in rows 2 and 3 the</span>
+<span>inner box is clipped to the padding and content areas, respectively;</span>
+<span>therefore, outside these areas no portion of the box is displayed.</span>
+<h4>The background-size Property</h4>
+<span>In the same way that you can specify the width and height of an image when used in</span>
+<span>the</span>
+<span>&lt;img&gt;</span>
+<span>tag, you can now also do so for background images on the latest versions of</span>
+<span>all browsers.</span>
+<span>You apply the property as follows (where</span>
+<span>ww</span>
+<span>is the width and</span>
+<span>hh</span>
+<span>is the height):</span>
+<span>background-size:</span>
+<span>ww</span>
+<span>px</span>
+<span>hh</span>
+<span>px;</span>
+<span>If you prefer, you can use only one argument, and then both dimensions will be set to</span>
+<span>that value. Also, if you apply this property to a block-level element such as a</span>
+<span>&lt;div&gt;</span>
+<span>(rather than one that is inline such as a</span>
+<span>&lt;span&gt;</span>
+<span>), you can specify the width and/or</span>
+<span>height as a percentage, instead of a fixed value.</span>
+<h4>Using the auto Value</h4>
+<span>If you wish to scale only one dimension of a background image, and then have the</span>
+<span>other one scale automatically to retain the same proportions, you can use the value</span>
+<span>auto</span>
+<span>for the other dimension, like this:</span>
+<span>background-size:100px auto;</span>
+<span>This sets the width to 100 pixels, and the height to a value proportionate to the</span>
+<span>increase or decrease in width.</span>
+<span>Different browsers may require different versions of the various</span>
+<span>background property names, so please refer to</span>
+<span>&nbsp;http://caniuse.com</span>
+<span>when</span>
+<span>using</span>
+<span>them</span>
+<span>to</span>
+<span>ensure</span>
+<span>you</span>
+<span>are</span>
+<span>applying</span>
+<span>all</span>
+<span>the</span>
+<span>versions</span>
+<span>required for the browsers you are targeting.</span>
+<h3>Multiple Backgrounds</h3>
+<span>With CSS3 you can now attach multiple backgrounds to an element, each of which</span>
+<span>can use the previously discussed CSS3 background properties.</span>
+<span>Figure 19-2</span>
+<span>shows an</span>
+<span>example of this; eight different images have been assigned to the background, to cre‐</span>
+<span>ate the four corners and four edges of the certificate border.</span>
+<span>Figure 19-2. A background created with multiple images</span>
+<span>To display multiple background images in a single CSS declaration, separate them</span>
+<span>with commas.</span>
+<span>Example 19-1</span>
+<span>shows the HTML and CSS that was used to create the</span>
+<span>background in</span>
+<span>Figure 19-2</span>
+<span>.</span>
+<span>Example 19-1. Using multiple images in a background</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt; &lt;!-- backgroundimages.html --&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;CSS3 Multiple Backgrounds Example&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>.border {</span>
+<span>&nbsp;</span>
+<span>font-family:'Times New Roman';</span>
+<span>&nbsp;</span>
+<span>font-style :italic;</span>
+<span>&nbsp;</span>
+<span>font-size :170%;</span>
+<span>&nbsp;</span>
+<span>text-align :center;</span>
+<span>&nbsp;</span>
+<span>padding :60px;</span>
+<span>&nbsp;</span>
+<span>width :350px;</span>
+<span>&nbsp;</span>
+<span>height :500px;</span>
+<span>&nbsp;</span>
+<span>background :url('b1.gif') top left no-repeat,</span>
+<span>&nbsp;</span>
+<span>url('b2.gif') top right no-repeat,</span>
+<span>&nbsp;</span>
+<span>url('b3.gif') bottom left no-repeat,</span>
+<span>&nbsp;</span>
+<span>url('b4.gif') bottom right no-repeat,</span>
+<span>&nbsp;</span>
+<span>url('ba.gif') top repeat-x,</span>
+<span>&nbsp;</span>
+<span>url('bb.gif') left repeat-y,</span>
+<span>&nbsp;</span>
+<span>url('bc.gif') right repeat-y,</span>
+<span>&nbsp;</span>
+<span>url('bd.gif') bottom repeat-x</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;div class='border'&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;h1&gt;Employee of the month&lt;/h1&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;h2&gt;Awarded To:&lt;/h2&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;h3&gt;__________________&lt;/h3&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;h2&gt;Date:&lt;/h2&gt;</span>
+<span>&nbsp;</span>
+<span>&lt;h3&gt;___/___/_____&lt;/h3&gt;</span>
+<span>&lt;/div&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Looking at the CSS section, you see that the first four lines of the</span>
+<span>background</span>
+<span>declara‐</span>
+<span>tion place the corner images into the four corners of the element, and the final four</span>
+<span>place the edge images, which are handled last because the order of priority for back‐</span>
+<span>ground images goes from high to low. In other words, where they overlap, additional</span>
+<span>background images will appear behind already placed images. If the GIFs were in the</span>
+<span>reverse order, the repeating edge images would display on top of the corners, which</span>
+<span>would be incorrect.</span>
+<span>Using this CSS, you can resize the containing element to any</span>
+<span>dimensions, and the border will always correctly resize to fit, which</span>
+<span>is much easier than using tables or multiple elements for the same</span>
+<span>effect.</span>
+<h3>CSS3 Borders</h3>
+<span>CSS3 also brings a lot more flexibility to the way borders can be presented, by allow‐</span>
+<span>ing you to independently change the colors of all four border edges, to display images</span>
+<span>for the edges and corners, to provide a radius value for applying rounded corners to</span>
+<span>borders, and to place box shadows underneath elements.</span>
+<h4>The border-color Property</h4>
+<span>There are two ways you can apply colors to a border. First, you can pass a single color</span>
+<span>to the property, as follows:</span>
+<span>border-color:#888;</span>
+<span>This property sets all the borders of an element to mid-gray. You can also set border</span>
+<span>colors individually, like this (which sets the border colors to various shades of gray):</span>
+<span>border-top-color :#000;</span>
+<span>border-left-color :#444;</span>
+<span>border-right-color :#888;</span>
+<span>border-bottom-color:#ccc;</span>
+<span>You can also set all the colors individually with a single declaration, as follows:</span>
+<span>border-color:#f00 #0f0 #880 #00f;</span>
+<span>This declaration sets the top border color to</span>
+<span>#f00</span>
+<span>, the right one to</span>
+<span>#0f0</span>
+<span>, the bottom</span>
+<span>one to</span>
+<span>#880</span>
+<span>, and the left one to</span>
+<span>#00f</span>
+<span>(red, green, orange, and blue, respectively). You</span>
+<span>can also use color names for the arguments.</span>
+<h4>The border-radius Property</h4>
+<span>Prior to CSS3, talented web developers came up with numerous tweaks and fixes in</span>
+<span>order to achieve rounded borders, generally using</span>
+<span>&lt;table&gt;</span>
+<span>or</span>
+<span>&lt;div&gt;</span>
+<span>tags.</span>
+<span>But now adding rounded borders to an element is really simple, and it works on the</span>
+<span>latest versions of all major browsers, as shown in</span>
+<span>&nbsp;Figure 19-3</span>
+<span>, in which a 10-pixel</span>
+<span>border is displayed in different ways.</span>
+<span>Example 19-2</span>
+<span>shows the HTML for this.</span>
+<span>Example 19-2.</span>
+<span>The border-radius property</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt; &lt;!-- borderradius.html --&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;CSS3 Border Radius Examples&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>.box {</span>
+<span>&nbsp;</span>
+<span>margin-bottom:10px;</span>
+<span>&nbsp;</span>
+<span>font-family :'Courier New', monospace;</span>
+<span>&nbsp;</span>
+<span>font-size :12pt;</span>
+<span>&nbsp;</span>
+<span>text-align :center;</span>
+<span>&nbsp;</span>
+<span>padding :10px;</span>
+<span>&nbsp;</span>
+<span>width :380px;</span>
+<span>&nbsp;</span>
+<span>height :75px;</span>
+<span>&nbsp;</span>
+<span>border :10px solid #006;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>.b1 {</span>
+<span>&nbsp;</span>
+<span>-moz-border-radius :40px;</span>
+<span>&nbsp;</span>
+<span>-webkit-border-radius:40px;</span>
+<span>&nbsp;</span>
+<span>border-radius :40px;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>.b2 {</span>
+<span>&nbsp;</span>
+<span>-moz-border-radius :40px 40px 20px 20px;</span>
+<span>&nbsp;</span>
+<span>-webkit-border-radius:40px 40px 20px 20px;</span>
+<span>&nbsp;</span>
+<span>border-radius :40px 40px 20px 20px;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>.b3 {</span>
+<span>&nbsp;</span>
+<span>-moz-border-radius-topleft :20px;</span>
+<span>&nbsp;</span>
+<span>-moz-border-radius-topright :40px;</span>
+<span>&nbsp;</span>
+<span>-moz-border-radius-bottomleft :60px;</span>
+<span>&nbsp;</span>
+<span>-moz-border-radius-bottomright :80px;</span>
+<span>&nbsp;</span>
+<span>-webkit-border-top-left-radius :20px;</span>
+<span>&nbsp;</span>
+<span>-webkit-border-top-right-radius :40px;</span>
+<span>&nbsp;</span>
+<span>-webkit-border-bottom-left-radius :60px;</span>
+<span>&nbsp;</span>
+<span>-webkit-border-bottom-right-radius:80px;</span>
+<span>&nbsp;</span>
+<span>border-top-left-radius :20px;</span>
+<span>&nbsp;</span>
+<span>border-top-right-radius :40px;</span>
+<span>&nbsp;</span>
+<span>border-bottom-left-radius :60px;</span>
+<span>&nbsp;</span>
+<span>border-bottom-right-radius :80px;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>.b4 {</span>
+<span>&nbsp;</span>
+<span>-moz-border-radius-topleft :40px 20px;</span>
+<span>&nbsp;</span>
+<span>-moz-border-radius-topright :40px 20px;</span>
+<span>&nbsp;</span>
+<span>-moz-border-radius-bottomleft :20px 40px;</span>
+<span>&nbsp;</span>
+<span>-moz-border-radius-bottomright :20px 40px;</span>
+<span>&nbsp;</span>
+<span>-webkit-border-top-left-radius :40px 20px;</span>
+<span>&nbsp;</span>
+<span>-webkit-border-top-right-radius :40px 20px;</span>
+<span>&nbsp;</span>
+<span>-webkit-border-bottom-left-radius :20px 40px;</span>
+<span>&nbsp;</span>
+<span>-webkit-border-bottom-right-radius:20px 40px;</span>
+<span>&nbsp;</span>
+<span>border-top-left-radius :40px 20px;</span>
+<span>&nbsp;</span>
+<span>border-top-right-radius :40px 20px;</span>
+<span>&nbsp;</span>
+<span>border-bottom-left-radius :20px 40px;</span>
+<span>&nbsp;</span>
+<span>border-bottom-right-radius :20px 40px;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;div class='box b1'&gt;</span>
+<span>&nbsp;</span>
+<span>border-radius:40px;</span>
+<span>&lt;/div&gt;</span>
+<span>&lt;div class='box b2'&gt;</span>
+<span>&nbsp;</span>
+<span>border-radius:40px 40px 20px 20px;</span>
+<span>&lt;/div&gt;</span>
+<span>&lt;div class='box b3'&gt;</span>
+<span>&nbsp;</span>
+<span>border-top-left-radius &amp;nbsp;&amp;nbsp;&amp;nbsp;:20px;&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>border-top-right-radius &amp;nbsp;&amp;nbsp;:40px;&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>border-bottom-left-radius :60px;&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>border-bottom-right-radius:80px;</span>
+<span>&lt;/div&gt;</span>
+<span>&lt;div class='box b4'&gt;</span>
+<span>&nbsp;</span>
+<span>border-top-left-radius &amp;nbsp;&amp;nbsp;&amp;nbsp;:40px 20px;&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>border-top-right-radius &amp;nbsp;&amp;nbsp;:40px 20px;&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>border-bottom-left-radius :20px 40px;&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>border-bottom-right-radius:20px 40px;</span>
+<span>&lt;/div&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 19-3. Mixing and matching various border radius properties</span>
+<span>So, for example, to create a rounded border with a radius of 19 pixels, you could sim‐</span>
+<span>ply use the following declaration:</span>
+<span>border-radius:20px;</span>
+<span>Although most browsers will work fine with border radius proper‐</span>
+<span>ties (including IE), some current (and many older) versions of the</span>
+<span>major browsers use different property names. So, if you wish to</span>
+<span>support them all, you will need to also use the relevant browser-</span>
+<span>specific prefixes for them, such as</span>
+<span>-moz-</span>
+<span>and</span>
+<span>-webkit-</span>
+<span>. To ensure</span>
+<span>that</span>
+<span>&nbsp;Example 19-2</span>
+<span>&nbsp;works in all browsers, I have included all the</span>
+<span>required prefixes.</span>
+<span>You can specify a separate radius for each of the four corners, like this (applied in a</span>
+<span>clockwise direction starting from the top-left corner):</span>
+<span>border-radius:10px 20px 30px 40px;</span>
+<span>If you prefer, you can also address each corner of an element individually, like this:</span>
+<span>border-top-left-radius :20px;</span>
+<span>border-top-right-radius :40px;</span>
+<span>border-bottom-left-radius :60px;</span>
+<span>border-bottom-right-radius:80px;</span>
+<span>And, when referencing individual corners, you can supply two arguments to choose a</span>
+<span>different vertical and horizontal radius (giving more interesting and subtle borders),</span>
+<span>like this:</span>
+<span>border-top-left-radius :40px 20px;</span>
+<span>border-top-right-radius :40px 20px;</span>
+<span>border-bottom-left-radius :20px 40px;</span>
+<span>border-bottom-right-radius:20px 40px;</span>
+<span>The first argument is the horizontal, and the second is the vertical radius.</span>
+<h3>Box Shadows</h3>
+<span>To apply a box shadow, specify a horizontal and vertical offset from the object, the</span>
+<span>amount of blurring to add to the shadow, and the color to use, like this:</span>
+<span>box-shadow:15px 15px 10px #888;</span>
+<span>The two instances of</span>
+<span>15px</span>
+<span>specify the vertical and horizontal offset from the element,</span>
+<span>and these values can be negative, zero, or positive. The</span>
+<span>10px</span>
+<span>specifies the amount of</span>
+<span>blurring, with smaller values resulting in less blurring. And the</span>
+<span>#888</span>
+<span>is the color for</span>
+<span>the shadow, which can be any valid color value. The result of this declaration can be</span>
+<span>seen in</span>
+<span>Figure 19-4</span>
+<span>.</span>
+<span>Figure 19-4. A box shadow displayed under an element</span>
+<span>You must use the WebKit and Mozilla prefixes to this property for</span>
+<span>those browsers.</span>
+<h3>Element</h3>
+<h3>Overflow</h3>
+<span>In CSS2, you can indicate what to do when one element is too large to be fully con‐</span>
+<span>tained by its parent by setting the</span>
+<span>overflow</span>
+<span>property to</span>
+<span>hidden</span>
+<span>,</span>
+<span>visible</span>
+<span>,</span>
+<span>scroll</span>
+<span>, or</span>
+<span>auto</span>
+<span>. But with CSS3, you can now separately apply these values in the horizontal or</span>
+<span>vertical directions, too, as with these example declarations:</span>
+<span>overflow-x:hidden;</span>
+<span>overflow-x:visible;</span>
+<span>overflow-y:auto;</span>
+<span>overflow-y:scroll;</span>
+<h3>Multicolumn Layout</h3>
+<span>One of the most requested features by web developers is multiple columns, and this</span>
+<span>has finally been realized in CSS3, with Internet Explorer 10 being the last major</span>
+<span>browser to adopt it.</span>
+<span>Now, flowing text over multiple columns is as easy as specifying the number of col‐</span>
+<span>umns, and then (optionally) choosing the spacing between them and the type of</span>
+<span>dividing line (if any), as shown in</span>
+<span>Figure 19-5</span>
+<span>(created using</span>
+<span>Example 19-3</span>
+<span>).</span>
+<span>Figure 19-5. Flowing text in multiple columns</span>
+<span>Example 19-3. Using CSS to create multiple columns</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt; &lt;!-- multiplecolumns.html --&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;Multiple Columns&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>.columns {</span>
+<span>&nbsp;</span>
+<span>text-align :justify;</span>
+<span>&nbsp;</span>
+<span>font-size :16pt;</span>
+<span>&nbsp;</span>
+<span>-moz-column-count :3;</span>
+<span>&nbsp;</span>
+<span>-moz-column-gap :1em;</span>
+<span>&nbsp;</span>
+<span>-moz-column-rule :1px solid black;</span>
+<span>&nbsp;</span>
+<span>-webkit-column-count:3;</span>
+<span>&nbsp;</span>
+<span>-webkit-column-gap :1em;</span>
+<span>&nbsp;</span>
+<span>-webkit-column-rule :1px solid black;</span>
+<span>&nbsp;</span>
+<span>column-count :3;</span>
+<span>&nbsp;</span>
+<span>column-gap :1em;</span>
+<span>&nbsp;</span>
+<span>column-rule :1px solid black;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;div class='columns'&gt;</span>
+<span>&nbsp;</span>
+<span>Now is the winter of our discontent</span>
+<span>&nbsp;</span>
+<span>Made glorious summer by this sun of York;</span>
+<span>&nbsp;</span>
+<span>And all the clouds that lour'd upon our house</span>
+<span>&nbsp;</span>
+<span>In the deep bosom of the ocean buried.</span>
+<span>&nbsp;</span>
+<span>Now are our brows bound with victorious wreaths;</span>
+<span>&nbsp;</span>
+<span>Our bruised arms hung up for monuments;</span>
+<span>&nbsp;</span>
+<span>Our stern alarums changed to merry meetings,</span>
+<span>&nbsp;</span>
+<span>Our dreadful marches to delightful measures.</span>
+<span>&nbsp;</span>
+<span>Grim-visaged war hath smooth'd his wrinkled front;</span>
+<span>&nbsp;</span>
+<span>And now, instead of mounting barded steeds</span>
+<span>&nbsp;</span>
+<span>To fright the souls of fearful adversaries,</span>
+<span>&nbsp;</span>
+<span>He capers nimbly in a lady's chamber</span>
+<span>&nbsp;</span>
+<span>To the lascivious pleasing of a lute.</span>
+<span>&lt;/div&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Within the</span>
+<span>.columns</span>
+<span>class, the first two lines simply tell the browser to right-justify</span>
+<span>the text and to set it to a font size of</span>
+<span>16pt</span>
+<span>. These declarations aren&rsquo;t needed for multi‐</span>
+<span>ple columns, but they improve the text display. The remaining lines set up the ele‐</span>
+<span>ment so that, within it, text will flow over three columns, with a gap of</span>
+<span>1em</span>
+<span>between</span>
+<span>the columns, and with a single-pixel border down the middle of each gap.</span>
+<span>In</span>
+<span>&nbsp;Example 19-3</span>
+<span>, Mozilla- and WebKit-based browsers require</span>
+<span>browser-specific prefixes to the declarations.</span>
+<h3>Colors and Opacity</h3>
+<span>The ways in which you can define colors have been greatly expanded with CSS3, and</span>
+<span>you can now also use CSS functions to apply colors in the common formats RGB</span>
+<span>(Red, Green, and Blue), RGBA (Red, Green, Blue, and Alpha), HSL (Hue, Saturation,</span>
+<span>and Luminance), and HSLA (Hue, Saturation, Luminance, and Alpha). The Alpha</span>
+<span>value specifies a color&rsquo;s transparency, which allows underlying elements to show</span>
+<span>through.</span>
+<h4>HSL Colors</h4>
+<span>To define a color with the</span>
+<span>hsl</span>
+<span>function, you must first choose a value for the hue</span>
+<span>between</span>
+<span>0</span>
+<span>and</span>
+<span>359</span>
+<span>from a color wheel. Any higher color numbers simply wrap</span>
+<span>around to the beginning again, so the value of</span>
+<span>0</span>
+<span>is red, and so are the values</span>
+<span>360</span>
+<span>and</span>
+<span>720</span>
+<span>.</span>
+<span>In a color wheel, the primary colors of red, green, and blue are separated by 120</span>
+<span>degrees, so that pure red is</span>
+<span>0</span>
+<span>, green is</span>
+<span>120</span>
+<span>, and blue is</span>
+<span>240</span>
+<span>. The numbers between</span>
+<span>these values represent shades comprising different proportions of the primary colors</span>
+<span>on either side.</span>
+<span>Next you need the saturation level, which is a value between 0 and 100 percent. This</span>
+<span>specifies how washed-out or vibrant a color will appear. The saturation values com‐</span>
+<span>mence in the center of the wheel with a mid-gray color (a saturation of 0 percent) and</span>
+<span>then become more and more vivid as they progress to the outer edge (a saturation of</span>
+<span>100 percent).</span>
+<span>All that&rsquo;s left then is for you to decide how bright you want the color to be, by choos‐</span>
+<span>ing a luminance value of between 0 and 100 percent. A value of 50% for the lumi‐</span>
+<span>nance gives the fullest, brightest color; decreasing the value (down to a minimum of</span>
+<span>0%) darkens the color until it displays as black; and increasing the value (up to a max‐</span>
+<span>imum of 100%) lightens the color until it shows as white. You can visualize this as if</span>
+<span>you are mixing levels of either black or white into the color.</span>
+<span>Therefore, for example, to choose a fully saturated yellow color with standard percent</span>
+<span>brightness, you would use a declaration such as this:</span>
+<span>color:hsl(60, 100%, 50%);</span>
+<span>Or, for a darker blue color, you might use a declaration such as this:</span>
+<span>color:hsl(240, 100%, 40%);</span>
+<span>You can also use this (and all other CSS color functions) with any property that</span>
+<span>expects a color, such as</span>
+<span>background-color</span>
+<span>, and so on.</span>
+<h4>HSLA Colors</h4>
+<span>To provide even further control over how colors will appear, you can use the</span>
+<span>hsla</span>
+<span>function, supplying it with a fourth (or alpha) level for a color, which is a floating-</span>
+<span>point value between</span>
+<span>0</span>
+<span>and</span>
+<span>1</span>
+<span>. A value of</span>
+<span>0</span>
+<span>specifies that the color is totally transparent,</span>
+<span>while</span>
+<span>1</span>
+<span>means it is fully opaque.</span>
+<span>Here&rsquo;s how you would choose a fully saturated yellow color with standard brightness</span>
+<span>and 30 percent opacity:</span>
+<span>color:hsla(60, 100%, 50%, 0.3);</span>
+<span>Or, for a fully saturated but lighter blue color with 82 percent opacity, you might use</span>
+<span>this declaration:</span>
+<span>color:hsla(240, 100%, 60%, 0.82);</span>
+<h4>RGB Colors</h4>
+<span>You will probably be more familiar with using the RGB system of selecting a color, as</span>
+<span>it&rsquo;s similar to using the</span>
+<span>#nnnnnn</span>
+<span>and</span>
+<span>#nnn</span>
+<span>color formats. For example, to apply a yel‐</span>
+<span>low color to a property, you can use either of the following declarations (the first sup‐</span>
+<span>porting 16 million colors, and the second supporting 4,000):</span>
+<span>color:#ffff00;</span>
+<span>color:#ff0;</span>
+<span>You can also use the CSS</span>
+<span>rgb</span>
+<span>function to achieve the same result, but you use decimal</span>
+<span>numbers instead of hexadecimal (where 255 decimal is</span>
+<span>ff</span>
+<span>hexadecimal):</span>
+<span>color:rgb(255, 255, 0);</span>
+<span>But even better than that, you don&rsquo;t even have to think in amounts of up to 256 any‐</span>
+<span>more, because you can specify percentage values, like this:</span>
+<span>color:rgb(100%, 100%, 0);</span>
+<span>In fact, you can now get very close to a desired color by simply thinking about its</span>
+<span>primary colors. For example, green and blue make cyan, so to create a color close to</span>
+<span>cyan, but with more blue in it than green, you could make a good first guess at 0%</span>
+<span>red, 40% green, and 60% blue, and try a declaration such as this:</span>
+<span>color:rgb(0%, 40%, 60%);</span>
+<h4>RGBA Colors</h4>
+<span>As with the</span>
+<span>hsla</span>
+<span>function, the</span>
+<span>rgba</span>
+<span>function supports a fourth alpha argument, so</span>
+<span>you can, for example, apply the previous cyan-like color with an opacity of 40 percent</span>
+<span>by using a declaration such as this:</span>
+<span>color:rgba(0%, 40%, 60%, 0.4);</span>
+<h4>The opacity Property</h4>
+<span>The</span>
+<span>opacity</span>
+<span>property provides the same alpha control as the</span>
+<span>hsla</span>
+<span>and</span>
+<span>rgba</span>
+<span>func‐</span>
+<span>tions, but lets you modify an object&rsquo;s opacity (or transparency if you prefer) sepa‐</span>
+<span>rately from its color.</span>
+<span>To use it, apply a declaration such as the following to an element (which in this exam‐</span>
+<span>ple sets the opacity to 25 percent, or 75 percent transparent):</span>
+<span>opacity:0.25;</span>
+<span>WebKit- and Mozilla-based browsers require browser-specific pre‐</span>
+<span>fixes to this property. And for backward compatibility with releases</span>
+<span>of Internet Explorer prior to version 9, you should add the follow‐</span>
+<span>ing declaration (in which the opacity value is multiplied by 100):</span>
+<span>filter:alpha(opacity='25');</span>
+<h3>Text</h3>
+<h3>Effects</h3>
+<span>A number of new effects can now be applied to text with the help of CSS3, including</span>
+<span>text shadows, text overlapping, and word wrapping.</span>
+<h4>The text-shadow Property</h4>
+<span>The</span>
+<span>text-shadow</span>
+<span>property is similar to the</span>
+<span>box-shadow</span>
+<span>property and takes the same</span>
+<span>set of arguments: a horizontal and vertical offset, an amount for the blurring, and the</span>
+<span>color to use. For example, the following declaration offsets the shadow by 3 pixels</span>
+<span>both horizontally and vertically, and displays the shadow in dark gray, with a blurring</span>
+<span>of 4 pixels:</span>
+<span>text-shadow:3px 3px 4px #444;</span>
+<span>The result of this declaration looks like</span>
+<span>Figure 19-6</span>
+<span>, and works in all recent versions</span>
+<span>of all major browsers (but not IE9 or lower).</span>
+<span>Figure 19-6. Applying a shadow to text</span>
+<h4>The</h4>
+<h4>text-overflow Property</h4>
+<span>When using any of the CSS overflow properties with a value of</span>
+<span>hidden</span>
+<span>, you can also</span>
+<span>use the</span>
+<span>text-overflow</span>
+<span>property to place an ellipsis (three dots) just before the cutoff</span>
+<span>to indicate that some text has been truncated, like this:</span>
+<span>text-overflow:ellipsis;</span>
+<span>Without this property, when the text &ldquo;To be, or not to be. That is the question.&rdquo; is</span>
+<span>truncated, the result will look like</span>
+<span>Figure 19-7</span>
+<span>; with the declaration applied, however,</span>
+<span>the result is like</span>
+<span>Figure 19-8</span>
+<span>.</span>
+<span>Figure 19-7. The text is automatically truncated</span>
+<span>Figure 19-8. Instead of being cut off, the text trails off using an ellipsis</span>
+<span>For this to work, three things are required:</span>
+<span>&bull;</span>
+<span>The element should have an</span>
+<span>overflow</span>
+<span>property that is not visible, such as</span>
+<span>over</span>
+<span>flow:hidden</span>
+<span>.</span>
+<span>&bull;</span>
+<span>The element must have the</span>
+<span>white-space:nowrap</span>
+<span>property set to constrain the</span>
+<span>text.</span>
+<span>&bull;</span>
+<span>The width of the element must be less than that of the text to truncate.</span>
+<h4>The word-wrap Property</h4>
+<span>When you have a really long word that is wider than the element containing it, it will</span>
+<span>either overflow or be truncated. But as an alternative to using the</span>
+<span>text-overflow</span>
+<span>property and truncating text, you can use the</span>
+<span>word-wrap</span>
+<span>property with a value of</span>
+<span>break-word</span>
+<span>to wrap long lines, like this:</span>
+<span>word-wrap:break-word;</span>
+<span>For example, in</span>
+<span>Figure 19-9</span>
+<span>the word</span>
+<span>Honorificabilitudinitatibus</span>
+<span>is too wide for the</span>
+<span>containing box (whose righthand edge is shown as a solid vertical line between the</span>
+<span>letters</span>
+<span>t</span>
+<span>and</span>
+<span>a</span>
+<span>) and, because no overflow properties have been applied, it has over‐</span>
+<span>flowed its bounds.</span>
+<span>Figure 19-9. The word is too wide for its container and has overflowed</span>
+<span>But in</span>
+<span>Figure 19-10</span>
+<span>, the</span>
+<span>word-wrap</span>
+<span>property of the element has been assigned a value</span>
+<span>of</span>
+<span>break-word</span>
+<span>, so the word has neatly wrapped around to the next line.</span>
+<span>Figure 19-10. The word now wraps at the right-hand edge</span>
+<h3>Web Fonts</h3>
+<span>The use of CSS3 web fonts vastly increases the typography available to web designers</span>
+<span>by allowing fonts to be loaded in and displayed from across the Web, not just from</span>
+<span>the user&rsquo;s computer. To achieve this, declare a web font by using</span>
+<span>@font-face</span>
+<span>, like this:</span>
+<span>@font-face</span>
+<span>{</span>
+<span>font-family:FontName;</span>
+<span>src:url('FontName.otf');</span>
+<span>}</span>
+<span>The</span>
+<span>url</span>
+<span>function requires a value containing the path or URL of a font. On most</span>
+<span>browsers, you can use either TrueType (</span>
+<span>.ttf</span>
+<span>) or OpenType (</span>
+<span>.otf</span>
+<span>) fonts, but Internet</span>
+<span>Explorer restricts you to TrueType fonts that have been converted to EOT (</span>
+<span>.eot</span>
+<span>).</span>
+<span>To tell the browser the type of font, you can use the</span>
+<span>format</span>
+<span>function, like this (for</span>
+<span>OpenType fonts):</span>
+<span>@font-face</span>
+<span>{</span>
+<span>font-family:FontName;</span>
+<span>src:url('FontName.otf') format('opentype');</span>
+<span>}</span>
+<span>Or this for TrueType fonts:</span>
+<span>@font-face</span>
+<span>{</span>
+<span>font-family:FontName;</span>
+<span>src:url('FontName.ttf') format('truetype');</span>
+<span>}</span>
+<span>However, because Microsoft Internet Explorer accepts only EOT fonts, it ignores</span>
+<span>@font-face</span>
+<span>declarations that contain the</span>
+<span>format</span>
+<span>function.</span>
+<h3>Google Web Fonts</h3>
+<span>One of the best ways to use web fonts is to load them in for free from Google&rsquo;s</span>
+<span>servers. To find out more about this, check out the Google Fonts website (at</span>
+<span>http://</span>
+<span>google.com/fonts</span>
+<span>, see</span>
+<span>Figure 19-11</span>
+<span>), where you can get access to over 630 font fami‐</span>
+<span>lies, and counting!</span>
+<span>Figure 19-11. It&rsquo;s easy to include Google&rsquo;s web fonts</span>
+<span>To show you how easy it is to use one of these fonts, here&rsquo;s how you load a Google</span>
+<span>font (in this case, Lobster) into your HTML for use in</span>
+<span>&lt;h1&gt;</span>
+<span>headings:</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>h1 { font-family:'Lobster', arial, serif; }</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;link href='http://fonts.googleapis.com/css?family=Lobster'</span>
+<span>&nbsp;</span>
+<span>rel='stylesheet' type='text/css'&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;h1&gt;Hello&lt;/h1&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<h3>Transformations</h3>
+<span>Using transformations, you can skew, rotate, stretch, and squash elements in any of</span>
+<span>up to three dimensions (yes, 3D is supported, but only in WebKit-based browsers for</span>
+<span>now). This makes it easy to create great effects by stepping out of the uniform rectan‐</span>
+<span>gular layout of</span>
+<span>&lt;div&gt;</span>
+<span>and other elements, because now they can be shown at a variety</span>
+<span>of angles and in many different forms.</span>
+<span>To perform a transformation, use the</span>
+<span>transform</span>
+<span>property (which unfortunately has</span>
+<span>browser-specific prefixes for Mozilla, WebKit, Opera, and Microsoft browsers, so</span>
+<span>once again you&rsquo;ll need to refer to</span>
+<span>http://caniuse.com</span>
+<span>).</span>
+<span>You can apply various properties to the</span>
+<span>transform</span>
+<span>property, starting with the value</span>
+<span>none</span>
+<span>, which resets an object to a nontransformed state:</span>
+<span>transform:none;</span>
+<span>You can supply one or more of the following functions to the</span>
+<span>transform</span>
+<span>property:</span>
+<span>matrix</span>
+<span>Transforms an object by applying a matrix of values to it</span>
+<span>translate</span>
+<span>Moves an element&rsquo;s origin</span>
+<span>scale</span>
+<span>Scales an object</span>
+<span>rotate</span>
+<span>Rotates an object</span>
+<span>skew</span>
+<span>Skews an object</span>
+<span>There are also single versions of many of these functions, such as</span>
+<span>translateX</span>
+<span>,</span>
+<span>scaleY</span>
+<span>, and so on.</span>
+<span>So, for example, to rotate an element clockwise by 45 degrees, you could apply this</span>
+<span>declaration to it:</span>
+<span>transform:rotate(45deg);</span>
+<span>At the same time, you could enlarge this object, as in the following declaration, which</span>
+<span>enlarges its width by 1.5 times and its height by 2 times, and then performs the rota‐</span>
+<span>tion.</span>
+<span>Figure 19-12</span>
+<span>shows an object before the transformations are applied, and then</span>
+<span>afterward:</span>
+<span>transform:scale(1.5, 2) rotate(45deg);</span>
+<span>Figure 19-12. An object before and after transformation</span>
+<h3>3D Transformations</h3>
+<span>You can also transform objects in three dimensions by using the following CSS3 3D</span>
+<span>transformation features:</span>
+<span>perspective</span>
+<span>Releases an element from 2D space and creates a third dimension within which it can</span>
+<span>move</span>
+<span>transform-origin</span>
+<span>Sets the location at which all lines converge to a single point</span>
+<span>translate3d</span>
+<span>Moves an element to another location in its 3D space</span>
+<span>scale3d</span>
+<span>Rescales one or more dimensions</span>
+<span>rotate3d</span>
+<span>Rotates an element around any of the x-, y-, and z-axes</span>
+<span>Figure 19-13</span>
+<span>&nbsp;shows a 2D object that has been rotated in 3D space with a CSS rule</span>
+<span>such as the following:</span>
+<span>transform:perspective(200px) rotateX(10deg) rotateY(20deg) rotateZ(30deg);</span>
+<span>Figure 19-13. A figure rotated in 3D space</span>
+<span>For more information, please refer to the tutorial at</span>
+<span>http://tinyurl.com/3dcsstransforms</span>
+<span>(or use the direct URL</span>
+<span>http://24ways.org/2010/intro-to-css-3d-transforms</span>
+<span>).</span>
+<h3>Transitions</h3>
+<span>Also appearing on all the latest versions of the major browsers (including Internet</span>
+<span>Explorer 10, but not lower versions) is a dynamic new feature called</span>
+<span>transitions</span>
+<span>. These</span>
+<span>specify an animation effect you want to occur when an element is transformed, and</span>
+<span>the browser will automatically take care of all the in-between frames for you.</span>
+<span>There are four properties you should supply in order to set up a transition, as follows:</span>
+<span>transition-property :</span>
+<span>property</span>
+<span>;</span>
+<span>transition-duration :</span>
+<span>time</span>
+<span>;</span>
+<span>transition-delay :</span>
+<span>time</span>
+<span>;</span>
+<span>transition-timing-function:</span>
+<span>type</span>
+<span>;</span>
+<span>You must preface these properties with the relevant browser pre‐</span>
+<span>fixes for Mozilla, WebKit, Opera, and Microsoft browsers.</span>
+<h4>Properties to Transition</h4>
+<span>Transitions have properties such as</span>
+<span>height</span>
+<span>and</span>
+<span>border-color</span>
+<span>. Specify the properties</span>
+<span>you want to change in the CSS property named</span>
+<span>transition-property</span>
+<span>(here the word</span>
+<span>property</span>
+<span>is used by different tools to mean different things). You can include multiple</span>
+<span>properties by separating them with commas, like this:</span>
+<span>transition-property:width, height, opacity;</span>
+<span>Or, if you want absolutely everything about an element to transition (including col‐</span>
+<span>ors), use the value</span>
+<span>all</span>
+<span>, like this:</span>
+<span>transition-property:all;</span>
+<h4>Transition Duration</h4>
+<span>The</span>
+<span>transition-duration</span>
+<span>property requires a value of 0 seconds or greater, like the</span>
+<span>following, which specifies that the transition should take 1.25 seconds to complete:</span>
+<span>transition-duration:1.25s;</span>
+<h4>Transition Delay</h4>
+<span>If the</span>
+<span>transition-delay</span>
+<span>property is given a value greater than 0 seconds (the</span>
+<span>default), it introduces a delay between the initial display of the element and the begin‐</span>
+<span>ning of the transition. The following starts the transition after a 0.1-second delay:</span>
+<span>transition-delay:0.1s;</span>
+<span>If the</span>
+<span>transition-delay</span>
+<span>property is given a value of less than 0 seconds (in other</span>
+<span>words, a negative value), the transition will execute the moment the property is</span>
+<span>changed, but will appear to have begun execution at the specified offset, partway</span>
+<span>through its cycle.</span>
+<h4>Transition Timing</h4>
+<span>The</span>
+<span>transition-timing</span>
+<span>function property requires one of the following values:</span>
+<span>ease</span>
+<span>Start slowly, get faster, and then end slowly.</span>
+<span>linear</span>
+<span>Transition at constant speed.</span>
+<span>ease-in</span>
+<span>Start slowly, and then go quickly until finished.</span>
+<span>ease-out</span>
+<span>Start quickly, stay fast until near the end, and then end slowly.</span>
+<span>ease-in-out</span>
+<span>Start slowly, go fast, and then end slowly.</span>
+<span>Using any of the values containing the word</span>
+<span>&nbsp;ease</span>
+<span>&nbsp;ensures that the transition looks</span>
+<span>extra fluid and natural, unlike a linear transition that somehow seems more mechani‐</span>
+<span>cal. And if these aren&rsquo;t sufficiently varied for you, you can also create your own transi‐</span>
+<span>tions using the</span>
+<span>cubic-bezier</span>
+<span>function.</span>
+<span>For example, following are the declarations used to create the preceding five transi‐</span>
+<span>tion types, illustrating how you can easily create your own:</span>
+<span>transition-timing-function:cubic-bezier(0.25, 0.1, 0.25, 1);</span>
+<span>transition-timing-function:cubic-bezier(0, 0, 1, 1);</span>
+<span>transition-timing-function:cubic-bezier(0.42, 0, 1, 1);</span>
+<span>transition-timing-function:cubic-bezier(0, 0, 0.58, 1);</span>
+<span>transition-timing-function:cubic-bezier(0.42, 0, 0.58, 1);</span>
+<h4>Shorthand Syntax</h4>
+<span>You may find it easier to use the shorthand version of this property and include all</span>
+<span>the values in a single declaration like the following, which will transition all proper‐</span>
+<span>ties in a linear fashion, over a period of .3 seconds, after an initial (optional) delay of .</span>
+<span>2 seconds:</span>
+<span>transition:all .3s linear .2s;</span>
+<span>Doing so will save you the trouble of entering many very similar declarations, partic‐</span>
+<span>ularly if you are supporting all the major browser prefixes.</span>
+<span>Example 19-4</span>
+<span>illustrates how you might use transitions and transformations together.</span>
+<span>The CSS creates a square, orange element with some text in it, and a</span>
+<span>hover</span>
+<span>pseudo‐</span>
+<span>class specifying that when the mouse passes over the object, it should rotate by 180</span>
+<span>degrees and change from orange to yellow (see</span>
+<span>Figure 19-14</span>
+<span>).</span>
+<span>Example 19-4. A transition on hover</span>
+<span>effect</span>
+<span>&lt;!DOCTYPE html&gt;</span>
+<span>&lt;html&gt;</span>
+<span>&lt;head&gt;</span>
+<span>&lt;title&gt;Transitioning on hover&lt;/title&gt;</span>
+<span>&lt;style&gt;</span>
+<span>&nbsp;</span>
+<span>#square {</span>
+<span>&nbsp;</span>
+<span>position :absolute;</span>
+<span>&nbsp;</span>
+<span>top :50px;</span>
+<span>&nbsp;</span>
+<span>left :50px;</span>
+<span>&nbsp;</span>
+<span>width :100px;</span>
+<span>&nbsp;</span>
+<span>height :100px;</span>
+<span>&nbsp;</span>
+<span>padding :2px;</span>
+<span>&nbsp;</span>
+<span>text-align :center;</span>
+<span>&nbsp;</span>
+<span>border-width :1px;</span>
+<span>&nbsp;</span>
+<span>border-style :solid;</span>
+<span>&nbsp;</span>
+<span>background :orange;</span>
+<span>&nbsp;</span>
+<span>transition :all .8s ease-in-out;</span>
+<span>&nbsp;</span>
+<span>-moz-transition :all .8s ease-in-out;</span>
+<span>&nbsp;</span>
+<span>-webkit-transition:all .8s ease-in-out;</span>
+<span>&nbsp;</span>
+<span>-o-transition :all .8s ease-in-out;</span>
+<span>&nbsp;</span>
+<span>-ms-transition :all .8s ease-in-out;</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&nbsp;</span>
+<span>#square:hover {</span>
+<span>&nbsp;</span>
+<span>background :yellow;</span>
+<span>&nbsp;</span>
+<span>-moz-transform :rotate(180deg);</span>
+<span>&nbsp;</span>
+<span>-webkit-transform :rotate(180deg);</span>
+<span>&nbsp;</span>
+<span>-o-transform :rotate(180deg);</span>
+<span>&nbsp;</span>
+<span>-ms-transform :rotate(180deg);</span>
+<span>&nbsp;</span>
+<span>transform :rotate(180deg);</span>
+<span>&nbsp;</span>
+<span>}</span>
+<span>&lt;/style&gt;</span>
+<span>&lt;/head&gt;</span>
+<span>&lt;body&gt;</span>
+<span>&lt;div id='square'&gt;</span>
+<span>&nbsp;</span>
+<span>Square shape&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>created using&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>a simple div&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>element with&lt;br&gt;</span>
+<span>&nbsp;</span>
+<span>a 1px border</span>
+<span>&lt;/div&gt;</span>
+<span>&lt;/body&gt;</span>
+<span>&lt;/html&gt;</span>
+<span>Figure 19-14. The object rotates and changes color when hovered over</span>
+<span>The sample code caters to all browsers by providing browser-specific versions of the</span>
+<span>declarations. On all the latest browsers (including IE10 or higher), the object will</span>
+<span>rotate clockwise when hovered over, while slowly changing from orange to yellow.</span>
+<span>CSS transitions are smart in that when they are cancelled, they smoothly return to</span>
+<span>their original value. So if you move the mouse away before the transition has comple‐</span>
+<span>ted, it will instantly reverse and start transition back to its initial state.</span>
+<h3>Questions</h3>
+<span>1.</span>
+<span>What do the CSS3 attribute selector operators</span>
+<span>^=</span>
+<span>,</span>
+<span>$=</span>
+<span>, and</span>
+<span>*=</span>
+<span>do?</span>
+<span>2.</span>
+<span>What property do you use to specify the size of a background image?</span>
+<span>3.</span>
+<span>With which property can you specify the radius of a border?</span>
+<span>4.</span>
+<span>How can you flow text over multiple columns?</span>
+<span>5.</span>
+<span>Name the four functions with which you can specify CSS colors.</span>
+<span>6.</span>
+<span>How would you create a gray text shadow under some text, offset diagonally to</span>
+<span>the bottom right by 5 pixels, with a blurring of 3 pixels?</span>
+<span>7.</span>
+<span>How can you indicate with an ellipsis that text is truncated?</span>
+<span>8.</span>
+<span>How can you include a Google web font in a web page?</span>
+<span>9.</span>
+<span>What CSS declaration would you use to rotate an object by 90 degrees?</span>
+<span>10.</span>
+<span>How do you set up a transition on an object so that when any of its properties are</span>
+<span>changed, the change will transition immediately in a linear fashion over the</span>
+<span>course of half a second?</span>
+<span>See</span>
+<span>Chapter 19 Answers</span>
+<span>in</span>
+<span>Appendix A</span>
+<span>for the answers to these questions.</span>
