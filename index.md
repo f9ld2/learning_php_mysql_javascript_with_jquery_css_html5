@@ -227,7 +227,7 @@ Here's the latest news.
     <span>information from a third party website, you can do it all from within the same PHP</span>
     <span>files in which the HTML itself resides.</span><br/>
     <h4>Using MySQL</h4>
-    <span>Of course, there&rsquo;s not a lot of point to being able to change HTML output dynami‐</span>
+    <span>Of course, there&rsquo;s not a lot of point to being able to change HTML output dynami</span>
     <span>cally unless you also have a means to track the changes that users make as they use</span>
     <span>your website. In the early days of the Web, many sites used &ldquo;flat&rdquo; text files to store</span>
     <span>data such as usernames and passwords. But this approach could cause problems if the</span>
@@ -363,13 +363,8 @@ Here's the latest news.
     <span>&lt;style&gt;</span>
     <span>and</span>
     <span>&lt;/style&gt;</span>
-    <span>tags in the head of a web page, like this:</span><br/>
-    <span>&lt;style&gt;</span>
-    <span>p {</span>
-    <span>text-align:justify;</span>
-    <span>font-family:Helvetica;</span>
-    <span>}</span>
-    <span>&lt;/style&gt;</span><br/>
+    <span>tags in the head of a web page, like this:</span>
+<pre><code class="css">&lt;style&gt; p {text-align:justify; font-family:Helvetica;} &lt;/style&gt;</code></pre>
     <span>These rules will change the default text alignment of the</span>
     <span>&lt;p&gt;</span>
     <span>tag so that paragraphs</span>
@@ -563,45 +558,4 @@ Here's the latest news.
     <span>Chapter 2</span>
     <span>, we&rsquo;ll look at how you can install your own web develop‐</span>
     <span>ment server on which to practice everything that you will be learning.</span><br/>
-    <h3>Questions</h3>
-    <span>1.</span>
-    <span>What four components (at the minimum) are needed to create a fully dynamic</span>
-    <span>web page?</span>
-    <span>2.</span>
-    <span>What does</span>
-    <span>HTML</span>
-    <span>stand for?</span>
-    <span>3.</span>
-    <span>Why does the name</span>
-    <span>MySQL</span>
-    <span>contain the letters</span>
-    <span>SQL</span>
-    <span>?</span>
-    <span>4.</span>
-    <span>PHP and JavaScript are both programming languages that generate dynamic</span>
-    <span>results for web pages. What is their main difference, and why would you use both</span>
-    <span>of them?</span>
-    <span>5.</span>
-    <span>What does</span>
-    <span>CSS</span>
-    <span>stand for?</span>
-    <span>6.</span>
-    <span>List three major new elements introduced in HTML5.</span>
-    <span>7.</span>
-    <span>If you encounter a bug (which is rare) in one of the open source tools, how do</span>
-    <span>you think you could get it fixed?</span>
-    <span>See</span>
-    <span>Chapter 1 Answers</span>
-    <span>in</span>
-    <span>Appendix A</span>
-    <span>for the answers to these questions.</span>
-    <span>their distinctive scents can be bothersome to humans; as they are nocturnal creatures,</span>
-    <span>they will bark, hiss, run, and glide all night long; it&rsquo;s not uncommon for them to lose</span>
-    <span>control of their bowels while playing or eating; and in some states and countries, it is</span>
-    <span>illegal to own sugar gliders as household pets.</span>
-    <span>The cover image is from</span>
-    <span>Dover&rsquo;s Animals</span>
-    <span>. The cover fonts are URW Typewriter and</span>
-    <span>Guardian Sans. The text font is Adobe Minion Pro; the heading font is Adobe Myriad</span>
-    <span>Condensed; and the code font is Dalton Maag&rsquo;s Ubuntu Mono.</span>
 </section>
