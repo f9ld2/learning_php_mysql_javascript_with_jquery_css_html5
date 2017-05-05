@@ -33,6 +33,7 @@
     <span>away. I have tried to clearly explain them before proceeding. But</span>
     <span>don&rsquo;t worry too much about what they stand for or what these</span>
     <span>names mean, because the details will become clear as you read on.</span>
+    <a id="http-and-html-berners-lee-s-basics"></a>
     <h4>HTTP and HTML: Berners-Lee&rsquo;s Basics</h4>
     <span>HTTP is a communication standard governing the requests and responses that take</span>
     <span>place between the browser running on the end user&rsquo;s computer and the web server.</span>
@@ -50,6 +51,7 @@
     <span>A web server can usually handle multiple simultaneous connections and when not</span>
     <span>communicating with a client spends its time listening for an incoming connection.</span>
     <span>When one arrives, the server sends back a response to confirm its receipt.</span>
+    <a id="the-request-response-procedure"></a>
     <h3>The Request/Response Procedure</h3>
     <span>At its most basic level, the request/response process consists of a web browser asking</span>
     <span>the web server to send it a web page and the server sending back the page. The</span>
@@ -137,6 +139,7 @@
     <span>HTML pages returned to the browser in each example may well contain JavaScript,</span>
     <span>which will be interpreted locally by the client, and which could initiate another</span>
     <span>request the same way embedded objects such as images would.</span>
+    <a id="the-benefits-of-php-mysql-javascript-css-and-html5"></a>
     <h3>The Benefits of PHP, MySQL, JavaScript, CSS, and HTML5</h3>
     <span>At the start of this chapter, I introduced the world of Web 1.0, but it wasn&rsquo;t long</span>
     <span>before the rush was on to create Web 1.1, with the development of such browser</span>
@@ -177,6 +180,7 @@
     <span>beginnings of Web 2.0.</span><br/>
     <span>And when you bring JavaScript and CSS into the mix too, you have a recipe for build-</span>
     <span>ing highly dynamic and interactive websites.</span>
+    <a id="using-php"></a>
     <h4>Using PHP</h4>
     <span>With PHP, it&rsquo;s a simple matter to embed dynamic activity in web pages. When you</span>
     <span>give pages the</span>
@@ -226,6 +230,7 @@ Here's the latest news.
     <span>modify HTML on the fly, process a credit card, add user details to a database, or fetch</span>
     <span>information from a third party website, you can do it all from within the same PHP</span>
     <span>files in which the HTML itself resides.</span><br/>
+    <a id="using-mysql"></a>
     <h4>Using MySQL</h4>
     <span>Of course, there&rsquo;s not a lot of point to being able to change HTML output dynami</span>
     <span>cally unless you also have a means to track the changes that users make as they use</span>
@@ -287,6 +292,7 @@ Here's the latest news.
     <span>the results returned from earlier ones, to drill down to the item of data you need.</span><br/>
     <span>For even more power, as you&rsquo;ll see later, there are additional functions built right into</span>
     <span>MySQL that you can call up for common operations and extra speed.</span>
+    <a id="using-javascript"></a>
     <h4>Using JavaScript</h4>
     <span>The oldest of the three core technologies in this book, JavaScript, was created to</span>
     <span>enable scripting access to all the elements of an HTML document. In other words, it</span>
@@ -353,6 +359,7 @@ Here's the latest news.
     <span>late your web pages. Of course, there are other frameworks available too, but jQuery</span>
     <span>is by far the most popular and, due to continuous maintenance, is extremely reliable,</span>
     <span>and a major tool in the utility kit of many seasoned web developers.</span>
+    <a id="using-css"></a>
     <h4>Using CSS</h4>
     <span>With the emergence of the CSS3 standard in recent years, CSS now offers a level of</span>
     <span>dynamic interactivity previously supported only by JavaScript. For example, not only</span>
@@ -377,6 +384,7 @@ Here's the latest news.
     <span>cisely, but it can also (for example) provide built-in hover functionality to animate</span>
     <span>objects as the mouse passes over them. You will also learn how to access all of an ele‐</span>
     <span>ment&rsquo;s CSS properties from JavaScript as well as HTML.</span>
+    <a id="and-then-there-s-html5"></a>
     <h3>And Then There&rsquo;s HTML5</h3>
     <span>As useful as all these additions to the web standards became, they were not enough</span>
     <span>for ever more ambitious developers. For example, there was still no simple way to</span>
@@ -452,6 +460,7 @@ Here's the latest news.
     <span>,</span>
     <span>&lt;hr&gt;</span>
     <span>, and so on.</span><br/>
+    <a id="the-apache-web-server"></a>
     <h3>The Apache Web Server</h3>
     <span>In addition to PHP, MySQL, JavaScript, CSS, and HTML5, there&rsquo;s a sixth hero in the</span>
     <span>dynamic Web: the web server. In the case of this book, that means the Apache web</span>
@@ -475,6 +484,7 @@ Here's the latest news.
     <span>pages from a cache to ease the load on the server.</span><br/>
     <span>Later in the book, you&rsquo;ll see how to use some of these modules to enhance the fea‐</span>
     <span>tures provided by the three core technologies.</span><br/>
+    <a id="about-open-source"></a>
     <h3>About Open Source</h3>
     <span>Whether or not being open source is the reason these technologies are so popular has</span>
     <span>often been debated, but PHP, MySQL, and Apache</span>
@@ -489,6 +499,7 @@ Here's the latest news.
     <span>having to purchase additional licenses if you have to scale up your website and add</span>
     <span>more servers. And you don&rsquo;t need to check the budget before deciding whether to</span>
     <span>upgrade to the latest versions of these products.</span>
+    <a id="bringing-it-all-together"></a>
     <h3>Bringing It All Together</h3>
     <span>The real beauty of PHP, MySQL, JavaScript (sometimes aided by jQuery or other</span>
     <span>frameworks), CSS, and HTML5 is the wonderful way in which they all work together</span>
