@@ -186,7 +186,7 @@
     <pre><code class="php">&lt;?php
     echo " Today is " . date("l") . ". ";
     ?&gt;
-    Here's the latest news.</code><pre>
+    Here's the latest news.</code></pre>
     <span>The opening</span>
     <span>&lt;?php</span>
     <span>tells the web server to allow the PHP program to interpret all the</span>
@@ -204,7 +204,7 @@
     <span><b>Today is Wednesday. Here's the latest news.</b></span><br/>
     <span>PHP is a flexible language, and some people prefer to place the PHP construct</span>
     <span>directly next to PHP code, like this:</span>
-    <pre><code class="php">Today is &lt;?php echo date("l"); ?&gt;. Here's the latest news.</code><pre>
+    <pre><code class="php">Today is &lt;?php echo date("l"); ?&gt;. Here's the latest news.</code></pre>
     <span>There are also other ways of formatting and outputting information, which I&rsquo;ll</span>
     <span>explain in the chapters on PHP. The point is that with PHP, web developers have a</span>
     <span>scripting language that, although not as fast as compiling your code in C or a similar</span>
@@ -250,7 +250,7 @@
     <span>email</span>
     <span>, and you now wish to add another user. One command that you might use</span>
     <span>to do this is as follows:</span>
-    <pre><code class="sql">INSERT INTO users VALUES('Smith', 'John', 'jsmith@mysite.com');</code><pre>
+    <pre><code class="sql">INSERT INTO users VALUES('Smith', 'John', 'jsmith@mysite.com');</code></pre>
     <span>Of course, as mentioned earlier, you will have issued other commands to create the</span>
     <span>database and table and to set up all the correct fields, but the</span>
     <span>INSERT</span>
@@ -264,7 +264,7 @@
     <span>It&rsquo;s equally easy to look up data. Let&rsquo;s assume that you have an email address for a user</span>
     <span>and need to look up that person&rsquo;s name. To do this, you could issue a MySQL query</span>
     <span>such as the following:</span>
-    <pre><code class="sql">SELECT surname,firstname FROM users WHERE email='jsmith@mysite.com';</code><pre>
+    <pre><code class="sql">SELECT surname,firstname FROM users WHERE email='jsmith@mysite.com';</code></pre>
     <span>MySQL will then return</span>
     <span>Smith, John</span>
     <span>and any other pairs of names that may be asso‐</span>
