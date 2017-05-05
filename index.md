@@ -305,9 +305,11 @@
     <span>safely ignore these differences.</span><br/>
     <span>For now, let&rsquo;s take a look at how to use basic JavaScript, accepted by all browsers:</span><br/>
     <pre>
+        <code class="javascript">
         &lt;script type="text/javascript"&gt;
   document.write("Today is " + Date() );
 &lt;/script&gt;
+        </code>
     </pre><br/>
     <span>This code snippet tells the web browser to interpret everything within the</span>
     <span>script</span>
