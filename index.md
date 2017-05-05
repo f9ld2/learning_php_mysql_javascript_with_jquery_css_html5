@@ -183,11 +183,12 @@
     <span>.php</span>
     <span>extension, they have instant access to the scripting language. From</span>
     <span>a developer&rsquo;s point of view, all you have to do is write code such as the following:</span>
-    <pre><code class="php">
+<pre><code class="php">
 &lt;?php
     echo " Today is " . date("l") . ". ";
 ?&gt;
-Here's the latest news.</code></pre>
+Here's the latest news.
+</code></pre>
     <span>The opening</span>
     <span>&lt;?php</span>
     <span>tells the web server to allow the PHP program to interpret all the</span>
