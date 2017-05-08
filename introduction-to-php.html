@@ -9,17 +9,17 @@ layout: default
 <span>requests a page. In this chapter, you&rsquo;ll start learning this simple but powerful lan‐</span>
 <span>guage; it will be the topic of the following chapters up through</span>
 <span>Chapter 7</span>
-<span>.</span>
+<span>.</span><br/>
 <span>I encourage you to develop your PHP code in one of the IDEs listed in</span>
 <span>Chapter 2</span>
 <span>. It</span>
 <span>will help you catch typos and speed up learning tremendously in comparison to less</span>
-<span>feature-rich editors.</span>
+<span>feature-rich editors.</span><br/>
 <span>Many of these development environments let you run the PHP code and see the out‐</span>
 <span>put discussed in this chapter. I&rsquo;ll also show you how to embed the PHP in an HTML</span>
 <span>file so that you can see what the output looks like in a web page (the way your users</span>
-<span>will ultimately see it). But that step, as thrilling as it may be at first, isn&rsquo;t really impor‐</span>
-<span>tant at this stage.</span>
+<span>will ultimately see it). But that step, as thrilling as it may be at first, isn&rsquo;t really impor</span>
+<span>tant at this stage.</span><br/>
 <span>In production, your web pages will be a combination of PHP, HTML, and JavaScript,</span>
 <span>and some MySQL statements laid out using CSS, and possibly utilizing various</span>
 <span>HTML5 elements. Furthermore, each page can lead to other pages to provide users</span>
@@ -30,7 +30,7 @@ layout: default
 <h3>Incorporating PHP Within HTML</h3>
 <span>By default, PHP documents end with the extension</span>
 <span>.php</span>
-<span>. When a web server encoun‐</span>
+<span>. When a web server encoun</span>
 <span>ters this extension in a requested file, it automatically passes it to the PHP processor.</span>
 <span>Of course, web servers are highly configurable, and some web developers choose to</span>
 <span>force files ending with</span>
@@ -38,7 +38,7 @@ layout: default
 <span>or</span>
 <span>.html</span>
 <span>to also get parsed by the PHP processor, usually</span>
-<span>because they want to hide the fact that they are using PHP.</span>
+<span>because they want to hide the fact that they are using PHP.</span><br/>
 <span>Your PHP program is responsible for passing back a clean file suitable for display in a</span>
 <span>web browser. At its very simplest, a PHP document will output only HTML. To prove</span>
 <span>this, you can take any normal HTML document such as an</span>
@@ -46,49 +46,57 @@ layout: default
 <span>file and save it</span>
 <span>as</span>
 <span>index.php</span>
-<span>, and it will display identically to the original.</span>
-<span>To trigger the PHP commands, you need to learn a new tag. Here is the first part:</span>
-<span>&lt;?php</span>
+<span>, and it will display identically to the original.</span><br/>
+<span>To trigger the PHP commands, you need to learn a new tag. Here is the first part:</span><br/>
+<pre><code class="php">&lt;?php</code></pre>
 <span>The first thing you may notice is that the tag has not been closed. This is because</span>
 <span>entire sections of PHP can be placed inside this tag, and they finish only when the</span>
 <span>closing part is encountered, which looks like this:</span>
-<span>?&gt;</span>
+<pre><code class="php">?&gt;</code></pre>
 <span>A small PHP &ldquo;Hello World&rdquo; program might look like</span>
 <span>Example 3-1</span>
-<span>.</span>
+<span>.</span><br/>
 <span>Example 3-1. Invoking PHP</span>
-<span>&lt;?php</span>
-<span>echo "Hello world";</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+    echo "Hello world";
+?&gt;
+</code>
+</pre>
 <span>The way you use this tag is quite flexible. Some programmers open the tag at the start</span>
 <span>of a document and close it right at the end, outputting any HTML directly from PHP</span>
 <span>commands. Others, however, choose to insert only the smallest possible fragments of</span>
 <span>PHP within these tags wherever dynamic scripting is required, leaving the rest of the</span>
-<span>document in standard HTML.</span>
+<span>document in standard HTML.</span><br/>
 <span>The latter type of programmer generally argues that their style of coding results in</span>
 <span>faster code, while the former say that the speed increase is so minimal that it doesn&rsquo;t</span>
-<span>justify the additional complexity of dropping in and out of PHP many times in a sin‐</span>
-<span>gle document.</span>
+<span>justify the additional complexity of dropping in and out of PHP many times in a sin</span>
+<span>gle document.</span><br/>
 <span>As you learn more, you will surely discover your preferred style of PHP development,</span>
 <span>but for the sake of making the examples in this book easier to follow, I have adopted</span>
-<span>the approach of keeping the number of transfers between PHP and HTML to a mini‐</span>
-<span>mum&mdash;generally only once or twice in a document.</span>
+<span>the approach of keeping the number of transfers between PHP and HTML to a mini</span>
+<span>mum&mdash;generally only once or twice in a document.</span><br/>
 <span>By the way, there is a slight variation to the PHP syntax. If you browse the Internet for</span>
 <span>PHP examples, you may also encounter code where the opening and closing syntax</span>
 <span>looks like this:</span>
-<span>&lt;?</span>
-<span>echo "Hello world";</span>
-<span>?&gt;</span>
-<span>Although it&rsquo;s not as obvious that the PHP parser is being called, this is a valid, alter‐</span>
+<pre>
+<code class="php">
+&lt;?
+    echo "Hello world";
+?&gt;
+</code>
+</pre>
+<span>Although it&rsquo;s not as obvious that the PHP parser is being called, this is a valid, alter</span>
 <span>native syntax that also usually works, but should be discouraged, as it is incompatible</span>
 <span>with XML and its use is now deprecated (meaning that it is no longer recommended</span>
-<span>and could be removed in future versions).</span>
+<span>and could be removed in future versions).</span><br/>
 <span>If you have only PHP code in a file, you may omit the closing</span>
 <span>?&gt;</span>
 <span>.</span>
 <span>This can be a good practice, as it will ensure that you have no</span>
-<span>excess whitespace leaking from your PHP files (especially impor‐</span>
-<span>tant when you&rsquo;re writing object-oriented code).</span>
+<span>excess whitespace leaking from your PHP files (especially impor</span>
+<span>tant when you&rsquo;re writing object-oriented code).</span><br/>
 <h3>This Book&rsquo;s Examples</h3>
 <span>To save you the time it would take to type them all in, all the examples from this book</span>
 <span>have been archived onto the website at</span>
@@ -97,13 +105,14 @@ layout: default
 <span>your computer by clicking the Download Examples link in the heading section (see</span>
 <span>Figure 3-1</span>
 <span>).</span>
+<p><img src="images/3.1.png"/></p>
 <span>Figure 3-1. Viewing examples from this book at</span>
-<span>http://lpmj.net</span>
+<span>http://lpmj.net</span><br/>
 <span>As well as having all the examples saved by chapter and example number (such as</span>
 <span>example3-1.php</span>
 <span>), the provided archive also contains an additional directory called</span>
 <span>named_examples</span>
-<span>, in which you&rsquo;ll find all the examples I suggest you save using a spe‐</span>
+<span>, in which you&rsquo;ll find all the examples I suggest you save using a spe</span>
 <span>cific</span>
 <span>filename</span>
 <span>(such</span>
@@ -119,7 +128,7 @@ layout: default
 <span>saved</span>
 <span>as</span>
 <span>test1.php</span>
-<span>).</span>
+<span>).</span><br/>
 <h3>The Structure of PHP</h3>
 <span>We&rsquo;re going to cover quite a lot of ground in this section. It&rsquo;s not too difficult, but I</span>
 <span>recommend that you work your way through it carefully, as it sets the foundation for</span>
@@ -127,26 +136,30 @@ layout: default
 <span>the chapter that you can use to test how much you&rsquo;ve learned.</span>
 <h4>Using Comments</h4>
 <span>There are two ways in which you can add comments to your PHP code. The first</span>
-<span>turns a single line into a comment by preceding it with a pair of forward slashes:</span>
-<span>// This is a comment</span>
+<span>turns a single line into a comment by preceding it with a pair of forward slashes:</span><br/>
+<span>// This is a comment</span><br/>
 <span>This version of the comment feature is a great way to temporarily remove a line of</span>
 <span>code from a program that is giving you errors. For example, you could use such a</span>
-<span>comment to hide a debugging line of code until you need it, like this:</span>
-<span>// echo "X equals $x";</span>
+<span>comment to hide a debugging line of code until you need it, like this:</span><br/>
+<span>// echo "X equals $x";</span><br/>
 <span>You can also use this type of comment directly after a line of code to describe its</span>
-<span>action, like this:</span>
-<span>$x += 10; // Increment $x by 10</span>
+<span>action, like this:</span><br/>
+<span>$x += 10; // Increment $x by 10</span><br/>
 <span>When you need multiple-line comments, there&rsquo;s a second type of comment, which</span>
 <span>looks like</span>
 <span>Example 3-2</span>
-<span>.</span>
-<span>Example 3-2. A multiline comment</span>
-<span>&lt;?php</span>
-<span>/* This is a section</span>
-<span>of multiline comments</span>
-<span>which will not be</span>
-<span>interpreted */</span>
-<span>?&gt;</span>
+<span>.</span><br/>
+<span>Example 3-2. A multiline comment</span><br/>
+<pre>
+<code class="php">
+&lt;?php
+/*  This is a section
+    of multiline comments
+    which will not be
+    interpreted */
+?&gt;
+</code>
+</pre>
 <span>You can use the</span>
 <span>/*</span>
 <span>and</span>
@@ -154,38 +167,38 @@ layout: default
 <span>pairs of characters to open and close comments almost</span>
 <span>anywhere you like inside your code. Most, if not all, programmers use this construct</span>
 <span>to temporarily comment out entire sections of code that do not work or that, for one</span>
-<span>reason or another, they do not wish to be interpreted.</span>
+<span>reason or another, they do not wish to be interpreted.</span><br/>
 <span>A common error is to use</span>
 <span>/*</span>
 <span>and</span>
 <span>*/</span>
 <span>to comment out a large section</span>
 <span>of code that already contains a commented-out section that uses</span>
-<span>those characters. You can&rsquo;t nest comments this way; the PHP inter‐</span>
+<span>those characters. You can&rsquo;t nest comments this way; the PHP inter</span>
 <span>preter won&rsquo;t know where a comment ends and will display an error</span>
 <span>message. However, if you use a program editor or IDE with syntax</span>
-<span>highlighting, this type of error is easier to spot.</span>
+<span>highlighting, this type of error is easier to spot.</span><br/>
 <h4>Basic Syntax</h4>
 <span>PHP is quite a simple language with roots in C and Perl, yet it looks more like Java. It</span>
 <span>is also very flexible, but there are a few rules that you need to learn about its syntax</span>
-<span>and structure.</span>
-<span>Semicolons</span>
+<span>and structure.</span><br/>
+<h6>Semicolons</h6>
 <span>You may have noticed in the previous examples that the PHP commands ended with</span>
-<span>a semicolon, like this:</span>
-<span>$x += 10;</span>
+<span>a semicolon, like this:</span><br/>
+<span>$x += 10;</span><br/>
 <span>Probably the most common cause of errors you will encounter with PHP is forgetting</span>
 <span>this semicolon. This causes PHP to treat multiple statements like one statement,</span>
 <span>which it is unable to understand, prompting it to produce a</span>
 <span>Parse error</span>
 <span>message.</span>
-<span>The $ symbol</span>
+<h6>The $ symbol</h6>
 <span>The</span>
 <span>$</span>
 <span>symbol has come to be used in many different ways by different programming</span>
 <span>languages. For example, if you have ever written in the BASIC language, you will have</span>
 <span>used the</span>
 <span>$</span>
-<span>to terminate variable names to denote them as strings.</span>
+<span>to terminate variable names to denote them as strings.</span><br/>
 <span>In PHP, however, you must place a</span>
 <span>$</span>
 <span>in front of</span>
@@ -195,27 +208,32 @@ layout: default
 <span>Whether your variables are numbers, strings, or arrays, they should all look some‐</span>
 <span>thing like those in</span>
 <span>Example 3-3</span>
-<span>.</span>
+<span>.</span><br/>
 <span>Example 3-3.</span>
-<span>Three different types of variable assignment</span>
-<span>&lt;?php</span>
-<span>$mycounter = 1;</span>
-<span>$mystring = "Hello";</span>
-<span>$myarray = array("One", "Two", "Three");</span>
-<span>?&gt;</span>
-<span>And really that&rsquo;s pretty much all the syntax that you have to remember. Unlike lan‐</span>
+<span>Three different types of variable assignment</span><br/>
+<pre>
+<code class="php">
+&lt;?php
+    $mycounter = 1;
+    $mystring = "Hello";
+    $myarray = array("One", "Two", "Three");
+?&gt;
+</code>
+</pre>
+<span>And really that&rsquo;s pretty much all the syntax that you have to remember. Unlike lan</span>
 <span>guages such as Python, which are very strict about how you indent and lay out our</span>
 <span>code, PHP leaves you completely free to use (or not use) all the indenting and spacing</span>
 <span>you like. In fact, sensible use of</span>
 <span>whitespace</span>
-<span>is generally encouraged (along with com‐</span>
+<span>is generally encouraged (along with com</span>
 <span>prehensive commenting) to help you understand your code when you come back to</span>
 <span>it. It also helps other programmers when they have to maintain your code.</span>
+
 <h4>Variables</h4>
 <span>There&rsquo;s a simple metaphor that will help you understand what PHP variables are all</span>
 <span>about. Just think of them as little (or big) matchboxes! That&rsquo;s right&mdash;matchboxes that</span>
 <span>you&rsquo;ve painted over and written names on.</span>
-<span>String variables</span>
+<h6>String variables</h6>
 <span>Imagine you have a matchbox on which you have written the word</span>
 <span>&nbsp;username</span>
 <span>. You</span>
@@ -224,9 +242,10 @@ layout: default
 <span>on a piece of paper and place it into the box (see</span>
 <span>Figure 3-2</span>
 <span>).</span>
-<span>Well, that&rsquo;s the same process as assigning a string value to a variable, like this:</span>
-<span>$username = "Fred Smith";</span>
-<span>Figure 3-2. You can think of variables as matchboxes containing items</span>
+<span>Well, that&rsquo;s the same process as assigning a string value to a variable, like this:</span><br/>
+<span>$username = "Fred Smith";</span><br/>
+<p><img src="images/3.2.png"/></p>
+<span>Figure 3-2. You can think of variables as matchboxes containing items</span><br/>
 <span>The quotation marks indicate that &ldquo;Fred Smith&rdquo; is a</span>
 <span>&nbsp;string</span>
 <span>&nbsp;of characters. You must</span>
@@ -243,11 +262,11 @@ layout: default
 <span>quotes),</span>
 <span>although there is a subtle difference between the two types of quote, which is</span>
 <span>explained later. When you want to see what&rsquo;s in the box, you open it, take the piece of</span>
-<span>paper out, and read it. In PHP, doing so looks like this:</span>
-<span>echo $username;</span>
+<span>paper out, and read it. In PHP, doing so looks like this:</span><br/>
+<span>echo $username;</span><br/>
 <span>Or you can assign it to another variable (photocopy the paper and place the copy in</span>
-<span>another matchbox), like this:</span>
-<span>$current_user = $username;</span>
+<span>another matchbox), like this:</span><br/>
+<span>$current_user = $username;</span><br/>
 <span>If you are keen to start trying out PHP for yourself, you could enter the examples in</span>
 <span>this chapter into an IDE (as recommended at the end of</span>
 <span>&nbsp;Chapter 2</span>
@@ -259,28 +278,32 @@ layout: default
 <span>Chapter 2</span>
 <span>) as</span>
 <span>test1.php</span>
-<span>.</span>
+<span>.</span><br/>
 <span>Example 3-4. Your</span>
-<span>first PHP program</span>
-<span>&lt;?php // test1.php</span>
-<span>$username = "Fred Smith";</span>
-<span>echo $username;</span>
-<span>echo "&lt;br&gt;";</span>
-<span>$current_user = $username;</span>
-<span>echo $current_user;</span>
-<span>?&gt;</span>
-<span>Now you can call it up by entering the following into your browser&rsquo;s address bar:</span>
-<span>http://localhost/test1.php</span>
+<span>first PHP program</span><br/>
+<pre>
+<code class="php">
+&lt;?php // test1.php
+    $username = "Fred Smith";
+    echo $username;
+    echo "&lt;br&gt;";
+    $current_user = $username;
+    echo $current_user;
+?&gt;
+</code>
+</pre>
+<span>Now you can call it up by entering the following into your browser&rsquo;s address bar:</span><br/>
+<span>http://localhost/test1.php</span><br/>
 <span>If during installation of your web server (as detailed in</span>
 <span>Chapter 2</span>
 <span>)</span>
 <span>you changed the port assigned to the server to anything other than</span>
 <span>80, then you must place that port number within the URL in this</span>
 <span>and all other examples in this book. So, for example, if you changed</span>
-<span>the port to 8080, the preceding URL becomes this:</span>
-<span>http://localhost:8080/test1.php</span>
+<span>the port to 8080, the preceding URL becomes this:</span><br/>
+<span>http://localhost:8080/test1.php</span><br/>
 <span>I won&rsquo;t mention this again, so just remember to use the port num‐</span>
-<span>ber if required when trying examples or writing your own code.</span>
+<span>ber if required when trying examples or writing your own code.</span><br/>
 <span>The result of running this code should be two occurrences of the name</span>
 <span>Fred Smith</span>
 <span>,</span>
@@ -289,59 +312,61 @@ layout: default
 <span>command, and the second of</span>
 <span>the</span>
 <span>echo $current_user</span>
-<span>command.</span>
-<span>Numeric variables</span>
+<span>command.</span><br/>
+<h6>Numeric variables</h6>
 <span>Variables don&rsquo;t contain just strings&mdash;they can contain numbers too. If we return to</span>
 <span>the matchbox analogy, to store the number 17 in the variable</span>
 <span>$count</span>
 <span>, the equivalent</span>
 <span>would be placing, say, 17 beads in a matchbox on which you have written the word</span>
 <span>count</span>
-<span>:</span>
-<span>$count = 17;</span>
+<span>:</span><br/>
+<span>$count = 17;</span><br/>
 <span>You could also use a floating-point number (containing a decimal point); the syntax is</span>
-<span>the same:</span>
-<span>$count = 17.5;</span>
+<span>the same:</span><br/>
+<span>$count = 17.5;</span><br/>
 <span>To read the contents of the matchbox, you would simply open it and count the beads.</span>
 <span>In PHP, you would assign the value of</span>
 <span>$count</span>
 <span>to another variable or perhaps just echo</span>
 <span>it to the web browser.</span>
-<span>Arrays</span>
+<h6>Arrays</h6>
 <span>So what are arrays? Well, you can think of them as several matchboxes glued together.</span>
 <span>For example, let&rsquo;s say we want to store the player names for a five-person soccer team</span>
 <span>in an array called</span>
 <span>$team</span>
 <span>. To do this, we could glue five matchboxes side by side and</span>
 <span>write down the names of all the players on separate pieces of paper, placing one in</span>
-<span>each matchbox.</span>
+<span>each matchbox.</span><br/>
 <span>Across the whole top of the matchbox assembly we would write the word</span>
 <span>team</span>
 <span>(see</span>
 <span>Figure 3-3</span>
-<span>). The equivalent of this in PHP would be the following:</span>
-<span>$team = array('Bill', 'Mary', 'Mike', 'Chris', 'Anne');</span>
+<span>). The equivalent of this in PHP would be the following:</span><br/>
+<span>$team = array('Bill', 'Mary', 'Mike', 'Chris', 'Anne');</span><br/>
 <span>This syntax is more complicated than the ones I&rsquo;ve explained so far. The array-</span>
-<span>building code consists of the following construct:</span>
-<span>array();</span>
-<span>with five strings inside. Each string is enclosed in apostrophes.</span>
-<span>If we then wanted to know who player 4 is, we could use this command:</span>
+<span>building code consists of the following construct:</span><br/>
+<span>array();</span><br/>
+<span>with five strings inside. Each string is enclosed in apostrophes.</span><br/>
+<span>If we then wanted to know who player 4 is, we could use this command:</span><br/>
 <span>echo $team[3]; // Displays the name Chris</span>
-<span>Figure 3-3. An array is like several matchboxes glued together</span>
+<p><img src="images/3.3.png"/></p>
+<span>Figure 3-3. An array is like several matchboxes glued together</span><br/>
 <span>The reason the previous statement has the number 3, not 4, is because the first ele‐</span>
 <span>ment of a PHP array is actually the zeroth element, so the player numbers will there‐</span>
 <span>fore be 0 through 4.</span>
-<span>Two-dimensional arrays</span>
-<span>There&rsquo;s a lot more you can do with arrays. For example, instead of being single-</span>
+<h6>Two-dimensional arrays</h6>
+<span>There&rsquo;s a lot more you can do with arrays. For example, instead of being single</span>
 <span>dimensional lines of matchboxes, they can be two-dimensional matrixes or can even</span>
-<span>have three or more dimensions.</span>
+<span>have three or more dimensions.</span><br/>
 <span>As an example of a two-dimensional array, let&rsquo;s say we want to keep track of a game of</span>
 <span>tic-tac-toe, which requires a data structure of nine cells arranged in a 3&times;3 square. To</span>
 <span>represent this with matchboxes, imagine nine of them glued to each other in a matrix</span>
 <span>of three rows by three columns (see</span>
 <span>Figure 3-4</span>
 <span>).</span>
-<span>Figure 3-4. A multidimensional array simulated with matchboxes</span>
+<p><img src="images/3.4.png"/></p>
+<span>Figure 3-4. A multidimensional array simulated with matchboxes</span><br/>
 <span>You can now place a piece of paper with either an</span>
 <span>x</span>
 <span>or an</span>
@@ -351,28 +376,32 @@ layout: default
 <span>three more arrays, as in</span>
 <span>Example 3-5</span>
 <span>, in which the array is set up with a game already</span>
-<span>in progress.</span>
+<span>in progress.</span><br/>
 <span>Example 3-5.</span>
-<span>Defining a two-dimensional array</span>
-<span>&lt;?php</span>
-<span>$oxo = array(array('x', ' ', 'o'),</span>
-<span>&nbsp;</span>
-<span>array('o', 'o', 'x'),</span>
-<span>&nbsp;</span>
-<span>array('x', 'o', ' '));</span>
-<span>?&gt;</span>
+<span>Defining a two-dimensional array</span><br/>
+<pre>
+<code class="php">
+&lt;?php
+    $oxo = array(
+        array('x', ' ', 'o'),
+        array('o', 'o', 'x'),
+        array('x', 'o', ' ')
+    );
+?&gt;
+</code>
+</pre>
 <span>Once again, we&rsquo;ve moved up a step in complexity, but it&rsquo;s easy to understand if you</span>
 <span>grasp the basic array syntax. There are three</span>
 <span>array()</span>
 <span>constructs nested inside the</span>
 <span>outer</span>
 <span>array()</span>
-<span>construct.</span>
+<span>construct.</span><br/>
 <span>To then return the third element in the second row of this array, you would use the</span>
 <span>following PHP command, which will display an</span>
 <span>x</span>
-<span>:</span>
-<span>echo $oxo[1][2];</span>
+<span>:</span><br/>
+<span>echo $oxo[1][2];</span><br/>
 <span>Remember</span>
 <span>that</span>
 <span>array</span>
@@ -389,21 +418,21 @@ layout: default
 <span>[2]</span>
 <span>refer‐</span>
 <span>ences the third position within that array. It will return the contents</span>
-<span>of the matchbox three along and two down.</span>
+<span>of the matchbox three along and two down.</span><br/>
 <span>As mentioned, we can support arrays with even more dimensions by simply creating</span>
 <span>more arrays within arrays. However, we will not be covering arrays of more than two</span>
-<span>dimensions in this book.</span>
+<span>dimensions in this book.</span><br/>
 <span>And don&rsquo;t worry if you&rsquo;re still having difficulty coming to grips with using arrays, as</span>
 <span>the subject is explained in detail in</span>
 <span>Chapter 6</span>
 <span>.</span>
-<span>Variable-naming rules</span>
-<span>When creating PHP variables, you must follow these four rules:</span>
+<h6>Variable-naming rules</h6>
+<span>When creating PHP variables, you must follow these four rules:</span><br/>
 <span>&bull;</span>
 <span>Variable names must start with a letter of the alphabet or the</span>
 <span>&nbsp;_</span>
 <span>&nbsp;(underscore)</span>
-<span>character.</span>
+<span>character.</span><br/>
 <span>&bull;</span>
 <span>Variable names can contain only the characters</span>
 <span>a-z</span>
@@ -413,7 +442,7 @@ layout: default
 <span>0-9</span>
 <span>, and</span>
 <span>_</span>
-<span>(underscore).</span>
+<span>(underscore).</span><br/>
 <span>&bull;</span>
 <span>Variable names may not contain spaces. If a variable must comprise more than</span>
 <span>one</span>
@@ -431,14 +460,14 @@ layout: default
 <span>character</span>
 <span>(e.g.,</span>
 <span>$user_name</span>
-<span>).</span>
+<span>).</span><br/>
 <span>&bull;</span>
 <span>Variable names are case-sensitive. The variable</span>
 <span>$High_Score</span>
 <span>is not the same as</span>
 <span>the variable</span>
 <span>$high_score</span>
-<span>.</span>
+<span>.</span><br/>
 <span>To allow extended ASCII characters that include accents, PHP also</span>
 <span>supports the bytes from 127 through 255 in variable names. But</span>
 <span>unless your code will be maintained only by programmers who are</span>
@@ -449,55 +478,63 @@ layout: default
 <span>Operators</span>
 <span>&nbsp;are the mathematical, string, comparison, and logical commands such as</span>
 <span>plus, minus, multiply, and divide. PHP looks a lot like plain arithmetic; for instance,</span>
-<span>the following statement outputs 8:</span>
-<span>echo 6 + 2;</span>
+<span>the following statement outputs 8:</span><br/>
+<span>echo 6 + 2;</span><br/>
 <span>Before moving on to learn what PHP can do for you, take a moment to learn about</span>
 <span>the various operators it provides.</span>
-<span>Arithmetic operators</span>
+<h6>Arithmetic operators</h6>
 <span>Arithmetic operators do what you would expect. They are used to perform mathe‐</span>
 <span>matics. You can use them for the main four operations (plus, minus, times, and</span>
 <span>divide) as well as to find a modulus (the remainder after a division) and to increment</span>
 <span>or decrement a value (see</span>
 <span>Table 3-1</span>
-<span>).</span>
-<span>Table 3-1. Arithmetic operators</span>
-<span>Operator</span>
-<span>Description</span>
-<span>Example</span>
-<span>+</span>
-<span>Addition</span>
-<span>$j</span>
-<span>+</span>
-<span>1</span>
-<span>-</span>
-<span>Subtraction</span>
-<span>$j</span>
-<span>-</span>
-<span>6</span>
-<span>*</span>
-<span>Multiplication</span>
-<span>$j</span>
-<span>*</span>
-<span>11</span>
-<span>/</span>
-<span>Division</span>
-<span>$j</span>
-<span>/</span>
-<span>4</span>
-<span>%</span>
-<span>Modulus (division remainder)</span>
-<span>$j</span>
-<span>%</span>
-<span>9</span>
-<span>++</span>
-<span>Increment</span>
-<span>++</span>
-<span>$j</span>
-<span>--</span>
-<span>Decrement</span>
-<span>--</span>
-<span>$j</span>
-<span>Assignment operators</span>
+<span>).</span><br/>
+<span>Table 3-1. Arithmetic operators</span><br/>
+
+<table class="tbl-left">
+    <tr>
+        <td>Operator</td>
+        <td>Description</td>
+        <td>Example</td>
+    </tr>
+    <tr>
+        <td>+</td>
+        <td>Additiontdspan>
+        <td>$j+1</td>
+    </tr>
+    <tr>
+        <td>-</td>
+        <td>Subtraction</td>
+        <td>$j-6</td>
+    </tr>
+    <tr>
+        <td>*</td>
+        <td>Multiplication</td>
+        <td>$j*1</td>
+    </tr>
+    <tr>
+        <td>/</td>
+        <td>Division</td>
+        <td>$j/4</td>
+    </tr>
+    <tr>
+        <td>%</td>
+        <td>Modulus (division remainder)</td>
+        <td>$j%9</td>
+    </tr>
+    <tr>
+        <td>++</td>
+        <td>Increment</td>
+        <td>++$j</td>
+    </tr>
+    <tr>
+        <td>--</td>
+        <td>Decrement</td>
+        <td>--$j</td>
+    </tr>
+</table>
+
+<h6>Assignment operators</h6>
 <span>These operators are used to assign values to variables. They start with the very simple</span>
 <span>=</span>
 <span>and move on to</span>
@@ -514,58 +551,64 @@ layout: default
 <span>$count</span>
 <span>starts with the value</span>
 <span>5</span>
-<span>, the statement</span>
-<span>$count += 1;</span>
+<span>, the statement</span><br/>
+<span>$count += 1;</span><br/>
 <span>sets</span>
 <span>$count</span>
-<span>to 6, just like the more familiar assignment statement:</span>
-<span>$count = $count + 1;</span>
+<span>to 6, just like the more familiar assignment statement:</span><br/>
+<span>$count = $count + 1;</span><br/>
 <span>Strings have their own operator, the period (</span>
 <span>.</span>
 <span>), detailed in the section</span>
 <span>&ldquo;String concat‐</span>
 <span>enation&rdquo; on page 49</span>
-<span>.</span>
-<span>Table 3-2. Assignment operators</span>
-<span>Operator</span>
-<span>Example</span>
-<span>Equivalent to</span>
-<span>=</span>
-<span>$j</span>
-<span>=</span>
-<span>15</span>
-<span>$j = 15</span>
-<span>+=</span>
-<span>$j</span>
-<span>+=</span>
-<span>5</span>
-<span>$j = $j + 5</span>
-<span>-=</span>
-<span>$j</span>
-<span>-=</span>
-<span>3</span>
-<span>$j = $j - 3</span>
-<span>*=</span>
-<span>$j</span>
-<span>*=</span>
-<span>8</span>
-<span>$j = $j * 8</span>
-<span>/=</span>
-<span>$j</span>
-<span>/=</span>
-<span>16</span>
-<span>$j = $j / 16</span>
-<span>.=</span>
-<span>$j</span>
-<span>.=</span>
-<span>$k</span>
-<span>$j = $j . $k</span>
-<span>%=</span>
-<span>$j</span>
-<span>%=</span>
-<span>4</span>
-<span>$j = $j % 4</span>
-<span>Comparison operators</span>
+<span>.</span><br/>
+<span>Table 3-2. Assignment operators</span><br/>
+
+<table class="tbl-left">
+    <tr>
+        <td>Operator</td>
+        <td>Example</td>
+        <td>Equivalent to</td>
+    </tr>
+    <tr>
+        <td>=</td>
+        <td>$j=15</td>
+        <td>$j = 15</td>
+    </tr>
+    <tr>
+        <td>+=</td>
+        <td>$j+=5</td>
+        <td>$j = $j + 5</td>
+    </tr>
+    <tr>
+        <td>-=</td>
+        <td>$j-=3</td>
+        <td>$j = $j - 3</td>
+    </tr>
+    <tr>
+        <td>*=</td>
+        <td>$j*=8</td>
+        <td>$j = $j * 8</td>
+    </tr>
+    <tr>
+        <td>/=</td>
+        <td>$j/=16</td>
+        <td>$j = $j / 16</td>
+    </tr>
+    <tr>
+        <td>.=</td>
+        <td>$j.=$k</td>
+        <td>$j = $j . $k</td>
+    </tr>
+    <tr>
+        <td>%=</td>
+        <td>$j%=4</td>
+        <td>$j = $j % 4</td>
+    </tr>
+</table>
+
+<h6>Comparison operators</h6>
 <span>Comparison operators are generally used inside a construct such as an</span>
 <span>if</span>
 <span>statement</span>
@@ -573,72 +616,70 @@ layout: default
 <span>whether a variable you have been incrementing has reached a specific value, or</span>
 <span>whether another variable is less than a set value, and so on (see</span>
 <span>Table 3-3</span>
-<span>).</span>
+<span>).</span><br/>
 <span>Note the difference between</span>
 <span>=</span>
 <span>and</span>
 <span>==</span>
 <span>. The first is an assignment operator, and the</span>
 <span>second is a comparison operator. Even more-advanced programmers can sometimes</span>
-<span>transpose the two when coding hurriedly, so be careful.</span>
-<span>Table 3-3. Comparison operators</span>
-<span>Operator</span>
-<span>Description</span>
-<span>Example</span>
-<span>==</span>
-<span>Is</span>
-<span>equal</span>
-<span>to</span>
-<span>$j</span>
-<span>==</span>
-<span>4</span>
-<span>!=</span>
-<span>Is</span>
-<span>not equal</span>
-<span>to</span>
-<span>$j</span>
-<span>!=</span>
-<span>21</span>
-<span>&gt;</span>
-<span>Is</span>
-<span>greater than</span>
-<span>$j</span>
-<span>&gt;</span>
-<span>3</span>
-<span>&lt;</span>
-<span>Is</span>
-<span>less than</span>
-<span>$j</span>
-<span>&lt;</span>
-<span>100</span>
-<span>&gt;=</span>
-<span>Is</span>
-<span>greater than or equal</span>
-<span>to</span>
-<span>$j</span>
-<span>&gt;=</span>
-<span>15</span>
-<span>&lt;=</span>
-<span>Is</span>
-<span>less than or equal</span>
-<span>to</span>
-<span>$j</span>
-<span>&lt;=</span>
-<span>8</span>
-<span>Logical operators</span>
+<span>transpose the two when coding hurriedly, so be careful.</span><br/>
+<span>Table 3-3. Comparison operators</span><br/>
+
+<table class="tbl-left">
+    <tr>
+        <td>Operator</td>
+        <td>Description</td>
+        <td>Example</td>
+    </tr>
+    <tr>
+        <td>==</td>
+        <td>Is equal to</td>
+        <td>$j == 4</td>
+    </tr>
+    <tr>
+        <td>!=</td>
+        <td>Is not equal to</td>
+        <td>$j != 21</td>
+    </tr>
+    <tr>
+        <td>&gt;</td>
+        <td>Is greater than</td>
+        <td>$j &gt; 3</td>
+    </tr>
+    <tr>
+        <td>&lt;</td>
+        <td>Is less than</td>
+        <td>$j &lt; 100</td>
+    </tr>
+    <tr>
+        <td>&gt;=</td>
+        <td>Is greater than or equal to</td>
+        <td>$j &gt;= 15</td>
+    </tr>
+    <tr>
+        <td>&lt;=</td>
+        <td>Is less than or equal to</td>
+        <td>$j &lt;= 8</td>
+    </tr>
+</table>
+
+
+
+<h6>Logical operators</h6>
 <span>If you haven&rsquo;t used them before, logical operators may at first seem a little daunting.</span>
 <span>But just think of them the way you would use logic in English. For example, you</span>
 <span>might say to yourself, &ldquo;If the time is later than 12 p.m. and earlier than 2 p.m., then</span>
 <span>have lunch.&rdquo; In PHP, the code for this might look something like the following (using</span>
-<span>military timing):</span>
-<span>if ($hour &gt; 12 &amp;&amp; $hour &lt; 14) dolunch();</span>
+<span>military timing):</span><br/>
+<span>if ($hour &gt; 12 &amp;&amp; $hour &lt; 14) dolunch();</span><br/>
 <span>Here we have moved the set of instructions for actually going to lunch into a function</span>
 <span>that we will have to create later called</span>
 <span>dolunch</span>
 <span>. The</span>
 <span>then</span>
 <span>of the statement is left out,</span>
-<span>because it is implied and therefore unnecessary.</span>
+<span>because it is implied and therefore unnecessary.</span><br/>
 <span>As the previous example shows, you generally use a logical operator to combine the</span>
 <span>results of two of the comparison operators shown in the previous section. A logical</span>
 <span>operator can also be input to another logical operator: &ldquo;If the time is later than 12</span>
@@ -649,45 +690,49 @@ layout: default
 <span>FALSE</span>
 <span>value, it can</span>
 <span>be input to a logical operator. A logical operator takes two true-or-false inputs and</span>
-<span>produces a true-or-false result.</span>
+<span>produces a true-or-false result.</span><br/>
 <span>Table 3-4</span>
-<span>shows the logical operators.</span>
-<span>Table 3-4. Logical operators</span>
-<span>Operator</span>
-<span>Description</span>
-<span>Example</span>
-<span>&amp;&amp;</span>
-<span>And</span>
-<span>$j == 3</span>
-<span>&amp;&amp;</span>
-<span>$k == 2</span>
-<span>and</span>
-<span>Low-precedence</span>
-<span>and</span>
-<span>$j == 3</span>
-<span>and</span>
-<span>$k == 2</span>
-<span>||</span>
-<span>Or</span>
-<span>$j &lt; 5</span>
-<span>||</span>
-<span>$j &gt; 10</span>
-<span>or</span>
-<span>Low-precedence</span>
-<span>or</span>
-<span>$j &lt; 5</span>
-<span>or</span>
-<span>$j &gt; 10</span>
-<span>!</span>
-<span>Not</span>
-<span>! ($j</span>
-<span>==</span>
-<span>$k)</span>
-<span>xor</span>
-<span>Exclusive or</span>
-<span>$j</span>
-<span>xor</span>
-<span>$k</span>
+<span>shows the logical operators.</span><br/>
+<span>Table 3-4. Logical operators</span><br/>
+
+<table class="tbl-left">
+    <tr>
+        <td>Operator</td>
+        <td>Description</td>
+        <td>Example</td>
+    </tr>
+    <tr>
+        <td>&amp;&amp;</td>
+        <td>And</td>
+        <td>$j == 3 &amp;&amp; $k == 2</td>
+    </tr>
+    <tr>
+        <td>and</td>
+        <td>Low-precedence and</td>
+        <td>$j == 3 and $k == 2</td>
+    </tr>
+    <tr>
+        <td>||</td>
+        <td>Or</td>
+        <td>$j &lt; 5 || $j &gt; 10</td>
+    </tr>
+    <tr>
+        <td>or</td>
+        <td>Low-precedence or</td>
+        <td>$j &lt; 5 or $j &gt; 10</td>
+    </tr>
+    <tr>
+        <td>!</td>
+        <td>Not</td>
+        <td>! ($j == $k)</td>
+    </tr>
+    <tr>
+        <td>xor</td>
+        <td>Exclusive or</td>
+        <td>$j xor$k</td>
+    </tr>
+</table>
+
 <span>Note that</span>
 <span>&amp;&amp;</span>
 <span>is usually interchangeable with</span>
@@ -708,10 +753,10 @@ layout: default
 <span>or</span>
 <span>are acceptable, as in the following statement, which uses an</span>
 <span>or</span>
-<span>operator:</span>
+<span>operator:</span><br/>
 <span>$html = file_get_contents($site)</span>
 <span>or</span>
-<span>die("Cannot download from $site");</span>
+<span>die("Cannot download from $site");</span><br/>
 <span>The most unusual of these operators is</span>
 <span>xor</span>
 <span>, which stands for</span>
@@ -731,8 +776,8 @@ layout: default
 <span>. To understand this, imagine that you want to concoct your own</span>
 <span>cleaner for household items. Ammonia makes a good cleaner, and so does bleach, so</span>
 <span>you want your cleaner to have one of these. But the cleaner must not have both,</span>
-<span>because the combination is hazardous. In PHP, you could represent this as follows:</span>
-<span>$ingredient = $ammonia xor $bleach;</span>
+<span>because the combination is hazardous. In PHP, you could represent this as follows:</span><br/>
+<span>$ingredient = $ammonia xor $bleach;</span><br/>
 <span>In the example, if either</span>
 <span>$ammonia</span>
 <span>or</span>
@@ -752,35 +797,36 @@ layout: default
 <span>will be set to</span>
 <span>FALSE</span>
 <span>.</span>
+
 <h4>Variable Assignment</h4>
 <span>The syntax to assign a value to a variable is always</span>
 <span>variable = value</span>
 <span>. Or, to reassign the</span>
 <span>value to another variable, it is</span>
 <span>other variable = variable</span>
-<span>.</span>
+<span>.</span><br/>
 <span>There are also a couple of other assignment operators that you will find useful. For</span>
-<span>example, we&rsquo;ve already seen</span>
-<span>$x += 10;</span>
+<span>example, we&rsquo;ve already seen</span><br/>
+<span>$x += 10;</span><br/>
 <span>which tells the PHP parser to add the value on the right (in this instance, the value</span>
 <span>10</span>
 <span>) to the variable</span>
 <span>$x</span>
-<span>. Likewise, we could subtract as follows:</span>
-<span>$y -= 10;</span>
-<span>Variable incrementing and decrementing</span>
-<span>Adding or subtracting 1 is such a common operation that PHP provides special oper‐</span>
+<span>. Likewise, we could subtract as follows:</span><br/>
+<span>$y -= 10;</span><br/>
+<h6>Variable incrementing and decrementing</h6>
+<span>Adding or subtracting 1 is such a common operation that PHP provides special oper</span>
 <span>ators for it. You can use one of the following in place of the</span>
 <span>+=</span>
 <span>and</span>
 <span>-=</span>
-<span>operators:</span>
-<span>++$x;</span>
-<span>--$y;</span>
+<span>operators:</span><br/>
+<span>++$x;</span><br/>
+<span>--$y;</span><br/>
 <span>In conjunction with a test (an</span>
 <span>if</span>
-<span>statement), you could use the following code:</span>
-<span>if (++$x == 10) echo $x;</span>
+<span>statement), you could use the following code:</span><br/>
+<span>if (++$x == 10) echo $x;</span><br/>
 <span>This tells PHP to</span>
 <span>first</span>
 <span>increment the value of</span>
@@ -790,8 +836,8 @@ layout: default
 <span>; if it does, output its value. But you can also require PHP to increment (or, in the</span>
 <span>following example, decrement) a variable</span>
 <span>after</span>
-<span>it has tested the value, like this:</span>
-<span>if ($y-- == 0) echo $y;</span>
+<span>it has tested the value, like this:</span><br/>
+<span>if ($y-- == 0) echo $y;</span><br/>
 <span>which gives a subtly different result. Suppose</span>
 <span>$y</span>
 <span>starts out as</span>
@@ -815,10 +861,10 @@ layout: default
 <span>? Try to guess,</span>
 <span>and then try out the statement in a PHP processor to confirm. Because this combina‐</span>
 <span>tion of statements is confusing, it should be taken as just an educational example and</span>
-<span>not as a guide to good programming style.</span>
+<span>not as a guide to good programming style.</span><br/>
 <span>In short, whether a variable is incremented or decremented before or after testing</span>
 <span>depends on whether the increment or decrement operator is placed before or after</span>
-<span>the variable.</span>
+<span>the variable.</span><br/>
 <span>By the way, the correct answer to the previous question is that the</span>
 <span>echo</span>
 <span>statement will</span>
@@ -831,27 +877,27 @@ layout: default
 <span>if</span>
 <span>statement, and before the</span>
 <span>echo</span>
-<span>statement.</span>
-<span>String concatenation</span>
+<span>statement.</span><br/>
+<h6>String concatenation</h6>
 <span>String concatenation uses the period (</span>
 <span>.</span>
 <span>) to append one string of characters to</span>
-<span>another. The simplest way to do this is as follows:</span>
-<span>echo "You have " . $msgs . " messages.";</span>
+<span>another. The simplest way to do this is as follows:</span><br/>
+<span>echo "You have " . $msgs . " messages.";</span><br/>
 <span>Assuming that the variable</span>
 <span>$msgs</span>
 <span>is set to the value</span>
 <span>5</span>
 <span>, the output from this line of</span>
-<span>code will be the following:</span>
-<span>You have 5 messages.</span>
+<span>code will be the following:</span><br/>
+<b>You have 5 messages.</b><br/>
 <span>Just as you can add a value to a numeric variable with the</span>
 <span>+=</span>
 <span>operator, you can</span>
 <span>append one string to another using</span>
 <span>.=</span>
-<span>, like this:</span>
-<span>$bulletin .= $newsflash;</span>
+<span>, like this:</span><br/>
+<span>$bulletin .= $newsflash;</span><br/>
 <span>In this case, if</span>
 <span>$bulletin</span>
 <span>contains a news bulletin and</span>
@@ -861,43 +907,43 @@ layout: default
 <span>$bulletin</span>
 <span>now</span>
 <span>comprises both strings of text.</span>
-<span>String types</span>
+<h6>String types</h6>
 <span>PHP supports two types of strings that are denoted by the type of quotation mark</span>
 <span>that you use. If you wish to assign a literal string, preserving the exact contents, you</span>
-<span>should use the single quotation mark (apostrophe), like this:</span>
-<span>$info = 'Preface variables with a $ like this: $variable';</span>
+<span>should use the single quotation mark (apostrophe), like this:</span><br/>
+<span>$info = 'Preface variables with a $ like this: $variable';</span><br/>
 <span>In this case, every character within the single-quoted string is assigned to</span>
 <span>$info</span>
 <span>. If</span>
 <span>you had used double quotes, PHP would have attempted to evaluate</span>
 <span>$variable</span>
 <span>as a</span>
-<span>variable.</span>
+<span>variable.</span><br/>
 <span>On the other hand, when you want to include the value of a variable inside a string,</span>
-<span>you do so by using double-quoted strings:</span>
-<span>echo "This week $count people have viewed your profile";</span>
+<span>you do so by using double-quoted strings:</span><br/>
+<span>echo "This week $count people have viewed your profile";</span><br/>
 <span>As you will realize, this syntax also offers a simpler form of concatenation in which</span>
 <span>you don&rsquo;t need to use a period, or close and reopen quotes, to append one string to</span>
 <span>another. This is called</span>
 <span>&nbsp;variable substitution</span>
 <span>, and you will notice some applications</span>
 <span>using it extensively and others not using it at all.</span>
-<span>Escaping characters</span>
+<h6>Escaping characters</h6>
 <span>Sometimes a string needs to contain characters with special meanings that might be</span>
 <span>interpreted incorrectly. For example, the following line of code will not work, because</span>
 <span>the second quotation mark encountered in the word</span>
 <span>spelling&rsquo;s</span>
 <span>will tell the PHP parser</span>
 <span>that the string end has been reached. Consequently, the rest of the line will be rejected</span>
-<span>as an error:</span>
-<span>$text = 'My spelling's atroshus'; // Erroneous syntax</span>
+<span>as an error:</span><br/>
+<span>$text = 'My spelling's atroshus'; // Erroneous syntax</span><br/>
 <span>To correct this, you can add a backslash directly before the offending quotation mark</span>
-<span>to tell PHP to treat the character literally and not to interpret it:</span>
-<span>$text = 'My spelling\'s still atroshus';</span>
+<span>to tell PHP to treat the character literally and not to interpret it:</span><br/>
+<span>$text = 'My spelling\'s still atroshus';</span><br/>
 <span>And you can perform this trick in almost all situations in which PHP would other‐</span>
 <span>wise return an error by trying to interpret a character. For example, the following</span>
-<span>double-quoted string will be correctly assigned:</span>
-<span>$text = "She wrote upon it, \"Return to sender\".";</span>
+<span>double-quoted string will be correctly assigned:</span><br/>
+<span>$text = "She wrote upon it, \"Return to sender\".";</span><br/>
 <span>Additionally, you can use escape characters to insert various special characters into</span>
 <span>strings such as tabs, newlines, and carriage returns. These are represented, as you</span>
 <span>might guess, by</span>
@@ -908,8 +954,8 @@ layout: default
 <span>\r</span>
 <span>. Here is an example using tabs to lay out a heading; it</span>
 <span>is included here merely to illustrate escapes, because in web pages there are always</span>
-<span>better ways to do layout:</span>
-<span>$heading = "Date\tName\tPayment";</span>
+<span>better ways to do layout:</span><br/>
+<span>$heading = "Date\tName\tPayment";</span><br/>
 <span>These special backslash-preceded characters work only in double-quoted strings. In</span>
 <span>single-quoted strings, the preceding string would be displayed with the ugly</span>
 <span>\t</span>
@@ -919,6 +965,7 @@ layout: default
 <span>) and escaped backslash itself (</span>
 <span>\\</span>
 <span>) are recognized as escaped characters.</span>
+
 <h4>Multiple-Line Commands</h4>
 <span>There are times when you need to output quite a lot of text from PHP, and using sev‐</span>
 <span>eral</span>
@@ -931,21 +978,38 @@ layout: default
 <span>Example 3-6</span>
 <span>. Variables can also be assigned, as in</span>
 <span>Example 3-7</span>
-<span>.</span>
-<span>Example 3-6. A multiline string echo statement</span>
-<span>&lt;?php</span>
-<span>$author = "Steve Ballmer";</span>
-<span>echo "Developers, Developers, developers, developers, developers,</span>
-<span>developers, developers, developers, developers!</span>
-<span>- $author.";</span>
-<span>?&gt;</span>
+<span>.</span><br/>
+<span>Example 3-6. A multiline string echo statement</span><br/>
+
+<pre>
+<code class="php">
+&lt;?php
+$author = "Steve Ballmer";
+
+echo "Developers, Developers, developers, developers, developers,
+developers, developers, developers, developers!
+
+- $author.";
+?&gt;
+</code>
+</pre>
+
 <span>Example 3-7. A multiline string assignment</span>
-<span>&lt;?php</span>
-<span>$author = "Bill Gates";</span>
-<span>$text = "Measuring programming progress by lines of code is like</span>
-<span>Measuring aircraft building progress by weight.</span>
-<span>- $author.";</span>
-<span>?&gt;</span>
+
+<pre>
+<code class="php">
+&lt;?php
+$author = "Bill Gates";
+
+$text = "Measuring programming progress by lines of code is like
+
+Measuring aircraft building progress by weight.
+
+- $author.";
+?&gt;
+</code>
+</pre>
+
 <span>PHP also offers a multiline sequence using the</span>
 <span>&lt;&lt;&lt;</span>
 <span>operator&mdash;commonly referred to</span>
@@ -957,24 +1021,32 @@ layout: default
 <span>line breaks and other whitespace (including indentation) in the text. Its use can be</span>
 <span>seen in</span>
 <span>Example 3-8</span>
-<span>.</span>
-<span>Example 3-8. Alternative multiline echo statement</span>
-<span>&lt;?php</span>
-<span>$author = "Brian W. Kernighan";</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>Debugging is twice as hard as writing the code in the first place.</span>
-<span>Therefore, if you write the code as cleverly as possible, you are,</span>
-<span>by definition, not smart enough to debug it.</span>
-<span>- $author.</span>
-<span>_END;</span>
-<span>?&gt;</span>
+<span>.</span><br/>
+<span>Example 3-8. Alternative multiline echo statement</span><br/>
+
+<pre>
+<code class="php">
+&lt;?php
+$author = "Brian W. Kernighan";
+
+echo &lt;&lt;&lt;_END
+Debugging is twice as hard as writing the code in the first place.
+Therefore, if you write the code as cleverly as possible, you are,
+by definition, not smart enough to debug it.
+
+- $author.
+_END;
+?&gt;
+</code>
+</pre>
+
 <span>This code tells PHP to output everything between the two</span>
 <span>_END</span>
 <span>tags as if it were a</span>
 <span>double-quoted string (except that quotes in a heredoc do not need to be escaped).</span>
 <span>This means it&rsquo;s possible, for example, for a developer to write entire sections of</span>
 <span>HTML directly into PHP code and then just replace specific dynamic parts with PHP</span>
-<span>variables.</span>
+<span>variables.</span><br/>
 <span>It is important to remember that the closing</span>
 <span>_END;</span>
 <span>tag</span>
@@ -984,7 +1056,7 @@ layout: default
 <span>&nbsp;only</span>
 <span>&nbsp;thing on that line&mdash;not even a comment is</span>
 <span>allowed to be added after it (nor even a single space). Once you have closed a multi‐</span>
-<span>line block, you are free to use the same tag name again.</span>
+<span>line block, you are free to use the same tag name again.</span><br/>
 <span>Remember: using the</span>
 <span>&lt;&lt;&lt;_END..._END;</span>
 <span>heredoc construct, you</span>
@@ -996,19 +1068,27 @@ layout: default
 <span>single and double quotes you like within a heredoc, without escap‐</span>
 <span>ing them by preceding them with a slash (</span>
 <span>\</span>
-<span>).</span>
+<span>).</span><br/>
 <span>Example 3-9</span>
-<span>shows how to use the same syntax to assign multiples lines to a variable.</span>
-<span>Example 3-9. A multiline string variable assignment</span>
-<span>&lt;?php</span>
-<span>$author = "Scott Adams";</span>
-<span>$out = &lt;&lt;&lt;_END</span>
-<span>Normal people believe that if it ain't broke, don't fix it.</span>
-<span>Engineers believe that if it ain't broke, it doesn't have enough</span>
-<span>features yet.</span>
-<span>- $author.</span>
-<span>_END;</span>
-<span>?&gt;</span>
+<span>shows how to use the same syntax to assign multiples lines to a variable.</span><br/>
+<span>Example 3-9. A multiline string variable assignment</span><br/>
+
+<pre>
+<code class="php">
+&lt;?php
+$author = "Scott Adams";
+
+$out = &lt;&lt;&lt;_END
+Normal people believe that if it ain't broke, don't fix it.
+Engineers believe that if it ain't broke, it doesn't have enough
+features yet.
+
+- $author.
+_END;
+?&gt;
+</code>
+</pre>
+
 <span>The variable</span>
 <span>$out</span>
 <span>will then be populated with the contents between the two tags. If</span>
@@ -1017,7 +1097,7 @@ layout: default
 <span>in place of</span>
 <span>=</span>
 <span>to append the string to</span>
-<span>$out</span>
+<span>$out</span><br/>
 <span>.</span>
 <span>Be careful not to place a semicolon directly after the first occurrence of</span>
 <span>_END</span>
@@ -1028,7 +1108,7 @@ layout: default
 <span>message. The only place for the semicolon is after the terminating</span>
 <span>_END</span>
 <span>tag,</span>
-<span>although it is safe to use semicolons within the block as normal text characters.</span>
+<span>although it is safe to use semicolons within the block as normal text characters.</span><br/>
 <span>By the way, the</span>
 <span>_END</span>
 <span>tag is simply one I chose for these examples because it is unlikely</span>
@@ -1039,13 +1119,13 @@ layout: default
 <span>_OUTPUT</span>
 <span>and so on. Also, to help differentiate tags</span>
 <span>such as this from variables or functions, the general practice is to preface them with</span>
-<span>an underscore, but you don&rsquo;t have to use one if you choose not to.</span>
+<span>an underscore, but you don&rsquo;t have to use one if you choose not to.</span><br/>
 <span>Laying out text over multiple lines is usually just a convenience to</span>
 <span>make your PHP code easier to read, because once it is displayed in</span>
 <span>a web page, HTML formatting rules take over and whitespace is</span>
 <span>suppressed (but</span>
 <span>$author</span>
-<span>is still replaced with the variable&rsquo;s value).</span>
+<span>is still replaced with the variable&rsquo;s value).</span><br/>
 <span>So, for example, if you load these multiline output examples into a</span>
 <span>browser, they will</span>
 <span>not</span>
@@ -1053,11 +1133,12 @@ layout: default
 <span>ers treat newlines just like spaces. However, if you use the browser&rsquo;s</span>
 <span>View Source feature, you will find that the newlines are correctly</span>
 <span>placed, and the output does appear over several lines.</span>
+
 <h4>Variable Typing</h4>
 <span>PHP is a very loosely typed language. This means that variables do not have to be</span>
 <span>declared before they are used, and that PHP always converts variables to the</span>
 <span>&nbsp;type</span>
-<span>required by their context when they are accessed.</span>
+<span>required by their context when they are accessed.</span><br/>
 <span>For example, you can create a multiple-digit number and extract the</span>
 <span>n</span>
 <span>th digit from it</span>
@@ -1067,12 +1148,16 @@ layout: default
 <span>$number</span>
 <span>, as shown in</span>
 <span>Example 3-10</span>
-<span>.</span>
-<span>Example 3-10. Automatic conversion from a number to a string</span>
-<span>&lt;?php</span>
-<span>$number = 12345 * 67890;</span>
-<span>echo substr($number, 3, 1);</span>
-<span>?&gt;</span>
+<span>.</span><br/>
+<span>Example 3-10. Automatic conversion from a number to a string</span><br/>
+<pre>
+<code class="php">
+&lt;?php
+    $number = 12345 * 67890;
+    echo substr($number, 3, 1);
+?&gt;
+</code>
+</pre>
 <span>At the point of the assignment,</span>
 <span>$number</span>
 <span>is a numeric variable. But on the second line,</span>
@@ -1086,7 +1171,7 @@ layout: default
 <span>$number</span>
 <span>into a nine-character string, so that</span>
 <span>substr</span>
-<span>can access it and return the character, which in this case is 1.</span>
+<span>can access it and return the character, which in this case is 1.</span><br/>
 <span>The same goes for turning a string into a number, and so on. In</span>
 <span>Example 3-11</span>
 <span>, the</span>
@@ -1094,13 +1179,19 @@ layout: default
 <span>$pi</span>
 <span>is set to a string value, which is then automatically turned into a floating-</span>
 <span>point number in the third line by the equation for calculating a circle&rsquo;s area, which</span>
-<span>outputs the value 78.5398175.</span>
-<span>Example 3-11. Automatically converting a string to a number</span>
-<span>&lt;?php</span>
-<span>$pi = "3.1415927";</span>
-<span>$radius = 5;</span>
-<span>echo $pi * ($radius * $radius);</span>
-<span>?&gt;</span>
+<span>outputs the value 78.5398175.</span><br/>
+<span>Example 3-11. Automatically converting a string to a number</span><br/>
+
+<pre>
+<code class="php">
+&lt;?php
+$pi = "3.1415927";
+$radius = 5;
+echo $pi * ($radius * $radius);
+?&gt;
+</code>
+</pre>
+
 <span>In practice, what this all means is that you don&rsquo;t have to worry too much about your</span>
 <span>variable types. Just assign them values that make sense to you, and PHP will convert</span>
 <span>them if necessary. Then, when you want to retrieve values, just ask for them&mdash;for</span>
@@ -1111,17 +1202,17 @@ layout: default
 <span>Constants</span>
 <span>&nbsp;are similar to variables, holding information to be accessed later, except</span>
 <span>that they are what they sound like&mdash;constant. In other words, once you have defined</span>
-<span>one, its value is set for the remainder of the program and cannot be altered.</span>
+<span>one, its value is set for the remainder of the program and cannot be altered.</span><br/>
 <span>One example of a use for a constant is to hold the location of your server</span>
 <span>root</span>
 <span>(the</span>
-<span>folder with the main files of your website). You would define such a constant like this:</span>
-<span>define("ROOT_LOCATION", "/usr/local/www/");</span>
+<span>folder with the main files of your website). You would define such a constant like this:</span><br/>
+<span>define("ROOT_LOCATION", "/usr/local/www/");</span><br/>
 <span>Then, to read the contents of the variable, you just refer to it like a regular variable</span>
-<span>(but it isn&rsquo;t preceded by a dollar sign):</span>
-<span>$directory = ROOT_LOCATION;</span>
+<span>(but it isn&rsquo;t preceded by a dollar sign):</span><br/>
+<span>$directory = ROOT_LOCATION;</span><br/>
 <span>Now, whenever you need to run your PHP code on a different server with a different</span>
-<span>folder configuration, you have only a single line of code to change.</span>
+<span>folder configuration, you have only a single line of code to change.</span><br/>
 <span>The main two things you have to remember about constants are</span>
 <span>that they must</span>
 <span>not</span>
@@ -1130,9 +1221,10 @@ layout: default
 <span>(as with regular variables),</span>
 <span>and that you can define them only using the</span>
 <span>define</span>
-<span>function.</span>
+<span>function.</span><br/>
 <span>It is generally considered a good practice to use only uppercase for constant variable</span>
 <span>names, especially if other people will also read your code.</span>
+
 <h4>Predefined Constants</h4>
 <span>PHP comes ready-made with dozens of predefined constants that you generally will</span>
 <span>be unlikely to use as a beginner to PHP. However, there are a few&mdash;known as the</span>
@@ -1143,8 +1235,9 @@ layout: default
 <span>are detailed in</span>
 <span>Table 3-5</span>
 <span>. The concepts referred to in the table will be introduced in</span>
-<span>future chapters.</span>
-<span>Table 3-5. PHP&rsquo;s magic constants</span>
+<span>future chapters.</span><br/>
+<span>Table 3-5. PHP&rsquo;s magic constants</span><br/>
+
 <span>Magic constant</span>
 <span>Description</span>
 <span>__LINE__</span>
@@ -1178,13 +1271,14 @@ layout: default
 <span>__NAMESPACE__</span>
 <span>The name of the current namespace (case-sensitive). This constant is defined at compile time. (Added in</span>
 <span>PHP 5.3.0.)</span>
+
 <span>One handy use of these variables is for debugging purposes, when you need to insert</span>
-<span>a line of code to see whether the program flow reaches it:</span>
-<span>echo "This is line " . __LINE__ . " of file " . __FILE__;</span>
+<span>a line of code to see whether the program flow reaches it:</span><br/>
+<span>echo "This is line " . __LINE__ . " of file " . __FILE__;</span><br/>
 <span>This causes the current program line in the current file (including the path) being</span>
 <span>executed to be output to the web browser.</span>
-<h4>The</h4>
-<h4>Difference Between the echo and print Commands</h4>
+
+<h4>The Difference Between the echo and print Commands</h4>
 <span>So far, you have seen the</span>
 <span>echo</span>
 <span>command used in a number of different ways to output</span>
