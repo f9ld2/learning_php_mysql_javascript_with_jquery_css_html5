@@ -1,9 +1,13 @@
 ---
 layout: default
 ---
- <textarea rows="4" cols="50"></textarea> 
- <button onclick="doBr()">DoBr</button>
+ <textarea style="width: 100%;height: 200px;" rows="4" cols="50"></textarea> <br/>
+ <button onclick="doBr()">DoBr</button><br/>
+ <button onclick="doA()">DoA</button><br/>
  <script>
+function doA() {
+    
+}
 function doBr() {
     var lines = $('textarea').val().split("\n");
     $.each(lines, function(index, value){
@@ -13,5 +17,8 @@ function doBr() {
     })
     
     $('textarea').val(lines.join("\n"));
+}
+function toUrl(str){
+    return str.toLocaleString().toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/([\-]+)/gi, '-');
 }
 </script>
