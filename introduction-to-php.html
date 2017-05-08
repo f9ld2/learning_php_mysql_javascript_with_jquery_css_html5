@@ -1238,39 +1238,41 @@ echo $pi * ($radius * $radius);
 <span>future chapters.</span><br/>
 <span>Table 3-5. PHP&rsquo;s magic constants</span><br/>
 
-<span>Magic constant</span>
-<span>Description</span>
-<span>__LINE__</span>
-<span>The current line number of the file.</span>
-<span>__FILE__</span>
-<span>The full path and filename of the file. If used inside an</span>
-<span>include</span>
-<span>, the name of the included file is</span>
-<span>returned. In PHP 4.0.2,</span>
-<span>__FILE__</span>
-<span>always contains an absolute path with symbolic links resolved,</span>
-<span>whereas in older versions it might contain a relative path under some circumstances.</span>
-<span>__DIR__</span>
-<span>The directory of the file. If used inside an</span>
-<span>include</span>
-<span>, the directory of the included file is returned. This</span>
-<span>is equivalent to</span>
-<span>dirname</span>
-<span>(__FILE__)</span>
-<span>. This directory name does not have a trailing slash unless it is</span>
-<span>the root directory. (Added in PHP 5.3.0.)</span>
-<span>__FUNCTION__</span>
-<span>The function name. (Added in PHP 4.3.0.) As of PHP 5, returns the function name as it was declared</span>
-<span>(case-sensitive). In PHP 4, its value is always lowercase.</span>
-<span>__CLASS__</span>
-<span>The class name. (Added in PHP 4.3.0.) As of PHP 5, returns the class name as it was declared (case-</span>
-<span>sensitive). In PHP 4, its value is always lowercased.</span>
-<span>__METHOD__</span>
-<span>The class method name. (Added in PHP 5.0.0.) The method name is returned as it was declared (case-</span>
-<span>sensitive).</span>
-<span>__NAMESPACE__</span>
-<span>The name of the current namespace (case-sensitive). This constant is defined at compile time. (Added in</span>
-<span>PHP 5.3.0.)</span>
+<table class="tbl-left">
+    <tr>
+        <td>Magic constant</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+        <td>__LINE__</td>
+        <td>The current line number of the file.</td>
+    </tr>
+    <tr>
+        <td>__FILE__</td>
+        <td>The full path and filename of the file. If used inside an include, the name of the included file is returned. In PHP 4.0.2, __FILE__ always contains an absolute path with symbolic links resolved, whereas in older versions it might contain a relative path under some circumstances.</td>
+    </tr>
+    <tr>
+        <td>__DIR__</td>
+        <td>The directory of the file. If used inside an include , the directory of the included file is returned. This is equivalent to dirname (__FILE__) . This directory name does not have a trailing slash unless it is the root directory. (Added in PHP 5.3.0.)</td>
+    </tr>
+    <tr>
+        <td>__FUNCTION__</td>
+        <td>The function name. (Added in PHP 4.3.0.) As of PHP 5, returns the function name as it was declared (case-sensitive). In PHP 4, its value is always lowercase.</td>
+    </tr>
+    <tr>
+        <td>__CLASS__</td>
+        <td>The class name. (Added in PHP 4.3.0.) As of PHP 5, returns the class name as it was declared (case sensitive). In PHP 4, its value is always lowercased.</td>
+    </tr>
+    <tr>
+        <td>__METHOD__</td>
+        <td>The class method name. (Added in PHP 5.0.0.) The method name is returned as it was declared (case sensitive).</td>
+    </tr>
+    <tr>
+        <td>__NAMESPACE__</td>
+        <td>The name of the current namespace (case-sensitive). This constant is defined at compile time. (Added in PHP 5.3.0.)</td>
+    </tr>
+</table>
+
 
 <span>One handy use of these variables is for debugging purposes, when you need to insert</span>
 <span>a line of code to see whether the program flow reaches it:</span><br/>
@@ -1284,7 +1286,7 @@ echo $pi * ($radius * $radius);
 <span>command used in a number of different ways to output</span>
 <span>text from the server to your browser. In some cases, a string literal has been output.</span>
 <span>In others, strings have first been concatenated or variables have been evaluated. I&rsquo;ve</span>
-<span>also shown output spread over multiple lines.</span>
+<span>also shown output spread over multiple lines.</span><br/>
 <span>But there is also an alternative to</span>
 <span>echo</span>
 <span>that you can use:</span>
@@ -1298,7 +1300,7 @@ echo $pi * ($radius * $radius);
 <span>), whereas</span>
 <span>echo</span>
 <span>is purely a PHP language</span>
-<span>construct. Since both commands are constructs, neither requires parentheses.</span>
+<span>construct. Since both commands are constructs, neither requires parentheses.</span><br/>
 <span>By and large, the</span>
 <span>echo</span>
 <span>command will be a tad faster than</span>
@@ -1321,8 +1323,8 @@ echo $pi * ($radius * $radius);
 <span>echo</span>
 <span>, because it would display a</span>
 <span>Parse error</span>
-<span>message:</span>
-<span>$b ? print "TRUE" : print "FALSE";</span>
+<span>message:</span><br/>
+<span>$b ? print "TRUE" : print "FALSE";</span><br/>
 <span>The question mark is simply a way of interrogating whether variable</span>
 <span>$b</span>
 <span>is</span>
@@ -1337,7 +1339,7 @@ echo $pi * ($radius * $radius);
 <span>$b</span>
 <span>is</span>
 <span>FALSE</span>
-<span>.</span>
+<span>.</span><br/>
 <span>Generally, though, the examples in this book use</span>
 <span>echo</span>
 <span>, and I recommend that you do</span>
@@ -1345,6 +1347,7 @@ echo $pi * ($radius * $radius);
 <span>the need for using</span>
 <span>print</span>
 <span>.</span>
+
 <h4>Functions</h4>
 <span>Functions</span>
 <span>are used to separate out sections of code that perform a particular task. For</span>
@@ -1353,21 +1356,27 @@ echo $pi * ($radius * $radius);
 <span>only three lines long, but if you have to paste it into your program a dozen times,</span>
 <span>you&rsquo;re making your program unnecessarily large and complex, unless you use a func‐</span>
 <span>tion. And if you decide to change the data format later, putting it in a function means</span>
-<span>having to change it in only one place.</span>
+<span>having to change it in only one place.</span><br/>
 <span>Placing it into a function not only shortens your source code and makes it more read‐</span>
 <span>able, but also adds extra functionality (pun intended), because functions can be</span>
 <span>passed parameters to make them perform differently. They can also return values to</span>
-<span>the calling code.</span>
+<span>the calling code.</span><br/>
 <span>To create a function, declare it in the manner shown in</span>
 <span>Example 3-12</span>
-<span>.</span>
-<span>Example 3-12. A simple function declaration</span>
-<span>&lt;?php</span>
-<span>function longdate($timestamp)</span>
-<span>{</span>
-<span>return date("l F jS Y", $timestamp);</span>
-<span>}</span>
-<span>?&gt;</span>
+<span>.</span><br/>
+<span>Example 3-12. A simple function declaration</span><br/>
+
+<pre>
+<code class="php">
+&lt;?php
+    function longdate($timestamp)
+    {
+        return date("l F jS Y", $timestamp);
+    }
+?&gt;
+</code>
+</pre>
+
 <span>This function takes a Unix timestamp (an integer number representing a date and</span>
 <span>time based on the number of seconds since 00:00 a.m. on January 1, 1970) as its input</span>
 <span>and then calls the PHP</span>
@@ -1377,9 +1386,9 @@ echo $pi * ($radius * $radius);
 <span>&nbsp;Tuesday May 2nd 2017</span>
 <span>. Any number of parameters can be passed</span>
 <span>between the initial parentheses; we have chosen to accept just one. The curly braces</span>
-<span>enclose all the code that is executed when you later call the function.</span>
-<span>To output today&rsquo;s date using this function, place the following call in your code:</span>
-<span>echo longdate(time());</span>
+<span>enclose all the code that is executed when you later call the function.</span><br/>
+<span>To output today&rsquo;s date using this function, place the following call in your code:</span><br/>
+<pre><code class="php">echo longdate(time());</code></pre>
 <span>This call uses the built-in PHP</span>
 <span>time</span>
 <span>function to fetch the current Unix timestamp</span>
@@ -1390,13 +1399,14 @@ echo $pi * ($radius * $radius);
 <span>echo</span>
 <span>command for display. If you need to print out the date 17 days ago, you</span>
 <span>now just have to issue the following call:</span>
-<span>echo longdate(time() - 17 * 24 * 60 * 60);</span>
+<pre><code class="php">echo longdate(time() - 17 * 24 * 60 * 60);</code></pre>
 <span>which passes to</span>
 <span>longdate</span>
 <span>the current Unix timestamp less the number of seconds</span>
-<span>since 17 days ago (17 days &times; 24 hours &times; 60 minutes &times; 60 seconds).</span>
+<span>since 17 days ago (17 days &times; 24 hours &times; 60 minutes &times; 60 seconds).</span><br/>
 <span>Functions can also accept multiple parameters and return multiple results, using</span>
 <span>techniques that I&rsquo;ll develop over the following chapters.</span>
+
 <h4>Variable Scope</h4>
 <span>If you have a very long program, it&rsquo;s quite possible that you could start to run out of</span>
 <span>good variable names, but with PHP you can decide the</span>
@@ -1406,43 +1416,50 @@ echo $pi * ($radius * $radius);
 <span>$temp</span>
 <span>to be used only</span>
 <span>inside a particular function and to forget it was ever used when the function returns.</span>
-<span>In fact, this is the default scope for PHP variables.</span>
+<span>In fact, this is the default scope for PHP variables.</span><br/>
 <span>Alternatively, you could inform PHP that a variable is global in scope and thus can be</span>
 <span>accessed by every other part of your program.</span>
-<span>Local variables</span>
+
+<h6>Local variables</h6>
 <span>Local variables</span>
 <span>&nbsp;are variables that are created within, and can be accessed only by, a</span>
 <span>function. They are generally temporary variables that are used to store partially pro‐</span>
-<span>cessed results prior to the function&rsquo;s return.</span>
+<span>cessed results prior to the function&rsquo;s return.</span><br/>
 <span>One set of local variables is the list of arguments to a function. In the previous sec‐</span>
 <span>tion, we defined a function that accepted a parameter named</span>
 <span>$timestamp</span>
 <span>. This is</span>
 <span>meaningful only in the body of the function; you can&rsquo;t get or set its value outside the</span>
-<span>function.</span>
+<span>function.</span><br/>
 <span>For another example of a local variable, take another look at the</span>
 <span>longdate</span>
 <span>function,</span>
 <span>which is modified slightly in</span>
 <span>Example 3-13</span>
-<span>.</span>
+<span>.</span><br/>
 <span>Example 3-13. An expanded version of the longdate function</span>
-<span>&lt;?php</span>
-<span>function longdate($timestamp)</span>
-<span>{</span>
-<span>$temp = date("l F jS Y", $timestamp);</span>
-<span>return "The date is $temp";</span>
-<span>}</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+    function longdate($timestamp)
+    {
+        $temp = date("l F jS Y", $timestamp);
+        return "The date is $temp";
+    }
+?&gt;
+</code>
+</pre>
+
+
 <span>Here we have assigned the value returned by the</span>
 <span>date</span>
-<span>function to the temporary vari‐</span>
+<span>function to the temporary vari</span>
 <span>able</span>
 <span>$temp</span>
 <span>, which is then inserted into the string returned by the function. As soon as</span>
 <span>the function returns, the value of</span>
 <span>$temp</span>
-<span>is cleared, as if it had never been used at all.</span>
+<span>is cleared, as if it had never been used at all.</span><br/>
 <span>Now,</span>
 <span>to</span>
 <span>see</span>
@@ -1465,17 +1482,25 @@ echo $pi * ($radius * $radius);
 <span>before</span>
 <span>we call the</span>
 <span>longdate</span>
-<span>function.</span>
+<span>function.</span><br/>
 <span>Example 3-14.</span>
-<span>This attempt to access $temp in function longdate will fail</span>
-<span>&lt;?php</span>
-<span>$temp = "The date is ";</span>
-<span>echo longdate(time());</span>
-<span>function longdate($timestamp)</span>
-<span>{</span>
-<span>return $temp . date("l F jS Y", $timestamp);</span>
-<span>}</span>
-<span>?&gt;</span>
+<span>This attempt to access $temp in function longdate will fail</span><br/>
+
+<pre>
+<code class="php">
+&lt;?php
+    $temp = "The date is ";
+    echo longdate(time());
+    
+    function longdate($timestamp)
+    {
+        return $temp . date("l F jS Y", $timestamp);
+    }
+?&gt;
+</code>
+</pre>
+
+
 <span>However, because</span>
 <span>$temp</span>
 <span>was neither created within the</span>
@@ -1486,41 +1511,56 @@ echo $pi * ($radius * $radius);
 <span>cannot access it. Therefore, this code snippet outputs</span>
 <span>only the date, not the preceding text. In fact, it will first display the error message</span>
 <span>Notice: Undefined variable: temp</span>
-<span>.</span>
+<span>.</span><br/>
 <span>The reason for this is that, by default, variables created within a function are local to</span>
 <span>that function, and variables created outside of any functions can be accessed only by</span>
-<span>nonfunction code.</span>
+<span>nonfunction code.</span><br/>
 <span>Some ways to repair</span>
 <span>Example 3-14</span>
 <span>appear in</span>
 <span>Example 3-15</span>
 <span>and</span>
 <span>Example 3-16</span>
-<span>.</span>
+<span>.</span><br/>
+
 <span>Example 3-15. Rewriting to refer to $temp within its local scope</span>
-<span>fixes the problem</span>
-<span>&lt;?php</span>
-<span>$temp = "The date is ";</span>
-<span>echo $temp . longdate(time());</span>
-<span>function longdate($timestamp)</span>
-<span>{</span>
-<span>return date("l F jS Y", $timestamp);</span>
-<span>}</span>
-<span>?&gt;</span>
+<span>fixes the problem</span><br/>
+
+<pre>
+<code class="php">
+&lt;?php
+    $temp = "The date is ";
+    echo $temp . longdate(time());
+
+    function longdate($timestamp)
+    {
+        return date("l F jS Y", $timestamp);
+    }
+?&gt;
+</code>
+</pre>
+
 <span>Example 3-15</span>
 <span>&nbsp;moves the reference to</span>
 <span>$temp</span>
 <span>out of the function. The reference</span>
-<span>appears in the same scope where the variable was defined.</span>
-<span>Example 3-16. An alternative solution: passing $temp as an argument</span>
-<span>&lt;?php</span>
-<span>$temp = "The date is ";</span>
-<span>echo longdate($temp, time());</span>
-<span>function longdate($text, $timestamp)</span>
-<span>{</span>
-<span>return $text . date("l F jS Y", $timestamp);</span>
-<span>}</span>
-<span>?&gt;</span>
+<span>appears in the same scope where the variable was defined.</span><br/>
+<span>Example 3-16. An alternative solution: passing $temp as an argument</span><br/>
+
+<pre>
+<code class="php">
+&lt;?php
+    $temp = "The date is ";
+    echo longdate($temp, time());
+    
+    function longdate($text, $timestamp)
+    {
+        return $text . date("l F jS Y", $timestamp);
+    }
+?&gt;
+</code>
+</pre>
+
 <span>The solution in</span>
 <span>Example 3-16</span>
 <span>passes</span>
@@ -1533,20 +1573,22 @@ echo $pi * ($radius * $radius);
 <span>reads it into a temporary variable that it creates called</span>
 <span>$text</span>
 <span>and out‐</span>
-<span>puts the desired result.</span>
+<span>puts the desired result.</span><br/>
+
 <span>Forgetting the scope of a variable is a common programming error,</span>
 <span>so remembering how variable scope works will help you debug</span>
 <span>some quite obscure problems. Suffice it to say that unless you have</span>
 <span>declared a variable otherwise, its scope is limited to being local:</span>
 <span>either to the current function, or to the code outside of any func‐</span>
 <span>tions, depending on whether it was first created or accessed inside</span>
-<span>or outside a function.</span>
-<span>Global variables</span>
+<span>or outside a function.</span><br/>
+
+<h6>Global variables</h6>
 <span>There are cases when you need a variable to have</span>
 <span>global</span>
 <span>scope, because you want all</span>
 <span>your code to be able to access it. Also, some data may be large and complex, and you</span>
-<span>don&rsquo;t want to keep passing it as arguments to functions.</span>
+<span>don&rsquo;t want to keep passing it as arguments to functions.</span><br/>
 <span>To declare a variable as having global scope, use the keyword</span>
 <span>global</span>
 <span>. Let&rsquo;s assume</span>
@@ -1554,34 +1596,35 @@ echo $pi * ($radius * $radius);
 <span>know whether it is interacting with a logged-in user or a guest. One way to do this is</span>
 <span>to create a global variable such as</span>
 <span>$is_logged_in</span>
-<span>:</span>
-<span>global $is_logged_in;</span>
+<span>:</span><br/>
+<span>global $is_logged_in;</span><br/>
 <span>Now your login function simply has to set that variable to</span>
 <span>1</span>
 <span>upon a successful login</span>
 <span>attempt, or</span>
 <span>0</span>
 <span>upon its failure. Because the scope of the variable is global, every line of</span>
-<span>code in your program can access it.</span>
+<span>code in your program can access it.</span><br/>
 <span>You should use global variables with caution, though. I recommend that you create</span>
 <span>them only when you absolutely cannot find another way of achieving the result you</span>
 <span>desire. In general, programs that are broken into small parts and segregated data are</span>
 <span>less buggy and easier to maintain. If you have a thousand-line program (and some</span>
 <span>day you will) in which you discover that a global variable has the wrong value at some</span>
-<span>point, how long will it take you to find the code that set it incorrectly?</span>
+<span>point, how long will it take you to find the code that set it incorrectly?</span><br/>
 <span>Also, if you have too many global variables, you run the risk of using one of those</span>
 <span>names again locally, or at least thinking you have used it locally, when in fact it has</span>
-<span>already been declared as global. All manner of strange bugs can arise from such situa‐</span>
-<span>tions.</span>
+<span>already been declared as global. All manner of strange bugs can arise from such situa</span>
+<span>tions.</span><br/>
 <span>Sometimes I adopt the convention of making all global variable</span>
 <span>names uppercase (just as it&rsquo;s recommended that constants should</span>
 <span>be uppercase) so that I can see at a glance the scope of a variable.</span>
-<span>Static variables</span>
+
+<h6>Static variables</h6>
 <span>In the section</span>
 <span>&ldquo;Local variables&rdquo; on page 57</span>
 <span>, I mentioned that the value of the variable</span>
 <span>is wiped out when the function ends. If a function runs many times, it starts with a</span>
-<span>fresh copy of the variable and the previous setting has no effect.</span>
+<span>fresh copy of the variable and the previous setting has no effect.</span><br/>
 <span>Here&rsquo;s an interesting case. What if you have a local variable inside a function that you</span>
 <span>don&rsquo;t want any other parts of your code to have access to, but you would also like to</span>
 <span>keep its value for the next time the function is called? Why? Perhaps because you</span>
@@ -1590,16 +1633,22 @@ echo $pi * ($radius * $radius);
 <span>static</span>
 <span>variable, as shown in</span>
 <span>Example 3-17</span>
-<span>.</span>
-<span>Example 3-17. A function using a static variable</span>
-<span>&lt;?php</span>
-<span>function test()</span>
-<span>{</span>
-<span>static $count = 0;</span>
-<span>echo $count;</span>
-<span>$count++;</span>
-<span>}</span>
-<span>?&gt;</span>
+<span>.</span><br/>
+<span>Example 3-17. A function using a static variable</span><br/>
+
+<pre>
+<code class="php">
+td&lt;?php
+    function test()
+    {
+        static $count = 0;
+        echo $count;
+        $count++;
+    }
+?&gt;
+</code>
+</pre>
+
 <span>Here the very first line of function</span>
 <span>test</span>
 <span>creates a static variable called</span>
@@ -1608,83 +1657,104 @@ echo $pi * ($radius * $radius);
 <span>tializes it to a value of</span>
 <span>0</span>
 <span>. The next line outputs the variable&rsquo;s value; the final one incre‐</span>
-<span>ments it.</span>
+<span>ments it.</span><br/>
 <span>The next time the function is called, because</span>
 <span>$count</span>
 <span>has already been declared, the</span>
 <span>first line of the function is skipped. Then the previously incremented value of</span>
 <span>$count</span>
-<span>is displayed before the variable is again incremented.</span>
+<span>is displayed before the variable is again incremented.</span><br/>
 <span>If you plan to use static variables, you should note that you cannot assign the result of</span>
 <span>an expression in their definitions. They can be initialized only with predetermined</span>
 <span>values (see</span>
 <span>Example 3-18</span>
-<span>).</span>
-<span>Example 3-18. Allowed and disallowed static variable declarations</span>
-<span>&lt;?php</span>
-<span>static $int = 0; // Allowed</span>
-<span>static $int = 1+2; // Disallowed (will produce a Parse error)</span>
-<span>static $int = sqrt(144); // Disallowed</span>
-<span>?&gt;</span>
-<span>Superglobal variables</span>
+<span>).</span><br/>
+<span>Example 3-18. Allowed and disallowed static variable declarations</span><br/>
+
+<pre>
+<code class="php">
+&lt;?php
+    static $int = 0; // Allowed
+    static $int = 1+2; // Disallowed (will produce a Parse error)
+    static $int = sqrt(144); // Disallowed
+?&gt;
+</code>
+</pre>
+
+<h6>Superglobal variables</h6>
 <span>Starting with PHP 4.1.0, several predefined variables are available. These are known</span>
 <span>as</span>
 <span>superglobal variables</span>
 <span>, which means that they are provided by the PHP environment</span>
-<span>but are global within the program, accessible absolutely everywhere.</span>
+<span>but are global within the program, accessible absolutely everywhere.</span><br/>
 <span>These superglobals contain lots of useful information about the currently running</span>
 <span>program and its environment (see</span>
 <span>&nbsp;Table 3-6</span>
 <span>). They are structured as associative</span>
 <span>arrays, a topic discussed in</span>
 <span>Chapter 6</span>
-<span>.</span>
-<span>Table 3-6. PHP&rsquo;s superglobal variables</span>
-<span>Superglobal name</span>
-<span>Contents</span>
-<span>$GLOBALS</span>
-<span>All variables that are currently defined in the global scope of the script. The variable names are the keys</span>
-<span>of the array.</span>
-<span>$_SERVER</span>
-<span>Information such as headers, paths, and script locations. The entries in this array are created by the web</span>
-<span>server, and there is no guarantee that every web server will provide any or all of these.</span>
-<span>Superglobal name</span>
-<span>Contents</span>
-<span>$_GET</span>
-<span>Variables passed to the current script via the HTTP Get method.</span>
-<span>$_POST</span>
-<span>Variables passed to the current script via the HTTP Post method.</span>
-<span>$_FILES</span>
-<span>Items uploaded to the current script via the HTTP Post method.</span>
-<span>$_COOKIE</span>
-<span>Variables passed to the current script via HTTP cookies.</span>
-<span>$_SESSION</span>
-<span>Session variables available to the current script.</span>
-<span>$_REQUEST</span>
-<span>Contents of information passed from the browser; by default,</span>
-<span>$_GET</span>
-<span>,</span>
-<span>$_POST</span>
-<span>, and</span>
-<span>$_COOKIE</span>
-<span>.</span>
-<span>$_ENV</span>
-<span>Variables passed to the current script via the environment method.</span>
+<span>.</span><br/>
+<span>Table 3-6. PHP&rsquo;s superglobal variables</span><br/>
+
+<table class="tbl-left">
+    <tr>
+        <td>Superglobal name</td>
+        <td>Contents</td>
+    </tr>
+    <tr>
+        <td>$GLOBALS</td>
+        <td>All variables that are currently defined in the global scope of the script. The variable names are the keys of the array.</td>
+    </tr>
+    <tr>
+        <td>$_SERVER</td>
+        <td>Information such as headers, paths, and script locations. The entries in this array are created by the web server, and there is no guarantee that every web server will provide any or all of these</td>
+    </tr>
+    <tr>
+        <td>$_GET</td>
+        <td>Variables passed to the current script via the HTTP Get method.</td>
+    </tr>
+    <tr>
+        <td>$_POST</td>
+        <td>Variables passed to the current script via the HTTP Post method.</td>
+    </tr>
+    <tr>
+        <td>$_FILES</td>
+        <td>Items uploaded to the current script via the HTTP Post method.</td>
+    </tr>
+    <tr>
+        <td>$_COOKIE</td>
+        <td>Variables passed to the current script via HTTP cookies.</td>
+    </tr>
+    <tr>
+        <td>$_SESSION</td>
+        <td>Session variables available to the current script.</td>
+    </tr>
+    <tr>
+        <td>$_REQUEST</td>
+        <td>Contents of information passed from the browser; by default, $_GET, $_POST, and $_COOKIE .</td>
+    </tr>
+    <tr>
+        <td>$_ENV</td>
+        <td>Variables passed to the current script via the environment method.</td>
+    </tr>
+</table>
+
 <span>All of the superglobals (except for</span>
 <span>$GLOBALS</span>
 <span>) are named with a single initial under‐</span>
 <span>score and only capital letters; therefore, you should avoid naming your own variables</span>
-<span>in this manner to avoid potential confusion.</span>
+<span>in this manner to avoid potential confusion.</span><br/>
 <span>To illustrate how you use them, let&rsquo;s look at a bit of information that many sites</span>
 <span>employ. Among the many nuggets of information supplied by superglobal variables is</span>
 <span>the URL of the page that referred the user to the current web page. This referring</span>
-<span>page information can be accessed like this:</span>
-<span>$came_from = $_SERVER['HTTP_REFERER'];</span>
+<span>page information can be accessed like this:</span><br/>
+<span>$came_from = $_SERVER['HTTP_REFERER'];</span><br/>
 <span>It&rsquo;s that simple. Oh, and if the user came straight to your web page, such as by typing</span>
 <span>its URL directly into a browser,</span>
 <span>$came_from</span>
 <span>will be set to an empty string.</span>
-<span>Superglobals and security</span>
+
+<h6>Superglobals and security</h6>
 <span>A word of caution is in order before you start using superglobal variables, because</span>
 <span>they are often used by hackers trying to find exploits to break into your website.</span>
 <span>What they do is load up</span>
@@ -1693,7 +1763,7 @@ echo $pi * ($radius * $radius);
 <span>$_GET</span>
 <span>, or other superglobals with malicious code,</span>
 <span>such as Unix or MySQL commands that can damage or display sensitive data if you</span>
-<span>na&iuml;vely access them.</span>
+<span>na&iuml;vely access them.</span><br/>
 <span>Therefore, you should always sanitize superglobals before using them. One way to do</span>
 <span>this is via the PHP</span>
 <span>htmlentities</span>
@@ -1708,103 +1778,21 @@ echo $pi * ($radius * $radius);
 <span>and</span>
 <span>&amp;gt;</span>
 <span>so that they are rendered harmless, as are all quotes</span>
-<span>and backslashes, and so on.</span>
+<span>and backslashes, and so on.</span><br/>
 <span>Therefore, here is a much better way to access</span>
 <span>$_SERVER</span>
-<span>(and other superglobals) is:</span>
-<span>$came_from = htmlentities($_SERVER['HTTP_REFERER']);</span>
+<span>(and other superglobals) is:</span><br/>
+<span>$came_from = htmlentities($_SERVER['HTTP_REFERER']);</span><br/>
 <span>Using the</span>
 <span>htmlentities</span>
 <span>function for sanitization is an important</span>
 <span>practice in any circumstance where user or other third-party data is</span>
-<span>being processed for output, not just with superglobals.</span>
+<span>being processed for output, not just with superglobals.</span><br/>
 <span>This chapter has provided you with a solid background in using PHP. In</span>
 <span>Chapter 4</span>
 <span>,</span>
 <span>we&rsquo;ll start using what you&rsquo;ve learned to build expressions and control program flow&mdash;</span>
-<span>in other words, do some actual programming.</span>
+<span>in other words, do some actual programming.</span><br/>
 <span>But before moving on, I recommend that you test yourself with some (if not all) of</span>
 <span>the following questions to ensure that you have fully digested the contents of this</span>
 <span>chapter.</span>
-<h3>Questions</h3>
-<span>1.</span>
-<span>What tag is used to cause PHP to start interpreting program code? And what is</span>
-<span>the short form of the tag?</span>
-<span>2.</span>
-<span>What are the two types of comment tags?</span>
-<span>3.</span>
-<span>Which character must be placed at the end of every PHP statement?</span>
-<span>4.</span>
-<span>Which symbol is used to preface all PHP variables?</span>
-<span>5.</span>
-<span>What can a variable store?</span>
-<span>6.</span>
-<span>What is the difference between</span>
-<span>$variable = 1</span>
-<span>and</span>
-<span>$variable == 1</span>
-<span>?</span>
-<span>7.</span>
-<span>Why</span>
-<span>do</span>
-<span>you</span>
-<span>suppose</span>
-<span>that</span>
-<span>an</span>
-<span>underscore</span>
-<span>is</span>
-<span>allowed</span>
-<span>in</span>
-<span>variable</span>
-<span>names</span>
-<span>(</span>
-<span>$current_user</span>
-<span>), whereas hyphens are not (</span>
-<span>$current-user</span>
-<span>)?</span>
-<span>8.</span>
-<span>Are variable names case-sensitive?</span>
-<span>9.</span>
-<span>Can you use spaces in variable names?</span>
-<span>10.</span>
-<span>How do you convert one variable type to another (say, a string to a number)?</span>
-<span>11.</span>
-<span>What is the difference between</span>
-<span>++$j</span>
-<span>and</span>
-<span>$j++</span>
-<span>?</span>
-<span>12.</span>
-<span>Are the operators</span>
-<span>&amp;&amp;</span>
-<span>and</span>
-<span>and</span>
-<span>interchangeable?</span>
-<span>13.</span>
-<span>How can you create a multiline</span>
-<span>echo</span>
-<span>or assignment?</span>
-<span>14.</span>
-<span>Can you redefine a constant?</span>
-<span>15.</span>
-<span>How do you escape a quotation mark?</span>
-<span>16.</span>
-<span>What is the difference between the</span>
-<span>echo</span>
-<span>and</span>
-<span>print</span>
-<span>commands?</span>
-<span>17.</span>
-<span>What is the purpose of functions?</span>
-<span>18.</span>
-<span>How can you make a variable accessible to all parts of a PHP program?</span>
-<span>19.</span>
-<span>If you generate data within a function, what are a couple of ways to convey the</span>
-<span>data to the rest of the program?</span>
-<span>20.</span>
-<span>What is the result of combining a string with a number?</span>
-<span>See</span>
-<span>Chapter 3 Answers</span>
-<span>in</span>
-<span>Appendix A</span>
-<span>for the answers to these questions.</span>
