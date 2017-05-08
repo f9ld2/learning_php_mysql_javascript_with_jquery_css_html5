@@ -2,3 +2,16 @@
 layout: default
 ---
  <textarea rows="4" cols="50"></textarea> 
+ <button onclick="doBr()">DoBr</button>
+ <script>
+function doBr() {
+    var lines = $('textarea').val().split("\n");
+    $.each(lines, function(index, value){
+        if($.trim(value) == ""){
+            lines[index] = "<br/>";
+        }
+    })
+    
+    $('textarea').val(lines.join("\n"));
+}
+</script>
