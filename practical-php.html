@@ -690,14 +690,19 @@ http://php.net/manual/en/class.datetime.php.
 <span>date invalid.</span>
 <br/>
 <span>Example 7-3. Checking for the validity of a date</span>
-<br/>
-<span>&lt;?php</span>
-<span>$month = 9; // September (only has 30 days)</span>
-<span>$day = 31; // 31st</span>
-<span>$year = 2018; // 2018</span>
-<span>if (checkdate($month, $day, $year)) echo "Date is valid";</span>
-<span>else echo "Date is invalid";</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+    $month = 9; // September (only has 30 days)
+    $day = 31; // 31st
+    $year = 2018; // 2018
+    
+    if (checkdate($month, $day, $year)) echo "Date is valid";
+    else echo "Date is invalid";
+?&gt;
+</code>
+</pre>
+
 <h3>File Handling</h3>
 <span>Powerful as it is, MySQL is not the only (or necessarily the best) way to store all data</span>
 <span>on a web server. Sometimes it can be quicker and more convenient to directly access</span>
@@ -718,8 +723,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>or</span>
 <span>FALSE</span>
 <span>, and is used like this:</span>
-<br/>
-<span>if (file_exists("testfile.txt")) echo "File exists";</span>
+<pre><code class="php">if (file_exists("testfile.txt")) echo "File exists";</code></pre>
 <h4>Creating a File</h4>
 <span>At this point,</span>
 <span>testfile.txt</span>
@@ -731,19 +735,23 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>Example 7-4. Creating a simple text</span>
 <span>file</span>
-<br/>
-<span>&lt;?php // testfile.php</span>
-<span>$fh = fopen("testfile.txt", 'w') or die("Failed to create file");</span>
-<span>$text = &lt;&lt;&lt;_END</span>
-<span>Line 1</span>
-<span>Line 2</span>
-<span>Line 3</span>
-<span>_END;</span>
-<span>fwrite($fh, $text) or die("Could not write to file");</span>
-<span>fclose($fh);</span>
-<span>echo "File 'testfile.txt' written successfully";</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // testfile.php
+    $fh = fopen("testfile.txt", 'w') or die("Failed to create file");
+
+    $text = &lt;&lt;&lt;_END
+Line 1
+Line 2
+Line 3
+_END;
+
+    fwrite($fh, $text) or die("Could not write to file");
+    fclose($fh);
+    echo "File 'testfile.txt' written successfully";
+?&gt;
+</code>
+</pre>
 <span>When you run this in a browser, all being well, you will receive the message</span>
 <span>File</span>
 <span>'testfile.txt' written successfully</span>
@@ -758,10 +766,9 @@ http://php.net/manual/en/class.datetime.php.
 <span>program. Try opening the file in a</span>
 <span>text or program editor&mdash;the contents will look like this:</span>
 <br/>
-<span>Line 1</span>
-<span>Line 2</span>
-<span>Line 3</span>
-<br/>
+<b class="t30">Line 1</b><br/>
+<b class="t30">Line 2</b><br/>
+<b class="t30">Line 3</b><br/>
 <span>This simple example shows the sequence that all file handling takes:</span>
 <br/>
 <span>1.</span>
@@ -838,41 +845,49 @@ http://php.net/manual/en/class.datetime.php.
 <span>.</span>
 <br/>
 <span>Table 7-5. The supported fopen modes</span>
-<span>Mode</span>
-<span>Action</span>
-<span>Description</span>
-<span>'r'</span>
-<span>Read from file start</span>
-<span>Open for reading only; place the file pointer at the beginning of the file. Return</span>
-<span>FALSE</span>
-<span>if the</span>
-<span>file doesn&rsquo;t already exist.</span>
-<span>'r+'</span>
-<span>Read from file start and</span>
-<span>allow writing</span>
-<span>Open for reading and writing; place the file pointer at the beginning of the file. Return</span>
-<span>FALSE</span>
-<span>if the file doesn&rsquo;t already exist.</span>
-<span>'w'</span>
-<span>Write from file start and</span>
-<span>truncate file</span>
-<span>Open for writing only; place the file pointer at the beginning of the file and truncate the</span>
-<span>file to zero length. If the file doesn&rsquo;t exist, attempt to create it.</span>
-<span>'w+'</span>
-<span>Write from file start,</span>
-<span>truncate file, and allow</span>
-<span>reading</span>
-<span>Open for reading and writing; place the file pointer at the beginning of the file and</span>
-<span>truncate the file to zero length. If the file doesn&rsquo;t exist, attempt to create it.</span>
-<span>'a'</span>
-<span>Append to file end</span>
-<span>Open for writing only; place the file pointer at the end of the file. If the file doesn&rsquo;t exist,</span>
-<span>attempt to create it.</span>
-<span>'a+'</span>
-<span>Append to file end and</span>
-<span>allow reading</span>
-<span>Open for reading and writing; place the file pointer at the end of the file. If the file</span>
-<span>doesn&rsquo;t exist, attempt to create it.</span>
+<table class="tbl-left">
+    <tr>
+        <td>Mode</td>
+        <td>Action</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+        <td>'r'</td>
+        <td>Read from file start</td>
+        <td>Open for reading only; place the file pointer at the beginning of the file. Return
+        FALSE
+        if the
+        file doesn&rsquo;t already exist.</td>
+    </tr>
+    <tr>
+        <td>'r+'</td>
+        <td>Read from file start and allow writing</td>
+        <td>Open for reading and writing; place the file pointer at the beginning of the file. Return
+        FALSE
+        if the file doesn&rsquo;t already exist.</td>
+    </tr>
+    <tr>
+        <td>'w'</td>
+        <td>Write from file start and truncate file</td>
+        <td>Open for writing only; place the file pointer at the beginning of the file and truncate the file to zero length. If the file doesn&rsquo;t exist, attempt to create it.</td>
+    </tr>
+    <tr>
+        <td>'w+'</td>
+        <td>Write from file start, truncate file, and allow reading</td>
+        <td>Open for reading and writing; place the file pointer at the beginning of the file and truncate the file to zero length. If the file doesn&rsquo;t exist, attempt to create it.</td>
+    </tr>
+    <tr>
+        <td>'a'</td>
+        <td>Append to file end</td>
+        <td>Open for writing only; place the file pointer at the end of the file. If the file doesn&rsquo;t exist, attempt to create it.</td>
+    </tr>
+    <tr>
+        <td>'a+'</td>
+        <td>Append to file end and allow reading</td>
+        <td>Open for reading and writing; place the file pointer at the end of the file. If the file doesn&rsquo;t exist, attempt to create it.</td>
+    </tr>
+</table>
+
 <h4>Reading from Files</h4>
 <span>The easiest way to read from a text file is to grab a whole line through</span>
 <span>fgets</span>
@@ -885,17 +900,18 @@ http://php.net/manual/en/class.datetime.php.
 <span>Example 7-5</span>
 <span>.</span>
 <br/>
-<span>Example 7-5. Reading a</span>
-<br/>
-<span>file with fgets</span>
-<span>&lt;?php</span>
-<span>$fh = fopen("testfile.txt", 'r') or</span>
-<span>die("File does not exist or you lack permission to open it");</span>
-<span>$line = fgets($fh);</span>
-<span>fclose($fh);</span>
-<span>echo $line;</span>
-<span>?&gt;</span>
-<br/>
+<span>Example 7-5. Reading a file with fgets</span>
+<pre>
+<code class="php">
+&lt;?php
+    $fh = fopen("testfile.txt", 'r') or
+    die("File does not exist or you lack permission to open it");
+    $line = fgets($fh);
+    fclose($fh);
+    echo $line;
+?&gt;
+</code>
+</pre>
 <span>If you created the file as shown in</span>
 <span>Example 7-4</span>
 <span>, you&rsquo;ll get the first line:</span>
@@ -911,15 +927,17 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>Example 7-6. Reading a</span>
 <span>file with fread</span>
-<br/>
-<span>&lt;?php</span>
-<span>$fh = fopen("testfile.txt", 'r') or</span>
-<span>die("File does not exist or you lack permission to open it");</span>
-<span>$text = fread($fh, 3);</span>
-<span>fclose($fh);</span>
-<span>echo $text;</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $fh = fopen("testfile.txt", 'r') or
+    die("File does not exist or you lack permission to open it");
+    $text = fread($fh, 3);
+    fclose($fh);
+    echo $text;
+?&gt;
+</code>
+</pre>
 <span>I&rsquo;ve requested three characters in the</span>
 <span>fread</span>
 <span>call, so the program displays this:</span>
@@ -943,12 +961,14 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>Example 7-7. Copying a</span>
 <span>file</span>
-<br/>
-<span>&lt;?php // copyfile.php</span>
-<span>copy('testfile.txt', 'testfile2.txt') or die("Could not copy file");</span>
-<span>echo "File successfully copied to 'testfile2.txt'";</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // copyfile.php
+    copy('testfile.txt', 'testfile2.txt') or die("Could not copy file");
+    echo "File successfully copied to 'testfile2.txt'";
+?&gt;
+</code>
+</pre>
 <span>If you check your folder again, you&rsquo;ll see that you now have the new file</span>
 <span>testfile2.txt</span>
 <span>in</span>
@@ -960,10 +980,14 @@ http://php.net/manual/en/class.datetime.php.
 <span>Example 7-8. Alternate syntax for copying a</span>
 <span>file</span>
 <br/>
-<span>&lt;?php // copyfile2.php</span>
-<span>if (!copy('testfile.txt', 'testfile2.txt')) echo "Could not copy file";</span>
-<span>else echo "File successfully copied to 'testfile2.txt'";</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php // copyfile2.php
+    if (!copy('testfile.txt', 'testfile2.txt')) echo "Could not copy file";
+    else echo "File successfully copied to 'testfile2.txt'";
+?&gt;
+</code>
+</pre>
 <h4>Moving a File</h4>
 <span>To move a file, rename it with the</span>
 <span>rename</span>
@@ -974,11 +998,15 @@ http://php.net/manual/en/class.datetime.php.
 <span>Example 7-9. Moving a</span>
 <span>file</span>
 <br/>
-<span>&lt;?php // movefile.php</span>
-<span>if (!rename('testfile2.txt', 'testfile2.new'))</span>
-<span>echo "Could not rename file";</span>
-<span>else echo "File successfully renamed to 'testfile2.new'";</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php // movefile.php
+    if (!rename('testfile2.txt', 'testfile2.new'))
+    echo "Could not rename file";
+    else echo "File successfully renamed to 'testfile2.new'";
+?&gt;
+</code>
+</pre>
 <br/>
 <span>You can use the</span>
 <span>rename</span>
@@ -996,12 +1024,14 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>Example 7-10. Deleting a</span>
 <span>file</span>
-<br/>
-<span>&lt;?php // deletefile.php</span>
-<span>if (!unlink('testfile2.new')) echo "Could not delete file";</span>
-<span>else echo "File 'testfile2.new' successfully deleted";</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // deletefile.php
+    if (!unlink('testfile2.new')) echo "Could not delete file";
+    else echo "File 'testfile2.new' successfully deleted";
+?&gt;
+</code>
+</pre>
 <span>Whenever you access files on your hard disk directly, you must also</span>
 <span>always ensure that it is impossible for your file system to be com‐</span>
 <span>promised. For example, if you are deleting a file based on user</span>
@@ -1045,16 +1075,18 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>Example 7-11. Updating a</span>
 <span>file</span>
-<br/>
-<span>&lt;?php // update.php</span>
-<span>$fh = fopen("testfile.txt", 'r+') or die("Failed to open file");</span>
-<span>$text = fgets($fh);</span>
-<span>fseek($fh, 0, SEEK_END);</span>
-<span>fwrite($fh, "$text") or die("Could not write to file");</span>
-<span>fclose($fh);</span>
-<span>echo "File 'testfile.txt' successfully updated";</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // update.php
+    $fh = fopen("testfile.txt", 'r+') or die("Failed to open file");
+    $text = fgets($fh);
+    fseek($fh, 0, SEEK_END);
+    fwrite($fh, "$text") or die("Could not write to file");
+    fclose($fh);
+    echo "File 'testfile.txt' successfully updated";
+?&gt;
+</code>
+</pre>
 <span>This program opens</span>
 <span>testfile.txt</span>
 <span>for both reading and writing by setting the mode with</span>
@@ -1071,11 +1103,10 @@ http://php.net/manual/en/class.datetime.php.
 <span>) is then appended to</span>
 <span>file&rsquo;s end and the file is closed. The resulting file now looks like this:</span>
 <br/>
-<span>Line 1</span>
-<span>Line 2</span>
-<span>Line 3</span>
-<span>Line 1</span>
-<br/>
+<b class="t30">Line 1</b><br/>
+<b class="t30">Line 2</b><br/>
+<b class="t30">Line 3</b><br/>
+<b class="t30">Line 1</b><br/>
 <span>The first line has successfully been copied and then appended to the file&rsquo;s end.</span>
 <br/>
 <span>As used here, in addition to the</span>
@@ -1111,18 +1142,14 @@ http://php.net/manual/en/class.datetime.php.
 <span>option tells the function to set the file pointer to the exact</span>
 <span>position given by the preceding parameter. Thus, the following example moves the</span>
 <span>file pointer to position 18:</span>
-<br/>
-<span>fseek($fh, 18, SEEK_SET);</span>
-<br/>
+<pre><code class="php">fseek($fh, 18, SEEK_SET);</code></pre>
 <span>SEEK_CUR</span>
 <span>sets the file pointer to the current position</span>
 <span>plus</span>
 <span>the value of the given offset.</span>
 <span>Therefore, if the file pointer is currently at position 18, the following call will move it</span>
 <span>to position 23:</span>
-<br/>
-<span>fseek($fh, 5, SEEK_CUR);</span>
-<br/>
+<pre><code class="php">fseek($fh, 5, SEEK_CUR);</code></pre>
 <span>Although this is not recommended unless you have very specific reasons for it, it is</span>
 <span>even possible to use text files such as this (but with fixed line lengths) as simple flat</span>
 <span>file databases. Your program can then use</span>
@@ -1147,20 +1174,23 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>Example 7-12. Updating a</span>
 <span>file with file locking</span>
-<br/>
-<span>&lt;?php</span>
-<span>$fh = fopen("testfile.txt", 'r+') or die("Failed to open file");</span>
-<span>$text = fgets($fh);</span>
-<span>if (flock($fh, LOCK_EX))</span>
-<span>{</span>
-<span>fseek($fh, 0, SEEK_END);</span>
-<span>fwrite($fh, "$text") or die("Could not write to file");</span>
-<span>flock($fh, LOCK_UN);</span>
-<span>}</span>
-<span>fclose($fh);</span>
-<span>echo "File 'testfile.txt' successfully updated";</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $fh = fopen("testfile.txt", 'r+') or die("Failed to open file");
+    $text = fgets($fh);
+    
+    if (flock($fh, LOCK_EX))
+    {
+        fseek($fh, 0, SEEK_END);
+        fwrite($fh, "$text") or die("Could not write to file");
+        flock($fh, LOCK_UN);
+    }
+    fclose($fh);
+    echo "File 'testfile.txt' successfully updated";
+?&gt;
+</code>
+</pre>
 <span>There is a trick to file locking to preserve the best possible response time for your</span>
 <span>website visitors: perform it directly before a change you make to a file, and then</span>
 <span>unlock it immediately afterward. Having a file locked for any longer than this will</span>
@@ -1196,9 +1226,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>until you release the lock by using the</span>
 <span>LOCK_UN</span>
 <span>parameter, like this:</span>
-<br/>
-<span>flock($fh, LOCK_UN);</span>
-<br/>
+<pre><code class="php">flock($fh, LOCK_UN);</code></pre>
 <span>As soon as the lock is released, other processes are again allowed access to the file.</span>
 <span>This is one reason why you should re-seek to the point you wish to access in a file</span>
 <span>each time you need to read or write data, because another process could have</span>
@@ -1247,13 +1275,15 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>Example 7-13. Using</span>
 <span>file_get_contents</span>
-<br/>
-<span>&lt;?php</span>
-<span>echo "&lt;pre&gt;"; // Enables display of line feeds</span>
-<span>echo file_get_contents("testfile.txt");</span>
-<span>echo "&lt;/pre&gt;"; // Terminates pre tag</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    echo "&lt;pre&gt;"; // Enables display of line feeds
+    echo file_get_contents("testfile.txt");
+    echo "&lt;/pre&gt;"; // Terminates pre tag
+?&gt;
+</code>
+</pre>
 <span>But the function is actually a lot more useful than that, because you can also use it to</span>
 <span>fetch a file from a server across the Internet, as in</span>
 <span>Example 7-14</span>
@@ -1264,10 +1294,13 @@ http://php.net/manual/en/class.datetime.php.
 <span>.</span>
 <br/>
 <span>Example 7-14. Grabbing the O&rsquo;Reilly home page</span>
-<br/>
-<span>&lt;?php</span>
-<span>echo file_get_contents("http://oreilly.com");</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+    echo file_get_contents("http://oreilly.com");
+?&gt;
+</code>
+</pre>
 <p><img src="images/7.1.png"/></p>
 <span>Figure 7-1. The O&rsquo;Reilly home page grabbed with file_get_contents</span>
 <h4>Uploading Files</h4>
@@ -1285,24 +1318,27 @@ http://php.net/manual/en/class.datetime.php.
 <span>a file of your choice.</span>
 <br/>
 <span>Example 7-15. Image uploader upload.php</span>
-<br/>
-<span>&lt;?php // upload.php</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&lt;html&gt;&lt;head&gt;&lt;title&gt;PHP Form Upload&lt;/title&gt;&lt;/head&gt;&lt;body&gt;</span>
-<span>&lt;form method='post' action='upload.php' enctype='multipart/form-data'&gt;</span>
-<span>Select File: &lt;input type='file' name='filename' size='10'&gt;</span>
-<span>&lt;input type='submit' value='Upload'&gt;</span>
-<span>&lt;/form&gt;</span>
-<span>_END;</span>
-<span>if ($_FILES)</span>
-<span>{</span>
-<span>$name = $_FILES['filename']['name'];</span>
-<span>move_uploaded_file($_FILES['filename']['tmp_name'], $name);</span>
-<span>echo "Uploaded image '$name'&lt;br&gt;&lt;img src='$name'&gt;";</span>
-<span>}</span>
-<span>echo "&lt;/body&gt;&lt;/html&gt;";</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // upload.php
+    echo &lt;&lt;&lt;_END
+    &lt;html&gt;&lt;head&gt;&lt;title&gt;PHP Form Upload&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+    &lt;form method='post' action='upload.php' enctype='multipart/form-data'&gt;
+    Select File: &lt;input type='file' name='filename' size='10'&gt;
+    &lt;input type='submit' value='Upload'&gt;
+    &lt;/form&gt;
+    _END;
+    if ($_FILES)
+    {
+        $name = $_FILES['filename']['name'];
+        move_uploaded_file($_FILES['filename']['tmp_name'], $name);
+        echo "Uploaded image '$name'&lt;br&gt;&lt;img src='$name'&gt;";
+    }
+    echo "&lt;/body&gt;&lt;/html&gt;";
+?&gt;
+</code>
+</pre>
+
 <span>Let&rsquo;s examine this program a section at a time. The first line of the multiline</span>
 <span>echo</span>
 <span>statement starts an HTML document, displays the title, and then starts the docu‐</span>
@@ -1440,23 +1476,33 @@ http://php.net/manual/en/class.datetime.php.
 <span>.</span>
 <br/>
 <span>Table 7-7. Some common Internet media content types</span>
-<br/>
-<span>application/pdf</span>
-<span>image/gif</span>
-<span>multipart/form-data</span>
-<span>text/xml</span>
-<span>application/zip</span>
-<span>image/jpeg</span>
-<span>text/css</span>
-<span>video/mpeg</span>
-<span>audio/mpeg</span>
-<span>image/png</span>
-<span>text/html</span>
-<span>video/mp4</span>
-<span>audio/x-wav</span>
-<span>image/tiff</span>
-<span>text/plain</span>
-<span>video/quicktime</span>
+<table class="tbl-left">
+    <tr>
+        <td>application/pdf</td>
+        <td>image/gif</td>
+        <td>multipart/form-data</td>
+        <td>text/xml</td>
+    </tr>
+    <tr>
+        <td>application/zip</td>
+        <td>image/jpeg</td>
+        <td>text/css</td>
+        <td>video/mpeg</td>
+    </tr>
+    <tr>
+        <td>audio/mpeg</td>
+        <td>image/png</td>
+        <td>text/html</td>
+        <td>video/mp4</td>
+    </tr>
+    <tr>
+        <td>audio/x-wav</td>
+        <td>image/tiff</td>
+        <td>text/plain</td>
+        <td>video/quicktime</td>
+    </tr>
+</table>
+
 <span>Validation</span>
 <span>I hope it now goes without saying (although I&rsquo;ll do so anyway) that form data valida‐</span>
 <span>tion is of the utmost importance, due to the possibility of users attempting to hack</span>
@@ -1476,48 +1522,43 @@ http://php.net/manual/en/class.datetime.php.
 <span>.</span>
 <br/>
 <span>Example 7-16. A more secure version of upload.php</span>
-<br/>
-<span>&lt;?php // upload2.php</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&lt;html&gt;&lt;head&gt;&lt;title&gt;PHP Form Upload&lt;/title&gt;&lt;/head&gt;&lt;body&gt;</span>
-<span>&lt;form method='post' action='upload2.php' enctype='multipart/form-data'&gt;</span>
-<span>Select a JPG, GIF, PNG or TIF File:</span>
-<span>&lt;input type='file' name='filename' size='10'&gt;</span>
-<span>&lt;input type='submit' value='Upload'&gt;&lt;/form&gt;</span>
-<span>_END;</span>
-<span>if ($_FILES)</span>
-<span>{</span>
-<span>$name = $_FILES['filename']['name'];</span>
-<span>switch($_FILES['filename']['type'])</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>case 'image/jpeg': $ext = 'jpg'; break;</span>
-<span>&nbsp;</span>
-<span>case 'image/gif': $ext = 'gif'; break;</span>
-<span>&nbsp;</span>
-<span>case 'image/png': $ext = 'png'; break;</span>
-<span>&nbsp;</span>
-<span>case 'image/tiff': $ext = 'tif'; break;</span>
-<span>&nbsp;</span>
-<span>default: $ext = ''; break;</span>
-<span>}</span>
-<span>if ($ext)</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$n = "image.$ext";</span>
-<span>&nbsp;</span>
-<span>move_uploaded_file($_FILES['filename']['tmp_name'], $n);</span>
-<span>&nbsp;</span>
-<span>echo "Uploaded image '$name' as '$n':&lt;br&gt;";</span>
-<span>&nbsp;</span>
-<span>echo "&lt;img src='$n'&gt;";</span>
-<span>}</span>
-<span>else echo "'$name' is not an accepted image file";</span>
-<span>}</span>
-<span>else echo "No image has been uploaded";</span>
-<span>echo "&lt;/body&gt;&lt;/html&gt;";</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // upload2.php
+    echo &lt;&lt;&lt;_END
+        &lt;html&gt;&lt;head&gt;&lt;title&gt;PHP Form Upload&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+        &lt;form method='post' action='upload2.php' enctype='multipart/form-data'&gt;
+        Select a JPG, GIF, PNG or TIF File:
+        &lt;input type='file' name='filename' size='10'&gt;
+        &lt;input type='submit' value='Upload'&gt;&lt;/form&gt;
+    _END;
+    
+    if ($_FILES)
+    {
+        $name = $_FILES['filename']['name'];
+        switch($_FILES['filename']['type'])
+        {
+            case 'image/jpeg': $ext = 'jpg'; break;
+            case 'image/gif': $ext = 'gif'; break;
+            case 'image/png': $ext = 'png'; break;
+            case 'image/tiff': $ext = 'tif'; break;
+            default: $ext = ''; break;
+        }
+        
+        if ($ext)
+        {
+            $n = "image.$ext";
+            move_uploaded_file($_FILES['filename']['tmp_name'], $n);
+            echo "Uploaded image '$name' as '$n':&lt;br&gt;";
+            echo "&lt;img src='$n'&gt;";
+        }
+        else echo "'$name' is not an accepted image file";
+    }
+    else echo "No image has been uploaded";
+        echo "&lt;/body&gt;&lt;/html&gt;";
+?&gt;
+</code>
+</pre>
 <span>The non-HTML section of code has been expanded from the half-dozen lines of</span>
 <span>Example 7-15</span>
 <span>to more than 20 lines, starting at</span>
@@ -1606,9 +1647,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>) to perform a search and replace on</span>
 <span>$name</span>
 <span>:</span>
-<br/>
-<span>$name = preg_replace("/[^A-Za-z0-9.]/", "", $name);</span>
-<br/>
+<pre><code class="php">$name = preg_replace("/[^A-Za-z0-9.]/", "", $name);</code></pre>
 <span>This leaves only the characters A&ndash;Z, a&ndash;z, 0&ndash;9, and periods in the string</span>
 <span>$name</span>
 <span>, and</span>
@@ -1618,9 +1657,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>whether they are case-sensitive or case-insensitive, you should probably use the fol‐</span>
 <span>lowing command instead, which changes all uppercase characters to lowercase at the</span>
 <span>same time:</span>
-<br/>
-<span>$name = strtolower(ereg_replace("[^A-Za-z0-9.]", "", $name));</span>
-<br/>
+<pre><code class="php">$name = strtolower(ereg_replace("[^A-Za-z0-9.]", "", $name));</code></pre>
 <span>Sometimes you may encounter the media type of</span>
 <span>image/pjpeg</span>
 <span>,</span>
@@ -1653,19 +1690,23 @@ http://php.net/manual/en/class.datetime.php.
 <span>, and call it up in your browser.</span>
 <br/>
 <span>Example 7-17. Executing a system command</span>
-<br/>
-<span>&lt;?php // exec.php</span>
-<span>$cmd = "dir"; // Windows</span>
-<span>// $cmd = "ls"; // Linux, Unix &amp; Mac</span>
-<span>exec(escapeshellcmd($cmd), $output, $status);</span>
-<span>if ($status) echo "Exec command failed";</span>
-<span>else</span>
-<span>{</span>
-<span>echo "&lt;pre&gt;";</span>
-<span>foreach($output as $line) echo htmlspecialchars("$line\n");</span>
-<span>echo "&lt;/pre&gt;";</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // exec.php
+    $cmd = "dir"; // Windows
+    // $cmd = "ls"; // Linux, Unix &amp; Mac
+    exec(escapeshellcmd($cmd), $output, $status);
+    
+    if ($status) echo "Exec command failed";
+    else
+    {
+        echo "&lt;pre&gt;";
+        foreach($output as $line) echo htmlspecialchars("$line\n");
+        echo "&lt;/pre&gt;";
+    }
+?&gt;
+</code>
+</pre>
 <span>The</span>
 <span>htmlspecialchars</span>
 <span>function is called to turn any special characters returned by</span>
@@ -1674,24 +1715,22 @@ http://php.net/manual/en/class.datetime.php.
 <span>will look something like this (from a Windows</span>
 <span>dir</span>
 <span>command):</span>
-<br/>
-<span>Volume in drive C is Hard Disk</span>
-<span>Volume Serial Number is DC63-0E29</span>
-<span>Directory of C:\xampp\htdocs</span>
-<span>09/07/2014 10:06 &lt;DIR&gt; .</span>
-<span>09/07/2014 10:06 &lt;DIR&gt; ..</span>
-<span>08/07/2014 09:16 &lt;DIR&gt; forbidden</span>
-<span>08/07/2014 09:16 &lt;DIR&gt; img</span>
-<span>30/03/2013 12:28 202 index.html</span>
-<span>30/03/2013 12:28 267 index.php</span>
-<span>08/07/2014 09:16 &lt;DIR&gt; restricted</span>
-<span>08/07/2014 09:56 110 test.html</span>
-<span>09/07/2014 08:46 &lt;DIR&gt; xampp</span>
-<span>&nbsp;</span>
-<span>3 File(s) 579 bytes</span>
-<span>&nbsp;</span>
-<span>6 Dir(s) 1,793,430,867,968 bytes free</span>
-<br/>
+<b class="t30">Volume in drive C is Hard Disk</b><br/>
+<b class="t30">Volume Serial Number is DC63-0E29</b><br/>
+<b class="t30">Directory of C:\xampp\htdocs</b><br/>
+<b class="t30">09/07/2014 10:06 &lt;DIR&gt; .</b><br/>
+<b class="t30">09/07/2014 10:06 &lt;DIR&gt; ..</b><br/>
+<b class="t30">08/07/2014 09:16 &lt;DIR&gt; forbidden</b><br/>
+<b class="t30">08/07/2014 09:16 &lt;DIR&gt; img</b><br/>
+<b class="t30">30/03/2013 12:28 202 index.html</b><br/>
+<b class="t30">30/03/2013 12:28 267 index.php</b><br/>
+<b class="t30">08/07/2014 09:16 &lt;DIR&gt; restricted</b><br/>
+<b class="t30">08/07/2014 09:56 110 test.html</b><br/>
+<b class="t30">09/07/2014 08:46 &lt;DIR&gt; xampp</b><br/>
+<b class="t30">&nbsp;</b><br/>
+<b class="t30">3 File(s) 579 bytes</b><br/>
+<b class="t30">&nbsp;</b><br/>
+<b class="t30">6 Dir(s) 1,793,430,867,968 bytes free</b><br/>
 <span>exec</span>
 <span>takes three arguments:</span>
 <br/>
@@ -1745,9 +1784,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>to use and less strict to validate and, happily, there is now just a single document type</span>
 <span>you need to place at the head of an HTML5 document (instead of the variety of strict,</span>
 <span>transitional, and frameset types previously required), namely:</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<br/>
+<pre><code class="html">&lt;!DOCTYPE html&gt;</code></pre>
 <span>Just the simple word</span>
 <span>html</span>
 <span>is sufficient to tell the browser that your web page is</span>

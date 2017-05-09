@@ -1,19 +1,18 @@
 <pre>
 <code class="php">
-&lt;?php
-    echo "&lt;pre&gt;"; // Enables viewing of the spaces
-    $h = 'Rasmus';
+&lt;?php // exec.php
+    $cmd = "dir"; // Windows
+    // $cmd = "ls"; // Linux, Unix &amp; Mac
+    exec(escapeshellcmd($cmd), $output, $status);
     
-    printf("[%s]\n", $h); // Standard string output
-    printf("[%12s]\n", $h); // Right justify with spaces to width 12
-    printf("[%-12s]\n", $h); // Left justify with spaces
-    printf("[%012s]\n", $h); // Zero padding
-    printf("[%'#12s]\n\n", $h); // Use the custom padding character '#'
-    
-    $d = 'Rasmus Lerdorf'; // The original creator of PHP
-    printf("[%12.8s]\n", $d); // Right justify, cutoff of 8 characters
-    printf("[%-12.12s]\n", $d); // Left justify, cutoff of 12 characters
-    printf("[%-'@12.10s]\n", $d); // Left justify, pad '@', cutoff 10 chars
+    if ($status) echo "Exec command failed";
+    else
+    {
+        echo "&lt;pre&gt;";
+        foreach($output as $line) echo htmlspecialchars("$line\n");
+        echo "&lt;/pre&gt;";
 ?&gt;
 </code>
 </pre>
+
+
