@@ -27,7 +27,9 @@ layout: default
 <span>the value</span>
 <span>3</span>
 <span>in decimal:</span>
+<br/>
 <span>printf("There are %d items in your basket", 3);</span>
+<br/>
 <span>If you replace the</span>
 <span>%d</span>
 <span>with</span>
@@ -39,7 +41,9 @@ layout: default
 <span>).</span>
 <span>Table 7-1</span>
 <span>shows the conversion specifiers supported.</span>
+<br/>
 <span>Table 7-1. The printf conversion specifiers</span>
+<br/>
 <span>Specifier</span>
 <span>Conversion action on argument arg</span>
 <span>Example (for an arg of 123)</span>
@@ -62,9 +66,6 @@ layout: default
 <span>arg</span>
 <span>as a signed decimal integer</span>
 <span>123</span>
-<span>Specifier</span>
-<span>Conversion action on argument arg</span>
-<span>Example (for an arg of 123)</span>
 <span>e</span>
 <span>Display</span>
 <span>arg</span>
@@ -100,6 +101,7 @@ layout: default
 <span>arg</span>
 <span>in uppercase hexadecimal</span>
 <span>7B</span>
+<br/>
 <span>You can have as many specifiers as you like in a</span>
 <span>printf</span>
 <span>function, as long as you pass a</span>
@@ -110,19 +112,24 @@ layout: default
 <span>"My name is Simon. I'm</span>
 <span>33 years old, which is 21 in hexadecimal"</span>
 <span>:</span>
+<br/>
 <span>printf("My name is %s. I'm %d years old, which is %X in hexadecimal",</span>
 <span>'Simon', 33, 33);</span>
+<br/>
 <span>If you leave out any arguments, you will receive a parse error informing you that a</span>
 <span>right bracket,</span>
 <span>)</span>
 <span>, was unexpectedly encountered.</span>
+<br/>
 <span>A more practical example of</span>
 <span>printf</span>
 <span>sets colors in HTML using decimal. For example,</span>
 <span>suppose you know you want a color that has a triplet value of 65 red, 127 green, and</span>
 <span>245 blue, but don&rsquo;t want to convert this to hexadecimal yourself. Here&rsquo;s an easy solu‐</span>
 <span>tion is:</span>
+<br/>
 <span>printf("&lt;span style='color:#%X%X%X'&gt;Hello&lt;/span&gt;", 65, 127, 245);</span>
+<br/>
 <span>Check the format of the color specification between the apostrophes (</span>
 <span>''</span>
 <span>) carefully.</span>
@@ -133,7 +140,9 @@ layout: default
 <span>%X</span>
 <span>format specifiers, one for each of your numbers. The resulting output</span>
 <span>from this command is as follows:</span>
+<br/>
 <span>&lt;span style='color:#417FF5'&gt;Hello&lt;/span&gt;</span>
+<br/>
 <span>Usually, you&rsquo;ll find it convenient to use variables or expressions as arguments to</span>
 <span>printf</span>
 <span>. For instance, if you stored values for your colors in the three variables</span>
@@ -144,6 +153,7 @@ layout: default
 <span>and</span>
 <span>$b</span>
 <span>, you could create a darker color with this:</span>
+<br/>
 <span>printf("&lt;span style='color:#%X%X%X'&gt;Hello&lt;/span&gt;", $r-20, $g-20, $b-20);</span>
 <h4>Precision Setting</h4>
 <span>Not only can you specify a conversion type, but you can also set the precision of the</span>
@@ -156,15 +166,21 @@ layout: default
 <span>between the</span>
 <span>%</span>
 <span>symbol and the conversion specifier:</span>
+<br/>
 <span>printf("The result is: $%.2f", 123.42 / 12);</span>
+<br/>
 <span>The output from this command is as follows:</span>
+<br/>
 <span>The result is $10.29</span>
+<br/>
 <span>But you actually have even more control than that, because you can also specify</span>
 <span>whether to pad output with either zeros or spaces by prefacing the specifier with cer‐</span>
 <span>tain values.</span>
 <span>Example 7-1</span>
 <span>shows four possible combinations.</span>
+<br/>
 <span>Example 7-1. Precision setting</span>
+<br/>
 <span>&lt;?php</span>
 <span>echo "&lt;pre&gt;"; // Enables viewing of the spaces</span>
 <span>// Pad to 15 spaces</span>
@@ -179,27 +195,33 @@ layout: default
 <span>printf("The result is $%'#15.2f\n", 123.42 / 12);</span>
 <span>?&gt;</span>
 <span>The output from this example looks like this:</span>
+<br/>
 <span>The result is $ 10.285000</span>
 <span>The result is $00000010.285000</span>
 <span>The result is $ 10.29</span>
 <span>The result is $000000000010.29</span>
 <span>The result is $##########10.29</span>
+<br/>
 <span>The way it works is simple if you go from right to left (see</span>
 <span>Table 7-2</span>
 <span>). Notice that:</span>
+<br/>
 <span>&bull;</span>
 <span>The rightmost character is the conversion specifier: in this case,</span>
 <span>f</span>
 <span>for floating</span>
 <span>point.</span>
+<br/>
 <span>&bull;</span>
 <span>Just before the conversion specifier, if there is a period and a number together,</span>
 <span>then the precision of the output is specified as the value of the number.</span>
+<br/>
 <span>&bull;</span>
 <span>Regardless of whether there&rsquo;s a precision specifier, if there is a number, then that</span>
 <span>represents the number of characters to which the output should be padded. In</span>
 <span>the previous example, this is 15 characters. If the output is already equal to or</span>
 <span>greater than the padding length, then this argument is ignored.</span>
+<br/>
 <span>&bull;</span>
 <span>The leftmost parameter allowed after the</span>
 <span>%</span>
@@ -212,11 +234,14 @@ layout: default
 <span>mark, like this:</span>
 <span>'#</span>
 <span>.</span>
+<br/>
 <span>&bull;</span>
 <span>On the left is the</span>
 <span>%</span>
 <span>symbol, which starts the conversion.</span>
+<br/>
 <span>Table 7-2. Conversion specifier components</span>
+<br/>
 <span>Start conversion</span>
 <span>Pad character</span>
 <span>Number of pad</span>
@@ -256,7 +281,9 @@ layout: default
 <span>justification.</span>
 <span>Example 7-2</span>
 <span>shows various examples.</span>
+<br/>
 <span>Example 7-2. String padding</span>
+<br/>
 <span>&lt;?php</span>
 <span>echo "&lt;pre&gt;"; // Enables viewing of the spaces</span>
 <span>$h = 'Rasmus';</span>
@@ -270,6 +297,7 @@ layout: default
 <span>printf("[%-12.12s]\n", $d); // Left justify, cutoff of 12 characters</span>
 <span>printf("[%-'@12.10s]\n", $d); // Left justify, pad '@', cutoff 10 chars</span>
 <span>?&gt;</span>
+<br/>
 <span>Note how for purposes of layout in a web page, I&rsquo;ve used the</span>
 <span>&lt;pre&gt;</span>
 <span>HTML tag to pre‐</span>
@@ -277,6 +305,7 @@ layout: default
 <span>\n</span>
 <span>newline character after each of the lines to be dis‐</span>
 <span>played. The output from this example is as follows:</span>
+<br/>
 <span>[Rasmus]</span>
 <span>[ Rasmus]</span>
 <span>[Rasmus ]</span>
@@ -285,14 +314,18 @@ layout: default
 <span>[ Rasmus L]</span>
 <span>[Rasmus Lerdo]</span>
 <span>[Rasmus Ler@@]</span>
+<br/>
 <span>When you are specifying a padding value, if a string is already of equal or greater</span>
 <span>length than that value, it will be ignored,</span>
 <span>unless</span>
 <span>a cutoff value is given that shortens</span>
 <span>the string back to less than the padding value.</span>
+<br/>
 <span>Table 7-3</span>
 <span>shows the components available to string conversion specifiers.</span>
+<br/>
 <span>Table 7-3. String conversion specifier components</span>
+<br/>
 <span>Start conversion</span>
 <span>Left/right</span>
 <span>justify</span>
@@ -325,12 +358,16 @@ layout: default
 <span>sprintf</span>
 <span>function comes in. With it, you can send the</span>
 <span>output to another variable rather than to the browser.</span>
+<br/>
 <span>You might use it to make a conversion, as in the following example, which returns the</span>
 <span>hexadecimal string value for the RGB color group 65, 127, 245 in</span>
 <span>$hexstring</span>
 <span>:</span>
+<br/>
 <span>$hexstring = sprintf("%X%X%X", 65, 127, 245);</span>
+<br/>
 <span>Or you may wish to store output ready to display later on:</span>
+<br/>
 <span>$out = sprintf("The result is: $%.2f", 123.42 / 12);</span>
 <span>echo $out;</span>
 <h3>Date and Time Functions</h3>
@@ -339,7 +376,9 @@ layout: default
 <span>current timestamp, you can use the</span>
 <span>time</span>
 <span>function:</span>
+<br/>
 <span>echo time();</span>
+<br/>
 <span>Because the value is stored as seconds, to obtain the timestamp for this time next</span>
 <span>week, you would use the following, which adds 7 days times 24 hours times 60</span>
 <span>minutes times 60 seconds to the returned value:</span>
@@ -351,24 +390,33 @@ layout: default
 <span>946684800</span>
 <span>for the first second of the first minute of the</span>
 <span>first hour of the first day of the year 2000:</span>
+<br/>
 <span>echo mktime(0, 0, 0, 1, 1, 2000);</span>
+<br/>
 <span>The parameters to pass are, in order from left to right:</span>
+<br/>
 <span>&bull;</span>
 <span>The number of the hour (0&ndash;23)</span>
+<br/>
 <span>&bull;</span>
 <span>The number of the minute (0&ndash;59)</span>
+<br/>
 <span>&bull;</span>
 <span>The number of seconds (0&ndash;59)</span>
+<br/>
 <span>&bull;</span>
 <span>The number of the month (1&ndash;12)</span>
+<br/>
 <span>&bull;</span>
 <span>The number of the day (1&ndash;31)</span>
+<br/>
 <span>&bull;</span>
 <span>The year (1970&ndash;2038, or 1901&ndash;2038 with PHP 5.1.0+ on 32-bit signed systems)</span>
 <span>You may ask why you are limited to the years 1970 through 2038.</span>
 <span>Well, it&rsquo;s because the original developers of Unix chose the start of</span>
 <span>the year 1970 as the base date that no programmer should need to</span>
 <span>go before!</span>
+<br/>
 <span>Luckily, because (as of version 5.1.0) PHP supports systems using a</span>
 <span>signed 32-bit integer for the timestamp, dates from 1901 to 2038</span>
 <span>are allowed on them. However, that introduces a problem even</span>
@@ -376,6 +424,7 @@ layout: default
 <span>that nobody would be using Unix after about 70 years or so, and</span>
 <span>therefore believed they could get away with storing the timestamp</span>
 <span>as a 32-bit value&mdash;which will run out on January 19, 2038!</span>
+<br/>
 <span>This will create what has come to be known as the Y2K38 bug</span>
 <span>(much like the millennium bug, which was caused by storing years</span>
 <span>as two-digit values, and which also had to be fixed). PHP intro‐</span>
@@ -383,11 +432,14 @@ layout: default
 <span>DateTime</span>
 <span>class in version 5.2 to overcome this issue, but</span>
 <span>it will work only on 64-bit architecture.</span>
+<br/>
 <span>To display the date, use the</span>
 <span>date</span>
 <span>function, which supports a plethora of formatting</span>
 <span>options, enabling you to display the date any way you wish. The format is as follows:</span>
+<br/>
 <span>date($format, $timestamp);</span>
+<br/>
 <span>The parameter</span>
 <span>$format</span>
 <span>should be a string containing formatting specifiers as detailed</span>
@@ -403,8 +455,11 @@ layout: default
 <span>"Thursday July 6th,</span>
 <span>2017 - 1:38pm"</span>
 <span>:</span>
+<br/>
 <span>echo date("l F jS, Y - g:ia", time());</span>
+<br/>
 <span>Table 7-4. The major date function format specifiers</span>
+<br/>
 <span>Format</span>
 <span>Description</span>
 <span>Returned value</span>
@@ -535,9 +590,6 @@ layout: default
 <span>00</span>
 <span>to</span>
 <span>23</span>
-<span>Format</span>
-<span>Description</span>
-<span>Returned value</span>
 <span>i</span>
 <span>Minutes, with leading zeros</span>
 <span>00</span>
@@ -557,28 +609,36 @@ layout: default
 <span>returns the current</span>
 <span>date and time in the valid format for an RSS feed. Some of the more commonly used</span>
 <span>constants are as follows:</span>
+<br/>
 <span>DATE_ATOM</span>
+<br/>
 <span>This is the format for Atom feeds. The PHP format is</span>
 <span>"Y-m-d\TH:i:sP"</span>
 <span>and example</span>
 <span>output is</span>
 <span>"2018-08-16T12:00:00+00:00"</span>
 <span>.</span>
+<br/>
 <span>DATE_COOKIE</span>
+<br/>
 <span>This is the format for cookies set from a web server or JavaScript. The PHP format is</span>
 <span>"l, d-M-y H:i:s T"</span>
 <span>and example output is</span>
 <span>"Thursday, 16-Aug-18 12:00:00</span>
 <span>UTC"</span>
 <span>.</span>
+<br/>
 <span>DATE_RSS</span>
+<br/>
 <span>This is the format for RSS feeds. The PHP format is</span>
 <span>"D, d M Y H:i:s O"</span>
 <span>and exam‐</span>
 <span>ple output is</span>
 <span>"Thu, 16 Aug 2018 12:00:00 UTC"</span>
 <span>.</span>
+<br/>
 <span>DATE_W3C</span>
+<br/>
 <span>This is the format for the World Wide Web Consortium. The PHP format is</span>
 <span>"Y-m-d</span>
 <span>\TH:i:sP"</span>
@@ -599,11 +659,14 @@ layout: default
 <span>date is valid, or</span>
 <span>FALSE</span>
 <span>if it is not.</span>
+<br/>
 <span>For example, if February 30 of any year is input, it will always be an invalid date.</span>
 <span>Example 7-3</span>
 <span>shows code that you could use for this. As it stands, it will find the given</span>
 <span>date invalid.</span>
+<br/>
 <span>Example 7-3. Checking for the validity of a date</span>
+<br/>
 <span>&lt;?php</span>
 <span>$month = 9; // September (only has 30 days)</span>
 <span>$day = 31; // 31st</span>
@@ -616,6 +679,7 @@ layout: default
 <span>on a web server. Sometimes it can be quicker and more convenient to directly access</span>
 <span>files on the hard disk. Cases in which you might need to do this are modifying images</span>
 <span>such as uploaded user avatars, or log files that you wish to process.</span>
+<br/>
 <span>First, though, a note about file naming: if you are writing code that may be used on</span>
 <span>various PHP installations, there is no way of knowing whether these systems are case-</span>
 <span>sensitive. For example, Windows and Mac OS X filenames are not case-sensitive, but</span>
@@ -630,6 +694,7 @@ layout: default
 <span>or</span>
 <span>FALSE</span>
 <span>, and is used like this:</span>
+<br/>
 <span>if (file_exists("testfile.txt")) echo "File exists";</span>
 <h4>Creating a File</h4>
 <span>At this point,</span>
@@ -639,8 +704,10 @@ layout: default
 <span>and save it as</span>
 <span>testfile.php</span>
 <span>.</span>
+<br/>
 <span>Example 7-4. Creating a simple text</span>
 <span>file</span>
+<br/>
 <span>&lt;?php // testfile.php</span>
 <span>$fh = fopen("testfile.txt", 'w') or die("Failed to create file");</span>
 <span>$text = &lt;&lt;&lt;_END</span>
@@ -652,6 +719,7 @@ layout: default
 <span>fclose($fh);</span>
 <span>echo "File 'testfile.txt' written successfully";</span>
 <span>?&gt;</span>
+<br/>
 <span>When you run this in a browser, all being well, you will receive the message</span>
 <span>File</span>
 <span>'testfile.txt' written successfully</span>
@@ -665,14 +733,18 @@ layout: default
 <span>testfile.php</span>
 <span>program. Try opening the file in a</span>
 <span>text or program editor&mdash;the contents will look like this:</span>
+<br/>
 <span>Line 1</span>
 <span>Line 2</span>
 <span>Line 3</span>
+<br/>
 <span>This simple example shows the sequence that all file handling takes:</span>
+<br/>
 <span>1.</span>
 <span>Always start by opening the file. You do this through a call to</span>
 <span>fopen</span>
 <span>.</span>
+<br/>
 <span>2.</span>
 <span>Then you can call other functions; here we write to the file (</span>
 <span>fwrite</span>
@@ -682,11 +754,13 @@ layout: default
 <span>or</span>
 <span>fgets</span>
 <span>) and do other things.</span>
+<br/>
 <span>3.</span>
 <span>Finish by closing the file (</span>
 <span>fclose</span>
 <span>). Although the program does this for you when</span>
 <span>it ends, you should clean up by closing the file when you&rsquo;re finished.</span>
+<br/>
 <span>Every open file requires a file resource so that PHP can access and manage it. The</span>
 <span>preceding example sets the variable</span>
 <span>$fh</span>
@@ -708,6 +782,7 @@ layout: default
 <span>variable;</span>
 <span>it&rsquo;s a number PHP uses to refer to internal information about the file&mdash;you just pass</span>
 <span>the variable to other functions.</span>
+<br/>
 <span>Upon failure,</span>
 <span>FALSE</span>
 <span>will be returned by</span>
@@ -719,6 +794,7 @@ layout: default
 <span>and give the user an error message. A web application would never abort in this crude</span>
 <span>way (you would create a web page with an error message instead), but this is fine for</span>
 <span>our testing purposes.</span>
+<br/>
 <span>Notice the second parameter to the</span>
 <span>fopen</span>
 <span>call. It is simply the character</span>
@@ -732,9 +808,11 @@ layout: default
 <span>fopen</span>
 <span>call to delete the old contents (even if</span>
 <span>you don&rsquo;t write anything new!).</span>
+<br/>
 <span>There are several different mode parameters that can be used here, as detailed in</span>
 <span>Table 7-5</span>
 <span>.</span>
+<br/>
 <span>Table 7-5. The supported fopen modes</span>
 <span>Mode</span>
 <span>Action</span>
@@ -782,7 +860,9 @@ layout: default
 <span>), as in</span>
 <span>Example 7-5</span>
 <span>.</span>
+<br/>
 <span>Example 7-5. Reading a</span>
+<br/>
 <span>file with fgets</span>
 <span>&lt;?php</span>
 <span>$fh = fopen("testfile.txt", 'r') or</span>
@@ -791,18 +871,23 @@ layout: default
 <span>fclose($fh);</span>
 <span>echo $line;</span>
 <span>?&gt;</span>
+<br/>
 <span>If you created the file as shown in</span>
 <span>Example 7-4</span>
 <span>, you&rsquo;ll get the first line:</span>
+<br/>
 <span>Line 1</span>
+<br/>
 <span>Or you can retrieve multiple lines or portions of lines through the</span>
 <span>fread</span>
 <span>function, as</span>
 <span>in</span>
 <span>Example 7-6</span>
 <span>.</span>
+<br/>
 <span>Example 7-6. Reading a</span>
 <span>file with fread</span>
+<br/>
 <span>&lt;?php</span>
 <span>$fh = fopen("testfile.txt", 'r') or</span>
 <span>die("File does not exist or you lack permission to open it");</span>
@@ -810,10 +895,13 @@ layout: default
 <span>fclose($fh);</span>
 <span>echo $text;</span>
 <span>?&gt;</span>
+<br/>
 <span>I&rsquo;ve requested three characters in the</span>
 <span>fread</span>
 <span>call, so the program displays this:</span>
+<br/>
 <span>Lin</span>
+<br/>
 <span>The</span>
 <span>fread</span>
 <span>function is commonly used with binary data. But if you use it on text data</span>
@@ -828,12 +916,15 @@ layout: default
 <span>and save it as</span>
 <span>copyfile.php</span>
 <span>, and then call up the program in your browser.</span>
+<br/>
 <span>Example 7-7. Copying a</span>
 <span>file</span>
+<br/>
 <span>&lt;?php // copyfile.php</span>
 <span>copy('testfile.txt', 'testfile2.txt') or die("Could not copy file");</span>
 <span>echo "File successfully copied to 'testfile2.txt'";</span>
 <span>?&gt;</span>
+<br/>
 <span>If you check your folder again, you&rsquo;ll see that you now have the new file</span>
 <span>testfile2.txt</span>
 <span>in</span>
@@ -841,8 +932,10 @@ layout: default
 <span>could try the alternate syntax in</span>
 <span>Example 7-8</span>
 <span>.</span>
+<br/>
 <span>Example 7-8. Alternate syntax for copying a</span>
 <span>file</span>
+<br/>
 <span>&lt;?php // copyfile2.php</span>
 <span>if (!copy('testfile.txt', 'testfile2.txt')) echo "Could not copy file";</span>
 <span>else echo "File successfully copied to 'testfile2.txt'";</span>
@@ -853,13 +946,16 @@ layout: default
 <span>function, as in</span>
 <span>Example 7-9</span>
 <span>.</span>
+<br/>
 <span>Example 7-9. Moving a</span>
 <span>file</span>
+<br/>
 <span>&lt;?php // movefile.php</span>
 <span>if (!rename('testfile2.txt', 'testfile2.new'))</span>
 <span>echo "Could not rename file";</span>
 <span>else echo "File successfully renamed to 'testfile2.new'";</span>
 <span>?&gt;</span>
+<br/>
 <span>You can use the</span>
 <span>rename</span>
 <span>function on directories, too. To avoid any warning messages,</span>
@@ -873,17 +969,21 @@ layout: default
 <span>system, as in</span>
 <span>Example 7-10</span>
 <span>.</span>
+<br/>
 <span>Example 7-10. Deleting a</span>
 <span>file</span>
+<br/>
 <span>&lt;?php // deletefile.php</span>
 <span>if (!unlink('testfile2.new')) echo "Could not delete file";</span>
 <span>else echo "File 'testfile2.new' successfully deleted";</span>
 <span>?&gt;</span>
+<br/>
 <span>Whenever you access files on your hard disk directly, you must also</span>
 <span>always ensure that it is impossible for your file system to be com‐</span>
 <span>promised. For example, if you are deleting a file based on user</span>
 <span>input, you must make absolutely certain it is a file that can be safely</span>
 <span>deleted and that the user is allowed to delete it.</span>
+<br/>
 <span>As with moving a file, a warning message will be displayed if the file doesn&rsquo;t exist,</span>
 <span>which you can avoid by using</span>
 <span>file_exists</span>
@@ -899,6 +999,7 @@ layout: default
 <span>file for reading and writing with one of the other modes that supports writing, and</span>
 <span>move the file pointer to the correct place within the file that you wish to write to or</span>
 <span>read from.</span>
+<br/>
 <span>The</span>
 <span>file pointer</span>
 <span>is the position within a file at which the next file access will take place,</span>
@@ -910,14 +1011,17 @@ layout: default
 <span>in</span>
 <span>Example 7-4</span>
 <span>), which contains details about the file being accessed.</span>
+<br/>
 <span>You can see this in action by typing</span>
 <span>Example 7-11</span>
 <span>and saving it as</span>
 <span>update.php</span>
 <span>. Then</span>
 <span>call it up in your browser.</span>
+<br/>
 <span>Example 7-11. Updating a</span>
 <span>file</span>
+<br/>
 <span>&lt;?php // update.php</span>
 <span>$fh = fopen("testfile.txt", 'r+') or die("Failed to open file");</span>
 <span>$text = fgets($fh);</span>
@@ -926,6 +1030,7 @@ layout: default
 <span>fclose($fh);</span>
 <span>echo "File 'testfile.txt' successfully updated";</span>
 <span>?&gt;</span>
+<br/>
 <span>This program opens</span>
 <span>testfile.txt</span>
 <span>for both reading and writing by setting the mode with</span>
@@ -941,11 +1046,14 @@ layout: default
 <span>$text</span>
 <span>) is then appended to</span>
 <span>file&rsquo;s end and the file is closed. The resulting file now looks like this:</span>
+<br/>
 <span>Line 1</span>
 <span>Line 2</span>
 <span>Line 3</span>
 <span>Line 1</span>
+<br/>
 <span>The first line has successfully been copied and then appended to the file&rsquo;s end.</span>
+<br/>
 <span>As used here, in addition to the</span>
 <span>$fh</span>
 <span>file handle, the</span>
@@ -967,6 +1075,7 @@ layout: default
 <span>0</span>
 <span>is used,</span>
 <span>because the pointer is required to remain at the file&rsquo;s end.</span>
+<br/>
 <span>There are two other seek options available to the</span>
 <span>fseek</span>
 <span>function:</span>
@@ -978,14 +1087,18 @@ layout: default
 <span>option tells the function to set the file pointer to the exact</span>
 <span>position given by the preceding parameter. Thus, the following example moves the</span>
 <span>file pointer to position 18:</span>
+<br/>
 <span>fseek($fh, 18, SEEK_SET);</span>
+<br/>
 <span>SEEK_CUR</span>
 <span>sets the file pointer to the current position</span>
 <span>plus</span>
 <span>the value of the given offset.</span>
 <span>Therefore, if the file pointer is currently at position 18, the following call will move it</span>
 <span>to position 23:</span>
+<br/>
 <span>fseek($fh, 5, SEEK_CUR);</span>
+<br/>
 <span>Although this is not recommended unless you have very specific reasons for it, it is</span>
 <span>even possible to use text files such as this (but with fixed line lengths) as simple flat</span>
 <span>file databases. Your program can then use</span>
@@ -1007,8 +1120,10 @@ layout: default
 <span>, which is an updated version of</span>
 <span>Example 7-11</span>
 <span>.</span>
+<br/>
 <span>Example 7-12. Updating a</span>
 <span>file with file locking</span>
+<br/>
 <span>&lt;?php</span>
 <span>$fh = fopen("testfile.txt", 'r+') or die("Failed to open file");</span>
 <span>$text = fgets($fh);</span>
@@ -1021,6 +1136,7 @@ layout: default
 <span>fclose($fh);</span>
 <span>echo "File 'testfile.txt' successfully updated";</span>
 <span>?&gt;</span>
+<br/>
 <span>There is a trick to file locking to preserve the best possible response time for your</span>
 <span>website visitors: perform it directly before a change you make to a file, and then</span>
 <span>unlock it immediately afterward. Having a file locked for any longer than this will</span>
@@ -1041,6 +1157,7 @@ layout: default
 <span>are directly before and after the</span>
 <span>fwrite</span>
 <span>call.</span>
+<br/>
 <span>The first call to</span>
 <span>flock</span>
 <span>sets an exclusive file lock on the file referred to by</span>
@@ -1048,16 +1165,21 @@ layout: default
 <span>using the</span>
 <span>LOCK_EX</span>
 <span>parameter:</span>
+<br/>
 <span>flock($fh, LOCK_EX);</span>
+<br/>
 <span>From this point onward, no other processes can write to (or even read from) the file</span>
 <span>until you release the lock by using the</span>
 <span>LOCK_UN</span>
 <span>parameter, like this:</span>
+<br/>
 <span>flock($fh, LOCK_UN);</span>
+<br/>
 <span>As soon as the lock is released, other processes are again allowed access to the file.</span>
 <span>This is one reason why you should re-seek to the point you wish to access in a file</span>
 <span>each time you need to read or write data, because another process could have</span>
 <span>changed the file since the last access.</span>
+<br/>
 <span>However, did you notice that the call to request an exclusive lock is nested as part of</span>
 <span>an</span>
 <span>if</span>
@@ -1066,6 +1188,7 @@ layout: default
 <span>is not supported on all systems; thus, it is wise</span>
 <span>to check whether you successfully secured a lock, just in case one could not be</span>
 <span>obtained.</span>
+<br/>
 <span>Something else you must consider is that</span>
 <span>flock</span>
 <span>is what is known as an</span>
@@ -1076,8 +1199,10 @@ layout: default
 <span>flock</span>
 <span>file lock‐</span>
 <span>ing, it will always override the locking and could wreak havoc on your files.</span>
+<br/>
 <span>By the way, implementing file locking and then accidentally leaving it out in one sec‐</span>
 <span>tion of code can lead to an extremely hard-to-locate bug.</span>
+<br/>
 <span>flock</span>
 <span>will not work on NFS and many other networked file sys‐</span>
 <span>tems. Also, when using a multithreaded server like ISAPI, you may</span>
@@ -1095,13 +1220,16 @@ layout: default
 <span>. It&rsquo;s very easy to use, as you can see in</span>
 <span>Example 7-13</span>
 <span>.</span>
+<br/>
 <span>Example 7-13. Using</span>
 <span>file_get_contents</span>
+<br/>
 <span>&lt;?php</span>
 <span>echo "&lt;pre&gt;"; // Enables display of line feeds</span>
 <span>echo file_get_contents("testfile.txt");</span>
 <span>echo "&lt;/pre&gt;"; // Terminates pre tag</span>
 <span>?&gt;</span>
+<br/>
 <span>But the function is actually a lot more useful than that, because you can also use it to</span>
 <span>fetch a file from a server across the Internet, as in</span>
 <span>Example 7-14</span>
@@ -1110,10 +1238,13 @@ layout: default
 <span>the page itself. The result will be similar to</span>
 <span>Figure 7-1</span>
 <span>.</span>
+<br/>
 <span>Example 7-14. Grabbing the O&rsquo;Reilly home page</span>
+<br/>
 <span>&lt;?php</span>
 <span>echo file_get_contents("http://oreilly.com");</span>
 <span>?&gt;</span>
+<p><img src="images/7.1.png"/></p>
 <span>Figure 7-1. The O&rsquo;Reilly home page grabbed with file_get_contents</span>
 <h4>Uploading Files</h4>
 <span>Uploading files to a web server is a subject that seems daunting to many people, but it</span>
@@ -1128,7 +1259,9 @@ layout: default
 <span>upload.php</span>
 <span>. When you run it, you&rsquo;ll see a form in your browser that lets you upload</span>
 <span>a file of your choice.</span>
+<br/>
 <span>Example 7-15. Image uploader upload.php</span>
+<br/>
 <span>&lt;?php // upload.php</span>
 <span>echo &lt;&lt;&lt;_END</span>
 <span>&lt;html&gt;&lt;head&gt;&lt;title&gt;PHP Form Upload&lt;/title&gt;&lt;/head&gt;&lt;body&gt;</span>
@@ -1145,10 +1278,12 @@ layout: default
 <span>}</span>
 <span>echo "&lt;/body&gt;&lt;/html&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>Let&rsquo;s examine this program a section at a time. The first line of the multiline</span>
 <span>echo</span>
 <span>statement starts an HTML document, displays the title, and then starts the docu‐</span>
 <span>ment&rsquo;s body.</span>
+<br/>
 <span>Next we come to the form that selects the Post method of form submission, sets the</span>
 <span>target for posted data to the program</span>
 <span>&nbsp;upload.php</span>
@@ -1156,6 +1291,7 @@ layout: default
 <span>web browser that the data posted should be encoded via the content MIME type of</span>
 <span>multipart/form-data</span>
 <span>.</span>
+<br/>
 <span>With the form set up, the next lines display the prompt Select File: and then request</span>
 <span>two inputs. The first request is for a file; it uses an input type of</span>
 <span>file</span>
@@ -1164,9 +1300,11 @@ layout: default
 <span>, and an input field with a width of 10 characters. The second requested</span>
 <span>input is just a Submit button that is given the label Upload (which replaces the default</span>
 <span>button text of Submit Query). And then the form is closed.</span>
+<br/>
 <span>This short program shows a common technique in web programming in which a sin‐</span>
 <span>gle program is called twice: once when the user first visits a page, and again when the</span>
 <span>user presses the Submit button.</span>
+<br/>
 <span>The PHP code to receive the uploaded data is fairly simple, because all uploaded files</span>
 <span>are placed into the associative system array</span>
 <span>$_FILES</span>
@@ -1177,6 +1315,7 @@ layout: default
 <span>uploaded a file. This is done with the statement</span>
 <span>if ($_FILES)</span>
 <span>.</span>
+<br/>
 <span>The first time the user visits the page, before uploading a file,</span>
 <span>$_FILES</span>
 <span>is empty, so the</span>
@@ -1184,6 +1323,7 @@ layout: default
 <span>again and discovers an element in the</span>
 <span>$_FILES</span>
 <span>array.</span>
+<br/>
 <span>Once the program realizes that a file was uploaded, the actual name, as read from the</span>
 <span>uploading computer, is retrieved and placed into the variable</span>
 <span>$name</span>
@@ -1193,12 +1333,14 @@ layout: default
 <span>move_uploaded_file</span>
 <span>function, passing it the original name of the file, with which it is saved to the current</span>
 <span>directory.</span>
+<br/>
 <span>Finally, the uploaded image is displayed within an</span>
 <span>IMG</span>
 <span>tag, and the result should look</span>
 <span>like</span>
 <span>Figure 7-2</span>
 <span>.</span>
+<br/>
 <span>If you run this program and receive warning messages such as</span>
 <span>Per</span>
 <span>mission denied</span>
@@ -1207,8 +1349,9 @@ layout: default
 <span>function call, then</span>
 <span>you may not have the correct permissions set for the folder in</span>
 <span>which the program is running.</span>
+<p><img src="images/7.2.png"/></p>
 <span>Figure 7-2. Uploading an image as form data</span>
-<span>Using $_FILES</span>
+<h6>Using $_FILES</h6>
 <span>Five things are stored in the</span>
 <span>$_FILES</span>
 <span>array when a file is uploaded, as shown in</span>
@@ -1216,7 +1359,9 @@ layout: default
 <span>(where</span>
 <span>file</span>
 <span>is the file upload field name supplied by the submitting form).</span>
+<br/>
 <span>Table 7-6. The contents of the $_FILES array</span>
+<br/>
 <span>Array element</span>
 <span>Contents</span>
 <span>$_FILES['</span>
@@ -1253,6 +1398,7 @@ layout: default
 <span>error</span>
 <span>']</span>
 <span>The error code resulting from the file upload</span>
+<br/>
 <span>Content types used to be known as</span>
 <span>&nbsp;MIME (Multipurpose Internet Mail Extension)</span>
 <span>types, but because their use later expanded to the whole Internet, now they are often</span>
@@ -1268,7 +1414,9 @@ layout: default
 <span>type</span>
 <span>']</span>
 <span>.</span>
+<br/>
 <span>Table 7-7. Some common Internet media content types</span>
+<br/>
 <span>application/pdf</span>
 <span>image/gif</span>
 <span>multipart/form-data</span>
@@ -1289,9 +1437,11 @@ layout: default
 <span>I hope it now goes without saying (although I&rsquo;ll do so anyway) that form data valida‐</span>
 <span>tion is of the utmost importance, due to the possibility of users attempting to hack</span>
 <span>into your server.</span>
+<br/>
 <span>In addition to maliciously formed input data, some of the things you also have to</span>
 <span>check are whether a file was actually received and, if so, whether the right type of data</span>
 <span>was sent.</span>
+<br/>
 <span>Taking all these things into account,</span>
 <span>&nbsp;Example 7-16</span>
 <span>,</span>
@@ -1300,7 +1450,9 @@ layout: default
 <span>rewrite of</span>
 <span>upload.php</span>
 <span>.</span>
+<br/>
 <span>Example 7-16. A more secure version of upload.php</span>
+<br/>
 <span>&lt;?php // upload2.php</span>
 <span>echo &lt;&lt;&lt;_END</span>
 <span>&lt;html&gt;&lt;head&gt;&lt;title&gt;PHP Form Upload&lt;/title&gt;&lt;/head&gt;&lt;body&gt;</span>
@@ -1341,11 +1493,13 @@ layout: default
 <span>else echo "No image has been uploaded";</span>
 <span>echo "&lt;/body&gt;&lt;/html&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>The non-HTML section of code has been expanded from the half-dozen lines of</span>
 <span>Example 7-15</span>
 <span>to more than 20 lines, starting at</span>
 <span>if ($_FILES)</span>
 <span>.</span>
+<br/>
 <span>As with the previous version, this</span>
 <span>if</span>
 <span>line checks whether any data was actually pos‐</span>
@@ -1353,6 +1507,7 @@ layout: default
 <span>else</span>
 <span>near the bottom of the program that echoes a</span>
 <span>message to screen when nothing has been uploaded.</span>
+<br/>
 <span>Within the</span>
 <span>if</span>
 <span>statement, the variable</span>
@@ -1372,6 +1527,7 @@ layout: default
 <span>is set to the empty string</span>
 <span>""</span>
 <span>.</span>
+<br/>
 <span>The next section of code then checks the variable</span>
 <span>$ext</span>
 <span>to see whether it contains a</span>
@@ -1393,14 +1549,17 @@ layout: default
 <span>or</span>
 <span>image.tif</span>
 <span>.</span>
+<br/>
 <span>Safe in the knowledge that the program has not been compromised, the rest of the</span>
 <span>PHP code is much the same as in the previous version. It moves the uploaded tempo‐</span>
 <span>rary image to its new location and then displays it, while also displaying the old and</span>
 <span>new image names.</span>
+<br/>
 <span>Don&rsquo;t worry about having to delete the temporary file that PHP</span>
 <span>creates during the upload process, because if the file has not been</span>
 <span>moved or renamed, it will be automatically removed when the pro‐</span>
 <span>gram exits.</span>
+<br/>
 <span>After the</span>
 <span>if</span>
 <span>statement, there is a matching</span>
@@ -1408,12 +1567,14 @@ layout: default
 <span>, which is executed only if an unsup‐</span>
 <span>ported image type was uploaded, in which case it displays an appropriate error mes‐</span>
 <span>sage.</span>
+<br/>
 <span>When you write your own file-uploading routines, I strongly advise you to use a sim‐</span>
 <span>ilar approach and have pre-chosen names and locations for uploaded files. That way,</span>
 <span>no attempts to add pathnames and other malicious data to the variables you use can</span>
 <span>get through. If this means that more than one user could end up having a file uploa‐</span>
 <span>ded with the same name, you could prefix such files with their user&rsquo;s name, or save</span>
 <span>them to individually created folders for each user.</span>
+<br/>
 <span>But if you must use a supplied filename, you should sanitize it by allowing only</span>
 <span>alphanumeric characters and the period, which you can do with the following com‐</span>
 <span>mand, using a regular expression (see</span>
@@ -1421,16 +1582,21 @@ layout: default
 <span>) to perform a search and replace on</span>
 <span>$name</span>
 <span>:</span>
+<br/>
 <span>$name = preg_replace("/[^A-Za-z0-9.]/", "", $name);</span>
+<br/>
 <span>This leaves only the characters A&ndash;Z, a&ndash;z, 0&ndash;9, and periods in the string</span>
 <span>$name</span>
 <span>, and</span>
 <span>strips out everything else.</span>
+<br/>
 <span>Even better, to ensure that your program will work on all systems, regardless of</span>
 <span>whether they are case-sensitive or case-insensitive, you should probably use the fol‐</span>
 <span>lowing command instead, which changes all uppercase characters to lowercase at the</span>
 <span>same time:</span>
+<br/>
 <span>$name = strtolower(ereg_replace("[^A-Za-z0-9.]", "", $name));</span>
+<br/>
 <span>Sometimes you may encounter the media type of</span>
 <span>image/pjpeg</span>
 <span>,</span>
@@ -1438,6 +1604,7 @@ layout: default
 <span>your code as an alias of</span>
 <span>image/jpeg</span>
 <span>, like this:</span>
+<br/>
 <span>case 'image/pjpeg':</span>
 <span>case 'image/jpeg': $ext = 'jpg'; break;</span>
 <h3>System Calls</h3>
@@ -1446,6 +1613,7 @@ layout: default
 <span>exec</span>
 <span>system</span>
 <span>call to do the job.</span>
+<br/>
 <span>For example, to quickly view the contents of the current directory, you can use a pro‐</span>
 <span>gram such as</span>
 <span>Example 7-17</span>
@@ -1459,7 +1627,9 @@ layout: default
 <span>wish to type this program, save it as</span>
 <span>exec.php</span>
 <span>, and call it up in your browser.</span>
+<br/>
 <span>Example 7-17. Executing a system command</span>
+<br/>
 <span>&lt;?php // exec.php</span>
 <span>$cmd = "dir"; // Windows</span>
 <span>// $cmd = "ls"; // Linux, Unix &amp; Mac</span>
@@ -1471,6 +1641,7 @@ layout: default
 <span>foreach($output as $line) echo htmlspecialchars("$line\n");</span>
 <span>echo "&lt;/pre&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>The</span>
 <span>htmlspecialchars</span>
 <span>function is called to turn any special characters returned by</span>
@@ -1479,6 +1650,7 @@ layout: default
 <span>will look something like this (from a Windows</span>
 <span>dir</span>
 <span>command):</span>
+<br/>
 <span>Volume in drive C is Hard Disk</span>
 <span>Volume Serial Number is DC63-0E29</span>
 <span>Directory of C:\xampp\htdocs</span>
@@ -1495,28 +1667,34 @@ layout: default
 <span>3 File(s) 579 bytes</span>
 <span>&nbsp;</span>
 <span>6 Dir(s) 1,793,430,867,968 bytes free</span>
+<br/>
 <span>exec</span>
 <span>takes three arguments:</span>
+<br/>
 <span>&bull;</span>
 <span>The command itself (in the previous case,</span>
 <span>$cmd</span>
 <span>)</span>
+<br/>
 <span>&bull;</span>
 <span>An array in which the system will put the output from the command (in the pre‐</span>
 <span>vious case,</span>
 <span>$output</span>
 <span>)</span>
+<br/>
 <span>&bull;</span>
 <span>A variable to contain the returned status of the call (which, in the previous case,</span>
 <span>is</span>
 <span>$status</span>
 <span>)</span>
+<br/>
 <span>If you wish, you can omit the</span>
 <span>$output</span>
 <span>and</span>
 <span>$status</span>
 <span>parameters, but you will not</span>
 <span>know the output created by the call or even whether it completed successfully.</span>
+<br/>
 <span>You should also note the use of the</span>
 <span>escapeshellcmd</span>
 <span>function. It is a good habit to</span>
@@ -1525,6 +1703,7 @@ layout: default
 <span>call, because it sanitizes the command string,</span>
 <span>preventing the execution of arbitrary commands, should you supply user input to the</span>
 <span>call.</span>
+<br/>
 <span>The system calling functions are typically disabled on shared web</span>
 <span>hosts, as they pose a security risk. You should always try to solve</span>
 <span>your problems within PHP if you can, and go to the system directly</span>
@@ -1537,11 +1716,14 @@ layout: default
 <span>For this reason, XHTML never really caught on, and when the time came to devise a</span>
 <span>new standard, the World Wide Web Consortium chose to support HTML5 rather</span>
 <span>than the newer XHTML2 standard.</span>
+<br/>
 <span>HTML5 has some of the features of both HTML4 and XHTML, but is much simpler</span>
 <span>to use and less strict to validate and, happily, there is now just a single document type</span>
 <span>you need to place at the head of an HTML5 document (instead of the variety of strict,</span>
 <span>transitional, and frameset types previously required), namely:</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
+<br/>
 <span>Just the simple word</span>
 <span>html</span>
 <span>is sufficient to tell the browser that your web page is</span>
@@ -1549,6 +1731,7 @@ layout: default
 <span>have been supporting most of the HTML5 specification since 2011 or so, this docu‐</span>
 <span>ment type is generally the only one you need, unless you choose to cater to older</span>
 <span>browsers.</span>
+<br/>
 <span>For all intents and purposes, when writing HTML documents, web developers can</span>
 <span>safely ignore the old XHTML document types and syntax (such as using</span>
 <span>&lt;br /&gt;</span>
@@ -1559,51 +1742,3 @@ layout: default
 <span>information on how to do that at</span>
 <span>http://xhtml.com</span>
 <span>.</span>
-<h3>Questions</h3>
-<span>1.</span>
-<span>Which</span>
-<span>printf</span>
-<span>conversion specifier would you use to display a floating-point</span>
-<span>number?</span>
-<span>2.</span>
-<span>What</span>
-<span>printf</span>
-<span>statement could be used to take the input string</span>
-<span>"Happy Birthday"</span>
-<span>and output the string</span>
-<span>"**Happy"</span>
-<span>?</span>
-<span>3.</span>
-<span>To send the output from</span>
-<span>printf</span>
-<span>to a variable instead of to a browser, what alter‐</span>
-<span>native function would you use?</span>
-<span>4.</span>
-<span>How would you create a Unix timestamp for 7:11 a.m. on May 2, 2016?</span>
-<span>5.</span>
-<span>Which file access mode would you use with</span>
-<span>fopen</span>
-<span>to open a file in write and read</span>
-<span>mode, with the file truncated and the file pointer at the start?</span>
-<span>6.</span>
-<span>What is the PHP command for deleting the file</span>
-<span>file.txt</span>
-<span>?</span>
-<span>7.</span>
-<span>Which PHP function is used to read in an entire file in one go, even from across</span>
-<span>the Web?</span>
-<span>8.</span>
-<span>Which PHP superglobal variable holds the details on uploaded files?</span>
-<span>9.</span>
-<span>Which PHP function enables the running of system commands?</span>
-<span>10.</span>
-<span>Which of the following tag styles is preferred in HTML5:</span>
-<span>&lt;hr&gt;</span>
-<span>or</span>
-<span>&lt;hr /&gt;</span>
-<span>?</span>
-<span>See</span>
-<span>Chapter 7 Answers</span>
-<span>in</span>
-<span>Appendix A</span>
-<span>for the answers to these questions.</span>
