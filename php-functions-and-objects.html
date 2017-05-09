@@ -56,13 +56,11 @@ layout: default
 <span>print</span>
 <span>func‐</span>
 <span>tion in action here:</span>
-<br/>
-<span>print("print is a pseudo-function");</span>
-<br/>
+<pre><code class="php">print("print is a pseudo-function");</code></pre>
 <span>The parentheses tell PHP that you&rsquo;re referring to a function. Otherwise, it thinks</span>
 <span>you&rsquo;re referring to a constant. You may see a warning such as this:</span>
 <br/>
-<span>Notice: Use of undefined constant fname - assumed 'fname'</span>
+<b class="t30">Notice: Use of undefined constant fname - assumed 'fname'</b>
 <br/>
 <span>followed by the text string</span>
 <span>fname</span>
@@ -91,9 +89,7 @@ layout: default
 <span>requires no argument. The result of calling this function can be seen in</span>
 <span>Figure 5-1</span>
 <span>.</span>
-<br/>
-<span>phpinfo();</span>
-<br/>
+<pre><code class="php">phpinfo();</code></pre>
 <span>The</span>
 <span>phpinfo</span>
 <span>function is extremely useful for obtaining informa‐</span>
@@ -121,16 +117,18 @@ layout: default
 <br/>
 <span>Example 5-1.</span>
 <span>Three string functions</span>
-<br/>
-<span>&lt;?php</span>
-<span>echo strrev(" .dlrow olleH"); // Reverse string</span>
-<span>echo str_repeat("Hip ", 2); // Repeat string</span>
-<span>echo strtoupper("hooray!"); // String to uppercase</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    echo strrev(" .dlrow olleH"); // Reverse string
+    echo str_repeat("Hip ", 2); // Repeat string
+    echo strtoupper("hooray!"); // String to uppercase
+?&gt;
+</code>
+</pre>
 <span>This example uses three string functions to output the following text:</span>
 <br/>
-<b>Hello world. Hip Hip HOORAY!</b>
+<b class="t30">Hello world. Hip Hip HOORAY!</b>
 <br/>
 <span>As you can see, the</span>
 <span>strrev</span>
@@ -145,17 +143,14 @@ layout: default
 <span>to uppercase.</span>
 <h4>Defining a Function</h4>
 <span>The general syntax for a function is as follows:</span>
-<br/>
-<span>function</span>
-<span>function_name</span>
-<span>([</span>
-<span>parameter</span>
-<span>[, ...]])</span>
-<span>{</span>
-<span>//</span>
-<span>Statements</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="php">
+    function function_name([parameter[, ...]])
+    {
+        //Statements
+    }
+</code>
+</pre>
 <span>I&rsquo;ll explain all the square brackets, in case you find them confusing. The first line of</span>
 <span>the syntax indicates the following:</span>
 <br/>
@@ -212,13 +207,15 @@ layout: default
 <span>. For our current function, we&rsquo;ll use its counterpart,</span>
 <span>strtolower</span>
 <span>:</span>
-<br/>
-<span>$lowered = strtolower("aNY # of Letters and Punctuation you WANT");</span>
-<span>echo $lowered;</span>
-<br/>
+<pre>
+<code class="php">
+    $lowered = strtolower("aNY # of Letters and Punctuation you WANT");
+    echo $lowered;
+</code>
+</pre>
 <span>The output of this experiment is as follows:</span>
 <br/>
-<b>any # of letters and punctuation you want</b>
+<b class="t30">any # of letters and punctuation you want</b>
 <br/>
 <span>We don&rsquo;t want names all lowercase, though; we want the first letter of each name cap‐</span>
 <span>italized. (We&rsquo;re not going to deal with subtle cases such as Mary-Ann or Jo-En-Lai for</span>
@@ -226,13 +223,15 @@ layout: default
 <span>ucfirst</span>
 <span>function that sets the first char‐</span>
 <span>acter of a string to uppercase:</span>
-<br/>
-<span>$ucfixed = ucfirst("any # of letters and punctuation you want");</span>
-<span>echo $ucfixed;</span>
-<br/>
+<pre>
+<code class="php">
+    $ucfixed = ucfirst("any # of letters and punctuation you want");
+    echo $ucfixed;
+</code>
+</pre>
 <span>The output is as follows:</span>
 <br/>
-<b>Any # of letters and punctuation you want</b>
+<b class="t30">Any # of letters and punctuation you want</b>
 <br/>
 <span>Now we can do our first bit of program design: to get a word with its initial letter</span>
 <span>capitalized, we call</span>
@@ -248,11 +247,9 @@ layout: default
 <span>understand the order in which code is evaluated.</span>
 <br/>
 <span>Say you make a simple call to the</span>
-<br/>
 <span>print</span>
 <span>function:</span>
-<span>print(5-8);</span>
-<br/>
+<pre><code class="php">print(5-8);</code></pre>
 <span>The expression</span>
 <span>5-8</span>
 <span>is evaluated first, and the output is</span>
@@ -261,9 +258,7 @@ layout: default
 <span>. (As you saw in the previ‐</span>
 <span>ous chapter, PHP converts the result to a string in order to display it.) If the expres‐</span>
 <span>sion contains a function, that function is evaluated first as well:</span>
-<br/>
-<span>print(abs(5-8));</span>
-<br/>
+<pre><code class="php">print(abs(5-8));</code></pre>
 <span>PHP is doing several things in executing that short statement:</span>
 <span>1.</span>
 <span>Evaluate</span>
@@ -290,9 +285,7 @@ layout: default
 <br/>
 <span>It all works, because PHP evaluates each element from the inside out. The same pro‐</span>
 <span>cedure is in operation when we call the following:</span>
-<br/>
-<span>ucfirst(strtolower("aNY # of Letters and Punctuation you WANT"))</span>
-<br/>
+<pre><code class="php">ucfirst(strtolower("aNY # of Letters and Punctuation you WANT"));</code></pre>
 <span>PHP passes our string to</span>
 <span>strtolower</span>
 <span>and then to</span>
@@ -300,7 +293,7 @@ layout: default
 <span>, producing (as we&rsquo;ve</span>
 <span>already seen when we played with the functions separately):</span>
 <br/>
-<b>Any # of letters and punctuation you want</b>
+<b class="t30">Any # of letters and punctuation you want</b>
 <br/>
 <span>Now let&rsquo;s define a function (shown in</span>
 <span>Example 5-2</span>
@@ -308,23 +301,26 @@ layout: default
 <span>each one lowercased with an initial capital letter.</span>
 <br/>
 <span>Example 5-2. Cleaning up a full name</span>
-<br/>
-<span>&lt;?php</span>
-<span>echo fix_names("WILLIAM", "henry", "gatES");</span>
-<span>function fix_names($n1, $n2, $n3)</span>
-<span>{</span>
-<span>$n1 = ucfirst(strtolower($n1));</span>
-<span>$n2 = ucfirst(strtolower($n2));</span>
-<span>$n3 = ucfirst(strtolower($n3));</span>
-<span>return $n1 . " " . $n2 . " " . $n3;</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    echo fix_names("WILLIAM", "henry", "gatES");
+
+    function fix_names($n1, $n2, $n3)
+    {
+        $n1 = ucfirst(strtolower($n1));
+        $n2 = ucfirst(strtolower($n2));
+        $n3 = ucfirst(strtolower($n3));
+        return $n1 . " " . $n2 . " " . $n3;
+    }
+?&gt;
+</code>
+</pre>
 <span>You may well find yourself writing this type of code, because users often leave their</span>
 <span>Caps Lock key on, accidentally insert capital letters in the wrong places, and even for‐</span>
 <span>get capitals altogether. The output from this example is shown here:</span>
 <br/>
-<b>William Henry Gates</b>
+<b class="t30">William Henry Gates</b>
 <h4>Returning an Array</h4>
 <span>We just saw a function returning a single value. There are also ways of getting multi‐</span>
 <span>ple values from a function.</span>
@@ -338,19 +334,20 @@ layout: default
 <span>use an array to return function values.</span>
 <br/>
 <span>Example 5-3. Returning multiple values in an array</span>
-<br/>
-<span>&lt;?php</span>
-<span>$names = fix_names("WILLIAM", "henry", "gatES");</span>
-<span>echo $names[0] . " " . $names[1] . " " . $names[2];</span>
-<span>function fix_names($n1, $n2, $n3)</span>
-<span>{</span>
-<span>$n1 = ucfirst(strtolower($n1));</span>
-<span>$n2 = ucfirst(strtolower($n2));</span>
-<span>$n3 = ucfirst(strtolower($n3));</span>
-<span>return array($n1, $n2, $n3);</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+    $names = fix_names("WILLIAM", "henry", "gatES");
+    echo $names[0] . " " . $names[1] . " " . $names[2];
+    function fix_names($n1, $n2, $n3)
+    {
+        $n1 = ucfirst(strtolower($n1));
+        $n2 = ucfirst(strtolower($n2));
+        $n3 = ucfirst(strtolower($n3));
+        return array($n1, $n2, $n3);
+    }
+?&gt;
+</code>
+</pre>
 <span>This method has the benefit of keeping all three names separate, rather than concate‐</span>
 <span>nating them into a single string, so you can refer to any user simply by first or last</span>
 <span>name, without having to extract either name from the returned string.</span>
@@ -405,22 +402,27 @@ layout: default
 <span>).</span>
 <br/>
 <span>Example 5-4. Returning values from a function by reference</span>
-<br/>
-<span>&lt;?php</span>
-<span>$a1 = "WILLIAM";</span>
-<span>$a2 = "henry";</span>
-<span>$a3 = "gatES";</span>
-<span>echo $a1 . " " . $a2 . " " . $a3 . "&lt;br&gt;";</span>
-<span>fix_names($a1, $a2, $a3);</span>
-<span>echo $a1 . " " . $a2 . " " . $a3;</span>
-<span>function fix_names(&amp;$n1, &amp;$n2, &amp;$n3)</span>
-<span>{</span>
-<span>$n1 = ucfirst(strtolower($n1));</span>
-<span>$n2 = ucfirst(strtolower($n2));</span>
-<span>$n3 = ucfirst(strtolower($n3));</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $a1 = "WILLIAM";
+    $a2 = "henry";
+    $a3 = "gatES";
+    
+    echo $a1 . " " . $a2 . " " . $a3 . "&lt;br&gt;";
+    
+    fix_names($a1, $a2, $a3);    
+    echo $a1 . " " . $a2 . " " . $a3;
+    
+    function fix_names(&amp;$n1, &amp;$n2, &amp;$n3)
+    {
+        $n1 = ucfirst(strtolower($n1));
+        $n2 = ucfirst(strtolower($n2));
+        $n3 = ucfirst(strtolower($n3));
+    }
+    ?&gt;
+</code>
+</pre>
 <span>Rather than passing strings directly to the function, you first assign them to variables</span>
 <span>and print them out to see their &ldquo;before&rdquo; values. Then you call the function as before,</span>
 <span>but put a</span>
@@ -458,8 +460,8 @@ layout: default
 <span>, and</span>
 <span>$a3</span>
 <span>. The output from this code is:</span>
-<span>WILLIAM henry gatES</span>
-<span>William Henry Gates</span>
+<b class="t30">WILLIAM henry gatES</b><br/>
+<b class="t30">William Henry Gates</b>
 <br/>
 <span>As you see, both of the</span>
 <span>echo</span>
@@ -484,22 +486,26 @@ layout: default
 <span>).</span>
 <br/>
 <span>Example 5-5. Returning values in global variables</span>
-<br/>
-<span>&lt;?php</span>
-<span>$a1 = "WILLIAM";</span>
-<span>$a2 = "henry";</span>
-<span>$a3 = "gatES";</span>
-<span>echo $a1 . " " . $a2 . " " . $a3 . "&lt;br&gt;";</span>
-<span>fix_names();</span>
-<span>echo $a1 . " " . $a2 . " " . $a3;</span>
-<span>function fix_names()</span>
-<span>{</span>
-<span>global $a1; $a1 = ucfirst(strtolower($a1));</span>
-<span>global $a2; $a2 = ucfirst(strtolower($a2));</span>
-<span>global $a3; $a3 = ucfirst(strtolower($a3));</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $a1 = "WILLIAM";
+    $a2 = "henry";
+    $a3 = "gatES";
+    
+    echo $a1 . " " . $a2 . " " . $a3 . "&lt;br&gt;";
+    fix_names();
+    echo $a1 . " " . $a2 . " " . $a3;
+    
+    function fix_names()
+    {
+        global $a1; $a1 = ucfirst(strtolower($a1));
+        global $a2; $a2 = ucfirst(strtolower($a2));
+        global $a3; $a3 = ucfirst(strtolower($a3));
+    }
+?&gt;
+</code>
+</pre>
 <span>Now you don&rsquo;t have to pass parameters to the function, and it doesn&rsquo;t have to accept</span>
 <span>them. Once declared, these variables remain global and available to the rest of your</span>
 <span>program, including its functions.</span>
@@ -595,12 +601,14 @@ layout: default
 <br/>
 <span>Example 5-7. Including a PHP</span>
 <span>file only once</span>
-<br/>
-<span>&lt;?php</span>
-<span>include_once "library.php";</span>
-<span>// Your code goes here</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    include_once "library.php";
+    // Your code goes here
+?&gt;
+</code>
+</pre>
 <span>Then, whenever another</span>
 <span>include</span>
 <span>or</span>
@@ -653,12 +661,14 @@ layout: default
 <br/>
 <span>Example 5-8. Requiring a PHP</span>
 <span>file only once</span>
-<br/>
-<span>&lt;?php</span>
-<span>require_once "library.php";</span>
-<span>// Your code goes here</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    require_once "library.php";
+    // Your code goes here
+?&gt;
+</code>
+</pre>
 <h3>PHP Version Compatibility</h3>
 <span>PHP is in an ongoing process of development, and there are multiple versions. If you</span>
 <span>need to check whether a particular function is available to your code, you can use the</span>
@@ -671,18 +681,20 @@ layout: default
 <span>, a function specific to PHP version 5.</span>
 <br/>
 <span>Example 5-9. Checking for a function&rsquo;s existence</span>
-<br/>
-<span>&lt;?php</span>
-<span>if (function_exists("array_combine"))</span>
-<span>{</span>
-<span>echo "Function exists";</span>
-<span>}</span>
-<span>else</span>
-<span>{</span>
-<span>echo "Function does not exist - better write our own";</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    if (function_exists("array_combine"))
+    {
+        echo "Function exists";
+    }
+    else
+    {
+        echo "Function does not exist - better write our own";
+    }
+?&gt;
+</code>
+</pre>
 <span>Using code such as this, you can take advantage of features in newer versions of PHP</span>
 <span>and yet still have your code run on earlier versions, as long as you replicate any fea‐</span>
 <span>tures that are missing. Your functions may be slower than the built-in ones, but at</span>
@@ -815,21 +827,24 @@ layout: default
 <span>) of this class.</span>
 <br/>
 <span>Example 5-10. Declaring a class and examining an object</span>
-<br/>
-<span>&lt;?php</span>
-<span>$object = new User;</span>
-<span>print_r($object);</span>
-<span>class User</span>
-<span>{</span>
-<span>public $name, $password;</span>
-<span>function save_user()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>echo "Save User code goes here";</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $object = new User;
+    print_r($object);
+    
+    class User
+    {
+        public $name, $password;
+        
+        function save_user()
+        {
+            echo "Save User code goes here";
+        }
+    }
+?&gt;
+</code>
+</pre>
 <span>Here I have also used an invaluable function called</span>
 <span>print_r</span>
 <span>. It asks PHP to display</span>
@@ -841,18 +856,18 @@ layout: default
 <span>. In the case of the new object</span>
 <span>$object</span>
 <span>, it prints the following:</span>
-<br/>
-<span>User Object</span>
-<span>(</span>
-<span>[name] =&gt;</span>
-<span>[password] =&gt;</span>
-<span>)</span>
-<br/>
+<pre>
+<code class="php">
+    User Object
+    (
+        [name] =&gt;
+        [password] =&gt;
+    )
+</code>
+</pre>
 <span>However, a browser compresses all the whitespace, so the output in a browser is</span>
 <span>slightly harder to read:</span>
-<br/>
-<span>User Object ( [name] =&gt; [password] =&gt; )</span>
-<br/>
+<pre><code class="php">User Object ( [name] =&gt; [password] =&gt; )</code></pre>
 <span>In any case, the output says that</span>
 <span>$object</span>
 <span>is a user-defined object that has the proper‐</span>
@@ -868,10 +883,12 @@ layout: default
 <span>object =</span>
 <span>new Class</span>
 <span>. Here are a couple of ways in which we could do this:</span>
-<br/>
-<span>$object = new User;</span>
-<span>$temp = new User('name', 'password');</span>
-<br/>
+<pre>
+<code class="php">
+    $object = new User;
+    $temp = new User('name', 'password');
+</code>
+</pre>
 <span>On the first line, we simply assign an object to the</span>
 <span>User</span>
 <span>class. In the second, we pass</span>
@@ -888,25 +905,30 @@ layout: default
 <span>previous code by setting object properties and calling a method.</span>
 <br/>
 <span>Example 5-11. Creating and interacting with an object</span>
-<br/>
-<span>&lt;?php</span>
-<span>$object = new User;</span>
-<span>print_r($object); echo "&lt;br&gt;";</span>
-<span>$object-&gt;name = "Joe";</span>
-<span>$object-&gt;password = "mypass";</span>
-<span>print_r($object); echo "&lt;br&gt;";</span>
-<span>$object-&gt;save_user();</span>
-<span>class User</span>
-<span>{</span>
-<span>public $name, $password;</span>
-<span>function save_user()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>echo "Save User code goes here";</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+$object = new User;
+print_r($object); echo "&lt;br&gt;";
+
+$object-&gt;name = "Joe";
+$object-&gt;password = "mypass";
+print_r($object); echo "&lt;br&gt;";
+$object-&gt;save_user();
+
+class User
+{
+    public $name, $password;
+    
+    function save_user()
+    {
+        echo "Save User code goes here";
+    }
+}
+?&gt;
+</code>
+</pre>
+
 <span>As you can see, the syntax for accessing an object&rsquo;s property is</span>
 <span>$object-&gt;property</span>
 <span>.</span>
@@ -944,19 +966,21 @@ layout: default
 <span>When looked at using a browser&rsquo;s View Source facility, the output from</span>
 <span>Example 5-11</span>
 <span>is as follows:</span>
-<br/>
-<span>User Object</span>
-<span>(</span>
-<span>[name] =&gt;</span>
-<span>[password] =&gt;</span>
-<span>)</span>
-<span>User Object</span>
-<span>(</span>
-<span>[name] =&gt; Joe</span>
-<span>[password] =&gt; mypass</span>
-<span>)</span>
-<span>Save User code goes here</span>
-<br/>
+<pre>
+<code class="php">
+    User Object
+    (
+        [name] =&gt;
+        [password] =&gt;
+    )
+    User Object
+    (
+        [name] =&gt; Joe
+        [password] =&gt; mypass
+    )
+    Save User code goes here
+</code>
+</pre>
 <span>Again,</span>
 <span>print_r</span>
 <span>shows its utility by providing the contents of</span>
@@ -993,20 +1017,23 @@ layout: default
 <span>.</span>
 <br/>
 <span>Example 5-12. Copying an object?</span>
-<br/>
-<span>&lt;?php</span>
-<span>$object1 = new User();</span>
-<span>$object1-&gt;name = "Alice";</span>
-<span>$object2 = $object1;</span>
-<span>$object2-&gt;name = "Amy";</span>
-<span>echo "object1 name = " . $object1-&gt;name . "&lt;br&gt;";</span>
-<span>echo "object2 name = " . $object2-&gt;name;</span>
-<span>class User</span>
-<span>{</span>
-<span>public $name;</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $object1 = new User();
+    $object1-&gt;name = "Alice";
+    $object2 = $object1;
+    $object2-&gt;name = "Amy";
+    echo "object1 name = " . $object1-&gt;name . "&lt;br&gt;";
+    echo "object2 name = " . $object2-&gt;name;
+    
+    class User
+    {
+        public $name;
+    }
+?&gt;
+</code>
+</pre>
 <span>We&rsquo;ve created the object</span>
 <span>$object1</span>
 <span>and assigned the value</span>
@@ -1028,9 +1055,9 @@ layout: default
 <span>or so we might think. But this code outputs</span>
 <span>the following:</span>
 <br/>
-<span>object1 name = Amy</span>
+<b class="t30">object1 name = Amy</b>
 <br/>
-<span>object2 name = Amy</span>
+<b class="t30">object2 name = Amy</b>
 <br/>
 <span>What has happened? Both</span>
 <span>$object1</span>
@@ -1056,25 +1083,29 @@ layout: default
 <span>illustrates this usage.</span>
 <br/>
 <span>Example 5-13. Cloning an object</span>
-<br/>
-<span>&lt;?php</span>
-<span>$object1 = new User();</span>
-<span>$object1-&gt;name = "Alice";</span>
-<span>$object2 = clone $object1;</span>
-<span>$object2-&gt;name = "Amy";</span>
-<span>echo "object1 name = " . $object1-&gt;name . "&lt;br&gt;";</span>
-<span>echo "object2 name = " . $object2-&gt;name;</span>
-<span>class User</span>
-<span>{</span>
-<span>public $name;</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $object1 = new User();
+    $object1-&gt;name = "Alice";
+    $object2 = clone $object1;
+    $object2-&gt;name = "Amy";
+
+    echo "object1 name = " . $object1-&gt;name . "&lt;br&gt;";
+    echo "object2 name = " . $object2-&gt;name;
+
+    class User
+    {
+        public $name;
+    }
+?&gt;
+</code>
+</pre>
 <span>Voil&agrave;! The output from this code is what we initially wanted:</span>
 <br/>
-<b>object1 name = Alice</b>
+<b class="t30">object1 name = Alice</b>
 <br/>
-<b>object2 name = Amy</b>
+<b class="t30">object2 name = Amy</b>
 <h4>Constructors</h4>
 <span>When creating a new object, you can pass a list of arguments to the class being called.</span>
 <span>These are passed to a special method within the class, called the</span>
@@ -1087,20 +1118,20 @@ layout: default
 <span>.</span>
 <br/>
 <span>Example 5-14. Creating a constructor method</span>
-<br/>
-<span>&lt;?php</span>
-<span>class User</span>
-<span>{</span>
-<span>function User($param1, $param2)</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>// Constructor statements go here</span>
-<span>&nbsp;</span>
-<span>public $username = "Guest";</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    class User
+    {
+        function User($param1, $param2)
+        {
+            // Constructor statements go here
+            public $username = "Guest";
+        }
+    }
+?&gt;
+</code>
+</pre>
 <span>However, PHP 5 provides a more logical approach to naming the constructor, which</span>
 <span>is to use the function name</span>
 <span>__construct</span>
@@ -1112,19 +1143,20 @@ layout: default
 <span>.</span>
 <br/>
 <span>Example 5-15. Creating a constructor method in PHP 5</span>
-<br/>
-<span>&lt;?php</span>
-<span>class User</span>
-<span>{</span>
-<span>function __construct($param1, $param2)</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>// Constructor statements go here</span>
-<span>&nbsp;</span>
-<span>public $username = "Guest";</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+    class User
+    {
+        function __construct($param1, $param2)
+        {
+            // Constructor statements go here
+            public $username = "Guest";
+        }
+    }
+?&gt;
+</code>
+</pre>
 <h4>PHP 5 Destructors</h4>
 <span>Also new in PHP 5 is the ability to create</span>
 <span>&nbsp;destructor</span>
@@ -1134,17 +1166,19 @@ layout: default
 <span>shows how to create a destructor method.</span>
 <br/>
 <span>Example 5-16. Creating a destructor method in PHP 5</span>
-<br/>
-<span>&lt;?php</span>
-<span>class User</span>
-<span>{</span>
-<span>function __destruct()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>// Destructor code goes here</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+    class User
+    {
+        function __destruct()
+        {
+            // Destructor code goes here
+        }
+    }
+?&gt;
+</code>
+</pre>
 <h4>Writing Methods</h4>
 <span>As you have seen, declaring a method is similar to declaring a function, but there are</span>
 <span>a few differences. For example, method names beginning with a double underscore</span>
@@ -1165,19 +1199,21 @@ layout: default
 <span>.</span>
 <br/>
 <span>Example 5-17. Using the variable $this in a method</span>
-<br/>
-<span>&lt;?php</span>
-<span>class User</span>
-<span>{</span>
-<span>public $name, $password;</span>
-<span>function get_password()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>return $this-&gt;password;</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    class User
+    {
+        public $name, $password;
+
+        function get_password()
+        {
+            return $this-&gt;password;
+        }
+    }
+?&gt;
+</code>
+</pre>
 <span>get_password</span>
 <span>uses the</span>
 <span>$this</span>
@@ -1198,11 +1234,13 @@ layout: default
 <span>Here&rsquo;s how you would use the class defined in</span>
 <span>Example 5-17</span>
 <span>:</span>
-<br/>
-<span>$object = new User;</span>
-<span>$object-&gt;password = "secret";</span>
-<span>echo $object-&gt;get_password();</span>
-<br/>
+<pre>
+<code class="php">
+    $object = new User;
+    $object-&gt;password = "secret";
+    echo $object-&gt;get_password();
+</code>
+</pre>
 <span>This code prints the password</span>
 <span>secret</span>
 <span>.</span>
@@ -1216,19 +1254,21 @@ layout: default
 <span>.</span>
 <br/>
 <span>Example 5-18. Creating and accessing a static method</span>
-<br/>
-<span>&lt;?php</span>
-<span>User::pwd_string();</span>
-<span>class User</span>
-<span>{</span>
-<span>static function pwd_string()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>echo "Please enter your password";</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    User::pwd_string();
+    
+    class User
+    {
+        static function pwd_string()
+        {
+            echo "Please enter your password";
+        }
+    }
+?&gt;
+</code>
+</pre>
 <span>Note how we call the class itself, along with the static method, using a double colon</span>
 <span>(also known as the</span>
 <span>scope resolution</span>
@@ -1254,14 +1294,17 @@ layout: default
 <br/>
 <span>Example 5-19.</span>
 <span>Defining a property implicitly</span>
-<br/>
-<span>&lt;?php</span>
-<span>$object1 = new User();</span>
-<span>$object1-&gt;name = "Alice";</span>
-<span>echo $object1-&gt;name;</span>
-<span>class User {}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $object1 = new User();
+    $object1-&gt;name = "Alice";
+    echo $object1-&gt;name;
+    
+    class User {}
+?&gt;
+</code>
+</pre>
 <span>This code correctly outputs the string</span>
 <span>Alice</span>
 <span>without a problem, because PHP implic‐</span>
@@ -1283,16 +1326,19 @@ layout: default
 <span>shows a few valid and invalid assignments.</span>
 <br/>
 <span>Example 5-20. Valid and invalid property declarations</span>
-<br/>
-<span>&lt;?php</span>
-<span>class Test</span>
-<span>{</span>
-<span>public $name = "Paul Smith"; // Valid</span>
-<span>public $age = 42; // Valid</span>
-<span>public $time = time(); // Invalid - calls a function</span>
-<span>public $score = $level * 2; // Invalid - uses an expression</span>
-<span>}</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+    class Test
+    {
+        public $name = "Paul Smith"; // Valid
+        public $age = 42; // Valid
+        public $time = time(); // Invalid - calls a function
+        public $score = $level * 2; // Invalid - uses an expression
+    }
+?&gt;
+</code>
+</pre>
 <h4>Declaring Constants</h4>
 <span>In the same way that you can create a global constant with the</span>
 <span>define</span>
@@ -1303,24 +1349,25 @@ layout: default
 <span>.</span>
 <br/>
 <span>Example 5-21. Defining constants within a class</span>
-<br/>
-<span>&lt;?php</span>
-<span>Translate::lookup();</span>
-<span>class Translate</span>
-<span>{</span>
-<span>const ENGLISH = 0;</span>
-<span>const SPANISH = 1;</span>
-<span>const FRENCH = 2;</span>
-<span>const GERMAN = 3;</span>
-<span>// ...</span>
-<span>static function lookup()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>echo self::SPANISH;</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    Translate::lookup();
+    class Translate
+    {
+        const ENGLISH = 0;
+        const SPANISH = 1;
+        const FRENCH = 2;
+        const GERMAN = 3;
+        // ...
+        static function lookup()
+        {
+            echo self::SPANISH;
+        }
+    }
+?&gt;
+</code>
+</pre>
 <span>You can reference constants directly, using the</span>
 <span>self</span>
 <span>keyword and double colon oper‐</span>
@@ -1335,33 +1382,20 @@ layout: default
 <span>PHP 5 provides three keywords for controlling the scope of properties and methods:</span>
 <br/>
 <span>public</span>
-<span>These properties are the default when you are declaring a variable using the</span>
-<span>var</span>
-<span>or</span>
-<span>public</span>
-<span>keywords, or when a variable is implicitly declared the first time it is used.</span>
-<span>The keywords</span>
-<span>var</span>
-<span>and</span>
-<span>public</span>
-<span>are interchangeable because, although deprecated,</span>
-<span>var</span>
-<span>is retained for compatibility with previous versions of PHP. Methods are assumed to</span>
-<span>be</span>
-<span>public</span>
-<span>by default.</span>
+<div class="t30">These properties are the default when you are declaring a variable using the var or public keywords, or when a variable is implicitly declared the first time it is used. The keywords var and public are interchangeable because, although deprecated, var is retained for compatibility with previous versions of PHP. Methods are assumed to be public by default.</div>
 <br/>
 <span>protected</span>
-<span>These properties and methods (</span>
-<span>members</span>
-<span>) can be referenced only by the object&rsquo;s class</span>
-<span>methods and those of any subclasses.</span>
+<div class="t30">
+These properties and methods (members) can be referenced only by the object&rsquo;s class methods and those of any subclasses.
+</div>
 <br/>
 <span>private</span>
-<span>These members can be referenced only by methods within the same class&mdash;not by</span>
-<span>subclasses.</span>
+<div class="t30">
+These members can be referenced only by methods within the same class&mdash;not by
+subclasses.
+</div>
 <br/>
-<span>Here&rsquo;s how to decide which you need to use:</span>
+<span>Here&rsquo;s how to decide which you need to use:</span><br/>
 <span>&bull;</span>
 <span>Use</span>
 <span>public</span>
@@ -1396,19 +1430,23 @@ layout: default
 <br/>
 <span>Example 5-22. Changing property and method scope</span>
 <br/>
-<span>&lt;?php</span>
-<span>class Example</span>
-<span>{</span>
-<span>var $name = "Michael"; // Same as public but deprecated</span>
-<span>public $age = 23; // Public property</span>
-<span>protected $usercount; // Protected property</span>
-<span>private function admin() // Private method</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>// Admin code goes here</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+    class Example
+    {
+        var $name = "Michael"; // Same as public but deprecated
+        public $age = 23; // Public property
+        protected $usercount; // Protected property
+        
+        private function admin() // Private method
+        {
+            // Admin code goes here
+        }
+    }
+?&gt;
+</code>
+</pre>
 <h4>Static Properties and Methods</h4>
 <span>Most data and methods apply to instances of a class. For example, in a</span>
 <span>User</span>
@@ -1440,32 +1478,34 @@ layout: default
 <br/>
 <span>Example 5-23.</span>
 <span>Defining a class with a static property</span>
-<br/>
-<span>&lt;?php</span>
-<span>$temp = new Test();</span>
-<span>echo "Test A: " . Test::$static_property . "&lt;br&gt;";</span>
-<span>echo "Test B: " . $temp-&gt;get_sp() . "&lt;br&gt;";</span>
-<span>echo "Test C: " . $temp-&gt;static_property . "&lt;br&gt;";</span>
-<span>class Test</span>
-<span>{</span>
-<span>static $static_property = "I'm static";</span>
-<span>function get_sp()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>return self::$static_property;</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $temp = new Test();
+    echo "Test A: " . Test::$static_property . "&lt;br&gt;";
+    echo "Test B: " . $temp-&gt;get_sp() . "&lt;br&gt;";
+    echo "Test C: " . $temp-&gt;static_property . "&lt;br&gt;";
+    
+    class Test
+    {
+        static $static_property = "I'm static";
+        function get_sp()
+        {
+            return self::$static_property;
+        }
+    }
+?&gt;
+</code>
+</pre>
 <span>When you run this code, it returns the following output:</span>
 <br/>
-<b>Test A: I'm static</b>
+<b class="t30">Test A: I'm static</b>
 <br/>
-<b>Test B: I'm static</b>
+<b class="t30">Test B: I'm static</b>
 <br/>
-<b>Notice: Undefined property: Test::$static_property</b>
+<b class="t30">Notice: Undefined property: Test::$static_property</b>
 <br/>
-<b>Test C:</b>
+<b class="t30">Test C:</b>
 <br/>
 <span>This example shows that the property</span>
 <span>$static_property</span>
@@ -1512,40 +1552,42 @@ layout: default
 <span>operator.</span>
 <br/>
 <span>Example 5-24. Inheriting and extending a class</span>
-<br/>
-<span>&lt;?php</span>
-<span>$object = new Subscriber;</span>
-<span>$object-&gt;name = "Fred";</span>
-<span>$object-&gt;password = "pword";</span>
-<span>$object-&gt;phone = "012 345 6789";</span>
-<span>$object-&gt;email = "fred@bloggs.com";</span>
-<span>$object-&gt;display();</span>
-<span>class User</span>
-<span>{</span>
-<span>public $name, $password;</span>
-<span>function save_user()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>echo "Save User code goes here";</span>
-<span>}</span>
-<span>}</span>
-<span>class Subscriber extends User</span>
-<span>{</span>
-<span>public $phone, $email;</span>
-<span>function display()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>echo "Name: " . $this-&gt;name . "&lt;br&gt;";</span>
-<span>&nbsp;</span>
-<span>echo "Pass: " . $this-&gt;password . "&lt;br&gt;";</span>
-<span>&nbsp;</span>
-<span>echo "Phone: " . $this-&gt;phone . "&lt;br&gt;";</span>
-<span>&nbsp;</span>
-<span>echo "Email: " . $this-&gt;email;</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $object = new Subscriber;
+    $object-&gt;name = "Fred";
+    $object-&gt;password = "pword";
+    $object-&gt;phone = "012 345 6789";
+    $object-&gt;email = "fred@bloggs.com";
+    $object-&gt;display();
+
+    class User
+    {
+        public $name, $password;
+
+        function save_user()
+        {
+            echo "Save User code goes here";
+        }
+    }
+
+    class Subscriber extends User
+    {
+        public $phone, $email;
+        
+        function display()
+        {
+            echo "Name: " . $this-&gt;name . "&lt;br&gt;";
+            echo "Pass: " . $this-&gt;password . "&lt;br&gt;";
+            echo "Phone: " . $this-&gt;phone . "&lt;br&gt;";
+            echo "Email: " . $this-&gt;email;
+        }
+    }
+?&gt;
+</code>
+</pre>
+
 <span>The original</span>
 <span>User</span>
 <span>class has two properties,</span>
@@ -1566,13 +1608,13 @@ layout: default
 <span>, which refers to the cur‐</span>
 <span>rent values of the object being accessed. The output from this code is as follows:</span>
 <br/>
-<b>Name: Fred</b>
+<b class="t30">Name: Fred</b>
 <br/>
-<b>Pass: pword</b>
+<b class="t30">Pass: pword</b>
 <br/>
-<b>Phone: 012 345 6789</b>
+<b class="t30">Phone: 012 345 6789</b>
 <br/>
-<b>Email: fred@bloggs.com</b>
+<b class="t30">Email: fred@bloggs.com</b>
 <br/>
 <h6>The parent operator</h6>
 <span>If you write a method in a subclass with the same name as one in its parent class, its</span>
@@ -1584,34 +1626,36 @@ layout: default
 <span>.</span>
 <br/>
 <span>Example 5-25. Overriding a method and using the parent operator</span>
-<br/>
-<span>&lt;?php</span>
-<span>$object = new Son;</span>
-<span>$object-&gt;test();</span>
-<span>$object-&gt;test2();</span>
-<span>class Dad</span>
-<span>{</span>
-<span>function test()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>echo "[Class Dad] I am your Father&lt;br&gt;";</span>
-<span>}</span>
-<span>}</span>
-<span>class Son extends Dad</span>
-<span>{</span>
-<span>function test()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>echo "[Class Son] I am Luke&lt;br&gt;";</span>
-<span>}</span>
-<span>function test2()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>parent::test();</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $object = new Son;
+    $object-&gt;test();
+    $object-&gt;test2();
+
+    class Dad
+    {
+        function test()
+        {
+            echo "[Class Dad] I am your Father&lt;br&gt;";
+        }
+    }
+    
+    class Son extends Dad
+    {
+        function test()
+        {
+            echo "[Class Son] I am Luke&lt;br&gt;";
+        }
+        function test2()
+        {
+            parent::test();
+        }
+    }
+?&gt;
+</code>
+</pre>
+
 <span>This code creates a class called</span>
 <span>Dad</span>
 <span>and then a subclass called</span>
@@ -1636,17 +1680,15 @@ layout: default
 <span>Son</span>
 <span>. The code outputs the following:</span>
 <br/>
-<b>[Class Son] I am Luke</b>
+<b class="t30">[Class Son] I am Luke</b>
 <br/>
-<b>[Class Dad] I am your Father</b>
+<b class="t30">[Class Dad] I am your Father</b>
 <br/>
 <span>If you wish to ensure that your code calls a method from the current class, you can</span>
 <span>use the</span>
 <span>self</span>
 <span>keyword, like this:</span>
-<br/>
-<span>self::method();</span>
-<br/>
+<pre><code class="php">self::method();</code></pre>
 <h6>Subclass constructors</h6>
 <span>When you extend a class and declare your own constructor, you should be aware that</span>
 <span>PHP will not automatically call the constructor method of the parent class. If you</span>
@@ -1656,34 +1698,37 @@ layout: default
 <span>.</span>
 <br/>
 <span>Example 5-26. Calling the parent class constructor</span>
-<br/>
-<span>&lt;?php</span>
-<span>$object = new Tiger();</span>
-<span>echo "Tigers have...&lt;br&gt;";</span>
-<span>echo "Fur: " . $object-&gt;fur . "&lt;br&gt;";</span>
-<span>echo "Stripes: " . $object-&gt;stripes;</span>
-<span>class Wildcat</span>
-<span>{</span>
-<span>public $fur; // Wildcats have fur</span>
-<span>function __construct()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$this-&gt;fur = "TRUE";</span>
-<span>}</span>
-<span>}</span>
-<span>class Tiger extends Wildcat</span>
-<span>{</span>
-<span>public $stripes; // Tigers have stripes</span>
-<span>function __construct()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>parent::__construct(); // Call parent constructor first</span>
-<span>&nbsp;</span>
-<span>$this-&gt;stripes = "TRUE";</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $object = new Tiger();
+    echo "Tigers have...&lt;br&gt;";
+    echo "Fur: " . $object-&gt;fur . "&lt;br&gt;";
+    echo "Stripes: " . $object-&gt;stripes;
+    
+    class Wildcat
+    {
+        public $fur; // Wildcats have fur
+
+        function __construct()
+        {
+            $this-&gt;fur = "TRUE";
+        }
+    }
+    
+    class Tiger extends Wildcat
+    {
+        public $stripes; // Tigers have stripes
+
+        function __construct()
+        {
+            parent::__construct(); // Call parent constructor first
+            $this-&gt;stripes = "TRUE";
+        }
+    }
+?&gt;
+</code>
+</pre>
 <span>This example takes advantage of inheritance in the typical manner. The</span>
 <span>Wildcat</span>
 <span>class</span>
@@ -1699,11 +1744,11 @@ layout: default
 <span>. To verify that both</span>
 <span>constructors have been called, the program outputs the following:</span>
 <br/>
-<b>Tigers have...</b>
+<b class="t30">Tigers have...</b>
 <br/>
-<b>Fur: TRUE</b>
+<b class="t30">Fur: TRUE</b>
 <br/>
-<b>Stripes: TRUE</b>
+<b class="t30">Stripes: TRUE</b>
 <br/>
 <h6>Final methods</h6>
 <span>When you wish to prevent a subclass from overriding a superclass method, you can</span>
@@ -1715,18 +1760,20 @@ layout: default
 <br/>
 <span>Example 5-27. Creating a</span>
 <span>final method</span>
-<br/>
-<span>&lt;?php</span>
-<span>class User</span>
-<span>{</span>
-<span>final function copyright()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>echo "This class was written by Joe Smith";</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    class User
+    {
+        final function copyright()
+        {
+            echo "This class was written by Joe Smith";
+        }
+    }
+?&gt;
+</code>
+</pre>
+
 <span>Once you have digested the contents of this chapter, you should have a strong feel for</span>
 <span>what PHP can do for you. You should be able to use functions with ease and, if you</span>
 <span>wish, write object-oriented code. In</span>
