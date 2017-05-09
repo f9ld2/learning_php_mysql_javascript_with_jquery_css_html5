@@ -421,7 +421,8 @@ Here's the latest news.
     <div class="t30">Including two new rendering technologies: MathML (Math Markup Language) for
     displaying mathematical formulae and SVG (Scalable Vector Graphics) for creating graphical elements outside of the new &lt;canvas&gt; element. However, MathML and
     SVG are somewhat specialist, and are so feature-packed they would need a book of their own, so I don&rsquo;t cover them here.<br/>
-    All these things (and more) are covered in detail starting in Chapter 22 .</div>
+    </div>
+    <span>All these things (and more) are covered in detail starting in Chapter 22 .</span><br/>
     <span>One of the little things I like about the HTML5 specification is that</span>
     <span>XHTML syntax is no longer required for self-closing elements. In</span>
     <span>the past, you could display a line break using the</span>
