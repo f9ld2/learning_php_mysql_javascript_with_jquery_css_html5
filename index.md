@@ -208,7 +208,7 @@ Here's the latest news.
     <span>function displays the current day of</span>
     <span>the week according to the server&rsquo;s system time.</span><br/>
     <span>The final output of the two parts looks like this:</span><br/>
-    <span><b>Today is Wednesday. Here's the latest news.</b></span><br/>
+    <span><b class="t30">Today is Wednesday. Here's the latest news.</b></span><br/>
     <span>PHP is a flexible language, and some people prefer to place the PHP construct</span>
     <span>directly next to PHP code, like this:</span>
     <pre><code class="php">Today is &lt;?php echo date("l"); ?&gt;. Here's the latest news.</code></pre>
@@ -330,7 +330,7 @@ Here's the latest news.
     <span>Date</span>
     <span>. The result will</span>
     <span>look something like this:</span><br/>
-    <span><b>Today is Sun Jan 01 2017 01:23:45</b></span><br/>
+    <span><b class="t30">Today is Sun Jan 01 2017 01:23:45</b></span><br/>
     <span>Unless you need to specify an exact version of JavaScript, you can</span>
     <span>normally omit the</span>
     <span>type="text/javascript"</span>
@@ -414,34 +414,14 @@ Here's the latest news.
     <span>There&rsquo;s actually a great deal of new stuff in HTML (and quite a few things that have</span>
     <span>been changed or removed), but in summary, here&rsquo;s what you get:</span><br/>
     <i>Markup</i><br/>
-    <span>Including new elements such as</span>
-    <span>&lt;nav&gt;</span>
-    <span>and</span>
-    <span>&lt;footer&gt;</span>
-    <span>, and deprecated elements like</span>
-    <span>&lt;font&gt;</span>
-    <span>and</span>
-    <span>&lt;center&gt;</span>
-    <span>.</span><br/>
+    <div class="t30">Including new elements such as &lt;nav&gt; and &lt;footer&gt; , and deprecated elements like &lt;font&gt; and &lt;center&gt; .</div>
     <i>New APIs</i><br/>
-    <span>Such as the</span>
-    <span>&lt;canvas&gt;</span>
-    <span>element for writing and drawing on a graphics canvas,</span>
-    <span>&lt;audio&gt;</span>
-    <span>and</span>
-    <span>&lt;video&gt;</span>
-    <span>elements, offline web applications, microdata, and local storage.</span><br/>
+    <div class="t30">Such as the &lt;canvas&gt; element for writing and drawing on a graphics canvas, &lt;audio&gt; and &lt;video&gt; elements, offline web applications, microdata, and local storage.</div>
     <i>Applications</i><br/>
-    <span>Including two new rendering technologies: MathML (Math Markup Language) for</span>
-    <span>displaying mathematical formulae and SVG (Scalable Vector Graphics) for creating</span>
-    <span>graphical elements outside of the new</span>
-    <span>&lt;canvas&gt;</span>
-    <span>element. However, MathML and</span>
-    <span>SVG are somewhat specialist, and are so feature-packed they would need a book of</span>
-    <span>their own, so I don&rsquo;t cover them here.</span><br/>
-    <span>All these things (and more) are covered in detail starting in</span>
-    <span>Chapter 22</span>
-    <span>.</span><br/>
+    <div class="t30">Including two new rendering technologies: MathML (Math Markup Language) for
+    displaying mathematical formulae and SVG (Scalable Vector Graphics) for creating graphical elements outside of the new &lt;canvas&gt; element. However, MathML and
+    SVG are somewhat specialist, and are so feature-packed they would need a book of their own, so I don&rsquo;t cover them here.<br/>
+    All these things (and more) are covered in detail starting in Chapter 22 .</div>
     <span>One of the little things I like about the HTML5 specification is that</span>
     <span>XHTML syntax is no longer required for self-closing elements. In</span>
     <span>the past, you could display a line break using the</span>
