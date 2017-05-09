@@ -9,11 +9,13 @@ layout: default
 <span>The reason for using PHP as an interface to MySQL is to format the results of SQL</span>
 <span>queries in a form visible in a web page. As long as you can log into your MySQL</span>
 <span>installation using your username and password, you can also do so from PHP.</span>
+
 <span>However, instead of using MySQL&rsquo;s command line to enter instructions and view out‐</span>
 <span>put, you will create query strings that are passed to MySQL. When MySQL returns its</span>
 <span>response, it will come as a data structure that PHP can recognize instead of the for‐</span>
 <span>matted output you see when you work on the command line. Further PHP com‐</span>
 <span>mands can retrieve the data and format it for the web page.</span>
+
 <span>In previous editions of the book, this chapter introduced the old</span>
 <span>mysql</span>
 <span>extension for accessing a MySQL database, before then mov‐</span>
@@ -26,18 +28,25 @@ layout: default
 <span>pretty much standard everywhere nowadays.</span>
 <h4>The Process</h4>
 <span>The process of using MySQL with PHP is as follows:</span>
+
 <span>1.</span>
 <span>Connect to MySQL and select the database to use.</span>
+
 <span>2.</span>
 <span>Build a query string.</span>
+
 <span>3.</span>
 <span>Perform the query.</span>
+
 <span>4.</span>
 <span>Retrieve the results and output them to a web page.</span>
+
 <span>5.</span>
 <span>Repeat steps 2 to 4 until all desired data has been retrieved.</span>
+
 <span>6.</span>
 <span>Disconnect from MySQL.</span>
+
 <span>We&rsquo;ll work through these sections in turn, but first it&rsquo;s important to set up your login</span>
 <span>details in a secure manner so people snooping around on your system have trouble</span>
 <span>getting access to your database.</span>
@@ -50,8 +59,10 @@ layout: default
 <span>shows such a file, which I&rsquo;ve called</span>
 <span>login.php</span>
 <span>.</span>
+
 <span>Example 10-1.</span>
 <span>The login.php file</span>
+
 <span>&lt;?php // login.php</span>
 <span>$hn = 'localhost';</span>
 <span>$db = 'publications';</span>
@@ -62,6 +73,7 @@ layout: default
 <span>password</span>
 <span>';</span>
 <span>?&gt;</span>
+
 <span>Type the example, replacing</span>
 <span>username</span>
 <span>and</span>
@@ -71,6 +83,7 @@ layout: default
 <span>Chapter 2</span>
 <span>.</span>
 <span>We&rsquo;ll be making use of the file shortly.</span>
+
 <span>The hostname</span>
 <span>localhost</span>
 <span>should work as long as you&rsquo;re using a MySQL database on</span>
@@ -78,6 +91,7 @@ layout: default
 <span>&nbsp;publications</span>
 <span>&nbsp;should work if you&rsquo;re typing the</span>
 <span>examples I&rsquo;ve used so far.</span>
+
 <span>The enclosing</span>
 <span>&lt;?php</span>
 <span>and</span>
@@ -93,6 +107,7 @@ layout: default
 <span>from your website, it would display as text and reveal your secrets. But, with the tags</span>
 <span>in place, all that person will see is a blank page. The file will correctly include in your</span>
 <span>other PHP files.</span>
+
 <span>The</span>
 <span>$hn</span>
 <span>variable will tell PHP which computer to use when connecting to a database.</span>
