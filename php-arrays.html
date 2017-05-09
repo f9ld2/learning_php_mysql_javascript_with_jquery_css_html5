@@ -8,6 +8,7 @@ layout: default
 <span>taste of their power. In this chapter, I&rsquo;ll show you many more things that you can do</span>
 <span>with arrays, some of which&mdash;if you have ever used a strongly typed language such as</span>
 <span>C&mdash;may surprise you with their elegance and simplicity.</span>
+<br/>
 <span>Arrays are an example of what has made PHP so popular. Not only do they remove</span>
 <span>the tedium of writing code to deal with complicated data structures, but they also</span>
 <span>provide numerous ways to access data while remaining amazingly fast.</span>
@@ -17,6 +18,7 @@ layout: default
 <span>variables that can be numeric, strings, or even other arrays. They are like bead strings,</span>
 <span>because each element has its own location and (with the exception of the first and last</span>
 <span>ones) each has other elements on either side.</span>
+<br/>
 <span>Some arrays are referenced by numeric indices; others allow alphanumeric identifiers.</span>
 <span>Built-in functions let you sort them, add or remove sections, and walk through them</span>
 <span>to handle each item through a special kind of loop. And by placing one or more</span>
@@ -29,7 +31,9 @@ layout: default
 <span>numeric array. You can see the simplest way of doing so in</span>
 <span>Example 6-1</span>
 <span>.</span>
+<br/>
 <span>Example 6-1. Adding items to an array</span>
+<br/>
 <span>&lt;?php</span>
 <span>$paper[] = "Copier";</span>
 <span>$paper[] = "Inkjet";</span>
@@ -37,6 +41,7 @@ layout: default
 <span>$paper[] = "Photo";</span>
 <span>print_r($paper);</span>
 <span>?&gt;</span>
+<br/>
 <span>In this example, each time you assign a value to the array</span>
 <span>$paper</span>
 <span>, the first empty</span>
@@ -46,6 +51,7 @@ layout: default
 <span>print_r</span>
 <span>function (which prints out the contents of a variable, array, or object) is</span>
 <span>used to verify that the array has been correctly populated. It prints out the following:</span>
+<br/>
 <span>Array</span>
 <span>(</span>
 <span>[0] =&gt; Copier</span>
@@ -53,6 +59,7 @@ layout: default
 <span>[2] =&gt; Laser</span>
 <span>[3] =&gt; Photo</span>
 <span>)</span>
+<br/>
 <span>The previous code could also have been written as shown in</span>
 <span>Example 6-2</span>
 <span>, where the</span>
@@ -60,7 +67,9 @@ layout: default
 <span>approach requires extra typing and makes your code harder to maintain if you want</span>
 <span>to insert or remove supplies from the array. So unless you wish to specify a different</span>
 <span>order, it&rsquo;s usually better to simply let PHP handle the actual location numbers.</span>
+<br/>
 <span>Example 6-2. Adding items to an array using explicit locations</span>
+<br/>
 <span>&lt;?php</span>
 <span>$paper[0] = "Copier";</span>
 <span>$paper[1] = "Inkjet";</span>
@@ -68,6 +77,7 @@ layout: default
 <span>$paper[3] = "Photo";</span>
 <span>print_r($paper);</span>
 <span>?&gt;</span>
+<br/>
 <span>The output from these examples is identical, but you are not likely to use</span>
 <span>print_r</span>
 <span>in a</span>
@@ -77,7 +87,9 @@ layout: default
 <span>of paper the website offers using a</span>
 <span>for</span>
 <span>loop.</span>
+<br/>
 <span>Example 6-3. Adding items to an array and retrieving them</span>
+<br/>
 <span>&lt;?php</span>
 <span>$paper[] = "Copier";</span>
 <span>$paper[] = "Inkjet";</span>
@@ -86,11 +98,14 @@ layout: default
 <span>for ($j = 0 ; $j &lt; 4 ; ++$j)</span>
 <span>echo "$j: $paper[$j]&lt;br&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>This example prints out the following:</span>
+<br/>
 <span>0: Copier</span>
 <span>1: Inkjet</span>
 <span>2: Laser</span>
 <span>3: Photo</span>
+<br/>
 <span>So far, you&rsquo;ve seen a couple of ways in which you can add items to an array and one</span>
 <span>way of referencing them, but PHP offers many more&mdash;which I&rsquo;ll get to shortly. But</span>
 <span>first, we&rsquo;ll look at another type of array.</span>
@@ -98,13 +113,16 @@ layout: default
 <span>Keeping track of array elements by index works just fine, but can require extra work</span>
 <span>in terms of remembering which number refers to which product. It can also make</span>
 <span>code hard for other programmers to follow.</span>
+<br/>
 <span>This is where associative arrays come into their own. Using them, you can reference</span>
 <span>the items in an array by name rather than by number.</span>
 <span>Example 6-4</span>
 <span>expands on the</span>
 <span>previous code by giving each element in the array an identifying name and a longer,</span>
 <span>more explanatory string value.</span>
+<br/>
 <span>Example 6-4. Adding items to an associative array and retrieving them</span>
+<br/>
 <span>&lt;?php</span>
 <span>$paper['copier'] = "Copier &amp; Multipurpose";</span>
 <span>$paper['inkjet'] = "Inkjet Printer";</span>
@@ -112,6 +130,7 @@ layout: default
 <span>$paper['photo'] = "Photographic Paper";</span>
 <span>echo $paper['laser'];</span>
 <span>?&gt;</span>
+<br/>
 <span>In place of a number (which doesn&rsquo;t convey any useful information, aside from the</span>
 <span>position of the item in the array), each item now has a unique name that you can use</span>
 <span>to reference it elsewhere, as with the</span>
@@ -133,12 +152,15 @@ layout: default
 <span>) are called</span>
 <span>values</span>
 <span>.</span>
+<br/>
 <span>This very powerful feature of PHP is often used when you are extracting information</span>
 <span>from XML and HTML. For example, an HTML parser such as those used by a search</span>
 <span>engine could place all the elements of a web page into an associative array whose</span>
 <span>names reflect the page&rsquo;s structure:</span>
+<br/>
 <span>$html['title'] = "My web page";</span>
 <span>$html['body'] = "... body of web page ...";</span>
+<br/>
 <span>The program would also probably break down all the links found within a page into</span>
 <span>another array, and all the headings and subheadings into another. When you use</span>
 <span>associative rather than numeric arrays, the code to refer to all of these items is easy to</span>
@@ -171,7 +193,9 @@ layout: default
 <span>both</span>
 <span>a</span>
 <span>numeric and an associative array assigned using this method.</span>
+<br/>
 <span>Example 6-5. Adding items to an array using the array keyword</span>
+<br/>
 <span>&lt;?php</span>
 <span>$p1 = array("Copier", "Inkjet", "Laser", "Photo");</span>
 <span>echo "p1 element: " . $p1[2] . "&lt;br&gt;";</span>
@@ -184,13 +208,16 @@ layout: default
 <span>'photo' =&gt; "Photographic Paper");</span>
 <span>echo "p2 element: " . $p2['inkjet'] . "&lt;br&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>The first half of this snippet assigns the old, shortened product descriptions to the</span>
 <span>array</span>
 <span>$p1</span>
 <span>. There are four items, so they will occupy slots 0 through 3. Therefore, the</span>
 <span>echo</span>
 <span>statement prints out the following:</span>
+<br/>
 <span>p1 element: Laser</span>
+<br/>
 <span>The second half assigns associative identifiers and accompanying longer product</span>
 <span>descriptions to the array</span>
 <span>$p2</span>
@@ -211,7 +238,9 @@ layout: default
 <span>assigned a new value. The</span>
 <span>echo</span>
 <span>command therefore prints out this:</span>
+<br/>
 <span>p2 element: Inkjet Printer</span>
+<br/>
 <span>You can verify that</span>
 <span>$p1</span>
 <span>and</span>
@@ -222,8 +251,10 @@ layout: default
 <span>or</span>
 <span>Undefined offset</span>
 <span>error, as the array identifier for each is incorrect:</span>
+<br/>
 <span>echo $p1['inkjet']; // Undefined index</span>
 <span>echo $p2[3]; // Undefined offset</span>
+<br/>
 <h3>The foreach...as Loop</h3>
 <span>The creators of PHP have gone to great lengths to make the language easy to use. So,</span>
 <span>not content with the loop structures already provided, they added another one espe‐</span>
@@ -240,7 +271,9 @@ layout: default
 <span>can be used to rewrite</span>
 <span>Example 6-3</span>
 <span>.</span>
+<br/>
 <span>Example 6-6. Walking through a numeric array using foreach...as</span>
+<br/>
 <span>&lt;?php</span>
 <span>$paper = array("Copier", "Inkjet", "Laser", "Photo");</span>
 <span>$j = 0;</span>
@@ -250,6 +283,7 @@ layout: default
 <span>++$j;</span>
 <span>}</span>
 <span>?&gt;</span>
+<br/>
 <span>When PHP encounters a</span>
 <span>foreach</span>
 <span>statement, it takes the first item of the array and</span>
@@ -270,6 +304,7 @@ layout: default
 <span>exactly the same as</span>
 <span>Example 6-3</span>
 <span>.</span>
+<br/>
 <span>Now let&rsquo;s see how</span>
 <span>foreach</span>
 <span>works with an associative array by taking a look at</span>
@@ -277,7 +312,9 @@ layout: default
 <span>, which is a rewrite of the second half of</span>
 <span>Example 6-5</span>
 <span>.</span>
+<br/>
 <span>Example 6-7. Walking through an associative array using foreach...as</span>
+<br/>
 <span>&lt;?php</span>
 <span>$paper = array('copier' =&gt; "Copier &amp; Multipurpose",</span>
 <span>&nbsp;</span>
@@ -289,6 +326,7 @@ layout: default
 <span>foreach($paper as $item =&gt; $description)</span>
 <span>echo "$item: $description&lt;br&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>Remember that associative arrays do not require numeric indexes, so the variable</span>
 <span>$j</span>
 <span>is not used in this example. Instead, each item of the array</span>
@@ -300,10 +338,12 @@ layout: default
 <span>$description</span>
 <span>, from which they are printed out.</span>
 <span>The displayed result of this code is as follows:</span>
+<br/>
 <span>copier: Copier &amp; Multipurpose</span>
 <span>inkjet: Inkjet Printer</span>
 <span>laser: Laser Printer</span>
 <span>photo: Photographic Paper</span>
+<br/>
 <span>As an alternative syntax to</span>
 <span>foreach...as</span>
 <span>, you can use the</span>
@@ -314,7 +354,9 @@ layout: default
 <span>function, as in</span>
 <span>Example 6-8</span>
 <span>.</span>
+<br/>
 <span>Example 6-8. Walking through an associative array using each and list</span>
+<br/>
 <span>&lt;?php</span>
 <span>$paper = array('copier' =&gt; "Copier &amp; Multipurpose",</span>
 <span>&nbsp;</span>
@@ -326,6 +368,7 @@ layout: default
 <span>while (list($item, $description) = each($paper))</span>
 <span>echo "$item: $description&lt;br&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>In this example, a</span>
 <span>while</span>
 <span>loop is set up and will continue looping until</span>
@@ -346,6 +389,7 @@ layout: default
 <span>returns</span>
 <span>FALSE</span>
 <span>.</span>
+<br/>
 <span>The</span>
 <span>list</span>
 <span>function takes an array as its argument (in this case, the key/value pair</span>
@@ -353,6 +397,7 @@ layout: default
 <span>each</span>
 <span>) and then assigns the values of the array to the vari‐</span>
 <span>ables listed within parentheses.</span>
+<br/>
 <span>You can see how</span>
 <span>list</span>
 <span>works a little more clearly in</span>
@@ -370,13 +415,18 @@ layout: default
 <span>and</span>
 <span>$b</span>
 <span>.</span>
+<br/>
 <span>Example 6-9. Using the list function</span>
+<br/>
 <span>&lt;?php</span>
 <span>list($a, $b) = array('Alice', 'Bob');</span>
 <span>echo "a=$a b=$b";</span>
 <span>?&gt;</span>
+<br/>
 <span>The output from this code is as follows:</span>
+<br/>
 <span>a=Alice b=Bob</span>
+<br/>
 <span>So you can take your pick when walking through arrays. Use</span>
 <span>foreach...as</span>
 <span>to create</span>
@@ -390,14 +440,18 @@ layout: default
 <span>A simple design feature in PHP&rsquo;s array syntax makes it possible to create arrays of</span>
 <span>more than one dimension. In fact, they can be as many dimensions as you like</span>
 <span>(although it&rsquo;s a rare application that goes further than three).</span>
+<br/>
 <span>That feature is the ability to include an entire array as a part of another one, and to be</span>
 <span>able to keep doing so, just like the old rhyme: &ldquo;Big fleas have little fleas upon their</span>
 <span>backs to bite &rsquo;em. Little fleas have lesser fleas, add flea, ad infinitum.&rdquo;</span>
+<br/>
 <span>Let&rsquo;s look at how this works by taking the associative array in the previous example</span>
 <span>and extending it; see</span>
 <span>Example 6-10</span>
 <span>.</span>
+<br/>
 <span>Example 6-10. Creating a multidimensional associative array</span>
+<br/>
 <span>&lt;?php</span>
 <span>$products = array(</span>
 <span>'paper' =&gt; array(</span>
@@ -432,6 +486,7 @@ layout: default
 <span>echo "$section:\t$key\t($value)&lt;br&gt;";</span>
 <span>echo "&lt;/pre&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>To make things clearer now that the code is starting to grow, I&rsquo;ve renamed some of</span>
 <span>the elements. For example, because the previous array</span>
 <span>$paper</span>
@@ -448,19 +503,23 @@ layout: default
 <span>&mdash;</span>
 <span>each of which contains another array with key/</span>
 <span>value pairs.</span>
+<br/>
 <span>If necessary, these subarrays could have contained even further arrays. For example,</span>
 <span>under</span>
 <span>ball</span>
 <span>there might be many different types and colors of ballpoint pens available</span>
 <span>in the online store. But for now, I&rsquo;ve restricted the code to a depth of just two.</span>
+<br/>
 <span>Once the array data has been assigned, I use a pair of nested</span>
 <span>foreach...as</span>
 <span>loops to</span>
 <span>print out the various values. The outer loop extracts the main sections from the top</span>
 <span>level of the array, and the inner loop extracts the key/value pairs for the categories</span>
 <span>within each section.</span>
+<br/>
 <span>As long as you remember that each level of the array works the same way (it&rsquo;s a key/</span>
 <span>value pair), you can easily write code to access any element at any level.</span>
+<br/>
 <span>The</span>
 <span>echo</span>
 <span>statement makes use of the PHP escape character</span>
@@ -474,6 +533,7 @@ layout: default
 <span>not</span>
 <span>to ignore whitespace characters such</span>
 <span>as tabs and line feeds. The output from this code looks like the following:</span>
+<br/>
 <span>paper: copier (Copier &amp; Multipurpose)</span>
 <span>paper: inkjet (Inkjet Printer)</span>
 <span>paper: laser (Laser Printer)</span>
@@ -484,8 +544,11 @@ layout: default
 <span>misc: tape (Sticky Tape)</span>
 <span>misc: glue (Adhesives)</span>
 <span>misc: clips (Paperclips)</span>
+<br/>
 <span>You can directly access a particular element of the array by using square brackets:</span>
+<br/>
 <span>echo $products['misc']['glue'];</span>
+<br/>
 <span>This outputs the value</span>
 <span>Adhesives</span>
 <span>.</span>
@@ -494,7 +557,9 @@ layout: default
 <span>Example 6-11</span>
 <span>creates the board for a</span>
 <span>chess game with the pieces in their starting positions.</span>
+<br/>
 <span>Example 6-11. Creating a multidimensional numeric array</span>
+<br/>
 <span>&lt;?php</span>
 <span>$chessboard = array(</span>
 <span>array('r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'),</span>
@@ -516,6 +581,7 @@ layout: default
 <span>}</span>
 <span>echo "&lt;/pre&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>In this example, the lowercase letters represent black pieces, and the uppercase white.</span>
 <span>The key is</span>
 <span>r</span>
@@ -540,6 +606,7 @@ layout: default
 <span>$chessboard</span>
 <span>array uses a subarray for each row. This loop has two</span>
 <span>statements within it, so curly braces enclose them.</span>
+<br/>
 <span>The</span>
 <span>inner</span>
 <span>loop</span>
@@ -561,12 +628,16 @@ layout: default
 <span>and</span>
 <span>&lt;/pre&gt;</span>
 <span>tags ensure that the output displays correctly, like this:</span>
+<br/>
 <span>r n b q k b n r</span>
 <span>p p p p p p p p</span>
 <span>P P P P P P P P</span>
 <span>R N B Q K B N R</span>
+<br/>
 <span>You can also directly access any element within this array by using square brackets:</span>
+<br/>
 <span>echo $chessboard[7][3];</span>
+<br/>
 <span>This statement outputs the uppercase letter</span>
 <span>Q</span>
 <span>, the eighth element down and the</span>
@@ -582,7 +653,7 @@ layout: default
 <span>.</span>
 <span>However, some of these functions are so fundamental that it&rsquo;s worth taking the time</span>
 <span>to look at them here.</span>
-<h4>is_array</h4>
+<h6>is_array</h6>
 <span>Arrays and variables share the same namespace. This means that you cannot have a</span>
 <span>string variable called</span>
 <span>$fred</span>
@@ -592,14 +663,16 @@ layout: default
 <span>your code needs to check whether a variable is an array, you can use the</span>
 <span>is_array</span>
 <span>function, like this:</span>
+<br/>
 <span>echo (is_array($fred)) ? "Is an array" : "Is not an array";</span>
+<br/>
 <span>Note that if</span>
 <span>$fred</span>
 <span>has not yet been assigned a value, an</span>
 <span>Undefined variable</span>
 <span>message</span>
 <span>will be generated.</span>
-<h4>count</h4>
+<h6>count</h6>
 <span>Although the</span>
 <span>each</span>
 <span>function and</span>
@@ -611,7 +684,9 @@ layout: default
 <span>echo count($fred);</span>
 <span>Should you wish to know how many elements there are altogether in a multidimen‐</span>
 <span>sional array, you can use a statement such as the following:</span>
+<br/>
 <span>echo count($fred, 1);</span>
+<br/>
 <span>The second parameter is optional and sets the mode to use. It should be either a</span>
 <span>0</span>
 <span>to</span>
@@ -619,10 +694,12 @@ layout: default
 <span>1</span>
 <span>to force recursive counting of all subarray</span>
 <span>elements too.</span>
-<h4>sort</h4>
+<h6>sort</h6>
 <span>Sorting is so common that PHP provides a built-in function. In its simplest form, you</span>
 <span>would use it like this:</span>
+<br/>
 <span>sort($fred);</span>
+<br/>
 <span>Unlike some other functions,</span>
 <span>sort</span>
 <span>will act directly on the supplied array rather than</span>
@@ -632,17 +709,22 @@ layout: default
 <span>FALSE</span>
 <span>on error and also supports a few flags, but the main two that you might wish to</span>
 <span>use force sorting to be made either numerically or as strings, like this:</span>
+<br/>
 <span>sort($fred, SORT_NUMERIC);</span>
+<br/>
 <span>sort($fred, SORT_STRING);</span>
+<br/>
 <span>You can also sort an array in reverse order using the</span>
 <span>rsort</span>
 <span>function, like this:</span>
 <span>rsort($fred, SORT_NUMERIC);</span>
 <span>rsort($fred, SORT_STRING);</span>
-<h4>shuffle</h4>
+<h6>shuffle</h6>
 <span>There may be times when you need the elements of an array to be put in random</span>
 <span>order, such as when you&rsquo;re creating a game of playing cards:</span>
+<br/>
 <span>shuffle($cards);</span>
+<br/>
 <span>Like</span>
 <span>sort</span>
 <span>,</span>
@@ -652,14 +734,16 @@ layout: default
 <span>on success or</span>
 <span>FALSE</span>
 <span>on error.</span>
-<h4>explode</h4>
+<h6>explode</h6>
 <span>This is a very useful function with which you can take a string containing several</span>
 <span>items separated by a single character (or string of characters) and then place each of</span>
 <span>these items into an array. One handy example is to split up a sentence into an array</span>
 <span>containing all its words, as in</span>
 <span>Example 6-12</span>
 <span>.</span>
+<br/>
 <span>Example 6-12. Exploding a string into an array using spaces</span>
+<br/>
 <span>&lt;?php</span>
 <span>$temp = explode(' ', "This is a sentence with seven words");</span>
 <span>print_r($temp);</span>
@@ -675,10 +759,13 @@ layout: default
 <span>[5] =&gt; seven</span>
 <span>[6] =&gt; words</span>
 <span>)</span>
+<br/>
 <span>The first parameter, the delimiter, need not be a space or even a single character.</span>
 <span>Example 6-13</span>
 <span>shows a slight variation.</span>
+<br/>
 <span>Example 6-13. Exploding a string delimited with *** into an array</span>
+<br/>
 <span>&lt;?php</span>
 <span>$temp = explode('***', "A***sentence***with***asterisks");</span>
 <span>print_r($temp);</span>
@@ -701,6 +788,7 @@ layout: default
 <span>$_POST</span>
 <span>vari‐</span>
 <span>ables as sent to a PHP script by a form.</span>
+<br/>
 <span>When a form is submitted over the Web, the web server unpacks the variables into a</span>
 <span>global array for the PHP script. If the variables were sent using the Get method, they</span>
 <span>will be placed in an associative array called</span>
@@ -709,10 +797,13 @@ layout: default
 <span>will be placed in an associative array called</span>
 <span>$_POST</span>
 <span>.</span>
+<br/>
 <span>You could, of course, walk through such associative arrays in the manner shown in</span>
 <span>the examples so far. However, sometimes you just want to store the values sent into</span>
 <span>variables for later use. In this case, you can have PHP do the job automatically:</span>
+<br/>
 <span>extract($_GET);</span>
+<br/>
 <span>So, if the query string parameter</span>
 <span>q</span>
 <span>is sent to a PHP script along with the associated</span>
@@ -725,7 +816,9 @@ layout: default
 <span>ones that you have already defined, your existing values will be overwritten. To avoid</span>
 <span>this possibility, you can use one of the many additional parameters available to this</span>
 <span>function, like this:</span>
+<br/>
 <span>extract($_GET, EXTR_PREFIX_ALL, 'fromget');</span>
+<br/>
 <span>In this case, all the new variables will begin with the given prefix string followed by an</span>
 <span>underscore, so</span>
 <span>$q</span>
@@ -750,7 +843,9 @@ layout: default
 <span>Example 6-14</span>
 <span>shows how you might use this func‐</span>
 <span>tion.</span>
+<br/>
 <span>Example 6-14. Using the compact function</span>
+<br/>
 <span>&lt;?php</span>
 <span>$fname = "Doctor";</span>
 <span>$sname = "Who";</span>
@@ -760,9 +855,11 @@ layout: default
 <span>$contact = compact('fname', 'sname', 'planet', 'system', 'constellation');</span>
 <span>print_r($contact);</span>
 <span>?&gt;</span>
+<br/>
 <span>The result of running</span>
 <span>Example 6-14</span>
 <span>is as follows:</span>
+<br/>
 <span>Array</span>
 <span>(</span>
 <span>[fname] =&gt; Doctor</span>
@@ -771,6 +868,7 @@ layout: default
 <span>[system] =&gt; Gridlock</span>
 <span>[constellation] =&gt; Kasterborous</span>
 <span>)</span>
+<br/>
 <span>Note how</span>
 <span>compact</span>
 <span>requires the variable names to be supplied in quotes, not preceded</span>
@@ -779,11 +877,14 @@ layout: default
 <span>symbol. This is because</span>
 <span>compact</span>
 <span>is looking for a list of variable names.</span>
+<br/>
 <span>Another use of this function is for debugging, when you wish to quickly view several</span>
 <span>variables and their values, as in</span>
 <span>Example 6-15</span>
 <span>.</span>
+<br/>
 <span>Example 6-15. Using compact to help with debugging</span>
+<br/>
 <span>&lt;?php</span>
 <span>$j = 23;</span>
 <span>$temp = "Hello";</span>
@@ -791,6 +892,7 @@ layout: default
 <span>$age = 61;</span>
 <span>print_r(compact(explode(' ', 'j temp address age')));</span>
 <span>?&gt;</span>
+<br/>
 <span>This works by using the</span>
 <span>explode</span>
 <span>function to extract all the words from the string into</span>
@@ -800,11 +902,13 @@ layout: default
 <span>to</span>
 <span>print_r</span>
 <span>, which finally shows its contents.</span>
+<br/>
 <span>If you copy and paste the</span>
 <span>print_r</span>
 <span>line of code, you only need to alter the variables</span>
 <span>named there for a quick printout of a group of variables&rsquo; values. In this example, the</span>
 <span>output is shown here:</span>
+<br/>
 <span>Array</span>
 <span>(</span>
 <span>[j] =&gt; 23</span>
@@ -824,6 +928,7 @@ layout: default
 <span>reset</span>
 <span>, which also returns the value of that element. Examples of how to use this</span>
 <span>function are as follows:</span>
+<br/>
 <span>reset($fred); // Throw away return value</span>
 <span>$item = reset($fred); // Keep first element of the array in $item</span>
 <h4>end</h4>
@@ -834,37 +939,10 @@ layout: default
 <span>end</span>
 <span>function, which also returns the value of the element, and can be</span>
 <span>used as in these examples:</span>
+<br/>
 <span>end($fred);</span>
 <span>$item = end($fred);</span>
+<br/>
 <span>This chapter concludes your basic introduction to PHP, and you should now be able</span>
 <span>to write quite complex programs using the skills you have learned. In the next chap‐</span>
 <span>ter, we&rsquo;ll look at using PHP for common, practical tasks.</span>
-<h3>Questions</h3>
-<span>1.</span>
-<span>What is the difference between a numeric and an associative array?</span>
-<span>2.</span>
-<span>What is the main benefit of the</span>
-<span>array</span>
-<span>keyword?</span>
-<span>3.</span>
-<span>What is the difference between</span>
-<span>foreach</span>
-<span>and</span>
-<span>each</span>
-<span>?</span>
-<span>4.</span>
-<span>How can you create a multidimensional array?</span>
-<span>5.</span>
-<span>How can you determine the number of elements in an array?</span>
-<span>6.</span>
-<span>What is the purpose of the</span>
-<span>explode</span>
-<span>function?</span>
-<span>7.</span>
-<span>How can you set PHP&rsquo;s internal pointer into an array back to the first element of</span>
-<span>the array?</span>
-<span>See</span>
-<span>Chapter 6 Answers</span>
-<span>in</span>
-<span>Appendix A</span>
-<span>for the answers to these questions.</span>
