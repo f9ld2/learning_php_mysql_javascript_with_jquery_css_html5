@@ -1,3 +1,7 @@
+---
+layout: default
+title: "Introduction to Dynamic Web Content"
+---
 <section>
     <h2>Introduction to Dynamic Web Content</h2>
     <span>The World Wide Web is a constantly evolving network that has already traveled far</span>
