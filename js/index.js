@@ -1,4 +1,4 @@
-//<pre><code class="php"></code></pre>
+//<pre><code class="sql"></code></pre>
 <pre>
 <code class="php">
 

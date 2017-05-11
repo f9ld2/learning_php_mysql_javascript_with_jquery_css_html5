@@ -29,9 +29,7 @@ title: "Introduction to MySQL"
 <span>. This language is loosely</span>
 <span>based on English and also used in other databases such as Oracle and Microsoft SQL</span>
 <span>Server. It is designed to allow simple requests from a database via commands such as</span>
-<br/>
-<span>SELECT title FROM publications WHERE author = 'Charles Dickens';</span>
-<br/>
+<pre><code class="sql">SELECT title FROM publications WHERE author = 'Charles Dickens';</code></pre>
 <span>A MySQL database contains one or more</span>
 <span>tables</span>
 <span>, each of which contains</span>
@@ -48,32 +46,44 @@ title: "Introduction to MySQL"
 <span>author, title, type, and year of publication.</span>
 <br/>
 <span>Table 8-1. Example of a simple database</span>
-<br/>
-<span>Author</span>
-<span>Title</span>
-<span>Type</span>
-<span>Year</span>
-<span>Mark Twain</span>
-<span>The Adventures of Tom Sawyer</span>
-<span>Fiction</span>
-<span>1876</span>
-<span>Jane Austen</span>
-<span>Pride and Prejudice</span>
-<span>Fiction</span>
-<span>1811</span>
-<span>Charles Darwin</span>
-<span>The Origin of Species</span>
-<span>Nonfiction</span>
-<span>1856</span>
-<span>Charles Dickens</span>
-<span>The Old Curiosity Shop</span>
-<span>Fiction</span>
-<span>1841</span>
-<span>William Shakespeare</span>
-<span>Romeo and Juliet</span>
-<span>Play</span>
-<span>1594</span>
-<br/>
+<table class="tbl-left">
+    <tr>
+        <td>Author</td>
+        <td>Title</td>
+        <td>Type</td>
+        <td>Year</td>
+    </tr>
+    <tr>
+        <td>Mark Twain</td>
+        <td>The Adventures of Tom Sawyer</td>
+        <td>Fiction</td>
+        <td>1876</td>
+    </tr>
+    <tr>
+        <td>Jane Austen</td>
+        <td>Pride and Prejudice</td>
+        <td>Fiction</td>
+        <td>1811</td>
+    </tr>
+    <tr>
+        <td>Charles Darwin</td>
+        <td>The Origin of Species</td>
+        <td>Nonfiction</td>
+        <td>1856</td>
+    </tr>
+    <tr>
+        <td>Charles Dickens</td>
+        <td>The Old Curiosity Shop</td>
+        <td>Fiction</td>
+        <td>1841</td>
+    </tr>
+    <tr>
+        <td>William Shakespeare</td>
+        <td>Romeo and Juliet</td>
+        <td>Play</td>
+        <td>1594</td>
+    </tr>
+</table><br/>
 <span>Each row in the table is the same as a row in a MySQL table, and each element within</span>
 <span>a row is the same as a MySQL field.</span>
 <br/>
@@ -88,22 +98,14 @@ title: "Introduction to MySQL"
 <h3>Summary of Database Terms</h3>
 <span>The main terms you need to acquaint yourself with for now are as follows:</span>
 <br/>
-<span>Database</span>
-<br/>
-<span>The overall container for a collection of MySQL data</span>
-<br/>
-<span>Table</span>
-<br/>
-<span>A subcontainer within a database that stores the actual data</span>
-<br/>
-<span>Row</span>
-<br/>
-<span>A single record within a table, which may contain several fields</span>
-<br/>
-<span>Column</span>
-<br/>
-<span>The name of a field within a row</span>
-<br/>
+<span>Database</span><br/>
+<div class="t30">The overall container for a collection of MySQL data</div>
+<span>Table</span><br/>
+<div class="t30">A subcontainer within a database that stores the actual data</div>
+<span>Row</span><br/>
+<div class="t30">A single record within a table, which may contain several fields</div>
+<span>Column</span><br/>
+<div class="t30">The name of a field within a row</div>
 <span>I should note that I&rsquo;m not trying to reproduce the precise terminology used in aca‐</span>
 <span>demic literature about relational databases, but just to provide simple, everyday terms</span>
 <span>to help you quickly grasp basic concepts and get started with a database.</span>
@@ -121,9 +123,7 @@ title: "Introduction to MySQL"
 <span>&nbsp;Chapter 2</span>
 <span>), you will be able to access the</span>
 <span>MySQL executable from the following directory:</span>
-<br/>
-<span>C:\xampp\mysql\bin</span>
-<br/>
+<pre><code class="bash">C:\xampp\mysql\bin</code></pre>
 <span>If you installed XAMPP in a place other than</span>
 <span>&nbsp;\xampp</span>
 <span>, you will</span>
@@ -140,8 +140,7 @@ title: "Introduction to MySQL"
 <span>into the</span>
 <span>Run box, and press Return. This will call up a Windows command prompt. From</span>
 <span>there, enter one the following (making any appropriate changes as just discussed):</span>
-<span>C:\xampp\mysql\bin\mysql -u root</span>
-<br/>
+<pre><code class="bash">C:\xampp\mysql\bin\mysql -u root</code></pre>
 <span>This command tells MySQL to log you in as user</span>
 <span>root</span>
 <span>, without a password. You will</span>
@@ -149,8 +148,7 @@ title: "Introduction to MySQL"
 <span>thing is working as it should be, enter the following; the results should be similar to</span>
 <span>Figure 8-1</span>
 <span>:</span>
-<br/>
-<span>SHOW databases;</span>
+<pre><code class="sql">SHOW databases;</code></pre>
 <p><img src="images/8.1.png"/></p>
 <span>Figure 8-1. Accessing MySQL from a Windows command prompt</span>
 <br/>
@@ -176,9 +174,7 @@ title: "Introduction to MySQL"
 <span>root</span>
 <span>too. So,</span>
 <span>to start the program, type the following:</span>
-<br/>
-<span>/Applications/xampp/bin/mysql -u root</span>
-<br/>
+<pre><code class="bash">/Applications/xampp/bin/mysql -u root</code></pre>
 <span>This command tells MySQL to log you in as user</span>
 <span>root</span>
 <span>and not to request your pass‐</span>
@@ -186,7 +182,7 @@ title: "Introduction to MySQL"
 <span>Figure 8-2</span>
 <span>should be the result:</span>
 <br/>
-<span>SHOW databases;</span>
+<pre><code class="sql">SHOW databases;</code></pre>
 <p><img src="images/8.2.png"/></p>
 <span>Figure 8-2. Accessing MySQL from the OS X Terminal program</span>
 <span>If you receive an error such as &ldquo;Can&rsquo;t connect to local MySQL server through socket,&rdquo;</span>
@@ -205,9 +201,7 @@ title: "Introduction to MySQL"
 <span>Chapter 2</span>
 <span>to install XAMPP). First you should type the following to log into your</span>
 <span>MySQL system:</span>
-<br/>
-<span>mysql -u root -p</span>
-<br/>
+<pre><code class="bash">mysql -u root -p</code></pre>
 <span>This tells MySQL to log you in as the user</span>
 <span>root</span>
 <span>and to request your password. If you</span>
@@ -217,8 +211,7 @@ title: "Introduction to MySQL"
 <span>thing like</span>
 <span>Figure 8-3</span>
 <span>in response:</span>
-<br/>
-<span>SHOW databases;</span>
+<pre><code class="sql">SHOW databases;</code></pre>
 <p><img src="images/8.3.png"/></p>
 <span>Figure 8-3. Accessing MySQL using Linux</span>
 <span>If this procedure fails at any point, please refer to</span>
@@ -238,18 +231,12 @@ title: "Introduction to MySQL"
 <span>can then type the following, where</span>
 <span>username</span>
 <span>is the name supplied:</span>
-<br/>
-<span>mysql -u</span>
-<span>username</span>
-<span>-p</span>
-<br/>
+<pre><code class="sql">mysql -u username -p</code></pre>
 <span>Enter your password when prompted. You can then try the following command,</span>
 <span>which should result in something like</span>
 <span>Figure 8-3</span>
 <span>:</span>
-<br/>
-<span>SHOW databases;</span>
-<br/>
+<pre><code class="sql">SHOW databases;</code></pre>
 <span>There may be other databases already created, and the</span>
 <span>test</span>
 <span>database may not be there.</span>
@@ -293,22 +280,36 @@ title: "Introduction to MySQL"
 <span>you will always know where you are during a multiline input.</span>
 <br/>
 <span>Table 8-2. MySQL&rsquo;s six command prompts</span>
-<br/>
-<span>MySQL prompt</span>
-<span>Meaning</span>
-<span>mysql&gt;</span>
-<span>Ready and waiting for a command</span>
-<span>-&gt;</span>
-<span>Waiting for the next line of a command</span>
-<span>'&gt;</span>
-<span>Waiting for the next line of a string started with a single quote</span>
-<span>"&gt;</span>
-<span>Waiting for the next line of a string started with a double quote</span>
-<span>`&gt;</span>
-<span>Waiting for the next line of a string started with a back tick</span>
-<span>/*&gt;</span>
-<span>Waiting for the next line of a comment started with</span>
-<span>/*</span>
+<table class="tbl-left">
+    <tr>
+        <td>MySQL prompt</td>
+        <td>Meaning</td>
+    </tr>
+    <tr>
+        <td>mysql&gt;</td>
+        <td>Ready and waiting for a command</td>
+    </tr>
+    <tr>
+        <td>-&gt;</td>
+        <td>Waiting for the next line of a command</td>
+    </tr>
+    <tr>
+        <td>'&gt;</td>
+        <td>Waiting for the next line of a string started with a single quote</td>
+    </tr>
+    <tr>
+        <td>"&gt;</td>
+        <td>Waiting for the next line of a string started with a double quote</td>
+    </tr>
+    <tr>
+        <td>`&gt;</td>
+        <td>Waiting for the next line of a string started with a back tick</td>
+    </tr>
+    <tr>
+        <td>/*&gt;</td>
+        <td>Waiting for the next line of a comment started with /*</td>
+    </tr>
+</table>
 <h6>Canceling a command</h6>
 <span>If you are partway through entering a command and decide you don&rsquo;t wish to execute</span>
 <span>it after all, whatever you do,</span>
@@ -321,9 +322,7 @@ title: "Introduction to MySQL"
 <span>shows how to use it.</span>
 <br/>
 <span>Example 8-1. Canceling a line of input</span>
-<br/>
-<span>meaningless gibberish to mysql \c</span>
-<br/>
+<pre><code class="sql">meaningless gibberish to mysql \c</code></pre>
 <span>When you type that line, MySQL will ignore everything you typed and issue a new</span>
 <span>prompt. Without the</span>
 <span>\c</span>
@@ -339,7 +338,7 @@ title: "Introduction to MySQL"
 <span>do this.</span>
 <span>Example 8-2. Canceling input from inside a string</span>
 <br/>
-<span>this is "meaningless gibberish to mysql" \c</span>
+<b class="t30">this is "meaningless gibberish to mysql" \c</b>
 <br/>
 <span>Also note that using</span>
 <span>\c</span>
@@ -353,52 +352,97 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Table 8-3. Common MySQL commands</span>
-<br/>
-<span>Command</span>
-<span>Action</span>
-<span>ALTER</span>
-<span>Alter a database or table</span>
-<span>BACKUP</span>
-<span>Back up a table</span>
-<span>\c</span>
-<span>Cancel input</span>
-<span>CREATE</span>
-<span>Create a database</span>
-<span>DELETE</span>
-<span>Delete a row from a table</span>
-<span>DESCRIBE</span>
-<span>Describe a table&rsquo;s columns</span>
-<span>DROP</span>
-<span>Delete a database or table</span>
-<span>EXIT (CTRL-C)</span>
-<span>Exit</span>
-<span>GRANT</span>
-<span>Change user privileges</span>
-<span>HELP (\h, \?)</span>
-<span>Display help</span>
-<span>INSERT</span>
-<span>Insert data</span>
-<span>LOCK</span>
-<span>Lock table(s)</span>
-<span>QUIT (\q)</span>
-<span>Same as</span>
-<span>EXIT</span>
-<span>RENAME</span>
-<span>Rename a table</span>
-<span>SHOW</span>
-<span>List details about an object</span>
-<span>SOURCE</span>
-<span>Execute a file</span>
-<span>STATUS (\s)</span>
-<span>Display the current status</span>
-<span>TRUNCATE</span>
-<span>Empty a table</span>
-<span>UNLOCK</span>
-<span>Unlock table(s)</span>
-<span>UPDATE</span>
-<span>Update an existing record</span>
-<span>USE</span>
-<span>Use a database</span>
+<table class="tbl-left">
+    <tr>
+         <td>Command</td>
+        <td>Action</td>
+    </tr>
+    <tr>
+        <td>ALTER</td>
+        <td>Alter a database or table</td>
+    </tr>
+    <tr>
+        <td>BACKUP</td>
+        <td>Back up a table</td>
+    </tr>
+    <tr>
+        <td>\c</td>
+        <td>Cancel input</td>
+    </tr>
+    <tr>
+        <td>CREATE</td>
+        <td>Create a database</td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>Delete a row from a table</td>
+    </tr>
+    <tr>
+        <td>DESCRIBE</td>
+        <td>Describe a table&rsquo;s columns</td>
+    </tr>
+    <tr>
+        <td>DROP</td>
+        <td>Delete a database or table</td>
+    </tr>
+    <tr>
+        <td>EXIT (CTRL-C)</td>
+        <td>Exit</td>
+    </tr>
+    <tr>
+        <td>GRANT</td>
+        <td>Change user privileges</td>
+    </tr>
+    <tr>
+        <td>HELP (\h, \?)</td>
+        <td>Display help</td>
+    </tr>
+    <tr>
+        <td>INSERT</td>
+        <td>Insert data</td>
+    </tr>
+    <tr>
+        <td>LOCK</td>
+        <td>Lock table(s)</td>
+    </tr>
+    <tr>
+        <td>QUIT (\q)</td>
+        <td>Same as EXIT</td>
+    </tr>
+    <tr>
+        <td>RENAME</td>
+        <td>Rename a table</td>
+    </tr>
+    <tr>
+        <td>SHOW</td>
+        <td>List details about an object</td>
+    </tr>
+    <tr>
+        <td>SOURCE</td>
+        <td>Execute a file</td>
+    </tr>
+    <tr>
+        <td>STATUS (\s)</td>
+        <td>Display the current status</td>
+    </tr>
+    <tr>
+        <td>TRUNCATE</td>
+        <td>Empty a table</td>
+    </tr>
+    <tr>
+        <td>UNLOCK</td>
+        <td>Unlock table(s)</td>
+    </tr>
+    <tr>
+        <td>UPDATE</td>
+        <td>Update an existing record</td>
+    </tr>
+    <tr>
+        <td>USE</td>
+        <td>Use a database</td>
+    </tr>
+</table>
+
 <br/>
 <span>I&rsquo;ll cover most of these as we proceed, but first, you need to remember a couple of</span>
 <span>points about MySQL commands:</span>
@@ -426,18 +470,14 @@ title: "Introduction to MySQL"
 <span>ate a new database called</span>
 <span>publications</span>
 <span>:</span>
-<br/>
-<span>CREATE DATABASE publications;</span>
-<br/>
+<pre><code class="sql">CREATE DATABASE publications;</code></pre>
 <span>A successful command will return a message that doesn&rsquo;t mean much yet&mdash;</span>
 <span>Query OK,</span>
 <span>1 row affected (0.00 sec)</span>
 <span>&mdash;</span>
 <span>but will make sense soon. Now that you&rsquo;ve created</span>
 <span>the database, you want to work with it, so issue the following:</span>
-<br/>
-<span>USE publications;</span>
-<br/>
+<pre><code class="sql">USE publications;</code></pre>
 <span>You should now see the message</span>
 <span>Database changed</span>
 <span>and will then be set to proceed</span>
@@ -450,10 +490,12 @@ title: "Introduction to MySQL"
 <span>GRANT</span>
 <span>command, which takes the following form (don&rsquo;t</span>
 <span>type this in; it&rsquo;s not an actual working command):</span>
-<br/>
-<span>GRANT PRIVILEGES ON database.object TO 'username'@'hostname'</span>
-<span>IDENTIFIED BY 'password';</span>
-<br/>
+<pre>
+<code class="sql">
+    GRANT PRIVILEGES ON database.object TO 'username'@'hostname'
+    IDENTIFIED BY 'password';
+</code>
+</pre>
 <span>This should be pretty straightforward, with the possible exception of the</span>
 <span>data</span>
 <span>base.object</span>
@@ -463,23 +505,24 @@ title: "Introduction to MySQL"
 <span>).</span>
 <br/>
 <span>Table 8-4. Example parameters for the GRANT command</span>
-<br/>
-<span>Arguments</span>
-<span>Meaning</span>
-<span>*.*</span>
-<span>All databases and all their objects</span>
-<span>database</span>
-<span>.*</span>
-<span>Only the database called</span>
-<span>database</span>
-<span>and all its objects</span>
-<span>database</span>
-<span>.</span>
-<span>object</span>
-<span>Only the database called</span>
-<span>database</span>
-<span>and its object called</span>
-<span>object</span>
+<table class="tbl-left">
+    <tr>
+        <td>Arguments</td>
+        <td>Meaning</td>
+    </tr>
+    <tr>
+        <td>*.*</td>
+        <td>All databases and all their objects</td>
+    </tr>
+    <tr>
+        <td>database.*</td>
+        <td>Only the database called database and all its objects</td>
+    </tr>
+    <tr>
+        <td>database.object</td>
+        <td>Only the database called database and its object called object</td>
+    </tr>
+</table>
 <br/>
 <span>So let&rsquo;s create a user who can access just the new</span>
 <span>&nbsp;publications</span>
@@ -489,10 +532,12 @@ title: "Introduction to MySQL"
 <span>and also the password</span>
 <span>mypasswd</span>
 <span>with ones of your choosing):</span>
-<br/>
-<span>GRANT ALL ON publications.* TO 'jim'@'localhost'</span>
-<span>IDENTIFIED BY 'mypasswd';</span>
-<br/>
+<pre>
+<code class="sql">
+    GRANT ALL ON publications.* TO 'jim'@'localhost'
+    IDENTIFIED BY 'mypasswd';
+</code>
+</pre>
 <span>What this does is allow the user</span>
 <span>jim@localhost</span>
 <span>full access to the</span>
@@ -515,15 +560,24 @@ title: "Introduction to MySQL"
 <span>client program is installed in a different directory on your system.</span>
 <br/>
 <span>Table 8-5. Starting MySQL and logging in as jim@localhost</span>
-<br/>
-<span>OS</span>
-<span>Example command</span>
-<span>Windows</span>
-<span>C:\xampp\mysql\bin\mysql -u jim -p</span>
-<span>Mac OS X</span>
-<span>/Applications/xampp/bin/mysql -u jim -p</span>
-<span>Linux</span>
-<span>mysql -u jim &ndash;p</span>
+<table class="tbl-left">
+    <tr>
+        <td>OS</td>
+        <td>Example command</td>
+    </tr>
+    <tr>
+        <td>Windows</td>
+        <td>C:\xampp\mysql\bin\mysql -u jim -p</td>
+    </tr>
+    <tr>
+        <td>Mac OS X</td>
+        <td>/Applications/xampp/bin/mysql -u jim -p</td>
+    </tr>
+    <tr>
+        <td>Linux</td>
+        <td>mysql -u jim &ndash;p</td>
+    </tr>
+</table>
 <br/>
 <span>All you have to do now is enter your password when prompted and you will be log‐</span>
 <span>ged in. If you prefer, you can place your password immediately following the</span>
@@ -559,21 +613,22 @@ title: "Introduction to MySQL"
 <span>(replacing</span>
 <span>publications</span>
 <span>with the name of your database if it is different):</span>
-<br/>
-<span>USE publications;</span>
-<br/>
+<pre><code class="sql">USE publications;</code></pre>
 <span>Now enter the commands in</span>
 <span>Example 8-3</span>
 <span>one line at a time.</span>
 <br/>
 <span>Example 8-3. Creating a table called classics</span>
-<br/>
-<span>CREATE TABLE classics (</span>
-<span>author VARCHAR(128),</span>
-<span>title VARCHAR(128),</span>
-<span>type VARCHAR(16),</span>
-<span>year CHAR(4)) ENGINE MyISAM;</span>
-<br/>
+<pre>
+<code class="sql">
+CREATE TABLE classics (
+    author VARCHAR(128),
+    title VARCHAR(128),
+    type VARCHAR(16),
+    year CHAR(4)
+) ENGINE MyISAM;
+</code>
+</pre>
 <span>You could also issue this command on a single line, like this:</span>
 <span>CREATE TABLE classics (author VARCHAR(128), title</span>
 <span>VARCHAR(128), type VARCHAR(16), year CHAR(4)) ENGINE</span>
@@ -594,41 +649,35 @@ title: "Introduction to MySQL"
 <span>base engine to use for this table.</span>
 <br/>
 <span>To check whether your new table has been created, type the following:</span>
-<br/>
-<span>DESCRIBE classics;</span>
-<br/>
+<pre><code class="sql">DESCRIBE classics;</code></pre>
 <span>All being well, you will see the sequence of commands and responses shown in</span>
 <span>Example 8-4</span>
 <span>, where you should particularly note the table format displayed.</span>
 <br/>
 <span>Example 8-4. A MySQL session: creating and checking a new table</span>
-<br/>
-<span>mysql&gt;</span>
-<span>USE publications;</span>
-<span>Database changed</span>
-<span>mysql&gt;</span>
-<span>CREATE TABLE classics (</span>
-<span>-&gt;</span>
-<span>author VARCHAR(128),</span>
-<span>-&gt;</span>
-<span>title VARCHAR(128),</span>
-<span>-&gt;</span>
-<span>type VARCHAR(16),</span>
-<span>-&gt;</span>
-<span>year CHAR(4)) ENGINE MyISAM;</span>
-<span>Query OK, 0 rows affected (0.03 sec)</span>
-<span>mysql&gt;</span>
-<span>DESCRIBE classics;</span>
-<span>+--------+--------------+------+-----+---------+-------+</span>
-<span>| Field | Type | Null | Key | Default | Extra |</span>
-<span>+--------+--------------+------+-----+---------+-------+</span>
-<span>| author | varchar(128) | YES | | NULL | |</span>
-<span>| title | varchar(128) | YES | | NULL | |</span>
-<span>| type | varchar(16) | YES | | NULL | |</span>
-<span>| year | char(4) | YES | | NULL | |</span>
-<span>+--------+--------------+------+-----+---------+-------+</span>
-<span>4 rows in set (0.00 sec)</span>
-<br/>
+<pre>
+<code class="php">
+mysql&gt; USE publications;
+Database changed
+mysql&gt; CREATE TABLE classics (
+-&gt; author VARCHAR(128),
+-&gt; title VARCHAR(128),
+-&gt; type VARCHAR(16),
+-&gt; year CHAR(4)) ENGINE MyISAM;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql&gt; DESCRIBE classics;
++--------+--------------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| author | varchar(128) | YES | | NULL | |
+| title | varchar(128) | YES | | NULL | |
+| type | varchar(16) | YES | | NULL | |
+| year | char(4) | YES | | NULL | |
++--------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+</code>
+</pre>
 <span>The</span>
 <span>DESCRIBE</span>
 <span>command is an invaluable debugging aid when you need to ensure that</span>
@@ -636,36 +685,22 @@ title: "Introduction to MySQL"
 <span>about a table&rsquo;s field or column names and the types of data in each one. Let&rsquo;s look at</span>
 <span>each of the headings in detail:</span>
 <br/>
-<span>Field</span>
-<br/>
-<span>The name of each field or column within a table.</span>
-<br/>
-<span>Type</span>
-<br/>
-<span>The type of data being stored in the field.</span>
-<span>Null</span>
-<span>Whether a field is allowed to contain a value of</span>
-<span>NULL</span>
-<span>.</span>
-<br/>
-<span>Key</span>
-<br/>
-<span>MySQL supports</span>
-<span>&nbsp;keys</span>
-<span>&nbsp;or</span>
-<span>&nbsp;indexes</span>
-<span>, which are quick ways to look up and search for</span>
-<span>data. The</span>
-<span>Key</span>
-<span>heading shows what type of key (if any) has been applied.</span>
-<br/>
-<span>Default</span>
-<br/>
-<span>The default value that will be assigned to the field if no value is specified when a new</span>
-<span>row is created.</span>
-<br/>
-<span>Extra</span>
-<br/>
+<span>Field</span><br/>
+<div class="t30">The name of each field or column within a table.</div>
+
+<span>Type</span><br/>
+<div class="t30">The type of data being stored in the field.</div>
+
+<span>Null</span><br/>
+<div class="t30">Whether a field is allowed to contain a value of NULL.</div>
+
+<span>Key</span><br/>
+<div class="t30">MySQL supports &nbsp;keys &nbsp;or &nbsp;indexes , which are quick ways to look up and search for data. The Key heading shows what type of key (if any) has been applied.</div>
+
+<span>Default</span><br/>
+<div class="t30">The default value that will be assigned to the field if no value is specified when a new row is created.</div>
+
+<span>Extra</span><br/>
 <span>Additional information, such as whether a field is set to auto-increment.</span>
 <h4>Data Types</h4>
 <span>In</span>
@@ -754,34 +789,25 @@ title: "Introduction to MySQL"
 <span>has a built-in maximum number of bytes it can occupy.</span>
 <br/>
 <span>Table 8-6. MySQL&rsquo;s CHAR data types</span>
-<br/>
-<span>Data type</span>
-<span>Bytes used</span>
-<span>Examples</span>
-<span>CHAR(</span>
-<span>n</span>
-<span>)</span>
-<span>Exactly</span>
-<span>n</span>
-<span>(&lt;= 255)</span>
-<span>CHAR(5)</span>
-<span>&ldquo;</span>
-<span>Hello&rdquo; uses 5 bytes</span>
-<span>CHAR(57)</span>
-<span>&ldquo;</span>
-<span>Goodbye&rdquo; uses 57 bytes</span>
-<span>VARCHAR(</span>
-<span>n</span>
-<span>)</span>
-<span>Up to</span>
-<span>n</span>
-<span>(&lt;= 65535)</span>
-<span>VARCHAR(7)</span>
-<span>&ldquo;</span>
-<span>Morning&rdquo; uses 7 bytes</span>
-<span>VARCHAR(100)</span>
-<span>&ldquo;</span>
-<span>Night&rdquo; uses 5 bytes</span>
+<table class="tbl-left">
+    <tr>
+        <td>Data type</td>
+        <td>Bytes used</td>
+        <td>Examples</td>
+    </tr>
+    <tr>
+        <td>CHAR(n)</td>
+        <td>Exactly n(&lt;= 255)</td>
+        <td>CHAR(5)&ldquo;Hello&rdquo; uses 5 bytes
+            CHAR(57)&ldquo;Goodbye&rdquo; uses 57 bytes</td>
+    </tr>
+    <tr>
+        <td>VARCHAR(n)</td>
+        <td>Up to n(&lt;= 65535)</td>
+        <td>VARCHAR(7)&ldquo;Morning&rdquo; uses 7 bytes
+            VARCHAR(100)&ldquo;Night&rdquo; uses 5 bytes</td>
+    </tr>
+</table>
 <h6>The BINARY data type</h6>
 <span>The</span>
 <span>BINARY</span>
@@ -794,32 +820,23 @@ title: "Introduction to MySQL"
 <span>).</span>
 <br/>
 <span>Table 8-7. MySQL&rsquo;s BINARY data types</span>
-<br/>
-<span>Data type</span>
-<span>Bytes used</span>
-<span>Examples</span>
-<span>BINARY(</span>
-<span>n</span>
-<span>)</span>
-<span>or</span>
-<span>BYTE(</span>
-<span>n</span>
-<span>)</span>
-<span>Exactly</span>
-<span>n</span>
-<span>(&lt;= 255)</span>
-<span>As</span>
-<span>CHAR</span>
-<span>but contains binary data</span>
-<span>VARBINARY(</span>
-<span>n</span>
-<span>)</span>
-<span>Up to</span>
-<span>n</span>
-<span>(&lt;= 65535)</span>
-<span>As</span>
-<span>VARCHAR</span>
-<span>but contains binary data</span>
+<table class="tbl-left">
+    <tr>
+        <td>Data type</td>
+        <td>Bytes used</td>
+        <td>Examples</td>
+    </tr>
+    <tr>
+        <td>BINARY(n) or BYTE(n)</td>
+        <td>Exactly n(&lt;= 255)</td>
+        <td>As CHAR but contains binary data</td>
+    </tr>
+    <tr>
+        <td>VARBINARY(n)</td>
+        <td>Up to n(&lt;= 65535)</td>
+        <td>As VARCHAR but contains binary data</td>
+    </tr>
+</table>
 <h6>The TEXT and VARCHAR data types</h6>
 <span>The differences between</span>
 <span>TEXT</span>
@@ -857,38 +874,33 @@ title: "Introduction to MySQL"
 <span>).</span>
 <br/>
 <span>Table 8-8. MySQL&rsquo;s TEXT data types</span>
-<br/>
-<span>Data type</span>
-<span>Bytes used</span>
-<span>Attributes</span>
-<span>TINYTEXT(</span>
-<span>n</span>
-<span>)</span>
-<span>Up to</span>
-<span>n</span>
-<span>(&lt;= 255)</span>
-<span>Treated as a string with a character set</span>
-<span>TEXT(</span>
-<span>n</span>
-<span>)</span>
-<span>Up to</span>
-<span>n</span>
-<span>(&lt;= 65535)</span>
-<span>Treated as a string with a character set</span>
-<span>MEDIUMTEXT(</span>
-<span>n</span>
-<span>)</span>
-<span>Up to</span>
-<span>n</span>
-<span>(&lt;= 1.67e+7)</span>
-<span>Treated as a string with a character set</span>
-<span>LONGTEXT(</span>
-<span>n</span>
-<span>)</span>
-<span>Up to</span>
-<span>n</span>
-<span>(&lt;= 4.29e+9)</span>
-<span>Treated as a string with a character set</span>
+<table class="tbl-left">
+    <tr>
+        <td>Data type</td>
+        <td>Bytes used</td>
+        <td>Attributes</td>
+    </tr>
+    <tr>
+        <td>TINYTEXT(n)</td>
+        <td>Up to n(&lt;= 255)</td>
+        <td>Treated as a string with a character set</td>
+    </tr>
+    <tr>
+        <td>TEXT(n)</td>
+        <td>Up to n (&lt;= 65535)</td>
+        <td>Treated as a string with a character set</td>
+    </tr>
+    <tr>
+        <td>MEDIUMTEXT(n)</td>
+        <td>Up to n (&lt;= 1.67e+7)</td>
+        <td>Treated as a string with a character set</td>
+    </tr>
+    <tr>
+        <td>LONGTEXT(n)</td>
+        <td>Up to n (&lt;= 4.29e+9)</td>
+        <td>Treated as a string with a character set</td>
+    </tr>
+</table>
 <h6>The BLOB data type</h6>
 <span>The term</span>
 <span>BLOB</span>
@@ -911,38 +923,33 @@ title: "Introduction to MySQL"
 <span>).</span>
 <br/>
 <span>Table 8-9. MySQL&rsquo;s BLOB data types</span>
-<br/>
-<span>Data type</span>
-<span>Bytes used</span>
-<span>Attributes</span>
-<span>TINYBLOB(</span>
-<span>n</span>
-<span>)</span>
-<span>Up to</span>
-<span>n</span>
-<span>(&lt;= 255)</span>
-<span>Treated as binary data&mdash;no character set</span>
-<span>BLOB(</span>
-<span>n</span>
-<span>)</span>
-<span>Up to</span>
-<span>n</span>
-<span>(&lt;= 65535)</span>
-<span>Treated as binary data&mdash;no character set</span>
-<span>MEDIUMBLOB(</span>
-<span>n</span>
-<span>)</span>
-<span>Up to</span>
-<span>n</span>
-<span>(&lt;= 1.67e+7)</span>
-<span>Treated as binary data&mdash;no character set</span>
-<span>LONGBLOB(</span>
-<span>n</span>
-<span>)</span>
-<span>Up to</span>
-<span>n</span>
-<span>(&lt;= 4.29e+9)</span>
-<span>Treated as binary data&mdash;no character set</span>
+<table class="tbl-left">
+    <tr>
+        <td>Data type</td>
+        <td>Bytes used</td>
+        <td>Attributes</td>
+    </tr>
+    <tr>
+        <td>TINYBLOB(n)</td>
+        <td>Up to n (&lt;= 255)</td>
+        <td>Treated as binary data&mdash;no character set</td>
+    </tr>
+    <tr>
+        <td>BLOB(n)</td>
+        <td>Up to n(&lt;= 65535)</td>
+        <td>Treated as binary data&mdash;no character set</td>
+    </tr>
+    <tr>
+        <td>MEDIUMBLOB(n)</td>
+        <td>Up to n (&lt;= 1.67e+7)</td>
+        <td>Treated as binary data&mdash;no character set</td>
+    </tr>
+    <tr>
+        <td>LONGBLOB(n)</td>
+        <td>Up to n (&lt;= 4.29e+9)</td>
+        <td>Treated as binary data&mdash;no character set</td>
+    </tr>
+</table>
 <h6>Numeric data types</h6>
 <span>MySQL supports various numeric data types from a single byte up to double-</span>
 <span>precision floating-point numbers. Although the most memory that a numeric field</span>
@@ -963,69 +970,76 @@ title: "Introduction to MySQL"
 <span>values (of any precision) may only be signed.</span>
 <br/>
 <span>Table 8-10. MySQL&rsquo;s numeric data types</span>
-<br/>
-<span>Data type</span>
-<span>Bytes</span>
-<span>used</span>
-<span>Minimum value</span>
-<span>Maximum value</span>
-<span>Signed</span>
-<span>Unsigned</span>
-<span>Signed</span>
-<span>Unsigned</span>
-<span>TINYINT</span>
-<span>1</span>
-<span>&ndash;</span>
-<span>128</span>
-<span>0</span>
-<span>127</span>
-<span>255</span>
-<span>SMALLINT</span>
-<span>2</span>
-<span>&ndash;</span>
-<span>32768</span>
-<span>0</span>
-<span>32767</span>
-<span>65535</span>
-<span>MEDIUMINT</span>
-<span>3</span>
-<span>&ndash;</span>
-<span>8.38e+6</span>
-<span>0</span>
-<span>8.38e+6</span>
-<span>1.67e+7</span>
-<span>INT</span>
-<span>/</span>
-<span>INTEGER</span>
-<span>4</span>
-<span>&ndash;</span>
-<span>2.15e+9</span>
-<span>0</span>
-<span>2.15e+9</span>
-<span>4.29e+9</span>
-<span>BIGINT</span>
-<span>8</span>
-<span>&ndash;</span>
-<span>9.22e+18</span>
-<span>0</span>
-<span>9.22e+18</span>
-<span>1.84e+19</span>
-<span>FLOAT</span>
-<span>4</span>
-<span>&ndash;</span>
-<span>3.40e+38</span>
-<span>n/a</span>
-<span>3.4e+38</span>
-<span>n/a</span>
-<span>DOUBLE</span>
-<span>/</span>
-<span>REAL</span>
-<span>8</span>
-<span>&ndash;</span>
-<span>1.80e+308</span>
-<span>n/a</span>
-<span>1.80e+308</span>
-<span>n/a</span>
+<table class="tbl-left">
+    <tr>
+        <td rowspan="2">Data type</td>
+        <td rowspan="2">Bytes used</td>
+        <td colspan="2">Minimum value</td>
+        <td colspan="2">Maximum value</td>
+    </tr>
+    <tr>
+        <td>Signed</td>
+        <td>Unsigned</td>
+        <td>Signed</td>
+        <td>Unsigned</td>
+    </tr>
+    <tr>
+        <td>TINYINT</td>
+        <td>1</td>
+        <td>&ndash;128</td>
+        <td>0</td>
+        <td>127</td>
+        <td>255</td>
+    </tr>
+    <tr>
+        <td>SMALLINT</td>
+        <td>2</td>
+        <td>&ndash;32768</td>
+        <td>0</td>
+        <td>32767</td>
+        <td>65535</td>
+    </tr>
+    <tr>
+        <td>MEDIUMINT</td>
+        <td>3</td>
+        <td>&ndash;8.38e+6</td>
+        <td>0</td>
+        <td>8.38e+6</td>
+        <td>1.67e+7</td>
+    </tr>
+    <tr>
+        <td>INT/INTEGER</td>
+        <td>4</td>
+        <td>&ndash;2.15e+9</td>
+        <td>0</td>
+        <td>2.15e+9</td>
+        <td>4.29e+9</td>
+    </tr>
+    <tr>
+        <td>BIGINT</td>
+        <td>8</td>
+        <td>&ndash;9.22e+18</td>
+        <td>0</td>
+        <td>9.22e+18</td>
+        <td>1.84e+19</td>
+    </tr>
+    <tr>
+        <td>FLOAT</td>
+        <td>4</td>
+        <td>&ndash;3.40e+38</td>
+        <td>n/a</td>
+        <td>3.4e+38</td>
+        <td>n/a</td>
+    </tr>
+    <tr>
+        <td>DOUBLE/REAL</td>
+        <td>8</td>
+        <td>&ndash;1.80e+308</td>
+        <td>n/a</td>
+        <td>1.80e+308</td>
+        <td>n/a</td>
+    </tr>
+</table>
 <br/>
 <span>To specify whether a data type is signed or unsigned, use the</span>
 <span>UNSIGNED</span>
@@ -1038,14 +1052,10 @@ title: "Introduction to MySQL"
 <span>the data type</span>
 <span>UNSIGNED INTEGER</span>
 <span>:</span>
-<br/>
-<span>CREATE TABLE tablename (fieldname INT UNSIGNED);</span>
-<br/>
+<pre><code class="sql">CREATE TABLE tablename (fieldname INT UNSIGNED);</code></pre>
 <span>When creating a numeric field, you can also pass an optional number as a parameter,</span>
 <span>like this:</span>
-<br/>
-<span>CREATE TABLE tablename (fieldname INT(4));</span>
-<br/>
+<pre><code class="sql">CREATE TABLE tablename (fieldname INT(4));</code></pre>
 <span>But you must remember that, unlike</span>
 <span>BINARY</span>
 <span>and</span>
@@ -1056,9 +1066,7 @@ title: "Introduction to MySQL"
 <span>it is retrieved. It is commonly used with the</span>
 <span>ZEROFILL</span>
 <span>qualifier, like this:</span>
-<br/>
-<span>CREATE TABLE tablename (fieldname INT(4) ZEROFILL);</span>
-<br/>
+<pre><code class="sql">CREATE TABLE tablename (fieldname INT(4) ZEROFILL);</code></pre>
 <span>What this does is cause any numbers with a width of less than four characters to be</span>
 <span>padded with one or more zeros, sufficient to make the display width of the field four</span>
 <span>characters long. When a field is already of the specified width or greater, no padding</span>
@@ -1070,20 +1078,32 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Table 8-11. MySQL&rsquo;s DATE and TIME data types</span>
-<br/>
-<span>Data type</span>
-<span>Time/date format</span>
-<span>DATETIME</span>
-<span>'0000-00-00 00:00:00'</span>
-<span>DATE</span>
-<span>'0000-00-00'</span>
-<span>TIMESTAMP</span>
-<span>'0000-00-00 00:00:00'</span>
-<span>TIME</span>
-<span>'00:00:00'</span>
-<span>YEAR</span>
-<span>0000</span>
-<span>(Only years 0000 and 1901&ndash;2155)</span>
+<table class="tbl-left">
+    <tr>
+        <td>Data type</td>
+        <td>Time/date format</td>
+    </tr>
+    <tr>
+        <td>DATETIME</td>
+        <td>'0000-00-00 00:00:00'</td>
+    </tr>
+    <tr>
+        <td>DATE</td>
+        <td>'0000-00-00'</td>
+    </tr>
+    <tr>
+        <td>TIMESTAMP</td>
+        <td>'0000-00-00 00:00:00'</td>
+    </tr>
+    <tr>
+        <td>TIME</td>
+        <td>'00:00:00'</td>
+    </tr>
+    <tr>
+        <td>YEAR</td>
+        <td>0000(Only years 0000 and 1901&ndash;2155)</td>
+    </tr>
+</table>
 <br/>
 <span>The</span>
 <span>DATETIME</span>
@@ -1131,9 +1151,7 @@ title: "Introduction to MySQL"
 <span>with auto-incrementing.</span>
 <br/>
 <span>Example 8-5. Adding the auto-incrementing column id</span>
-<br/>
-<span>ALTER TABLE classics ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;</span>
-<br/>
+<pre><code class="sql">ALTER TABLE classics ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;</code></pre>
 <span>This is your introduction to the</span>
 <span>ALTER</span>
 <span>command, which is very similar to</span>
@@ -1145,33 +1163,26 @@ title: "Introduction to MySQL"
 <span>id</span>
 <span>with the following characteristics:</span>
 <br/>
-<span>INT UNSIGNED</span>
-<br/>
-<span>Makes the column take an integer large enough for you to store more than 4 billion</span>
-<span>records in the table.</span>
-<br/>
-<span>NOT NULL</span>
-<br/>
-<span>Ensures that every column has a value. Many programmers use</span>
-<span>NULL</span>
-<span>in a field to</span>
-<span>indicate that it doesn&rsquo;t have any value. But that would allow duplicates, which would</span>
-<span>violate the whole reason for this column&rsquo;s existence. So we disallow</span>
-<span>NULL</span>
-<span>values.</span>
-<br/>
-<span>AUTO_INCREMENT</span>
-<br/>
-<span>Causes MySQL to set a unique value for this column in every row, as described ear‐</span>
-<span>lier. We don&rsquo;t really have control over the value that this column will take in each row,</span>
-<span>but we don&rsquo;t care: all we care about is that we are guaranteed a unique value.</span>
-<br/>
-<span>KEY</span>
-<br/>
-<span>An auto-increment column is useful as a key, because you will tend to search for rows</span>
-<span>based on this column. This will be explained in the section</span>
-<span>&ldquo;Indexes&rdquo; on page 186</span>
-<span>.</span>
+<span>INT UNSIGNED</span><br/>
+<div class="t30">Makes the column take an integer large enough for you to store more than 4 billion records in the table.</div>
+
+<div class="t30">NOT NULL
+Ensures that every column has a value. Many programmers use
+NULL
+in a field to
+indicate that it doesn&rsquo;t have any value. But that would allow duplicates, which would
+violate the whole reason for this column&rsquo;s existence. So we disallow
+NULL
+values.</div>
+
+<span>AUTO_INCREMENT</span><br/>
+<div class="t30">Causes MySQL to set a unique value for this column in every row, as described earlier. We don&rsquo;t really have control over the value that this column will take in each row,
+but we don&rsquo;t care: all we care about is that we are guaranteed a unique value.</div>
+
+<span>KEY</span><br/>
+<div class="t30">An auto-increment column is useful as a key, because you will tend to search for rows
+based on this column. This will be explained in the section
+&ldquo;Indexes&rdquo; on page 186.</div>
 <br/>
 <span>Each entry in the column</span>
 <span>id</span>
@@ -1190,19 +1201,19 @@ title: "Introduction to MySQL"
 <span>. Check the final line in particular.</span>
 <br/>
 <span>Example 8-6. Adding the auto-incrementing id column at table creation</span>
-<br/>
-<span>CREATE TABLE classics (</span>
-<span>author VARCHAR(128),</span>
-<span>title VARCHAR(128),</span>
-<span>type VARCHAR(16),</span>
-<span>year CHAR(4),</span>
-<span>id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY) ENGINE MyISAM;</span>
-<br/>
+<pre>
+<code class="sql">
+CREATE TABLE classics (
+    author VARCHAR(128),
+    title VARCHAR(128),
+    type VARCHAR(16),
+    year CHAR(4),
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY) ENGINE MyISAM;
+</code>
+</pre>
 <span>If you wish to check whether the column has been added, use the following com‐</span>
 <span>mand to view the table&rsquo;s columns and data types:</span>
-<br/>
-<span>DESCRIBE classics;</span>
-<br/>
+<pre><code class="sql">DESCRIBE classics;</code></pre>
 <span>Now that we&rsquo;ve finished with it, the</span>
 <span>id</span>
 <span>column is no longer needed, so if you created it</span>
@@ -1213,8 +1224,7 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Example 8-7. Removing the id column</span>
-<br/>
-<span>ALTER TABLE classics DROP id;</span>
+<pre><code class="sql">ALTER TABLE classics DROP id;</code></pre>
 <h6>Adding data to a table</h6>
 <span>To add data to a table, use the</span>
 <span>INSERT</span>
@@ -1231,18 +1241,20 @@ title: "Introduction to MySQL"
 <span>).</span>
 <br/>
 <span>Example 8-8. Populating the classics table</span>
-<br/>
-<span>INSERT INTO classics(author, title, type, year)</span>
-<span>VALUES('Mark Twain','The Adventures of Tom Sawyer','Fiction','1876');</span>
-<span>INSERT INTO classics(author, title, type, year)</span>
-<span>VALUES('Jane Austen','Pride and Prejudice','Fiction','1811');</span>
-<span>INSERT INTO classics(author, title, type, year)</span>
-<span>VALUES('Charles Darwin','The Origin of Species','Non-Fiction','1856');</span>
-<span>INSERT INTO classics(author, title, type, year)</span>
-<span>VALUES('Charles Dickens','The Old Curiosity Shop','Fiction','1841');</span>
-<span>INSERT INTO classics(author, title, type, year)</span>
-<span>VALUES('William Shakespeare','Romeo and Juliet','Play','1594');</span>
-<br/>
+<pre>
+<code class="sql">
+    INSERT INTO classics(author, title, type, year)
+    VALUES('Mark Twain','The Adventures of Tom Sawyer','Fiction','1876');
+    INSERT INTO classics(author, title, type, year)
+    VALUES('Jane Austen','Pride and Prejudice','Fiction','1811');
+    INSERT INTO classics(author, title, type, year)
+    VALUES('Charles Darwin','The Origin of Species','Non-Fiction','1856');
+    INSERT INTO classics(author, title, type, year)
+    VALUES('Charles Dickens','The Old Curiosity Shop','Fiction','1841');
+    INSERT INTO classics(author, title, type, year)
+    VALUES('William Shakespeare','Romeo and Juliet','Play','1594');
+</code>
+</pre>
 <span>After every second line, you should see a</span>
 <span>Query OK</span>
 <span>message. Once all lines have been</span>
@@ -1250,7 +1262,7 @@ title: "Introduction to MySQL"
 <span>result should look like</span>
 <span>Figure 8-4</span>
 <span>:</span>
-<span>SELECT * FROM classics;</span>
+<pre><code class="sql">SELECT * FROM classics;</code></pre>
 <p><img src="images/8.4.png"/></p>
 <span>Figure 8-4. Populating the classics table and viewing its contents</span>
 <br/>
@@ -1303,9 +1315,7 @@ title: "Introduction to MySQL"
 <span>to</span>
 <span>pre1900</span>
 <span>, use the following command:</span>
-<br/>
-<span>ALTER TABLE classics RENAME pre1900;</span>
-<br/>
+<pre><code class="sql">ALTER TABLE classics RENAME pre1900;</code></pre>
 <span>If you tried that command, you should revert the table name by entering the follow‐</span>
 <span>ing, so that later examples in this chapter will work as printed:</span>
 <br/>
@@ -1324,9 +1334,7 @@ title: "Introduction to MySQL"
 <span>SMALLINT</span>
 <span>(which requires only 2 bytes of storage and so will save</span>
 <span>disk space), enter the following:</span>
-<br/>
-<span>ALTER TABLE classics MODIFY year SMALLINT;</span>
-<br/>
+<pre><code class="sql">ALTER TABLE classics MODIFY year SMALLINT;</code></pre>
 <span>When you do this, if the conversion of data type makes sense to MySQL, it will auto‐</span>
 <span>matically change the data while keeping the meaning. In this case, it will change each</span>
 <span>string to a comparable integer, and so on, as the string is recognizable as referring to</span>
@@ -1337,9 +1345,7 @@ title: "Introduction to MySQL"
 <span>column</span>
 <span>pages</span>
 <span>, which will be used to store the number of pages in a publication:</span>
-<br/>
-<span>ALTER TABLE classics ADD pages SMALLINT UNSIGNED;</span>
-<br/>
+<pre><code class="sql">ALTER TABLE classics ADD pages SMALLINT UNSIGNED;</code></pre>
 <span>This adds the new column with the name</span>
 <span>pages</span>
 <span>using the</span>
@@ -1354,8 +1360,7 @@ title: "Introduction to MySQL"
 <span>mand, as follows, you will see the change has been made (see</span>
 <span>Figure 8-5</span>
 <span>):</span>
-<br/>
-<span>DESCRIBE classics;</span>
+<pre><code class="sql">DESCRIBE classics;</code></pre>
 <p><img src="images/8.5.png"/></p>
 <span>Figure 8-5. Adding the new pages column and viewing the table</span>
 <h6>Renaming a column</h6>
@@ -1368,9 +1373,7 @@ title: "Introduction to MySQL"
 <span>problem&mdash;let&rsquo;s change its name to</span>
 <span>category</span>
 <span>, like this:</span>
-<br/>
-<span>ALTER TABLE classics CHANGE type category VARCHAR(16);</span>
-<br/>
+<pre><code class="sql">ALTER TABLE classics CHANGE type category VARCHAR(16);</code></pre>
 <span>Note the addition of</span>
 <span>VARCHAR(16)</span>
 <span>on the end of this command. That&rsquo;s because the</span>
@@ -1390,9 +1393,7 @@ title: "Introduction to MySQL"
 <span>umn by using the</span>
 <span>DROP</span>
 <span>keyword:</span>
-<br/>
-<span>ALTER TABLE classics DROP pages;</span>
-<br/>
+<pre><code class="sql">ALTER TABLE classics DROP pages;</code></pre>
 <span>Remember that</span>
 <span>DROP</span>
 <span>is irreversible and you should always use it</span>
@@ -1411,11 +1412,14 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Example 8-9. Creating, viewing, and deleting a table</span>
-<br/>
-<span>CREATE TABLE disposable(trash INT);</span>
-<span>DESCRIBE disposable;</span>
-<span>DROP TABLE disposable;</span>
-<span>SHOW tables;</span>
+<pre>
+<code class="sql">
+    CREATE TABLE disposable(trash INT);
+    DESCRIBE disposable;
+    DROP TABLE disposable;
+    SHOW tables;
+</code>
+</pre>
 <p><img src="images/8.6.png"/></p>
 <span>Figure 8-6. Creating, viewing, and deleting a table</span>
 <h3>Indexes</h3>
@@ -1465,13 +1469,15 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Example 8-10. Adding indexes to the classics table</span>
-<br/>
-<span>ALTER TABLE classics ADD INDEX(author(20));</span>
-<span>ALTER TABLE classics ADD INDEX(title(20));</span>
-<span>ALTER TABLE classics ADD INDEX(category(4));</span>
-<span>ALTER TABLE classics ADD INDEX(year);</span>
-<span>DESCRIBE classics;</span>
-<br/>
+<pre>
+<code class="sql">
+    ALTER TABLE classics ADD INDEX(author(20));
+    ALTER TABLE classics ADD INDEX(title(20));
+    ALTER TABLE classics ADD INDEX(category(4));
+    ALTER TABLE classics ADD INDEX(year);
+    DESCRIBE classics;
+</code>
+</pre>
 <span>The first two commands create indexes on both the</span>
 <span>author</span>
 <span>and</span>
@@ -1535,9 +1541,12 @@ title: "Introduction to MySQL"
 <br/>
 <span>Example 8-11.</span>
 <span>These two commands are equivalent</span>
-<br/>
-<span>ALTER TABLE classics ADD INDEX(author(20));</span>
-<span>CREATE INDEX author ON classics (author(20));</span>
+<pre>
+<code class="sql">
+    ALTER TABLE classics ADD INDEX(author(20));
+    CREATE INDEX author ON classics (author(20));
+</code>
+</pre>
 <h6>Adding indexes when creating tables</h6>
 <span>You don&rsquo;t have to wait until after creating a table to add indexes. In fact, doing so can</span>
 <span>be time-consuming, as adding an index to a large table can take a very long time.</span>
@@ -1575,16 +1584,20 @@ title: "Introduction to MySQL"
 <span>after you have finished with it.</span>
 <br/>
 <span>Example 8-12. Creating the table classics with indexes</span>
-<br/>
-<span>CREATE TABLE classics (</span>
-<span>author VARCHAR(128),</span>
-<span>title VARCHAR(128),</span>
-<span>category VARCHAR(16),</span>
-<span>year SMALLINT,</span>
-<span>INDEX(author(20)),</span>
-<span>INDEX(title(20)),</span>
-<span>INDEX(category(4)),</span>
-<span>INDEX(year)) ENGINE MyISAM;</span>
+<pre>
+<code class="sql">
+CREATE TABLE classics (
+    author VARCHAR(128),
+    title VARCHAR(128),
+    category VARCHAR(16),
+    year SMALLINT,
+    INDEX(author(20)),
+    INDEX(title(20)),
+    INDEX(category(4)),
+    INDEX(year)) ENGINE MyISAM;
+</code>
+</pre>
+
 <h6>Primary keys</h6>
 <span>So far, you&rsquo;ve created the table</span>
 <span>classics</span>
@@ -1606,9 +1619,7 @@ title: "Introduction to MySQL"
 <span>So let&rsquo;s go ahead and create a new column for this key. Now, bearing in mind that</span>
 <span>ISBNs are 13 characters long, you might think that the following command would do</span>
 <span>the job:</span>
-<br/>
-<span>ALTER TABLE classics ADD isbn CHAR(13) PRIMARY KEY;</span>
-<br/>
+<pre><code class="sql">ALTER TABLE classics ADD isbn CHAR(13) PRIMARY KEY;</code></pre>
 <span>But it doesn&rsquo;t. If you try it, you&rsquo;ll get the error</span>
 <span>Duplicate entry</span>
 <span>for key 1. The reason</span>
@@ -1638,15 +1649,18 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Example 8-13. Populating the isbn column with data and using a primary key</span>
-<br/>
-<span>ALTER TABLE classics ADD isbn CHAR(13);</span>
-<span>UPDATE classics SET isbn='9781598184891' WHERE year='1876';</span>
-<span>UPDATE classics SET isbn='9780582506206' WHERE year='1811';</span>
-<span>UPDATE classics SET isbn='9780517123201' WHERE year='1856';</span>
-<span>UPDATE classics SET isbn='9780099533474' WHERE year='1841';</span>
-<span>UPDATE classics SET isbn='9780192814968' WHERE year='1594';</span>
-<span>ALTER TABLE classics ADD PRIMARY KEY(isbn);</span>
-<span>DESCRIBE classics;</span>
+<pre>
+<code class="sql">
+    ALTER TABLE classics ADD isbn CHAR(13);
+    UPDATE classics SET isbn='9781598184891' WHERE year='1876';
+    UPDATE classics SET isbn='9780582506206' WHERE year='1811';
+    UPDATE classics SET isbn='9780517123201' WHERE year='1856';
+    UPDATE classics SET isbn='9780099533474' WHERE year='1841';
+    UPDATE classics SET isbn='9780192814968' WHERE year='1594';
+    ALTER TABLE classics ADD PRIMARY KEY(isbn);
+    DESCRIBE classics;
+</code>
+</pre>
 <br/>
 <span>Once you have typed these commands, the results should look like</span>
 <span>Figure 8-8</span>
@@ -1677,18 +1691,21 @@ title: "Introduction to MySQL"
 <span>else if you wish to try this example, and then delete the test table afterward.</span>
 <br/>
 <span>Example 8-14. Creating the table classics with a primary key</span>
-<br/>
-<span>CREATE TABLE classics (</span>
-<span>author VARCHAR(128),</span>
-<span>title VARCHAR(128),</span>
-<span>category VARCHAR(16),</span>
-<span>year SMALLINT,</span>
-<span>isbn CHAR(13),</span>
-<span>INDEX(author(20)),</span>
-<span>INDEX(title(20)),</span>
-<span>INDEX(category(4)),</span>
-<span>INDEX(year),</span>
-<span>PRIMARY KEY (isbn)) ENGINE MyISAM;</span>
+<pre>
+<code class="sql">
+    CREATE TABLE classics (
+        author VARCHAR(128),
+        title VARCHAR(128),
+        category VARCHAR(16),
+        year SMALLINT,
+        isbn CHAR(13),
+        INDEX(author(20)),
+        INDEX(title(20)),
+        INDEX(category(4)),
+        INDEX(year),
+        PRIMARY KEY (isbn)) ENGINE MyISAM;
+</code>
+</pre>
 <h6>Creating a FULLTEXT index</h6>
 <span>Unlike a regular index, MySQL&rsquo;s</span>
 <span>FULLTEXT</span>
@@ -1781,9 +1798,7 @@ title: "Introduction to MySQL"
 <span>table (this index is in addition to the ones already created and does not affect them).</span>
 <br/>
 <span>Example 8-15. Adding a FULLTEXT index to the table classics</span>
-<br/>
-<span>ALTER TABLE classics ADD FULLTEXT(author,title);</span>
-<br/>
+<pre><code class="sql">ALTER TABLE classics ADD FULLTEXT(author,title);</code></pre>
 <span>You can now perform</span>
 <span>FULLTEXT</span>
 <span>searches across this pair of columns. This feature</span>
@@ -1863,9 +1878,12 @@ title: "Introduction to MySQL"
 <br/>
 <span>Example 8-16. Two</span>
 <span>different SELECT statements</span>
-<br/>
-<span>SELECT author,title FROM classics;</span>
-<span>SELECT title,isbn FROM classics;</span>
+<pre>
+<code class="sql">
+    SELECT author,title FROM classics;
+    SELECT title,isbn FROM classics;
+</code>
+</pre>
 <p><img src="images/8.9.png"/></p>
 <span>Figure 8-9. The output from two different SELECT statements</span>
 <h6>SELECT COUNT</h6>
@@ -1886,8 +1904,7 @@ title: "Introduction to MySQL"
 <span>there are five publications in the table.</span>
 <br/>
 <span>Example 8-17. Counting rows</span>
-<br/>
-<span>SELECT COUNT(*) FROM classics;</span>
+<pre><code class="sql">SELECT COUNT(*) FROM classics;</code></pre>
 <span>SELECT DISTINCT</span>
 <span>This qualifier (and its synonym</span>
 <h6>DISTINCTROW</h6>
@@ -1906,10 +1923,12 @@ title: "Introduction to MySQL"
 <span>).</span>
 <br/>
 <span>Example 8-18. Duplicating data</span>
-<br/>
-<span>INSERT INTO classics(author, title, category, year, isbn)</span>
-<span>VALUES('Charles Dickens','Little Dorrit','Fiction','1857', '9780141439969');</span>
-<br/>
+<pre>
+<code class="sql">
+    INSERT INTO classics(author, title, category, year, isbn)
+    VALUES('Charles Dickens','Little Dorrit','Fiction','1857', '9780141439969');
+</code>
+</pre>
 <span>Now that Charles Dickens appears twice in the table, we can compare the results of</span>
 <span>using</span>
 <span>SELECT</span>
@@ -1927,9 +1946,13 @@ title: "Introduction to MySQL"
 <br/>
 <span>Example 8-19. With and without the DISTINCT</span>
 <span>qualifier</span>
-<br/>
-<span>SELECT author FROM classics;</span>
-<span>SELECT DISTINCT author FROM classics;</span>
+<pre>
+<code class="sql">
+    SELECT author FROM classics;
+    SELECT DISTINCT author FROM classics;
+</code>
+</pre>
+
 <p><img src="images/8.10.png"/></p>
 <span>Figure 8-10. Selecting data with and without DISTINCT</span>
 <h6>DELETE</h6>
@@ -1957,9 +1980,7 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Example 8-20. Removing the new entry</span>
-<br/>
-<span>DELETE FROM classics WHERE title='Little Dorrit';</span>
-<br/>
+<pre><code class="sql">DELETE FROM classics WHERE title='Little Dorrit';</code></pre>
 <span>This example issues a</span>
 <span>DELETE</span>
 <span>command for all rows whose</span>
@@ -2006,10 +2027,12 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Example 8-21. Using the WHERE keyword</span>
-<br/>
-<span>SELECT author,title FROM classics WHERE author="Mark Twain";</span>
-<span>SELECT author,title FROM classics WHERE isbn="9781598184891 ";</span>
-<br/>
+<pre>
+<code class="sql">
+    SELECT author,title FROM classics WHERE author="Mark Twain";
+    SELECT author,title FROM classics WHERE isbn="9781598184891 ";
+</code>
+</pre>
 <span>Given our current table, the two commands in</span>
 <span>Example 8-21</span>
 <span>display the same results.</span>
@@ -2045,11 +2068,13 @@ title: "Introduction to MySQL"
 <br/>
 <span>Example 8-22. Using the LIKE</span>
 <span>qualifier</span>
-<br/>
-<span>SELECT author,title FROM classics WHERE author LIKE "Charles%";</span>
-<span>SELECT author,title FROM classics WHERE title LIKE "%Species";</span>
-<span>SELECT author,title FROM classics WHERE title LIKE "%and%";</span>
-<br/>
+<pre>
+<code class="sql">
+    SELECT author,title FROM classics WHERE author LIKE "Charles%";
+    SELECT author,title FROM classics WHERE title LIKE "%Species";
+    SELECT author,title FROM classics WHERE title LIKE "%and%";
+</code>
+</pre>
 <span>The first command outputs the publications by both Charles Darwin and Charles</span>
 <span>Dickens because the</span>
 <span>LIKE</span>
@@ -2095,11 +2120,13 @@ title: "Introduction to MySQL"
 <span>shows the results of issuing these three commands.</span>
 <br/>
 <span>Example 8-23. Limiting the number of results returned</span>
-<br/>
-<span>SELECT author,title FROM classics LIMIT 3;</span>
-<span>SELECT author,title FROM classics LIMIT 1,2;</span>
-<span>SELECT author,title FROM classics LIMIT 3,1;</span>
-<br/>
+<pre>
+<code class="sql">
+SELECT author,title FROM classics LIMIT 3;
+SELECT author,title FROM classics LIMIT 1,2;
+SELECT author,title FROM classics LIMIT 3,1;
+</code>
+</pre>
 <span>Be careful with the</span>
 <span>LIMIT</span>
 <span>keyword, because offsets start at 0, but</span>
@@ -2169,13 +2196,16 @@ title: "Introduction to MySQL"
 <span>shows the results of these queries.</span>
 <br/>
 <span>Example 8-24. Using MATCH...AGAINST on FULLTEXT indexes</span>
-<br/>
-<span>SELECT author,title FROM classics</span>
-<span>WHERE MATCH(author,title) AGAINST('and');</span>
-<span>SELECT author,title FROM classics</span>
-<span>WHERE MATCH(author,title) AGAINST('curiosity shop');</span>
-<span>SELECT author,title FROM classics</span>
-<span>WHERE MATCH(author,title) AGAINST('tom sawyer');</span>
+<pre>
+<code class="sql">
+    SELECT author,title FROM classics
+    WHERE MATCH(author,title) AGAINST('and');
+    SELECT author,title FROM classics
+    WHERE MATCH(author,title) AGAINST('curiosity shop');
+    SELECT author,title FROM classics
+    WHERE MATCH(author,title) AGAINST('tom sawyer');
+</code>
+</pre>
 <p><img src="images/8.13.png"/></p>
 <span>Figure 8-13. Using MATCH...AGAINST on a FULLTEXT index</span>
 <h6>MATCH...AGAINST...in Boolean Mode</h6>
@@ -2213,13 +2243,16 @@ title: "Introduction to MySQL"
 <span>shows the results of these queries.</span>
 <br/>
 <span>Example 8-25. Using MATCH...AGAINST...in Boolean Mode</span>
-<br/>
-<span>SELECT author,title FROM classics</span>
-<span>WHERE MATCH(author,title)</span>
-<span>AGAINST('+charles -species' IN BOOLEAN MODE);</span>
-<span>SELECT author,title FROM classics</span>
-<span>WHERE MATCH(author,title)</span>
-<span>AGAINST('"origin of"' IN BOOLEAN MODE);</span>
+<pre>
+<code class="sql">
+    SELECT author,title FROM classics
+    WHERE MATCH(author,title)
+    AGAINST('+charles -species' IN BOOLEAN MODE);
+    SELECT author,title FROM classics
+    WHERE MATCH(author,title)
+    AGAINST('"origin of"' IN BOOLEAN MODE);
+</code>
+</pre>
 <p><img src="images/8.14.png"/></p>
 <span>Figure 8-14. Using MATCH...AGAINST...in Boolean Mode</span>
 <br/>
@@ -2249,11 +2282,14 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Example 8-26. Using UPDATE...SET</span>
-<br/>
-<span>UPDATE classics SET author='Mark Twain (Samuel Langhorne Clemens)'</span>
-<span>WHERE author='Mark Twain';</span>
-<span>UPDATE classics SET category='Classic Fiction'</span>
-<span>WHERE category='Fiction';</span>
+<pre>
+<code class="sql">
+    UPDATE classics SET author='Mark Twain (Samuel Langhorne Clemens)'
+        WHERE author='Mark Twain';
+    UPDATE classics SET category='Classic Fiction'
+        WHERE category='Fiction';
+</code>
+</pre>
 <p><img src="images/8.15.png"/></p>
 <span>Figure 8-15. Updating columns in the classics table</span>
 <br/>
@@ -2285,10 +2321,12 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Example 8-27. Using ORDER BY</span>
-<br/>
-<span>SELECT author,title FROM classics ORDER BY author;</span>
-<span>SELECT author,title FROM classics ORDER BY title DESC;</span>
-<br/>
+<pre>
+<code class="sql">
+    SELECT author,title FROM classics ORDER BY author;
+    SELECT author,title FROM classics ORDER BY title DESC;
+</code>
+</pre>
 <span>As you can see, the first query returns the publications by</span>
 <span>author</span>
 <span>in ascending alpha‐</span>
@@ -2304,9 +2342,7 @@ title: "Introduction to MySQL"
 <span>year</span>
 <span>of publica‐</span>
 <span>tion (to view the most recent first), you would issue the following query:</span>
-<br/>
-<span>SELECT author,title,year FROM classics ORDER BY author,year DESC;</span>
-<br/>
+<pre><code class="sql">SELECT author,title,year FROM classics ORDER BY author,year DESC;</code></pre>
 <span>This shows that each ascending and descending qualifier applies to a single column.</span>
 <span>The</span>
 <span>DESC</span>
@@ -2316,7 +2352,7 @@ title: "Introduction to MySQL"
 <span>author</span>
 <span>&nbsp;to use the default sort order, it is sorted in ascending order. You could also</span>
 <span>have explicitly specified ascending order for that column, with the same results:</span>
-<span>SELECT author,title,year FROM classics ORDER BY author ASC,year DESC;</span>
+<pre><code class="sql">SELECT author,title,year FROM classics ORDER BY author ASC,year DESC</code></pre>
 <h6>GROUP BY</h6>
 <span>In a similar fashion to</span>
 <span>ORDER BY</span>
@@ -2326,18 +2362,21 @@ title: "Introduction to MySQL"
 <span>ple, if you want to know how many publications there are of each category in the</span>
 <span>classics</span>
 <span>table, you can issue the following query:</span>
-<br/>
-<span>SELECT category,COUNT(author) FROM classics GROUP BY category;</span>
+<pre><code class="sql">SELECT category,COUNT(author) FROM classics GROUP BY category</code></pre>
 <br/>
 <span>which returns the following output:</span>
-<span>+-----------------+---------------+</span>
-<span>| category | COUNT(author) |</span>
-<span>+-----------------+---------------+</span>
-<span>| Classic Fiction | 3 |</span>
-<span>| Non-Fiction | 1 |</span>
-<span>| Play | 1 |</span>
-<span>+-----------------+---------------+</span>
-<span>3 rows in set (0.00 sec)</span>
+<pre>
+<code class="sql">
++-----------------+---------------+
+| category | COUNT(author) |
++-----------------+---------------+
+| Classic Fiction | 3 |
+| Non-Fiction | 1 |
+| Play | 1 |
++-----------------+---------------+
+3 rows in set (0.00 sec)
+</code>
+</pre>
 <h4>Joining Tables Together</h4>
 <span>It is quite normal to maintain multiple tables within a database, each holding a differ‐</span>
 <span>ent type of information. For example, consider the case of a</span>
@@ -2354,18 +2393,25 @@ title: "Introduction to MySQL"
 <span>shows the result.</span>
 <br/>
 <span>Example 8-28. Creating and populating the customers table</span>
-<br/>
-<span>CREATE TABLE customers (</span>
-<span>name VARCHAR(128),</span>
-<span>isbn VARCHAR(13),</span>
-<span>PRIMARY KEY (isbn)) ENGINE MyISAM;</span>
-<span>INSERT INTO customers(name,isbn)</span>
-<span>VALUES('Joe Bloggs','9780099533474');</span>
-<span>INSERT INTO customers(name,isbn)</span>
-<span>VALUES('Mary Smith','9780582506206');</span>
-<span>INSERT INTO customers(name,isbn)</span>
-<span>VALUES('Jack Wilson','9780517123201');</span>
-<span>SELECT * FROM customers;</span>
+<pre>
+<code class="sql">
+    CREATE TABLE customers (
+        name VARCHAR(128),
+        isbn VARCHAR(13),
+        PRIMARY KEY (isbn)) ENGINE MyISAM;
+
+    INSERT INTO customers(name,isbn)
+        VALUES('Joe Bloggs','9780099533474');
+
+    INSERT INTO customers(name,isbn)
+        VALUES('Mary Smith','9780582506206');
+
+    INSERT INTO customers(name,isbn)
+        VALUES('Jack Wilson','9780517123201');
+
+    SELECT * FROM customers;
+</code>
+</pre>
 <p><img src="images/8.17.png"/></p>
 <span>Figure 8-17. Creating the customers table</span>
 <br/>
@@ -2376,12 +2422,14 @@ title: "Introduction to MySQL"
 <span>INTO</span>
 <span>queries with a single one listing the data to be inserted, sepa‐</span>
 <span>rated by commas, like this:</span>
-<br/>
-<span>INSERT INTO customers(name,isbn) VALUES</span>
-<span>('Joe Bloggs','9780099533474'),</span>
-<span>('Mary Smith','9780582506206'),</span>
-<span>('Jack Wilson','9780517123201');</span>
-<br/>
+<pre>
+<code class="sql">
+INSERT INTO customers(name,isbn) VALUES
+    ('Joe Bloggs','9780099533474'),
+    ('Mary Smith','9780582506206'),
+    ('Jack Wilson','9780517123201');
+</code>
+</pre>
 <span>Of course, in a proper table containing customers&rsquo; details there would also be</span>
 <span>addresses, phone numbers, email addresses, and so on, but they aren&rsquo;t necessary for</span>
 <span>this explanation. While creating the new table, you should have noticed that it has</span>
@@ -2396,21 +2444,25 @@ title: "Introduction to MySQL"
 <span>.</span>
 <br/>
 <span>Example 8-29. Joining two tables into a single SELECT</span>
-<br/>
-<span>SELECT name,author,title from customers,classics</span>
-<span>WHERE customers.isbn=classics.isbn;</span>
-<br/>
+<pre>
+<code class="sql">
+    SELECT name,author,title from customers,classics
+        WHERE customers.isbn=classics.isbn;
+</code>
+</pre>
 <span>The result of this operation is the following:</span>
-<br/>
-<span>+-------------+-----------------+------------------------+</span>
-<span>| name | author | title |</span>
-<span>+-------------+-----------------+------------------------+</span>
-<span>| Joe Bloggs | Charles Dickens | The Old Curiosity Shop |</span>
-<span>| Mary Smith | Jane Austen | Pride and Prejudice |</span>
-<span>| Jack Wilson | Charles Darwin | The Origin of Species |</span>
-<span>+-------------+-----------------+------------------------+</span>
-<span>3 rows in set (0.00 sec)</span>
-<br/>
+<pre>
+<code class="sql">
++-------------+-----------------+------------------------+
+| name | author | title |
++-------------+-----------------+------------------------+
+| Joe Bloggs | Charles Dickens | The Old Curiosity Shop |
+| Mary Smith | Jane Austen | Pride and Prejudice |
+| Jack Wilson | Charles Darwin | The Origin of Species |
++-------------+-----------------+------------------------+
+3 rows in set (0.00 sec)
+</code>
+</pre>
 <span>See how this query has neatly tied both tables together to show the publications pur‐</span>
 <span>chased from the</span>
 <span>classics</span>
@@ -2426,18 +2478,19 @@ title: "Introduction to MySQL"
 <span>&nbsp;Example 8-29</span>
 <span>, you would</span>
 <span>enter the following:</span>
-<br/>
-<span>SELECT name,author,title FROM customers NATURAL JOIN classics;</span>
+<pre><code class="sql">SELECT name,author,title FROM customers NATURAL JOIN classics;</code></pre>
 <h6>JOIN...ON</h6>
 <span>If you wish to specify the column on which to join two tables, use the</span>
 <span>JOIN...ON</span>
 <span>construct, as follows, to achieve results identical to those of</span>
 <span>Example 8-29</span>
 <span>:</span>
-<br/>
-<span>SELECT name,author,title FROM customers</span>
-<span>JOIN classics ON customers.isbn=classics.isbn;</span>
-<br/>
+<pre>
+<code class="sql">
+SELECT name,author,title FROM customers
+    JOIN classics ON customers.isbn=classics.isbn;
+</code>
+</pre>
 <h6>Using AS</h6>
 <span>You can also save yourself some typing and improve query readability by creating</span>
 <span>aliases using the</span>
@@ -2450,20 +2503,26 @@ title: "Introduction to MySQL"
 <span>. Aliases can be</span>
 <span>particularly useful when you have long queries that reference the same table names</span>
 <span>many times.</span>
-<br/>
-<span>SELECT name,author,title from</span>
-<span>customers AS cust, classics AS class WHERE cust.isbn=class.isbn;</span>
-<br/>
+<pre>
+<code class="sql">
+    SELECT name,author,title 
+    FROM customers AS cust, classics AS class 
+    WHERE cust.isbn=class.isbn;
+</code>
+</pre>
 <span>The result of this operation is the following:</span>
-<br/>
-<span>+-------------+-----------------+------------------------+</span>
-<span>| name | author | title |</span>
-<span>+-------------+-----------------+------------------------+</span>
-<span>| Joe Bloggs | Charles Dickens | The Old Curiosity Shop |</span>
-<span>| Mary Smith | Jane Austen | Pride and Prejudice |</span>
-<span>| Jack Wilson | Charles Darwin | The Origin of Species |</span>
-<span>+-------------+-----------------+------------------------+</span>
-<span>3 rows in set (0.00 sec)</span>
+<pre>
+<code class="sql">
++-------------+-----------------+------------------------+
+| name | author | title |
++-------------+-----------------+------------------------+
+| Joe Bloggs | Charles Dickens | The Old Curiosity Shop |
+| Mary Smith | Jane Austen | Pride and Prejudice |
+| Jack Wilson | Charles Darwin | The Origin of Species |
++-------------+-----------------+------------------------+
+3 rows in set (0.00 sec)
+</code>
+</pre>
 <h4>Using Logical Operators</h4>
 <span>You can also use the logical operators</span>
 <span>AND</span>
@@ -2480,14 +2539,18 @@ title: "Introduction to MySQL"
 <span>but you can mix and match them in any way you need.</span>
 <br/>
 <span>Example 8-30. Using logical operators</span>
-<br/>
-<span>SELECT author,title FROM classics WHERE</span>
-<span>author LIKE "Charles%" AND author LIKE "%Darwin";</span>
-<span>SELECT author,title FROM classics WHERE</span>
-<span>author LIKE "%Mark Twain%" OR author LIKE "%Samuel Langhorne Clemens%";</span>
-<span>SELECT author,title FROM classics WHERE</span>
-<span>author LIKE "Charles%" AND author NOT LIKE "%Darwin";</span>
-<br/>
+<pre>
+<code class="sql">
+SELECT author,title FROM classics WHERE
+    author LIKE "Charles%" AND author LIKE "%Darwin";
+
+SELECT author,title FROM classics WHERE
+    author LIKE "%Mark Twain%" OR author LIKE "%Samuel Langhorne Clemens%";
+
+SELECT author,title FROM classics WHERE
+    author LIKE "Charles%" AND author NOT LIKE "%Darwin";
+</code>
+</pre>
 <span>I&rsquo;ve chosen the first query, because Charles Darwin might be listed in some rows by</span>
 <span>his full name, Charles Robert Darwin. Thus, the query returns publications as long as</span>
 <span>the</span>
