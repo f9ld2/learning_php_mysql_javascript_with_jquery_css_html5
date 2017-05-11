@@ -1846,13 +1846,7 @@ CREATE TABLE classics (
 <span>in more detail.</span>
 <br/>
 <span>The basic syntax is as follows:</span>
-<br/>
-<span>SELECT</span>
-<span>something</span>
-<span>FROM</span>
-<span>tablename</span>
-<span>;</span>
-<br/>
+<pre><code class="sql">SELECT something FROM tablename;</code></pre>
 <span>The</span>
 <span>something</span>
 <span>can be an</span>
@@ -1906,9 +1900,7 @@ CREATE TABLE classics (
 <span>Example 8-17. Counting rows</span>
 <pre><code class="sql">SELECT COUNT(*) FROM classics;</code></pre>
 <span>SELECT DISTINCT</span>
-<span>This qualifier (and its synonym</span>
-<h6>DISTINCTROW</h6>
-<span>) allows you to weed out multiple entries</span>
+<span>This qualifier (and its synonym DISTINCTROW) allows you to weed out multiple entries</span>
 <span>when they contain the same data. For instance, suppose that you want a list of all</span>
 <span>authors in the table. If you select just the</span>
 <span>author</span>
@@ -2246,11 +2238,12 @@ SELECT author,title FROM classics LIMIT 3,1;
 <pre>
 <code class="sql">
     SELECT author,title FROM classics
-    WHERE MATCH(author,title)
-    AGAINST('+charles -species' IN BOOLEAN MODE);
+        WHERE MATCH(author,title)
+        AGAINST('+charles -species' IN BOOLEAN MODE);
+    
     SELECT author,title FROM classics
-    WHERE MATCH(author,title)
-    AGAINST('"origin of"' IN BOOLEAN MODE);
+        WHERE MATCH(author,title)
+        AGAINST('"origin of"' IN BOOLEAN MODE);
 </code>
 </pre>
 <p><img src="images/8.14.png"/></p>
@@ -2286,6 +2279,7 @@ SELECT author,title FROM classics LIMIT 3,1;
 <code class="sql">
     UPDATE classics SET author='Mark Twain (Samuel Langhorne Clemens)'
         WHERE author='Mark Twain';
+        
     UPDATE classics SET category='Classic Fiction'
         WHERE category='Fiction';
 </code>
