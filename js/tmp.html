@@ -1,26 +1,12 @@
 <pre>
 <code class="php">
-&lt;?php
-    require_once 'login.php';
-    $conn = new mysqli($hn, $un, $pw, $db);
-    
-    if ($conn-&gt;connect_error) die($conn-&gt;connect_error);
-    
-    $user = mysql_entities_fix_string($conn, $_POST['user']);
-    $pass = mysql_entities_fix_string($conn, $_POST['pass']);
-    $query = "SELECT * FROM users WHERE user='$user' AND pass='$pass'";
-    
-    //Etc...
-    function mysql_entities_fix_string($conn, $string)
-    {
-        return htmlentities(mysql_fix_string($conn, $string));
-    }
-    function mysql_fix_string($conn, $string)
-    {
-        if (get_magic_quotes_gpc()) $string = stripslashes($string);
-            return $conn-&gt;real_escape_string($string);
-    }
-?&gt;
+    &lt;form method="post" action="calc.php"&gt;&lt;pre&gt;&nbsp;
+    Loan Amount &lt;input type="text" name="principle"&gt;
+    Monthly Repayment &lt;input type="text" name="monthly"&gt;
+    Number of Years &lt;input type="text" name="years" value="25"&gt;
+    Interest Rate &lt;input type="text" name="rate" value="6"&gt;&nbsp;
+    &lt;input type="submit"&gt;
+    &lt;/pre&gt;&lt;/form&gt;
 </code>
 </pre>
 

@@ -47,34 +47,26 @@ title: "Form Handling"
 <span>.</span>
 <br/>
 <span>Example 11-1. formtest.php&mdash;a simple PHP form handler</span>
-<br/>
-<span>&lt;?php // formtest.php</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&lt;html&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;head&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;title&gt;Form Test&lt;/title&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/head&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;body&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;form method="post" action="formtest.php"&gt;</span>
-<span>&nbsp;</span>
-<span>What is your name?</span>
-<span>&nbsp;</span>
-<span>&lt;input type="text" name="name"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;input type="submit"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/form&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<span>_END;</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // formtest.php
+echo &lt;&lt;&lt;_END
+    &lt;html&gt;
+        &lt;head&gt;
+            &lt;title&gt;Form Test&lt;/title&gt;
+        &lt;/head&gt;
+    &lt;body&gt;
+        &lt;form method="post" action="formtest.php"&gt;
+            What is your name?
+            &lt;input type="text" name="name"&gt;
+            &lt;input type="submit"&gt;
+        &lt;/form&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+_END;
+?&gt;
+</code>
+</pre>
 <span>The first thing to notice about this example is that, as you have already seen in this</span>
 <span>book, rather than dropping in and out of PHP code, the</span>
 <span>echo &lt;&lt;&lt;_END..._END</span>
@@ -116,38 +108,29 @@ title: "Form Handling"
 <span>.</span>
 <br/>
 <span>Example 11-2. Updated version of formtest.php</span>
-<br/>
-<span>&lt;?php // formtest2.php</span>
-<span>if (isset($_POST['name'])) $name = $_POST['name'];</span>
-<span>else $name = "(Not entered)";</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&lt;html&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;head&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;title&gt;Form Test&lt;/title&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/head&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;body&gt;</span>
-<span>&nbsp;</span>
-<span>Your name is: $name&lt;br&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;form method="post" action="formtest2.php"&gt;</span>
-<span>&nbsp;</span>
-<span>What is your name?</span>
-<span>&nbsp;</span>
-<span>&lt;input type="text" name="name"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;input type="submit"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/form&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<span>_END;</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // formtest2.php
+    if (isset($_POST['name'])) $name = $_POST['name'];
+    else $name = "(Not entered)";
+    echo &lt;&lt;&lt;_END
+        &lt;html&gt;
+        &lt;head&gt;
+            &lt;title&gt;Form Test&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            Your name is: $name&lt;br&gt;
+            &lt;form method="post" action="formtest2.php"&gt;
+            What is your name?
+            &lt;input type="text" name="name"&gt;
+            &lt;input type="submit"&gt;
+            &lt;/form&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+_END;
+?&gt;
+</code>
+</pre>
 <span>The only changes are a couple of lines at the start that check the</span>
 <span>$_POST</span>
 <span>associative</span>
@@ -268,17 +251,17 @@ title: "Form Handling"
 <span>.</span>
 <br/>
 <span>Example 11-3. Setting default values</span>
-<br/>
-<span>&lt;form method="post" action="calc.php"&gt;&lt;pre&gt;</span>
-<span>&nbsp;</span>
-<span>Loan Amount &lt;input type="text" name="principle"&gt;</span>
-<span>Monthly Repayment &lt;input type="text" name="monthly"&gt;</span>
-<span>Number of Years &lt;input type="text" name="years" value="25"&gt;</span>
-<span>Interest Rate &lt;input type="text" name="rate" value="6"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;input type="submit"&gt;</span>
-<span>&lt;/pre&gt;&lt;/form&gt;</span>
-<br/>
+<pre>
+<code class="html">
+    &lt;form method="post" action="calc.php"&gt;&lt;pre&gt;&nbsp;
+    Loan Amount &lt;input type="text" name="principle"&gt;
+    Monthly Repayment &lt;input type="text" name="monthly"&gt;
+    Number of Years &lt;input type="text" name="years" value="25"&gt;
+    Interest Rate &lt;input type="text" name="rate" value="6"&gt;&nbsp;
+    &lt;input type="submit"&gt;
+    &lt;/pre&gt;&lt;/form&gt;
+</code>
+</pre>
 <span>If you wish to try this (and the other HTML code samples), type it</span>
 <span>and save it with an</span>
 <span>.html</span>
