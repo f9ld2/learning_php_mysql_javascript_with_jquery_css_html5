@@ -1,19 +1,26 @@
 <pre>
-<code class="sql">
-    DROP TABLE IF EXISTS 'classics';
-    CREATE TABLE 'classics' (
-        'author' varchar(128) default NULL,
-        'title' varchar(128) default NULL,
-        'category' varchar(16) default NULL,
-        'year' smallint(6) default NULL,
-        'isbn' char(13) NOT NULL default '',
-        PRIMARY KEY ('isbn'),
-        KEY 'author' ('author'(20)),
-        KEY 'title' ('title'(20)),
-        KEY 'category' ('category'(4)),
-        KEY 'year' ('year'),
-        FULLTEXT KEY 'author_2' ('author','title')
-    ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+<code class="php">
+&lt;?php
+    require_once 'login.php';
+    $conn = new mysqli($hn, $un, $pw, $db);
+    
+    if ($conn-&gt;connect_error) die($conn-&gt;connect_error);
+    
+    $user = mysql_entities_fix_string($conn, $_POST['user']);
+    $pass = mysql_entities_fix_string($conn, $_POST['pass']);
+    $query = "SELECT * FROM users WHERE user='$user' AND pass='$pass'";
+    
+    //Etc...
+    function mysql_entities_fix_string($conn, $string)
+    {
+        return htmlentities(mysql_fix_string($conn, $string));
+    }
+    function mysql_fix_string($conn, $string)
+    {
+        if (get_magic_quotes_gpc()) $string = stripslashes($string);
+            return $conn-&gt;real_escape_string($string);
+    }
+?&gt;
 </code>
 </pre>
 
