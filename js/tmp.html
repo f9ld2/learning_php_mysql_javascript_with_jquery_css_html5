@@ -1,13 +1,19 @@
 <pre>
 <code class="sql">
-SELECT author,title FROM classics WHERE
-    author LIKE "Charles%" AND author LIKE "%Darwin";
-
-SELECT author,title FROM classics WHERE
-    author LIKE "%Mark Twain%" OR author LIKE "%Samuel Langhorne Clemens%";
-
-SELECT author,title FROM classics WHERE
-    author LIKE "Charles%" AND author NOT LIKE "%Darwin";
+    DROP TABLE IF EXISTS 'classics';
+    CREATE TABLE 'classics' (
+        'author' varchar(128) default NULL,
+        'title' varchar(128) default NULL,
+        'category' varchar(16) default NULL,
+        'year' smallint(6) default NULL,
+        'isbn' char(13) NOT NULL default '',
+        PRIMARY KEY ('isbn'),
+        KEY 'author' ('author'(20)),
+        KEY 'title' ('title'(20)),
+        KEY 'category' ('category'(4)),
+        KEY 'year' ('year'),
+        FULLTEXT KEY 'author_2' ('author','title')
+    ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 </code>
 </pre>
 

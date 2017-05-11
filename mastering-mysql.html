@@ -63,13 +63,12 @@ title: "Mastering MySQL"
 <span>Taking into account those simple rules of thumb, we can guess we&rsquo;ll need at least</span>
 <span>three tables to accommodate all these queries:</span>
 <br/>
-<span>Authors</span><br/>
+<span>Authors</span>
 <div>There will be lots of searches for authors, many of whom have collaborated on titles, and many of whom will be featured in collections. Listing all the information about each author together, linked to that author, will produce optimal results for searches &mdash;hence an Authors table.</div>
-<span>Books</span><br/>
+<span>Books</span>
 <div class="t30">Many books appear in different editions. Sometimes they change publisher and sometimes they have the same titles as other, unrelated books. So the links between books and authors are complicated enough to call for a separate table.</div>
-<span>Customers</span><br/>
-<div class="t30">It&rsquo;s even more clear why customers should get their own table, as they are free to pur‐</div>
-<span>chase any book by any author.</span>
+<span>Customers</span>
+<div class="t30">It&rsquo;s even more clear why customers should get their own table, as they are free to purchase any book by any author.</div>
 <h4>Primary Keys: The Keys to Relational Databases</h4>
 <span>Using the power of relational databases, we can define information for each author,</span>
 <span>book, and customer in just one place. Obviously, what interests us is the links</span>
@@ -139,81 +138,68 @@ title: "Mastering MySQL"
 <span>is inefficient design, because data is duplicated all over the place (duplications are</span>
 <span>highlighted), but it represents a starting point.</span>
 <span>Table 9-1. A highly inefficient design for a database table</span>
-<br/>
-<span>Author 1</span>
-<span>Author 2</span>
-<span>Title</span>
-<span>ISBN</span>
-<span>Price</span>
-<span>$US</span>
-<span>Customer</span>
-<span>Name</span>
-<span>Customer Address</span>
-<span>Purchase</span>
-<span>Date</span>
-<span>David Sklar</span>
-<span>Adam</span>
-<span>Trachtenberg</span>
-<span>PHP Cookbook</span>
-<span>0596101015</span>
-<span>44.99</span>
-<span>Emma</span>
-<span>Brown</span>
-<span>1565 Rainbow</span>
-<span>Road, Los Angeles,</span>
-<span>CA 90014</span>
-<span>Mar 03 2009</span>
-<span>Danny</span>
-<span>Goodman</span>
-<span>Dynamic HTML</span>
-<span>0596527403</span>
-<span>59.99</span>
-<span>Darren</span>
-<span>Ryder</span>
-<span>4758 Emily Drive,</span>
-<span>Richmond, VA</span>
-<span>23219</span>
-<span>Dec 19</span>
-<span>2008</span>
-<span>Hugh E</span>
-<span>Williams</span>
-<span>David Lane</span>
-<span>PHP And</span>
-<span>MySQL</span>
-<span>0596005436</span>
-<span>44.95</span>
-<span>Earl B.</span>
-<span>Thurston</span>
-<span>862 Gregory Lane,</span>
-<span>Frankfort, KY 40601</span>
-<span>Jun 22 2009</span>
-<span>David Sklar</span>
-<span>Adam</span>
-<span>Trachtenberg</span>
-<span>PHP Cookbook</span>
-<span>0596101015</span>
-<span>44.99</span>
-<span>Darren</span>
-<span>Ryder</span>
-<span>4758 Emily Drive,</span>
-<span>Richmond, VA</span>
-<span>23219</span>
-<span>Dec 19</span>
-<span>2008</span>
-<span>Rasmus</span>
-<span>Lerdorf</span>
-<span>Kevin Tatroe &amp;</span>
-<span>Peter</span>
-<span>MacIntyre</span>
-<span>Programming</span>
-<span>PHP</span>
-<span>0596006815</span>
-<span>39.99</span>
-<span>David Miller</span>
-<span>3647 Cedar Lane,</span>
-<span>Waltham, MA</span>
-<span>02154</span>
-<span>Jan 16 2009</span>
+<table class="tbl-left">
+    <tr>
+        <td>Author 1</td>
+        <td>Author 2</td>
+        <td>Title</td>
+        <td>ISBN</td>
+        <td>Price</td>
+        <td>$US</td>
+        <td>Customer Name</td>
+        <td>Customer Address</td>
+        <td>Purchase Date</td>
+    </tr>
+    <tr>
+        <td>David Sklar</td>
+        <td>Adam Trachtenberg</td>
+        <td>PHP Cookbook</td>
+        <td>0596101015</td>
+        <td>44.99</td>
+        <td>Emma Brown</td>
+        <td>1565 Rainbow Road, Los Angeles, CA 90014</td>
+        <td>Mar 03 2009</td>
+    </tr>
+    <tr>
+        <td>Danny Goodman</td>
+        <td></td>
+        <td>Dynamic HTML</td>
+        <td>0596527403</td>
+        <td>59.99</td>
+        <td>Darren Ryder 4758 Emily Drive, Richmond, VA 23219</td>
+        <td>Dec 19 2008</td>
+    </tr>
+    <tr>
+        <td>Hugh E Williams</td>
+        <td>David Lane</td>
+        <td>PHP And MySQL</td>
+        <td>0596005436</td>
+        <td>44.95</td>
+        <td>Earl B. Thurston</td>
+        <td>862 Gregory Lane, Frankfort, KY 40601</td>
+        <td>Jun 22 2009</td>
+    </tr>
+    <tr>
+        <td>David Sklar</td>
+        <td>Adam Trachtenberg</td>
+        <td>PHP Cookbook</td>
+        <td>0596101015</td>
+        <td>44.99</td>
+        <td>Darren Ryder</td>
+        <td>4758 Emily Drive, Richmond, VA 23219 </td>
+        <td>Dec 19 2008</td>
+    </tr>
+    <tr>
+        <td>Rasmus Lerdorf</td>
+        <td>Kevin Tatroe &amp; Peter MacIntyre</td>
+        <td>Programming PHP</td>
+        <td>0596006815</td>
+        <td>39.99</td>
+        <td>David Miller</td>
+        <td>3647 Cedar Lane, Waltham, MA 02154</td>
+        <td>Jan 16 2009</td>
+    </tr>
+</table>
 <br/>
 <span>In the following three sections, we will examine this database design, and you&rsquo;ll see</span>
 <span>how we can improve it by removing the various duplicate entries and splitting the</span>
@@ -244,8 +230,7 @@ title: "Mastering MySQL"
 <br/>
 <span>Second, there are three authors listed for the final book,</span>
 <span>Programming PHP</span>
-<span>. I&rsquo;ve han‐</span>
-<span>dled that by making Kevin Tatroe and Peter MacIntyre share the</span>
+<span>. I&rsquo;ve handled that by making Kevin Tatroe and Peter MacIntyre share the</span>
 <span>Author 2</span>
 <span>column,</span>
 <span>which violates Rule 2&mdash;yet another reason to transfer the</span>
@@ -266,47 +251,56 @@ title: "Mastering MySQL"
 <br/>
 <span>Table 9-2. The result of stripping the Authors columns from</span>
 <span>Table 9-1</span>
-<br/>
-<span>Title</span>
-<span>ISBN</span>
-<span>Price</span>
-<span>$US</span>
-<span>Customer Name</span>
-<span>Customer Address</span>
-<span>Purchase Date</span>
-<span>PHP Cookbook</span>
-<span>0596101015</span>
-<span>44.99</span>
-<span>Emma Brown</span>
-<span>1565 Rainbow Road, Los Angeles, CA</span>
-<span>90014</span>
-<span>Mar 03 2009</span>
-<span>Dynamic HTML</span>
-<span>0596527403</span>
-<span>59.99</span>
-<span>Darren Ryder</span>
-<span>4758 Emily Drive, Richmond, VA</span>
-<span>23219</span>
-<span>Dec 19 2008</span>
-<span>PHP and MySQL</span>
-<span>0596005436</span>
-<span>44.95</span>
-<span>Earl B. Thurston</span>
-<span>862 Gregory Lane, Frankfort, KY 40601</span>
-<span>Jun 22 2009</span>
-<span>PHP Cookbook</span>
-<span>0596101015</span>
-<span>44.99</span>
-<span>Darren Ryder</span>
-<span>4758 Emily Drive, Richmond, VA</span>
-<span>23219</span>
-<span>Dec 19 2008</span>
-<span>Programming PHP</span>
-<span>0596006815</span>
-<span>39.99</span>
-<span>David Miller</span>
-<span>3647 Cedar Lane, Waltham, MA 02154</span>
-<span>Jan 16 2009</span>
+<table class="tbl-left">
+    <tr>
+        <td>Title</td>
+        <td>ISBN</td>
+        <td>Price $US</td>
+        <td>Customer Name</td>
+        <td>Customer Address</td>
+        <td>Purchase Date</td>
+    </tr>
+    <tr>
+        <td>PHP Cookbook</td>
+        <td>0596101015</td>
+        <td>44.99</td>
+        <td>Emma Brown</td>
+        <td>1565 Rainbow Road, Los Angeles, CA 90014</td>
+        <td>Mar 03 2009</td>
+    </tr>
+    <tr>
+        <td>Dynamic HTML</td>
+        <td>0596527403</td>
+        <td>59.99</td>
+        <td>Darren Ryder</td>
+        <td>4758 Emily Drive, Richmond, VA 23219</td>
+        <td>Dec 19 2008</td>
+    </tr>
+    <tr>
+        <td>PHP and MySQL</td>
+        <td>0596005436</td>
+        <td>44.95</td>
+        <td>Earl B. Thurston</td>
+        <td>862 Gregory Lane, Frankfort, KY 40601</td>
+        <td>Jun 22 2009</td>
+    </tr>
+    <tr>
+        <td>PHP Cookbook</td>
+        <td>0596101015</td>
+        <td>44.99</td>
+        <td>Darren Ryder</td>
+        <td>4758 Emily Drive, Richmond, VA 23219</td>
+        <td>Dec 19 2008</td>
+    </tr>
+    <tr>
+        <td>Programming PHP</td>
+        <td>0596006815</td>
+        <td>39.99</td>
+        <td>David Miller</td>
+        <td>3647 Cedar Lane, Waltham, MA 02154</td>
+        <td>Jan 16 2009</td>
+    </tr>
+</table>
 <br/>
 <span>The new</span>
 <span>Authors</span>
@@ -322,25 +316,44 @@ title: "Mastering MySQL"
 <span>table in a matter of milliseconds.</span>
 <br/>
 <span>Table 9-3. The new Authors table</span>
-<br/>
-<span>ISBN</span>
-<span>Author</span>
-<span>0596101015</span>
-<span>David Sklar</span>
-<span>0596101015</span>
-<span>Adam Trachtenberg</span>
-<span>0596527403</span>
-<span>Danny Goodman</span>
-<span>0596005436</span>
-<span>Hugh E Williams</span>
-<span>0596005436</span>
-<span>David Lane</span>
-<span>0596006815</span>
-<span>Rasmus Lerdorf</span>
-<span>0596006815</span>
-<span>Kevin Tatroe</span>
-<span>0596006815</span>
-<span>Peter MacIntyre</span>
+<table class="tbl-left">
+    <tr>
+        <td>ISBN</td>
+        <td>Author</td>
+    </tr>
+    <tr>
+        <td>0596101015</td>
+        <td>David Sklar</td>
+    </tr>
+    <tr>
+        <td>0596101015</td>
+        <td>Adam Trachtenberg</td>
+    </tr>
+    <tr>
+        <td>0596527403</td>
+        <td>Danny Goodman</td>
+    </tr>
+    <tr>
+        <td>0596005436</td>
+        <td>Hugh E Williams</td>
+    </tr>
+    <tr>
+        <td>0596005436</td>
+        <td>David Lane</td>
+    </tr>
+    <tr>
+        <td>0596006815</td>
+        <td>Rasmus Lerdorf</td>
+    </tr>
+    <tr>
+        <td>0596006815</td>
+        <td>Kevin Tatroe</td>
+    </tr>
+    <tr>
+        <td>0596006815</td>
+        <td>Peter MacIntyre</td>
+    </tr>
+</table>
 <br/>
 <span>As I mentioned earlier, the ISBN will be the primary key for the</span>
 <span>Books</span>
@@ -401,22 +414,33 @@ title: "Mastering MySQL"
 <span>.</span>
 <br/>
 <span>Table 9-4. The new Titles table</span>
-<br/>
-<span>ISBN</span>
-<span>Title</span>
-<span>Price</span>
-<span>0596101015</span>
-<span>PHP Cookbook</span>
-<span>44.99</span>
-<span>0596527403</span>
-<span>Dynamic HTML</span>
-<span>59.99</span>
-<span>0596005436</span>
-<span>PHP and MySQL</span>
-<span>44.95</span>
-<span>0596006815</span>
-<span>Programming PHP</span>
-<span>39.99</span>
+<table class="tbl-left">
+    <tr>
+        <td>ISBN</td>
+        <td>Title</td>
+        <td>Price</td>
+    </tr>
+    <tr>
+        <td>0596101015</td>
+        <td>PHP Cookbook</td>
+        <td>44.99</td>
+    </tr>
+    <tr>
+        <td>0596527403</td>
+        <td>Dynamic HTML</td>
+        <td>59.99</td>
+    </tr>
+    <tr>
+        <td>0596005436</td>
+        <td>PHP and MySQL</td>
+        <td>44.95</td>
+    </tr>
+    <tr>
+        <td>0596006815</td>
+        <td>Programming PHP</td>
+        <td>39.99</td>
+    </tr>
+</table>
 <br/>
 <span>As you can see, all that&rsquo;s left in</span>
 <span>Table 9-4</span>
@@ -459,31 +483,44 @@ title: "Mastering MySQL"
 <br/>
 <span>Table 9-5. The Customer details from</span>
 <span>Table 9-2</span>
-<br/>
-<span>ISBN</span>
-<span>Customer Name</span>
-<span>Customer Address</span>
-<span>Purchase Date</span>
-<span>0596101015</span>
-<span>Emma Brown</span>
-<span>1565 Rainbow Road, Los Angeles, CA 90014</span>
-<span>Mar 03 2009</span>
-<span>0596527403</span>
-<span>Darren Ryder</span>
-<span>4758 Emily Drive, Richmond, VA 23219</span>
-<span>Dec 19 2008</span>
-<span>0596005436</span>
-<span>Earl B. Thurston</span>
-<span>862 Gregory Lane, Frankfort, KY 40601</span>
-<span>Jun 22 2009</span>
-<span>0596101015</span>
-<span>Darren Ryder</span>
-<span>4758 Emily Drive, Richmond, VA 23219</span>
-<span>Dec 19 2008</span>
-<span>0596006815</span>
-<span>David Miller</span>
-<span>3647 Cedar Lane, Waltham, MA 02154</span>
-<span>Jan 16 2009</span>
+<table class="tbl-left">
+    <tr>
+        <td>ISBN</td>
+        <td>Customer Name</td>
+        <td>Customer Address</td>
+        <td>Purchase Date</td>
+    </tr>
+    <tr>
+        <td>0596101015</td>
+        <td>Emma Brown</td>
+        <td>1565 Rainbow Road, Los Angeles, CA 90014</td>
+        <td>Mar 03 2009</td>
+    </tr>
+    <tr>
+        <td>0596527403</td>
+        <td>Darren Ryder</td>
+        <td>4758 Emily Drive, Richmond, VA 23219</td>
+        <td>Dec 19 2008</td>
+    </tr>
+    <tr>
+        <td>0596005436</td>
+        <td>Earl B. Thurston</td>
+        <td>862 Gregory Lane, Frankfort, KY 40601</td>
+        <td>Jun 22 2009</td>
+    </tr>
+    <tr>
+        <td>0596101015</td>
+        <td>Darren Ryder</td>
+        <td>4758 Emily Drive, Richmond, VA 23219</td>
+        <td>Dec 19 2008</td>
+    </tr>
+    <tr>
+        <td>0596006815</td>
+        <td>David Miller</td>
+        <td>3647 Cedar Lane, Waltham, MA 02154</td>
+        <td>Jan 16 2009</td>
+    </tr>
+</table>
 <br/>
 <span>What we have to do is split this table further to ensure that each customer&rsquo;s details are</span>
 <span>entered only once. Because the ISBN is not and cannot be used as a primary key to</span>
@@ -501,37 +538,48 @@ title: "Mastering MySQL"
 <span>distinct columns to make them easily searchable and updateable.</span>
 <br/>
 <span>Table 9-6. The new Customers table</span>
-<br/>
-<span>CustNo</span>
-<span>Name</span>
-<span>Address</span>
-<span>City</span>
-<span>State</span>
-<span>Zip</span>
-<span>1</span>
-<span>Emma Brown</span>
-<span>1565 Rainbow Road</span>
-<span>Los Angeles</span>
-<span>CA</span>
-<span>90014</span>
-<span>2</span>
-<span>Darren Ryder</span>
-<span>4758 Emily Drive</span>
-<span>Richmond</span>
-<span>VA</span>
-<span>23219</span>
-<span>3</span>
-<span>Earl B. Thurston</span>
-<span>862 Gregory Lane</span>
-<span>Frankfort</span>
-<span>KY</span>
-<span>40601</span>
-<span>4</span>
-<span>David Miller</span>
-<span>3647 Cedar Lane</span>
-<span>Waltham</span>
-<span>MA</span>
-<span>02154</span>
+<table class="tbl-left">
+    <tr>
+        <td>CustNo</td>
+        <td>Name</td>
+        <td>Address</td>
+        <td>City</td>
+        <td>State</td>
+        <td>Zip</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Emma Brown</td>
+        <td>1565 Rainbow Road</td>
+        <td>Los Angeles</td>
+        <td>CA</td>
+        <td>90014</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Darren Ryder</td>
+        <td>4758 Emily Drive</td>
+        <td>Richmond</td>
+        <td>VA</td>
+        <td>23219</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Earl B. Thurston</td>
+        <td>862 Gregory Lane</td>
+        <td>Frankfort</td>
+        <td>KY</td>
+        <td>40601</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>David Miller</td>
+        <td>3647 Cedar Lane</td>
+        <td>Waltham</td>
+        <td>MA</td>
+        <td>02154</td>
+    </tr>
+</table>
 <br/>
 <span>At the same time, in order to normalize</span>
 <span>Table 9-6</span>
@@ -545,25 +593,38 @@ title: "Mastering MySQL"
 <span>).</span>
 <br/>
 <span>Table 9-7. The new Purchases table</span>
-<br/>
-<span>CustNo</span>
-<span>ISBN</span>
-<span>Date</span>
-<span>1</span>
-<span>0596101015</span>
-<span>Mar 03 2009</span>
-<span>2</span>
-<span>0596527403</span>
-<span>Dec 19 2008</span>
-<span>2</span>
-<span>0596101015</span>
-<span>Dec 19 2008</span>
-<span>3</span>
-<span>0596005436</span>
-<span>Jun 22 2009</span>
-<span>4</span>
-<span>0596006815</span>
-<span>Jan 16 2009</span>
+<table class="tbl-left">
+    <tr>
+        <td>CustNo</td>
+        <td>ISBN</td>
+        <td>Date</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>0596101015</td>
+        <td>Mar 03 2009</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>0596527403</td>
+        <td>Dec 19 2008</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>0596101015</td>
+        <td>Dec 19 2008</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>0596005436</td>
+        <td>Jun 22 2009</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>0596006815</td>
+        <td>Jan 16 2009</td>
+    </tr>
+</table>
 <br/>
 <span>Here the</span>
 <span>CustNo</span>
@@ -724,76 +785,120 @@ title: "Mastering MySQL"
 <span>.</span>
 <br/>
 <span>Table 9-8. Third Normal Form Customers table</span>
-<br/>
-<span>CustNo</span>
-<span>Name</span>
-<span>Address</span>
-<span>Zip</span>
-<span>1</span>
-<span>Emma Brown</span>
-<span>1565 Rainbow Road</span>
-<span>90014</span>
-<span>2</span>
-<span>Darren Ryder</span>
-<span>4758 Emily Drive</span>
-<span>23219</span>
-<span>3</span>
-<span>Earl B. Thurston</span>
-<span>862 Gregory Lane</span>
-<span>40601</span>
-<span>4</span>
-<span>David Miller</span>
-<span>3647 Cedar Lane</span>
-<span>02154</span>
+<table class="tbl-left">
+    <tr>
+        <td>CustNo</td>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Zip</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Emma Brown</td>
+        <td>1565 Rainbow Road</td>
+        <td>90014</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Darren Ryder</td>
+        <td>4758 Emily Drive</td>
+        <td>23219</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Earl B. Thurston</td>
+        <td>862 Gregory Lane</td>
+        <td>40601</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>David Miller</td>
+        <td>3647 Cedar Lane</td>
+        <td>02154</td>
+    </tr>
+</table>
 <br/>
 <span>Table 9-9. Third Normal Form Zip codes table</span>
-<br/>
-<span>Zip</span>
-<span>CityID</span>
-<span>90014</span>
-<span>1234</span>
-<span>23219</span>
-<span>5678</span>
-<span>40601</span>
-<span>4321</span>
-<span>02154</span>
-<span>8765</span>
+<table class="tbl-left">
+    <tr>
+        <td>Zip</td>
+        <td>CityID</td>
+    </tr>
+    <tr>
+        <td>90014</td>
+        <td>1234</td>
+    </tr>
+    <tr>
+        <td>23219</td>
+        <td>5678</td>
+    </tr>
+    <tr>
+        <td>40601</td>
+        <td>4321</td>
+    </tr>
+    <tr>
+        <td>02154</td>
+        <td>8765</td>
+    </tr>
+</table>
 <br/>
 <span>Table 9-10. Third Normal Form Cities table</span>
-<br/>
-<span>CityID</span>
-<span>Name</span>
-<span>StateID</span>
-<span>1234</span>
-<span>Los Angeles</span>
-<span>5</span>
-<span>5678</span>
-<span>Richmond</span>
-<span>46</span>
-<span>4321</span>
-<span>Frankfort</span>
-<span>17</span>
-<span>8765</span>
-<span>Waltham</span>
-<span>21</span>
+<table class="tbl-left">
+    <tr>
+        <td>CityID</td>
+        <td>Name</td>
+        <td>StateID</td>
+    </tr>
+    <tr>
+        <td>1234</td>
+        <td>Los Angeles</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>5678</td>
+        <td>Richmond</td>
+        <td>46</td>
+    </tr>
+    <tr>
+        <td>4321</td>
+        <td>Frankfort</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>8765</td>
+        <td>Waltham</td>
+        <td>21</td>
+    </tr>
+</table>
 <br/>
 <span>Table 9-11. Third Normal Form States table</span>
-<br/>
-<span>StateID</span>
-<span>Name</span>
-<span>Abbreviation</span>
-<span>5</span>
-<span>California</span>
-<span>CA</span>
-<span>46</span>
-<span>Virginia</span>
-<span>VA</span>
-<span>17</span>
-<span>Kentucky</span>
-<span>KY</span>
-<span>21</span>
-<span>Massachusetts</span>
-<span>MA</span>
+<table class="tbl-left">
+    <tr>
+        <td>StateID</td>
+        <td>Name</td>
+        <td>Abbreviation</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>California</td>
+        <td>CA</td>
+    </tr>
+    <tr>
+        <td>46</td>
+        <td>Virginia</td>
+        <td>VA</td>
+    </tr>
+    <tr>
+        <td>17</td>
+        <td>Kentucky</td>
+        <td>KY</td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td>Massachusetts</td>
+        <td>MA</td>
+    </tr>
+</table>
 <br/>
 <span>So, how would you use this set of four tables instead of the single</span>
 <span>Table 9-6</span>
@@ -882,8 +987,7 @@ title: "Mastering MySQL"
 <span>copy of data when one of them needs modifying.</span>
 <br/>
 <span>Multiple updates can be computerized, though. MySQL provides a feature called</span>
-<span>trig‐</span>
-<span>gers</span>
+<span>triggers</span>
 <span>that make automatic changes to the database in response to changes you make.</span>
 <span>(Triggers are, however, beyond the scope of this book.) Another way to propagate</span>
 <span>redundant data is to set up a PHP program to run regularly and keep all copies in</span>
@@ -993,19 +1097,32 @@ title: "Mastering MySQL"
 <span>sold, along with the customer number of each purchaser.</span>
 <br/>
 <span>Table 9-12. An intermediary table</span>
-<br/>
-<span>Customer</span>
-<span>ISBN</span>
-<span>1</span>
-<span>0596101015</span>
-<span>2</span>
-<span>0596527403</span>
-<span>2</span>
-<span>0596101015</span>
-<span>3</span>
-<span>0596005436</span>
-<span>4</span>
-<span>0596006815</span>
+<table class="tbl-left">
+    <tr>
+        <td>Customer</td>
+        <td>ISBN</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>0596101015</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>0596527403</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>0596101015</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>0596005436</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>0596006815</td>
+    </tr>
+</table>
 <br/>
 <span>With this intermediary table in place, you can traverse all the information in the data‐</span>
 <span>base through a series of relations. You can take an address as a starting point and find</span>
@@ -1090,45 +1207,53 @@ title: "Mastering MySQL"
 <span>which to create this table.)</span>
 <br/>
 <span>Example 9-1. Creating a transaction-ready table</span>
-<br/>
-<span>CREATE TABLE accounts (</span>
-<span>number INT, balance FLOAT, PRIMARY KEY(number)</span>
-<span>) ENGINE InnoDB;</span>
-<span>DESCRIBE accounts;</span>
-<br/>
+<pre>
+<code class="sql">
+    CREATE TABLE accounts (
+        number INT, balance FLOAT, PRIMARY KEY(number)
+    ) ENGINE InnoDB;
+    DESCRIBE accounts;
+</code>
+</pre>
 <span>The final line of this example displays the contents of the new table so you can ensure</span>
 <span>that it was correctly created. The output from it should look like this:</span>
-<br/>
-<span>+---------+---------+------+-----+---------+-------+</span>
-<span>| Field | Type | Null | Key | Default | Extra |</span>
-<span>+---------+---------+------+-----+---------+-------+</span>
-<span>| number | int(11) | NO | PRI | 0 | |</span>
-<span>| balance | float | YES | | NULL | |</span>
-<span>+---------+---------+------+-----+---------+-------+</span>
-<span>2 rows in set (0.00 sec)</span>
-<br/>
+<pre>
+<code class="sql">
++---------+---------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++---------+---------+------+-----+---------+-------+
+| number | int(11) | NO | PRI | 0 | |
+| balance | float | YES | | NULL | |
++---------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+</code>
+</pre>
 <span>Now let&rsquo;s create two rows within the table so that you can practice using transactions.</span>
 <span>Type the commands in</span>
 <span>Example 9-2</span>
 <span>.</span>
 <br/>
 <span>Example 9-2. Populating the accounts table</span>
-<br/>
-<span>INSERT INTO accounts(number, balance) VALUES(12345, 1025.50);</span>
-<span>INSERT INTO accounts(number, balance) VALUES(67890, 140.00);</span>
-<span>SELECT * FROM accounts;</span>
-<br/>
+<pre>
+<code class="sql">
+    INSERT INTO accounts(number, balance) VALUES(12345, 1025.50);
+    INSERT INTO accounts(number, balance) VALUES(67890, 140.00);
+    SELECT * FROM accounts;
+</code>
+</pre>
 <span>The third line displays the contents of the table to confirm that the rows were cor‐</span>
 <span>rectly inserted. The output should look like this:</span>
-<br/>
-<span>+--------+---------+</span>
-<span>| number | balance |</span>
-<span>+--------+---------+</span>
-<span>| 12345 | 1025.5 |</span>
-<span>| 67890 | 140 |</span>
-<span>+--------+---------+</span>
-<span>2 rows in set (0.00 sec)</span>
-<br/>
+<pre>
+<code class="sql">
++--------+---------+
+| number | balance |
++--------+---------+
+| 12345 | 1025.5 |
+| 67890 | 140 |
++--------+---------+
+2 rows in set (0.00 sec)
+</code>
+</pre>
 <span>With this table created and prepopulated, you are ready to start using transactions.</span>
 <h4>Using BEGIN</h4>
 <span>Transactions in MySQL start with either a</span>
@@ -1141,22 +1266,27 @@ title: "Mastering MySQL"
 <span>to send a transaction to MySQL.</span>
 <br/>
 <span>Example 9-3. A MySQL transaction</span>
-<br/>
-<span>BEGIN;</span>
-<span>UPDATE accounts SET balance=balance+25.11 WHERE number=12345;</span>
-<span>COMMIT;</span>
-<span>SELECT * FROM accounts;</span>
-<br/>
+<pre>
+<code class="sql">
+BEGIN;
+    UPDATE accounts SET balance=balance+25.11 WHERE number=12345;
+COMMIT;
+
+SELECT * FROM accounts;
+</code>
+</pre>
 <span>The result of this transaction is displayed by the final line, and should look like this:</span>
-<br/>
-<span>+--------+---------+</span>
-<span>| number | balance |</span>
-<span>+--------+---------+</span>
-<span>| 12345 | 1050.61 |</span>
-<span>| 67890 | 140 |</span>
-<span>+--------+---------+</span>
-<span>2 rows in set (0.00 sec)</span>
-<br/>
+<pre>
+<code class="sql">
++--------+---------+
+| number | balance |
++--------+---------+
+| 12345 | 1050.61 |
+| 67890 | 140 |
++--------+---------+
+2 rows in set (0.00 sec)
+</code>
+</pre>
 <span>As you can see, the balance of account number 12345 was increased by 25.11 and is</span>
 <span>now 1050.61. You may also have noticed the</span>
 <span>COMMIT</span>
@@ -1187,22 +1317,26 @@ title: "Mastering MySQL"
 <span>.</span>
 <br/>
 <span>Example 9-4. A funds transfer transaction</span>
-<br/>
-<span>BEGIN;</span>
-<span>UPDATE accounts SET balance=balance-250 WHERE number=12345;</span>
-<span>UPDATE accounts SET balance=balance+250 WHERE number=67890;</span>
-<span>SELECT * FROM accounts;</span>
-<br/>
+<pre>
+<code class="sql">
+    BEGIN;
+    UPDATE accounts SET balance=balance-250 WHERE number=12345;
+    UPDATE accounts SET balance=balance+250 WHERE number=67890;
+    SELECT * FROM accounts;
+</code>
+</pre>
 <span>Once you have entered these lines, you should see the following result:</span>
-<br/>
-<span>+--------+---------+</span>
-<span>| number | balance |</span>
-<span>+--------+---------+</span>
-<span>| 12345 | 800.61 |</span>
-<span>| 67890 | 390 |</span>
-<span>+--------+---------+</span>
-<span>2 rows in set (0.00 sec)</span>
-<br/>
+<pre>
+<code class="sql">
++--------+---------+
+| number | balance |
++--------+---------+
+| 12345 | 800.61 |
+| 67890 | 390 |
++--------+---------+
+2 rows in set (0.00 sec)
+</code>
+</pre>
 <span>The first bank account now has a value that is 250 less than before, and the second</span>
 <span>has been incremented by 250; you have transferred a value of 250 between them. But</span>
 <span>let&rsquo;s assume that something went wrong and you wish to undo this transaction. All</span>
@@ -1211,22 +1345,27 @@ title: "Mastering MySQL"
 <span>.</span>
 <br/>
 <span>Example 9-5. Canceling a transaction using ROLLBACK</span>
-<br/>
-<span>ROLLBACK;</span>
-<span>SELECT * FROM accounts;</span>
+<pre>
+<code class="sql">
+ROLLBACK;
+SELECT * FROM accounts;
+</code>
+</pre>
 <span>You should now see the following output, showing that the two accounts have had</span>
 <span>their previous balances restored, due to the entire transaction being cancelled via the</span>
 <span>ROLLBACK</span>
 <span>command:</span>
-<br/>
-<span>+--------+---------+</span>
-<span>| number | balance |</span>
-<span>+--------+---------+</span>
-<span>| 12345 | 1050.61 |</span>
-<span>| 67890 | 140 |</span>
-<span>+--------+---------+</span>
-<span>2 rows in set (0.00 sec)</span>
-<br/>
+<pre>
+<code class="sql">
++--------+---------+
+| number | balance |
++--------+---------+
+| 12345 | 1050.61 |
+| 67890 | 140 |
++--------+---------+
+2 rows in set (0.00 sec)
+</code>
+</pre>
 <h6>Using EXPLAIN</h6>
 <span>MySQL comes with a powerful tool for investigating how the queries you issue to it</span>
 <span>are interpreted. Using</span>
@@ -1238,20 +1377,20 @@ title: "Mastering MySQL"
 <span>to use it with the accounts table you created earlier.</span>
 <br/>
 <span>Example 9-6. Using the EXPLAIN command</span>
-<br/>
-<span>EXPLAIN SELECT * FROM accounts WHERE number='12345';</span>
-<br/>
+<pre><code class="sql">EXPLAIN SELECT * FROM accounts WHERE number='12345';</code></pre>
 <span>The results of this</span>
 <span>EXPLAIN</span>
 <span>command should look like the following:</span>
-<br/>
-<span>+--+-----------+--------+-----+-------------+-------+-------+-----+----+-----+</span>
-<span>|id|select_type|table |type |possible_keys|key |key_len|ref |rows|Extra|</span>
-<span>+--+-----------+--------+-----+-------------+-------+-------+-----+----+-----+</span>
-<span>| 1|SIMPLE |accounts|const|PRIMARY |PRIMARY|4 |const| 1| |</span>
-<span>+--+-----------+--------+-----+-------------+-------+-------+-----+----+-----+</span>
-<span>1 row in set (0.00 sec)</span>
-<br/>
+<pre>
+<code class="sql">
++--+-----------+--------+-----+-------------+-------+-------+-----+----+-----+
+|id|select_type|table |type |possible_keys|key |key_len|ref |rows|Extra|
++--+-----------+--------+-----+-------------+-------+-------+-----+----+-----+
+| 1|SIMPLE |accounts|const|PRIMARY |PRIMARY|4 |const| 1| |
++--+-----------+--------+-----+-------------+-------+-------+-----+----+-----+
+1 row in set (0.00 sec)
+</code>
+</pre>
 <span>The information that MySQL is giving you here is as follows:</span>
 <br/>
 <span>select_type</span>
@@ -1348,15 +1487,9 @@ PRIMARY
 <span>. To lock</span>
 <span>tables for reading (as we want to read the data), from the MySQL command line issue</span>
 <span>this command:</span>
-<br/>
-<span>LOCK TABLES</span>
-<span>tablename1 READ, tablename2</span>
-<span>READ ...</span>
-<br/>
+<pre><code class="sql">LOCK TABLES tablename1 READ, tablename2 READ ...</code></pre>
 <span>Then, to release the lock(s), enter the following:</span>
-<br/>
-<span>UNLOCK TABLES;</span>
-<br/>
+<pre><code class="sql">UNLOCK TABLES;</code></pre>
 <span>By default, the output from</span>
 <span>mysqldump</span>
 <span>is simply printed out, but you can capture it in</span>
@@ -1367,12 +1500,7 @@ PRIMARY
 <span>The basic format of the</span>
 <span>mysqldump</span>
 <span>command is shown here:</span>
-<br/>
-<span>mysqldump -u</span>
-<span>user</span>
-<span>-p</span>
-<span>password database</span>
-<br/>
+<pre><code class="sql">mysqldump -u user -p password database</code></pre>
 <span>However, before you can dump the contents of a database, you must make sure that</span>
 <span>mysqldump</span>
 <span>is in your path, or that you specify its location as part of your command.</span>
@@ -1404,13 +1532,7 @@ PRIMARY
 <span>Example 9-7</span>
 <span>.</span>
 <span>Example 9-7. Dumping the publications database to screen</span>
-<br/>
-<span>mysqldump -u</span>
-<span>user</span>
-<span>-p</span>
-<span>password</span>
-<span>publications</span>
-<br/>
+<pre><code class="sql">mysqldump -u user -p password publications</code></pre>
 <span>Make sure that you replace</span>
 <span>user</span>
 <span>and</span>
@@ -1446,14 +1568,7 @@ PRIMARY
 <br/>
 <span>Example 9-8. Dumping the publications database to</span>
 <span>file</span>
-<br/>
-<span>mysqldump -u</span>
-<span>user</span>
-<span>&nbsp;&ndash;</span>
-<span>p</span>
-<span>password</span>
-<span>publications &gt; publications.sql</span>
-<br/>
+<pre><code class="sql">mysqldump -u user &nbsp;&ndash; p password publications &gt; publications.sql</code></pre>
 <span>The command in</span>
 <span>Example 9-8</span>
 <span>stores the backup file into the cur‐</span>
@@ -1464,22 +1579,25 @@ PRIMARY
 <br/>
 <span>If you echo the backup file to screen or load it into a text editor, you will see that it</span>
 <span>comprises sequences of SQL commands such as the following:</span>
-<br/>
-<span>DROP TABLE IF EXISTS 'classics';</span>
-<span>CREATE TABLE 'classics' (</span>
-<span>'author' varchar(128) default NULL,</span>
-<span>'title' varchar(128) default NULL,</span>
-<span>'category' varchar(16) default NULL,</span>
-<span>'year' smallint(6) default NULL,</span>
-<span>'isbn' char(13) NOT NULL default '',</span>
-<span>PRIMARY KEY ('isbn'),</span>
-<span>KEY 'author' ('author'(20)),</span>
-<span>KEY 'title' ('title'(20)),</span>
-<span>KEY 'category' ('category'(4)),</span>
-<span>KEY 'year' ('year'),</span>
-<span>FULLTEXT KEY 'author_2' ('author','title')</span>
-<span>) ENGINE=MyISAM DEFAULT CHARSET=latin1;</span>
-<br/>
+<pre>
+<code class="sql">
+    DROP TABLE IF EXISTS 'classics';
+    CREATE TABLE 'classics' (
+        'author' varchar(128) default NULL,
+        'title' varchar(128) default NULL,
+        'category' varchar(16) default NULL,
+        'year' smallint(6) default NULL,
+        'isbn' char(13) NOT NULL default '',
+        PRIMARY KEY ('isbn'),
+        KEY 'author' ('author'(20)),
+        KEY 'title' ('title'(20)),
+        KEY 'category' ('category'(4)),
+        KEY 'year' ('year'),
+        FULLTEXT KEY 'author_2' ('author','title')
+    ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+</code>
+</pre>
+
 <span>This is smart code that can be used to restore a database from a backup, even if it</span>
 <span>currently exists, because it will first drop any tables that need to be re-created, thus</span>
 <span>avoiding potential MySQL errors.</span>
@@ -1490,20 +1608,15 @@ PRIMARY
 <span>publications</span>
 <span>database), you should first lock the table from within the MySQL com‐</span>
 <span>mand line, by issuing a command such as the following:</span>
-<br/>
-<span>LOCK TABLES publications.classics READ;</span>
-<br/>
+<pre><code class="sql">LOCK TABLES publications.classics READ;</code></pre>
 <span>This ensures that MySQL remains running for read purposes, but writes cannot be</span>
 <span>made. Then, while keeping the MySQL command line open, use another terminal</span>
 <span>window to issue the following command from the operating system command line:</span>
-<br/>
-<span>mysqldump -u user -ppassword publications classics &gt; classics.sql</span>
-<br/>
+<pre><code class="sql">mysqldump -u user -ppassword publications classics &gt; classics.sql</code></pre>
 <span>You must now release the table lock by entering the following command from the</span>
 <span>MySQL command line in the first terminal window, which unlocks all tables that</span>
 <span>have been locked during the current session:</span>
-<br/>
-<span>UNLOCK TABLES;</span>
+<pre><code class="sql">UNLOCK TABLES;</code></pre>
 <h6>Backing up all tables</h6>
 <span>If you want to back up all your MySQL databases at once (including the system data‐</span>
 <span>bases such as</span>
@@ -1516,13 +1629,7 @@ PRIMARY
 <br/>
 <span>Example 9-9. Dumping all the MySQL databases to</span>
 <span>file</span>
-<br/>
-<span>mysqldump -u</span>
-<span>user</span>
-<span>-p</span>
-<span>password</span>
-<span>--all-databases &gt; all_databases.sql</span>
-<br/>
+<pre><code class="sql">mysqldump -u user -p password --all-databases &gt; all_databases.sql</code></pre>
 <span>Of course, there&rsquo;s a lot more than just a few lines of SQL code in</span>
 <span>backed-up database files. I recommend that you take a few minutes</span>
 <span>to examine a couple in order to familiarize yourself with the types</span>
@@ -1540,13 +1647,7 @@ PRIMARY
 <span>.</span>
 <br/>
 <span>Example 9-10. Restoring an entire set of databases</span>
-<br/>
-<span>mysql -u</span>
-<span>user</span>
-<span>-p</span>
-<span>password</span>
-<span>&lt; all_databases.sql</span>
-<br/>
+<pre><code class="sql">mysql -u user -p password &lt; all_databases.sql</code></pre>
 <span>To restore a single database, use the</span>
 <span>-D</span>
 <span>option followed by the name of the database,</span>
@@ -1560,13 +1661,7 @@ PRIMARY
 <span>.</span>
 <br/>
 <span>Example 9-11. Restoring the publications database</span>
-<br/>
-<span>mysql -u</span>
-<span>user</span>
-<span>-p</span>
-<span>password</span>
-<span>-D publications &lt; publications.sql</span>
-<br/>
+<pre><code class="sql">mysql -u user -p password D publications &lt; publications.sql</code></pre>
 <span>To restore a single table to a database, use a command such as that in</span>
 <span>Example 9-12</span>
 <span>,</span>
@@ -1577,12 +1672,7 @@ PRIMARY
 <span>database.</span>
 <br/>
 <span>Example 9-12. Restoring the classics table to the publications database</span>
-<br/>
-<span>mysql -u</span>
-<span>user</span>
-<span>-p</span>
-<span>password</span>
-<span>-D publications &lt; classics.sql</span>
+<pre><code class="sql">mysql -u user -p password -D publications &lt; classics.sql</code></pre>
 <h4>Dumping Data in CSV Format</h4>
 <span>As previously mentioned, the</span>
 <span>mysqldump</span>
@@ -1607,14 +1697,13 @@ PRIMARY
 <br/>
 <span>Example 9-13. Dumping data to CSV format</span>
 <span>files</span>
-<br/>
-<span>mysqldump -u</span>
-<span>user</span>
-<span>-p</span>
-<span>password</span>
-<span>--no-create-info --tab=c:/temp</span>
-<span>--fields-terminated-by=',' publications</span>
-<br/>
+<pre>
+<code class="sql">
+mysqldump -u user -p password 
+        --no-create-info --tab=c:/temp
+        --fields-terminated-by=',' publications
+</code>
+</pre>
 <span>This command is quite long and is shown here wrapped over two lines, but you must</span>
 <span>type it all as a single line. The result is the following:</span>
 <br/>
