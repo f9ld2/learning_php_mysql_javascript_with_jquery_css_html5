@@ -6,6 +6,7 @@ title: "Accessing CSS from JavaScript"
 <span>With a good understanding of the DOM and CSS now under your belt, you&rsquo;ll learn in</span>
 <span>this chapter how to access both the DOM and CSS directly from JavaScript, enabling</span>
 <span>you to create highly dynamic and responsive websites.</span>
+
 <span>I&rsquo;ll also show you how to use interrupts so you can create animations or provide any</span>
 <span>code that must continue running (such as a clock). Finally, I&rsquo;ll explain how you can</span>
 <span>add new elements to or remove existing ones from the DOM so you don&rsquo;t have to</span>
@@ -17,6 +18,7 @@ title: "Accessing CSS from JavaScript"
 <span>function, for handling DOM elements and</span>
 <span>CSS styles quickly and efficiently, without the need for including a framework such as</span>
 <span>jQuery.</span>
+
 <span>However, to avoid conflicting with frameworks that use the</span>
 <span>$</span>
 <span>character, I&rsquo;ll use the</span>
@@ -30,23 +32,28 @@ title: "Accessing CSS from JavaScript"
 <span>Here&rsquo;s what the bare-bones</span>
 <span>O</span>
 <span>function looks like:</span>
+
 <span>function O(i)</span>
 <span>{</span>
 <span>return document.getElementById(i)</span>
 <span>}</span>
+
 <span>This alone saves 22 characters of typing each time it&rsquo;s called. But I choose to extend</span>
 <span>the function a little by allowing either an ID name or an object to be passed to this</span>
 <span>function, as shown in the complete version of the function in</span>
 <span>Example 20-1</span>
 <span>.</span>
+
 <span>Example 20-1.</span>
 <span>The O() function</span>
 <span>function O(i)</span>
 <span>{</span>
 <span>return typeof i == 'object' ? i : document.getElementById(i)</span>
 <span>}</span>
+
 <span>If an object is passed to the function, it just returns that object back again. Otherwise,</span>
 <span>it assumes that an ID is passed and returns the object to which the ID refers.</span>
+
 <span>But why on earth would I want to add this first statement, which simply returns the</span>
 <span>object passed to it?</span>
 <h4>The S Function</h4>
@@ -58,12 +65,15 @@ title: "Accessing CSS from JavaScript"
 <span>in</span>
 <span>Example 20-2</span>
 <span>.</span>
+
 <span>Example 20-2.</span>
 <span>The S() function</span>
+
 <span>function S(i)</span>
 <span>{</span>
 <span>return O(i).style</span>
 <span>}</span>
+
 <span>The</span>
 <span>S</span>
 <span>in this function name is the first letter of</span>
@@ -78,33 +88,42 @@ title: "Accessing CSS from JavaScript"
 <span>either an ID or an object to</span>
 <span>S</span>
 <span>as well.</span>
+
 <span>Let&rsquo;s look at what&rsquo;s going on here by taking a</span>
 <span>&lt;div&gt;</span>
 <span>element with the ID of</span>
 <span>myobj</span>
 <span>and</span>
 <span>setting its text color to green, like this:</span>
+
 <span>&lt;div id='myobj'&gt;Some text&lt;/div&gt;</span>
 <span>&lt;script&gt;</span>
 <span>O('myobj').style.color = 'green'</span>
 <span>&lt;/script&gt;</span>
+
 <span>The preceding code will do the job, but it&rsquo;s much simpler to call the new</span>
 <span>S</span>
 <span>function,</span>
 <span>like this:</span>
+
 <span>S('myobj').color = 'green'</span>
+
 <span>Now consider the case in which the object returned by calling</span>
 <span>O</span>
 <span>is stored in, for</span>
 <span>example, an object called</span>
 <span>fred</span>
 <span>, like this:</span>
+
 <span>fred = O('myobj')</span>
+
 <span>Because of the way function</span>
 <span>S</span>
 <span>works, we can still call it to change the text color to</span>
 <span>green, like this:</span>
+
 <span>S(fred).color = 'green'</span>
+
 <span>This means that whether you wish to access an object directly or via its ID, you can</span>
 <span>do so by passing it to either the</span>
 <span>O</span>
@@ -122,8 +141,10 @@ title: "Accessing CSS from JavaScript"
 <span>employ the class</span>
 <span>myclass</span>
 <span>:</span>
+
 <span>&lt;div class='myclass'&gt;Div contents&lt;/fiv&gt;</span>
 <span>&lt;p class='myclass'&gt;Paragraph contents&lt;/p&gt;</span>
+
 <span>If you want to access all elements on a page that use a particular class, you can use the</span>
 <span>C</span>
 <span>function (for the first letter of</span>
@@ -132,16 +153,21 @@ title: "Accessing CSS from JavaScript"
 <span>&nbsp;Example 20-3</span>
 <span>, to return an array</span>
 <span>containing all the objects that match a class name provided.</span>
+
 <span>Example 20-3.</span>
 <span>The C() function</span>
+
 <span>function C(i)</span>
 <span>{</span>
 <span>return document.getElementsByClassName(i)</span>
 <span>}</span>
+
 <span>To use this function, simply call it as follows, saving the returned array so that you</span>
 <span>can access each of the elements individually as required or (more likely to be the case)</span>
 <span>en masse via a loop:</span>
+
 <span>myarray = C('myclass')</span>
+
 <span>Now you can do whatever you like with the objects returned, such as (for example)</span>
 <span>setting their</span>
 <span>textDecoration</span>
