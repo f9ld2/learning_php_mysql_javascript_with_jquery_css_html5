@@ -6,7 +6,7 @@ title: "Accessing CSS from JavaScript"
 <span>With a good understanding of the DOM and CSS now under your belt, you&rsquo;ll learn in</span>
 <span>this chapter how to access both the DOM and CSS directly from JavaScript, enabling</span>
 <span>you to create highly dynamic and responsive websites.</span>
-
+<br/>
 <span>I&rsquo;ll also show you how to use interrupts so you can create animations or provide any</span>
 <span>code that must continue running (such as a clock). Finally, I&rsquo;ll explain how you can</span>
 <span>add new elements to or remove existing ones from the DOM so you don&rsquo;t have to</span>
@@ -18,7 +18,7 @@ title: "Accessing CSS from JavaScript"
 <span>function, for handling DOM elements and</span>
 <span>CSS styles quickly and efficiently, without the need for including a framework such as</span>
 <span>jQuery.</span>
-
+<br/>
 <span>However, to avoid conflicting with frameworks that use the</span>
 <span>$</span>
 <span>character, I&rsquo;ll use the</span>
@@ -32,28 +32,28 @@ title: "Accessing CSS from JavaScript"
 <span>Here&rsquo;s what the bare-bones</span>
 <span>O</span>
 <span>function looks like:</span>
-
+<br/>
 <span>function O(i)</span>
 <span>{</span>
 <span>return document.getElementById(i)</span>
 <span>}</span>
-
+<br/>
 <span>This alone saves 22 characters of typing each time it&rsquo;s called. But I choose to extend</span>
 <span>the function a little by allowing either an ID name or an object to be passed to this</span>
 <span>function, as shown in the complete version of the function in</span>
 <span>Example 20-1</span>
 <span>.</span>
-
+<br/>
 <span>Example 20-1.</span>
 <span>The O() function</span>
 <span>function O(i)</span>
 <span>{</span>
 <span>return typeof i == 'object' ? i : document.getElementById(i)</span>
 <span>}</span>
-
+<br/>
 <span>If an object is passed to the function, it just returns that object back again. Otherwise,</span>
 <span>it assumes that an ID is passed and returns the object to which the ID refers.</span>
-
+<br/>
 <span>But why on earth would I want to add this first statement, which simply returns the</span>
 <span>object passed to it?</span>
 <h4>The S Function</h4>
@@ -65,15 +65,15 @@ title: "Accessing CSS from JavaScript"
 <span>in</span>
 <span>Example 20-2</span>
 <span>.</span>
-
+<br/>
 <span>Example 20-2.</span>
 <span>The S() function</span>
-
+<br/>
 <span>function S(i)</span>
 <span>{</span>
 <span>return O(i).style</span>
 <span>}</span>
-
+<br/>
 <span>The</span>
 <span>S</span>
 <span>in this function name is the first letter of</span>
@@ -88,42 +88,42 @@ title: "Accessing CSS from JavaScript"
 <span>either an ID or an object to</span>
 <span>S</span>
 <span>as well.</span>
-
+<br/>
 <span>Let&rsquo;s look at what&rsquo;s going on here by taking a</span>
 <span>&lt;div&gt;</span>
 <span>element with the ID of</span>
 <span>myobj</span>
 <span>and</span>
 <span>setting its text color to green, like this:</span>
-
+<br/>
 <span>&lt;div id='myobj'&gt;Some text&lt;/div&gt;</span>
 <span>&lt;script&gt;</span>
 <span>O('myobj').style.color = 'green'</span>
 <span>&lt;/script&gt;</span>
-
+<br/>
 <span>The preceding code will do the job, but it&rsquo;s much simpler to call the new</span>
 <span>S</span>
 <span>function,</span>
 <span>like this:</span>
-
+<br/>
 <span>S('myobj').color = 'green'</span>
-
+<br/>
 <span>Now consider the case in which the object returned by calling</span>
 <span>O</span>
 <span>is stored in, for</span>
 <span>example, an object called</span>
 <span>fred</span>
 <span>, like this:</span>
-
+<br/>
 <span>fred = O('myobj')</span>
-
+<br/>
 <span>Because of the way function</span>
 <span>S</span>
 <span>works, we can still call it to change the text color to</span>
 <span>green, like this:</span>
-
+<br/>
 <span>S(fred).color = 'green'</span>
-
+<br/>
 <span>This means that whether you wish to access an object directly or via its ID, you can</span>
 <span>do so by passing it to either the</span>
 <span>O</span>
@@ -141,10 +141,10 @@ title: "Accessing CSS from JavaScript"
 <span>employ the class</span>
 <span>myclass</span>
 <span>:</span>
-
+<br/>
 <span>&lt;div class='myclass'&gt;Div contents&lt;/fiv&gt;</span>
 <span>&lt;p class='myclass'&gt;Paragraph contents&lt;/p&gt;</span>
-
+<br/>
 <span>If you want to access all elements on a page that use a particular class, you can use the</span>
 <span>C</span>
 <span>function (for the first letter of</span>
@@ -153,29 +153,31 @@ title: "Accessing CSS from JavaScript"
 <span>&nbsp;Example 20-3</span>
 <span>, to return an array</span>
 <span>containing all the objects that match a class name provided.</span>
-
+<br/>
 <span>Example 20-3.</span>
 <span>The C() function</span>
-
+<br/>
 <span>function C(i)</span>
 <span>{</span>
 <span>return document.getElementsByClassName(i)</span>
 <span>}</span>
-
+<br/>
 <span>To use this function, simply call it as follows, saving the returned array so that you</span>
 <span>can access each of the elements individually as required or (more likely to be the case)</span>
 <span>en masse via a loop:</span>
-
+<br/>
 <span>myarray = C('myclass')</span>
-
+<br/>
 <span>Now you can do whatever you like with the objects returned, such as (for example)</span>
 <span>setting their</span>
 <span>textDecoration</span>
 <span>style property to</span>
 <span>underline</span>
 <span>, as follows:</span>
+<br/>
 <span>for (i = 0 ; i &lt; myarray.length ; ++i)</span>
 <span>S(myarray[i]).textDecoration = 'underline'</span>
+<br/>
 <span>This code iterates through the objects in</span>
 <span>myarray[]</span>
 <span>and then uses the</span>
@@ -202,20 +204,25 @@ title: "Accessing CSS from JavaScript"
 <span>from the</span>
 <span>http://lpmj.net</span>
 <span>website.</span>
+<br/>
 <span>You can include these functions in any web page by using the following statement&mdash;</span>
 <span>preferably in its</span>
 <span>&lt;head&gt;</span>
 <span>section, anywhere before any script that relies on calling</span>
 <span>them:</span>
+<br/>
 <span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
+<br/>
 <span>The contents of</span>
 <span>OSC.js</span>
 <span>are shown in</span>
 <span>Example 20-4</span>
 <span>, where everything is neatened into</span>
 <span>just three lines.</span>
+<br/>
 <span>Example 20-4.</span>
 <span>The OSC.js file</span>
+<br/>
 <span>function O(i) { return typeof i == 'object' ? i : document.getElementById(i) }</span>
 <span>function S(i) { return O(i).style }</span>
 <span>function C(i) { return document.getElementsByClassName(i) }</span>
@@ -229,18 +236,23 @@ title: "Accessing CSS from JavaScript"
 <span>the hyphen character for use as a mathematical operator, whenever you access a</span>
 <span>hyphenated CSS property, you must omit the hyphen and set the character immedi‐</span>
 <span>ately following it to uppercase.</span>
+<br/>
 <span>Another example of this is the</span>
 <span>font-size</span>
 <span>property (for example), which is referenced</span>
 <span>in JavaScript as</span>
 <span>fontSize</span>
 <span>when placed after a period operator, like this:</span>
+<br/>
 <span>myobject.fontSize = '16pt'</span>
+<br/>
 <span>An alternative to this is to be more long-winded and use the</span>
 <span>setAttribute</span>
 <span>function,</span>
 <span>which does support (and in fact requires) standard CSS property names, like this:</span>
+<br/>
 <span>myobject.setAttribute('style', 'font-size:16pt')</span>
+<br/>
 <span>Some older versions of Microsoft Internet Explorer are picky in</span>
 <span>certain instances about using the JavaScript-style CSS property</span>
 <span>names when applying the browser-specific</span>
@@ -259,6 +271,7 @@ title: "Accessing CSS from JavaScript"
 <span>property names, so I won&rsquo;t bore you by detailing all of these hundreds of properties.</span>
 <span>Rather, I&rsquo;d like to show you how to access just a few of the CSS properties as an over‐</span>
 <span>view of some of the things you can do.</span>
+<br/>
 <span>First,</span>
 <span>then,</span>
 <span>let&rsquo;s</span>
@@ -282,7 +295,9 @@ title: "Accessing CSS from JavaScript"
 <span>ous of its attributes (see</span>
 <span>Figure 20-1</span>
 <span>).</span>
+<br/>
 <span>Example 20-5. Accessing CSS properties from JavaScript</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -311,7 +326,9 @@ title: "Accessing CSS from JavaScript"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<p><img src="images/20.1.png"/></p>
 <span>Figure 20-1. Modifying styles from JavaScript</span>
+<br/>
 <span>You gain nothing by modifying properties like this, because you could just as easily</span>
 <span>have</span>
 <span>included</span>
@@ -332,6 +349,7 @@ title: "Accessing CSS from JavaScript"
 <span>width and height of the browser and of any pop-up or in-browser windows or frames,</span>
 <span>handy information such as the parent window (if there is one), and the history of</span>
 <span>URLs visited this session.</span>
+<br/>
 <span>All these properties are accessed from the</span>
 <span>window</span>
 <span>object via the period operator (for</span>
@@ -340,7 +358,9 @@ title: "Accessing CSS from JavaScript"
 <span>), and</span>
 <span>Table 20-1</span>
 <span>lists them all, along with descriptions of each.</span>
+<br/>
 <span>Table 20-1. Common window properties</span>
+<br/>
 <span>Property</span>
 <span>Sets and/or returns</span>
 <span>closed</span>
@@ -421,7 +441,9 @@ title: "Accessing CSS from JavaScript"
 <span>Sets or returns the text in the status bar of a window</span>
 <span>top</span>
 <span>Returns the top browser window</span>
+<br/>
 <span>There are a few points to note about some of these properties:</span>
+<br/>
 <span>&bull;</span>
 <span>The</span>
 <span>defaultStatus</span>
@@ -429,6 +451,7 @@ title: "Accessing CSS from JavaScript"
 <span>status</span>
 <span>properties can be set only if users have modified</span>
 <span>their browsers to allow it (very unlikely).</span>
+<br/>
 <span>&bull;</span>
 <span>The</span>
 <span>history</span>
@@ -444,6 +467,7 @@ title: "Accessing CSS from JavaScript"
 <span>go</span>
 <span>methods to navigate to specific</span>
 <span>pages in the history.</span>
+<br/>
 <span>&bull;</span>
 <span>When you need to know how much space there is available in a current window</span>
 <span>of</span>
@@ -460,6 +484,7 @@ title: "Accessing CSS from JavaScript"
 <span>window.innerWidth</span>
 <span>. I often use these values for centering in-browser pop-up</span>
 <span>alert or &ldquo;confirm dialog&rdquo; windows.</span>
+<br/>
 <span>&bull;</span>
 <span>The</span>
 <span>screen</span>
@@ -478,10 +503,12 @@ title: "Accessing CSS from JavaScript"
 <span>width</span>
 <span>, and is therefore great for determining</span>
 <span>information about the user&rsquo;s display.</span>
+<br/>
 <span>Many of these properties can be invaluable when you&rsquo;re targeting</span>
 <span>mobile phones and tablet devices, as they will tell you exactly how</span>
 <span>much screen space you have to work with, the type of browser</span>
 <span>being used, and more.</span>
+<br/>
 <span>These few items of information will get you started and already provide you with</span>
 <span>many new and interesting things you can do with JavaScript. But, in fact, there are far</span>
 <span>more properties and methods available than can be covered in this chapter. However,</span>
@@ -501,7 +528,9 @@ title: "Accessing CSS from JavaScript"
 <span>, which displays an</span>
 <span>apple by default, but replaces it with an orange when the mouse passes over, and</span>
 <span>restores the apple again when the mouse leaves.</span>
+<br/>
 <span>Example 20-6. Using inline JavaScript</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -524,7 +553,9 @@ title: "Accessing CSS from JavaScript"
 <span>tag. You can see the result in</span>
 <span>Figure 20-2</span>
 <span>, where the mouse has yet to pass over the apple.</span>
+<p><img src="images/20.1.png"/></p>
 <span>Figure 20-2. Inline mouse hover JavaScript example</span>
+<br/>
 <span>When supplied from an inline JavaScript call, the</span>
 <span>this</span>
 <span>keyword</span>
@@ -537,7 +568,9 @@ title: "Accessing CSS from JavaScript"
 <span>attaching the actions to the tag&rsquo;s mouse events, like</span>
 <span>Example 20-7</span>
 <span>.</span>
+<br/>
 <span>Example 20-7. Non-inline JavaScript</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -554,6 +587,7 @@ title: "Accessing CSS from JavaScript"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<br/>
 <span>In the HTML section, this example gives the</span>
 <span>&lt;img&gt;</span>
 <span>element an ID of</span>
@@ -567,7 +601,9 @@ title: "Accessing CSS from JavaScript"
 <span>users.</span>
 <span>Table 20-2</span>
 <span>lists these events and details when they will be triggered.</span>
+<br/>
 <span>Table 20-2. Events and when they are triggered</span>
+<br/>
 <span>Event</span>
 <span>Occurs</span>
 <span>onabort</span>
@@ -614,6 +650,7 @@ title: "Accessing CSS from JavaScript"
 <span>When some text is selected</span>
 <span>onunload</span>
 <span>When a document is removed</span>
+<br/>
 <span>Make sure you attach events to objects that make sense. For exam‐</span>
 <span>ple, an object that is not a form will not respond to the</span>
 <span>onsubmit</span>
@@ -622,13 +659,16 @@ title: "Accessing CSS from JavaScript"
 <span>With JavaScript, you are not limited to manipulating the elements and objects sup‐</span>
 <span>plied to a document in its HTML. In fact, you can create objects at will by inserting</span>
 <span>them into the DOM.</span>
+<br/>
 <span>For example, suppose you need a new</span>
 <span>&lt;div&gt;</span>
 <span>element.</span>
 <span>Example 20-8</span>
 <span>shows one way</span>
 <span>you can add it to the web page.</span>
+<br/>
 <span>Example 20-8. Inserting an element into the DOM</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -667,6 +707,7 @@ title: "Accessing CSS from JavaScript"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<br/>
 <span>Figure 20-3</span>
 <span>shows this code being used to add a new</span>
 <span>&lt;div&gt;</span>
@@ -676,7 +717,9 @@ title: "Accessing CSS from JavaScript"
 <span>; then the</span>
 <span>appendChild</span>
 <span>function is called, and the element gets inserted into the DOM.</span>
+<p><img src="images/20.3.png"/></p>
 <span>Figure 20-3. Inserting a new element into the DOM</span>
+<br/>
 <span>After this, various properties are assigned to the element, including some text for its</span>
 <span>inner HTML. And then, in order to make sure the new element is instantly revealed,</span>
 <span>its</span>
@@ -686,8 +729,10 @@ title: "Accessing CSS from JavaScript"
 <span>. This forces a DOM</span>
 <span>refresh and makes the element display in any browser that might otherwise delay</span>
 <span>before doing so&mdash;particularly Internet Explorer.</span>
+<br/>
 <span>This new element is exactly the same as if it had been included in the original HTML,</span>
 <span>and has all the same properties and methods available.</span>
+<br/>
 <span>I sometimes use the technique of creating new elements when I</span>
 <span>want to create in-browser pop-up windows, because it doesn&rsquo;t rely</span>
 <span>on there having to be a spare</span>
@@ -699,7 +744,9 @@ title: "Accessing CSS from JavaScript"
 <span>the element to remove is in the object</span>
 <span>element</span>
 <span>:</span>
+<br/>
 <span>element.parentNode.removeChild(element)</span>
+<br/>
 <span>This code accesses the element&rsquo;s</span>
 <span>parentNode</span>
 <span>object so that it can remove the element</span>
@@ -708,9 +755,11 @@ title: "Accessing CSS from JavaScript"
 <span>method on that object, passing the</span>
 <span>object to be removed. However, to ensure the DOM instantly refreshes on all brows‐</span>
 <span>ers, you may prefer to replace the preceding single statement with something like this:</span>
+<br/>
 <span>pnode = element.parentNode</span>
 <span>pnode.removeChild(element)</span>
 <span>tmp = pnode.offsetTop</span>
+<br/>
 <span>This first statement makes a copy of</span>
 <span>element.parentNode</span>
 <span>(the parent element of the</span>
@@ -731,6 +780,7 @@ title: "Accessing CSS from JavaScript"
 <span>event, don&rsquo;t forget that there are always a couple of CSS properties you can use for</span>
 <span>this purpose, without taking such drastic measures as creating and deleting DOM ele‐</span>
 <span>ments.</span>
+<br/>
 <span>For example, when you want to make an element invisible but leave it in place (and</span>
 <span>with all the elements surrounding it remaining in their positions), you can simply set</span>
 <span>the object&rsquo;s</span>
@@ -738,25 +788,39 @@ title: "Accessing CSS from JavaScript"
 <span>property to</span>
 <span>'hidden'</span>
 <span>, like this:</span>
+<br/>
 <span>myobject.visibility = 'hidden'</span>
+<br/>
 <span>And to redisplay the object, you can use the following:</span>
+<br/>
 <span>myobject.visibility = 'visible'</span>
+<br/>
 <span>You can also collapse elements down to occupy zero width and height (with all</span>
 <span>objects around it filling in the freed-up space), like this:</span>
+<br/>
 <span>myobject.display = 'none'</span>
+<br/>
 <span>To then restore an element to its original dimensions, you would use the following:</span>
+<br/>
 <span>myobject.display = 'block'</span>
+<br/>
 <span>And, of course, there&rsquo;s always the</span>
 <span>innerHTML</span>
 <span>property, with which you can change the</span>
 <span>HTML applied to an element, like this, for example:</span>
+<br/>
 <span>mylement.innerHTML = '&lt;b&gt;Replacement HTML&lt;/b&gt;'</span>
+<br/>
 <span>Or you can use the</span>
 <span>O</span>
 <span>function I outlined earlier, like this:</span>
+<br/>
 <span>O('someid').innerHTML = 'New contents'</span>
+<br/>
 <span>Or you can make an element seem to disappear, like this:</span>
+<br/>
 <span>O('someid').innerHTML = ''</span>
+<br/>
 <span>Don&rsquo;t forget other useful CSS properties you can access from Java‐</span>
 <span>Script, such as</span>
 <span>opacity</span>
@@ -785,6 +849,7 @@ title: "Accessing CSS from JavaScript"
 <span>to call your code after a set period of time, or even to keep calling it at specified inter‐</span>
 <span>vals. This gives you a means of handling background tasks such as Ajax communica‐</span>
 <span>tions, or even things like animating web elements.</span>
+<br/>
 <span>To accomplish this, you have two types of interrupt:</span>
 <span>setTimeout</span>
 <span>and</span>
@@ -802,14 +867,18 @@ title: "Accessing CSS from JavaScript"
 <span>, you pass it some JavaScript code or the name of a func‐</span>
 <span>tion, and the value in milliseconds representing how long to wait before the code</span>
 <span>should be executed, like this:</span>
+<br/>
 <span>setTimeout(dothis, 5000)</span>
+<br/>
 <span>And your</span>
 <span>dothis</span>
 <span>function might look like this:</span>
+<br/>
 <span>function dothis()</span>
 <span>{</span>
 <span>alert('This is your wakeup alert!');</span>
 <span>}</span>
+<br/>
 <span>In case you&rsquo;re wondering, you cannot simply specify</span>
 <span>alert()</span>
 <span>(with</span>
@@ -822,17 +891,21 @@ title: "Accessing CSS from JavaScript"
 <span>)</span>
 <span>can you safely pass the function name so that its code will be exe‐</span>
 <span>cuted only when the time-out occurs.</span>
-<span>Passing a string</span>
+<h6>Passing a string</h6>
 <span>When you need to provide an argument to a function, you can also pass a string value</span>
 <span>to the</span>
 <span>setTimeout</span>
 <span>function, which will not be executed until the correct time, like</span>
 <span>this:</span>
+<br/>
 <span>setTimeout("alert('Hello!')", 5000)</span>
+<br/>
 <span>In fact, you can provide as many lines of JavaScript code as you like, if you place a</span>
 <span>semicolon after each statement, like this:</span>
+<br/>
 <span>setTimeout("document.write('Starting'); alert('Hello!')", 5000)</span>
-<span>Repeating time-outs</span>
+<br/>
+<h6>Repeating time-outs</h6>
 <span>One technique some programmers use to provide repeating interrupts using the</span>
 <span>function</span>
 <span>setTimeout</span>
@@ -840,6 +913,7 @@ title: "Accessing CSS from JavaScript"
 <span>setTimeout</span>
 <span>function from the code called by it, as</span>
 <span>with the following, which will initiate a never-ending loop of alert windows:</span>
+<br/>
 <span>setTimeout(dothis, 5000)</span>
 <span>function dothis()</span>
 <span>{</span>
@@ -852,12 +926,16 @@ title: "Accessing CSS from JavaScript"
 <span>returned from the initial call to</span>
 <span>setTimeout</span>
 <span>, like this:</span>
+<br/>
 <span>handle = setTimeout(dothis, 5000)</span>
+<br/>
 <span>Armed with the value in</span>
 <span>handle</span>
 <span>, you can now cancel the interrupt at any point up</span>
 <span>until its due time, like this:</span>
+<br/>
 <span>clearTimeout(handle)</span>
+<br/>
 <span>When you do this, the interrupt is completely forgotten, and the code assigned to it</span>
 <span>will not get executed.</span>
 <h4>Using setInterval</h4>
@@ -867,11 +945,13 @@ title: "Accessing CSS from JavaScript"
 <span>in just the same way, except that having popped up after the interval you specify in</span>
 <span>milliseconds, it will do so again after that interval again passes, and so on forever,</span>
 <span>unless you cancel it.</span>
+<br/>
 <span>Example 20-9</span>
 <span>uses this function to display a simple clock in the browser, as shown in</span>
 <span>Figure 20-4</span>
 <span>.</span>
 <span>Example 20-9. A clock created using interrupts</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -896,7 +976,9 @@ title: "Accessing CSS from JavaScript"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<p><img src="images/20.4.png"/></p>
 <span>Figure 20-4. Maintaining the correct time with interrupts</span>
+<br/>
 <span>Every time</span>
 <span>ShowTime</span>
 <span>is called, it sets the object</span>
@@ -905,7 +987,9 @@ title: "Accessing CSS from JavaScript"
 <span>a call to</span>
 <span>Date</span>
 <span>:</span>
+<br/>
 <span>var date = new Date()</span>
+<br/>
 <span>Then the</span>
 <span>innerHTML</span>
 <span>property of the object passed to</span>
@@ -922,45 +1006,60 @@ title: "Accessing CSS from JavaScript"
 <span>then truncated to just the first eight characters with a call to the</span>
 <span>substr</span>
 <span>function:</span>
+<br/>
 <span>object.innerHTML = date.toTimeString().substr(0,8)</span>
-<span>Using the function</span>
+<br/>
+<h6>Using the function</h6>
 <span>To use this function, you first have to create an object whose</span>
 <span>innerHTML</span>
 <span>property will</span>
 <span>be used for displaying the time, like this HTML:</span>
+<br/>
 <span>The time is: &lt;span id='time'&gt;00:00:00&lt;/span&gt;</span>
+<br/>
 <span>Then, from a</span>
 <span>&lt;script&gt;</span>
 <span>section of code, a call is placed to the</span>
 <span>setInterval</span>
 <span>function,</span>
 <span>like this:</span>
+<br/>
 <span>setInterval("showtime(O('time'))", 1000)</span>
+<br/>
 <span>It then passes a string to</span>
 <span>setInterval</span>
 <span>, containing the following statement, which is</span>
 <span>set to execute once a second (every 1,000 milliseconds):</span>
+<br/>
 <span>showtime(O('time'))</span>
+<br/>
 <span>In the rare situation where somebody has disabled JavaScript (which people some‐</span>
 <span>times do for security reasons), your JavaScript will not run and the user will see the</span>
 <span>original</span>
 <span>00:00:00</span>
 <span>.</span>
-<span>Cancelling an interval</span>
+<h6>Cancelling an interval</h6>
 <span>To stop a repeating interval, when you first set up the interval with a call to the func‐</span>
 <span>tion</span>
 <span>setInterval</span>
 <span>, you must make a note of the interval&rsquo;s handle, like this:</span>
+<br/>
 <span>handle = setInterval("showtime(O('time'))", 1000)</span>
+<br/>
 <span>Now you can stop the clock at any time by issuing the following call:</span>
+<br/>
 <span>clearInterval(handle)</span>
+<br/>
 <span>You can even set up a timer to stop the clock after a certain amount of time, like this:</span>
+<br/>
 <span>setTimeout("clearInterval(handle)", 10000)</span>
+<br/>
 <span>This statement will issue an interrupt in 10 seconds that will clear the repeating inter‐</span>
 <span>vals.</span>
 <h4>Using Interrupts for Animation</h4>
 <span>By combining a few CSS properties with a repeating interrupt, you can produce all</span>
 <span>manner of animations and effects.</span>
+<br/>
 <span>For example, the code in</span>
 <span>&nbsp;Example 20-10</span>
 <span>&nbsp;moves a square shape across the top of a</span>
@@ -972,7 +1071,9 @@ title: "Accessing CSS from JavaScript"
 <span>is reset to</span>
 <span>0</span>
 <span>.</span>
+<br/>
 <span>Example 20-10. A simple animation</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -1021,7 +1122,9 @@ title: "Accessing CSS from JavaScript"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<p><img src="images/20.5.png"/></p>
 <span>Figure 20-5. This object slides in from the left while changing size</span>
+<br/>
 <span>In the</span>
 <span>&lt;head&gt;</span>
 <span>section of the document, the</span>
@@ -1040,6 +1143,7 @@ title: "Accessing CSS from JavaScript"
 <span>to</span>
 <span>absolute</span>
 <span>so that it is allowed to be moved around in the browser.</span>
+<br/>
 <span>Then, in the</span>
 <span>animate</span>
 <span>function, the global variables</span>
@@ -1060,39 +1164,3 @@ title: "Accessing CSS from JavaScript"
 <span>added after each to specify that the values are in pixels), thus ani‐</span>
 <span>mating it at a frequency of once every 30 milliseconds&mdash;giving a rate of 33.33 frames</span>
 <span>per second (1,000/30 milliseconds).</span>
-<h3>Questions</h3>
-<span>1.</span>
-<span>What are the</span>
-<span>O</span>
-<span>,</span>
-<span>S</span>
-<span>, and</span>
-<span>C</span>
-<span>functions provided to do?</span>
-<span>2.</span>
-<span>Name two ways to modify a CSS attribute of an object.</span>
-<span>3.</span>
-<span>Which properties provide the width and height available in a browser window?</span>
-<span>4.</span>
-<span>How can you make something happen when the mouse passes both over and out</span>
-<span>of an object?</span>
-<span>5.</span>
-<span>Which JavaScript function creates new elements, and which appends them to the</span>
-<span>DOM?</span>
-<span>6.</span>
-<span>How can you make an element (a) invisible, and (b) collapse to zero dimensions?</span>
-<span>7.</span>
-<span>Which function creates a single event at a future time?</span>
-<span>8.</span>
-<span>Which function sets up repeating events at set intervals?</span>
-<span>9.</span>
-<span>How can you release an element from its location in a web page to enable it to be</span>
-<span>moved around?</span>
-<span>10.</span>
-<span>What delay between events should you set (in milliseconds) to achieve an anima‐</span>
-<span>tion rate of 50 frames per second?</span>
-<span>See</span>
-<span>Chapter 20 Answers</span>
-<span>in</span>
-<span>Appendix A</span>
-<span>for the answers to these questions.</span>
