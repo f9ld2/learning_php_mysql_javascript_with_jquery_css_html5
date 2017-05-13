@@ -15,6 +15,7 @@ title: "Using Ajax"
 <span>), in which new sections</span>
 <span>of a map are downloaded from the server when needed, without requiring a page</span>
 <span>refresh.</span>
+<br/>
 <span>Using Ajax not only substantially reduces the amount of data that must be sent back</span>
 <span>and forth, but also makes web pages seamlessly dynamic&mdash;allowing them to behave</span>
 <span>more like self-contained applications. The results are a much improved user interface</span>
@@ -27,11 +28,14 @@ title: "Using Ajax"
 <span>soft&rsquo;s technology for signing plug-ins that install additional software to your com‐</span>
 <span>puter. Other browser developers later followed suit, but rather than using ActiveX,</span>
 <span>they all implemented the feature as a native part of the JavaScript interpreter.</span>
+<br/>
 <span>However, even before then, an early form of Ajax had already surfaced that used hid‐</span>
 <span>den frames on a page that interacted with the server in the background. Chat rooms</span>
 <span>were early adopters of this technology, using it to poll for and display new message</span>
 <span>posts without requiring page reloads.</span>
+<br/>
 <span>So let&rsquo;s see how to implement Ajax by using JavaScript.</span>
+<p><img src="images/17.1.png"/></p>
 <span>Figure 17-1. Google Maps is an excellent example of Ajax in action</span>
 <h3>Using XMLHttpRequest</h3>
 <span>Because of the differences between browser implementations of</span>
@@ -39,25 +43,32 @@ title: "Using Ajax"
 <span>, you</span>
 <span>must create a special function in order to ensure that your code will work on all</span>
 <span>major browsers.</span>
+<br/>
 <span>To do this, you must understand the three ways of creating an</span>
 <span>XMLHttpRequest</span>
 <span>object:</span>
+<br/>
 <span>&bull;</span>
 <span>IE 5:</span>
 <span>request = new ActiveXObject("Microsoft.XMLHTTP")</span>
+<br/>
 <span>&bull;</span>
 <span>IE 6+:</span>
 <span>request = new ActiveXObject("Msxml2.XMLHTTP")</span>
+<br/>
 <span>&bull;</span>
 <span>All others:</span>
 <span>request = new XMLHttpRequest()</span>
+<br/>
 <span>This is the case because Microsoft chose to implement a change with the release of</span>
 <span>Internet Explorer 6, while all other browsers use a slightly different method. There‐</span>
 <span>fore, the code in</span>
 <span>Example 17-1</span>
 <span>will work for all major browsers released over the last</span>
 <span>few years.</span>
+<br/>
 <span>Example 17-1. A cross-browser Ajax function</span>
+<br/>
 <span>&lt;script&gt;</span>
 <span>function ajaxRequest()</span>
 <span>{</span>
@@ -102,6 +113,7 @@ title: "Using Ajax"
 <span>return request</span>
 <span>}</span>
 <span>&lt;/script&gt;</span>
+<br/>
 <span>You may remember the introduction to error handling in the previous chapter, using</span>
 <span>the</span>
 <span>try...catch</span>
@@ -113,6 +125,7 @@ title: "Using Ajax"
 <span>keyword to execute the non-IE Ajax command, and upon success,</span>
 <span>jumps on to the final</span>
 <span>return</span>
+<br/>
 <span>statement, where the new object is returned.</span>
 <span>Otherwise, a</span>
 <span>catch</span>
@@ -125,6 +138,7 @@ title: "Using Ajax"
 <span>; otherwise, the object is returned. So there you have it: a cross-</span>
 <span>browser Ajax request function that you may wish to add to your library of useful</span>
 <span>JavaScript functions.</span>
+<br/>
 <span>OK, so now you have a means of creating an</span>
 <span>XMLHttpRequest</span>
 <span>object, but what can</span>
@@ -134,7 +148,9 @@ title: "Using Ajax"
 <span>and</span>
 <span>Table 17-2</span>
 <span>.</span>
+<br/>
 <span>Table 17-1. An XMLHttpRequest object&rsquo;s properties</span>
+<br/>
 <span>Property</span>
 <span>Description</span>
 <span>onreadystatechange</span>
@@ -163,7 +179,9 @@ title: "Using Ajax"
 <span>The HTTP status code returned by the server.</span>
 <span>statusText</span>
 <span>The HTTP status text returned by the server.</span>
+<br/>
 <span>Table 17-2. An XMLHttpRequest object&rsquo;s methods</span>
+<br/>
 <span>Method</span>
 <span>Description</span>
 <span>abort()</span>
@@ -201,11 +219,13 @@ title: "Using Ajax"
 <span>value</span>
 <span>')</span>
 <span>Sets a header with a parameter/value pair.</span>
+<br/>
 <span>These properties and methods give you control over what data you send to the server</span>
 <span>and receive back, as well as a choice of send and receive methods. For example, you</span>
 <span>can choose whether to request data in plain text (which could include HTML and</span>
 <span>other tags) or in XML format. You can also decide whether you wish to use the Post</span>
 <span>or Get method to send to the server.</span>
+<br/>
 <span>Let&rsquo;s look at the Post method first by creating a very simple pair of documents: a com‐</span>
 <span>bination of HTML and JavaScript, and a PHP program to interact via Ajax with the</span>
 <span>first. Hopefully you&rsquo;ll enjoy these examples, because they illustrate just what Web 2.0</span>
@@ -214,9 +234,11 @@ title: "Using Ajax"
 <span>and placed within a section of the current document.</span>
 <h4>Your First Ajax Program</h4>
 <span>Type and save the code in</span>
+<br/>
 <span>Example 17-2</span>
 <span>as</span>
 <span>urlpost.html</span>
+<br/>
 <span>, but don&rsquo;t load it into your</span>
 <span>browser yet.</span>
 <span>Example 17-2. urlpost.html</span>
@@ -332,6 +354,7 @@ title: "Using Ajax"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<br/>
 <span>Let&rsquo;s go through this document and look at what it does, starting with the first six</span>
 <span>lines, which simply set up an HTML document and display a heading. The next line</span>
 <span>creates a DIV with the ID</span>
@@ -341,6 +364,7 @@ title: "Using Ajax"
 <span>replaced</span>
 <span>by default. Later on, the text returned from the Ajax call will be inserted</span>
 <span>here.</span>
+<br/>
 <span>The next six lines are required for making an HTTP Post Ajax request. The first sets</span>
 <span>the variable</span>
 <span>params</span>
@@ -359,7 +383,7 @@ title: "Using Ajax"
 <span>in asynchronous mode. The last three</span>
 <span>lines in this group set up headers that are required for the receiving server to know</span>
 <span>that a Post request is coming.</span>
-<span>The readyState property</span>
+<h6>The readyState property</h6>
 <span>Now we get to the nitty-gritty of an Ajax call, which all hangs on the</span>
 <span>readyState</span>
 <span>property. The &ldquo;asynchronous&rdquo; aspect of Ajax allows the browser to keep accepting</span>
@@ -375,8 +399,10 @@ title: "Using Ajax"
 <span>back each time</span>
 <span>readyState</span>
 <span>changes.</span>
+<br/>
 <span>The syntax to set up the callback function using an inline, anonymous function is as</span>
 <span>follows:</span>
+<br/>
 <span>request.onreadystatechange = function()</span>
 <span>{</span>
 <span>if (this.readyState == 4)</span>
@@ -384,7 +410,9 @@ title: "Using Ajax"
 <span>// do something</span>
 <span>}</span>
 <span>}</span>
+<br/>
 <span>If you wish to use a separate, named function, the syntax is slightly different:</span>
+<br/>
 <span>request.onreadystatechange = ajaxCallback</span>
 <span>function ajaxCallback()</span>
 <span>{</span>
@@ -393,6 +421,7 @@ title: "Using Ajax"
 <span>// do something</span>
 <span>}</span>
 <span>}</span>
+<br/>
 <span>Looking at</span>
 <span>Table 17-1</span>
 <span>, you&rsquo;ll see that</span>
@@ -417,6 +446,7 @@ title: "Using Ajax"
 <span>an alert pop up displays the error message contained in</span>
 <span>statusText</span>
 <span>.</span>
+<br/>
 <span>You will notice that all of these object properties are referenced</span>
 <span>using</span>
 <span>this.readyState</span>
@@ -438,6 +468,7 @@ title: "Using Ajax"
 <span>this</span>
 <span>key‐</span>
 <span>word always refers to the current object.</span>
+<br/>
 <span>So, having ascertained that the</span>
 <span>readyState</span>
 <span>is</span>
@@ -450,7 +481,9 @@ title: "Using Ajax"
 <span>played in an alert box. Otherwise, the inner HTML of the DIV is assigned the value of</span>
 <span>responseText</span>
 <span>, like this:</span>
+<br/>
 <span>document.getElementById('info').innerHTML = this.responseText</span>
+<br/>
 <span>In this line, the element</span>
 <span>info</span>
 <span>is referenced via the</span>
@@ -459,29 +492,35 @@ title: "Using Ajax"
 <span>its</span>
 <span>innerHTML</span>
 <span>property is assigned the value that was returned by the Ajax call.</span>
+<br/>
 <span>After all this setting up and preparation, the Ajax request is finally sent to the server</span>
 <span>via the following command, which passes the parameters already defined in the vari‐</span>
 <span>able</span>
 <span>params</span>
 <span>:</span>
+<br/>
 <span>request.send(params)</span>
+<br/>
 <span>After that, all the preceding code is activated each time</span>
 <span>readyState</span>
 <span>changes.</span>
+<br/>
 <span>The remainder of the document is the</span>
 <span>ajaxRequest</span>
 <span>function from</span>
 <span>Example 17-1</span>
 <span>, and</span>
 <span>the closing script and HTML tags.</span>
-<span>The server half of the Ajax process</span>
+<h6>The server half of the Ajax process</h6>
 <span>Now we get to the PHP half of the equation, which you can see in</span>
 <span>Example 17-3</span>
 <span>. Type</span>
 <span>it and save it as</span>
 <span>urlpost.php</span>
 <span>.</span>
+<br/>
 <span>Example 17-3. urlpost.php</span>
+<br/>
 <span>&lt;?php // urlpost.php</span>
 <span>if (isset($_POST['url']))</span>
 <span>{</span>
@@ -494,11 +533,13 @@ title: "Using Ajax"
 <span>return stripslashes($var);</span>
 <span>}</span>
 <span>?&gt;</span>
+<br/>
 <span>As you can see, this is short and sweet, and also makes use of the ever-important</span>
 <span>Sani</span>
 <span>tizeString</span>
 <span>function, as should be done with all posted data. In this instance, unsani‐</span>
 <span>tized data could result in the user gaining an advantage over your code.</span>
+<br/>
 <span>This program uses the</span>
 <span>file_get_contents</span>
 <span>PHP function to load in the web page at</span>
@@ -509,6 +550,7 @@ title: "Using Ajax"
 <span>function is versatile in that it loads in the entire contents of a file or web page from</span>
 <span>either a local or a remote server; it even takes into account moved pages and other</span>
 <span>redirects.</span>
+<br/>
 <span>Once you have typed the program, you are ready to call up</span>
 <span>urlpost.html</span>
 <span>into your web</span>
@@ -518,7 +560,9 @@ title: "Using Ajax"
 <span>again from the server to your browser. The result should look like</span>
 <span>Figure 17-2</span>
 <span>.</span>
+<p><img src="images/17.2.png"/></p>
 <span>Figure 17-2. The Amazon mobile website has been loaded into a DIV</span>
+<br/>
 <span>Not only have we succeeded in making an Ajax call and having a response returned to</span>
 <span>JavaScript, but we&rsquo;ve also harnessed the power of PHP to enable the merging in of a</span>
 <span>totally unrelated web object. Incidentally, if we had tried to find a way to fetch the</span>
@@ -534,12 +578,15 @@ title: "Using Ajax"
 <span>redisplay what it got the last time instead of going to the server for fresh input. The</span>
 <span>solution to this is to use a workaround that adds a random parameter to each request,</span>
 <span>ensuring that each URL requested is unique.</span>
+<br/>
 <span>Example 17-4</span>
 <span>shows how you would achieve the same result as with</span>
 <span>Example 17-2</span>
 <span>,</span>
 <span>but using an Ajax Get request instead of Post.</span>
+<br/>
 <span>Example 17-4. urlget.html</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -643,10 +690,13 @@ title: "Using Ajax"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<br/>
 <span>The differences to note between the two documents are highlighted in bold, and</span>
 <span>described as follows:</span>
+<br/>
 <span>&bull;</span>
 <span>It is not necessary to send headers for a Get request.</span>
+<br/>
 <span>&bull;</span>
 <span>We call the</span>
 <span>open</span>
@@ -656,6 +706,7 @@ title: "Using Ajax"
 <span>symbol followed by the parameter/value pair</span>
 <span>url=amazon.com/gp/aw</span>
 <span>.</span>
+<br/>
 <span>&bull;</span>
 <span>We start a second parameter/value pair using an</span>
 <span>&amp;</span>
@@ -665,6 +716,7 @@ title: "Using Ajax"
 <span>to a random value between 0 and a million. This is</span>
 <span>used to ensure that each URL requested is different, and therefore that no</span>
 <span>requests will be cached.</span>
+<br/>
 <span>&bull;</span>
 <span>The call to</span>
 <span>send</span>
@@ -673,13 +725,16 @@ title: "Using Ajax"
 <span>, as no parameters are</span>
 <span>being passed via a Post request. Note that leaving the parameter out is not an</span>
 <span>option, as it would result in an error.</span>
+<br/>
 <span>To accompany this new document, the PHP program must be modified to respond to</span>
 <span>a Get request, as in</span>
 <span>Example 17-5</span>
 <span>,</span>
 <span>urlget.php</span>
 <span>.</span>
+<br/>
 <span>Example 17-5. urlget.php</span>
+<br/>
 <span>&lt;?php</span>
 <span>if (isset(</span>
 <span>$_GET</span>
@@ -696,6 +751,7 @@ title: "Using Ajax"
 <span>return stripslashes($var);</span>
 <span>}</span>
 <span>?&gt;</span>
+<br/>
 <span>All that&rsquo;s different between this and</span>
 <span>&nbsp;Example 17-3</span>
 <span>&nbsp;is that the references to</span>
@@ -717,13 +773,16 @@ title: "Using Ajax"
 <span>only one of which is XML. As you have seen, we have requested an entire HTML</span>
 <span>document via Ajax, but we could equally have asked for a text page, a string or num‐</span>
 <span>ber, or even spreadsheet data.</span>
+<br/>
 <span>So let&rsquo;s modify the previous example document and PHP program to fetch some</span>
 <span>XML data. To do this, first take a look at the PHP program,</span>
 <span>&nbsp;xmlget.php</span>
 <span>, shown in</span>
 <span>Example 17-6</span>
 <span>.</span>
+<br/>
 <span>Example 17-6. xmlget.php</span>
+<br/>
 <span>&lt;?php</span>
 <span>if (isset($_GET['url']))</span>
 <span>{</span>
@@ -737,15 +796,19 @@ title: "Using Ajax"
 <span>return stripslashes($var);</span>
 <span>}</span>
 <span>?&gt;</span>
+<br/>
 <span>This program has been very slightly modified (shown in bold highlighting) to output</span>
 <span>the correct XML header before returning a fetched document. No checking is made</span>
 <span>here, as it is assumed that the calling Ajax will request an actual XML document.</span>
+<br/>
 <span>Now on to the HTML document,</span>
 <span>xmlget.html</span>
 <span>, shown in</span>
 <span>Example 17-7</span>
 <span>.</span>
+<br/>
 <span>Example 17-7. xmlget.html</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -854,6 +917,7 @@ title: "Using Ajax"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<br/>
 <span>Again, the differences have been highlighted in bold, so you can see that this code is</span>
 <span>substantially similar to previous versions, except that the URL now being requested,</span>
 <span>rss.news.yahoo.com/rss/topstories</span>
@@ -861,6 +925,7 @@ title: "Using Ajax"
 <span>&nbsp;Yahoo! News Top</span>
 <span>Stories</span>
 <span>feed.</span>
+<br/>
 <span>The other big change is the use of the</span>
 <span>responseXML</span>
 <span>property, which replaces the</span>
@@ -869,6 +934,7 @@ title: "Using Ajax"
 <span>responseXML</span>
 <span>will con‐</span>
 <span>tain the XML returned.</span>
+<br/>
 <span>However,</span>
 <span>responseXML</span>
 <span>doesn&rsquo;t simply contain a string of XML text: it is actually a</span>
@@ -876,7 +942,8 @@ title: "Using Ajax"
 <span>methods and properties. This means it is accessible, for example, by the JavaScript</span>
 <span>getElementsByTagName</span>
 <span>method.</span>
-<span>About XML</span>
+<br/>
+<h6>About XML</h6>
 <span>An</span>
 <span>XML</span>
 <span>document</span>
@@ -896,7 +963,9 @@ title: "Using Ajax"
 <span>internally in a DOM tree (see</span>
 <span>Figure 17-3</span>
 <span>) to make it quickly searchable.</span>
+<br/>
 <span>Example 17-8. An XML document</span>
+<br/>
 <span>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span>&lt;rss version="2.0"&gt;</span>
 <span>&lt;channel&gt;</span>
@@ -922,8 +991,10 @@ title: "Using Ajax"
 <span>&lt;/item&gt;</span>
 <span>&lt;/channel&gt;</span>
 <span>&lt;/rss&gt;</span>
+<p><img src="images/17.3.png"/></p>
 <span>Figure 17-3. The DOM tree of</span>
 <span>Example 17-8</span>
+<br/>
 <span>Therefore, using the</span>
 <span>getElementsByTagName</span>
 <span>method, you can quickly extract the val‐</span>
@@ -931,7 +1002,9 @@ title: "Using Ajax"
 <span>we do in</span>
 <span>Example 17-7</span>
 <span>, where the following command is issued:</span>
+<br/>
 <span>titles = this.responseXML.getElementsByTagName('title')</span>
+<br/>
 <span>This single command has the effect of placing all the values of the</span>
 <span>title</span>
 <span>elements</span>
@@ -941,7 +1014,9 @@ title: "Using Ajax"
 <span>lowing expression (where</span>
 <span>j</span>
 <span>is the title to access):</span>
+<br/>
 <span>titles[j].childNodes[0].nodeValue</span>
+<br/>
 <span>All the titles are then appended to the string variable</span>
 <span>out</span>
 <span>and, once all have been pro‐</span>
@@ -951,15 +1026,18 @@ title: "Using Ajax"
 <span>in your browser, the result will be something like</span>
 <span>Figure 17-4</span>
 <span>.</span>
+<p><img src="images/17.4.png"/></p>
 <span>Figure 17-4. Fetching a Yahoo! XML news feed via Ajax</span>
+<br/>
 <span>As with all form data, you can use either the Post or the Get</span>
 <span>method when requesting XML data; your choice will make little</span>
 <span>difference to the result.</span>
-<span>Why use XML?</span>
+<h6>Why use XML?</h6>
 <span>You may ask why you would use XML other than for fetching XML documents such</span>
 <span>as RSS feeds. Well, the simple answer is that you don&rsquo;t have to, but if you wish to pass</span>
 <span>structured data back to your Ajax applications, it could be a real pain to send a sim‐</span>
 <span>ple, unorganized jumble of text that would need complicated processing in JavaScript.</span>
+<br/>
 <span>Instead, you can create an XML document and pass that back to the Ajax function,</span>
 <span>which will automatically place it into a DOM tree, as easily accessible as the HTML</span>
 <span>DOM object with which you are now familiar.</span>
@@ -971,46 +1049,3 @@ title: "Using Ajax"
 <span>Chapter 21</span>
 <span>. In the following chapter, though, we&rsquo;ll look at how to apply styling to</span>
 <span>your websites with CSS.</span>
-<h3>Questions</h3>
-<span>1.</span>
-<span>Why is it necessary to write a function for creating new</span>
-<span>XMLHttpRequest</span>
-<span>objects?</span>
-<span>2.</span>
-<span>What is the purpose of the</span>
-<span>try...catch</span>
-<span>construct?</span>
-<span>3.</span>
-<span>How many properties and how many methods does an</span>
-<span>XMLHttpRequest</span>
-<span>object</span>
-<span>have?</span>
-<span>4.</span>
-<span>How can you tell when an Ajax call has completed?</span>
-<span>5.</span>
-<span>How do you know whether an Ajax call completed successfully?</span>
-<span>6.</span>
-<span>What</span>
-<span>XMLHttpRequest</span>
-<span>object&rsquo;s property returns an Ajax text response?</span>
-<span>7.</span>
-<span>What</span>
-<span>XMLHttpRequest</span>
-<span>object&rsquo;s property returns an Ajax XML response?</span>
-<span>8.</span>
-<span>How can you specify a callback function to handle Ajax responses?</span>
-<span>9.</span>
-<span>What</span>
-<span>XMLHttpRequest</span>
-<span>method is used to initiate an Ajax request?</span>
-<span>10.</span>
-<span>What are the main differences between an Ajax</span>
-<span>GET</span>
-<span>and</span>
-<span>POST</span>
-<span>request?</span>
-<span>See</span>
-<span>Chapter 17 Answers</span>
-<span>in</span>
-<span>Appendix A</span>
-<span>for the answers to these questions.</span>
