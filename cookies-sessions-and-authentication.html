@@ -95,9 +95,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>function, which has the following syntax (see</span>
 <span>Table 12-1</span>
 <span>):</span>
-<br/>
-<span>setcookie(name, value, expire, path, domain, secure, httponly);</span>
-<br/>
+<pre><code class="php">setcookie(name, value, expire, path, domain, secure, httponly);</code></pre>
 <span>Table 12-1. The setcookie parameters</span>
 <br/>
 <span>Parameter</span>
@@ -187,8 +185,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>that is accessible</span>
 <span>across the entire web server on the current domain, and will be removed from the</span>
 <span>browser&rsquo;s cache in seven days, use the following:</span>
-<br/>
-<span>setcookie('username', 'Hannah', time() + 60 * 60 * 24 * 7, '/');</span>
+<pre><code class="php">setcookie('username', 'Hannah', time() + 60 * 60 * 24 * 7, '/');</code></pre>
 <h4>Accessing a Cookie</h4>
 <span>Reading the value of a cookie is as simple as accessing the</span>
 <span>$_COOKIE</span>
@@ -197,9 +194,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>user</span>
 <span>name</span>
 <span>already stored and, if so, to read its value, use the following:</span>
-<br/>
-<span>if (isset($_COOKIE['username'])) $username = $_COOKIE['username'];</span>
-<br/>
+<pre><code class="php">if (isset($_COOKIE['username'])) $username = $_COOKIE['username'];</code></pre>
 <span>Note that you can read a cookie back only after it has been sent to a web browser.</span>
 <span>This means that when you issue a cookie, you cannot read it in again until the</span>
 <span>browser reloads the page (or another with access to the cookie) from your website</span>
@@ -211,9 +206,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>call except the timestamp to be identical to</span>
 <span>the parameters when the cookie was first issued; otherwise, the deletion will fail.</span>
 <span>Therefore, to delete the cookie created earlier, you would use the following:</span>
-<br/>
-<span>setcookie('username', 'Hannah', time() - 2592000, '/');</span>
-<br/>
+<pre><code class="php">setcookie('username', 'Hannah', time() - 2592000, '/');</code></pre>
 <span>As long as the time given is in the past, the cookie should be deleted. However, I have</span>
 <span>used a time of 2,592,000 seconds (one month) in the past in case the client computer&rsquo;s</span>
 <span>date and time are not correctly set.</span>
@@ -247,24 +240,24 @@ title: "Cookies, Sessions, and Authentication"
 <span>shows the code to make this happen.</span>
 <br/>
 <span>Example 12-1. PHP authentication</span>
-<br/>
-<span>&lt;?php</span>
-<span>if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;</span>
-<span>&nbsp;</span>
-<span>isset($_SERVER['PHP_AUTH_PW']))</span>
-<span>{</span>
-<span>echo "Welcome User: " . $_SERVER['PHP_AUTH_USER'] .</span>
-<span>&nbsp;</span>
-<span>" Password: " . $_SERVER['PHP_AUTH_PW'];</span>
-<span>}</span>
-<span>else</span>
-<span>{</span>
-<span>header('WWW-Authenticate: Basic realm="Restricted Section"');</span>
-<span>header('HTTP/1.0 401 Unauthorized');</span>
-<span>die("Please enter your username and password");</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;
+            isset($_SERVER['PHP_AUTH_PW']))
+    {
+        echo "Welcome User: " . $_SERVER['PHP_AUTH_USER'] .
+            " Password: " . $_SERVER['PHP_AUTH_PW'];
+    }
+    else
+    {
+        header('WWW-Authenticate: Basic realm="Restricted Section"');
+        header('HTTP/1.0 401 Unauthorized');
+        die("Please enter your username and password");
+    }
+?&gt;
+</code>
+</pre>
 <span>By default, the type of interface Zend Server uses is</span>
 <span>cgi-fcgi</span>
 <span>, which</span>
@@ -350,29 +343,29 @@ title: "Cookies, Sessions, and Authentication"
 <span>).</span>
 <br/>
 <span>Example 12-2. PHP authentication with input checking</span>
-<br/>
-<span>&lt;?php</span>
-<span>$username = 'admin';</span>
-<span>$password = 'letmein';</span>
-<span>if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;</span>
-<span>&nbsp;</span>
-<span>isset($_SERVER['PHP_AUTH_PW']))</span>
-<span>{</span>
-<span>if ($_SERVER['PHP_AUTH_USER'] == $username &amp;&amp;</span>
-<span>&nbsp;</span>
-<span>$_SERVER['PHP_AUTH_PW'] == $password)</span>
-<span>&nbsp;</span>
-<span>echo "You are now logged in";</span>
-<span>else die("Invalid username / password combination");</span>
-<span>}</span>
-<span>else</span>
-<span>{</span>
-<span>header('WWW-Authenticate: Basic realm="Restricted Section"');</span>
-<span>header('HTTP/1.0 401 Unauthorized');</span>
-<span>die ("Please enter your username and password");</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $username = 'admin';
+    $password = 'letmein';
+    
+    if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;
+        isset($_SERVER['PHP_AUTH_PW']))
+    {
+        if ($_SERVER['PHP_AUTH_USER'] == $username &amp;&amp;
+            $_SERVER['PHP_AUTH_PW'] == $password)
+            echo "You are now logged in";
+        else die("Invalid username / password combination");
+    }
+    else
+    {
+        header('WWW-Authenticate: Basic realm="Restricted Section"');
+        header('HTTP/1.0 401 Unauthorized');
+        die ("Please enter your username and password");
+    }
+?&gt;
+</code>
+</pre>
 <span>Incidentally, take a look at the wording of the error message:</span>
 <span>Invalid username /</span>
 <span>password combination</span>
@@ -414,9 +407,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>algorithm, which was designed by the open academic community and which</span>
 <span>(like md5) returns a 32-character hexadecimal number&mdash;so it can easily replace md5</span>
 <span>in most databases. Use it like this:</span>
-<br/>
-<span>$token = hash('ripemd128', 'mypassword');</span>
-<br/>
+<pre><code class="php">$token = hash('ripemd128', 'mypassword');</code></pre>
 <span>That example happens to give</span>
 <span>$token</span>
 <span>this value:</span>
@@ -445,22 +436,12 @@ title: "Cookies, Sessions, and Authentication"
 <span>. Salting is simply a matter of adding</span>
 <span>some text that only we know about to each parameter to be encrypted, like this (with</span>
 <span>the salt highlighted in bold):</span>
-<br/>
-<span>$token = hash('ripemd128', '</span>
-<span>saltstring</span>
-<span>mypassword');</span>
-<br/>
+<pre><code class="php">$token = hash('ripemd128', 'saltstringmypassword');</code></pre>
 <span>In this example, the text</span>
 <span>saltstring</span>
 <span>has been prepended to the password. Of course, the</span>
 <span>more obscure you can make the salt, the better. I like to use salts such as this:</span>
-<br/>
-<span>$token = hash('ripemd128', '</span>
-<span>hqb%$t</span>
-<span>mypassword</span>
-<span>cg*l</span>
-<span>');</span>
-<br/>
+<pre><code class="php">$token = hash('ripemd128', ' hqb%$tmypasswordcg*l');</code></pre>
 <span>Here some random characters have been placed both before and after the password.</span>
 <span>Given just the database, and without access to your PHP code, it should now be next</span>
 <span>to impossible to work out the stored passwords.</span>
@@ -479,42 +460,47 @@ title: "Cookies, Sessions, and Authentication"
 <span>your browser.</span>
 <br/>
 <span>Example 12-3. Creating a users table and adding two accounts</span>
-<br/>
-<span>&lt;?php // setupusers.php</span>
-<span>require_once 'login.php';</span>
-<span>$connection =</span>
-<span>new mysqli($db_hostname, $db_username, $db_password, $db_database);</span>
-<span>if ($connection-&gt;connect_error) die($connection-&gt;connect_error);</span>
-<span>$query = "CREATE TABLE users (</span>
-<span>forename VARCHAR(32) NOT NULL,</span>
-<span>surname VARCHAR(32) NOT NULL,</span>
-<span>username VARCHAR(32) NOT NULL UNIQUE,</span>
-<span>password VARCHAR(32) NOT NULL</span>
-<span>)";</span>
-<span>$result = $connection-&gt;query($query);</span>
-<span>if (!$result) die($connection-&gt;error);</span>
-<span>$salt1 = "qm&amp;h*";</span>
-<span>$salt2 = "pg!@";</span>
-<span>$forename = 'Bill';</span>
-<span>$surname = 'Smith';</span>
-<span>$username = 'bsmith';</span>
-<span>$password = 'mysecret';</span>
-<span>$token = hash('ripemd128', "$salt1$password$salt2");</span>
-<span>add_user($connection, $forename, $surname, $username, $token);</span>
-<span>$forename = 'Pauline';</span>
-<span>$surname = 'Jones';</span>
-<span>$username = 'pjones';</span>
-<span>$password = 'acrobat';</span>
-<span>$token = hash('ripemd128', "$salt1$password$salt2");</span>
-<span>add_user($connection, $forename, $surname, $username, $token);</span>
-<span>function add_user($connection, $fn, $sn, $un, $pw)</span>
-<span>{</span>
-<span>$query = "INSERT INTO users VALUES('$fn', '$sn', '$un', '$pw')";</span>
-<span>$result = $connection-&gt;query($query);</span>
-<span>if (!$result) die($connection-&gt;error);</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+    &lt;?php // setupusers.php
+    require_once 'login.php';
+    $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database);
+    if ($connection-&gt;connect_error) die($connection-&gt;connect_error);
+    
+    $query = "CREATE TABLE users (
+        forename VARCHAR(32) NOT NULL,
+        surname VARCHAR(32) NOT NULL,
+        username VARCHAR(32) NOT NULL UNIQUE,
+        password VARCHAR(32) NOT NULL
+    )";
+    
+    $result = $connection-&gt;query($query);
+    if (!$result) die($connection-&gt;error);
+    
+    $salt1 = "qm&amp;h*";
+    $salt2 = "pg!@";
+    $forename = 'Bill';
+    $surname = 'Smith';
+    $username = 'bsmith';
+    $password = 'mysecret';
+    $token = hash('ripemd128', "$salt1$password$salt2");
+    add_user($connection, $forename, $surname, $username, $token);
+    $forename = 'Pauline';
+    $surname = 'Jones';
+    $username = 'pjones';
+    $password = 'acrobat';
+    
+    $token = hash('ripemd128', "$salt1$password$salt2");
+    add_user($connection, $forename, $surname, $username, $token);
+    function add_user($connection, $fn, $sn, $un, $pw)
+    {
+        $query = "INSERT INTO users VALUES('$fn', '$sn', '$un', '$pw')";
+        $result = $connection-&gt;query($query);
+        if (!$result) die($connection-&gt;error);
+    }
+    ?&gt;
+</code>
+</pre>
 <span>This</span>
 <span>program</span>
 <span>will</span>
@@ -549,52 +535,57 @@ title: "Cookies, Sessions, and Authentication"
 <span>, and call it up in your browser.</span>
 <br/>
 <span>Example 12-4. PHP authentication using MySQL</span>
-<br/>
-<span>&lt;?php // authenticate.php</span>
-<span>require_once 'login.php';</span>
-<span>$connection =</span>
-<span>new mysqli($db_hostname, $db_username, $db_password, $db_database);</span>
-<span>if ($connection-&gt;connect_error) die($connection-&gt;connect_error);</span>
-<span>if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;</span>
-<span>&nbsp;</span>
-<span>isset($_SERVER['PHP_AUTH_PW']))</span>
-<span>{</span>
-<span>$un_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_USER']);</span>
-<span>$pw_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_PW']);</span>
-<span>$query = "SELECT * FROM users WHERE username='$un_temp'";</span>
-<span>$result = $connection-&gt;query($query);</span>
-<span>if (!$result) die($connection-&gt;error);</span>
-<span>elseif ($result-&gt;num_rows)</span>
-<span>{</span>
-<span>$row = $result-&gt;fetch_array(MYSQLI_NUM);</span>
-<span>$result-&gt;close();</span>
-<span>$salt1 = "qm&amp;h*";</span>
-<span>$salt2 = "pg!@";</span>
-<span>$token = hash('ripemd128', "$salt1$pw_temp$salt2");</span>
-<span>if ($token == $row[3]) echo "$row[0] $row[1] :</span>
-<span>Hi $row[0], you are now logged in as '$row[2]'";</span>
-<span>else die("Invalid username/password combination");</span>
-<span>}</span>
-<span>else die("Invalid username/password combination");</span>
-<span>}</span>
-<span>else</span>
-<span>{</span>
-<span>header('WWW-Authenticate: Basic realm="Restricted Section"');</span>
-<span>header('HTTP/1.0 401 Unauthorized');</span>
-<span>die ("Please enter your username and password");</span>
-<span>}</span>
-<span>$connection-&gt;close();</span>
-<span>function mysql_entities_fix_string($connection, $string)</span>
-<span>{</span>
-<span>return htmlentities(mysql_fix_string($connection, $string));</span>
-<span>}</span>
-<span>function mysql_fix_string($connection, $string)</span>
-<span>{</span>
-<span>if (get_magic_quotes_gpc()) $string = stripslashes($string);</span>
-<span>return $connection-&gt;real_escape_string($string);</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+    &lt;?php // authenticate.php
+    require_once 'login.php';
+    $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database);
+    
+    if ($connection-&gt;connect_error) die($connection-&gt;connect_error);
+    if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;
+        isset($_SERVER['PHP_AUTH_PW']))
+    {
+        $un_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_USER']);
+        $pw_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_PW']);
+        $query = "SELECT * FROM users WHERE username='$un_temp'";
+        $result = $connection-&gt;query($query);
+        
+        if (!$result) die($connection-&gt;error);
+        elseif ($result-&gt;num_rows)
+        {
+            $row = $result-&gt;fetch_array(MYSQLI_NUM);
+            $result-&gt;close();
+            $salt1 = "qm&amp;h*";
+            $salt2 = "pg!@";
+            $token = hash('ripemd128', "$salt1$pw_temp$salt2");
+
+            if ($token == $row[3]) echo "$row[0] $row[1] : Hi $row[0], you are now logged in as '$row[2]'";
+            else die("Invalid username/password combination");
+        }
+        else die("Invalid username/password combination");
+    }
+    else
+    {
+        header('WWW-Authenticate: Basic realm="Restricted Section"');
+        header('HTTP/1.0 401 Unauthorized');
+        die ("Please enter your username and password");
+    }
+    
+    $connection-&gt;close();
+    
+    function mysql_entities_fix_string($connection, $string)
+    {
+        return htmlentities(mysql_fix_string($connection, $string));
+    }
+    
+    function mysql_fix_string($connection, $string)
+    {
+        if (get_magic_quotes_gpc()) $string = stripslashes($string);
+        return $connection-&gt;real_escape_string($string);
+    }
+    ?&gt;
+</code>
+</pre>
 <span>As you might expect at this point in the book, some of these examples are starting to</span>
 <span>get quite a bit longer. But don&rsquo;t be put off. The final 10 lines are simply Example 10-22</span>
 <span>from</span>
@@ -700,13 +691,9 @@ title: "Cookies, Sessions, and Authentication"
 <span>Then, to begin saving session variables, you just assign them as part of the</span>
 <span>$_SESSION</span>
 <span>array, like this:</span>
-<br/>
-<span>$_SESSION['variable'] = $value;</span>
-<br/>
+<pre><code class="php">$_SESSION['variable'] = $value;</code></pre>
 <span>They can then be read back just as easily in later program runs, like this:</span>
-<br/>
-<span>$variable = $_SESSION['variable'];</span>
-<br/>
+<pre><code class="php">$variable = $_SESSION['variable'];</code></pre>
 <span>Now assume that you have an application that always needs access to the username,</span>
 <span>password, first name, and last name of each user, as stored in the table</span>
 <span>users</span>
@@ -732,67 +719,66 @@ title: "Cookies, Sessions, and Authentication"
 <br/>
 <span>Example 12-5. Setting a session</span>
 <span>after successful authentication</span>
-<br/>
-<span>&lt;?php //authenticate2.php</span>
-<span>require_once 'login.php';</span>
-<span>$connection =</span>
-<span>new mysqli($db_hostname, $db_username, $db_password, $db_database);</span>
-<span>if ($connection-&gt;connect_error) die($connection-&gt;connect_error);</span>
-<span>if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;</span>
-<span>&nbsp;</span>
-<span>isset($_SERVER['PHP_AUTH_PW']))</span>
-<span>{</span>
-<span>$un_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_USER']);</span>
-<span>$pw_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_PW']);</span>
-<span>$query = "SELECT * FROM users WHERE username='$un_temp'";</span>
-<span>$result = $connection-&gt;query($query);</span>
-<span>if (!$result) die($connection-&gt;error);</span>
-<span>elseif ($result-&gt;num_rows)</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$row = $result-&gt;fetch_array(MYSQLI_NUM);</span>
-<span>&nbsp;</span>
-<span>$result-&gt;close();</span>
-<span>&nbsp;</span>
-<span>$salt1 = "qm&amp;h*";</span>
-<span>&nbsp;</span>
-<span>$salt2 = "pg!@";</span>
-<span>&nbsp;</span>
-<span>$token = hash('ripemd128', "$salt1$pw_temp$salt2");</span>
-<span>if ($token == $row[3])</span>
-<span>{</span>
-<span>session_start();</span>
-<span>$_SESSION['username'] = $un_temp;</span>
-<span>$_SESSION['password'] = $pw_temp;</span>
-<span>$_SESSION['forename'] = $row[0];</span>
-<span>$_SESSION['surname'] = $row[1];</span>
-<span>echo "$row[0] $row[1] : Hi $row[0],</span>
-<span>you are now logged in as '$row[2]'";</span>
-<span>die ("&lt;p&gt;&lt;a href=continue.php&gt;Click here to continue&lt;/a&gt;&lt;/p&gt;");</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>else die("Invalid username/password combination");</span>
-<span>}</span>
-<span>else die("Invalid username/password combination");</span>
-<span>}</span>
-<span>else</span>
-<span>{</span>
-<span>header('WWW-Authenticate: Basic realm="Restricted Section"');</span>
-<span>header('HTTP/1.0 401 Unauthorized');</span>
-<span>die ("Please enter your username and password");</span>
-<span>}</span>
-<span>$connection-&gt;close();</span>
-<span>function mysql_entities_fix_string($connection, $string)</span>
-<span>{</span>
-<span>return htmlentities(mysql_fix_string($connection, $string));</span>
-<span>}</span>
-<span>function mysql_fix_string($connection, $string)</span>
-<span>{</span>
-<span>if (get_magic_quotes_gpc()) $string = stripslashes($string);</span>
-<span>return $connection-&gt;real_escape_string($string);</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php //authenticate2.php
+require_once 'login.php';
+$connection = new mysqli($db_hostname, $db_username, $db_password, $db_database);
+
+    if ($connection-&gt;connect_error) die($connection-&gt;connect_error);
+    if (isset($_SERVER['PHP_AUTH_USER']) &amp;&amp;
+        isset($_SERVER['PHP_AUTH_PW']))
+    {
+        $un_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_USER']);
+        $pw_temp = mysql_entities_fix_string($connection, $_SERVER['PHP_AUTH_PW']);
+        $query = "SELECT * FROM users WHERE username='$un_temp'";
+        $result = $connection-&gt;query($query);
+
+        if (!$result) die($connection-&gt;error);
+        elseif ($result-&gt;num_rows)
+        {
+            $row = $result-&gt;fetch_array(MYSQLI_NUM);
+            $result-&gt;close();
+            $salt1 = "qm&amp;h*";
+            $salt2 = "pg!@";
+            $token = hash('ripemd128', "$salt1$pw_temp$salt2");
+            if ($token == $row[3])
+            {
+                session_start();
+                $_SESSION['username'] = $un_temp;
+                $_SESSION['password'] = $pw_temp;
+                $_SESSION['forename'] = $row[0];
+                $_SESSION['surname'] = $row[1];
+                echo "$row[0] $row[1] : Hi $row[0], you are now logged in as '$row[2]'";
+                die ("&lt;p&gt;&lt;a href=continue.php&gt;Click here to continue&lt;/a&gt;&lt;/p&gt;");
+            }
+            else die("Invalid username/password combination");
+        }
+        else die("Invalid username/password combination");
+    
+    }
+    else
+    {
+        header('WWW-Authenticate: Basic realm="Restricted Section"');
+        header('HTTP/1.0 401 Unauthorized');
+        die ("Please enter your username and password");
+    }
+
+    $connection-&gt;close();
+
+    function mysql_entities_fix_string($connection, $string)
+    {
+        return htmlentities(mysql_fix_string($connection, $string));
+    }
+
+    function mysql_fix_string($connection, $string)
+    {
+        if (get_magic_quotes_gpc()) $string = stripslashes($string);
+        return $connection-&gt;real_escape_string($string);
+    }
+?&gt;
+</code>
+</pre>
 <span>One other addition to the program is the &ldquo;Click here to continue&rdquo; link with a destina‐</span>
 <span>tion URL of</span>
 <span>continue.php</span>
@@ -805,26 +791,25 @@ title: "Cookies, Sessions, and Authentication"
 <span>and saving it.</span>
 <br/>
 <span>Example 12-6. Retrieving session variables</span>
-<br/>
-<span>&lt;?php // continue.php</span>
-<span>session_start();</span>
-<span>if (isset($_SESSION['username']))</span>
-<span>{</span>
-<span>$username = $_SESSION['username'];</span>
-<span>$password = $_SESSION['password'];</span>
-<span>$forename = $_SESSION['forename'];</span>
-<span>$surname = $_SESSION['surname'];</span>
-<span>echo "Welcome back $forename.&lt;br&gt;</span>
-<span>&nbsp;</span>
-<span>Your full name is $forename $surname.&lt;br&gt;</span>
-<span>&nbsp;</span>
-<span>Your username is '$username'</span>
-<span>&nbsp;</span>
-<span>and your password is '$password'.";</span>
-<span>}</span>
-<span>else echo "Please &lt;a href='authenticate2.php'&gt;click here&lt;/a&gt; to log in.";</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // continue.php
+    session_start();
+    if (isset($_SESSION['username']))
+    {
+        $username = $_SESSION['username'];
+        $password = $_SESSION['password'];
+        $forename = $_SESSION['forename'];
+        $surname = $_SESSION['surname'];
+        echo "Welcome back $forename.&lt;br&gt;
+            Your full name is $forename $surname.&lt;br&gt;
+            Your username is '$username'
+            and your password is '$password'.";
+    }
+    else echo "Please &lt;a href='authenticate2.php'&gt;click here&lt;/a&gt; to log in.";
+?&gt;
+</code>
+</pre>
 <span>Now you are ready to call up</span>
 <span>authenticate2.php</span>
 <span>into your browser. Enter a username</span>
@@ -898,17 +883,19 @@ title: "Cookies, Sessions, and Authentication"
 <span>sion, logging a user out, and unsetting all session variables.</span>
 <br/>
 <span>Example 12-7. A handy function to destroy a session and its data</span>
-<br/>
-<span>&lt;?php</span>
-<span>function destroy_session_and_data()</span>
-<span>{</span>
-<span>session_start();</span>
-<span>$_SESSION = array();</span>
-<span>setcookie(session_name(), '', time() - 2592000, '/');</span>
-<span>session_destroy();</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    function destroy_session_and_data()
+    {
+        session_start();
+        $_SESSION = array();
+        setcookie(session_name(), '', time() - 2592000, '/');
+        session_destroy();
+    }
+?&gt;
+</code>
+</pre>
 <span>To see this in action, you could modify</span>
 <span>continue.php</span>
 <span>as in</span>
@@ -916,33 +903,33 @@ title: "Cookies, Sessions, and Authentication"
 <span>.</span>
 <br/>
 <span>Example 12-8. Retrieving session variables and then destroying the session</span>
-<br/>
-<span>&lt;?php</span>
-<span>session_start();</span>
-<span>if (isset($_SESSION['username']))</span>
-<span>{</span>
-<span>$username = $_SESSION['username'];</span>
-<span>$password = $_SESSION['password'];</span>
-<span>$forename = $_SESSION['forename'];</span>
-<span>$surname = $_SESSION['surname'];</span>
-<span>destroy_session_and_data();</span>
-<span>echo "Welcome back $forename.&lt;br&gt;</span>
-<span>&nbsp;</span>
-<span>Your full name is $forename $surname.&lt;br&gt;</span>
-<span>&nbsp;</span>
-<span>Your username is '$username'</span>
-<span>&nbsp;</span>
-<span>and your password is '$password'.";</span>
-<span>}</span>
-<span>else echo "Please &lt;a href='authenticate2.php'&gt;click here&lt;/a&gt; to log in.";</span>
-<span>function destroy_session_and_data()</span>
-<span>{</span>
-<span>$_SESSION = array();</span>
-<span>setcookie(session_name(), '', time() - 2592000, '/');</span>
-<span>session_destroy();</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    session_start();
+    if (isset($_SESSION['username']))
+    {
+        $username = $_SESSION['username'];
+        $password = $_SESSION['password'];
+        $forename = $_SESSION['forename'];
+        $surname = $_SESSION['surname'];
+        destroy_session_and_data();
+        echo "Welcome back $forename.&lt;br&gt;
+        Your full name is $forename $surname.&lt;br&gt;
+        Your username is '$username'
+        and your password is '$password'.";
+    }
+    else echo "Please &lt;a href='authenticate2.php'&gt;click here&lt;/a&gt; to log in.";
+
+    function destroy_session_and_data()
+    {
+        $_SESSION = array();
+        setcookie(session_name(), '', time() - 2592000, '/');
+        session_destroy();
+    }
+?&gt;
+</code>
+</pre>
 <span>The first time you navigate from</span>
 <span>authenticate2.php</span>
 <span>to</span>
@@ -963,12 +950,10 @@ title: "Cookies, Sessions, and Authentication"
 <span>ini_set</span>
 <span>function as follows. This example sets the time-out to</span>
 <span>exactly one day:</span>
-<br/>
-<span>ini_set('session.gc_maxlifetime', 60 * 60 * 24);</span>
-<br/>
+<pre><code class="php">ini_set('session.gc_maxlifetime', 60 * 60 * 24);</code></pre>
 <span>If you wish to know what the current time-out period is, you can display it using the</span>
 <span>following:</span>
-<span>echo ini_get('session.gc_maxlifetime');</span>
+<pre><code class="php">echo ini_get('session.gc_maxlifetime');</code></pre>
 <h4>Session Security</h4>
 <span>Although I mentioned that once you had authenticated a user and set up a session,</span>
 <span>you could safely assume that the session variables were trustworthy, this isn&rsquo;t exactly</span>
@@ -990,17 +975,13 @@ title: "Cookies, Sessions, and Authentication"
 <span>When SSL is not a possibility, you can further authenticate users by storing their IP</span>
 <span>address along with their other details by adding a line such as the following when you</span>
 <span>store their session:</span>
-<br/>
-<span>$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];</span>
-<br/>
+<pre><code class="php">$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];</code></pre>
 <span>Then, as an extra check, whenever any page loads and a session is available, perform</span>
 <span>the following check. It calls the function</span>
 <span>different_user</span>
 <span>if the stored IP address</span>
 <span>doesn&rsquo;t match the current one:</span>
-<br/>
-<span>if ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) different_user();</span>
-<br/>
+<pre><code class="php">if ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) different_user();</code></pre>
 <span>What code you place in your</span>
 <span>different_user</span>
 <span>function is up to you. I recommend</span>
@@ -1016,21 +997,25 @@ title: "Cookies, Sessions, and Authentication"
 <span>type and version), which might also distinguish users due to the wide variety of</span>
 <span>browser types, versions, and computer platforms. Use the following to store the user</span>
 <span>agent:</span>
-<br/>
-<span>$_SESSION['ua'] = $_SERVER['HTTP_USER_AGENT'];</span>
-<br/>
+<pre><code class="php">$_SESSION['ua'] = $_SERVER['HTTP_USER_AGENT'];</code></pre>
 <span>And use this to compare the current agent string with the saved one:</span>
 <span>if ($_SESSION['ua'] != $_SERVER['HTTP_USER_AGENT']) different_user();</span>
 <span>Or, better still, combine the two checks like this and save the combination as a</span>
 <span>hash</span>
 <span>hexadecimal string:</span>
-<br/>
-<span>$_SESSION['check'] = hash('ripemd128', $_SERVER['REMOTE_ADDR'] .</span>
-<span>$_SERVER['HTTP_USER_AGENT']);</span>
-<br/>
+<pre>
+<code class="php">
+$_SESSION['check'] = hash('ripemd128', $_SERVER['REMOTE_ADDR'] 
+$_SERVER['HTTP_USER_AGENT']);
+</code>
+</pre>
 <span>And use this to compare the current and stored strings:</span>
-<span>if ($_SESSION['check'] != hash('ripemd128', $_SERVER['REMOTE_ADDR'] .</span>
-<span>$_SERVER['HTTP_USER_AGENT'])) different_user();</span>
+<pre>
+<code class="php">
+    if ($_SESSION['check'] != hash('ripemd128', $_SERVER['REMOTE_ADDR']
+    $_SERVER['HTTP_USER_AGENT'])) different_user();
+</code>
+</pre>
 <h6>Preventing session fixation</h6>
 <span>Session fixation</span>
 <span>&nbsp;happens when a malicious user tries to present a session ID to the</span>
@@ -1049,25 +1034,24 @@ title: "Cookies, Sessions, and Authentication"
 <br/>
 <span>Example 12-9. A session susceptible to session</span>
 <span>fixation</span>
-<br/>
-<span>&lt;?php // sessiontest.php</span>
-<span>session_start();</span>
-<span>if (!isset($_SESSION['count'])) $_SESSION['count'] = 0;</span>
-<span>else ++$_SESSION['count'];</span>
-<span>echo $_SESSION['count'];</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // sessiontest.php
+    session_start();
+    
+    if (!isset($_SESSION['count'])) $_SESSION['count'] = 0;
+    else ++$_SESSION['count'];
+    echo $_SESSION['count'];
+?&gt;
+</code>
+</pre>
 <span>Once it&rsquo;s saved, call it up in your browser using the following URL (prefacing it with</span>
 <span>the correct pathname, such as</span>
 <span>http://localhost/web/</span>
 <span>):</span>
-<br/>
-<span>sessiontest.php?PHPSESSID=1234</span>
-<br/>
+<pre><code class="php">sessiontest.php?PHPSESSID=1234</code></pre>
 <span>Press Reload a few times, and you&rsquo;ll see the counter increase. Now try browsing to</span>
-<br/>
-<span>sessiontest.php?PHPSESSID=5678</span>
-<br/>
+<pre><code class="php">sessiontest.php?PHPSESSID=5678</code></pre>
 <span>Press Reload a few times here, and you should see it count up again from 0. Leave the</span>
 <span>counter on a different number than the first URL and then go back to the first URL</span>
 <span>and see how the number changes back. You have created two different sessions of</span>
@@ -1093,19 +1077,21 @@ title: "Cookies, Sessions, and Authentication"
 <span>.</span>
 <br/>
 <span>Example 12-10. Session regeneration</span>
-<br/>
-<span>&lt;?php</span>
-<span>session_start();</span>
-<span>if (!isset($_SESSION['initiated']))</span>
-<span>{</span>
-<span>session_regenerate_id();</span>
-<span>$_SESSION['initiated'] = 1;</span>
-<span>}</span>
-<span>if (!isset($_SESSION['count'])) $_SESSION['count'] = 0;</span>
-<span>else ++$_SESSION['count'];</span>
-<span>echo $_SESSION['count'];</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    session_start();
+    if (!isset($_SESSION['initiated']))
+    {
+        session_regenerate_id();
+        $_SESSION['initiated'] = 1;
+    }
+    if (!isset($_SESSION['count'])) $_SESSION['count'] = 0;
+    else ++$_SESSION['count'];
+        echo $_SESSION['count'];
+?&gt;
+</code>
+</pre>
 <span>This way, an attacker can come back to your site using any of the session IDs that he</span>
 <span>or she generated, but none of them will call up another user&rsquo;s session, as they will all</span>
 <span>have been replaced with regenerated IDs. If you want to be ultra-paranoid, you can</span>
@@ -1115,9 +1101,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>use the</span>
 <span>ini_set</span>
 <span>function, like this:</span>
-<br/>
-<span>ini_set('session.use_only_cookies', 1);</span>
-<br/>
+<pre><code class="php">ini_set('session.use_only_cookies', 1);</code></pre>
 <span>With that setting, the</span>
 <span>?PHPSESSID=</span>
 <span>trick will be completely ignored. If you use this</span>
@@ -1130,9 +1114,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>sions, by placing an</span>
 <span>ini_set</span>
 <span>call near the start of a program, like this:</span>
-<br/>
-<span>ini_set('session.save_path', '/home/user/myaccount/sessions');</span>
-<br/>
+<pre><code class="php">ini_set('session.save_path', '/home/user/myaccount/sessions');</code></pre>
 <span>The configuration option will keep this new value only during the program&rsquo;s execu‐</span>
 <span>tion, and the original configuration will be restored at the program&rsquo;s ending.</span>
 <br/>
