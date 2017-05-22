@@ -1,9 +1,7 @@
 //<pre><code class="javascript"></code></pre>
 <pre>
 <code class="javascript">
-/*  This is a section
-    of multiline comments
-    that will not be
-    interpreted */
+<span>greeting = "Hello there"</span>
+<span>warning = 'Be careful'</span>
 </code>
 </pre>
