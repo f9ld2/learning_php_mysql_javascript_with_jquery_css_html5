@@ -20,16 +20,14 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>likely to be reused, you have a candidate for a function.</span>
 <h4>Defining a Function</h4>
 <span>The general syntax for a function is shown here:</span>
-<br/>
-<span>function</span>
-<span>function_name</span>
-<span>([</span>
-<span>parameter</span>
-<span>[, ...]])</span>
-<span>{</span>
-<span>statements</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+function function_name([parameter[, ...]])
+{
+    statements
+}
+</code>
+</pre>
 <span>The first line of the syntax indicates the following:</span>
 <br/>
 <span>&bull;</span>
@@ -97,19 +95,22 @@ title: "JavaScript Functions, Objects, and Arrays"
 <br/>
 <span>Example 15-1.</span>
 <span>Defining a function</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>displayItems("Dog", "Cat", "Pony", "Hamster", "Tortoise")</span>
-<span>function displayItems(v1, v2, v3, v4, v5)</span>
-<span>{</span>
-<span>document.write(v1 + "&lt;br&gt;")</span>
-<span>document.write(v2 + "&lt;br&gt;")</span>
-<span>document.write(v3 + "&lt;br&gt;")</span>
-<span>document.write(v4 + "&lt;br&gt;")</span>
-<span>document.write(v5 + "&lt;br&gt;")</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    displayItems("Dog", "Cat", "Pony", "Hamster", "Tortoise")
+    
+    function displayItems(v1, v2, v3, v4, v5)
+    {
+        document.write(v1 + "&lt;br&gt;")
+        document.write(v2 + "&lt;br&gt;")
+        document.write(v3 + "&lt;br&gt;")
+        document.write(v4 + "&lt;br&gt;")
+        document.write(v5 + "&lt;br&gt;")
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>When you call up this script in your browser, it will display the following:</span>
 <br/>
 <span>Dog</span>
@@ -131,16 +132,17 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>rewrite the example in a much more efficient manner.</span>
 <br/>
 <span>Example 15-2. Modifying the function to use the arguments array</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>function displayItems()</span>
-<span>{</span>
-<span>for (j = 0 ; j &lt; displayItems.arguments.length ; ++j)</span>
-<span>&nbsp;</span>
-<span>document.write(displayItems.arguments[j] + "&lt;br&gt;")</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    function displayItems()
+    {
+        for (j = 0 ; j &lt; displayItems.arguments.length ; ++j)
+            document.write(displayItems.arguments[j] + "&lt;br&gt;")
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>Note the use of the</span>
 <span>length</span>
 <span>property, which you already encountered in the previous</span>
@@ -171,21 +173,22 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>of each argument, which is set to a capital letter.</span>
 <br/>
 <span>Example 15-3. Cleaning up a full name</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>document.write(fixNames("the", "DALLAS", "CowBoys"))</span>
-<span>function fixNames()</span>
-<span>{</span>
-<span>var s = ""</span>
-<span>for (j = 0 ; j &lt; fixNames.arguments.length ; ++j)</span>
-<span>&nbsp;</span>
-<span>s += fixNames.arguments[j].charAt(0).toUpperCase() +</span>
-<span>&nbsp;</span>
-<span>fixNames.arguments[j].substr(1).toLowerCase() + " "</span>
-<span>return s.substr(0, s.length-1)</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    document.write(fixNames("the", "DALLAS", "CowBoys"))
+    
+    function fixNames()
+    {
+        var s = ""
+        for (j = 0 ; j &lt; fixNames.arguments.length ; ++j)
+        s += fixNames.arguments[j].charAt(0).toUpperCase() +
+        fixNames.arguments[j].substr(1).toLowerCase() + " "
+        return s.substr(0, s.length-1)
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>When called with the parameters</span>
 <span>the</span>
 <span>,</span>
@@ -219,9 +222,7 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>substr</span>
 <span>method here</span>
 <span>would specify how many characters are part of the substring as a second argument:</span>
-<br/>
-<span>substr(1, (arguments[j].length) - 1 )</span>
-<br/>
+<pre><code class="javascript">substr(1, (arguments[j].length) - 1 )</code></pre>
 <span>In other words, this</span>
 <span>substr</span>
 <span>method says, &ldquo;Start with the character at position 1 (the</span>
@@ -248,9 +249,7 @@ title: "JavaScript Functions, Objects, and Arrays"
 <br/>
 <span>This example is particularly interesting in that it illustrates the use of multiple proper‐</span>
 <span>ties and methods in a single expression. For example:</span>
-<br/>
-<span>fixNames.arguments[j].substr(1).toLowerCase()</span>
-<br/>
+<pre><code class="javascript">fixNames.arguments[j].substr(1).toLowerCase()</code></pre>
 <span>You have to interpret the statement by mentally dividing it into parts at the periods.</span>
 <br/>
 <span>JavaScript evaluates these elements of the statement from left to right as follows:</span>
@@ -329,23 +328,24 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>.</span>
 <br/>
 <span>Example 15-4. Returning an array of values</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>words = fixNames("the", "DALLAS", "CowBoys")</span>
-<span>for (j = 0 ; j &lt; words.length ; ++j)</span>
-<span>document.write(words[j] + "&lt;br&gt;")</span>
-<span>function fixNames()</span>
-<span>{</span>
-<span>var s = new Array()</span>
-<span>for (j = 0 ; j &lt; fixNames.arguments.length ; ++j)</span>
-<span>&nbsp;</span>
-<span>s[j] = fixNames.arguments[j].charAt(0).toUpperCase() +</span>
-<span>&nbsp;</span>
-<span>fixNames.arguments[j].substr(1).toLowerCase()</span>
-<span>return s</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    words = fixNames("the", "DALLAS", "CowBoys")
+    for (j = 0 ; j &lt; words.length ; ++j)
+        document.write(words[j] + "&lt;br&gt;")
+    
+    function fixNames()
+    {
+        var s = new Array()
+        for (j = 0 ; j &lt; fixNames.arguments.length ; ++j)
+            s[j] = fixNames.arguments[j].charAt(0).toUpperCase() + 
+                    fixNames.arguments[j].substr(1).toLowerCase()
+        return s
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>Here the variable</span>
 <span>words</span>
 <span>is automatically defined as an array and populated with the</span>
@@ -372,8 +372,12 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>ues, like the following (the output from which is simply</span>
 <span>The Cowboys</span>
 <span>):</span>
-<span>words = fixNames("the", "DALLAS", "CowBoys")</span>
-<span>document.write(words[0] + " " + words[2])</span>
+<pre>
+<code class="javascript">
+words = fixNames("the", "DALLAS", "CowBoys")
+document.write(words[0] + " " + words[2])
+</code>
+</pre>
 <h3>JavaScript Objects</h3>
 <span>A JavaScript object is a step up from a variable, which can contain only one value at a</span>
 <span>time, in that objects can contain multiple values and even functions. An object groups</span>
@@ -417,25 +421,24 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>.</span>
 <br/>
 <span>Example 15-5. Declaring the User class and its method</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>function User(forename, username, password)</span>
-<span>{</span>
-<span>this.forename = forename</span>
-<span>this.username = username</span>
-<span>this.password = password</span>
-<span>this.showUser = function()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>document.write("Forename: " + this.forename + "&lt;br&gt;")</span>
-<span>&nbsp;</span>
-<span>document.write("Username: " + this.username + "&lt;br&gt;")</span>
-<span>&nbsp;</span>
-<span>document.write("Password: " + this.password + "&lt;br&gt;")</span>
-<span>}</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    function User(forename, username, password)
+    {
+        this.forename = forename
+        this.username = username
+        this.password = password
+        this.showUser = function()
+        {
+            document.write("Forename: " + this.forename + "&lt;br&gt;")
+            document.write("Username: " + this.username + "&lt;br&gt;")
+            document.write("Password: " + this.password + "&lt;br&gt;")
+        }
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>The function is different from other functions we&rsquo;ve seen so far in two ways:</span>
 <br/>
 <span>&bull;</span>
@@ -481,55 +484,56 @@ title: "JavaScript Functions, Objects, and Arrays"
 <br/>
 <span>Example 15-6. Separately</span>
 <span>defining a class and method</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>function User(forename, username, password)</span>
-<span>{</span>
-<span>this.forename = forename</span>
-<span>this.username = username</span>
-<span>this.password = password</span>
-<span>this.showUser = showUser</span>
-<span>}</span>
-<span>function showUser()</span>
-<span>{</span>
-<span>document.write("Forename: " + this.forename + "&lt;br&gt;")</span>
-<span>document.write("Username: " + this.username + "&lt;br&gt;")</span>
-<span>document.write("Password: " + this.password + "&lt;br&gt;")</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    function User(forename, username, password)
+    {
+        this.forename = forename
+        this.username = username
+        this.password = password
+        this.showUser = showUser
+    }
+    
+    function showUser()
+    {
+        document.write("Forename: " + this.forename + "&lt;br&gt;")
+        document.write("Username: " + this.username + "&lt;br&gt;")
+        document.write("Password: " + this.password + "&lt;br&gt;")
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>I show you this form because you are certain to encounter it when perusing other</span>
 <span>programmers&rsquo; code.</span>
 <h4>Creating an Object</h4>
 <span>To create an instance of the class</span>
 <span>User</span>
 <span>, you can use a statement such as the following:</span>
-<br/>
-<span>details = new User("Wolfgang", "w.a.mozart", "composer")</span>
-<br/>
+<pre><code class="javascript">details = new User("Wolfgang", "w.a.mozart", "composer")</code></pre>
 <span>Or you can create an empty object, like this:</span>
-<br/>
-<span>details = new User()</span>
-<br/>
+<pre><code class="javascript">details = new User()</code></pre>
 <span>and then populate it later, like this:</span>
-<br/>
-<span>details.forename = "Wolfgang"</span>
-<span>details.username = "w.a.mozart"</span>
-<span>details.password = "composer"</span>
-<br/>
+<pre>
+<code class="javascript">
+details.forename = "Wolfgang"
+details.username = "w.a.mozart"
+details.password = "composer"
+</code>
+</pre>
 <span>You can also add new properties to an object, like this:</span>
-<br/>
-<span>details.greeting = "Hello"</span>
-<br/>
+<pre><code class="javascript">details.greeting = "Hello"</code></pre>
 <span>You can verify that adding such new properties works with the following statement:</span>
 <span>document.write(details.greeting)</span>
 <h4>Accessing Objects</h4>
 <span>To access an object, you can refer to its properties, as in the following two unrelated</span>
 <span>example statements:</span>
-<br/>
-<span>name = details.forename</span>
-<span>if (details.username == "Admin") loginAsAdmin()</span>
-<br/>
+<pre>
+<code class="javascript">
+name = details.forename
+if (details.username == "Admin") loginAsAdmin()
+</code>
+</pre>
 <span>So, to access the</span>
 <span>showUser</span>
 <span>method of an object of class</span>
@@ -539,14 +543,15 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>details</span>
 <span>has already been created and populated</span>
 <span>with data:</span>
-<br/>
-<span>details.showUser()</span>
-<br/>
+<pre><code class="javascript">details.showUser()</code></pre>
 <span>Assuming the data supplied earlier, this code would display the following:</span>
-<br/>
-<span>Forename: Wolfgang</span>
-<span>Username: w.a.mozart</span>
-<span>Password: composer</span>
+<pre>
+<code class="javascript">
+Forename: Wolfgang
+Username: w.a.mozart
+Password: composer
+</code>
+</pre>
 <h4>The prototype Keyword</h4>
 <span>The</span>
 <span>prototype</span>
@@ -560,35 +565,30 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>times. However, because the method is identical in every case, you can specify that</span>
 <span>new objects should refer to a single instance of the method instead of creating a copy</span>
 <span>of it. So, instead of using the following in a class constructor:</span>
-<br/>
-<span>this.showUser = function()</span>
-<br/>
+<pre><code class="javascript">this.showUser = function()</code></pre>
 <span>you could replace it with this:</span>
-<br/>
-<span>User.prototype.showUser = function()</span>
-<br/>
+<pre><code class="javascript">User.prototype.showUser = function()</code></pre>
 <span>Example 15-7</span>
 <span>shows what the new constructor would look like.</span>
 <span>Example 15-7. Declaring a class using the prototype keyword for a method</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>function User(forename, username, password)</span>
-<span>{</span>
-<span>this.forename = forename</span>
-<span>this.username = username</span>
-<span>this.password = password</span>
-<span>User.prototype.showUser = function()</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>document.write("Forename: " + this.forename + "&lt;br&gt;")</span>
-<span>&nbsp;</span>
-<span>document.write("Username: " + this.username + "&lt;br&gt;")</span>
-<span>&nbsp;</span>
-<span>document.write("Password: " + this.password + "&lt;br&gt;")</span>
-<span>}</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    function User(forename, username, password)
+    {
+        this.forename = forename
+        this.username = username
+        this.password = password
+        User.prototype.showUser = function()
+        {
+            document.write("Forename: " + this.forename + "&lt;br&gt;")
+            document.write("Username: " + this.username + "&lt;br&gt;")
+            document.write("Password: " + this.password + "&lt;br&gt;")
+        }
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>This works because all functions have a</span>
 <span>prototype</span>
 <span>property, designed to hold proper‐</span>
@@ -620,17 +620,17 @@ title: "JavaScript Functions, Objects, and Arrays"
 <br/>
 <span>You can also add to or modify methods in a class, as the following statements illus‐</span>
 <span>trate:</span>
-<br/>
-<span>User.prototype.showUser = function()</span>
-<span>{</span>
-<span>document.write("Name " + this.forename +</span>
-<span>&nbsp;</span>
-<span>" User " + this.username +</span>
-<span>&nbsp;</span>
-<span>" Pass " + this.password)</span>
-<span>}</span>
-<span>details.showUser()</span>
-<br/>
+<pre>
+<code class="javascript">
+User.prototype.showUser = function()
+{
+    document.write("Name " + this.forename +
+    " User " + this.username +
+    " Pass " + this.password)
+}
+details.showUser()
+</code>
+</pre>
 <span>You might add these lines to your script in a conditional statement (such as</span>
 <span>if</span>
 <span>), so</span>
@@ -656,9 +656,12 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>ments set and read a static string from</span>
 <span>User</span>
 <span>:</span>
-<br/>
-<span>User.prototype.greeting = "Hello"</span>
-<span>document.write(User.prototype.greeting)</span>
+<pre>
+<code class="javascript">
+User.prototype.greeting = "Hello"
+document.write(User.prototype.greeting)
+</code>
+</pre>
 <h6>Extending JavaScript objects</h6>
 <span>The</span>
 <span>prototype</span>
@@ -669,12 +672,14 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>String</span>
 <span>object definition,</span>
 <span>like this:</span>
-<br/>
-<span>String.prototype.nbsp = function()</span>
-<span>{</span>
-<span>return this.replace(/ /g, '&amp;nbsp;')</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+String.prototype.nbsp = function()
+{
+    return this.replace(/ /g, '&amp;nbsp;')
+}
+</code>
+</pre>
 <span>Here the</span>
 <span>replace</span>
 <span>method is used with a regular expression (see</span>
@@ -684,26 +689,24 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>&amp;nbsp;</span>
 <span>. If you then enter the following</span>
 <span>command:</span>
-<br/>
-<span>document.write("The quick brown fox".nbsp())</span>
-<br/>
+<pre><code class="javascript">document.write("The quick brown fox".nbsp())</code></pre>
 <span>it will output the string</span>
 <span>The&amp;nbsp;quick&amp;nbsp;brown&amp;nbsp;fox</span>
 <span>. Or here&rsquo;s a method</span>
 <span>you can add that will trim leading and trailing spaces from a string (once again using</span>
 <span>a regular expression):</span>
-<br/>
-<span>String.prototype.trim = function()</span>
-<span>{</span>
-<span>return this.replace(/^\s+|\s+$/g, '')</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+String.prototype.trim = function()
+{
+    return this.replace(/^\s+|\s+$/g, '')
+}
+</code>
+</pre>
 <span>If you issue the following statement, the output will be the string</span>
 <span>Please trim me</span>
 <span>(with the leading and trailing spaces removed):</span>
-<br/>
-<span>document.write(" Please trim me ".trim())</span>
-<br/>
+<pre><code class="javascript">document.write(" Please trim me ".trim()</code></pre>
 <span>If we break down the expression into its component parts, the two</span>
 <span>/</span>
 <span>characters mark</span>
@@ -730,26 +733,27 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>should be relatively straightforward for you.</span>
 <h4>Numeric Arrays</h4>
 <span>To create a new array, use the following syntax:</span>
-<br/>
-<span>arrayname = new Array()</span>
-<br/>
+<pre><code class="javascript">arrayname = new Array()</code></pre>
 <span>Or you can use the shorthand form, as follows:</span>
-<br/>
-<span>arrayname = []</span>
+<pre><code class="javascript">arrayname = []</code></pre>
 <h6>Assigning element values</h6>
 <span>In PHP, you could add a new element to an array by simply assigning it without spec‐</span>
 <span>ifying the element offset, like this:</span>
-<br/>
-<span>$arrayname[] = "Element 1";</span>
-<span>$arrayname[] = "Element 2";</span>
-<br/>
+<pre>
+<code class="javascript">
+$arrayname[] = "Element 1";
+$arrayname[] = "Element 2";
+</code>
+</pre>
 <span>But in JavaScript you use the</span>
 <span>push</span>
 <span>method to achieve the same thing, like this:</span>
-<br/>
-<span>arrayname.push("Element 1")</span>
-<span>arrayname.push("Element 2")</span>
-<br/>
+<pre>
+<code class="javascript">
+arrayname.push("Element 1")
+arrayname.push("Element 2")
+</code>
+</pre>
 <span>This allows you to keep adding items to an array without having to keep track of the</span>
 <span>number of items. When you need to know how many elements are in an array, you</span>
 <span>can use the</span>
@@ -760,38 +764,43 @@ title: "JavaScript Functions, Objects, and Arrays"
 <br/>
 <span>Alternatively, if you wish to keep track of the element locations yourself and place</span>
 <span>them in specific locations, you can use syntax such as this:</span>
-<br/>
-<span>arrayname[0] = "Element 1"</span>
-<span>arrayname[1] = "Element 2"</span>
-<br/>
+<pre>
+<code class="javascript">
+arrayname[0] = "Element 1"
+arrayname[1] = "Element 2"
+</code>
+</pre>
 <span>Example 15-8</span>
 <span>shows a simple script that creates an array, loads it with some values,</span>
 <span>and then displays them.</span>
 <br/>
 <span>Example 15-8. Creating, building, and printing an array</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>numbers = []</span>
-<span>numbers.push("One")</span>
-<span>numbers.push("Two")</span>
-<span>numbers.push("Three")</span>
-<span>for (j = 0 ; j &lt; numbers.length ; ++j)</span>
-<span>document.write("Element " + j + " = " + numbers[j] + "&lt;br&gt;")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    numbers = []
+    numbers.push("One")
+    numbers.push("Two")
+    numbers.push("Three")
+
+    for (j = 0 ; j &lt; numbers.length ; ++j)
+        document.write("Element " + j + " = " + numbers[j] + "&lt;br&gt;")
+&lt;/script&gt;
+</code>
+</pre>
 <span>The output from this script is as follows:</span>
-<br/>
-<span>Element 0 = One</span>
-<span>Element 1 = Two</span>
-<span>Element 2 = Three</span>
-<br/>
+<pre>
+<code class="javascript">
+Element 0 = One
+Element 1 = Two
+Element 2 = Three
+</code>
+</pre>
 <h6>Assignment using the array keyword</h6>
 <span>You can also create an array together with some initial elements by using the</span>
 <span>Array</span>
 <span>keyword, like this:</span>
-<br/>
-<span>numbers = Array("One", "Two", "Three")</span>
-<br/>
+<pre><code class="javascript">numbers = Array("One", "Two", "Three")</code></pre>
 <span>There is nothing stopping you from adding more elements afterward as well.</span>
 <span>So now you have a couple of ways you can add items to an array, and one way of ref‐</span>
 <span>erencing them, but JavaScript offers many more, which I&rsquo;ll get to shortly. But first</span>
@@ -810,19 +819,19 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>the contents of the &ldquo;balls&rdquo; section of an online sports equipment retailer.</span>
 <br/>
 <span>Example 15-9. Creating and displaying an associative array</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>balls = {"golf": "Golf balls, 6",</span>
-<span>&nbsp;</span>
-<span>"tennis": "Tennis balls, 3",</span>
-<span>&nbsp;</span>
-<span>"soccer": "Soccer ball, 1",</span>
-<span>&nbsp;</span>
-<span>"ping": "Ping Pong balls, 1 doz"}</span>
-<span>for (ball in balls)</span>
-<span>document.write(ball + " = " + balls[ball] + "&lt;br&gt;")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    balls = {"golf": "Golf balls, 6",
+    "tennis": "Tennis balls, 3",
+    "soccer": "Soccer ball, 1",
+    "ping": "Ping Pong balls, 1 doz"}
+
+    for (ball in balls)
+        document.write(ball + " = " + balls[ball] + "&lt;br&gt;")
+&lt;/script&gt;
+</code>
+</pre>
 <span>To verify that the array has been correctly created and populated, I have used another</span>
 <span>kind of</span>
 <span>for</span>
@@ -848,18 +857,19 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>of</span>
 <span>balls</span>
 <span>. The result of calling up the example script in a browser is as follows:</span>
-<br/>
-<span>golf = Golf balls, 6</span>
-<span>tennis = Tennis balls, 3</span>
-<span>soccer = Soccer ball, 1</span>
-<span>ping = Ping Pong balls, 1 doz</span>
-<br/>
+<pre>
+<code class="javascript">
+golf = Golf balls, 6
+tennis = Tennis balls, 3
+soccer = Soccer ball, 1
+ping = Ping Pong balls, 1 doz
+</code>
+</pre>
 <span>To get a specific element of an associative array, you can specify a key explicitly, in the</span>
 <span>following manner (in this case, outputting the value</span>
 <span>Soccer ball, 1</span>
 <span>):</span>
-<br/>
-<span>document.write(balls['soccer'])</span>
+<pre><code class="javascript">document.write(balls['soccer'])</code></pre>
 <h4>Multidimensional Arrays</h4>
 <span>To create a multidimensional array in JavaScript, just place arrays inside other arrays.</span>
 <span>For example, to create an array to hold the details of a two-dimensional checkerboard</span>
@@ -868,28 +878,32 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>.</span>
 <br/>
 <span>Example 15-10. Creating a multidimensional numeric array</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>checkerboard = Array(</span>
-<span>Array(' ', 'o', ' ', 'o', ' ', 'o', ' ', 'o'),</span>
-<span>Array('o', ' ', 'o', ' ', 'o', ' ', 'o', ' '),</span>
-<span>Array(' ', 'o', ' ', 'o', ' ', 'o', ' ', 'o'),</span>
-<span>Array(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '),</span>
-<span>Array(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '),</span>
-<span>Array('O', ' ', 'O', ' ', 'O', ' ', 'O', ' '),</span>
-<span>Array(' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O'),</span>
-<span>Array('O', ' ', 'O', ' ', 'O', ' ', 'O', ' '))</span>
-<span>document.write("&lt;pre&gt;")</span>
-<span>for (j = 0 ; j &lt; 8 ; ++j)</span>
-<span>{</span>
-<span>for (k = 0 ; k &lt; 8 ; ++k)</span>
-<span>&nbsp;</span>
-<span>document.write(checkerboard[j][k] + " ")</span>
-<span>document.write("&lt;br&gt;")</span>
-<span>}</span>
-<span>document.write("&lt;/pre&gt;")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    checkerboard = Array(
+        Array(' ', 'o', ' ', 'o', ' ', 'o', ' ', 'o'),
+        Array('o', ' ', 'o', ' ', 'o', ' ', 'o', ' '),
+        Array(' ', 'o', ' ', 'o', ' ', 'o', ' ', 'o'),
+        Array(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '),
+        Array(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '),
+        Array('O', ' ', 'O', ' ', 'O', ' ', 'O', ' '),
+        Array(' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O'),
+        Array('O', ' ', 'O', ' ', 'O', ' ', 'O', ' '))
+    
+    document.write("&lt;pre&gt;")
+    for (j = 0 ; j &lt; 8 ; ++j)
+    {
+        for (k = 0 ; k &lt; 8 ; ++k)
+            document.write(checkerboard[j][k] + " ")
+        
+        document.write("&lt;br&gt;")
+    }
+    
+    document.write("&lt;/pre&gt;")
+&lt;/script&gt;
+</code>
+</pre>
 <span>In this example, the lowercase letters represent black pieces, and the uppercase white.</span>
 <span>A pair of nested</span>
 <span>for</span>
@@ -906,18 +920,18 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>&lt;/pre&gt;</span>
 <span>tags ensure that the</span>
 <span>output displays correctly, like this:</span>
-<br/>
-<span>o o o o</span>
-<span>o o o o</span>
-<span>o o o o</span>
-<span>O O O O</span>
-<span>O O O O</span>
-<span>O O O O</span>
-<br/>
+<pre>
+<code class="javascript">
+o o o o
+o o o o
+o o o o
+O O O O
+O O O O
+O O O O
+</code>
+</pre>
 <span>You can also directly access any element within this array by using square brackets:</span>
-<br/>
-<span>document.write(checkerboard[7][2])</span>
-<br/>
+<pre><code class="javascript">document.write(checkerboard[7][2])</code></pre>
 <span>This statement outputs the uppercase letter</span>
 <span>O</span>
 <span>, the eighth element down and the third</span>
@@ -932,11 +946,13 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>example, the following code outputs</span>
 <span>Banana,Grape,Carrot,Cabbage</span>
 <span>:</span>
-<br/>
-<span>fruit = ["Banana", "Grape"]</span>
-<span>veg = ["Carrot", "Cabbage"]</span>
-<span>document.write(fruit.concat(veg))</span>
-<br/>
+<pre>
+<code class="javascript">
+fruit = ["Banana", "Grape"]
+veg = ["Carrot", "Cabbage"]
+document.write(fruit.concat(veg))
+</code>
+</pre>
 <span>You can specify multiple arrays as arguments, in which case</span>
 <span>concat</span>
 <span>adds all their ele‐</span>
@@ -950,11 +966,13 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>, which outputs</span>
 <span>Cat,Dog,Fish,Rabbit,Hamster</span>
 <span>:</span>
-<br/>
-<span>pets = ["Cat", "Dog", "Fish"]</span>
-<span>more_pets = pets.concat("Rabbit", "Hamster")</span>
-<span>document.write(more_pets)</span>
-<br/>
+<pre>
+<code class="javascript">
+pets = ["Cat", "Dog", "Fish"]
+more_pets = pets.concat("Rabbit", "Hamster")
+document.write(more_pets)
+</code>
+</pre>
 <h6>forEach (for non-IE browsers)</h6>
 <span>The</span>
 <span>forEach</span>
@@ -970,18 +988,20 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>shows how.</span>
 <br/>
 <span>Example 15-11. Using the forEach method</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>pets = ["Cat", "Dog", "Rabbit", "Hamster"]</span>
-<span>pets.forEach(output)</span>
-<span>function output(element, index, array)</span>
-<span>{</span>
-<span>document.write("Element at index " + index + " has the value " +</span>
-<span>&nbsp;</span>
-<span>element + "&lt;br&gt;")</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    pets = ["Cat", "Dog", "Rabbit", "Hamster"]
+    pets.forEach(output)
+    
+    function output(element, index, array)
+    {
+        document.write("Element at index " + index + " has the value " +
+        element + "&lt;br&gt;")
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>In this case, the function passed to</span>
 <span>forEach</span>
 <span>is called</span>
@@ -1004,16 +1024,16 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>.</span>
 <br/>
 <span>Once an array has been populated, the method is called like this:</span>
-<br/>
-<span>pets.forEach(output)</span>
-<br/>
+<pre><code class="javascript">pets.forEach(output)</code></pre>
 <span>This is the output:</span>
-<br/>
-<span>Element at index 0 has the value Cat</span>
-<span>Element at index 1 has the value Dog</span>
-<span>Element at index 2 has the value Rabbit</span>
-<span>Element at index 3 has the value Hamster</span>
-<br/>
+<pre>
+<code class="javascript">
+Element at index 0 has the value Cat
+Element at index 1 has the value Dog
+Element at index 2 has the value Rabbit
+Element at index 3 has the value Hamster
+</code>
+</pre>
 <h6>forEach (a cross-browser solution)</h6>
 <span>Of course, as is its way, Microsoft chose not to support the</span>
 <span>forEach</span>
@@ -1023,8 +1043,7 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>ment such as the following instead of</span>
 <span>pets.forEach(output)</span>
 <span>:</span>
-<br/>
-<span>for (j = 0 ; j &lt; pets.length ; ++j) output(pets[j], j)</span>
+<pre><code class="javascript">for (j = 0 ; j &lt; pets.length ; ++j) output(pets[j], j)</code></pre>
 <h6>join</h6>
 <span>With the</span>
 <span>join</span>
@@ -1034,14 +1053,16 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>shows three ways of using this method.</span>
 <br/>
 <span>Example 15-12. Using the join method</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>pets = ["Cat", "Dog", "Rabbit", "Hamster"]</span>
-<span>document.write(pets.join() + "&lt;br&gt;")</span>
-<span>document.write(pets.join(' ') + "&lt;br&gt;")</span>
-<span>document.write(pets.join(' : ') + "&lt;br&gt;")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    pets = ["Cat", "Dog", "Rabbit", "Hamster"]
+    document.write(pets.join() + "&lt;br&gt;")
+    document.write(pets.join(' ') + "&lt;br&gt;")
+    document.write(pets.join(' : ') + "&lt;br&gt;")
+&lt;/script&gt;
+</code>
+</pre>
 <span>Without a parameter,</span>
 <span>join</span>
 <span>uses a comma to separate the elements; otherwise, the</span>
@@ -1050,10 +1071,13 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>is inserted between each element. The output of</span>
 <span>Example 15-12</span>
 <span>looks like this:</span>
-<br/>
-<span>Cat,Dog,Rabbit,Hamster</span>
-<span>Cat Dog Rabbit Hamster</span>
-<span>Cat : Dog : Rabbit : Hamster</span>
+<pre>
+<code class="javascript">
+Cat,Dog,Rabbit,Hamster
+Cat Dog Rabbit Hamster
+Cat : Dog : Rabbit : Hamster
+</code>
+</pre>
 <h6>push and pop</h6>
 <span>You already saw how the</span>
 <span>push</span>
@@ -1066,17 +1090,21 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>shows an example of its use.</span>
 <br/>
 <span>Example 15-13. Using the push and pop methods</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>sports = ["Football", "Tennis", "Baseball"]</span>
-<span>document.write("Start = " + sports + "&lt;br&gt;")</span>
-<span>sports.push("Hockey")</span>
-<span>document.write("After Push = " + sports + "&lt;br&gt;")</span>
-<span>removed = sports.pop()</span>
-<span>document.write("After Pop = " + sports + "&lt;br&gt;")</span>
-<span>document.write("Removed = " + removed + "&lt;br&gt;")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    sports = ["Football", "Tennis", "Baseball"]
+    document.write("Start = " + sports + "&lt;br&gt;")
+    
+    sports.push("Hockey")
+    document.write("After Push = " + sports + "&lt;br&gt;")
+    
+    removed = sports.pop()
+    document.write("After Pop = " + sports + "&lt;br&gt;")
+    document.write("Removed = " + removed + "&lt;br&gt;")
+&lt;/script&gt;
+</code>
+</pre>
 <span>The three main statements of this script are shown in bold type. First, the script cre‐</span>
 <span>ates an array called</span>
 <span>sports</span>
@@ -1089,12 +1117,14 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>values are displayed via</span>
 <span>document.write</span>
 <span>. The script outputs the following:</span>
-<br/>
-<span>Start = Football,Tennis,Baseball</span>
-<span>After Push = Football,Tennis,Baseball,Hockey</span>
-<span>After Pop = Football,Tennis,Baseball</span>
-<span>Removed = Hockey</span>
-<br/>
+<pre>
+<code class="javascript">
+Start = Football,Tennis,Baseball
+After Push = Football,Tennis,Baseball,Hockey
+After Pop = Football,Tennis,Baseball
+Removed = Hockey
+</code>
+</pre>
 <span>The</span>
 <span>push</span>
 <span>and</span>
@@ -1105,29 +1135,34 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>.</span>
 <br/>
 <span>Example 15-14. Using push and pop inside and outside of a loop</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>numbers = []</span>
-<span>for (j = 0 ; j &lt; 3 ; ++j)</span>
-<span>{</span>
-<span>numbers.push(j);</span>
-<span>document.write("Pushed " + j + "&lt;br&gt;")</span>
-<span>}</span>
-<span>// Perform some other activity here</span>
-<span>document.write("&lt;br&gt;")</span>
-<span>document.write("Popped " + numbers.pop() + "&lt;br&gt;")</span>
-<span>document.write("Popped " + numbers.pop() + "&lt;br&gt;")</span>
-<span>document.write("Popped " + numbers.pop() + "&lt;br&gt;")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    numbers = []
+    for (j = 0 ; j &lt; 3 ; ++j)
+    {
+        numbers.push(j);
+        document.write("Pushed " + j + "&lt;br&gt;")
+    }
+    // Perform some other activity here
+    document.write("&lt;br&gt;")
+    document.write("Popped " + numbers.pop() + "&lt;br&gt;")
+    document.write("Popped " + numbers.pop() + "&lt;br&gt;")
+    document.write("Popped " + numbers.pop() + "&lt;br&gt;")
+&lt;/script&gt;
+</code>
+</pre>
 <span>The output from this example is as follows:</span>
-<br/>
-<span>Pushed 0</span>
-<span>Pushed 1</span>
-<span>Pushed 2</span>
-<span>Popped 2</span>
-<span>Popped 1</span>
-<span>Popped 0</span>
+<pre>
+<code class="javascript">
+Pushed 0
+Pushed 1
+Pushed 2
+Popped 2
+Popped 1
+Popped 0
+</code>
+</pre>
 <h6>Using reverse</h6>
 <span>The</span>
 <span>reverse</span>
@@ -1146,17 +1181,17 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>shows this in action.</span>
 <br/>
 <span>Example 15-15. Using the reverse method</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>sports = ["Football", "Tennis", "Baseball", "Hockey"]</span>
-<span>sports.reverse()</span>
-<span>document.write(sports)</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    sports = ["Football", "Tennis", "Baseball", "Hockey"]
+    sports.reverse()
+    document.write(sports)
+&lt;/script&gt;
+</code>
+</pre>
 <span>The original array is modified, and the output from this script is as follows:</span>
-<br/>
-<span>Hockey,Baseball,Tennis,Football</span>
-<br/>
+<pre><code class="javascript">Hockey,Baseball,Tennis,Football</code></pre>
 <h6>sort</h6>
 <span>With the</span>
 <span>sort</span>
@@ -1166,26 +1201,31 @@ title: "JavaScript Functions, Objects, and Arrays"
 <span>shows four types of sort.</span>
 <br/>
 <span>Example 15-16. Using the sort method</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>// Alphabetical sort</span>
-<span>sports = ["Football", "Tennis", "Baseball", "Hockey"]</span>
-<span>sports.sort()</span>
-<span>document.write(sports + "&lt;br&gt;")</span>
-<span>// Reverse alphabetical sort</span>
-<span>sports = ["Football", "Tennis", "Baseball", "Hockey"]</span>
-<span>sports.sort().reverse()</span>
-<span>document.write(sports + "&lt;br&gt;")</span>
-<span>// Ascending numeric sort</span>
-<span>numbers = [7, 23, 6, 74]</span>
-<span>numbers.sort(function(a,b){return a - b})</span>
-<span>document.write(numbers + "&lt;br&gt;")</span>
-<span>// Descending numeric sort</span>
-<span>numbers = [7, 23, 6, 74]</span>
-<span>numbers.sort(function(a,b){return b - a})</span>
-<span>document.write(numbers + "&lt;br&gt;")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    // Alphabetical sort
+    sports = ["Football", "Tennis", "Baseball", "Hockey"]
+    sports.sort()
+    document.write(sports + "&lt;br&gt;")
+    
+    // Reverse alphabetical sort
+    sports = ["Football", "Tennis", "Baseball", "Hockey"]
+    sports.sort().reverse()
+    document.write(sports + "&lt;br&gt;")
+    
+    // Ascending numeric sort
+    numbers = [7, 23, 6, 74]
+    numbers.sort(function(a,b){return a - b})
+    document.write(numbers + "&lt;br&gt;")
+    
+    // Descending numeric sort
+    numbers = [7, 23, 6, 74]
+    numbers.sort(function(a,b){return b - a})
+    document.write(numbers + "&lt;br&gt;")
+&lt;/script&gt;
+</code>
+</pre>
 <span>The first of the four example sections is the default</span>
 <span>sort</span>
 <span>method,</span>
