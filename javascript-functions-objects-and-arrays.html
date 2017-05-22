@@ -182,8 +182,9 @@ function function_name([parameter[, ...]])
     {
         var s = ""
         for (j = 0 ; j &lt; fixNames.arguments.length ; ++j)
-        s += fixNames.arguments[j].charAt(0).toUpperCase() +
-        fixNames.arguments[j].substr(1).toLowerCase() + " "
+            s += fixNames.arguments[j].charAt(0).toUpperCase() +
+                 fixNames.arguments[j].substr(1).toLowerCase() + " "
+        
         return s.substr(0, s.length-1)
     }
 &lt;/script&gt;
@@ -288,9 +289,9 @@ function function_name([parameter[, ...]])
 <span>is passed to the example expression, it will go through the following trans‐</span>
 <span>formations:</span>
 <br/>
-<span>mixedCASE</span>
-<span>ixedCASE</span>
-<span>ixedcase</span>
+<span class="t30">mixedCASE</span><br/>
+<span class="t30">ixedCASE</span><br/>
+<span class="t30">ixedcase</span>
 <br/>
 <span>One final reminder: the</span>
 <span>s</span>
@@ -340,7 +341,7 @@ function function_name([parameter[, ...]])
         var s = new Array()
         for (j = 0 ; j &lt; fixNames.arguments.length ; ++j)
             s[j] = fixNames.arguments[j].charAt(0).toUpperCase() + 
-                    fixNames.arguments[j].substr(1).toLowerCase()
+                   fixNames.arguments[j].substr(1).toLowerCase()
         return s
     }
 &lt;/script&gt;
@@ -429,6 +430,7 @@ document.write(words[0] + " " + words[2])
         this.forename = forename
         this.username = username
         this.password = password
+        
         this.showUser = function()
         {
             document.write("Forename: " + this.forename + "&lt;br&gt;")
@@ -579,6 +581,7 @@ Password: composer
         this.forename = forename
         this.username = username
         this.password = password
+        
         User.prototype.showUser = function()
         {
             document.write("Forename: " + this.forename + "&lt;br&gt;")
@@ -624,9 +627,9 @@ Password: composer
 <code class="javascript">
 User.prototype.showUser = function()
 {
-    document.write("Name " + this.forename +
-    " User " + this.username +
-    " Pass " + this.password)
+    document.write( "Name " + this.forename +
+                    " User " + this.username +
+                    " Pass " + this.password)
 }
 details.showUser()
 </code>
@@ -759,9 +762,7 @@ arrayname.push("Element 2")
 <span>can use the</span>
 <span>length</span>
 <span>property, like this:</span>
-<br/>
-<span>document.write(arrayname.length)</span>
-<br/>
+<pre><code class="javascript">document.write(arrayname.length)</code></pre>
 <span>Alternatively, if you wish to keep track of the element locations yourself and place</span>
 <span>them in specific locations, you can use syntax such as this:</span>
 <pre>
@@ -822,10 +823,12 @@ Element 2 = Three
 <pre>
 <code class="javascript">
 &lt;script&gt;
-    balls = {"golf": "Golf balls, 6",
-    "tennis": "Tennis balls, 3",
-    "soccer": "Soccer ball, 1",
-    "ping": "Ping Pong balls, 1 doz"}
+    balls = {
+        "golf": "Golf balls, 6",
+        "tennis": "Tennis balls, 3",
+        "soccer": "Soccer ball, 1",
+        "ping": "Ping Pong balls, 1 doz"
+    }
 
     for (ball in balls)
         document.write(ball + " = " + balls[ball] + "&lt;br&gt;")
@@ -892,6 +895,7 @@ ping = Ping Pong balls, 1 doz
         Array('O', ' ', 'O', ' ', 'O', ' ', 'O', ' '))
     
     document.write("&lt;pre&gt;")
+    
     for (j = 0 ; j &lt; 8 ; ++j)
     {
         for (k = 0 ; k &lt; 8 ; ++k)
