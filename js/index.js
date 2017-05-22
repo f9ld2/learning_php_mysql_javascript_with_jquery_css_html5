@@ -1,11 +1,9 @@
 //<pre><code class="javascript"></code></pre>
 <pre>
 <code class="javascript">
-&lt;script&gt;
-    function $(id)
-    {
-        return document.getElementById(id)
-    }
-&lt;/script&gt;
+/*  This is a section
+    of multiline comments
+    that will not be
+    interpreted */
 </code>
 </pre>
