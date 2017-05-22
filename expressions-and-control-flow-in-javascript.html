@@ -36,21 +36,25 @@ title: "Expressions and Control Flow in JavaScript"
 <span>brevity).</span>
 <br/>
 <span>Example 14-1. Four simple Boolean expressions</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>document.write("a: " + (42 &gt; 3) + "&lt;br&gt;")</span>
-<span>document.write("b: " + (91 &lt; 4) + "&lt;br&gt;")</span>
-<span>document.write("c: " + (8 == 2) + "&lt;br&gt;")</span>
-<span>document.write("d: " + (4 &lt; 17) + "&lt;br&gt;")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    document.write("a: " + (42 &gt; 3) + "&lt;br&gt;")
+    document.write("b: " + (91 &lt; 4) + "&lt;br&gt;")
+    document.write("c: " + (8 == 2) + "&lt;br&gt;")
+    document.write("d: " + (4 &lt; 17) + "&lt;br&gt;")
+&lt;/script&gt;
+</code>
+</pre>
 <span>The output from this code is as follows:</span>
-<br/>
-<span>a: true</span>
-<span>b: false</span>
-<span>c: false</span>
-<span>d: true</span>
-<br/>
+<pre>
+<code class="javascript">
+a: true
+b: false
+c: false
+d: true
+</code>
+</pre>
 <span>Notice that both expressions</span>
 <span>a:</span>
 <span>and</span>
@@ -111,10 +115,12 @@ title: "Expressions and Control Flow in JavaScript"
 <span>second will cause a</span>
 <span>'TRUE' is not defined</span>
 <span>error:</span>
-<br/>
-<span>if (1 == true) document.write('true') // True</span>
-<span>if (1 == TRUE) document.write('TRUE') // Will cause an error</span>
-<br/>
+<pre>
+<code class="javascript">
+if (1 == true) document.write('true') // True
+if (1 == TRUE) document.write('TRUE') // Will cause an error
+</code>
+</pre>
 <span>Remember that any code snippets you wish to type and try for</span>
 <span>yourself in an HTML file need to be enclosed within</span>
 <span>&lt;script&gt;</span>
@@ -138,25 +144,30 @@ title: "Expressions and Control Flow in JavaScript"
 <span>ues, albeit of different types.</span>
 <br/>
 <span>Example 14-2. Five types of literals</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>myname = "Peter"</span>
-<span>myage = 24</span>
-<span>document.write("a: " + 42 + "&lt;br&gt;") // Numeric literal</span>
-<span>document.write("b: " + "Hi" + "&lt;br&gt;") // String literal</span>
-<span>document.write("c: " + true + "&lt;br&gt;") // Constant literal</span>
-<span>document.write("d: " + myname + "&lt;br&gt;") // String variable</span>
-<span>document.write("e: " + myage + "&lt;br&gt;") // Numeric variable</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    myname = "Peter"
+    myage = 24
+
+    document.write("a: " + 42 + "&lt;br&gt;") // Numeric literal
+    document.write("b: " + "Hi" + "&lt;br&gt;") // String literal
+    document.write("c: " + true + "&lt;br&gt;") // Constant literal
+    document.write("d: " + myname + "&lt;br&gt;") // String variable
+    document.write("e: " + myage + "&lt;br&gt;") // Numeric variable
+&lt;/script&gt;
+</code>
+</pre>
 <span>And, as you&rsquo;d expect, you see a return value from all of these in the following output:</span>
-<br/>
-<span>a: 42</span>
-<span>b: Hi</span>
-<span>c: true</span>
-<span>d: Peter</span>
-<span>e: 24</span>
-<br/>
+<pre>
+<code class="javascript">
+a: 42
+b: Hi
+c: true
+d: Peter
+e: 24
+</code>
+</pre>
 <span>Operators let you create more-complex expressions that evaluate to useful results.</span>
 <span>When you combine assignment or control-flow constructs with expressions, the</span>
 <span>result is a</span>
@@ -177,11 +188,14 @@ title: "Expressions and Control Flow in JavaScript"
 <span>.</span>
 <br/>
 <span>Example 14-3. Two simple JavaScript statements</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>days_to_new_year = 366 - day_number;</span>
-<span>if (days_to_new_year &lt; 30) document.write("It's nearly New Year")</span>
-<span>&lt;/script&gt;</span>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    days_to_new_year = 366 - day_number;
+    if (days_to_new_year &lt; 30) document.write("It's nearly New Year")
+&lt;/script&gt;
+</code>
+</pre>
 <h3>Operators</h3>
 <span>JavaScript offers a lot of powerful operators that range from arithmetic, string, and</span>
 <span>logical operators to assignment, comparison, and more (see</span>
@@ -189,35 +203,53 @@ title: "Expressions and Control Flow in JavaScript"
 <span>).</span>
 <br/>
 <span>Table 14-1. JavaScript operator types</span>
-<br/>
-<span>Operator</span>
-<span>Description</span>
-<span>Example</span>
-<span>Arithmetic</span>
-<span>Basic mathematics</span>
-<span>a + b</span>
-<span>Array</span>
-<span>Array manipulation</span>
-<span>a + b</span>
-<span>Assignment</span>
-<span>Assign values</span>
-<span>a = b + 23</span>
-<span>Bitwise</span>
-<span>Manipulate bits within bytes</span>
-<span>12 ^ 9</span>
-<span>Comparison</span>
-<span>Compare two values</span>
-<span>a &lt; b</span>
-<span>Increment/decrement</span>
-<span>Add or subtract one</span>
-<span>a++</span>
-<span>Logical</span>
-<span>Boolean</span>
-<span>a &amp;&amp; b</span>
-<span>String</span>
-<span>Concatenation</span>
-<span>a + 'string'</span>
-<br/>
+<table class="tbl-left">
+    <tr>
+        <td>Operator</td>
+        <td>Description</td>
+        <td>Example</td>
+    </tr>
+    <tr>
+        <td>Arithmetic</td>
+        <td>Basic mathematics</td>
+        <td>a + b</td>
+    </tr>
+    <tr>
+        <td>Array</td>
+        <td>Array manipulation</td>
+        <td>a + b</td>
+    </tr>
+    <tr>
+        <td>Assignment</td>
+        <td>Assign values</td>
+        <td>a = b + 23</td>
+    </tr>
+    <tr>
+        <td>Bitwise</td>
+        <td>Manipulate bits within bytes</td>
+        <td>12 ^ 9</td>
+    </tr>
+    <tr>
+        <td>Comparison</td>
+        <td>Compare two values</td>
+        <td>a &lt; b</td>
+    </tr>
+    <tr>
+        <td>Increment/decrement</td>
+        <td>Add or subtract one</td>
+        <td>a++</td>
+    </tr>
+    <tr>
+        <td>Logical</td>
+        <td>Boolean</td>
+        <td>a &amp;&amp; b</td>
+    </tr>
+    <tr>
+        <td>String</td>
+        <td>Concatenation</td>
+        <td>a + 'string'</td>
+    </tr>
+</table>
 <span>Each operator takes a different number of operands:</span>
 <br/>
 <span>&bull;</span>
@@ -250,39 +282,72 @@ title: "Expressions and Control Flow in JavaScript"
 <span>lists JavaScript&rsquo;s operators and their precedencies.</span>
 <br/>
 <span>Table 14-2. Precedence of JavaScript operators (high to low)</span>
-<br/>
-<span>Operator(s)</span>
-<span>Type(s)</span>
-<span>() [] .</span>
-<span>Parentheses, call, and member</span>
-<span>++ --</span>
-<span>Increment/decrement</span>
-<span>+ - ~ !</span>
-<span>Unary, bitwise, and logical</span>
-<span>* / %</span>
-<span>Arithmetic</span>
-<span>+ -</span>
-<span>Arithmetic and string</span>
-<span>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</span>
-<span>Bitwise</span>
-<span>&lt; &gt; &lt;= &gt;=</span>
-<span>Comparison</span>
-<span>== != === !==</span>
-<span>Comparison</span>
-<span>&amp; ^ |</span>
-<span>Bitwise</span>
-<span>&amp;&amp;</span>
-<span>Logical</span>
-<span>||</span>
-<span>Logical</span>
-<span>? :</span>
-<span>Ternary</span>
-<span>= += -= *= /= %=</span>
-<span>Assignment</span>
-<span>&lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</span>
-<span>Assignment</span>
-<span>,</span>
-<span>Separator</span>
+<table class="tbl-left">
+    <tr>
+        <td>Operator(s)</td>
+        <td>Type(s)</td>
+    </tr>
+    <tr>
+        <td>() [] .</td>
+        <td>Parentheses, call, and member</td>
+    </tr>
+    <tr>
+        <td>++ --</td>
+        <td>Increment/decrement</td>
+    </tr>
+    <tr>
+        <td>+ - ~ !</td>
+        <td>Unary, bitwise, and logical</td>
+    </tr>
+    <tr>
+        <td>* / %</td>
+        <td>Arithmetic</td>
+    </tr>
+    <tr>
+        <td>+ -</td>
+        <td>Arithmetic and string</td>
+    </tr>
+    <tr>
+        <td>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</td>
+        <td>Bitwise</td>
+    </tr>
+    <tr>
+        <td>&lt; &gt; &lt;= &gt;=</td>
+        <td>Comparison</td>
+    </tr>
+    <tr>
+        <td>== != === !==</td>
+        <td>Comparison</td>
+    </tr>
+    <tr>
+        <td>&amp; ^ |</td>
+        <td>Bitwise</td>
+    </tr>
+    <tr>
+        <td>&amp;&amp;</td>
+        <td>Logical</td>
+    </tr>
+    <tr>
+        <td>||</td>
+        <td>Logical</td>
+    </tr>
+    <tr>
+        <td>? :</td>
+        <td>Ternary</td>
+    </tr>
+    <tr>
+        <td>= += -= *= /= %=</td>
+        <td>Assignment</td>
+    </tr>
+    <tr>
+        <td>&lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</td>
+        <td>Assignment</td>
+    </tr>
+    <tr>
+        <td>,</td>
+        <td>Separator</td>
+    </tr>
+</table>
 <h4>Associativity</h4>
 <span>Most JavaScript operators are processed in order from left to right in an equation.</span>
 <span>But some operators require processing from right to left instead. The direction of</span>
@@ -295,49 +360,70 @@ title: "Expressions and Control Flow in JavaScript"
 <span>ables are all set to the value</span>
 <span>0</span>
 <span>:</span>
-<br/>
-<span>level = score = time = 0</span>
-<br/>
+<pre><code class="javascript">level = score = time = 0</code></pre>
 <span>This multiple assignment is possible only because the rightmost part of the expres‐</span>
 <span>sion is evaluated first and then processing continues in a right-to-left direction.</span>
 <span>Table 14-3</span>
 <span>lists operators and their associativity.</span>
 <br/>
 <span>Table 14-3. Operators and associativity</span>
-<br/>
-<span>Operator</span>
-<span>Description</span>
-<span>Associativity</span>
-<span>++ --</span>
-<span>Increment and decrement</span>
-<span>None</span>
-<span>new</span>
-<span>Create a new object</span>
-<span>Right</span>
-<span>+ - ~ !</span>
-<span>Unary and bitwise</span>
-<span>Right</span>
-<span>?:</span>
-<span>Ternary</span>
-<span>Right</span>
-<span>= *= /= %= += -=</span>
-<span>Assignment</span>
-<span>Right</span>
-<span>&lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</span>
-<span>Assignment</span>
-<span>Right</span>
-<span>,</span>
-<span>Separator</span>
-<span>Left</span>
-<span>+ - * / %</span>
-<span>Arithmetic</span>
-<span>Left</span>
-<span>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</span>
-<span>Bitwise</span>
-<span>Left</span>
-<span>&lt; &lt;= &gt; &gt;= == != === !==</span>
-<span>Arithmetic</span>
-<span>Left</span>
+<table class="tbl-left">
+    <tr>
+        <td>Operator</td>
+        <td>Description</td>
+        <td>Associativity</td>
+    </tr>
+    <tr>
+        <td>++ --</td>
+        <td>Increment and decrement</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>new</td>
+        <td>Create a new object</td>
+        <td>Right</td>
+    </tr>
+    <tr>
+        <td>+ - ~ !</td>
+        <td>Unary and bitwise</td>
+        <td>Right</td>
+    </tr>
+    <tr>
+        <td>?:</td>
+        <td>Ternary</td>
+        <td>Right</td>
+    </tr>
+    <tr>
+        <td>= *= /= %= += -=</td>
+        <td>Assignment</td>
+        <td>Right</td>
+    </tr>
+    <tr>
+        <td>&lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</td>
+        <td>Assignment</td>
+        <td>Right</td>
+    </tr>
+    <tr>
+        <td>,</td>
+        <td>Separator</td>
+        <td>Left</td>
+    </tr>
+    <tr>
+        <td>+ - * / %</td>
+        <td>Arithmetic</td>
+        <td>Left</td>
+    </tr>
+    <tr>
+        <td>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</td>
+        <td>Bitwise</td>
+        <td>Left</td>
+    </tr>
+    <tr>
+        <td>&lt; &lt;= &gt; &gt;= == != === !==</td>
+        <td>Arithmetic</td>
+        <td>Left</td>
+    </tr>
+</table>
 <h4>Relational Operators</h4>
 <span>Relational operators</span>
 <span>test two operands and return a Boolean result of either</span>
@@ -370,12 +456,14 @@ title: "Expressions and Control Flow in JavaScript"
 <span>will fail.</span>
 <br/>
 <span>Example 14-4. Assigning a value and testing for equality</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>month = "July"</span>
-<span>if (month == "October") document.write("It's the Fall")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    month = "July"
+    if (month == "October") document.write("It's the Fall")
+&lt;/script&gt;
+</code>
+</pre>
 <span>If the two operands of an equality expression are of different types, JavaScript will</span>
 <span>convert them to whatever type makes best sense to it. For example, any strings com‐</span>
 <span>posed entirely of numbers will be converted to numbers whenever compared with a</span>
@@ -392,14 +480,16 @@ title: "Expressions and Control Flow in JavaScript"
 <span>ments to output a result.</span>
 <br/>
 <span>Example 14-5. The equality and identity operators</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>a = 3.1415927</span>
-<span>b = "3.1415927"</span>
-<span>if (a == b) document.write("1")</span>
-<span>if (a === b) document.write("2")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    a = 3.1415927
+    b = "3.1415927"
+    if (a == b) document.write("1")
+    if (a === b) document.write("2")
+&lt;/script&gt;
+</code>
+</pre>
 <span>However, if you run the example, you will see that it outputs the number</span>
 <span>1</span>
 <span>, which</span>
@@ -443,25 +533,29 @@ title: "Expressions and Control Flow in JavaScript"
 <br/>
 <span>Example 14-6.</span>
 <span>The four comparison operators</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>a = 7; b = 11</span>
-<span>if (a &gt; b) document.write("a is greater than b&lt;br&gt;")</span>
-<span>if (a &lt; b) document.write("a is less than b&lt;br&gt;")</span>
-<span>if (a &gt;= b) document.write("a is greater than or equal to b&lt;br&gt;")</span>
-<span>if (a &lt;= b) document.write("a is less than or equal to b&lt;br&gt;")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    a = 7; b = 11
+    if (a &gt; b) document.write("a is greater than b&lt;br&gt;")
+    if (a &lt; b) document.write("a is less than b&lt;br&gt;")
+    if (a &gt;= b) document.write("a is greater than or equal to b&lt;br&gt;")
+    if (a &lt;= b) document.write("a is less than or equal to b&lt;br&gt;")
+&lt;/script&gt;
+</code>
+</pre>
 <span>In this example, where</span>
 <span>a</span>
 <span>is 7 and</span>
 <span>b</span>
 <span>is 11, the following is output (because 7 is less than</span>
 <span>11, and also less than or equal to 11):</span>
-<br/>
-<span>a is less than b</span>
-<span>a is less than or equal to b</span>
-<br/>
+<pre>
+<code class="javascript">
+a is less than b
+a is less than or equal to b
+</code>
+</pre>
 <h6>Logical operators</h6>
 <span>Logical operators produce true-or-false results, and are also known as</span>
 <span>Boolean</span>
@@ -471,29 +565,24 @@ title: "Expressions and Control Flow in JavaScript"
 <span>).</span>
 <br/>
 <span>Table 14-4. JavaScript&rsquo;s logical operators</span>
-<br/>
-<span>Logical operator</span>
-<span>Description</span>
-<span>&amp;&amp;</span>
-<span>(and)</span>
-<span>true</span>
-<span>if both operands are</span>
-<span>true</span>
-<span>||</span>
-<span>(or)</span>
-<span>true</span>
-<span>if either operand is</span>
-<span>true</span>
-<span>!</span>
-<span>(not)</span>
-<span>true</span>
-<span>if the operand is</span>
-<span>false</span>
-<span>, or</span>
-<span>false</span>
-<span>if the operand is</span>
-<span>true</span>
-<br/>
+<table class="tbl-left">
+    <tr>
+        <td>Logical operator</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+        <td>&amp;&amp; (and)</td>
+        <td>true if both operands are true</td>
+    </tr>
+    <tr>
+        <td>|| (or)</td>
+        <td>true if either operand is true</td>
+    </tr>
+    <tr>
+        <td>! (not)</td>
+        <td>true if the operand is false , or false if the operand is true</td>
+    </tr>
+</table>
 <span>You can see how these can be used in</span>
 <span>Example 14-7</span>
 <span>, which outputs</span>
@@ -506,14 +595,16 @@ title: "Expressions and Control Flow in JavaScript"
 <br/>
 <span>Example 14-7.</span>
 <span>The logical operators in use</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>a = 1; b = 0</span>
-<span>document.write((a &amp;&amp; b) + "&lt;br&gt;")</span>
-<span>document.write((a || b) + "&lt;br&gt;")</span>
-<span>document.write(( !b ) + "&lt;br&gt;")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    a = 1; b = 0
+    document.write((a &amp;&amp; b) + "&lt;br&gt;")
+    document.write((a || b) + "&lt;br&gt;")
+    document.write(( !b ) + "&lt;br&gt;")
+&lt;/script&gt;
+</code>
+</pre>
 <span>The</span>
 <span>&amp;&amp;</span>
 <span>statement requires both operands to be</span>
@@ -554,11 +645,13 @@ title: "Expressions and Control Flow in JavaScript"
 <span>.</span>
 <br/>
 <span>Example 14-8. A statement using the || operator</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>if (finished == 1 || getnext() == 1) done = 1</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    if (finished == 1 || getnext() == 1) done = 1
+&lt;/script&gt;
+</code>
+</pre>
 <span>If you</span>
 <span>need</span>
 <span>getnext</span>
@@ -571,12 +664,14 @@ title: "Expressions and Control Flow in JavaScript"
 <br/>
 <span>Example 14-9.</span>
 <span>The if...or statement modified to ensure calling of getnext</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>gn = getnext()</span>
-<span>if (finished == 1 OR gn == 1) done = 1;</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    gn = getnext()
+    if (finished == 1 OR gn == 1) done = 1;
+&lt;/script&gt;
+</code>
+</pre>
 <span>In this case, the code in function</span>
 <span>getnext</span>
 <span>will be executed and its return value stored</span>
@@ -599,29 +694,42 @@ title: "Expressions and Control Flow in JavaScript"
 <span>.</span>
 <br/>
 <span>Table 14-5. All possible logical expressions</span>
-<br/>
-<span>Inputs</span>
-<span>Operators and results</span>
-<span>A</span>
-<span>b</span>
-<span>&amp;&amp;</span>
-<span>||</span>
-<span>true</span>
-<span>true</span>
-<span>true</span>
-<span>true</span>
-<span>true</span>
-<span>false</span>
-<span>false</span>
-<span>true</span>
-<span>false</span>
-<span>true</span>
-<span>false</span>
-<span>true</span>
-<span>false</span>
-<span>false</span>
-<span>false</span>
-<span>false</span>
+<table class="tbl-left">
+    <tr>
+        <td colspan="2">Inputs</td>
+        <td colspan="2">Operators and results</td>
+    </tr>
+    <tr>
+        <td>A</td>
+        <td>b</td>
+        <td>&amp;&amp;</td>
+        <td>||</td>
+    </tr>
+    <tr>
+        <td>true</td>
+        <td>true</td>
+        <td>true</td>
+        <td>true</td>
+    </tr>
+    <tr>
+        <td>true</td>
+        <td>false</td>
+        <td>false</td>
+        <td>true</td>
+    </tr>
+    <tr>
+        <td>false</td>
+        <td>true</td>
+        <td>false</td>
+        <td>true</td>
+    </tr>
+    <tr>
+        <td>false</td>
+        <td>false</td>
+        <td>false</td>
+        <td>false</td>
+    </tr>
+</table>
 <h3>The with Statement</h3>
 <span>The</span>
 <span>with</span>
@@ -643,16 +751,18 @@ title: "Expressions and Control Flow in JavaScript"
 <span>by name.</span>
 <br/>
 <span>Example 14-10. Using the with statement</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>string = "The quick brown fox jumps over the lazy dog"</span>
-<span>with (string)</span>
-<span>{</span>
-<span>document.write("The string is " + length + " characters&lt;br&gt;")</span>
-<span>document.write("In upper case it's: " + toUpperCase())</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    string = "The quick brown fox jumps over the lazy dog"
+    with (string)
+    {
+        document.write("The string is " + length + " characters&lt;br&gt;")
+        document.write("In upper case it's: " + toUpperCase())
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>Even though</span>
 <span>string</span>
 <span>is never directly referenced by</span>
@@ -698,22 +808,25 @@ title: "Expressions and Control Flow in JavaScript"
 <span>event.</span>
 <br/>
 <span>Example 14-11. A script employing the onerror event</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>onerror = errorHandler</span>
-<span>document.writ("Welcome to this website") // Deliberate error</span>
-<span>function errorHandler(message, url, line)</span>
-<span>{</span>
-<span>out = "Sorry, an error was encountered.\n\n";</span>
-<span>out += "Error: " + message + "\n";</span>
-<span>out += "URL: " + url + "\n";</span>
-<span>out += "Line: " + line + "\n\n";</span>
-<span>out += "Click OK to continue.\n\n";</span>
-<span>alert(out);</span>
-<span>return true;</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    onerror = errorHandler
+    document.writ("Welcome to this website") // Deliberate error
+    
+    function errorHandler(message, url, line)
+    {
+        out = "Sorry, an error was encountered.\n\n";
+        out += "Error: " + message + "\n";
+        out += "URL: " + url + "\n";
+        out += "Line: " + line + "\n\n";
+        out += "Click OK to continue.\n\n";
+        alert(out);
+        return true;
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>The first line of this script tells the error event to use the new</span>
 <span>errorHandler</span>
 <span>function</span>
@@ -773,18 +886,20 @@ title: "Expressions and Control Flow in JavaScript"
 <span>shows how.</span>
 <br/>
 <span>Example 14-12. Trapping an error with try and catch</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>try</span>
-<span>{</span>
-<span>request = new XMLHTTPRequest()</span>
-<span>}</span>
-<span>catch(err)</span>
-<span>{</span>
-<span>// Use a different method to create an XML HTTP Request object</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    try
+    {
+        request = new XMLHTTPRequest()
+    }
+    catch(err)
+    {
+        // Use a different method to create an XML HTTP Request object
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>I won&rsquo;t go into how we implement the missing object in Internet Explorer here, but</span>
 <span>you can see how the system works. There&rsquo;s also another keyword associated with</span>
 <span>try</span>
@@ -799,11 +914,14 @@ title: "Expressions and Control Flow in JavaScript"
 <span>after a</span>
 <span>catch</span>
 <span>statement:</span>
-<br/>
-<span>finally</span>
-<span>{</span>
-<span>alert("The 'try' clause was encountered")</span>
-<span>}</span>
+<pre>
+<code class="javascript">
+finally
+{
+    alert("The 'try' clause was encountered")
+}
+</code>
+</pre>
 <h3>Conditionals</h3>
 <span>Conditionals alter program flow. They enable you to ask questions about certain</span>
 <span>things and respond to the answers you get in different ways. There are three types of</span>
@@ -825,27 +943,33 @@ title: "Expressions and Control Flow in JavaScript"
 <span>if</span>
 <span>statements require curly braces around them, but as in PHP, you can</span>
 <span>omit the braces for single statements. Therefore, the following statements are valid:</span>
-<br/>
-<span>if (a &gt; 100)</span>
-<span>{</span>
-<span>b=2</span>
-<span>document.write("a is greater than 100")</span>
-<span>}</span>
-<span>if (b == 10) document.write("b is equal to 10")</span>
+<pre>
+<code class="javascript">
+if (a &gt; 100)
+{
+    b=2
+    document.write("a is greater than 100")
+}
+
+if (b == 10) document.write("b is equal to 10")
+</code>
+</pre>
 <h4>The else Statement</h4>
 <span>When a condition has not been met, you can execute an alternative by using an</span>
 <span>else</span>
 <span>statement, like this:</span>
-<br/>
-<span>if (a &gt; 100)</span>
-<span>{</span>
-<span>document.write("a is greater than 100")</span>
-<span>}</span>
-<span>else</span>
-<span>{</span>
-<span>document.write("a is less than or equal to 100")</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+if (a &gt; 100)
+{
+    document.write("a is greater than 100")
+}
+else
+{
+    document.write("a is less than or equal to 100")
+}
+</code>
+</pre>
 <span>Unlike PHP, JavaScript has no</span>
 <span>elseif</span>
 <span>statement, but that&rsquo;s not a problem, because</span>
@@ -856,20 +980,22 @@ title: "Expressions and Control Flow in JavaScript"
 <span>to form the equivalent of an</span>
 <span>elseif</span>
 <span>statement, like this:</span>
-<br/>
-<span>if (a &gt; 100)</span>
-<span>{</span>
-<span>document.write("a is greater than 100")</span>
-<span>}</span>
-<span>else if(a &lt; 100)</span>
-<span>{</span>
-<span>document.write("a is less than 100")</span>
-<span>}</span>
-<span>else</span>
-<span>{</span>
-<span>document.write("a is equal to 100")</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+if (a &gt; 100)
+{
+    document.write("a is greater than 100")
+}
+else if(a &lt; 100)
+{
+    document.write("a is less than 100")
+}
+else
+{
+    document.write("a is equal to 100")
+}
+</code>
+</pre>
 <span>As you can see, you can use another</span>
 <span>else</span>
 <span>after the new</span>
@@ -880,10 +1006,13 @@ title: "Expressions and Control Flow in JavaScript"
 <span>statement, and so on. Although I have shown braces on the</span>
 <span>statements, because each is a single line, the whole previous example could be written</span>
 <span>as follows:</span>
-<br/>
-<span>if (a &gt; 100) document.write("a is greater than 100")</span>
-<span>else if(a &lt; 100) document.write("a is less than 100")</span>
-<span>else document.write("a is equal to 100")</span>
+<pre>
+<code class="javascript">
+if (a &gt; 100) document.write("a is greater than 100")
+else if(a &lt; 100) document.write("a is less than 100")
+else document.write("a is equal to 100")
+</code>
+</pre>
 <h4>The switch Statement</h4>
 <span>The</span>
 <span>switch</span>
@@ -906,15 +1035,17 @@ title: "Expressions and Control Flow in JavaScript"
 <span>.</span>
 <br/>
 <span>Example 14-13. A multiline if...else if... statement</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>if (page == "Home") document.write("You selected Home")</span>
-<span>else if (page == "About") document.write("You selected About")</span>
-<span>else if (page == "News") document.write("You selected News")</span>
-<span>else if (page == "Login") document.write("You selected Login")</span>
-<span>else if (page == "Links") document.write("You selected Links")</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    if (page == "Home") document.write("You selected Home")
+    else if (page == "About") document.write("You selected About")
+    else if (page == "News") document.write("You selected News")
+    else if (page == "Login") document.write("You selected Login")
+    else if (page == "Links") document.write("You selected Links")
+&lt;/script&gt;
+</code>
+</pre>
 <span>But using a</span>
 <span>switch</span>
 <span>construct, the code could look like</span>
@@ -922,38 +1053,34 @@ title: "Expressions and Control Flow in JavaScript"
 <span>.</span>
 <br/>
 <span>Example 14-14. A switch construct</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>switch (page)</span>
-<span>{</span>
-<span>case "Home":</span>
-<span>&nbsp;</span>
-<span>document.write("You selected Home")</span>
-<span>&nbsp;</span>
-<span>break</span>
-<span>case "About":</span>
-<span>&nbsp;</span>
-<span>document.write("You selected About")</span>
-<span>&nbsp;</span>
-<span>break</span>
-<span>case "News":</span>
-<span>&nbsp;</span>
-<span>document.write("You selected News")</span>
-<span>&nbsp;</span>
-<span>break</span>
-<span>case "Login":</span>
-<span>&nbsp;</span>
-<span>document.write("You selected Login")</span>
-<span>&nbsp;</span>
-<span>break</span>
-<span>case "Links":</span>
-<span>&nbsp;</span>
-<span>document.write("You selected Links")</span>
-<span>&nbsp;</span>
-<span>break</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+switch (page)
+{
+    case "Home":
+        document.write("You selected Home")
+        break
+    
+    case "About":
+        document.write("You selected About")
+        break
+    
+    case "News":
+        document.write("You selected News")
+        break
+    
+    case "Login":
+        document.write("You selected Login")
+        break
+    
+    case "Links":
+        document.write("You selected Links")
+        break
+}
+&lt;/script&gt;
+</code>
+</pre>
 <span>The variable</span>
 <span>page</span>
 <span>is mentioned only once at the start of the</span>
@@ -1026,19 +1153,20 @@ title: "Expressions and Control Flow in JavaScript"
 <span>is less than or equal to 5, and prints something either way.</span>
 <br/>
 <span>Example 14-16. Using the ternary operator</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>document.write(</span>
-<span>a &lt;= 5 ?</span>
-<span>"a is less than or equal to 5" :</span>
-<span>"a is greater than 5"</span>
-<span>)</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    document.write(
+        a &lt;= 5 ?
+        "a is less than or equal to 5" :
+        "a is greater than 5"
+    )
+&lt;/script&gt;
+</code>
+</pre>
 <span>The statement has been broken up into several lines for clarity, but you would be</span>
 <span>more likely to use such a statement on a single line, in this manner:</span>
-<br/>
-<span>size = a &lt;= 5 ? "short" : "long"</span>
+<pre><code class="javascript">size = a &lt;= 5 ? "short" : "long"</code></pre>
 <h3>Looping</h3>
 <span>Again, you will find many close similarities between JavaScript and PHP when it</span>
 <span>comes to looping. Both languages support</span>
@@ -1068,24 +1196,28 @@ title: "Expressions and Control Flow in JavaScript"
 <span>shows such a loop.</span>
 <br/>
 <span>Example 14-17. A while loop</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>counter=0</span>
-<span>while (counter &lt; 5)</span>
-<span>{</span>
-<span>document.write("Counter: " + counter + "&lt;br&gt;")</span>
-<span>++counter</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    counter=0
+    while (counter &lt; 5)
+    {
+        document.write("Counter: " + counter + "&lt;br&gt;")
+        ++counter
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>This script outputs the following:</span>
-<br/>
-<span>Counter: 0</span>
-<span>Counter: 1</span>
-<span>Counter: 2</span>
-<span>Counter: 3</span>
-<span>Counter: 4</span>
-<br/>
+<pre>
+<code class="javascript">
+Counter: 0
+Counter: 1
+Counter: 2
+Counter: 3
+Counter: 4
+</code>
+</pre>
 <span>If the variable</span>
 <span>counter</span>
 <span>were not incremented within the loop, it is</span>
@@ -1105,24 +1237,29 @@ title: "Expressions and Control Flow in JavaScript"
 <span>.</span>
 <br/>
 <span>Example 14-18. A do...while loop</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>count = 1</span>
-<span>do</span>
-<span>{</span>
-<span>document.write(count + " times 7 is " + count * 7 + "&lt;br&gt;")</span>
-<span>} while (++count &lt;= 7)</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    count = 1
+    do
+    {
+        document.write(count + " times 7 is " + count * 7 + "&lt;br&gt;")
+    } while (++count &lt;= 7)
+&lt;/script&gt;
+</code>
+</pre>
 <span>As you might expect, this loop outputs the following:</span>
-<br/>
-<span>1 times 7 is 7</span>
-<span>2 times 7 is 14</span>
-<span>3 times 7 is 21</span>
-<span>4 times 7 is 28</span>
-<span>5 times 7 is 35</span>
-<span>6 times 7 is 42</span>
-<span>7 times 7 is 49</span>
+<pre>
+<code class="javascript">
+1 times 7 is 7
+2 times 7 is 14
+3 times 7 is 21
+4 times 7 is 28
+5 times 7 is 35
+6 times 7 is 42
+7 times 7 is 49
+</code>
+</pre>
 <h4>for Loops</h4>
 <span>A</span>
 <span>for</span>
@@ -1167,28 +1304,25 @@ title: "Expressions and Control Flow in JavaScript"
 <span>what the code would look like.</span>
 <br/>
 <span>Example 14-19. Using a for loop</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>for (count = 1 ; count &lt;= 7 ; ++count)</span>
-<span>{</span>
-<span>document.write(count + "times 7 is " + count * 7 + "&lt;br&gt;");</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    for (count = 1 ; count &lt;= 7 ; ++count)
+    {
+        document.write(count + "times 7 is " + count * 7 + "&lt;br&gt;");
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>As in PHP, you can assign multiple variables in the first parameter of a</span>
 <span>for</span>
 <span>loop by</span>
 <span>separating them with a comma, like this:</span>
-<br/>
-<span>for (i = 1, j = 1 ; i &lt; 10 ; i++)</span>
-<br/>
+<pre><code class="javascript">for (i = 1, j = 1 ; i &lt; 10 ; i++)</code></pre>
 <span>Likewise, you can perform multiple modifications in the last parameter, like this:</span>
-<br/>
-<span>for (i = 1 ; i &lt; 10 ; i++, --j)</span>
-<br/>
+<pre><code class="javascript">for (i = 1 ; i &lt; 10 ; i++, --j)</code></pre>
 <span>Or you can do both at the same time:</span>
-<br/>
-<span>for (i = 1, j = 1 ; i &lt; 10 ; i++, --j)</span>
+<pre><code class="javascript">for (i = 1, j = 1 ; i &lt; 10 ; i++, --j)</code></pre>
 <h4>Breaking Out of a Loop</h4>
 <span>The</span>
 <span>break</span>
@@ -1207,26 +1341,26 @@ title: "Expressions and Control Flow in JavaScript"
 <span>command.</span>
 <br/>
 <span>Example 14-20. Using the break command in a for loop</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>haystack = new Array()</span>
-<span>haystack[17] = "Needle"</span>
-<span>for (j = 0 ; j &lt; 20 ; ++j)</span>
-<span>{</span>
-<span>if (haystack[j] == "Needle")</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>document.write("&lt;br&gt;- Found at location " + j)</span>
-<span>break</span>
-<span>}</span>
-<span>else document.write(j + ", ")</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    haystack = new Array()
+    haystack[17] = "Needle"
+    for (j = 0 ; j &lt; 20 ; ++j)
+    {
+        if (haystack[j] == "Needle")
+        {
+            document.write("&lt;br&gt;- Found at location " + j)
+            break
+        }
+        else document.write(j + ", ")
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>This script outputs the following:</span>
-<br/>
-<span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,</span>
-<span>- Found at location 17</span>
+<pre><code class="javascript">0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+- Found at location 17</code></pre>
 <h4>The continue Statement</h4>
 <span>Sometimes you don&rsquo;t want to entirely exit from a loop, but instead wish to skip the</span>
 <span>remaining statements just for this iteration of the loop. In such cases, you can use the</span>
@@ -1236,24 +1370,26 @@ title: "Expressions and Control Flow in JavaScript"
 <span>shows this in use.</span>
 <br/>
 <span>Example 14-21. Using the continue command in a for loop</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>haystack = new Array()</span>
-<span>haystack[4] = "Needle"</span>
-<span>haystack[11] = "Needle"</span>
-<span>haystack[17] = "Needle"</span>
-<span>for (j = 0 ; j &lt; 20 ; ++j)</span>
-<span>{</span>
-<span>if (haystack[j] == "Needle")</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>document.write("&lt;br&gt;- Found at location " + j + "&lt;br&gt;")</span>
-<span>continue</span>
-<span>}</span>
-<span>document.write(j + ", ")</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    haystack = new Array()
+    haystack[4] = "Needle"
+    haystack[11] = "Needle"
+    haystack[17] = "Needle"
+    
+    for (j = 0 ; j &lt; 20 ; ++j)
+    {
+        if (haystack[j] == "Needle")
+        {
+            document.write("&lt;br&gt;- Found at location " + j + "&lt;br&gt;")
+            continue
+        }
+        document.write(j + ", ")
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>Notice how the second</span>
 <span>document.write</span>
 <span>call does not have to be enclosed in an</span>
@@ -1262,14 +1398,17 @@ title: "Expressions and Control Flow in JavaScript"
 <span>continue</span>
 <span>command will skip it if a match has</span>
 <span>been found. The output from this script is as follows:</span>
-<br/>
-<span>0, 1, 2, 3,</span>
-<span>- Found at location 4</span>
-<span>5, 6, 7, 8, 9, 10,</span>
-<span>- Found at location 11</span>
-<span>12, 13, 14, 15, 16,</span>
-<span>- Found at location 17</span>
-<span>18, 19,</span>
+<pre>
+<code class="javascript">
+0, 1, 2, 3,
+- Found at location 4
+5, 6, 7, 8, 9, 10,
+- Found at location 11
+12, 13, 14, 15, 16,
+- Found at location 17
+18, 19,
+</code>
+</pre>
 <h3>Explicit Casting</h3>
 <span>Unlike PHP, JavaScript has no explicit casting of types such as</span>
 <span>(int)</span>
@@ -1282,32 +1421,44 @@ title: "Expressions and Control Flow in JavaScript"
 <span>.</span>
 <br/>
 <span>Table 14-6. JavaScript&rsquo;s type-changing functions</span>
-<br/>
-<span>Change to type</span>
-<span>Function to use</span>
-<span>Int, Integer</span>
-<span>parseInt()</span>
-<span>Bool, Boolean</span>
-<span>Boolean()</span>
-<span>Float, Double, Real</span>
-<span>parseFloat()</span>
-<span>String</span>
-<span>String()</span>
-<span>Array</span>
-<span>split()</span>
-<br/>
+<table class="tbl-left">
+    <tr>
+        <td>Change to type</td>
+        <td>Function to use</td>
+    </tr>
+    <tr>
+        <td>Int, Integer</td>
+        <td>parseInt()</td>
+    </tr>
+    <tr>
+        <td>Bool, Boolean</td>
+        <td>Boolean()</td>
+    </tr>
+    <tr>
+        <td>Float, Double, Real</td>
+        <td>parseFloat()</td>
+    </tr>
+    <tr>
+        <td>String</td>
+        <td>String()</td>
+    </tr>
+    <tr>
+        <td>Array</td>
+        <td>split()</td>
+    </tr>
+</table>
 <span>So, for example, to change a floating-point number to an integer, you could use code</span>
 <span>such as the following (which displays the value</span>
 <span>3</span>
 <span>):</span>
-<br/>
-<span>n = 3.1415927</span>
-<span>i = parseInt(n)</span>
-<span>document.write(i)</span>
-<br/>
+<pre>
+<code class="javascript">
+n = 3.1415927
+i = parseInt(n)
+document.write(i)
+</code>
+</pre>
 <span>Or you can use the compound form:</span>
-<br/>
-<span>document.write(parseInt(3.1415927))</span>
-<br/>
+<pre><code class="javascript">document.write(parseInt(3.1415927))</code></pre>
 <span>That&rsquo;s it for control flow and expressions. The next chapter focuses on the use of</span>
 <span>functions, objects, and arrays in JavaScript.</span>

@@ -1,7 +1,8 @@
 //<pre><code class="javascript"></code></pre>
 <pre>
 <code class="javascript">
-Click me
-The URL is http://mysite.com
+n = 3.1415927
+i = parseInt(n)
+document.write(i)
 </code>
 </pre>
