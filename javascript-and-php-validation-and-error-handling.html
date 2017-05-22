@@ -46,88 +46,58 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>form.</span>
 <br/>
 <span>Example 16-1. A form with JavaScript validation (part 1)</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;An Example Form&lt;/title&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>.signup {</span>
-<span>&nbsp;</span>
-<span>border:1px solid #999999;</span>
-<span>&nbsp;</span>
-<span>font: normal 14px helvetica;</span>
-<span>&nbsp;</span>
-<span>color: #444444;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>function validate(form)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>fail = validateForename(form.forename.value)</span>
-<span>&nbsp;</span>
-<span>fail += validateSurname(form.surname.value)</span>
-<span>&nbsp;</span>
-<span>fail += validateUsername(form.username.value)</span>
-<span>&nbsp;</span>
-<span>fail += validatePassword(form.password.value)</span>
-<span>&nbsp;</span>
-<span>fail += validateAge(form.age.value)</span>
-<span>&nbsp;</span>
-<span>fail += validateEmail(form.email.value)</span>
-<span>&nbsp;</span>
-<span>if (fail == "") return true</span>
-<span>&nbsp;</span>
-<span>else { alert(fail); return false }</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;table border="0" cellpadding="2" cellspacing="5" bgcolor="#eeeeee"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;th colspan="2" align="center"&gt;Signup Form&lt;/th&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;form method="post" action="adduser.php" onsubmit="return validate(this)"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;tr&gt;&lt;td&gt;Forename&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="32" name="forename"&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;tr&gt;&lt;td&gt;Surname&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="32" name="surname"&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;tr&gt;&lt;td&gt;Username&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="16" name="username"&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;tr&gt;&lt;td&gt;Password&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="12" name="password"&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;tr&gt;&lt;td&gt;Age&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="3" name="age"&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;tr&gt;&lt;td&gt;Email&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="64" name="email"&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;tr&gt;&lt;td colspan="2" align="center"&gt;&lt;input type="submit"</span>
-<span>&nbsp;</span>
-<span>value="Signup"&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/form&gt;</span>
-<span>&lt;/table&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;An Example Form&lt;/title&gt;
+        &lt;style&gt;
+        .signup {
+            border:1px solid #999999;
+            font: normal 14px helvetica;
+            color: #444444;
+        }
+        &lt;/style&gt;
+        
+        &lt;script&gt;
+        function validate(form)
+        {
+            fail = validateForename(form.forename.value)
+            fail += validateSurname(form.surname.value)
+            fail += validateUsername(form.username.value)
+            fail += validatePassword(form.password.value)
+            fail += validateAge(form.age.value)
+            fail += validateEmail(form.email.value)
+            
+            if (fail == "") return true
+            else { alert(fail); return false }
+        }
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;table border="0" cellpadding="2" cellspacing="5" bgcolor="#eeeeee"&gt;
+            &lt;th colspan="2" align="center"&gt;Signup Form&lt;/th&gt;
+            &lt;form method="post" action="adduser.php" onsubmit="return validate(this)"&gt;
+                &lt;tr&gt;&lt;td&gt;Forename&lt;/td&gt;
+                &lt;td&gt;&lt;input type="text" maxlength="32" name="forename"&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Surname&lt;/td&gt;
+                &lt;td&gt;&lt;input type="text" maxlength="32" name="surname"&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Username&lt;/td&gt;
+                &lt;td&gt;&lt;input type="text" maxlength="16" name="username"&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Password&lt;/td&gt;
+                &lt;td&gt;&lt;input type="text" maxlength="12" name="password"&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Age&lt;/td&gt;
+                &lt;td&gt;&lt;input type="text" maxlength="3" name="age"&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Email&lt;/td&gt;
+                &lt;td&gt;&lt;input type="text" maxlength="64" name="email"&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td colspan="2" align="center"&gt;&lt;input type="submit" value="Signup"&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;/form&gt;
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>As it stands, this form will display correctly but will not self-validate, because the</span>
 <span>main validation functions have not yet been added. Even so, save it as</span>
 <span>validate.html</span>
@@ -241,55 +211,61 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>.</span>
 <br/>
 <span>Example 16-2. A form with JavaScript validation (part 2)</span>
-<br/>
-<span>function validateForename(field)</span>
-<span>{</span>
-<span>return (field == "") ? "No Forename was entered.\n" : ""</span>
-<span>}</span>
-<span>function validateSurname(field)</span>
-<span>{</span>
-<span>return (field == "") ? "No Surname was entered.\n" : ""</span>
-<span>}</span>
-<span>function validateUsername(field)</span>
-<span>{</span>
-<span>if (field == "") return "No Username was entered.\n"</span>
-<span>else if (field.length &lt; 5)</span>
-<span>return "Usernames must be at least 5 characters.\n"</span>
-<span>else if (/[^a-zA-Z0-9_-]/.test(field))</span>
-<span>return "Only a-z, A-Z, 0-9, - and _ allowed in Usernames.\n"</span>
-<span>return ""</span>
-<span>}</span>
-<span>function validatePassword(field)</span>
-<span>{</span>
-<span>if (field == "") return "No Password was entered.\n"</span>
-<span>else if (field.length &lt; 6)</span>
-<span>return "Passwords must be at least 6 characters.\n"</span>
-<span>else if (!/[a-z]/.test(field) || ! /[A-Z]/.test(field) ||</span>
-<span>&nbsp;</span>
-<span>!/[0-9]/.test(field))</span>
-<span>return "Passwords require one each of a-z, A-Z and 0-9.\n"</span>
-<span>return ""</span>
-<span>}</span>
-<span>function validateAge(field)</span>
-<span>{</span>
-<span>if (isNaN(field)) return "No Age was entered.\n"</span>
-<span>else if (field &lt; 18 || field &gt; 110)</span>
-<span>return "Age must be between 18 and 110.\n"</span>
-<span>return ""</span>
-<span>}</span>
-<span>function validateEmail(field)</span>
-<span>{</span>
-<span>if (field == "") return "No Email was entered.\n"</span>
-<span>else if (!((field.indexOf(".") &gt; 0) &amp;&amp;</span>
-<span>&nbsp;</span>
-<span>(field.indexOf("@") &gt; 0)) ||</span>
-<span>&nbsp;</span>
-<span>/[^a-zA-Z0-9.@_-]/.test(field))</span>
-<span>&nbsp;</span>
-<span>return "The Email address is invalid.\n"</span>
-<span>return ""</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="php">
+function validateForename(field)
+{
+    return (field == "") ? "No Forename was entered.\n" : ""
+}
+
+function validateSurname(field)
+{
+    return (field == "") ? "No Surname was entered.\n" : ""
+}
+
+function validateUsername(field)
+{
+    if (field == "") return "No Username was entered.\n"
+    else if (field.length &lt; 5)
+        return "Usernames must be at least 5 characters.\n"
+    else if (/[^a-zA-Z0-9_-]/.test(field))
+        return "Only a-z, A-Z, 0-9, - and _ allowed in Usernames.\n"
+    
+    return ""
+}
+
+function validatePassword(field)
+{
+    if (field == "") return "No Password was entered.\n"
+    else if (field.length &lt; 6)
+        return "Passwords must be at least 6 characters.\n"
+    else if (!/[a-z]/.test(field) || ! /[A-Z]/.test(field) || !/[0-9]/.test(field))
+        return "Passwords require one each of a-z, A-Z and 0-9.\n"
+    
+    return ""
+}
+
+function validateAge(field)
+{
+    if (isNaN(field)) return "No Age was entered.\n"
+    else if (field &lt; 18 || field &gt; 110)
+        return "Age must be between 18 and 110.\n"
+    
+    return ""
+}
+
+function validateEmail(field)
+{
+    if (field == "") return "No Email was entered.\n"
+    else if (!((field.indexOf(".") &gt; 0) &amp;&amp;
+        (field.indexOf("@") &gt; 0)) ||
+        /[^a-zA-Z0-9.@_-]/.test(field))
+        return "The Email address is invalid.\n"
+    
+    return ""
+}
+</code>
+</pre>
 <span>We&rsquo;ll go through each of these functions in turn, starting with</span>
 <span>validateForename</span>
 <span>, so</span>
@@ -443,9 +419,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>Example 16-1</span>
 <span>,</span>
 <span>using the following statement:</span>
-<br/>
-<span>&lt;script src="validate_functions.js"&gt;&lt;/script&gt;</span>
-<br/>
+<pre><code class="php">&lt;script src="validate_functions.js"&gt;&lt;/script&gt;</code></pre>
 <h3>Regular Expressions</h3>
 <span>Let&rsquo;s look a little more closely at the pattern matching we have been doing. We&rsquo;ve</span>
 <span>achieved it using</span>
@@ -471,7 +445,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>instance, someone may have inserted extra spaces to right-justify lines), you could</span>
 <span>have to search for a line such as this:</span>
 <br/>
-<span>The difficulty of classifying Le Guin's works</span>
+<span class="t30">The difficulty of classifying Le Guin's works</span>
 <br/>
 <span>So you need to match</span>
 <span>&nbsp;LeGuin</span>
@@ -482,7 +456,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>&nbsp;separated by any number of</span>
 <span>spaces. The solution is to follow a space with an asterisk:</span>
 <br/>
-<span>/Le *Guin/</span>
+<span class="t30">/Le *Guin/</span>
 <br/>
 <span>There&rsquo;s a lot more than the name</span>
 <span>Le Guin</span>
@@ -501,7 +475,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>), because it requires at least one of the preceding characters to be</span>
 <span>present:</span>
 <br/>
-<span>/Le +Guin/</span>
+<span class="t30">/Le +Guin/</span>
 <h4>Fuzzy Character Matching</h4>
 <span>The dot (</span>
 <span>.</span>
@@ -513,7 +487,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>. A</span>
 <span>simple way to do so is shown here:</span>
 <br/>
-<span>/&lt;.*&gt;/</span>
+<span class="t30">/&lt;.*&gt;/</span>
 <br/>
 <span>The dot matches any character, and the</span>
 <span>*</span>
@@ -538,7 +512,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>*</span>
 <span>, like this:</span>
 <br/>
-<span>/&lt;.+&gt;/</span>
+<span class="t30">/&lt;.+&gt;/</span>
 <br/>
 <span>The plus sign expands the dot to match one or more characters, saying, &ldquo;Match any‐</span>
 <span>thing that lies between</span>
@@ -555,14 +529,14 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>and</span>
 <span>&lt;/h1&gt;</span>
 <span>, and tags with attributes, such as this:</span>
-<span>&lt;a href="www.mozilla.org"&gt;</span>
+<span class="t30">&lt;a href="www.mozilla.org"&gt;</span>
 <br/>
 <span>Unfortunately, the plus sign keeps on matching up to the last</span>
 <span>&gt;</span>
 <span>on the line, so you</span>
 <span>might end up with this:</span>
 <br/>
-<span>&lt;h1&gt;&lt;b&gt;Introduction&lt;/b&gt;&lt;/h1&gt;</span>
+<span class="t30">&lt;h1&gt;&lt;b&gt;Introduction&lt;/b&gt;&lt;/h1&gt;</span>
 <br/>
 <span>A lot more than one tag! I&rsquo;ll show a better solution later in this section.</span>
 <br/>
@@ -594,7 +568,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>. The regu‐</span>
 <span>lar expression is as follows:</span>
 <br/>
-<span>/5\.0/</span>
+<span class="t30">/5\.0/</span>
 <br/>
 <span>The backslash can escape any metacharacter, including another backslash (in case</span>
 <span>you&rsquo;re trying to match a backslash in text). However, to make things a bit confusing,</span>
@@ -614,23 +588,23 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>, and so forth&mdash;any number of zeros is allowed. You can do this</span>
 <span>by adding an asterisk, as you&rsquo;ve seen:</span>
 <br/>
-<span>/5\.0*/</span>
+<span class="t30">/5\.0*/</span>
 <h4>Grouping Through Parentheses</h4>
 <span>Suppose you want to match powers of increments of units, such as kilo, mega, giga,</span>
 <span>and tera. In other words, you want all the following to match:</span>
 <br/>
-<span>1,000</span>
-<span>1,000,000</span>
-<span>1,000,000,000</span>
-<span>1,000,000,000,000</span>
-<span>...</span>
+<span class="t30">1,000</span>
+<span class="t30">1,000,000</span>
+<span class="t30">1,000,000,000</span>
+<span class="t30">1,000,000,000,000</span>
+<span class="t30">...</span>
 <br/>
 <span>The plus sign works here, too, but you need to group the string</span>
 <span>,000</span>
 <span>so the plus sign</span>
 <span>matches the whole thing. The regular expression is as follows:</span>
 <br/>
-<span>/1(,000)+ /</span>
+<span class="t30">/1(,000)+ /</span>
 <br/>
 <span>The parentheses mean &ldquo;treat this as a group when you apply something such as a plus</span>
 <span>sign.&rdquo;</span>
@@ -669,7 +643,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>,</span>
 <span>you could specify the following:</span>
 <br/>
-<span>/gr[ae]y/</span>
+<span class="t30">/gr[ae]y/</span>
 <br/>
 <span>After the</span>
 <span>gr</span>
@@ -688,14 +662,14 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>) to indicate a range. One very common</span>
 <span>task is matching a single digit, which you can do with a range as follows:</span>
 <br/>
-<span>/[0-9]/</span>
+<span class="t30">/[0-9]/</span>
 <br/>
 <span>Digits are such a common item in regular expressions that a single character is pro‐</span>
 <span>vided to represent them:</span>
 <span>\d</span>
 <span>. You can use it in place of the bracketed regular expres‐</span>
 <span>sion to match a digit:</span>
-<span>/\d/</span>
+<span class="t30">/\d/</span>
 <h4>Negation</h4>
 <span>One other important feature of the square brackets is</span>
 <span>&nbsp;negation</span>
@@ -712,7 +686,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>(The name of the company officially contains an exclamation point!) You could do it</span>
 <span>as follows:</span>
 <br/>
-<span>/Yahoo[^!]/</span>
+<span class="t30">/Yahoo[^!]/</span>
 <br/>
 <span>The character class consists of a single character&mdash;an exclamation point&mdash;but it is</span>
 <span>inverted by the preceding</span>
@@ -737,11 +711,11 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>as well as</span>
 <span>tags with attributes such as this:</span>
 <br/>
-<span>&lt;a href="www.mozilla.org"&gt;</span>
+<span class="t30">&lt;a href="www.mozilla.org"&gt;</span>
 <br/>
 <span>Here is one solution:</span>
 <br/>
-<span>/&lt;[^&gt;]+&gt;/</span>
+<span class="t30">/&lt;[^&gt;]+&gt;/</span>
 <br/>
 <span>That regular expression may look like I just dropped my teacup on the keyboard, but</span>
 <span>it is perfectly valid and very useful. Let&rsquo;s break it apart.</span>
@@ -786,7 +760,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>validateUsername</span>
 <span>function is used:</span>
 <br/>
-<span>/[^a-zA-Z0-9_-]/</span>
+<span class="t30">/[^a-zA-Z0-9_-]/</span>
 <br/>
 <span>Figure 16-4</span>
 <span>shows the various elements.</span>
@@ -847,140 +821,122 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>the regular expression? What if you want a line that has &ldquo;Le Guin&rdquo; and nothing else?</span>
 <span>We can do that by amending the earlier regular expression to anchor the two ends:</span>
 <br/>
-<span>/^Le *Guin$/</span>
+<span class="t30">/^Le *Guin$/</span>
 <h4>Summary of Metacharacters</h4>
 <span>Table 16-1</span>
 <span>shows the metacharacters available in regular expressions.</span>
 <br/>
 <span>Table 16-1. Regular expression metacharacters</span>
-<br/>
-<span>Metacharacters</span>
-<span>Description</span>
-<span>/</span>
-<span>Begins and ends the regular expression</span>
-<span>.</span>
-<span>Matches any single character except the newline</span>
-<span>element</span>
-<span>*</span>
-<span>Matches</span>
-<span>element</span>
-<span>zero or more times</span>
-<span>element</span>
-<span>+</span>
-<span>Matches</span>
-<span>element</span>
-<span>one or more times</span>
-<span>element</span>
-<span>?</span>
-<span>Matches</span>
-<span>element</span>
-<span>zero or one times</span>
-<span>[</span>
-<span>characters</span>
-<span>]</span>
-<span>Matches a character out of those contained within the brackets</span>
-<span>[^</span>
-<span>characters</span>
-<span>]</span>
-<span>Matches a single character that is not contained within the brackets</span>
-<span>(</span>
-<span>regex</span>
-<span>)</span>
-<span>Treats the</span>
-<span>regex</span>
-<span>as a group for counting or a following</span>
-<span>*</span>
-<span>,</span>
-<span>+</span>
-<span>, or</span>
-<span>?</span>
-<span>left</span>
-<span>|</span>
-<span>right</span>
-<span>Matches either</span>
-<span>left</span>
-<span>or</span>
-<span>right</span>
-<span>[</span>
-<span>l</span>
-<span>-</span>
-<span>r</span>
-<span>]</span>
-<span>Matches a range of characters between</span>
-<span>l</span>
-<span>and</span>
-<span>r</span>
-<span>^</span>
-<span>Requires match to be at the string&rsquo;s start</span>
-<span>$</span>
-<span>Requires match to be at the string&rsquo;s end</span>
-<span>\b</span>
-<span>Matches a word boundary</span>
-<span>\B</span>
-<span>Matches where there is not a word boundary</span>
-<span>\d</span>
-<span>Matches a single digit</span>
-<span>\D</span>
-<span>Matches a single nondigit</span>
-<span>\n</span>
-<span>Matches a newline character</span>
-<span>\s</span>
-<span>Matches a whitespace character</span>
-<span>\S</span>
-<span>Matches a nonwhitespace character</span>
-<span>\t</span>
-<span>Matches a tab character</span>
-<span>\w</span>
-<span>Matches a word character (</span>
-<span>a-z</span>
-<span>,</span>
-<span>A-Z</span>
-<span>,</span>
-<span>0-9</span>
-<span>, and</span>
-<span>_</span>
-<span>)</span>
-<span>\W</span>
-<span>Matches a nonword character (anything but</span>
-<span>a-z</span>
-<span>,</span>
-<span>A-Z</span>
-<span>,</span>
-<span>0-9</span>
-<span>, and</span>
-<span>_</span>
-<span>)</span>
-<span>\</span>
-<span>x</span>
-<span>x</span>
-<span>(useful if</span>
-<span>x</span>
-<span>is a metacharacter, but you really want</span>
-<span>x</span>
-<span>)</span>
-<span>{</span>
-<span>n</span>
-<span>}</span>
-<span>Matches exactly</span>
-<span>n</span>
-<span>times</span>
-<span>{</span>
-<span>n</span>
-<span>,}</span>
-<span>Matches</span>
-<span>n</span>
-<span>times or more</span>
-<span>{</span>
-<span>min</span>
-<span>,</span>
-<span>max</span>
-<span>}</span>
-<span>Matches at least</span>
-<span>min</span>
-<span>and at most</span>
-<span>max</span>
-<span>times</span>
-<br/>
+<table class="tbl-left">
+    <tr>
+        <td>Metacharacters</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+        <td>/</td>
+        <td>Begins and ends the regular expression</td>
+    </tr>
+    <tr>
+        <td>.</td>
+        <td>Matches any single character except the newline</td>
+    </tr>
+    <tr>
+        <td>element*</td>
+        <td>Matches element zero or more times</td>
+    </tr>
+    <tr>
+        <td>element+</td>
+        <td>Matches element one or more times</td>
+    </tr>
+    <tr>
+        <td>element?</td>
+        <td>Matches element zero or one times</td>
+    </tr>
+    <tr>
+        <td>[characters]</td>
+        <td>Matches a character out of those contained within the brackets</td>
+    </tr>
+    <tr>
+        <td>[^characters]</td>
+        <td>Matches a single character that is not contained within the brackets</td>
+    </tr>
+    <tr>
+        <td>(regex)</td>
+        <td>Treats the regex as a group for counting or a following *,+, or?</td>
+    </tr>
+    <tr>
+        <td>left|right</td>
+        <td>Matches either left or right</td>
+    </tr>
+    <tr>
+        <td>[l-r]</td>
+        <td>Matches a range of characters between l and r</td>
+    </tr>
+    <tr>
+        <td>^</td>
+        <td>Requires match to be at the string&rsquo;s start</td>
+    </tr>
+    <tr>
+        <td>$</td>
+        <td>Requires match to be at the string&rsquo;s end</td>
+    </tr>
+    <tr>
+        <td>\b</td>
+        <td>Matches a word boundary</td>
+    </tr>
+    <tr>
+        <td>\B</td>
+        <td>Matches where there is not a word boundary</td>
+    </tr>
+    <tr>
+        <td>\d</td>
+        <td>Matches a single digit</td>
+    </tr>
+    <tr>
+        <td>\D</td>
+        <td>Matches a single nondigit</td>
+    </tr>
+    <tr>
+        <td>\n</td>
+        <td>Matches a newline character</td>
+    </tr>
+    <tr>
+        <td>\s</td>
+        <td>Matches a whitespace character</td>
+    </tr>
+    <tr>
+        <td>\S</td>
+        <td>Matches a nonwhitespace character</td>
+    </tr>
+    <tr>
+        <td>\t</td>
+        <td>Matches a tab character</td>
+    </tr>
+    <tr>
+        <td>\w</td>
+        <td>Matches a word character (a-z,A-Z,0-9, and_)</td>
+    </tr>
+    <tr>
+        <td>\W</td>
+        <td>Matches a nonword character (anything but a-z,A-Z,0-9, and_)</td>
+    </tr>
+    <tr>
+        <td>\x</td>
+        <td>x (useful if x is a metacharacter, but you really want x)</td>
+    </tr>
+    <tr>
+        <td>{n}</td>
+        <td>Matches exactly n times</td>
+    </tr>
+    <tr>
+        <td>{n,}</td>
+        <td>Matches n times or more</td>
+    </tr>
+    <tr>
+        <td>{min,max}</td>
+        <td>Matches at least min and at most max times</td>
+    </tr>
+</table>
 <span>Provided with this table, and looking again at the expression</span>
 <span>/[^a-zA-Z0-9_]/</span>
 <span>, you</span>
@@ -1027,114 +983,147 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>and the patterns they match.</span>
 <br/>
 <span>Table 16-2. Some example regular expressions</span>
-<br/>
-<span>Example</span>
-<span>Matches</span>
-<span>r</span>
-<span>The first</span>
-<span>r</span>
-<span>in</span>
-<span>The quick brown</span>
-<span>rec[ei][ei]ve</span>
-<span>Either of</span>
-<span>receive</span>
-<span>or</span>
-<span>recieve</span>
-<span>(but also</span>
-<span>receeve</span>
-<span>or</span>
-<span>reciive</span>
-<span>)</span>
-<span>rec[ei]{2}ve</span>
-<span>Either of</span>
-<span>receive</span>
-<span>or</span>
-<span>recieve</span>
-<span>(but also</span>
-<span>receeve</span>
-<span>or</span>
-<span>reciive</span>
-<span>)</span>
-<span>rec(ei|ie)ve</span>
-<span>Either of</span>
-<span>receive</span>
-<span>or</span>
-<span>recieve</span>
-<span>(but not</span>
-<span>receeve</span>
-<span>or</span>
-<span>reciive</span>
-<span>)</span>
-<span>cat</span>
-<span>The word</span>
-<span>cat</span>
-<span>in</span>
-<span>I like cats and dogs</span>
-<span>cat|dog</span>
-<span>Either of the words</span>
-<span>cat</span>
-<span>or</span>
-<span>dog</span>
-<span>in</span>
-<span>I like cats and dogs</span>
-<span>\.</span>
-<span>.</span>
-<span>(the</span>
-<span>\</span>
-<span>is necessary because</span>
-<span>.</span>
-<span>is a metacharacter)</span>
-<span>5\.0*</span>
-<span>5.</span>
-<span>,</span>
-<span>5.0</span>
-<span>,</span>
-<span>5.00</span>
-<span>,</span>
-<span>5.000</span>
-<span>, etc.</span>
-<span>[a-f]</span>
-<span>Any of the characters</span>
-<span>a</span>
-<span>,</span>
-<span>b</span>
-<span>,</span>
-<span>c</span>
-<span>,</span>
-<span>d</span>
-<span>,</span>
-<span>e</span>
-<span>or</span>
-<span>f</span>
-<span>cats$</span>
-<span>Only the final</span>
-<span>cats</span>
-<span>in</span>
-<span>My cats are friendly cats</span>
-<span>^my</span>
-<span>Only the first</span>
-<span>my</span>
-<span>in</span>
-<span>my cats are my pets</span>
-<span>\d{2,3}</span>
-<span>Any two- or three-digit number (</span>
-<span>00</span>
-<span>through</span>
-<span>999</span>
-<span>)</span>
-<span>7(,000)+</span>
-<span>7,000</span>
-<span>;</span>
-<span>7,000,000</span>
-<span>;</span>
-<span>7,000,000,000</span>
-<span>;</span>
-<span>7,000,000,000,000</span>
-<span>; etc.</span>
-<span>[\w]+</span>
-<span>Any word of one or more characters</span>
-<span>[\w]{5}</span>
-<span>Any five-letter word</span>
+<table class="tbl-left">
+    <tr>
+        <td>Example</td>
+        <td>Matches</td>
+    </tr>
+    <tr>
+        <td>r</td>
+        <td>The first
+        r
+        in
+        The quick brown</td>
+    </tr>
+    <tr>
+        <td>rec[ei][ei]ve</td>
+        <td>Either of
+        receive
+        or
+        recieve
+        (but also
+        receeve
+        or
+        reciive
+        )</td>
+    </tr>
+    <tr>
+        <td>rec[ei]{2}ve</td>
+        <td>Either of
+        receive
+        or
+        recieve
+        (but also
+        receeve
+        or
+        reciive
+        )</td>
+    </tr>
+    <tr>
+        <td>rec(ei|ie)ve</td>
+        <td>Either of
+        receive
+        or
+        recieve
+        (but not
+        receeve
+        or
+        reciive
+        )</td>
+    </tr>
+    <tr>
+        <td>cat</td>
+        <td>The word
+        cat
+        in
+        I like cats and dogs</td>
+    </tr>
+    <tr>
+        <td>cat|dog</td>
+        <td>Either of the words
+        cat
+        or
+        dog
+        in
+        I like cats and dogs</td>
+    </tr>
+    <tr>
+        <td>\.</td>
+        <td>.
+        (the
+        \
+        is necessary because
+        .
+        is a metacharacter)</td>
+    </tr>
+    <tr>
+        <td>5\.0*</td>
+        <td>5.
+        ,
+        5.0
+        ,
+        5.00
+        ,
+        5.000
+        , etc.</td>
+    </tr>
+    <tr>
+        <td>[a-f]</td>
+        <td>Any of the characters
+        a
+        ,
+        b
+        ,
+        c
+        ,
+        d
+        ,
+        e
+        or
+        f</td>
+    </tr>
+    <tr>
+        <td>cats$</td>
+        <td>Only the final
+        cats
+        in
+        My cats are friendly cats</td>
+    </tr>
+    <tr>
+        <td>^my</td>
+        <td>Only the first
+        my
+        in
+        my cats are my pets</td>
+    </tr>
+    <tr>
+        <td>\d{2,3}</td>
+        <td>Any two- or three-digit number (
+        00
+        through
+        999
+        )</td>
+    </tr>
+    <tr>
+        <td>7(,000)+</td>
+        <td>7,000
+        ;
+        7,000,000
+        ;
+        7,000,000,000
+        ;
+        7,000,000,000,000
+        ; etc.</td>
+    </tr>
+    <tr>
+        <td>[\w]+</td>
+        <td>Any word of one or more characters</td>
+    </tr>
+    <tr>
+        <td>[\w]{5}</td>
+        <td>Any five-letter word</td>
+    </tr>
+</table>
 <h4>General Modifiers</h4>
 <span>Some additional modifiers are available for regular expressions:</span>
 <br/>
@@ -1213,9 +1202,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>know that the word</span>
 <span>cats</span>
 <span>appears at least once somewhere within the string:</span>
-<br/>
-<span>document.write(/cats/i.test("Cats are funny. I like cats."))</span>
-<br/>
+<pre><code class="php">document.write(/cats/i.test("Cats are funny. I like cats."))</code></pre>
 <span>But the following statement replaces both occurrences of the word</span>
 <span>cats</span>
 <span>with the word</span>
@@ -1228,9 +1215,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>) to find the capitalized</span>
 <span>Cats</span>
 <span>:</span>
-<br/>
-<span>document.write("Cats are friendly. I like cats.".replace(/cats/gi,"dogs"))</span>
-<br/>
+<pre><code class="php">document.write("Cats are friendly. I like cats.".replace(/cats/gi,"dogs"))</code></pre>
 <span>If you try out the statement, you&rsquo;ll see a limitation of</span>
 <span>replace</span>
 <span>: because it replaces text</span>
@@ -1257,9 +1242,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>of upper- and lowercase, you could use</span>
 <span>preg_match</span>
 <span>like this:</span>
-<br/>
-<span>$n = preg_match("/cats/i", "Cats are crazy. I like cats.");</span>
-<br/>
+<pre><code class="php">$n = preg_match("/cats/i", "Cats are crazy. I like cats.");</code></pre>
 <span>Because PHP uses</span>
 <span>1</span>
 <span>for</span>
@@ -1277,10 +1260,12 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>preg_match</span>
 <span>is actually a good deal more powerful and complicated, because it takes a</span>
 <span>third argument that shows what text matched:</span>
-<br/>
-<span>$n = preg_match("/cats/i", "Cats are curious. I like cats.", $match);</span>
-<span>echo "$n Matches: $match[0]";</span>
-<br/>
+<pre>
+<code class="php">
+$n = preg_match("/cats/i", "Cats are curious. I like cats.", $match);
+echo "$n Matches: $match[0]";
+</code>
+</pre>
 <span>The third argument is an array (here, given the name</span>
 <span>$match</span>
 <span>). The function puts the</span>
@@ -1295,11 +1280,14 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>If you wish to locate all matches, you use the</span>
 <span>preg_match_all</span>
 <span>function, like this:</span>
-<br/>
-<span>$n = preg_match_all("/cats/i", "Cats are strange. I like cats.", $match);</span>
-<span>echo "$n Matches: ";</span>
-<span>for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";</span>
-<br/>
+<pre>
+<code class="php">
+$n = preg_match_all("/cats/i", "Cats are strange. I like cats.", $match);
+echo "$n Matches: ";
+
+for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";
+</code>
+</pre>
 <span>As before,</span>
 <span>$match</span>
 <span>is passed to the function and the element</span>
@@ -1319,9 +1307,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>dogs</span>
 <span>, regardless</span>
 <span>of case:</span>
-<br/>
-<span>echo preg_replace("/cats/i", "dogs", "Cats are furry. I like cats.");</span>
-<br/>
+<pre><code class="php">echo preg_replace("/cats/i", "dogs", "Cats are furry. I like cats.");</code></pre>
 <span>The subject of regular expressions is a large one, and entire books</span>
 <span>have been written about it. If you would like further information, I</span>
 <span>suggest the</span>
@@ -1362,258 +1348,211 @@ title: "JavaScript and PHP Validation and Error Handling"
 <br/>
 <span>Example 16-3.</span>
 <span>The adduser.php program</span>
-<br/>
-<span>&lt;?php // adduser.php</span>
-<span>// The PHP code</span>
-<span>$forename = $surname = $username = $password = $age = $email = "";</span>
-<span>if (isset($_POST['forename']))</span>
-<span>$forename = fix_string($_POST['forename']);</span>
-<span>if (isset($_POST['surname']))</span>
-<span>$surname = fix_string($_POST['surname']);</span>
-<span>if (isset($_POST['username']))</span>
-<span>$username = fix_string($_POST['username']);</span>
-<span>if (isset($_POST['password']))</span>
-<span>$password = fix_string($_POST['password']);</span>
-<span>if (isset($_POST['age']))</span>
-<span>$age = fix_string($_POST['age']);</span>
-<span>if (isset($_POST['email']))</span>
-<span>$email = fix_string($_POST['email']);</span>
-<span>$fail = validate_forename($forename);</span>
-<span>$fail .= validate_surname($surname);</span>
-<span>$fail .= validate_username($username);</span>
-<span>$fail .= validate_password($password);</span>
-<span>$fail .= validate_age($age);</span>
-<span>$fail .= validate_email($email);</span>
-<span>echo "&lt;!DOCTYPE html&gt;\n&lt;html&gt;&lt;head&gt;&lt;title&gt;An Example Form&lt;/title&gt;";</span>
-<span>if ($fail == "")</span>
-<span>{</span>
-<span>echo "&lt;/head&gt;&lt;body&gt;Form data successfully validated:</span>
-<span>$forename, $surname, $username, $password, $age, $email.&lt;/body&gt;&lt;/html&gt;";</span>
-<span>// This is where you would enter the posted fields into a database,</span>
-<span>// preferably using hash encryption for the password.</span>
-<span>exit;</span>
-<span>}</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&lt;!-- The HTML/JavaScript section --&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>.signup {</span>
-<span>&nbsp;</span>
-<span>border: 1px solid #999999;</span>
-<span>&nbsp;</span>
-<span>font: normal 14px helvetica; color:#444444;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>function validate(form)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>fail = validateForename(form.forename.value)</span>
-<span>&nbsp;</span>
-<span>fail += validateSurname(form.surname.value)</span>
-<span>&nbsp;</span>
-<span>fail += validateUsername(form.username.value)</span>
-<span>&nbsp;</span>
-<span>fail += validatePassword(form.password.value)</span>
-<span>&nbsp;</span>
-<span>fail += validateAge(form.age.value)</span>
-<span>&nbsp;</span>
-<span>fail += validateEmail(form.email.value)</span>
-<span>&nbsp;</span>
-<span>if (fail == "") return true</span>
-<span>&nbsp;</span>
-<span>else { alert(fail); return false }</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>function validateForename(field)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>return (field == "") ? "No Forename was entered.\n" : ""</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>function validateSurname(field)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>return (field == "") ? "No Surname was entered.\n" : ""</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>function validateUsername(field)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (field == "") return "No Username was entered.\n"</span>
-<span>&nbsp;</span>
-<span>else if (field.length &lt; 5)</span>
-<span>&nbsp;</span>
-<span>return "Usernames must be at least 5 characters.\n"</span>
-<span>&nbsp;</span>
-<span>else if (/[^a-zA-Z0-9_-]/.test(field))</span>
-<span>&nbsp;</span>
-<span>return "Only a-z, A-Z, 0-9, - and _ allowed in Usernames.\n"</span>
-<span>&nbsp;</span>
-<span>return ""</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>function validatePassword(field)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (field == "") return "No Password was entered.\n"</span>
-<span>&nbsp;</span>
-<span>else if (field.length &lt; 6)</span>
-<span>&nbsp;</span>
-<span>return "Passwords must be at least 6 characters.\n"</span>
-<span>&nbsp;</span>
-<span>else if (!/[a-z]/.test(field) || ! /[A-Z]/.test(field) ||</span>
-<span>&nbsp;</span>
-<span>!/[0-9]/.test(field))</span>
-<span>&nbsp;</span>
-<span>return "Passwords require one each of a-z, A-Z and 0-9.\n"</span>
-<span>&nbsp;</span>
-<span>return ""</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>function validateAge(field)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (isNaN(field)) return "No Age was entered.\n"</span>
-<span>&nbsp;</span>
-<span>else if (field &lt; 18 || field &gt; 110)</span>
-<span>&nbsp;</span>
-<span>return "Age must be between 18 and 110.\n"</span>
-<span>&nbsp;</span>
-<span>return ""</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>function validateEmail(field)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (field == "") return "No Email was entered.\n"</span>
-<span>&nbsp;</span>
-<span>else if (!((field.indexOf(".") &gt; 0) &amp;&amp;</span>
-<span>&nbsp;</span>
-<span>(field.indexOf("@") &gt; 0)) ||</span>
-<span>&nbsp;</span>
-<span>/[^a-zA-Z0-9.@_-]/.test(field))</span>
-<span>&nbsp;</span>
-<span>return "The Email address is invalid.\n"</span>
-<span>&nbsp;</span>
-<span>return ""</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;table border="0" cellpadding="2" cellspacing="5" bgcolor="#eeeeee"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;th colspan="2" align="center"&gt;Signup Form&lt;/th&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;tr&gt;&lt;td colspan="2"&gt;Sorry, the following errors were found&lt;br&gt;</span>
-<span>&nbsp;</span>
-<span>in your form: &lt;p&gt;&lt;font color=red size=1&gt;&lt;i&gt;$fail&lt;/i&gt;&lt;/font&gt;&lt;/p&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/td&gt;&lt;/tr&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;form method="post" action="adduser.php" onSubmit="return validate(this)"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;tr&gt;&lt;td&gt;Forename&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="32" name="forename" value="$forename"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Surname&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="32" name="surname" value="$surname"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Username&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="16" name="username" value="$username"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Password&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="12" name="password" value="$password"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Age&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="3" name="age" value="$age"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Email&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;&lt;input type="text" maxlength="64" name="email" value="$email"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2" align="center"&gt;&lt;input type="submit"</span>
-<span>&nbsp;</span>
-<span>value="Signup"&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/form&gt;</span>
-<span>&lt;/table&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<span>_END;</span>
-<span>// The PHP functions</span>
-<span>function validate_forename($field)</span>
-<span>{</span>
-<span>return ($field == "") ? "No Forename was entered&lt;br&gt;": "";</span>
-<span>}</span>
-<span>function validate_surname($field)</span>
-<span>{</span>
-<span>return($field == "") ? "No Surname was entered&lt;br&gt;" : "";</span>
-<span>}</span>
-<span>function validate_username($field)</span>
-<span>{</span>
-<span>if ($field == "") return "No Username was entered&lt;br&gt;";</span>
-<span>else if (strlen($field) &lt; 5)</span>
-<span>return "Usernames must be at least 5 characters&lt;br&gt;";</span>
-<span>else if (preg_match("/[^a-zA-Z0-9_-]/", $field))</span>
-<span>return "Only letters, numbers, - and _ in usernames&lt;br&gt;";</span>
-<span>return "";</span>
-<span>}</span>
-<span>function validate_password($field)</span>
-<span>{</span>
-<span>if ($field == "") return "No Password was entered&lt;br&gt;";</span>
-<span>else if (strlen($field) &lt; 6)</span>
-<span>return "Passwords must be at least 6 characters&lt;br&gt;";</span>
-<span>else if (!preg_match("/[a-z]/", $field) ||</span>
-<span>!preg_match("/[A-Z]/", $field) ||</span>
-<span>!preg_match("/[0-9]/", $field))</span>
-<span>return "Passwords require 1 each of a-z, A-Z and 0-9&lt;br&gt;";</span>
-<span>return "";</span>
-<span>}</span>
-<span>function validate_age($field)</span>
-<span>{</span>
-<span>if ($field == "") return "No Age was entered&lt;br&gt;";</span>
-<span>else if ($field &lt; 18 || $field &gt; 110)</span>
-<span>return "Age must be between 18 and 110&lt;br&gt;";</span>
-<span>return "";</span>
-<span>}</span>
-<span>function validate_email($field)</span>
-<span>{</span>
-<span>if ($field == "") return "No Email was entered&lt;br&gt;";</span>
-<span>else if (!((strpos($field, ".") &gt; 0) &amp;&amp;</span>
-<span>(strpos($field, "@") &gt; 0)) ||</span>
-<span>preg_match("/[^a-zA-Z0-9.@_-]/", $field))</span>
-<span>return "The Email address is invalid&lt;br&gt;";</span>
-<span>return "";</span>
-<span>}</span>
-<span>function fix_string($string)</span>
-<span>{</span>
-<span>if (get_magic_quotes_gpc()) $string = stripslashes($string);</span>
-<span>return htmlentities ($string);</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // adduser.php
+// The PHP code
+
+    $forename = $surname = $username = $password = $age = $email = "";
+
+    if (isset($_POST['forename']))
+    $forename = fix_string($_POST['forename']);
+    if (isset($_POST['surname']))
+    $surname = fix_string($_POST['surname']);
+    if (isset($_POST['username']))
+    $username = fix_string($_POST['username']);
+    if (isset($_POST['password']))
+    $password = fix_string($_POST['password']);
+    if (isset($_POST['age']))
+    $age = fix_string($_POST['age']);
+    if (isset($_POST['email']))
+    $email = fix_string($_POST['email']);
+
+    $fail = validate_forename($forename);
+    $fail .= validate_surname($surname);
+    $fail .= validate_username($username);
+    $fail .= validate_password($password);
+    $fail .= validate_age($age);
+    $fail .= validate_email($email);
+    
+    echo "&lt;!DOCTYPE html&gt;\n&lt;html&gt;&lt;head&gt;&lt;title&gt;An Example Form&lt;/title&gt;";
+
+    if ($fail == "")
+    {
+        echo "&lt;/head&gt;&lt;body&gt;Form data successfully validated:
+        $forename, $surname, $username, $password, $age, $email.&lt;/body&gt;&lt;/html&gt;";
+        // This is where you would enter the posted fields into a database,
+        // preferably using hash encryption for the password.
+        exit;
+    }
+
+    echo &lt;&lt;&lt;_END
+        
+    &lt;!-- The HTML/JavaScript section --&gt;
+        
+    &lt;style&gt;
+        .signup {
+            border: 1px solid #999999;
+            font: normal 14px helvetica; color:#444444;
+        }
+    &lt;/style&gt;
+    
+    &lt;script&gt;
+    function validate(form)
+    {
+        fail = validateForename(form.forename.value)
+        fail += validateSurname(form.surname.value)
+        fail += validateUsername(form.username.value)
+        fail += validatePassword(form.password.value)
+        fail += validateAge(form.age.value)
+        fail += validateEmail(form.email.value)
+        
+        if (fail == "") return true
+        else { alert(fail); return false }
+    }
+    
+    function validateForename(field)
+    {
+        return (field == "") ? "No Forename was entered.\n" : ""
+    }
+    
+    function validateSurname(field)
+    {
+        return (field == "") ? "No Surname was entered.\n" : ""
+    }
+    
+    function validateUsername(field)
+    {
+        if (field == "") return "No Username was entered.\n"
+        else if (field.length &lt; 5)
+            return "Usernames must be at least 5 characters.\n"
+        else if (/[^a-zA-Z0-9_-]/.test(field))
+            return "Only a-z, A-Z, 0-9, - and _ allowed in Usernames.\n"
+        
+        return ""
+    }
+    
+    function validatePassword(field)
+    {
+        if (field == "") return "No Password was entered.\n"
+        else if (field.length &lt; 6)
+            return "Passwords must be at least 6 characters.\n"
+        else if (!/[a-z]/.test(field) || ! /[A-Z]/.test(field) ||
+                 !/[0-9]/.test(field))
+            return "Passwords require one each of a-z, A-Z and 0-9.\n"
+        
+        return ""
+    }
+    
+    function validateAge(field)
+    {
+        if (isNaN(field)) return "No Age was entered.\n"
+        else if (field &lt; 18 || field &gt; 110)
+            return "Age must be between 18 and 110.\n"
+        
+        return ""
+    }
+    
+    function validateEmail(field)
+    {
+        if (field == "") return "No Email was entered.\n"
+        else if (!((field.indexOf(".") &gt; 0) &amp;&amp;
+                  (field.indexOf("@") &gt; 0)) || /[^a-zA-Z0-9.@_-]/.test(field))
+            return "The Email address is invalid.\n"
+        
+        return ""
+    }
+    &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;table border="0" cellpadding="2" cellspacing="5" bgcolor="#eeeeee"&gt;&nbsp;
+            &lt;th colspan="2" align="center"&gt;Signup Form&lt;/th&gt;&nbsp;
+            &lt;tr&gt;&lt;td colspan="2"&gt;Sorry, the following errors were found&lt;br&gt;&nbsp;
+        in your form: &lt;p&gt;&lt;font color=red size=1&gt;&lt;i&gt;$fail&lt;/i&gt;&lt;/font&gt;&lt;/p&gt;&nbsp;
+        &lt;/td&gt;&lt;/tr&gt;&nbsp;
+            &lt;form method="post" action="adduser.php" onSubmit="return validate(this)"&gt;&nbsp;
+            &lt;tr&gt;&lt;td&gt;Forename&lt;/td&gt;&nbsp;
+            &lt;td&gt;&lt;input type="text" maxlength="32" name="forename" value="$forename"&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Surname&lt;/td&gt;
+            &lt;td&gt;&lt;input type="text" maxlength="32" name="surname" value="$surname"&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Username&lt;/td&gt;
+            &lt;td&gt;&lt;input type="text" maxlength="16" name="username" value="$username"&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Password&lt;/td&gt;
+            &lt;td&gt;&lt;input type="text" maxlength="12" name="password" value="$password"&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Age&lt;/td&gt;
+            &lt;td&gt;&lt;input type="text" maxlength="3" name="age" value="$age"&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Email&lt;/td&gt;
+            &lt;td&gt;&lt;input type="text" maxlength="64" name="email" value="$email"&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="2" align="center"&gt;&lt;input type="submit"
+            value="Signup"&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;/form&gt;
+        &lt;/table&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    _END;
+    
+    // The PHP functions
+    function validate_forename($field)
+    {
+        return ($field == "") ? "No Forename was entered&lt;br&gt;": "";
+    }
+    
+    function validate_surname($field)
+    {
+        return($field == "") ? "No Surname was entered&lt;br&gt;" : "";
+    }
+    
+    function validate_username($field)
+    {
+        if ($field == "") return "No Username was entered&lt;br&gt;";
+        else if (strlen($field) &lt; 5)
+            return "Usernames must be at least 5 characters&lt;br&gt;";
+        else if (preg_match("/[^a-zA-Z0-9_-]/", $field))
+            return "Only letters, numbers, - and _ in usernames&lt;br&gt;";
+        
+        return "";
+    }
+    
+    function validate_password($field)
+    {
+        if ($field == "") return "No Password was entered&lt;br&gt;";
+        else if (strlen($field) &lt; 6)
+            return "Passwords must be at least 6 characters&lt;br&gt;";
+        else if (!preg_match("/[a-z]/", $field) ||
+                 !preg_match("/[A-Z]/", $field) ||
+                 !preg_match("/[0-9]/", $field))
+            return "Passwords require 1 each of a-z, A-Z and 0-9&lt;br&gt;";
+        
+        return "";
+    }
+    
+    function validate_age($field)
+    {
+        if ($field == "") return "No Age was entered&lt;br&gt;";
+        else if ($field &lt; 18 || $field &gt; 110)
+            return "Age must be between 18 and 110&lt;br&gt;";
+        
+        return "";
+    }
+    
+    function validate_email($field)
+    {
+        if ($field == "") return "No Email was entered&lt;br&gt;";
+        else if (!((strpos($field, ".") &gt; 0) &amp;&amp;
+                  (strpos($field, "@") &gt; 0)) || preg_match("/[^a-zA-Z0-9.@_-]/", $field))
+            return "The Email address is invalid&lt;br&gt;";
+        
+        return "";
+    }
+    
+    function fix_string($string)
+    {
+        if (get_magic_quotes_gpc()) $string = stripslashes($string);
+        return htmlentities ($string);
+    }
+?&gt;
+</code>
+</pre>
 <span>In this example, all input is sanitized prior to use, even passwords,</span>
 <span>which&mdash;since they may contain characters used to format HTML&mdash;</span>
 <span>will be changed into HTML entities. For example,</span>
