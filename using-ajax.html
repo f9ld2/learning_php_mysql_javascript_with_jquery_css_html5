@@ -68,52 +68,38 @@ title: "Using Ajax"
 <span>few years.</span>
 <br/>
 <span>Example 17-1. A cross-browser Ajax function</span>
-<br/>
-<span>&lt;script&gt;</span>
-<span>function ajaxRequest()</span>
-<span>{</span>
-<span>try // Non IE Browser?</span>
-<span>{ // Yes</span>
-<span>&nbsp;</span>
-<span>var request = new XMLHttpRequest()</span>
-<span>}</span>
-<span>catch(e1)</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try // IE 6+?</span>
-<span>&nbsp;</span>
-<span>{ // Yes</span>
-<span>&nbsp;</span>
-<span>request = new ActiveXObject("Msxml2.XMLHTTP")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e2)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try // IE 5?</span>
-<span>&nbsp;</span>
-<span>{ // Yes</span>
-<span>&nbsp;</span>
-<span>request = new ActiveXObject("Microsoft.XMLHTTP")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e3) // There is no AJAX Support</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>request = false</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>}</span>
-<span>return request</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;script&gt;
+    function ajaxRequest()
+    {
+        try // Non IE Browser?
+        { // Yes
+            var request = new XMLHttpRequest()
+        }
+        catch(e1)
+        {
+            try // IE 6+?
+            { // Yes
+                request = new ActiveXObject("Msxml2.XMLHTTP")
+            }
+            catch(e2)
+            {
+                try // IE 5?
+                { // Yes
+                    request = new ActiveXObject("Microsoft.XMLHTTP")
+                }
+                catch(e3) // There is no AJAX Support
+                {
+                    request = false
+                }
+            }
+        }
+        return request
+    }
+&lt;/script&gt;
+</code>
+</pre>
 <span>You may remember the introduction to error handling in the previous chapter, using</span>
 <span>the</span>
 <span>try...catch</span>
@@ -150,75 +136,88 @@ title: "Using Ajax"
 <span>.</span>
 <br/>
 <span>Table 17-1. An XMLHttpRequest object&rsquo;s properties</span>
-<br/>
-<span>Property</span>
-<span>Description</span>
-<span>onreadystatechange</span>
-<span>Specifies an event-handling function to be called whenever the</span>
-<span>readyState</span>
-<span>property of an</span>
-<span>object changes.</span>
-<span>readyState</span>
-<span>An integer property that reports on the status of a request. It can have any of these values:</span>
-<span>0</span>
-<span>=</span>
-<span>Uninitialized,</span>
-<span>1</span>
-<span>= Loading,</span>
-<span>2</span>
-<span>= Loaded,</span>
-<span>3</span>
-<span>= Interactive, and</span>
-<span>4</span>
-<span>= Completed.</span>
-<span>responseText</span>
-<span>The data returned by the server in text format.</span>
-<span>responseXML</span>
-<span>The data returned by the server in XML format.</span>
-<span>status</span>
-<span>The HTTP status code returned by the server.</span>
-<span>statusText</span>
-<span>The HTTP status text returned by the server.</span>
+<table class="tbl-left">
+    <tr>
+        <td>Property</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+        <td>onreadystatechange</td>
+        <td>Specifies an event-handling function to be called whenever the</td>
+    </tr>
+    <tr>
+        <td>readyState</td>
+        <td>property of an object changes.</td>
+    </tr>
+    <tr>
+        <td>readyState</td>
+        <td>An integer property that reports on the status of a request. It can have any of these values:
+        0
+        =
+        Uninitialized,
+        1
+        = Loading,
+        2
+        = Loaded,
+        3
+        = Interactive, and
+        4
+        = Completed.</td>
+    </tr>
+    <tr>
+        <td>responseText</td>
+        <td>The data returned by the server in text format.</td>
+    </tr>
+    <tr>
+        <td>responseXML</td>
+        <td>The data returned by the server in XML format.</td>
+    </tr>
+    <tr>
+        <td>status</td>
+        <td>The HTTP status code returned by the server.</td>
+    </tr>
+    <tr>
+        <td>statusText</td>
+        <td>The HTTP status text returned by the server.</td>
+    </tr>
+</table>
 <br/>
 <span>Table 17-2. An XMLHttpRequest object&rsquo;s methods</span>
-<br/>
-<span>Method</span>
-<span>Description</span>
-<span>abort()</span>
-<span>Aborts the current request.</span>
-<span>getAllResponseHeaders()</span>
-<span>Returns all headers as a string.</span>
-<span>getResponseHeader(</span>
-<span>param</span>
-<span>)</span>
-<span>Returns the value of</span>
-<span>param</span>
-<span>as a string.</span>
-<span>open('</span>
-<span>method</span>
-<span>', '</span>
-<span>url</span>
-<span>', '</span>
-<span>asynch</span>
-<span>')</span>
-<span>Specifies the HTTP method to use (Get or Post), the target URL, and</span>
-<span>whether the request should be handled asynchronously (</span>
-<span>true</span>
-<span>or</span>
-<span>false</span>
-<span>).</span>
-<span>send(</span>
-<span>data</span>
-<span>)</span>
-<span>Sends</span>
-<span>data</span>
-<span>to the target server using the specified HTTP method.</span>
-<span>setRequestHeader('</span>
-<span>param</span>
-<span>', '</span>
-<span>value</span>
-<span>')</span>
-<span>Sets a header with a parameter/value pair.</span>
+<table class="tbl-left">
+    <tr>
+        <td>Method</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+        <td>abort()</td>
+        <td>Aborts the current request.</td>
+    </tr>
+    <tr>
+        <td>getAllResponseHeaders()</td>
+        <td>Returns all headers as a string.</td>
+    </tr>
+    <tr>
+        <td>getResponseHeader(param)</td>
+        <td>Returns the value of param as a string.</td>
+    </tr>
+    <tr>
+        <td>open('method', 'url', 'asynch')</td>
+        <td>Specifies the HTTP method to use (Get or Post), the target URL, and
+        whether the request should be handled asynchronously (
+        true
+        or
+        false
+        ).</td>
+    </tr>
+    <tr>
+        <td>send(data)</td>
+        <td>Sends data to the target server using the specified HTTP method.</td>
+    </tr>
+    <tr>
+        <td>setRequestHeader('param', 'value')</td>
+        <td>Sets a header with a parameter/value pair.</td>
+    </tr>
+</table>
 <br/>
 <span>These properties and methods give you control over what data you send to the server</span>
 <span>and receive back, as well as a choice of send and receive methods. For example, you</span>
@@ -240,121 +239,76 @@ title: "Using Ajax"
 <span>urlpost.html</span>
 <br/>
 <span>, but don&rsquo;t load it into your</span>
-<span>browser yet.</span>
-<span>Example 17-2. urlpost.html</span>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;AJAX Example&lt;/title&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body style='text-align:center'&gt;</span>
-<span>&lt;h1&gt;Loading a web page into a DIV&lt;/h1&gt;</span>
-<span>&lt;div id='info'&gt;This sentence will be replaced&lt;/div&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>params = "url=amazon.com/gp/aw"</span>
-<span>&nbsp;</span>
-<span>request = new ajaxRequest()</span>
-<span>&nbsp;</span>
-<span>request.open("POST", "urlpost.php", true)</span>
-<span>&nbsp;</span>
-<span>request.setRequestHeader("Content-type",</span>
-<span>&nbsp;</span>
-<span>"application/x-www-form-urlencoded")</span>
-<span>&nbsp;</span>
-<span>request.setRequestHeader("Content-length", params.length)</span>
-<span>&nbsp;</span>
-<span>request.setRequestHeader("Connection", "close")</span>
-<span>&nbsp;</span>
-<span>request.onreadystatechange = function()</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (this.readyState == 4)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (this.status == 200)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (this.responseText != null)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>document.getElementById('info').innerHTML =</span>
-<span>&nbsp;</span>
-<span>this.responseText</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>else alert("Ajax error: No data received")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>else alert( "Ajax error: " + this.statusText)</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>request.send(params)</span>
-<span>&nbsp;</span>
-<span>function ajaxRequest()</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>var request = new XMLHttpRequest()</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e1)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>request = new ActiveXObject("Msxml2.XMLHTTP")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e2)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>request = new ActiveXObject("Microsoft.XMLHTTP")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e3)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>request = false</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>return request</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<span>browser yet.</span><br/>
+<span>Example 17-2. urlpost.html</span><br/>
+<pre>
+<code class="javascript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;AJAX Example&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body style='text-align:center'&gt;
+        &lt;h1&gt;Loading a web page into a DIV&lt;/h1&gt;
+        &lt;div id='info'&gt;This sentence will be replaced&lt;/div&gt;
+        &lt;script&gt;
+            params = "url=amazon.com/gp/aw"
+            request = new ajaxRequest()
+            request.open("POST", "urlpost.php", true)
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+            request.setRequestHeader("Content-length", params.length)
+            request.setRequestHeader("Connection", "close")
+            
+            request.onreadystatechange = function()
+            {
+                if (this.readyState == 4)
+                {
+                    if (this.status == 200)
+                    {
+                        if (this.responseText != null)
+                        {
+                            document.getElementById('info').innerHTML = this.responseText
+                        }
+                        else alert("Ajax error: No data received")
+                    }
+                    else alert( "Ajax error: " + this.statusText)
+                }
+            }
+            
+            request.send(params)
+            
+            function ajaxRequest()
+            {
+                try
+                {
+                    var request = new XMLHttpRequest()
+                }
+                catch(e1)
+                {
+                    try
+                    {
+                        request = new ActiveXObject("Msxml2.XMLHTTP")
+                    }
+                    catch(e2)
+                    {
+                        try
+                        {
+                            request = new ActiveXObject("Microsoft.XMLHTTP")
+                        }
+                        catch(e3)
+                        {
+                            request = false
+                        }
+                    }
+                }
+                
+                return request
+            }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>Let&rsquo;s go through this document and look at what it does, starting with the first six</span>
 <span>lines, which simply set up an HTML document and display a heading. The next line</span>
 <span>creates a DIV with the ID</span>
@@ -402,26 +356,31 @@ title: "Using Ajax"
 <br/>
 <span>The syntax to set up the callback function using an inline, anonymous function is as</span>
 <span>follows:</span>
-<br/>
-<span>request.onreadystatechange = function()</span>
-<span>{</span>
-<span>if (this.readyState == 4)</span>
-<span>{</span>
-<span>// do something</span>
-<span>}</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+request.onreadystatechange = function()
+{
+    if (this.readyState == 4)
+    {
+        // do something
+    }
+}
+</code>
+</pre>
 <span>If you wish to use a separate, named function, the syntax is slightly different:</span>
-<br/>
-<span>request.onreadystatechange = ajaxCallback</span>
-<span>function ajaxCallback()</span>
-<span>{</span>
-<span>if (this.readyState == 4)</span>
-<span>{</span>
-<span>// do something</span>
-<span>}</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+request.onreadystatechange = ajaxCallback
+
+function ajaxCallback()
+{
+    if (this.readyState == 4)
+    {
+        // do something
+    }
+}
+</code>
+</pre>
 <span>Looking at</span>
 <span>Table 17-1</span>
 <span>, you&rsquo;ll see that</span>
@@ -481,9 +440,7 @@ title: "Using Ajax"
 <span>played in an alert box. Otherwise, the inner HTML of the DIV is assigned the value of</span>
 <span>responseText</span>
 <span>, like this:</span>
-<br/>
-<span>document.getElementById('info').innerHTML = this.responseText</span>
-<br/>
+<pre><code class="javascript">document.getElementById('info').innerHTML = this.responseText</code></pre>
 <span>In this line, the element</span>
 <span>info</span>
 <span>is referenced via the</span>
@@ -498,9 +455,7 @@ title: "Using Ajax"
 <span>able</span>
 <span>params</span>
 <span>:</span>
-<br/>
-<span>request.send(params)</span>
-<br/>
+<pre><code class="javascript">request.send(params)</code></pre>
 <span>After that, all the preceding code is activated each time</span>
 <span>readyState</span>
 <span>changes.</span>
@@ -520,20 +475,23 @@ title: "Using Ajax"
 <span>.</span>
 <br/>
 <span>Example 17-3. urlpost.php</span>
-<br/>
-<span>&lt;?php // urlpost.php</span>
-<span>if (isset($_POST['url']))</span>
-<span>{</span>
-<span>echo file_get_contents('http://' . SanitizeString($_POST['url']));</span>
-<span>}</span>
-<span>function SanitizeString($var)</span>
-<span>{</span>
-<span>$var = strip_tags($var);</span>
-<span>$var = htmlentities($var);</span>
-<span>return stripslashes($var);</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php // urlpost.php
+    if (isset($_POST['url']))
+    {
+        echo file_get_contents('http://' . SanitizeString($_POST['url']));
+    }
+
+    function SanitizeString($var)
+    {
+        $var = strip_tags($var);
+        $var = htmlentities($var);
+        return stripslashes($var);
+    }
+?&gt;
+</code>
+</pre>
 <span>As you can see, this is short and sweet, and also makes use of the ever-important</span>
 <span>Sani</span>
 <span>tizeString</span>
@@ -586,111 +544,71 @@ title: "Using Ajax"
 <span>but using an Ajax Get request instead of Post.</span>
 <br/>
 <span>Example 17-4. urlget.html</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;AJAX Example&lt;/title&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body style='text-align:center'&gt;</span>
-<span>&lt;h1&gt;Loading a web page into a DIV&lt;/h1&gt;</span>
-<span>&lt;div id='info'&gt;This sentence will be replaced&lt;/div&gt;</span>
-<span>&lt;script&gt;</span>
-<span>nocache = "&amp;nocache=" + Math.random() * 1000000</span>
-<span>request = new ajaxRequest()</span>
-<span>request.open("GET", "urlget.php?url=amazon.com/gp/aw" + nocache, true)</span>
-<span>&nbsp;</span>
-<span>request.onreadystatechange = function()</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (this.readyState == 4)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (this.status == 200)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (this.responseText != null)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>document.getElementById('info').innerHTML =</span>
-<span>&nbsp;</span>
-<span>this.responseText</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>else alert("Ajax error: No data received")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>else alert( "Ajax error: " + this.statusText)</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>request.send(</span>
-<span>null</span>
-<span>)</span>
-<span>&nbsp;</span>
-<span>function ajaxRequest()</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>var request = new XMLHttpRequest()</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e1)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>request = new ActiveXObject("Msxml2.XMLHTTP")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e2)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>request = new ActiveXObject("Microsoft.XMLHTTP")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e3)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>request = false</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>return request</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+     &lt;title&gt;AJAX Example&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body style='text-align:center'&gt;
+        &lt;h1&gt;Loading a web page into a DIV&lt;/h1&gt;
+        &lt;div id='info'&gt;This sentence will be replaced&lt;/div&gt;
+        &lt;script&gt;
+            nocache = "&amp;nocache=" + Math.random() * 1000000
+            request = new ajaxRequest()
+            request.open("GET", "urlget.php?url=amazon.com/gp/aw" + nocache, true)
+
+            request.onreadystatechange = function()
+            {
+                if (this.readyState == 4)
+                {
+                    if (this.status == 200)
+                    {
+                        if (this.responseText != null)
+                        {
+                            document.getElementById('info').innerHTML = this.responseText
+                        }
+                        else alert("Ajax error: No data received")
+                    }
+                    else alert( "Ajax error: " + this.statusText)
+                }
+            }
+
+            request.send(null)
+
+            function ajaxRequest()
+            {
+                try
+                {
+                    var request = new XMLHttpRequest()
+                }
+                catch(e1)
+                {
+                    try
+                    {
+                        request = new ActiveXObject("Msxml2.XMLHTTP")
+                    }
+                    catch(e2)
+                    {
+                        try
+                        {
+                            request = new ActiveXObject("Microsoft.XMLHTTP")
+                        }
+                        catch(e3)
+                        {
+                            request = false
+                        }
+                    }
+                }
+
+                return request
+            }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>The differences to note between the two documents are highlighted in bold, and</span>
 <span>described as follows:</span>
 <br/>
@@ -734,24 +652,23 @@ title: "Using Ajax"
 <span>.</span>
 <br/>
 <span>Example 17-5. urlget.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>if (isset(</span>
-<span>$_GET</span>
-<span>['url']))</span>
-<span>{</span>
-<span>echo file_get_contents("http://".sanitizeString(</span>
-<span>$_GET</span>
-<span>['url']));</span>
-<span>}</span>
-<span>function sanitizeString($var)</span>
-<span>{</span>
-<span>$var = strip_tags($var);</span>
-<span>$var = htmlentities($var);</span>
-<span>return stripslashes($var);</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    if (isset($_GET['url']))
+    {
+        echo file_get_contents("http://".sanitizeString($_GET['url']));
+    }
+    
+    function sanitizeString($var)
+    {
+        $var = strip_tags($var);
+        $var = htmlentities($var);
+        return stripslashes($var);
+    }
+?&gt;
+</code>
+</pre>
 <span>All that&rsquo;s different between this and</span>
 <span>&nbsp;Example 17-3</span>
 <span>&nbsp;is that the references to</span>
@@ -782,21 +699,24 @@ title: "Using Ajax"
 <span>.</span>
 <br/>
 <span>Example 17-6. xmlget.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>if (isset($_GET['url']))</span>
-<span>{</span>
-<span>header('Content-Type: text/xml');</span>
-<span>echo file_get_contents("http://".sanitizeString($_GET['url']));</span>
-<span>}</span>
-<span>function sanitizeString($var)</span>
-<span>{</span>
-<span>$var = strip_tags($var);</span>
-<span>$var = htmlentities($var);</span>
-<span>return stripslashes($var);</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    if (isset($_GET['url']))
+    {
+        header('Content-Type: text/xml');
+        echo file_get_contents("http://".sanitizeString($_GET['url']));
+    }
+
+    function sanitizeString($var)
+    {
+        $var = strip_tags($var);
+        $var = htmlentities($var);
+        return stripslashes($var);
+    }
+?&gt;
+</code>
+</pre>
 <span>This program has been very slightly modified (shown in bold highlighting) to output</span>
 <span>the correct XML header before returning a fetched document. No checking is made</span>
 <span>here, as it is assumed that the calling Ajax will request an actual XML document.</span>
@@ -808,116 +728,77 @@ title: "Using Ajax"
 <span>.</span>
 <br/>
 <span>Example 17-7. xmlget.html</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;AJAX Example&lt;/title&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;h1&gt;Loading a web page into a DIV&lt;/h1&gt;</span>
-<span>&lt;div id='info'&gt;This sentence will be replaced&lt;/div&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>nocache = "&amp;nocache=" + Math.random() * 1000000</span>
-<span>url = "rss.news.yahoo.com/rss/topstories"</span>
-<span>out = "";</span>
-<span>&nbsp;</span>
-<span>request = new ajaxRequest()</span>
-<span>&nbsp;</span>
-<span>request.open("GET", "xmlget.php?url=" + url + nocache, true)</span>
-<span>&nbsp;</span>
-<span>request.onreadystatechange = function()</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (this.readyState == 4)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (this.status == 200)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (this.responseText != null)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>titles = this.responseXML.getElementsByTagName('title')</span>
-<span>for (j = 0 ; j &lt; titles.length ; ++j)</span>
-<span>{</span>
-<span>out += titles[j].childNodes[0].nodeValue + '&lt;br&gt;'</span>
-<span>}</span>
-<span>document.getElementById('info').innerHTML = out</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>else alert("Ajax error: No data received")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>else alert( "Ajax error: " + this.statusText)</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>request.send(null)</span>
-<span>&nbsp;</span>
-<span>function ajaxRequest()</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>var request = new XMLHttpRequest()</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e1)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>request = new ActiveXObject("Msxml2.XMLHTTP")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e2)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>request = new ActiveXObject("Microsoft.XMLHTTP")</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>catch(e3)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>request = false</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>return request</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;AJAX Example&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Loading a web page into a DIV&lt;/h1&gt;
+        &lt;div id='info'&gt;This sentence will be replaced&lt;/div&gt;
+        &lt;script&gt;
+            nocache = "&amp;nocache=" + Math.random() * 1000000
+            url = "rss.news.yahoo.com/rss/topstories"
+            out = "";
+            request = new ajaxRequest()
+            request.open("GET", "xmlget.php?url=" + url + nocache, true)
+
+            request.onreadystatechange = function()
+            {
+                if (this.readyState == 4)
+                {
+                    if (this.status == 200)
+                    {
+                        if (this.responseText != null)
+                        {
+                            titles = this.responseXML.getElementsByTagName('title')
+                            for (j = 0 ; j &lt; titles.length ; ++j)
+                            {
+                                out += titles[j].childNodes[0].nodeValue + '&lt;br&gt;'
+                            }
+                            document.getElementById('info').innerHTML = out
+                        }
+                        else alert("Ajax error: No data received")
+                    }
+                    else alert( "Ajax error: " + this.statusText)
+                }
+            }
+
+            request.send(null)
+
+            function ajaxRequest()
+            {
+                try
+                {
+                    var request = new XMLHttpRequest()
+                }
+                catch(e1)
+                {
+                    try
+                    {
+                        request = new ActiveXObject("Msxml2.XMLHTTP")
+                    }
+                    catch(e2)
+                    {
+                        try
+                        {
+                            request = new ActiveXObject("Microsoft.XMLHTTP")
+                        }
+                        catch(e3)
+                        {
+                            request = false
+                        }
+                    }
+                }
+                return request
+            }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>Again, the differences have been highlighted in bold, so you can see that this code is</span>
 <span>substantially similar to previous versions, except that the URL now being requested,</span>
 <span>rss.news.yahoo.com/rss/topstories</span>
@@ -965,32 +846,29 @@ title: "Using Ajax"
 <span>) to make it quickly searchable.</span>
 <br/>
 <span>Example 17-8. An XML document</span>
-<br/>
-<span>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span>&lt;rss version="2.0"&gt;</span>
-<span>&lt;channel&gt;</span>
-<span>&lt;title&gt;RSS Feed&lt;/title&gt;</span>
-<span>&lt;link&gt;http://website.com&lt;/link&gt;</span>
-<span>&lt;description&gt;website.com's RSS Feed&lt;/description&gt;</span>
-<span>&lt;pubDate&gt;Mon, 11 May 2020 00:00:00 GMT&lt;/pubDate&gt;</span>
-<span>&lt;item&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;title&gt;Headline&lt;/title&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;guid&gt;http://website.com/headline&lt;/guid&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;description&gt;This is a headline&lt;/description&gt;</span>
-<span>&lt;/item&gt;</span>
-<span>&lt;item&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;title&gt;Headline 2&lt;/title&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;guid&gt;http://website.com/headline2&lt;/guid&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;description&gt;The 2nd headline&lt;/description&gt;</span>
-<span>&lt;/item&gt;</span>
-<span>&lt;/channel&gt;</span>
-<span>&lt;/rss&gt;</span>
+<pre>
+<code class="xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rss version="2.0"&gt;
+    &lt;channel&gt;
+        &lt;title&gt;RSS Feed&lt;/title&gt;
+        &lt;link&gt;http://website.com&lt;/link&gt;
+        &lt;description&gt;website.com's RSS Feed&lt;/description&gt;
+        &lt;pubDate&gt;Mon, 11 May 2020 00:00:00 GMT&lt;/pubDate&gt;
+        &lt;item&gt;
+            &lt;title&gt;Headline&lt;/title&gt;
+            &lt;guid&gt;http://website.com/headline&lt;/guid&gt;
+            &lt;description&gt;This is a headline&lt;/description&gt;
+        &lt;/item&gt;
+        &lt;item&gt;
+            &lt;title&gt;Headline 2&lt;/title&gt;
+            &lt;guid&gt;http://website.com/headline2&lt;/guid&gt;
+            &lt;description&gt;The 2nd headline&lt;/description&gt;
+        &lt;/item&gt;
+    &lt;/channel&gt;
+&lt;/rss&gt;
+</code>
+</pre>
 <p><img src="images/17.3.png"/></p>
 <span>Figure 17-3. The DOM tree of</span>
 <span>Example 17-8</span>
@@ -1002,9 +880,7 @@ title: "Using Ajax"
 <span>we do in</span>
 <span>Example 17-7</span>
 <span>, where the following command is issued:</span>
-<br/>
-<span>titles = this.responseXML.getElementsByTagName('title')</span>
-<br/>
+<pre><code class="javascript">titles = this.responseXML.getElementsByTagName('title')</code></pre>
 <span>This single command has the effect of placing all the values of the</span>
 <span>title</span>
 <span>elements</span>
@@ -1014,9 +890,7 @@ title: "Using Ajax"
 <span>lowing expression (where</span>
 <span>j</span>
 <span>is the title to access):</span>
-<br/>
-<span>titles[j].childNodes[0].nodeValue</span>
-<br/>
+<pre><code class="javascript">titles[j].childNodes[0].nodeValue</code></pre>
 <span>All the titles are then appended to the string variable</span>
 <span>out</span>
 <span>and, once all have been pro‐</span>
