@@ -30,11 +30,13 @@ title: "Introduction to CSS"
 <span>style of the</span>
 <span>&lt;h1&gt;</span>
 <span>tag, you might use the following code (I&rsquo;ll explain the syntax later):</span>
-<br/>
-<span>&lt;style&gt;</span>
-<span>h1 { color:red; font-size:3em; font-family:Arial; }</span>
-<span>&lt;/style&gt;</span>
-<br/>
+<pre>
+<code class="css">
+&lt;style&gt;
+    h1 { color:red; font-size:3em; font-family:Arial; }
+&lt;/style&gt;
+</code>
+</pre>
 <span>Within an HTML page, this might look like</span>
 <span>Example 18-1</span>
 <span>(see</span>
@@ -45,20 +47,23 @@ title: "Introduction to CSS"
 <span>declaration.</span>
 <br/>
 <span>Example 18-1. A simple HTML page</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Hello World&lt;/title&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>h1 { color:red; font-size:3em; font-family:Arial; }</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;h1&gt;Hello there&lt;/h1&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="css">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Hello World&lt;/title&gt;
+        &lt;style&gt;
+        &nbsp;
+            h1 { color:red; font-size:3em; font-family:Arial; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Hello there&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/18.1.png"/></p>
 <span>Figure 18-1. Styling a tag, with the original style shown in the inset</span>
 <h3>Importing a Style Sheet</h3>
@@ -71,13 +76,15 @@ title: "Introduction to CSS"
 <span>the CSS</span>
 <span>@import</span>
 <span>directive, like this:</span>
-<br/>
-<span>&lt;style&gt;</span>
-<span>@import url('styles.css');</span>
-<span>&lt;/style&gt;</span>
+<pre>
+<code class="css">
+&lt;style&gt;
+    @import url('styles.css');
+&lt;/style&gt;
+</code>
+</pre>
 <span>This statement tells the browser to fetch a style sheet with the name</span>
 <span>&nbsp;styles.css</span>
-<br/>
 <span>. The</span>
 <span>@import</span>
 <span>command is quite flexible in that you can create style sheets that themselves</span>
@@ -90,9 +97,7 @@ title: "Introduction to CSS"
 <span>You can also include a style sheet with the HTML</span>
 <span>&lt;link&gt;</span>
 <span>tag, like this:</span>
-<br/>
-<span>&lt;link rel='stylesheet' type='text/css' href='styles.css'&gt;</span>
-<br/>
+<pre><code class="css">&lt;link rel='stylesheet' type='text/css' href='styles.css'&gt;</code></pre>
 <span>This has the exact same effect as the</span>
 <span>@import</span>
 <span>directive, except that</span>
@@ -128,17 +133,13 @@ title: "Introduction to CSS"
 <span>There&rsquo;s also nothing stopping you from individually setting or overriding certain</span>
 <span>styles for the current page on a case-by-case basis by inserting style declarations</span>
 <span>directly within HTML, like this (which results in italic, blue text within the tags):</span>
-<br/>
-<span>&lt;div style='font-style:italic; color:blue;'&gt;Hello there&lt;/div&gt;</span>
-<br/>
+<pre><code class="html">&lt;div style='font-style:italic; color:blue;'&gt;Hello there&lt;/div&gt;</code></pre>
 <span>But this should be reserved only for the most exceptional circumstances, as it breaks</span>
 <span>the separation of content and presentation.</span>
 <h3>Using IDs</h3>
 <span>A better solution for setting the style of an element is to assign an ID to it in the</span>
 <span>HTML, like this:</span>
-<br/>
-<span>&lt;div id='welcome'&gt;Hello there&lt;/div&gt;</span>
-<br/>
+<pre><code class="html">&lt;div id='welcome'&gt;Hello there&lt;/div&gt;</code></pre>
 <span>This states that the contents of the</span>
 <span>&lt;div&gt;</span>
 <span>with the ID</span>
@@ -148,9 +149,7 @@ title: "Introduction to CSS"
 <span>welcome</span>
 <span>style setting. The matching CSS statement for</span>
 <span>this might look like the following</span>
-<br/>
-<span>#welcome { font-style:italic; color:blue; }</span>
-<br/>
+<pre><code class="css">#welcome { font-style:italic; color:blue; }</code></pre>
 <span>Note the use of the</span>
 <span>#</span>
 <span>symbol, which specifies that only the ID with</span>
@@ -160,18 +159,14 @@ title: "Introduction to CSS"
 <h3>Using Classes</h3>
 <span>If you would like to apply the same style to many elements, you do not have to give</span>
 <span>each one a different ID because you can specify a class to manage them all, like this:</span>
-<br/>
-<span>&lt;div class='welcome'&gt;Hello&lt;/div&gt;</span>
-<br/>
+<pre><code class="html">&lt;div class='welcome'&gt;Hello&lt;/div&gt;</code></pre>
 <span>This states that the contents of this element (and any others that use the class) should</span>
 <span>have applied to them the style defined in the</span>
 <span>welcome</span>
 <span>class. Once a class is applied,</span>
 <span>you can use the following rule, either in the page header or within an external style</span>
 <span>sheet for setting the styles for the class:</span>
-<br/>
-<span>.welcome { font-style:italic; color:blue; }</span>
-<br/>
+<pre><code class="css">.welcome { font-style:italic; color:blue; }</code></pre>
 <span>Instead of the</span>
 <span>#</span>
 <span>symbol, which is reserved for IDs, class statements are prefaced with</span>
@@ -196,9 +191,7 @@ title: "Introduction to CSS"
 <span>h1</span>
 <span>is the selector being given a font</span>
 <span>size 240 percent larger than the default:</span>
-<br/>
-<span>h1 { font-size:240%; }</span>
-<br/>
+<pre><code class="css">h1 { font-size:240%; }</code></pre>
 <span>font-size</span>
 <span>is a</span>
 <span>property</span>
@@ -237,18 +230,17 @@ title: "Introduction to CSS"
 <br/>
 <span>headings to blue.</span>
 <span>You can also place the assignments one per line, like the following:</span>
-<br/>
-<span>h1 { font-size:240%;</span>
-<span>color:blue; }</span>
-<br/>
+<pre><code class="css">h1 { font-size:240%;color:blue; }</code></pre>
 <span>Or you can space out the assignments a little more, so that they line up below each</span>
 <span>other in a column at the colons, like this:</span>
-<br/>
-<span>h1 {</span>
-<span>font-size:240%;</span>
-<span>color :blue;</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="css">
+h1 {
+    font-size:240%;
+    color :blue;
+}
+</code>
+</pre>
 <span>This way, you can easily see where each new set of rules begins, because the selector is</span>
 <span>always in the first column, and the assignments that follow are neatly lined up with all</span>
 <span>property values starting at the same horizontal offset. In the preceding examples, the</span>
@@ -258,19 +250,23 @@ title: "Introduction to CSS"
 <br/>
 <span>You can specify the same selector as many times as you want, and CSS combines all</span>
 <span>the properties. So the previous example could also be specified as follows:</span>
-<br/>
-<span>h1 { font-size: 240%; }</span>
-<span>h1 { color : blue; }</span>
-<br/>
+<pre>
+<code class="css">
+h1 { font-size: 240%; }
+h1 { color : blue; }
+</code>
+</pre>
 <span>There is no right or wrong way to lay out your CSS, but I recom‐</span>
 <span>mend that you at least try to keep each block of CSS consistent with</span>
 <span>itself, so that other people can take it in at a glance.</span>
 <br/>
 <span>What if you specified the same property to the same selector twice?</span>
-<br/>
-<span>h1 { color : red; }</span>
-<span>h1 { color : blue; }</span>
-<br/>
+<pre>
+<code class="css">
+h1 { color : red; }
+h1 { color : blue; }
+</code>
+</pre>
 <span>The last value specified&mdash;in this case, blue&mdash;would apply. In a single file, repeating the</span>
 <span>same property for the same selector would be pointless, but such repetition happens</span>
 <span>frequently in real-life web pages when multiple style sheets are applied. It&rsquo;s one of the</span>
