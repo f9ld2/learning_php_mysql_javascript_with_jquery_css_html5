@@ -341,9 +341,7 @@ h1 { color : blue; }
 <h4>Inline Styles</h4>
 <span>Finally, inline styles are where you assign a property directly to an element. They have</span>
 <span>the highest precedence of any style type, and are used like this:</span>
-<br/>
-<span>&lt;a href="http://google.com" style="color:green;"&gt;Visit Google&lt;/a&gt;</span>
-<br/>
+<pre><code class="html">&lt;a href="http://google.com" style="color:green;"&gt;Visit Google&lt;/a&gt;</code></pre>
 <span>In this example, the link specified will be displayed in green, regardless of any default</span>
 <span>or other color settings applied by any other type of style sheet, whether directly to this</span>
 <span>link or generically for all links.</span>
@@ -368,8 +366,7 @@ h1 { color : blue; }
 <span>the following rule will ensure that all text within</span>
 <span>&lt;p&gt;...&lt;/p&gt;</span>
 <span>tags is fully justified:</span>
-<br/>
-<span>p { text-align:justify; }</span>
+<pre><code class="css">p { text-align:justify; }</code></pre>
 <h4>The Descendant Selector</h4>
 <span>Descendant selectors let you apply styles to elements that are contained within other</span>
 <span>elements. For example, the following rule sets all text within</span>
@@ -384,14 +381,11 @@ h1 { color : blue; }
 <span>tags (like this:</span>
 <span>&lt;p&gt;&lt;b&gt;Hello&lt;/b&gt; there&lt;/p&gt;</span>
 <span>):</span>
-<br/>
-<span>p b { color:red; }</span>
-<br/>
+<pre><code class="css">p b { color:red; }</code></pre>
 <span>Descendant selectors can continue nesting indefinitely, so the following is a perfectly</span>
 <span>valid rule to make the text blue within bold text, inside a list element of an unordered</span>
 <span>list:</span>
-<span>ul li b { color:blue; }</span>
-<br/>
+<pre><code class="css">ul li b { color:blue; }</code></pre>
 <span>As a practical example, suppose you want to use a different numbering system for an</span>
 <span>ordered list that is nested within another ordered list. You can achieve this in the fol‐</span>
 <span>lowing way, which will replace the default numeric numbering (starting from</span>
@@ -400,39 +394,31 @@ h1 { color : blue; }
 <span>lowercase letters (starting from</span>
 <span>a</span>
 <span>):</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>ol ol { list-style-type:lower-alpha; }</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;ol&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;One&lt;/li&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;Two&lt;/li&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;Three</span>
-<span>&nbsp;</span>
-<span>&lt;ol&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;One&lt;/li&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;Two&lt;/li&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;Three&lt;/li&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/ol&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/li&gt;</span>
-<span>&lt;/ol&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;style&gt;
+            ol ol { list-style-type:lower-alpha; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;ol&gt;
+            &lt;li&gt;One&lt;/li&gt;
+            &lt;li&gt;Two&lt;/li&gt;
+            &lt;li&gt;Three
+                &lt;ol&gt;
+                    &lt;li&gt;One&lt;/li&gt;
+                    &lt;li&gt;Two&lt;/li&gt;
+                    &lt;li&gt;Three&lt;/li&gt;
+                &lt;/ol&gt;
+            &lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>The result of loading this HTML into a web browser is as follows, in which you can</span>
 <span>see that the second list elements display differently:</span>
 <br/>
@@ -456,9 +442,7 @@ h1 { color : blue; }
 <span>within italics (like this</span>
 <span>&lt;p&gt;&lt;i&gt;&lt;b&gt;Hello&lt;/b&gt; there&lt;/i&gt;&lt;/p&gt;</span>
 <span>):</span>
-<br/>
-<span>p b { color:red; }</span>
-<br/>
+<pre><code class="css">p b { color:red; }</code></pre>
 <span>In this instance, the word</span>
 <span>Hello</span>
 <span>displays in red. However, when this more general</span>
@@ -466,9 +450,7 @@ h1 { color : blue; }
 <span>the selector. For example, the following child selector will set bold text to red only if</span>
 <span>the element is a direct child of a paragraph, and is not itself contained within another</span>
 <span>element:</span>
-<br/>
-<span>p &gt; b { color:red; }</span>
-<br/>
+<pre><code class="html">p &gt; b { color:red; }</code></pre>
 <span>Now</span>
 <span>Hello</span>
 <span>will not change color because it is not a direct child of the paragraph.</span>
@@ -482,35 +464,30 @@ h1 { color : blue; }
 <span>elements that are direct children of</span>
 <span>&lt;ul&gt;</span>
 <span>elements are not made bold:</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>ol &gt; li { font-weight:bold; }</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;ol&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;One&lt;/li&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;Two&lt;/li&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;Three&lt;/li&gt;</span>
-<span>&lt;/ol&gt;</span>
-<span>&lt;ul&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;One&lt;/li&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;Two&lt;/li&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;li&gt;Three&lt;/li&gt;</span>
-<span>&lt;/ul&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;style&gt;
+            ol &gt; li { font-weight:bold; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;ol&gt;
+            &lt;li&gt;One&lt;/li&gt;
+            &lt;li&gt;Two&lt;/li&gt;
+            &lt;li&gt;Three&lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;ul&gt;
+            &lt;li&gt;One&lt;/li&gt;
+            &lt;li&gt;Two&lt;/li&gt;
+            &lt;li&gt;Three&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>The result of loading this HTML into a browser will be as follows:</span>
 <br/>
 <b class="t30">1. One</b>
@@ -533,34 +510,28 @@ h1 { color : blue; }
 <span>&lt;div id='mydiv'&gt;</span>
 <span>), you can directly</span>
 <span>access it from CSS in the following way, which changes all text in the element to italic:</span>
-<br/>
-<span>#mydiv { font-style:italic; }</span>
-<br/>
+<pre><code class="css">#mydiv { font-style:italic; }</code></pre>
 <span>IDs can be used only once within a document, so only the first occurrence found will</span>
 <span>receive the new property value assigned by a CSS rule. But in CSS you can directly</span>
 <span>reference any IDs that have the same name, as long as they occur within different ele‐</span>
 <span>ment types, like this:</span>
-<br/>
-<span>&lt;div id='myid'&gt;Hello&lt;/div&gt; &lt;span id='myid'&gt;Hello&lt;/span&gt;</span>
-<br/>
+<pre><code class="css">&lt;div id='myid'&gt;Hello&lt;/div&gt; &lt;span id='myid'&gt;Hello&lt;/span&gt;</code></pre>
 <span>Because IDs normally apply only to unique elements, the following rule will apply an</span>
 <span>underline to only the first occurrence of</span>
 <span>myid</span>
 <span>:</span>
-<br/>
-<span>#myid { text-decoration:underline; }</span>
-<br/>
+<pre><code class="css">#myid { text-decoration:underline; }</code></pre>
 <span>However, you can ensure that CSS applies the rule to both occurrences, like this:</span>
-<br/>
-<span>span#myid { text-decoration:underline; }</span>
-<span>div#myid { text-decoration:underline; }</span>
-<br/>
+<pre>
+<code class="css">
+span#myid { text-decoration:underline; }
+div#myid { text-decoration:underline; }
+</code>
+</pre>
 <span>Or more succinctly, like this (see</span>
 <span>&ldquo;Selecting by Group&rdquo; on page 425</span>
 <span>):</span>
-<br/>
-<span>span#myid, div#myid { text-decoration:underline; }</span>
-<br/>
+<pre><code class="css">span#myid, div#myid { text-decoration:underline; }</code></pre>
 <span>I don&rsquo;t recommend using this form of selection because any Java‐</span>
 <span>Script that also must access these elements cannot easily do so</span>
 <span>because</span>
@@ -582,9 +553,7 @@ h1 { color : blue; }
 <span>); then, create a single rule to modify all those elements at once, as in the</span>
 <span>following rule, which creates a 10-pixel left margin offset for all elements using the</span>
 <span>class:</span>
-<br/>
-<span>.myclass { margin-left:10px; }</span>
-<br/>
+<pre><code class="html">.myclass { margin-left:10px; }</code></pre>
 <span>In modern browsers, you can have HTML elements use more than one class by sepa‐</span>
 <span>rating</span>
 <span>the</span>
@@ -606,9 +575,7 @@ h1 { color : blue; }
 <span>paragraphs that use the class</span>
 <span>main</span>
 <span>:</span>
-<br/>
-<span>p.main { text-indent:30px; }</span>
-<br/>
+<pre><code class="css">p.main { text-indent:30px; }</code></pre>
 <span>In this example, only paragraphs using the class</span>
 <span>main</span>
 <span>(like this:</span>
@@ -636,16 +603,12 @@ h1 { color : blue; }
 <span>attribute</span>
 <span>type="submit"</span>
 <span>to a width of 100 pixels:</span>
-<br/>
-<span>[type="submit"] { width:100px; }</span>
-<br/>
+<pre><code class="css">[type="submit"] { width:100px; }</code></pre>
 <span>If you wish to narrow down the scope of the selector to, for example, only</span>
 <span>form</span>
 <span>input</span>
 <span>elements with that attribute type, you could use the following rule instead:</span>
-<br/>
-<span>form input[type="submit"] { width:100px; }</span>
-<br/>
+<pre><code class="css">form input[type="submit"] { width:100px; }</code></pre>
 <span>Attribute selectors also work on IDs and classes so that, for exam‐</span>
 <span>ple,</span>
 <span>[class~="classname"]</span>
@@ -677,9 +640,7 @@ h1 { color : blue; }
 <span>*</span>
 <span>wildcard or universal selector matches any element, so the following rule will</span>
 <span>make a complete mess of a document by giving a green border to all of its elements:</span>
-<br/>
-<span>* { border:1px solid green; }</span>
-<br/>
+<pre><code class="css">* { border:1px solid green; }</code></pre>
 <span>It&rsquo;s therefore unlikely that you will use the</span>
 <span>*</span>
 <span>on its own, but as part of a compound</span>
@@ -688,9 +649,7 @@ h1 { color : blue; }
 <span>ment with the ID</span>
 <span>boxout</span>
 <span>, and only as long as they are not direct children:</span>
-<br/>
-<span>#boxout * p {border:1px solid green; }</span>
-<br/>
+<pre><code class="css">#boxout * p {border:1px solid green; }</code></pre>
 <span>Let&rsquo;s look at what&rsquo;s going on here. The first selector following</span>
 <span>#boxout</span>
 <span>is a</span>
@@ -748,9 +707,7 @@ h1 { color : blue; }
 <span>, and all elements that use the class</span>
 <span>classname</span>
 <span>:</span>
-<br/>
-<span>p, #idname, .classname { border-bottom:1px dotted orange; }</span>
-<br/>
+<pre><code class="css">p, #idname, .classname { border-bottom:1px dotted orange; }</code></pre>
 <span>Figure 18-3</span>
 <span>shows various selectors in use, with the rules applied to them alongside.</span>
 <p><img src="images/18.3.png"/></p>
@@ -860,11 +817,13 @@ h1 { color : blue; }
 <span>. So the compound number becomes</span>
 <span>[3,0,0]</span>
 <span>.</span>
-<br/>
-<span>#heading #main #menu .text .quote p span {</span>
-<span>// Rules go here;</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="css">
+#heading #main #menu .text .quote p span {
+// Rules go here;
+}
+</code>
+</pre>
 <span>Then the number of classes in the selector is placed in the second part of the com‐</span>
 <span>pound number. In this example, there are two of them (</span>
 <span>.text</span>
@@ -884,11 +843,13 @@ h1 { color : blue; }
 <span>[3,2,2]</span>
 <span>, which is all that is needed to</span>
 <span>compare this rule&rsquo;s specificity with another, such as the following:</span>
-<br/>
-<span>#heading #main .text .quote .news p span {</span>
-<span>// Rules go here;</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="css">
+#heading #main .text .quote .news p span {
+// Rules go here;
+}
+</code>
+</pre>
 <span>Here, although seven elements are also referenced, there are now only two ID refer‐</span>
 <span>ences, but three class references, which results in the compound number</span>
 <span>[2,3,2]</span>
@@ -938,9 +899,7 @@ h1 { color : blue; }
 <span>than other equivalent rules by using the</span>
 <span>!important</span>
 <span>declaration, like this:</span>
-<br/>
-<span>p { color:#ff0000 !important; }</span>
-<br/>
+<pre><code class="css">p { color:#ff0000 !important; }</code></pre>
 <span>When you do this, all previous equivalent settings are overridden (even ones using</span>
 <span>!</span>
 <span>important</span>
@@ -949,10 +908,11 @@ h1 { color : blue; }
 <span>because of the use of</span>
 <span>!important</span>
 <span>in the prior assignment, the second one is ignored:</span>
-<br/>
-<span>p { color:#ff0000 !important; }</span>
-<span>p { color:#ffff00 }</span>
-<br/>
+<code class="css">
+p { color:#ff0000 !important; }
+p { color:#ffff00 }
+</code>
+</pre>
 <span>User style sheets can be created for specifying default browser</span>
 <span>styles, and they may use the</span>
 <span>!important</span>
@@ -970,9 +930,7 @@ h1 { color : blue; }
 <span>&lt;div&gt;</span>
 <span>element has infinite width (at least to the browser edge),</span>
 <span>which you can see by applying a border to one, like this:</span>
-<br/>
-<span>&lt;div style="border:1px solid green;"&gt;Hello&lt;/div&gt;</span>
-<br/>
+<pre><code class="css">&lt;div style="border:1px solid green;"&gt;Hello&lt;/div&gt;</code></pre>
 <span>A</span>
 <span>&lt;span&gt;</span>
 <span>element, however, is only as wide as the text it contains. Therefore, the fol‐</span>
@@ -1000,32 +958,31 @@ h1 { color : blue; }
 <span>sections.</span>
 <br/>
 <span>Example 18-2. Div and span example</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Div and span example&lt;/title&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>div, span { border :1px solid black; }</span>
-<span>&nbsp;</span>
-<span>div { background-color:yellow; }</span>
-<span>&nbsp;</span>
-<span>span { background-color:cyan; }</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;div&gt;This text is within a div tag&lt;/div&gt;</span>
-<span>This isn't. &lt;div&gt;And this is again.&lt;/div&gt;&lt;br&gt;</span>
-<span>&lt;span&gt;This text is inside a span tag.&lt;/span&gt;</span>
-<span>This isn't. &lt;span&gt;And this is again.&lt;/span&gt;&lt;br&gt;&lt;br&gt;</span>
-<span>&lt;div&gt;This is a larger amount of text in a div that wraps around</span>
-<span>to the next line of the browser&lt;/div&gt;&lt;br&gt;</span>
-<span>&lt;span&gt;This is a larger amount of text in a span that wraps around</span>
-<span>to the next line of the browser&lt;/span&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Div and span example&lt;/title&gt;
+        &lt;style&gt;
+            div, span { border :1px solid black; }
+            div { background-color:yellow; }
+            span { background-color:cyan; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div&gt;This text is within a div tag&lt;/div&gt;
+        This isn't. &lt;div&gt;And this is again.&lt;/div&gt;&lt;br&gt;
+        &lt;span&gt;This text is inside a span tag.&lt;/span&gt;
+        This isn't. &lt;span&gt;And this is again.&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+        &lt;div&gt;This is a larger amount of text in a div that wraps around
+        to the next line of the browser&lt;/div&gt;&lt;br&gt;
+        &lt;span&gt;This is a larger amount of text in a span that wraps around
+        to the next line of the browser&lt;/span&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>Figure 18-4</span>
 <span>&nbsp;shows what this example looks like in a web browser. Although it is</span>
 <span>printed only in shades of gray in this book, the figure clearly shows how</span>
@@ -1079,46 +1036,32 @@ h1 { color : blue; }
 <div class="t30">The size of a pixel varies according to the dimensions and pixel depth of the user&rsquo;s
 monitor. One pixel equals the width/height of a single dot on the screen, and so this
 measurement is best suited to monitors. For example:
-<br/>
-.classname { margin:5px; }</div>
-<br/>
+<pre><code class="css">.classname { margin:5px; }</code></pre>
 <span>Points</span>
 <div class="t30">A point is equivalent in size to 1/72 of an inch. The measurement comes from a print
 design background and is best suited for that medium, but is also commonly used on
 monitors. For example:
-<br/>
-.classname { font-size:14pt; }</div>
-<br/>
+<pre><code class="css">.classname { font-size:14pt; }</code></pre>
 <span>Inches</span>
 <div class="t30">An inch is the equivalent of 72 points and is also a measurement type best suited for
 print. For example:
-<br/>
-.classname { width:3in; }</div>
-<br/>
+<pre><code class="css">.classname { width:3in; }</code></pre>
 <span>Centimeters</span>
 <div class="t30">Centimeters are another unit of measurement best suited for print. One centimeter is
 a little over 28 points. For example:
-<br/>
-.classname { height:2cm; }</div>
-<br/>
+<pre><code class="css">.classname { height:2cm; }</code></pre>
 <span>Millimeters</span>
 <div class="t30">A millimeter is 1/10 of a centimeter (or almost 3 points). Millimeters are another
 measure best suited to print. For example:
-<br/>
-classname { font-size:5mm; }</div>
-<br/>
+<pre><code class="css">classname { font-size:5mm; }</code></pre>
 <span>Picas</span>
 <div class="t30">A pica is another print typographic measurement, which is equivalent to 12 points.
 For example:
-<br/>
-.classname { font-size:1pc; }</div>
-<br/>
+<pre><code class="css">.classname { font-size:1pc; }</code></pre>
 <span>Ems</span>
 <div class="t30">An em is equal to the current font size and is therefore one of the more useful meas
 urements for CSS since it is used to describe relative dimensions. For example:
-<br/>
-.classname { font-size:2em; }</div>
-<br/>
+<pre><code class="css">.classname { font-size:2em; }</code></pre>
 <span>Exs</span>
 <div class="t30">An ex is also related to the current font size; it is equivalent to the height of a
 lowercase letter
@@ -1126,17 +1069,13 @@ x
 . This is a less popular unit of measurement that is most often
 used as a good approximation for helping to set the width of a box that will con
 tain some text. For example:
-<br/>
-.classname { width:20ex; }</div>
-<br/>
+<pre><code class="css">.classname { width:20ex; }</code></pre>
 <span>Percent</span>
 <div class="t30">This unit is related to the em in that it is exactly 100 times greater (when used on a
 font). Whereas 1 em equals the current font size, the same size is 100 in percent.
 When not relating to a font, this unit is relative to the size of the container of the
 property being accessed. For example:
-<br/>
-.classname { height:120%; }</div>
-<br/>
+<pre><code class="css">.classname { height:120%; }</code></pre>
 <span>Figure 18-5</span>
 <span>shows each of these measurement types in turn being used to display text</span>
 <span>in almost identical sizes.</span>
@@ -1160,14 +1099,10 @@ property being accessed. For example:
 <span>fonts in order of preference from left to right, so that styling can fall back gracefully</span>
 <span>when the user doesn&rsquo;t have the preferred font installed. For example, to set the default</span>
 <span>font for paragraphs, you might use a CSS rule such as this:</span>
-<br/>
-<span>p { font-family:Verdana, Arial, Helvetica, sans-serif; }</span>
-<br/>
+<pre><code class="css">p { font-family:Verdana, Arial, Helvetica, sans-serif; }</code></pre>
 <span>Where a font name is made up of two or more words, you must enclose the name in</span>
 <span>quotation marks, like this:</span>
-<br/>
-<span>p { font-family:"Times New Roman", Georgia, serif; }</span>
-<br/>
+<pre><code class="css">p { font-family:"Times New Roman", Georgia, serif; }</code></pre>
 <span>Because they should be available on virtually all web browsers and</span>
 <span>operating systems, the safest font families to use on a web page are</span>
 <span>Arial</span>
@@ -1225,31 +1160,33 @@ property being accessed. For example:
 <span>oblique</span>
 <span>)</span>
 <span>that can be applied to elements to create these effects:</span>
-<br/>
-<span>.normal { font-style:normal; }</span>
-<span>.italic { font-style:italic; }</span>
-<span>.oblique { font-style:oblique; }</span>
-<br/>
+<pre>
+<code class="css">
+.normal { font-style:normal; }
+.italic { font-style:italic; }
+.oblique { font-style:oblique; }
+</code>
+</pre>
 <h4>font-size</h4>
 <span>As described in the earlier section on measurements, there are a large number of ways</span>
 <span>you can change a font&rsquo;s size. But these all boil down to two main types: fixed and rela‐</span>
 <span>tive. A fixed setting looks like the following rule, which sets the default paragraph</span>
 <span>font size to 14 point:</span>
-<br/>
-<span>p { font-size:14pt; }</span>
-<br/>
+<pre><code class="css">p { font-size:14pt; }</code></pre>
 <span>Alternatively, you may wish to work with the current default font size, using it to style</span>
 <span>various types of text such as headings. In the following rules, relative sizes of some</span>
 <span>headers are defined, with the</span>
 <span>&lt;h4&gt;</span>
 <span>tag starting off 20 percent bigger than the default,</span>
 <span>and with each greater size another 40 percent larger than the previous one:</span>
-<br/>
-<span>h1 { font-size:240%; }</span>
-<span>h2 { font-size:200%; }</span>
-<span>h3 { font-size:160%; }</span>
-<span>h4 { font-size:120%; }</span>
-<br/>
+<pre>
+<code class="css">
+h1 { font-size:240%; }
+h2 { font-size:200%; }
+h3 { font-size:160%; }
+h4 { font-size:120%; }
+</code>
+</pre>
 <span>Figure 18-7</span>
 <span>shows a selection of font sizes in use.</span>
 <p><img src="images/18.7.png"/></p>
@@ -1263,8 +1200,7 @@ property being accessed. For example:
 <span>and</span>
 <span>bold</span>
 <span>, like this:</span>
-<br/>
-<span>.bold { font-weight:bold; }</span>
+<pre><code class="css">.bold { font-weight:bold; }</code></pre>
 <h3>Managing Text Styles</h3>
 <span>Regardless of the font in use, you can further modify the way text displays by altering</span>
 <span>its decoration, spacing, and alignment. There is a crossover between the text and font</span>
@@ -1291,9 +1227,7 @@ property being accessed. For example:
 <span>over</span>
 <span>that applies overlines to text (the weight of over, under, and through lines will</span>
 <span>match that of the font):</span>
-<br/>
-<span>.over { text-decoration:overline; }</span>
-<br/>
+<pre><code class="css">.over { text-decoration:overline; }</code></pre>
 <span>In</span>
 <span>Figure 18-8</span>
 <span>you can see a selection of font styles, weight, and decorations.</span>
@@ -1310,13 +1244,15 @@ property being accessed. For example:
 <span>to 30 pixels, and</span>
 <span>letter-spacing</span>
 <span>is set to 3 pixels:</span>
-<br/>
-<span>p {</span>
-<span>line-height :125%;</span>
-<span>word-spacing :30px;</span>
-<span>letter-spacing:3px;</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="css">
+p {
+    line-height :125%;
+    word-spacing :30px;
+    letter-spacing:3px;
+}
+</code>
+</pre>
 <h4>Alignment</h4>
 <span>There are four types of text alignment available in CSS:</span>
 <span>left</span>
@@ -1328,8 +1264,7 @@ property being accessed. For example:
 <span>jus</span>
 <span>tify</span>
 <span>. In the following rule, default paragraph text is set to full justification:</span>
-<br/>
-<span>p { text-align:justify; }</span>
+<pre><code class="css">p { text-align:justify; }</code></pre>
 <h4>Transformation</h4>
 <span>There are four properties available for transforming your text:</span>
 <span>none</span>
@@ -1343,8 +1278,7 @@ property being accessed. For example:
 <span>upper</span>
 <span>that will</span>
 <span>ensure that all text is displayed in uppercase when it is used:</span>
-<br/>
-<span>.upper { text-transform:uppercase; }</span>
+<pre><code class="css">.upper { text-transform:uppercase; }</code></pre>
 <h4>Indenting</h4>
 <span>Using the</span>
 <span>text-indent</span>
@@ -1352,22 +1286,21 @@ property being accessed. For example:
 <span>specified amount. The following rule indents the first line of every paragraph by 20</span>
 <span>pixels, although a different unit of measurement or a percent increase could also be</span>
 <span>applied:</span>
-<br/>
-<span>p { text-indent:20px; }</span>
-<br/>
+<pre><code class="css">p { text-indent:20px; }</code></pre>
 <span>In</span>
 <span>Figure 18-9</span>
 <span>the following rules have been applied to a section of text:</span>
-<br/>
-<span>p { line-height :150%;</span>
-<span>&nbsp;</span>
-<span>word-spacing :10px;</span>
-<span>&nbsp;</span>
-<span>letter-spacing:1px;</span>
-<span>}</span>
-<span>.justify { text-align :justify; }</span>
-<span>.uppercase { text-transform:uppercase; }</span>
-<span>.indent { text-indent :20px; }</span>
+<pre>
+<code class="css">
+p { line-height :150%;
+    word-spacing :10px;
+    letter-spacing:1px;
+}
+.justify { text-align :justify; }
+.uppercase { text-transform:uppercase; }
+.indent { text-indent :20px; }
+</code>
+</pre>
 <p><img src="images/18.9.png"/></p>
 <span>Figure 18-9. Indenting, uppercase, and spacing rules being applied</span>
 <h3>CSS Colors</h3>
@@ -1431,9 +1364,7 @@ property being accessed. For example:
 <span>names to set the background color for an object with the ID of</span>
 <span>object</span>
 <span>.</span>
-<br/>
-<span>#object { background-color:silver; }</span>
-<br/>
+<pre><code class="css">#object { background-color:silver; }</code></pre>
 <span>In this rule, the foreground color of text in all</span>
 <span>&lt;div&gt;</span>
 <span>elements is set to yellow (because</span>
@@ -1445,9 +1376,7 @@ property being accessed. For example:
 <span>00</span>
 <span>blue cre‐</span>
 <span>ates the color yellow):</span>
-<br/>
-<span>div { color:#ffff00; }</span>
-<br/>
+<pre><code class="css">div { color:#ffff00; }</code></pre>
 <span>Or, if you don&rsquo;t wish to work in hexadecimal, you can specify your color triplets by</span>
 <span>using the</span>
 <span>rgb</span>
@@ -1519,34 +1448,29 @@ property being accessed. For example:
 <span>.</span>
 <br/>
 <span>Example 18-3. Creating a linear gradient</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Creating a linear gradient&lt;/title&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>.orangegrad {</span>
-<span>&nbsp;</span>
-<span>background:orange;</span>
-<span>&nbsp;</span>
-<span>background:linear-gradient(top, #fb0, #f50);</span>
-<span>&nbsp;</span>
-<span>background:-moz-linear-gradient(top, #fb0, #f50);</span>
-<span>&nbsp;</span>
-<span>background:-webkit-linear-gradient(top, #fb0, #f50);</span>
-<span>&nbsp;</span>
-<span>background:-o-linear-gradient(top, #fb0, #f50);</span>
-<span>&nbsp;</span>
-<span>background:-ms-linear-gradient(top, #fb0, #f50); }</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;div class='orangegrad'&gt;Black text&lt;br&gt;</span>
-<span>on an orange&lt;br&gt;linear gradient&lt;/div&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Creating a linear gradient&lt;/title&gt;
+        &lt;style&gt;
+        .orangegrad {
+            background:orange;
+            background:linear-gradient(top, #fb0, #f50);
+            background:-moz-linear-gradient(top, #fb0, #f50);
+            background:-webkit-linear-gradient(top, #fb0, #f50);
+            background:-o-linear-gradient(top, #fb0, #f50);
+            background:-ms-linear-gradient(top, #fb0, #f50); }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class='orangegrad'&gt;Black text&lt;br&gt;
+        on an orange&lt;br&gt;linear gradient&lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/18.10.png"/></p>
 <span>Figure 18-10. A solid background color, a linear gradient, and a radial gradient</span>
 <br/>
@@ -1634,24 +1558,30 @@ property being accessed. For example:
 <span>100 pixels down from the document start and 200 pixels in from the left, you would</span>
 <span>apply the following rules to it (you can also use any of the other units of measurement</span>
 <span>supported by CSS):</span>
-<br/>
-<span>#object {</span>
-<span>position:absolute;</span>
-<span>top :100px;</span>
-<span>left :200px;</span>
-<span>}</span>
+<pre>
+<code class="css">
+#object {
+    position:absolute;
+    top :100px;
+    left :200px;
+}
+</code>
+</pre>
 <h4>Relative Positioning</h4>
 <span>Likewise, you can move the object relative to the location it would occupy in the nor‐</span>
 <span>mal document flow. So, for example, to move</span>
 <span>object</span>
 <span>10 pixels down and 10 pixels to</span>
 <span>the right of its normal location, you would use the following rules:</span>
-<br/>
-<span>#object {</span>
-<span>position:relative;</span>
-<span>top :10px;</span>
-<span>left :10px;</span>
-<span>}</span>
+<pre>
+<code class="css">
+#object {
+    position:relative;
+    top :10px;
+    left :10px;
+}
+</code>
+</pre>
 <h4>Fixed Positioning</h4>
 <span>The final positioning property setting lets you move an object to an absolute location,</span>
 <span>but only within the current browser viewport. Then, when the document is scrolled,</span>
@@ -1682,71 +1612,50 @@ property being accessed. For example:
 <br/>
 <span>Example 18-4. Applying</span>
 <span>different positioning values</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Positioning&lt;/title&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>#object1 {</span>
-<span>&nbsp;</span>
-<span>position :absolute;</span>
-<span>&nbsp;</span>
-<span>background:pink;</span>
-<span>&nbsp;</span>
-<span>width :100px;</span>
-<span>&nbsp;</span>
-<span>height :100px;</span>
-<span>&nbsp;</span>
-<span>top :100px;</span>
-<span>&nbsp;</span>
-<span>left :0px;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>#object2 {</span>
-<span>&nbsp;</span>
-<span>position :relative;</span>
-<span>&nbsp;</span>
-<span>background:lightgreen;</span>
-<span>&nbsp;</span>
-<span>width :100px;</span>
-<span>&nbsp;</span>
-<span>height :100px;</span>
-<span>&nbsp;</span>
-<span>top :-8px;</span>
-<span>&nbsp;</span>
-<span>left :110px;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>#object3 {</span>
-<span>&nbsp;</span>
-<span>position :fixed;</span>
-<span>&nbsp;</span>
-<span>background:yellow;</span>
-<span>&nbsp;</span>
-<span>width :100px;</span>
-<span>&nbsp;</span>
-<span>height :100px;</span>
-<span>&nbsp;</span>
-<span>top :100px;</span>
-<span>&nbsp;</span>
-<span>left :236px;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</span>
-<span>&lt;div id='object1'&gt;Absolute Positioning&lt;/div&gt;</span>
-<span>&lt;div id='object2'&gt;Relative Positioning&lt;/div&gt;</span>
-<span>&lt;div id='object3'&gt;Fixed Positioning&lt;/div&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Positioning&lt;/title&gt;
+        &lt;style&gt;
+            #object1 {
+                position :absolute;
+                background:pink;
+                width :100px;
+                height :100px;
+                top :100px;
+                left :0px;
+            }
+
+            #object2 {
+                position :relative;
+                background:lightgreen;
+                width :100px;
+                height :100px;
+                top :-8px;
+                left :110px;
+            }
+
+            #object3 {
+                position :fixed;
+                background:yellow;
+                width :100px;
+                height :100px;
+                top :100px;
+                left :236px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;div id='object1'&gt;Absolute Positioning&lt;/div&gt;
+        &lt;div id='object2'&gt;Relative Positioning&lt;/div&gt;
+        &lt;div id='object3'&gt;Fixed Positioning&lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>In the figure, the element with fixed positioning initially lines up with the other two</span>
 <span>elements, but has stayed put while the others have been scrolled up the page, and now</span>
 <span>appears offset below them.</span>
@@ -1774,12 +1683,14 @@ property being accessed. For example:
 <span>bigfirst</span>
 <span>for emphasizing the first letter of an element,</span>
 <span>you would use a rule such as the following:</span>
-<br/>
-<span>.bigfirst:first-letter {</span>
-<span>font-size:400%;</span>
-<span>float :left;</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="css">
+.bigfirst:first-letter {
+    font-size:400%;
+    float :left;
+}
+</code>
+</pre>
 <span>When the</span>
 <span>bigfirst</span>
 <span>class is applied to an element, the first letter will be displayed</span>
@@ -1798,22 +1709,26 @@ property being accessed. For example:
 <span>, all of which are mostly useful for</span>
 <span>applying to anchor elements, as in the following rules, which set the default color of</span>
 <span>all links to blue, and that of links that have already been visited to light blue:</span>
-<br/>
-<span>a:link { color:blue; }</span>
-<span>a:visited { color:lightblue; }</span>
-<br/>
+<pre>
+<code class="css">
+a:link { color:blue; }
+a:visited { color:lightblue; }
+</code>
+</pre>
 <span>The following rules are interesting in that they use the</span>
 <span>hover</span>
 <span>pseudoclass so that they</span>
 <span>are applied only when the mouse is placed over the element. In this example, they</span>
 <span>change the link to white text on a red background, providing a dynamic effect you</span>
 <span>would normally expect only from using JavaScript code:</span>
-<br/>
-<span>a:hover {</span>
-<span>color :white;</span>
-<span>background:red;</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="css">
+a:hover {
+    color :white;
+    background:red;
+}
+</code>
+</pre>
 <span>Here I have used the</span>
 <span>background</span>
 <span>property with a single argument, instead of the</span>
@@ -1826,18 +1741,14 @@ property being accessed. For example:
 <span>pseudoclass is also dynamic in that it effects a change to a link during the</span>
 <span>time between the mouse button being clicked and released, as with this rule, which</span>
 <span>changes the link color to dark blue:</span>
-<br/>
-<span>a:active { color:darkblue; }</span>
-<br/>
+<pre><code class="css">a:active { color:darkblue; }</code></pre>
 <span>Another interesting dynamic pseudoclass is</span>
 <span>focus</span>
 <span>, which is applied only when an ele‐</span>
 <span>ment is given focus by the user selecting it with the keyboard or mouse. The follow‐</span>
 <span>ing rule uses the universal selector to always place a mid-gray, dotted, 2-pixel border</span>
 <span>around the currently focused object:</span>
-<br/>
-<span>*:focus { border:2px dotted #888888; }</span>
-<br/>
+<pre><code class="css">*:focus { border:2px dotted #888888; }</code></pre>
 <span>Example 18-5</span>
 <span>&nbsp;displays two links and an input field, as shown in</span>
 <span>Figure 18-12</span>
@@ -1848,30 +1759,28 @@ property being accessed. For example:
 <span>link is clicked, it will display in purple, and when hovered over, it will appear red.</span>
 <br/>
 <span>Example 18-5. Link and focus pseudoclasses</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Pseudo-classes&lt;/title&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>a:link { color:blue; }</span>
-<span>&nbsp;</span>
-<span>a:visited { color:gray; }</span>
-<span>&nbsp;</span>
-<span>a:hover { color:red; }</span>
-<span>&nbsp;</span>
-<span>a:active { color:purple; }</span>
-<span>&nbsp;</span>
-<span>*:focus { background:yellow; }</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;a href='http://google.com'&gt;Link to Google'&lt;/a&gt;&lt;br&gt;</span>
-<span>&lt;a href='nowhere'&gt;Link to nowhere'&lt;/a&gt;&lt;br&gt;</span>
-<span>&lt;input type='text'&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="css">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Pseudo-classes&lt;/title&gt;
+        &lt;style&gt;
+            a:link { color:blue; }
+            a:visited { color:gray; }
+            a:hover { color:red; }
+            a:active { color:purple; }
+            *:focus { background:yellow; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;a href='http://google.com'&gt;Link to Google'&lt;/a&gt;&lt;br&gt;
+        &lt;a href='nowhere'&gt;Link to nowhere'&lt;/a&gt;&lt;br&gt;
+        &lt;input type='text'&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/18.12.png"/></p>
 <span>Figure 18-12. Pseudoclasses applied to a selection of elements</span>
 <br/>
@@ -1893,23 +1802,21 @@ property being accessed. For example:
 <span>border a few times, as in the</span>
 <span>focus</span>
 <span>rule in the previous section:</span>
-<br/>
-<span>*:focus { border:2px dotted #ff8800; }</span>
-<br/>
+<pre><code class="css">*:focus { border:2px dotted #ff8800; }</code></pre>
 <span>This is actually a shorthand concatenation of the following rule set:</span>
-<br/>
-<span>*:focus {</span>
-<span>border-width:2px;</span>
-<span>border-style:dotted;</span>
-<span>border-color:#ff8800;</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="css">
+*:focus {
+    border-width:2px;
+    border-style:dotted;
+    border-color:#ff8800;
+}
+</code>
+</pre>
 <span>When using a shorthand rule, you need only apply the properties up to the point</span>
 <span>where you wish to change values. So you could use the following to set only a border&rsquo;s</span>
 <span>width and style, choosing not to set its color:</span>
-<br/>
-<span>*:focus { border:2px dotted; }</span>
-<br/>
+<pre><code class="css">*:focus { border:2px dotted; }</code></pre>
 <span>The order in which the properties are placed in a shorthand rule</span>
 <span>can be important, and misplacing them is a common way to get</span>
 <span>unexpected results. Since there are far too many to detail in this</span>
@@ -1926,9 +1833,7 @@ property being accessed. For example:
 <span>for more details), a nested set of properties surrounding an element. Vir‐</span>
 <span>tually all elements have (or can have) these properties, including the document body,</span>
 <span>whose margin you can (for example) remove with the following rule:</span>
-<br/>
-<span>body { margin:0px; }</span>
-<br/>
+<pre><code class="css">body { margin:0px; }</code></pre>
 <span>The box model of an object starts at the outside, with the object&rsquo;s margin. Inside this</span>
 <span>is the border, then there is padding between the border and the inner contents, and</span>
 <span>finally there&rsquo;s the object&rsquo;s contents.</span>
@@ -1965,16 +1870,18 @@ property being accessed. For example:
 <span>margin</span>
 <span>property, you can supply one, two, three, or four arguments,</span>
 <span>which have the effects commented in the following rules:</span>
-<br/>
-<span>/* Set all margins to 1 pixel */</span>
-<span>margin:1px;</span>
-<span>/* Set top and bottom to 1 pixel, and left and right to 2 */</span>
-<span>margin:1px 2px;</span>
-<span>/* Set top to 1 pixel, left and right to 2, and bottom to 3 */</span>
-<span>margin:1px 2px 3px;</span>
-<span>/* Set top to 1 pixel, right to 2, bottom to 3, and left to 4 */</span>
-<span>margin:1px 2px 3px 4px;</span>
-<br/>
+<pre>
+<code class="css">
+/* Set all margins to 1 pixel */
+margin:1px;
+/* Set top and bottom to 1 pixel, and left and right to 2 */
+margin:1px 2px;
+/* Set top to 1 pixel, left and right to 2, and bottom to 3 */
+margin:1px 2px 3px;
+/* Set top to 1 pixel, right to 2, bottom to 3, and left to 4 */
+margin:1px 2px 3px 4px;
+</code>
+</pre>
 <span>Figure 18-13</span>
 <span>&nbsp;shows</span>
 <span>&nbsp;Example 18-6</span>
@@ -1989,60 +1896,45 @@ property being accessed. For example:
 <span>of 10 pixels above it, 20 pixels to its right, 30 pixels below it, and 40 pixels to its left.</span>
 <br/>
 <span>Example 18-6. How margins are applied</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Margins&lt;/title&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>#object1 {</span>
-<span>&nbsp;</span>
-<span>background :lightgreen;</span>
-<span>&nbsp;</span>
-<span>border-style:solid;</span>
-<span>&nbsp;</span>
-<span>border-width:1px;</span>
-<span>&nbsp;</span>
-<span>font-family :"Courier New";</span>
-<span>&nbsp;</span>
-<span>font-size :9px;</span>
-<span>&nbsp;</span>
-<span>width :100px;</span>
-<span>&nbsp;</span>
-<span>height :100px;</span>
-<span>&nbsp;</span>
-<span>padding :5px;</span>
-<span>margin :10px 20px 30px 40px;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>table {</span>
-<span>&nbsp;</span>
-<span>padding :0;</span>
-<span>&nbsp;</span>
-<span>border :1px solid black;</span>
-<span>&nbsp;</span>
-<span>background :cyan;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;table&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;tr&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;div id='object1'&gt;margin:&lt;br&gt;10px 20px 30px 40px;&lt;/div&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/td&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/tr&gt;</span>
-<span>&lt;/table&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="css">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Margins&lt;/title&gt;
+        &lt;style&gt;
+            #object1 {
+                background :lightgreen;
+                border-style:solid;
+                border-width:1px;
+                font-family :"Courier New";
+                font-size :9px;
+                width :100px;
+                height :100px;
+                padding :5px;
+                margin :10px 20px 30px 40px;
+
+            }
+
+            table {
+                padding :0;
+                border :1px solid black;
+                background :cyan;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;td&gt;
+                    &lt;div id='object1'&gt;margin:&lt;br&gt;10px 20px 30px 40px;&lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/18.13.png"/></p>
 <span>Figure 18-13. The outer table expands according to the margin widths</span>
 <h4>Applying Borders</h4>
@@ -2077,16 +1969,18 @@ property being accessed. For example:
 <span>also apply with the</span>
 <span>border-width</span>
 <span>property, so all the following are valid rules:</span>
-<br/>
-<span>/* All borders */</span>
-<span>border-width:1px;</span>
-<span>/* Top/bottom left/right */</span>
-<span>border-width:1px 5px;</span>
-<span>/* Top left/right bottom */</span>
-<span>border-width:1px 5px 10px;</span>
-<span>/* Top right bottom left */</span>
-<span>border-width:1px 5px 10px 15px;</span>
-<br/>
+<pre>
+<code class="css">
+/* All borders */
+border-width:1px;
+/* Top/bottom left/right */
+border-width:1px 5px;
+/* Top left/right bottom */
+border-width:1px 5px 10px;
+/* Top right bottom left */
+border-width:1px 5px 10px 15px;
+</code>
+</pre>
 <span>Figure 18-14</span>
 <span>shows each of these rules applied in turn to a group of square elements.</span>
 <span>In the first one, you can clearly see that all borders have a width of 1 pixel. The sec‐</span>
@@ -2126,16 +2020,18 @@ property being accessed. For example:
 <span>padding</span>
 <span>property, so all the following are valid</span>
 <span>rules:</span>
-<br/>
-<span>/* All padding */</span>
-<span>padding:1px;</span>
-<span>/* Top/bottom and left/right */</span>
-<span>padding:1px 2px;</span>
-<span>/* Top, left/right and bottom */</span>
-<span>padding:1px 2px 3px;</span>
-<span>/* Top, right, bottom and left */</span>
-<span>padding:1px 2px 3px 4px;</span>
-<br/>
+<pre>
+<code class="css">
+/* All padding */
+padding:1px;
+/* Top/bottom and left/right */
+padding:1px 2px;
+/* Top, left/right and bottom */
+padding:1px 2px 3px;
+/* Top, right, bottom and left */
+padding:1px 2px 3px 4px;
+</code>
+</pre>
 <span>Figure 18-15</span>
 <span>&nbsp;shows the padding rule (shown in bold) in</span>
 <span>&nbsp;Example 18-7</span>
@@ -2151,43 +2047,37 @@ property being accessed. For example:
 <span>pixels below it, and 40 pixels to its left.</span>
 <br/>
 <span>Example 18-7. Applying padding</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Padding&lt;/title&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>#object1 {</span>
-<span>&nbsp;</span>
-<span>border-style:solid;</span>
-<span>&nbsp;</span>
-<span>border-width:1px;</span>
-<span>&nbsp;</span>
-<span>background :orange;</span>
-<span>&nbsp;</span>
-<span>color :darkred;</span>
-<span>&nbsp;</span>
-<span>font-family :Arial;</span>
-<span>&nbsp;</span>
-<span>font-size :12px;</span>
-<span>&nbsp;</span>
-<span>text-align :justify;</span>
-<span>&nbsp;</span>
-<span>display :table-cell;</span>
-<span>&nbsp;</span>
-<span>width :148px;</span>
-<span>padding :10px 20px 30px 40px; }</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;div id='object1'&gt;To be, or not to be that is the question:</span>
-<span>Whether 'tis Nobler in the mind to suffer</span>
-<span>The Slings and Arrows of outrageous Fortune,</span>
-<span>Or to take Arms against a Sea of troubles,</span>
-<span>And by opposing end them.&lt;/div&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;Padding&lt;/title&gt;
+        &lt;style&gt;
+        #object1 {
+            border-style:solid;
+            border-width:1px;
+            background :orange;
+            color :darkred;
+            font-family :Arial;
+            font-size :12px;
+            text-align :justify;
+            display :table-cell;
+            width :148px;
+            padding :10px 20px 30px 40px; 
+        }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id='object1'&gt;To be, or not to be that is the question:
+        Whether 'tis Nobler in the mind to suffer
+        The Slings and Arrows of outrageous Fortune,
+        Or to take Arms against a Sea of troubles,
+        And by opposing end them.&lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/18.15.png"/></p>
 <span>Figure 18-15. Applying different padding values to an object</span>
 <h4>Object Contents</h4>
