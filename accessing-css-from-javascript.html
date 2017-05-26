@@ -32,12 +32,14 @@ title: "Accessing CSS from JavaScript"
 <span>Here&rsquo;s what the bare-bones</span>
 <span>O</span>
 <span>function looks like:</span>
-<br/>
-<span>function O(i)</span>
-<span>{</span>
-<span>return document.getElementById(i)</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+function O(i)
+{
+    return document.getElementById(i)
+}
+</code>
+</pre>
 <span>This alone saves 22 characters of typing each time it&rsquo;s called. But I choose to extend</span>
 <span>the function a little by allowing either an ID name or an object to be passed to this</span>
 <span>function, as shown in the complete version of the function in</span>
@@ -46,11 +48,14 @@ title: "Accessing CSS from JavaScript"
 <br/>
 <span>Example 20-1.</span>
 <span>The O() function</span>
-<span>function O(i)</span>
-<span>{</span>
-<span>return typeof i == 'object' ? i : document.getElementById(i)</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+function O(i)
+{
+    return typeof i == 'object' ? i : document.getElementById(i)
+}
+</code>
+</pre>
 <span>If an object is passed to the function, it just returns that object back again. Otherwise,</span>
 <span>it assumes that an ID is passed and returns the object to which the ID refers.</span>
 <br/>
@@ -68,12 +73,14 @@ title: "Accessing CSS from JavaScript"
 <br/>
 <span>Example 20-2.</span>
 <span>The S() function</span>
-<br/>
-<span>function S(i)</span>
-<span>{</span>
-<span>return O(i).style</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+function S(i)
+{
+    return O(i).style
+}
+</code>
+</pre>
 <span>The</span>
 <span>S</span>
 <span>in this function name is the first letter of</span>
@@ -95,35 +102,31 @@ title: "Accessing CSS from JavaScript"
 <span>myobj</span>
 <span>and</span>
 <span>setting its text color to green, like this:</span>
-<br/>
-<span>&lt;div id='myobj'&gt;Some text&lt;/div&gt;</span>
-<span>&lt;script&gt;</span>
-<span>O('myobj').style.color = 'green'</span>
-<span>&lt;/script&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;div id='myobj'&gt;Some text&lt;/div&gt;
+&lt;script&gt;
+O('myobj').style.color = 'green'
+&lt;/script&gt;
+</code>
+</pre>
 <span>The preceding code will do the job, but it&rsquo;s much simpler to call the new</span>
 <span>S</span>
 <span>function,</span>
 <span>like this:</span>
-<br/>
-<span>S('myobj').color = 'green'</span>
-<br/>
+<pre><code class="javascript">S('myobj').color = 'green'</code></pre>
 <span>Now consider the case in which the object returned by calling</span>
 <span>O</span>
 <span>is stored in, for</span>
 <span>example, an object called</span>
 <span>fred</span>
 <span>, like this:</span>
-<br/>
-<span>fred = O('myobj')</span>
-<br/>
+<pre><code class="javascript">fred = O('myobj')</code></pre>
 <span>Because of the way function</span>
 <span>S</span>
 <span>works, we can still call it to change the text color to</span>
 <span>green, like this:</span>
-<br/>
-<span>S(fred).color = 'green'</span>
-<br/>
+<pre><code class="javascript">S(fred).color = 'green'</code></pre>
 <span>This means that whether you wish to access an object directly or via its ID, you can</span>
 <span>do so by passing it to either the</span>
 <span>O</span>
@@ -141,10 +144,12 @@ title: "Accessing CSS from JavaScript"
 <span>employ the class</span>
 <span>myclass</span>
 <span>:</span>
-<br/>
-<span>&lt;div class='myclass'&gt;Div contents&lt;/fiv&gt;</span>
-<span>&lt;p class='myclass'&gt;Paragraph contents&lt;/p&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;div class='myclass'&gt;Div contents&lt;/fiv&gt;
+&lt;p class='myclass'&gt;Paragraph contents&lt;/p&gt;
+</code>
+</pre>
 <span>If you want to access all elements on a page that use a particular class, you can use the</span>
 <span>C</span>
 <span>function (for the first letter of</span>
@@ -156,28 +161,30 @@ title: "Accessing CSS from JavaScript"
 <br/>
 <span>Example 20-3.</span>
 <span>The C() function</span>
-<br/>
-<span>function C(i)</span>
-<span>{</span>
-<span>return document.getElementsByClassName(i)</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+function C(i)
+{
+    return document.getElementsByClassName(i)
+}
+</code>
+</pre>
 <span>To use this function, simply call it as follows, saving the returned array so that you</span>
 <span>can access each of the elements individually as required or (more likely to be the case)</span>
 <span>en masse via a loop:</span>
-<br/>
-<span>myarray = C('myclass')</span>
-<br/>
+<pre><code class="javascript">myarray = C('myclass')</code></pre>
 <span>Now you can do whatever you like with the objects returned, such as (for example)</span>
 <span>setting their</span>
 <span>textDecoration</span>
 <span>style property to</span>
 <span>underline</span>
 <span>, as follows:</span>
-<br/>
-<span>for (i = 0 ; i &lt; myarray.length ; ++i)</span>
-<span>S(myarray[i]).textDecoration = 'underline'</span>
-<br/>
+<pre>
+<code class="javascript">
+for (i = 0 ; i &lt; myarray.length ; ++i)
+    S(myarray[i]).textDecoration = 'underline'
+</code>
+</pre>
 <span>This code iterates through the objects in</span>
 <span>myarray[]</span>
 <span>and then uses the</span>
@@ -210,9 +217,7 @@ title: "Accessing CSS from JavaScript"
 <span>&lt;head&gt;</span>
 <span>section, anywhere before any script that relies on calling</span>
 <span>them:</span>
-<br/>
-<span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
-<br/>
+<pre><code class="javascript">&lt;script src='OSC.js'&gt;&lt;/script&gt;</code></pre>
 <span>The contents of</span>
 <span>OSC.js</span>
 <span>are shown in</span>
@@ -222,10 +227,13 @@ title: "Accessing CSS from JavaScript"
 <br/>
 <span>Example 20-4.</span>
 <span>The OSC.js file</span>
-<br/>
-<span>function O(i) { return typeof i == 'object' ? i : document.getElementById(i) }</span>
-<span>function S(i) { return O(i).style }</span>
-<span>function C(i) { return document.getElementsByClassName(i) }</span>
+<pre>
+<code class="javascript">
+function O(i) { return typeof i == 'object' ? i : document.getElementById(i) }
+function S(i) { return O(i).style }
+function C(i) { return document.getElementsByClassName(i) }
+</code>
+</pre>
 <h3>Accessing CSS Properties from JavaScript</h3>
 <span>The</span>
 <span>textDecoration</span>
@@ -243,16 +251,12 @@ title: "Accessing CSS from JavaScript"
 <span>in JavaScript as</span>
 <span>fontSize</span>
 <span>when placed after a period operator, like this:</span>
-<br/>
-<span>myobject.fontSize = '16pt'</span>
-<br/>
+<pre><code class="javascript">myobject.fontSize = '16pt'</code></pre>
 <span>An alternative to this is to be more long-winded and use the</span>
 <span>setAttribute</span>
 <span>function,</span>
 <span>which does support (and in fact requires) standard CSS property names, like this:</span>
-<br/>
-<span>myobject.setAttribute('style', 'font-size:16pt')</span>
-<br/>
+<pre><code class="javascript">myobject.setAttribute('style', 'font-size:16pt')</code></pre>
 <span>Some older versions of Microsoft Internet Explorer are picky in</span>
 <span>certain instances about using the JavaScript-style CSS property</span>
 <span>names when applying the browser-specific</span>
@@ -297,35 +301,30 @@ title: "Accessing CSS from JavaScript"
 <span>).</span>
 <br/>
 <span>Example 20-5. Accessing CSS properties from JavaScript</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Accessing CSS Properties&lt;/title&gt;</span>
-<span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;div id='object'&gt;Div Object&lt;/div&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>S('object').border = 'solid 1px red'</span>
-<span>&nbsp;</span>
-<span>S('object').width = '100px'</span>
-<span>&nbsp;</span>
-<span>S('object').height = '100px'</span>
-<span>&nbsp;</span>
-<span>S('object').background = '#eee'</span>
-<span>&nbsp;</span>
-<span>S('object').color = 'blue'</span>
-<span>&nbsp;</span>
-<span>S('object').fontSize = '15pt'</span>
-<span>&nbsp;</span>
-<span>S('object').fontFamily = 'Helvetica'</span>
-<span>&nbsp;</span>
-<span>S('object').fontStyle = 'italic'</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Accessing CSS Properties&lt;/title&gt;
+        &lt;script src='OSC.js'&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id='object'&gt;Div Object&lt;/div&gt;
+        &lt;script&gt;
+            S('object').border = 'solid 1px red'
+            S('object').width = '100px'
+            S('object').height = '100px'
+            S('object').background = '#eee'
+            S('object').color = 'blue'
+            S('object').fontSize = '15pt'
+            S('object').fontFamily = 'Helvetica'
+            S('object').fontStyle = 'italic'
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/20.1.png"/></p>
 <span>Figure 20-1. Modifying styles from JavaScript</span>
 <br/>
@@ -360,87 +359,112 @@ title: "Accessing CSS from JavaScript"
 <span>lists them all, along with descriptions of each.</span>
 <br/>
 <span>Table 20-1. Common window properties</span>
-<br/>
-<span>Property</span>
-<span>Sets and/or returns</span>
-<span>closed</span>
-<span>Returns a Boolean value indicating whether a window has been closed or not</span>
-<span>defaultStatus</span>
-<span>Sets or returns the default text in the status bar of a window</span>
-<span>document</span>
-<span>Returns the</span>
-<span>document</span>
-<span>object for the window</span>
-<span>frames</span>
-<span>Returns an array of all the frames and iframes in the window</span>
-<span>history</span>
-<span>Returns the</span>
-<span>history</span>
-<span>object for the window</span>
-<span>innerHeight</span>
-<span>Sets or returns the inner height of a window&rsquo;s content area</span>
-<span>innerWidth</span>
-<span>Sets or returns the inner width of a window&rsquo;s content area</span>
-<span>length</span>
-<span>Returns the number of frames and iframes in a window</span>
-<span>location</span>
-<span>Returns the</span>
-<span>location</span>
-<span>object for the window</span>
-<span>name</span>
-<span>Sets or returns the name of a window</span>
-<span>Property</span>
-<span>Sets and/or returns</span>
-<span>navigator</span>
-<span>Returns the</span>
-<span>navigator</span>
-<span>object for the window</span>
-<span>opener</span>
-<span>Returns a reference to the window that created the window</span>
-<span>outerHeight</span>
-<span>Sets or returns the outer height of a window, including tool and scroll bars</span>
-<span>outerWidth</span>
-<span>Sets or returns the outer width of a window, including tool and scroll bars</span>
-<span>pageXOffset</span>
-<span>Returns the pixels the document has been scrolled horizontally from the left of the window</span>
-<span>pageYOffset</span>
-<span>Returns the pixels the document has been scrolled vertically from the top of the window</span>
-<span>parent</span>
-<span>Returns the parent window of a window</span>
-<span>screen</span>
-<span>Returns the</span>
-<span>screen</span>
-<span>object for the window</span>
-<span>screenLeft</span>
-<span>Returns the</span>
-<span>x</span>
-<span>coordinate of the window relative to the screen in all recent browsers except Mozilla</span>
-<span>Firefox (for which you should use</span>
-<span>screenX</span>
-<span>)</span>
-<span>screenTop</span>
-<span>Returns the</span>
-<span>y</span>
-<span>coordinate of the window relative to the screen in all recent browsers except Mozilla</span>
-<span>Firefox (for which you should use</span>
-<span>screenY</span>
-<span>)</span>
-<span>screenX</span>
-<span>Returns the</span>
-<span>x</span>
-<span>coordinate of the window relative to the screen in all recent browsers except Opera, which</span>
-<span>returns incorrect values; not supported in versions of IE prior to 9</span>
-<span>screenY</span>
-<span>Returns the</span>
-<span>y</span>
-<span>coordinate of the window relative to the screen in all recent browsers except Opera, which</span>
-<span>returns incorrect values; not supported in versions of IE prior to 9</span>
-<span>self</span>
-<span>Returns the current window</span>
-<span>status</span>
-<span>Sets or returns the text in the status bar of a window</span>
-<span>top</span>
-<span>Returns the top browser window</span>
+<table class="tbl-left">
+    <tr>
+        <td>Property</td>
+        <td>Sets and/or returns</td>
+    </tr>
+    <tr>
+        <td>closed</td>
+        <td>Returns a Boolean value indicating whether a window has been closed or not</td>
+    </tr>
+    <tr>
+        <td>defaultStatus</td>
+        <td>Sets or returns the default text in the status bar of a window</td>
+    </tr>
+    <tr>
+        <td>document</td>
+        <td>Returns the document object for the window</td>
+    </tr>
+    <tr>
+        <td>frames</td>
+        <td>Returns an array of all the frames and iframes in the window</td>
+    </tr>
+    <tr>
+        <td>history</td>
+        <td>Returns the history object for the window</td>
+    </tr>
+    <tr>
+        <td>innerHeight</td>
+        <td>Sets or returns the inner height of a window&rsquo;s content area</td>
+    </tr>
+    <tr>
+        <td>innerWidth</td>
+        <td>Sets or returns the inner width of a window&rsquo;s content area</td>
+    </tr>
+    <tr>
+        <td>length</td>
+        <td>Returns the number of frames and iframes in a window</td>
+    </tr>
+    <tr>
+        <td>location</td>
+        <td>Returns the location object for the window</td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td>Sets or returns the name of a window Property Sets and/or returns</td>
+    </tr>
+    <tr>
+        <td>navigator</td>
+        <td>Returns the navigator object for the window</td>
+    </tr>
+    <tr>
+        <td>opener</td>
+        <td>Returns a reference to the window that created the window</td>
+    </tr>
+    <tr>
+        <td>outerHeight</td>
+        <td>Sets or returns the outer height of a window, including tool and scroll bars</td>
+    </tr>
+    <tr>
+        <td>outerWidth</td>
+        <td>Sets or returns the outer width of a window, including tool and scroll bars</td>
+    </tr>
+    <tr>
+        <td>pageXOffset</td>
+        <td>Returns the pixels the document has been scrolled horizontally from the left of the window</td>
+    </tr>
+    <tr>
+        <td>pageYOffset</td>
+        <td>Returns the pixels the document has been scrolled vertically from the top of the window</td>
+    </tr>
+    <tr>
+        <td>parent</td>
+        <td>Returns the parent window of a window</td>
+    </tr>
+    <tr>
+        <td>screen</td>
+        <td>Returns the screen object for the window</td>
+    </tr>
+    <tr>
+        <td>screenLeft</td>
+        <td>Returns the x coordinate of the window relative to the screen in all recent browsers except Mozilla Firefox (for which you should use screenX )</td>
+    </tr>
+    <tr>
+        <td>screenTop</td>
+        <td>Returns the y coordinate of the window relative to the screen in all recent browsers except Mozilla Firefox (for which you should use screenY)</td>
+    </tr>
+    <tr>
+        <td>screenX</td>
+        <td>Returns the x coordinate of the window relative to the screen in all recent browsers except Opera, which returns incorrect values; not supported in versions of IE prior to 9</td>
+    </tr>
+    <tr>
+        <td>screenY</td>
+        <td>Returns the y coordinate of the window relative to the screen in all recent browsers except Opera, which returns incorrect values; not supported in versions of IE prior to 9</td>
+    </tr>
+    <tr>
+        <td>self</td>
+        <td>Returns the current window</td>
+    </tr>
+    <tr>
+        <td>status</td>
+        <td>Sets or returns the text in the status bar of a window</td>
+    </tr>
+    <tr>
+        <td>top</td>
+        <td>Returns the top browser window</td>
+    </tr>
+</table>
 <br/>
 <span>There are a few points to note about some of these properties:</span>
 <br/>
@@ -530,20 +554,21 @@ title: "Accessing CSS from JavaScript"
 <span>restores the apple again when the mouse leaves.</span>
 <br/>
 <span>Example 20-6. Using inline JavaScript</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Inline JavaScript&lt;/title&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;img src='apple.png'</span>
-<span>&nbsp;</span>
-<span>onmouseover="this.src='orange.png'"</span>
-<span>&nbsp;</span>
-<span>onmouseout="this.src='apple.png'"&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Inline JavaScript&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;img src='apple.png'
+            onmouseover="this.src='orange.png'"
+            onmouseout="this.src='apple.png'"&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <h4>The this Keyword</h4>
 <span>In the preceding example, you see the</span>
 <span>this</span>
@@ -570,24 +595,24 @@ title: "Accessing CSS from JavaScript"
 <span>.</span>
 <br/>
 <span>Example 20-7. Non-inline JavaScript</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Non-inline JavaScript&lt;/title&gt;</span>
-<span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;img id='object' src='apple.png'&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>O('object').onmouseover = function() { this.src = 'orange.png' }</span>
-<span>&nbsp;</span>
-<span>O('object').onmouseout = function() { this.src = 'apple.png' }</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="javascript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Non-inline JavaScript&lt;/title&gt;
+        &lt;script src='OSC.js'&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;img id='object' src='apple.png'&gt;
+        &lt;script&gt;
+            O('object').onmouseover = function() { this.src = 'orange.png' }
+            O('object').onmouseout = function() { this.src = 'apple.png' }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>In the HTML section, this example gives the</span>
 <span>&lt;img&gt;</span>
 <span>element an ID of</span>
@@ -603,53 +628,100 @@ title: "Accessing CSS from JavaScript"
 <span>lists these events and details when they will be triggered.</span>
 <br/>
 <span>Table 20-2. Events and when they are triggered</span>
-<br/>
-<span>Event</span>
-<span>Occurs</span>
-<span>onabort</span>
-<span>When an image&rsquo;s loading is stopped before completion</span>
-<span>onblur</span>
-<span>When an element loses focus</span>
-<span>onchange</span>
-<span>When any part of a form has changed</span>
-<span>onclick</span>
-<span>When an object is clicked</span>
-<span>ondblclick</span>
-<span>When an object is double-clicked</span>
-<span>onerror</span>
-<span>When a JavaScript error is encountered</span>
-<span>onfocus</span>
-<span>When an element gets focus</span>
-<span>onkeydown</span>
-<span>When a key is being pressed (including Shift, Alt, Ctrl, and Esc)</span>
-<span>onkeypress</span>
-<span>When a key is being pressed (not including Shift, Alt, Ctrl, and Esc)</span>
-<span>onkeyup</span>
-<span>When a key is released</span>
-<span>onload</span>
-<span>When an object has loaded</span>
-<span>onmousedown</span>
-<span>When the mouse button is pressed over an element</span>
-<span>onmousemove</span>
-<span>When the mouse is moved over an element</span>
-<span>onmouseout</span>
-<span>When the mouse leaves an element</span>
-<span>onmouseover</span>
-<span>When the mouse passes over an element from outside it</span>
-<span>onmouseup</span>
-<span>When the mouse button is released</span>
-<span>onsubmit</span>
-<span>When a form is submitted</span>
-<span>onreset</span>
-<span>When a form is reset</span>
-<span>onresize</span>
-<span>When the browser is resized</span>
-<span>onscroll</span>
-<span>When the document is scrolled</span>
-<span>onselect</span>
-<span>When some text is selected</span>
-<span>onunload</span>
-<span>When a document is removed</span>
+<table class="tbl-left">
+    <tr>
+        <td>Event</td>
+        <td>Occurs</td>
+    </tr>
+    <tr>
+        <td>onabort</td>
+        <td>When an image&rsquo;s loading is stopped before completion</td>
+    </tr>
+    <tr>
+        <td>onblur</td>
+        <td>When an element loses focus</td>
+    </tr>
+    <tr>
+        <td>onchange</td>
+        <td>When any part of a form has changed</td>
+    </tr>
+    <tr>
+        <td>onclick</td>
+        <td>When an object is clicked</td>
+    </tr>
+    <tr>
+        <td>ondblclick</td>
+        <td>When an object is double-clicked</td>
+    </tr>
+    <tr>
+        <td>onerror</td>
+        <td>When a JavaScript error is encountered</td>
+    </tr>
+    <tr>
+        <td>onfocus</td>
+        <td>When an element gets focus</td>
+    </tr>
+    <tr>
+        <td>onkeydown</td>
+        <td>When a key is being pressed (including Shift, Alt, Ctrl, and Esc)</td>
+    </tr>
+    <tr>
+        <td>onkeypress</td>
+        <td>When a key is being pressed (not including Shift, Alt, Ctrl, and Esc)</td>
+    </tr>
+    <tr>
+        <td>onkeyup</td>
+        <td>When a key is released</td>
+    </tr>
+    <tr>
+        <td>onload</td>
+        <td>When an object has loaded</td>
+    </tr>
+    <tr>
+        <td>onmousedown</td>
+        <td>When the mouse button is pressed over an element</td>
+    </tr>
+    <tr>
+        <td>onmousemove</td>
+        <td>When the mouse is moved over an element</td>
+    </tr>
+    <tr>
+        <td>onmouseout</td>
+        <td>When the mouse leaves an element</td>
+    </tr>
+    <tr>
+        <td>onmouseover</td>
+        <td>When the mouse passes over an element from outside it</td>
+    </tr>
+    <tr>
+        <td>onmouseup</td>
+        <td>When the mouse button is released</td>
+    </tr>
+    <tr>
+        <td>onsubmit</td>
+        <td>When a form is submitted</td>
+    </tr>
+    <tr>
+        <td>onreset</td>
+        <td>When a form is reset</td>
+    </tr>
+    <tr>
+        <td>onresize</td>
+        <td>When the browser is resized</td>
+    </tr>
+    <tr>
+        <td>onscroll</td>
+        <td>When the document is scrolled</td>
+    </tr>
+    <tr>
+        <td>onselect</td>
+        <td>When some text is selected</td>
+    </tr>
+    <tr>
+        <td>onunload</td>
+        <td>When a document is removed</td>
+    </tr>
+</table>
 <br/>
 <span>Make sure you attach events to objects that make sense. For exam‐</span>
 <span>ple, an object that is not a form will not respond to the</span>
@@ -668,46 +740,35 @@ title: "Accessing CSS from JavaScript"
 <span>you can add it to the web page.</span>
 <br/>
 <span>Example 20-8. Inserting an element into the DOM</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Adding Elements&lt;/title&gt;</span>
-<span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>This is a document with only this text in it.&lt;br&gt;&lt;br&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>alert('Click OK to add an element')</span>
-<span>&nbsp;</span>
-<span>newdiv = document.createElement('div')</span>
-<span>&nbsp;</span>
-<span>newdiv.id = 'NewDiv'</span>
-<span>&nbsp;</span>
-<span>document.body.appendChild(newdiv)</span>
-<span>&nbsp;</span>
-<span>S(newdiv).border = 'solid 1px red'</span>
-<span>&nbsp;</span>
-<span>S(newdiv).width = '100px'</span>
-<span>&nbsp;</span>
-<span>S(newdiv).height = '100px'</span>
-<span>&nbsp;</span>
-<span>newdiv.innerHTML = "I'm a new object inserted in the DOM"</span>
-<span>&nbsp;</span>
-<span>tmp = newdiv.offsetTop</span>
-<span>&nbsp;</span>
-<span>alert('Click OK to remove the element')</span>
-<span>&nbsp;</span>
-<span>pnode = newdiv.parentNode</span>
-<span>&nbsp;</span>
-<span>pnode.removeChild(newdiv)</span>
-<span>&nbsp;</span>
-<span>tmp = pnode.offsetTop</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Adding Elements&lt;/title&gt;
+        &lt;script src='OSC.js'&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        This is a document with only this text in it.&lt;br&gt;&lt;br&gt;
+        &lt;script&gt;
+            alert('Click OK to add an element')
+            newdiv = document.createElement('div')
+            newdiv.id = 'NewDiv'
+            document.body.appendChild(newdiv)
+            S(newdiv).border = 'solid 1px red'
+            S(newdiv).width = '100px'
+            S(newdiv).height = '100px'
+            newdiv.innerHTML = "I'm a new object inserted in the DOM"
+            tmp = newdiv.offsetTop
+            alert('Click OK to remove the element')
+            pnode = newdiv.parentNode
+            pnode.removeChild(newdiv)
+            tmp = pnode.offsetTop
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>Figure 20-3</span>
 <span>shows this code being used to add a new</span>
 <span>&lt;div&gt;</span>
@@ -744,9 +805,7 @@ title: "Accessing CSS from JavaScript"
 <span>the element to remove is in the object</span>
 <span>element</span>
 <span>:</span>
-<br/>
-<span>element.parentNode.removeChild(element)</span>
-<br/>
+<pre><code class="javascript">element.parentNode.removeChild(element)</code></pre>
 <span>This code accesses the element&rsquo;s</span>
 <span>parentNode</span>
 <span>object so that it can remove the element</span>
@@ -755,11 +814,13 @@ title: "Accessing CSS from JavaScript"
 <span>method on that object, passing the</span>
 <span>object to be removed. However, to ensure the DOM instantly refreshes on all brows‐</span>
 <span>ers, you may prefer to replace the preceding single statement with something like this:</span>
-<br/>
-<span>pnode = element.parentNode</span>
-<span>pnode.removeChild(element)</span>
-<span>tmp = pnode.offsetTop</span>
-<br/>
+<pre>
+<code class="javascript">
+pnode = element.parentNode
+pnode.removeChild(element)
+tmp = pnode.offsetTop
+</code>
+</pre>
 <span>This first statement makes a copy of</span>
 <span>element.parentNode</span>
 <span>(the parent element of the</span>
@@ -788,39 +849,25 @@ title: "Accessing CSS from JavaScript"
 <span>property to</span>
 <span>'hidden'</span>
 <span>, like this:</span>
-<br/>
-<span>myobject.visibility = 'hidden'</span>
-<br/>
+<pre><code class="javascript">myobject.visibility = 'hidden'</code></pre>
 <span>And to redisplay the object, you can use the following:</span>
-<br/>
-<span>myobject.visibility = 'visible'</span>
-<br/>
+<pre><code class="javascript">myobject.visibility = 'visible'</code></pre>
 <span>You can also collapse elements down to occupy zero width and height (with all</span>
 <span>objects around it filling in the freed-up space), like this:</span>
-<br/>
-<span>myobject.display = 'none'</span>
-<br/>
+<pre><code class="javascript">myobject.display = 'none'</code></pre>
 <span>To then restore an element to its original dimensions, you would use the following:</span>
-<br/>
-<span>myobject.display = 'block'</span>
-<br/>
+<pre><code class="javascript">myobject.display = 'block'</code></pre>
 <span>And, of course, there&rsquo;s always the</span>
 <span>innerHTML</span>
 <span>property, with which you can change the</span>
 <span>HTML applied to an element, like this, for example:</span>
-<br/>
-<span>mylement.innerHTML = '&lt;b&gt;Replacement HTML&lt;/b&gt;'</span>
-<br/>
+<pre><code class="javascript">mylement.innerHTML = '&lt;b&gt;Replacement HTML&lt;/b&gt;'</code></pre>
 <span>Or you can use the</span>
 <span>O</span>
 <span>function I outlined earlier, like this:</span>
-<br/>
-<span>O('someid').innerHTML = 'New contents'</span>
-<br/>
+<pre><code class="javascript">O('someid').innerHTML = 'New contents'</code></pre>
 <span>Or you can make an element seem to disappear, like this:</span>
-<br/>
-<span>O('someid').innerHTML = ''</span>
-<br/>
+<pre><code class="javascript">O('someid').innerHTML = ''</code></pre>
 <span>Don&rsquo;t forget other useful CSS properties you can access from Java‐</span>
 <span>Script, such as</span>
 <span>opacity</span>
@@ -867,18 +914,18 @@ title: "Accessing CSS from JavaScript"
 <span>, you pass it some JavaScript code or the name of a func‐</span>
 <span>tion, and the value in milliseconds representing how long to wait before the code</span>
 <span>should be executed, like this:</span>
-<br/>
-<span>setTimeout(dothis, 5000)</span>
-<br/>
+<pre><code class="javascript">setTimeout(dothis, 5000)</code></pre>
 <span>And your</span>
 <span>dothis</span>
 <span>function might look like this:</span>
-<br/>
-<span>function dothis()</span>
-<span>{</span>
-<span>alert('This is your wakeup alert!');</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="javascript">
+function dothis()
+{
+    alert('This is your wakeup alert!');
+}
+</code>
+</pre>
 <span>In case you&rsquo;re wondering, you cannot simply specify</span>
 <span>alert()</span>
 <span>(with</span>
@@ -897,14 +944,10 @@ title: "Accessing CSS from JavaScript"
 <span>setTimeout</span>
 <span>function, which will not be executed until the correct time, like</span>
 <span>this:</span>
-<br/>
-<span>setTimeout("alert('Hello!')", 5000)</span>
-<br/>
+<pre><code class="javascript">setTimeout("alert('Hello!')", 5000)</code></pre>
 <span>In fact, you can provide as many lines of JavaScript code as you like, if you place a</span>
 <span>semicolon after each statement, like this:</span>
-<br/>
-<span>setTimeout("document.write('Starting'); alert('Hello!')", 5000)</span>
-<br/>
+<pre><code class="javascript">setTimeout("document.write('Starting'); alert('Hello!')", 5000)</code></pre>
 <h6>Repeating time-outs</h6>
 <span>One technique some programmers use to provide repeating interrupts using the</span>
 <span>function</span>
@@ -913,29 +956,29 @@ title: "Accessing CSS from JavaScript"
 <span>setTimeout</span>
 <span>function from the code called by it, as</span>
 <span>with the following, which will initiate a never-ending loop of alert windows:</span>
-<br/>
-<span>setTimeout(dothis, 5000)</span>
-<span>function dothis()</span>
-<span>{</span>
-<span>setTimeout(dothis, 5000)</span>
-<span>alert('I am annoying!')</span>
-<span>}</span>
+<pre>
+<code class="javascript">
+setTimeout(dothis, 5000)
+
+function dothis()
+{
+    setTimeout(dothis, 5000)
+    alert('I am annoying!')
+}
+</code>
+</pre>
 <span>Now the alert will pop up every five seconds.</span>
 <h4>Cancelling a Time-Out</h4>
 <span>Once a time-out has been set up, you can cancel it if you previously saved the value</span>
 <span>returned from the initial call to</span>
 <span>setTimeout</span>
 <span>, like this:</span>
-<br/>
-<span>handle = setTimeout(dothis, 5000)</span>
-<br/>
+<pre><code class="javascript">handle = setTimeout(dothis, 5000)</code></pre>
 <span>Armed with the value in</span>
 <span>handle</span>
 <span>, you can now cancel the interrupt at any point up</span>
 <span>until its due time, like this:</span>
-<br/>
-<span>clearTimeout(handle)</span>
-<br/>
+<pre><code class="javascript">clearTimeout(handle)</code></pre>
 <span>When you do this, the interrupt is completely forgotten, and the code assigned to it</span>
 <span>will not get executed.</span>
 <h4>Using setInterval</h4>
@@ -951,31 +994,28 @@ title: "Accessing CSS from JavaScript"
 <span>Figure 20-4</span>
 <span>.</span>
 <span>Example 20-9. A clock created using interrupts</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Using setInterval&lt;/title&gt;</span>
-<span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>The time is: &lt;span id='time'&gt;00:00:00&lt;/span&gt;&lt;br&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>setInterval("showtime(O('time'))", 1000)</span>
-<span>&nbsp;</span>
-<span>function showtime(object)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>var date = new Date()</span>
-<span>&nbsp;</span>
-<span>object.innerHTML = date.toTimeString().substr(0,8)</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="javascript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Using setInterval&lt;/title&gt;
+        &lt;script src='OSC.js'&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        The time is: &lt;span id='time'&gt;00:00:00&lt;/span&gt;&lt;br&gt;
+        &lt;script&gt;
+        setInterval("showtime(O('time'))", 1000)
+        function showtime(object)
+        {
+            var date = new Date()
+            object.innerHTML = date.toTimeString().substr(0,8)
+        }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/20.4.png"/></p>
 <span>Figure 20-4. Maintaining the correct time with interrupts</span>
 <br/>
@@ -987,9 +1027,7 @@ title: "Accessing CSS from JavaScript"
 <span>a call to</span>
 <span>Date</span>
 <span>:</span>
-<br/>
-<span>var date = new Date()</span>
-<br/>
+<pre><code class="javascript">var date = new Date()</code></pre>
 <span>Then the</span>
 <span>innerHTML</span>
 <span>property of the object passed to</span>
@@ -1006,33 +1044,25 @@ title: "Accessing CSS from JavaScript"
 <span>then truncated to just the first eight characters with a call to the</span>
 <span>substr</span>
 <span>function:</span>
-<br/>
-<span>object.innerHTML = date.toTimeString().substr(0,8)</span>
-<br/>
+<pre><code class="javascript">object.innerHTML = date.toTimeString().substr(0,8)</code></pre>
 <h6>Using the function</h6>
 <span>To use this function, you first have to create an object whose</span>
 <span>innerHTML</span>
 <span>property will</span>
 <span>be used for displaying the time, like this HTML:</span>
-<br/>
-<span>The time is: &lt;span id='time'&gt;00:00:00&lt;/span&gt;</span>
-<br/>
+<pre><code class="javascript">The time is: &lt;span id='time'&gt;00:00:00&lt;/span&gt;</code></pre>
 <span>Then, from a</span>
 <span>&lt;script&gt;</span>
 <span>section of code, a call is placed to the</span>
 <span>setInterval</span>
 <span>function,</span>
 <span>like this:</span>
-<br/>
-<span>setInterval("showtime(O('time'))", 1000)</span>
-<br/>
+<pre><code class="javascript">setInterval("showtime(O('time'))", 1000)</code></pre>
 <span>It then passes a string to</span>
 <span>setInterval</span>
 <span>, containing the following statement, which is</span>
 <span>set to execute once a second (every 1,000 milliseconds):</span>
-<br/>
-<span>showtime(O('time'))</span>
-<br/>
+<pre><code class="javascript">showtime(O('time'))</code></pre>
 <span>In the rare situation where somebody has disabled JavaScript (which people some‐</span>
 <span>times do for security reasons), your JavaScript will not run and the user will see the</span>
 <span>original</span>
@@ -1043,17 +1073,11 @@ title: "Accessing CSS from JavaScript"
 <span>tion</span>
 <span>setInterval</span>
 <span>, you must make a note of the interval&rsquo;s handle, like this:</span>
-<br/>
-<span>handle = setInterval("showtime(O('time'))", 1000)</span>
-<br/>
+<pre><code class="javascript">handle = setInterval("showtime(O('time'))", 1000)</code></pre>
 <span>Now you can stop the clock at any time by issuing the following call:</span>
-<br/>
-<span>clearInterval(handle)</span>
-<br/>
+<pre><code class="javascript">clearInterval(handle)</code></pre>
 <span>You can even set up a timer to stop the clock after a certain amount of time, like this:</span>
-<br/>
-<span>setTimeout("clearInterval(handle)", 10000)</span>
-<br/>
+<pre><code class="javascript">setTimeout("clearInterval(handle)", 10000)</code></pre>
 <span>This statement will issue an interrupt in 10 seconds that will clear the repeating inter‐</span>
 <span>vals.</span>
 <h4>Using Interrupts for Animation</h4>
@@ -1073,55 +1097,41 @@ title: "Accessing CSS from JavaScript"
 <span>.</span>
 <br/>
 <span>Example 20-10. A simple animation</span>
-<br/>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Simple Animation&lt;/title&gt;</span>
-<span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
-<span>&lt;style&gt;</span>
-<span>&nbsp;</span>
-<span>#box {</span>
-<span>&nbsp;</span>
-<span>position :absolute;</span>
-<span>&nbsp;</span>
-<span>background:orange;</span>
-<span>&nbsp;</span>
-<span>border :1px solid red;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/style&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;div id='box'&gt;&lt;/div&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>SIZE = LEFT = 0</span>
-<span>&nbsp;</span>
-<span>setInterval(animate, 30)</span>
-<span>&nbsp;</span>
-<span>function animate()</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>SIZE += 10</span>
-<span>&nbsp;</span>
-<span>LEFT += 3</span>
-<span>&nbsp;</span>
-<span>if (SIZE == 200) SIZE = 0</span>
-<span>&nbsp;</span>
-<span>if (LEFT == 600) LEFT = 0</span>
-<span>&nbsp;</span>
-<span>S('box').width = SIZE + 'px'</span>
-<span>&nbsp;</span>
-<span>S('box').height = SIZE + 'px'</span>
-<span>&nbsp;</span>
-<span>S('box').left = LEFT + 'px'</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="javascript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Simple Animation&lt;/title&gt;
+        &lt;script src='OSC.js'&gt;&lt;/script&gt;
+        &lt;style&gt;
+        #box {
+            position :absolute;
+            background:orange;
+            border :1px solid red;
+        }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id='box'&gt;&lt;/div&gt;
+        &lt;script&gt;
+            SIZE = LEFT = 0
+            setInterval(animate, 30)
+            function animate()
+            {
+                SIZE += 10
+                LEFT += 3
+                if (SIZE == 200) SIZE = 0
+                if (LEFT == 600) LEFT = 0
+                S('box').width = SIZE + 'px'
+                S('box').height = SIZE + 'px'
+                S('box').left = LEFT + 'px'
+            }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/20.5.png"/></p>
 <span>Figure 20-5. This object slides in from the left while changing size</span>
 <br/>
