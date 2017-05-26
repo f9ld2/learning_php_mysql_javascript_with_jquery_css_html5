@@ -66,41 +66,34 @@ title: "Introduction to HTML5"
 <span>Figure 22-1</span>
 <span>).</span>
 <span>Example 22-1. Using the HTML5 canvas element</span>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;The HTML5 Canvas&lt;/title&gt;</span>
-<span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;canvas id='mycanvas' width='320' height='240'&gt;</span>
-<span>&nbsp;</span>
-<span>This is a canvas element given the ID &lt;i&gt;mycanvas&lt;/i&gt;</span>
-<span>&nbsp;</span>
-<span>This text is only visible in non-HTML5 browsers</span>
-<span>&lt;/canvas&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>canvas = O('mycanvas')</span>
-<span>&nbsp;</span>
-<span>context = canvas.getContext('2d')</span>
-<span>&nbsp;</span>
-<span>context.fillStyle = 'red'</span>
-<span>&nbsp;</span>
-<span>S(canvas).border = '1px solid black'</span>
-<span>&nbsp;</span>
-<span>context.beginPath()</span>
-<span>&nbsp;</span>
-<span>context.moveTo(160, 120)</span>
-<span>&nbsp;</span>
-<span>context.arc(160, 120, 70, 0, Math.PI * 2, false)</span>
-<span>&nbsp;</span>
-<span>context.closePath()</span>
-<span>&nbsp;</span>
-<span>context.fill()</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;The HTML5 Canvas&lt;/title&gt;
+        &lt;script src='OSC.js'&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;canvas id='mycanvas' width='320' height='240'&gt;
+        This is a canvas element given the ID &lt;i&gt;mycanvas&lt;/i&gt;
+        This text is only visible in non-HTML5 browsers
+        &lt;/canvas&gt;
+        &lt;script&gt;
+            canvas = O('mycanvas')
+            context = canvas.getContext('2d')
+            context.fillStyle = 'red'
+            S(canvas).border = '1px solid black'
+            context.beginPath()
+            context.moveTo(160, 120)
+            context.arc(160, 120, 70, 0, Math.PI * 2, false)
+            context.closePath()
+            context.fill()
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>Figure 22-1. Drawing the Japanese flag using an HTML5 canvas</span>
 <span>At this point, it&rsquo;s not necessary to detail exactly what is going on, as I explain that in</span>
 <span>the following chapter, but you should already see how using the canvas is not hard,</span>
@@ -140,84 +133,60 @@ title: "Introduction to HTML5"
 <span>Figure 22-2</span>
 <span>). Otherwise, it will display an error.</span>
 <span>Example 22-2. Displaying the map at a user&rsquo;s location</span>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Geolocation Example&lt;/title&gt;</span>
-<span>&lt;script src='OSC.js'&gt;&lt;/script&gt;</span>
-<span>&lt;script src="https://maps.googleapis.com/maps/api/js?sensor=false"&gt;&lt;/script&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;div id='status'&gt;&lt;/div&gt;</span>
-<span>&lt;div id='map'&gt;&lt;/div&gt;</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>if (typeof navigator.geolocation == 'undefined')</span>
-<span>&nbsp;</span>
-<span>alert("Geolocation not supported.")</span>
-<span>&nbsp;</span>
-<span>else</span>
-<span>&nbsp;</span>
-<span>navigator.geolocation.getCurrentPosition(granted, denied)</span>
-<span>&nbsp;</span>
-<span>function granted(position)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>O('status').innerHTML = 'Permission Granted'</span>
-<span>&nbsp;</span>
-<span>S('map').border = '1px solid black'</span>
-<span>&nbsp;</span>
-<span>S('map').width = '640px'</span>
-<span>&nbsp;</span>
-<span>S('map').height = '320px'</span>
-<span>&nbsp;</span>
-<span>var lat = position.coords.latitude</span>
-<span>&nbsp;</span>
-<span>var long = position.coords.longitude</span>
-<span>&nbsp;</span>
-<span>var gmap = O('map')</span>
-<span>&nbsp;</span>
-<span>var gopts =</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>center: new google.maps.LatLng(lat, long),</span>
-<span>&nbsp;</span>
-<span>zoom: 9, mapTypeId: google.maps.MapTypeId.ROADMAP</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>var map = new google.maps.Map(gmap, gopts)</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>function denied(error)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>var message</span>
-<span>&nbsp;</span>
-<span>switch(error.code)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>case 1: message = 'Permission Denied'; break;</span>
-<span>&nbsp;</span>
-<span>case 2: message = 'Position Unavailable'; break;</span>
-<span>&nbsp;</span>
-<span>case 3: message = 'Operation Timed Out'; break;</span>
-<span>&nbsp;</span>
-<span>case 4: message = 'Unknown Error'; break;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>O('status').innerHTML = message</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Geolocation Example&lt;/title&gt;
+        &lt;script src='OSC.js'&gt;&lt;/script&gt;
+        &lt;script src="https://maps.googleapis.com/maps/api/js?sensor=false"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id='status'&gt;&lt;/div&gt;
+        &lt;div id='map'&gt;&lt;/div&gt;
+        &lt;script&gt;
+            if (typeof navigator.geolocation == 'undefined')
+                alert("Geolocation not supported.")
+            else
+                navigator.geolocation.getCurrentPosition(granted, denied)
+
+            function granted(position)
+            {
+                O('status').innerHTML = 'Permission Granted'
+                S('map').border = '1px solid black'
+                S('map').width = '640px'
+                S('map').height = '320px'
+                var lat = position.coords.latitude
+                var long = position.coords.longitude
+                var gmap = O('map')
+
+                var gopts = {
+                    center: new google.maps.LatLng(lat, long),
+                    zoom: 9, mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+
+                var map = new google.maps.Map(gmap, gopts)
+            }
+
+            function denied(error)
+            {
+                var message
+                switch(error.code)
+                {
+                    case 1: message = 'Permission Denied'; break;
+                    case 2: message = 'Position Unavailable'; break;
+                    case 3: message = 'Operation Timed Out'; break;
+                    case 4: message = 'Unknown Error'; break;
+                }
+
+                O('status').innerHTML = message
+            }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>Figure 22-2. The user&rsquo;s location has been used to display a map</span>
 <span>Again, here is not the place to describe how this all works, as I will detail that in</span>
 <span>Chapter 25</span>
