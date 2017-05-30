@@ -12,6 +12,7 @@ title: "The HTML5 Canvas"
 <span>tag, and maybe supply a width and</span>
 <span>height, and can modify it a little with CSS, but to actually write to (or read from) a</span>
 <span>canvas, you must use JavaScript.</span>
+<br/>
 <span>Thankfully, the JavaScript you need to learn is minimal and very easy to implement,</span>
 <span>plus I&rsquo;ve already provided you with a set of three ready-made functions in</span>
 <span>Chapter 21</span>
@@ -26,8 +27,10 @@ title: "The HTML5 Canvas"
 <span>nese flag, as in</span>
 <span>Example 23-1</span>
 <span>. Let&rsquo;s now look at what exactly is going on.</span>
+<br/>
 <span>Example 23-1. Displaying the Japanese</span>
 <span>flag by using a canvas</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -69,12 +72,14 @@ title: "The HTML5 Canvas"
 <span>will use HTML5. After this, a title is displayed and the three functions in the</span>
 <span>OSC.js</span>
 <span>file are loaded in.</span>
+<br/>
 <span>In the body of the document, a</span>
 <span>canvas</span>
 <span>element is defined, given an ID of</span>
 <span>mycanvas</span>
 <span>,</span>
 <span>and given a width and height of 320 by 240 pixels.</span>
+<br/>
 <span>This is followed by a section of JavaScript that styles and draws on the canvas. We</span>
 <span>begin by creating a</span>
 <span>canvas</span>
@@ -87,8 +92,11 @@ title: "The HTML5 Canvas"
 <span>document.getElementById</span>
 <span>function, and is therefore a</span>
 <span>much shorter way of referencing the element.</span>
+<br/>
 <span>This is all stuff you&rsquo;ve seen before, but next comes something new:</span>
+<br/>
 <span>context = canvas.getContext('2d')</span>
+<br/>
 <span>This command calls the</span>
 <span>getContext</span>
 <span>method of the new</span>
@@ -97,6 +105,7 @@ title: "The HTML5 Canvas"
 <span>requesting two-dimensional access to the canvas by passing the value</span>
 <span>'2d'</span>
 <span>.</span>
+<br/>
 <span>As you might guess, there are plans for a three-dimensional context</span>
 <span>available for the canvas (probably based on the OpenGL ES API),</span>
 <span>which will support the argument</span>
@@ -109,6 +118,7 @@ title: "The HTML5 Canvas"
 <span>great tutorial at</span>
 <span>http://learningwebgl.com</span>
 <span>.</span>
+<br/>
 <span>Armed with this context in the object</span>
 <span>context</span>
 <span>, we prime the subsequent drawing</span>
@@ -117,34 +127,45 @@ title: "The HTML5 Canvas"
 <span>property of context to the value</span>
 <span>'red'</span>
 <span>:</span>
+<br/>
 <span>context.fillStyle = 'red'</span>
+<br/>
 <span>Then the</span>
 <span>S</span>
 <span>function is called to set the border property of the canvas to a 1-pixel,</span>
 <span>solid black line to outline the flag image:</span>
+<br/>
 <span>S(canvas).border = '1px solid black'</span>
+<br/>
 <span>With everything prepared, a path is opened on the context and the drawing position</span>
 <span>is moved to the location 160,120:</span>
+<br/>
 <span>context.beginPath()</span>
 <span>context.moveTo(160, 120)</span>
+<br/>
 <span>After that, an arc is drawn centered on that coordinate, with a radius of 70 pixels,</span>
 <span>beginning at an angle of 0 degrees (which is the righthand edge of the circle as you</span>
 <span>look at it), and continuing all the way around the circle in radians as determined by a</span>
 <span>value of 2 &times; &pi;:</span>
+<br/>
 <span>context.arc(160, 120, 70, 0, Math.PI * 2, false)</span>
+<br/>
 <span>The final value of</span>
 <span>false</span>
 <span>indicates a clockwise direction for drawing the arc; a value of</span>
 <span>true</span>
 <span>would indicate that the drawing should occur in a counterclockwise direction.</span>
+<br/>
 <span>Finally, we close and fill the path, using the preselected value in the</span>
 <span>fillStyle</span>
 <span>prop‐</span>
 <span>erty that we set to</span>
 <span>'red'</span>
 <span>a few lines earlier:</span>
+<br/>
 <span>context.closePath()</span>
 <span>context.fill()</span>
+<br/>
 <span>The result of loading this document into a web browser looks like</span>
 <span>Figure 22-1</span>
 <span>in the</span>
@@ -154,6 +175,7 @@ title: "The HTML5 Canvas"
 <span>copy of it, perhaps to repeat elsewhere on a web page, to save to local storage, or to</span>
 <span>upload to a web server. This is particularly handy since users cannot use drag and</span>
 <span>drop to save a canvas image.</span>
+<br/>
 <span>To illustrate how you do this, in</span>
 <span>Example 23-2</span>
 <span>I have added a few lines of code to the</span>
@@ -167,7 +189,9 @@ title: "The HTML5 Canvas"
 <span>element (see</span>
 <span>Figure 23-1</span>
 <span>).</span>
+<br/>
 <span>Example 23-2. Copying a canvas image</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -206,7 +230,10 @@ title: "The HTML5 Canvas"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<br/>
 <span>Figure 23-1. The image on the right is copied from the lefthand canvas</span>
+<p><img src="images/23.1.png"/></p>
+<br/>
 <span>If you try this code for yourself, you will notice that while you cannot drag and drop</span>
 <span>the lefthand canvas image, you can do so with the righthand picture, which you could</span>
 <span>also save to local storage or upload to a web server using the right JavaScript (and</span>
@@ -236,12 +263,15 @@ title: "The HTML5 Canvas"
 <span>0.4</span>
 <span>, and should generate a reasonably good-</span>
 <span>looking image at a fairly low file size:</span>
+<br/>
 <span>O('myimage').src = canvas.toDataURL('image/jpeg', 0.4)</span>
+<br/>
 <span>You should remember that the</span>
 <span>toDataURL</span>
 <span>method applies to a</span>
 <span>canvas</span>
 <span>object, not to any context created from that object.</span>
+<br/>
 <span>Now that you know how to create canvas images and then copy or otherwise use</span>
 <span>them, it&rsquo;s time to look at the drawing commands available, starting with rectangles.</span>
 <h4>The fillRect Method</h4>
@@ -250,10 +280,13 @@ title: "The HTML5 Canvas"
 <span>fillRect</span>
 <span>. To use it, you simply supply the top-left coordinates of your rec‐</span>
 <span>tangle, followed by the width and height in pixels, like this:</span>
+<br/>
 <span>context.fillRect(20, 20, 600, 200)</span>
+<br/>
 <span>By default, the rectangle will be filled with black, but you can use any other color you</span>
 <span>like by first issuing a command such as the following, where the argument can be any</span>
 <span>acceptable CSS color name or value:</span>
+<br/>
 <span>context.fillStyle = 'blue'</span>
 <h4>The clearRect Method</h4>
 <span>You can also draw a rectangle in which all its color values (red, green, blue, and alpha</span>
@@ -272,9 +305,12 @@ title: "The HTML5 Canvas"
 <h4>The strokeRect Method</h4>
 <span>When you want only an outlined rectangle, you can use a command such as the fol‐</span>
 <span>lowing, which will use the default of black or the currently selected stroke color:</span>
+<br/>
 <span>context.strokeRect(60, 60, 520, 120)</span>
+<br/>
 <span>To change the color used, you can first issue a command such as the following, sup‐</span>
 <span>plying any valid CSS color argument:</span>
+<br/>
 <span>context.strokeStyle = 'green'</span>
 <h4>Combining These Commands</h4>
 <span>In</span>
@@ -283,7 +319,9 @@ title: "The HTML5 Canvas"
 <span>display the image shown in</span>
 <span>Figure 23-2</span>
 <span>.</span>
+<br/>
 <span>Example 23-3. Drawing several rectangles</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -312,7 +350,10 @@ title: "The HTML5 Canvas"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<br/>
 <span>Figure 23-2. Drawing concentric rectangles</span>
+<p><img src="images/23.2.png"/></p>
+<br/>
 <span>Later in this chapter, you&rsquo;ll see how you can further modify output by changing</span>
 <span>stroke types and widths, but first let&rsquo;s turn to modifying fills by applying gradients.</span>
 <h4>The createLinearGradient Method</h4>
@@ -328,19 +369,23 @@ title: "The HTML5 Canvas"
 <span>a canvas, but apply it only within the area defined in a fill command, as shown in</span>
 <span>Example 23-4</span>
 <span>.</span>
+<br/>
 <span>Example 23-4. Applying a gradient</span>
 <span>fill</span>
+<br/>
 <span>gradient = context.createLinearGradient(0, 80, 640,80)</span>
 <span>gradient.addColorStop(0, 'white')</span>
 <span>gradient.addColorStop(1, 'black')</span>
 <span>context.fillStyle = gradient</span>
 <span>context.fillRect(80, 80, 480,80)</span>
+<br/>
 <span>For brevity and clarity in this and many of the following examples,</span>
 <span>only salient lines of code are shown. Complete examples with the</span>
 <span>surrounding HTML, setup, and other sections of code are available</span>
 <span>to freely download from the companion website at</span>
 <span>http://lpmj.net</span>
 <span>.</span>
+<br/>
 <span>In this example, we create a gradient fill object named</span>
 <span>gradient</span>
 <span>by making a call to</span>
@@ -351,9 +396,11 @@ title: "The HTML5 Canvas"
 <span>object. The start position of 0,80</span>
 <span>is halfway down the lefthand canvas edge, while the end of 640,80 is halfway down</span>
 <span>the right-hand edge.</span>
+<br/>
 <span>Then a couple of color stops are provided such that the very first color of the gradient</span>
 <span>is white, and the final color is black. The gradient will then transition smoothly</span>
 <span>between these colors across the canvas from left to right.</span>
+<br/>
 <span>With the</span>
 <span>gradient</span>
 <span>object now ready, it is applied to the</span>
@@ -369,15 +416,20 @@ title: "The HTML5 Canvas"
 <span>result (when added to the previous example code) looks like</span>
 <span>Figure 23-3</span>
 <span>.</span>
+<br/>
+<p><img src="images/23.3.png"/></p>
 <span>Figure 23-3. The central rectangle has a horizontal gradient fill</span>
+<br/>
 <span>By specifying different start and end coordinates for a gradient, you can make it slant</span>
 <span>in any direction, as demonstrated with</span>
 <span>Example 23-5</span>
 <span>and shown in</span>
 <span>Figure 23-4</span>
 <span>.</span>
+<br/>
 <span>Example 23-5. A variety of gradients at</span>
 <span>different angles and colors</span>
+<br/>
 <span>gradient = context.createLinearGradient(0, 0, 160, 0)</span>
 <span>gradient.addColorStop(0, 'white')</span>
 <span>gradient.addColorStop(1, 'black')</span>
@@ -398,9 +450,13 @@ title: "The HTML5 Canvas"
 <span>gradient.addColorStop(1, 'magenta')</span>
 <span>context.fillStyle = gradient</span>
 <span>context.fillRect(485, 20, 135, 200)</span>
+<br/>
+<p><img src="images/23.4.png"/></p>
 <span>Figure 23-4. A range of different linear gradients</span>
+<br/>
 <span>In this example, I chose to place the gradients directly on top of the areas to be filled</span>
 <span>in order to more clearly show the maximum variation in color from start to end.</span>
+<br/>
 <span>To create your gradient, determine the direction in which you want it to flow and</span>
 <span>then locate two points to represent the start and end. No matter what values you sup‐</span>
 <span>ply for these points, the gradient will smoothly transition in the direction given, even</span>
@@ -417,6 +473,7 @@ title: "The HTML5 Canvas"
 <span>. You do not enter a color&rsquo;s</span>
 <span>end position, as it is deduced from the start position of the next color stop, or the</span>
 <span>gradient end if there isn&rsquo;t another color.</span>
+<br/>
 <span>In the preceding examples, only the two start and end values were chosen, but to cre‐</span>
 <span>ate a rainbow effect, you could set up your color stops as shown in</span>
 <span>Example 23-6</span>
@@ -424,7 +481,9 @@ title: "The HTML5 Canvas"
 <span>displayed in</span>
 <span>Figure 23-5</span>
 <span>).</span>
+<br/>
 <span>Example 23-6. Adding multiple color stops</span>
+<br/>
 <span>gradient.addColorStop(0.00, 'red')</span>
 <span>gradient.addColorStop(0.14, 'orange')</span>
 <span>gradient.addColorStop(0.28, 'yellow')</span>
@@ -432,7 +491,10 @@ title: "The HTML5 Canvas"
 <span>gradient.addColorStop(0.56, 'blue')</span>
 <span>gradient.addColorStop(0.70, 'indigo')</span>
 <span>gradient.addColorStop(0.84, 'violet')</span>
+<br/>
+<p><img src="images/23.5.png"/></p>
 <span>Figure 23-5. A rainbow effect with seven stop colors</span>
+<br/>
 <span>In</span>
 <span>&nbsp;Example 23-6</span>
 <span>, all the colors are spaced roughly equidistantly (with each color</span>
@@ -444,6 +506,7 @@ title: "The HTML5 Canvas"
 <span>You aren&rsquo;t restricted to only linear gradients in HTML; you can create radial gradients</span>
 <span>on a canvas too. It&rsquo;s a little more complex than with a linear gradient, but not much</span>
 <span>more so.</span>
+<br/>
 <span>What you need to do is pass the center location as a pair of</span>
 <span>x</span>
 <span>and</span>
@@ -459,9 +522,14 @@ title: "The HTML5 Canvas"
 <span>displayed in</span>
 <span>Figure 23-6</span>
 <span>).</span>
+<br/>
 <span>Example 23-7. Creating a radial gradient</span>
+<br/>
 <span>gradient = context.createRadialGradient (320, 120, 0, 320, 120, 320)</span>
+<br/>
+<p><img src="images/23.6.png"/></p>
 <span>Figure 23-6. A centered radial gradient</span>
+<br/>
 <span>Or you can be fancy and move the location of the start and end of a radial gradient, as</span>
 <span>in</span>
 <span>Example 23-8</span>
@@ -469,9 +537,14 @@ title: "The HTML5 Canvas"
 <span>Figure 23-7</span>
 <span>), which starts centered on location 0,120</span>
 <span>with a radius of 0 pixels, and ends centered at 480,120 with a radius of 480 pixels.</span>
+<br/>
 <span>Example 23-8. Stretching a radial gradient</span>
+<br/>
 <span>gradient = context.createRadialGradient(0, 120, 0, 480, 120, 480)</span>
+<br/>
+<p><img src="images/23.7.png"/></p>
 <span>Figure 23-7. A stretched radial gradient</span>
+<br/>
 <span>By manipulating the figures supplied to this method, you can cre‐</span>
 <span>ate a wide range of weird and wonderful effects&mdash;try it for yourself</span>
 <span>with the supplied examples.</span>
@@ -481,6 +554,7 @@ title: "The HTML5 Canvas"
 <span>vas via the</span>
 <span>toDataURL</span>
 <span>method (explained earlier in this chapter).</span>
+<br/>
 <span>Example 23-9</span>
 <span>loads a 100&times;100-pixel image (the yin-yang symbol) into the new image</span>
 <span>object</span>
@@ -494,8 +568,10 @@ title: "The HTML5 Canvas"
 <span>used to fill a 600&times;200-pixel area within the canvas, as shown in</span>
 <span>Figure 23-8</span>
 <span>.</span>
+<br/>
 <span>Example 23-9. Using an image for a pattern</span>
 <span>fill</span>
+<br/>
 <span>image = new Image()</span>
 <span>image.src = 'image.png'</span>
 <span>image.onload = function()</span>
@@ -504,24 +580,33 @@ title: "The HTML5 Canvas"
 <span>context.fillStyle = pattern</span>
 <span>context.fillRect(20, 20, 600, 200)</span>
 <span>}</span>
+<br/>
+<p><img src="images/23.8.png"/></p>
 <span>Figure 23-8. Tiling an image by using it as a pattern fill</span>
+<br/>
 <span>We create the pattern by using the</span>
 <span>createPattern</span>
 <span>method, which also supports non‐</span>
 <span>repeating patterns, or ones that just repeat in the x- or y-axes. We achieve this by</span>
 <span>passing one of the following values to it as the second argument after the image to</span>
 <span>use:</span>
-<span>repeat</span>
-<span>Repeat the image both vertically and horizontally.</span>
-<span>repeat-x</span>
-<span>Repeat the image horizontally.</span>
-<span>repeat-y</span>
-<span>Repeat the image vertically.</span>
-<span>no-repeat</span>
-<span>Do not repeat the image.</span>
+<br/>
+<div>repeat</div>
+<div class="t30">Repeat the image both vertically and horizontally.</div>
+<br/>
+<div>repeat-x</div>
+<div class="t30">Repeat the image horizontally.</div>
+<br/>
+<div>repeat-y</div>
+<div class="t30">Repeat the image vertically.</div>
+<br/>
+<div>no-repeat</div>
+<div class="t30">Do not repeat the image.</div>
+<br/>
 <span>The fill pattern is based on the entire canvas area, so where the fill command is set to</span>
 <span>apply only to a smaller area within the canvas, the images appear cut off at the top</span>
 <span>and left.</span>
+<br/>
 <span>If the</span>
 <span>onload</span>
 <span>event had not been used in this example and, instead,</span>
@@ -535,11 +620,13 @@ title: "The HTML5 Canvas"
 <span>fully supported with a variety of font, alignment, and fill methods. But why would</span>
 <span>you want to write text to the canvas when there&rsquo;s already such good support for web</span>
 <span>fonts in CSS these days?</span>
+<br/>
 <span>Well, suppose you wish to display a graph or table with graphical elements. You&rsquo;ll</span>
 <span>surely also want to label parts of it. What&rsquo;s more, using the available commands, you</span>
 <span>can produce much more than simply a colored font. So let&rsquo;s start by assuming you&rsquo;ve</span>
 <span>been tasked to create a header for a website on basket weaving, called WickerpediA</span>
 <span>(actually there&rsquo;s already one of these, but let&rsquo;s go ahead anyway).</span>
+<br/>
 <span>To start with, you need to select a suitable font and size it appropriately, perhaps as in</span>
 <span>Example 23-10</span>
 <span>, in which a</span>
@@ -556,16 +643,21 @@ title: "The HTML5 Canvas"
 <span>placing it at the top left of the canvas.</span>
 <span>Figure 23-9</span>
 <span>shows what this looks like.</span>
+<br/>
 <span>Example 23-10. Writing text to the canvas</span>
+<br/>
 <span>context.font = 'bold 140px Times'</span>
 <span>context.textBaseline = 'top'</span>
 <span>context.strokeText('WickerpediA', 0, 0)</span>
+<p><img src="images/23.9.png"/></p>
 <span>Figure 23-9. The text has been written to the canvas</span>
 <h4>The strokeText Method</h4>
 <span>To write text to the canvas, you send the text string and a pair of coordinates to the</span>
 <span>strokeText</span>
 <span>method, like this:</span>
+<br/>
 <span>context.strokeText('WickerpediA', 0, 0)</span>
+<br/>
 <span>The</span>
 <span>x</span>
 <span>and</span>
@@ -576,6 +668,7 @@ title: "The HTML5 Canvas"
 <span>and</span>
 <span>textAlign</span>
 <span>properties.</span>
+<br/>
 <span>This method&mdash;using line drawing&mdash;is only one way of drawing text to the canvas. So,</span>
 <span>in addition to all the following properties that affect text, line-drawing properties</span>
 <span>such as</span>
@@ -585,14 +678,21 @@ title: "The HTML5 Canvas"
 <span>The</span>
 <span>textBaseLine</span>
 <span>property can be given any of the following values:</span>
+<br/>
 <span>top</span>
-<span>Aligns to the top of the text</span>
+<br/>
+<div class="t30">Aligns to the top of the text</div>
+<br/>
 <span>middle</span>
-<span>Aligns to the middle of the text</span>
+<br/>
+<div class="t30">Aligns to the middle of the text</div>
+<br/>
 <span>alphabetic</span>
-<span>Aligns to the alphabetic baseline of the text</span>
+<br/>
+<div class="t30">Aligns to the alphabetic baseline of the text</div>
+<br/>
 <span>bottom</span>
-<span>Aligns to the bottom of the font</span>
+<div class="t30">Aligns to the bottom of the font</div>
 <h4>The font Property</h4>
 <span>The</span>
 <span>font</span>
@@ -641,6 +741,7 @@ title: "The HTML5 Canvas"
 <span>Sans-serif</span>
 <span>font of the user&rsquo;s system. How‐</span>
 <span>ever, if you know that a particular font is available to the browser, you can use it.</span>
+<br/>
 <span>If you want to use a font such as</span>
 <span>Times New Roman</span>
 <span>, which incorpo‐</span>
@@ -653,19 +754,25 @@ title: "The HTML5 Canvas"
 <span>ment by giving the</span>
 <span>textAlign</span>
 <span>property one of the following values:</span>
+<br/>
 <span>start</span>
-<span>Aligns the text to the left if the document direction is left to right; otherwise, right.</span>
-<span>This is the default setting.</span>
+<div class="t30">Aligns the text to the left if the document direction is left to right; otherwise, right. This is the default setting.</div>
+<br/>
 <span>end</span>
-<span>Aligns the text to the right if the document direction is left to right; otherwise, left.</span>
+<div class="t30">Aligns the text to the right if the document direction is left to right; otherwise, left.</div>
+<br/>
 <span>left</span>
-<span>Aligns the text to the left.</span>
+<div class="t30">Aligns the text to the left.</div>
+<br/>
 <span>right</span>
-<span>Aligns the text to the right.</span>
+<div class="t30">Aligns the text to the right.</div>
+<br/>
 <span>center</span>
-<span>Centers the text.</span>
+<div class="t30">Centers the text.</div>
+<br/>
 <span>You use the property like this:</span>
 <span>context.textAlign = 'center'</span>
+<br/>
 <span>In the case of the current example, you need the text left-aligned so that it butts up</span>
 <span>neatly to the edge of the canvas, so the</span>
 <span>textAlign</span>
@@ -681,7 +788,9 @@ title: "The HTML5 Canvas"
 <span>of which is shown in</span>
 <span>Figure 23-10</span>
 <span>.</span>
+<br/>
 <span>Example 23-11. Filling in the text with a pattern</span>
+<br/>
 <span>image = new Image()</span>
 <span>image.src = 'wicker.jpg'</span>
 <span>image.onload = function()</span>
@@ -691,11 +800,14 @@ title: "The HTML5 Canvas"
 <span>context.fillText( 'WickerpediA', 0, 0)</span>
 <span>context.strokeText('WickerpediA', 0, 0)</span>
 <span>}</span>
+<br/>
 <span>Figure 23-10. The text now has a pattern fill</span>
+<br/>
 <span>For good measure, I also kept the</span>
 <span>strokeText</span>
 <span>call in this example to ensure a black</span>
 <span>outline to the text; without it, there wasn&rsquo;t enough definition at the edges.</span>
+<br/>
 <span>A wide variety of other fill types or patterns can also be used here, and the simplicity</span>
 <span>of the canvas makes it easy to experiment. What&rsquo;s more: if you wish, once you have</span>
 <span>the heading just right, you can also choose to save a copy by issuing a call</span>
@@ -710,8 +822,10 @@ title: "The HTML5 Canvas"
 <span>Text</span>
 <span>method, as follows (assuming all the various text properties have already been</span>
 <span>defined at this point):</span>
+<br/>
 <span>metrics = context.measureText('WickerpediA')</span>
 <span>width = metrics.width</span>
+<br/>
 <span>Since the height of the text in pixels is equal to the font size in points when the font is</span>
 <span>defined, the</span>
 <span>metrics</span>
@@ -727,6 +841,7 @@ title: "The HTML5 Canvas"
 <span>and a number of</span>
 <span>other line properties. Using it is as simple as specifying a line width in pixels, like this,</span>
 <span>which sets the width to 3 pixels:</span>
+<br/>
 <span>context.lineWidth = 3</span>
 <h4>The lineCap and lineJoin Properties</h4>
 <span>When lines you draw come to an end and they are more than a pixel wide, you can</span>
@@ -742,7 +857,9 @@ title: "The HTML5 Canvas"
 <span>, or</span>
 <span>square</span>
 <span>. For example:</span>
+<br/>
 <span>context.lineCap = 'round'</span>
+<br/>
 <span>Also, when you are joining lines together that are wider than a single pixel, it is</span>
 <span>important to specify exactly how they should meet. You achieve this with the</span>
 <span>line</span>
@@ -754,7 +871,9 @@ title: "The HTML5 Canvas"
 <span>, or</span>
 <span>miter</span>
 <span>, like this:</span>
+<br/>
 <span>context.lineJoin = 'bevel'</span>
+<br/>
 <span>Example 23-12</span>
 <span>(shown here in full since it&rsquo;s a little more complicated) applies all three</span>
 <span>values of each property used in combination, creating the informative result shown in</span>
@@ -769,7 +888,9 @@ title: "The HTML5 Canvas"
 <span>lineTo</span>
 <span>methods used by this</span>
 <span>example are explained next.</span>
+<br/>
 <span>Example 23-12. Displaying combinations of line caps and joins</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -846,11 +967,15 @@ title: "The HTML5 Canvas"
 <span>properties are first set, and then displayed in the canvas with the</span>
 <span>fillText</span>
 <span>method.</span>
+<br/>
 <span>Using these settings, the code then draws nine shapes with a 20-pixel-wide line, each</span>
 <span>of which has a different combination of line cap and join settings, as shown in</span>
 <span>Figure 23-11</span>
 <span>.</span>
+<br/>
+<p><img src="images/23.11.png"/></p>
 <span>Figure 23-11. All the combinations of line caps and joins</span>
+<br/>
 <span>As you can see, butted line caps are short, square ones are longer, and the round ones</span>
 <span>are somewhere between the two. At the same time, rounded line joins are curved,</span>
 <span>beveled ones are cut across the corner, and mitered ones have sharp corners. Line</span>
@@ -860,7 +985,9 @@ title: "The HTML5 Canvas"
 <span>the</span>
 <span>miterLimit</span>
 <span>property, like this:</span>
+<br/>
 <span>context.miterLimit = 15</span>
+<br/>
 <span>The default value is</span>
 <span>10</span>
 <span>, so you can reduce the miter limit too. If</span>
@@ -883,6 +1010,7 @@ title: "The HTML5 Canvas"
 <span>section from</span>
 <span>Example 23-12</span>
 <span>, simplified to create just a single instance of the pattern:</span>
+<br/>
 <span>context.beginPath()</span>
 <span>context.moveTo(20, 100)</span>
 <span>context.lineTo(20, 20)</span>
@@ -890,11 +1018,13 @@ title: "The HTML5 Canvas"
 <span>context.lineTo(155,100)</span>
 <span>context.stroke()</span>
 <span>context.closePath()</span>
+<br/>
 <span>In this code snippet, a path is started in the first line, and then the drawing location is</span>
 <span>moved to a position 20 pixels across and 100 down from the top-left corner of the</span>
 <span>canvas, using a call to the</span>
 <span>moveTo</span>
 <span>method.</span>
+<br/>
 <span>This is followed by three calls to</span>
 <span>lineTo</span>
 <span>, which then draw three lines, first upward to</span>
@@ -903,6 +1033,7 @@ title: "The HTML5 Canvas"
 <span>stroke</span>
 <span>method is called to lay it down, and finally the</span>
 <span>path is closed because it&rsquo;s no longer needed.</span>
+<br/>
 <span>It is essential to close paths as soon as you finish with them; other‐</span>
 <span>wise, you can get some very unexpected results when using multi‐</span>
 <span>ple paths.</span>
@@ -937,12 +1068,14 @@ title: "The HTML5 Canvas"
 <span>method has the job of actually drawing all the lines created so far in a</span>
 <span>path onto the canvas. If it is issued from inside an unclosed path, this has the effect of</span>
 <span>immediately drawing everything up to the most recent imaginary pen location.</span>
+<br/>
 <span>However, if you close a path and then issue a call to</span>
 <span>stroke</span>
 <span>, it has the effect of also</span>
 <span>joining a path from the current location back to the start location, which in this</span>
 <span>example would turn the shapes into rectangles (which we don&rsquo;t want because we need</span>
 <span>to see the line caps as well as joins).</span>
+<br/>
 <span>This joining effect on closing a path is required (as you will see a</span>
 <span>little later) so that paths are properly closed before any</span>
 <span>fill</span>
@@ -956,6 +1089,7 @@ title: "The HTML5 Canvas"
 <span>lineTo</span>
 <span>call could have been issued to join everything up, like this (highligh‐</span>
 <span>ted in bold):</span>
+<br/>
 <span>context.beginPath()</span>
 <span>context.moveTo(20, 100)</span>
 <span>context.lineTo(20, 20)</span>
@@ -963,10 +1097,13 @@ title: "The HTML5 Canvas"
 <span>context.lineTo(155, 100)</span>
 <span>context.lineTo(20, 100)</span>
 <span>context.closePath()</span>
+<br/>
 <span>But there&rsquo;s a much simpler way to draw outlined rectangles, which is with the</span>
 <span>rect</span>
 <span>method, like this:</span>
+<br/>
 <span>rect(20, 20, 155, 100)</span>
+<br/>
 <span>In just a single call, this command takes two pairs of</span>
 <span>x</span>
 <span>and</span>
@@ -999,6 +1136,7 @@ title: "The HTML5 Canvas"
 <span>and</span>
 <span>scale2</span>
 <span>variables, for different effects).</span>
+<br/>
 <span>All you really need to look at, however, are the lines highlighted in bold, in which a</span>
 <span>path is started, a pair of</span>
 <span>lineTo</span>
@@ -1011,7 +1149,9 @@ title: "The HTML5 Canvas"
 <span>in with yellow (as shown in</span>
 <span>Figure 23-12</span>
 <span>).</span>
+<br/>
 <span>Example 23-13. Filling in a complex path</span>
+<br/>
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -1058,7 +1198,10 @@ title: "The HTML5 Canvas"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+<br/>
+<p><img src="images/23.12.png"/></p>
 <span>Figure 23-12. Drawing and filling in a complex path</span>
+<br/>
 <span>With paths, it&rsquo;s possible to create as complex an object as you like,</span>
 <span>either using formulae or loops (as in this example), or simply with</span>
 <span>a long string of</span>
@@ -1077,6 +1220,7 @@ title: "The HTML5 Canvas"
 <span>,</span>
 <span>fill</span>
 <span>, or other methods will not have any effect.</span>
+<br/>
 <span>To illustrate this,</span>
 <span>Example 23-14</span>
 <span>creates an effect similar to window blinds by moving</span>
@@ -1088,7 +1232,9 @@ title: "The HTML5 Canvas"
 <span>deep, horizontal bars are drawn on the canvas, as shown in</span>
 <span>Figure 23-13</span>
 <span>.</span>
+<br/>
 <span>Example 23-14. Creating a clip area</span>
+<br/>
 <span>context.beginPath()</span>
 <span>for (j = 0 ; j &lt; 10 ; ++j)</span>
 <span>{</span>
@@ -1099,14 +1245,19 @@ title: "The HTML5 Canvas"
 <span>}</span>
 <span>context.stroke()</span>
 <span>context.closePath()</span>
+<br/>
+<p><img src="images/23.13.png"/></p>
 <span>Figure 23-13. A path of horizontal bars</span>
+<br/>
 <span>To turn this example into a clipped area of the canvas, you simply need to replace the</span>
 <span>call to</span>
 <span>stroke</span>
 <span>(highlighted in bold in the example) with one to</span>
 <span>clip</span>
 <span>, like this:</span>
+<br/>
 <span>context.clip()</span>
+<br/>
 <span>Now the outline of the bars won&rsquo;t be seen, but the clipping area will be in place. To</span>
 <span>illustrate this,</span>
 <span>&nbsp;Example 23-15</span>
@@ -1118,7 +1269,9 @@ title: "The HTML5 Canvas"
 <span>highlighted in bold, and as shown in</span>
 <span>Figure 23-14</span>
 <span>.</span>
+<br/>
 <span>Example 23-15. Drawing within the clipped area&rsquo;s bounds</span>
+<br/>
 <span>context.fillStyle = 'white'</span>
 <span>context.strokeRect(20, 20, 600, 440)</span>
 <span>// Black border</span>
@@ -1164,7 +1317,10 @@ title: "The HTML5 Canvas"
 <span>context.fill()</span>
 <span>&nbsp;</span>
 <span>// Sun fill</span>
+<br/>
+<p><img src="images/23.14.png"/></p>
 <span>Figure 23-14. Drawing occurs only within the allowed clipped area</span>
+<br/>
 <span>OK, we&rsquo;re not going to win any competitions here, but you can see how powerful clip‐</span>
 <span>ping can be when used effectively.</span>
 <h3>The isPointInPath Method</h3>
@@ -1174,10 +1330,12 @@ title: "The HTML5 Canvas"
 <span>call it as part of a conditional</span>
 <span>if</span>
 <span>statement, like this:</span>
+<br/>
 <span>if (context.isPointInPath(23, 87))</span>
 <span>{</span>
 <span>// Do something here</span>
 <span>}</span>
+<br/>
 <span>If the location specified lies along any of the points in the path, the method returns</span>
 <span>the value</span>
 <span>true</span>
@@ -1188,6 +1346,7 @@ title: "The HTML5 Canvas"
 <span>is returned, and the contents of the</span>
 <span>if</span>
 <span>don&rsquo;t get executed.</span>
+<br/>
 <span>A perfect use for the</span>
 <span>isPointInPath</span>
 <span>method is for creating games</span>
@@ -1197,6 +1356,7 @@ title: "The HTML5 Canvas"
 <span>In addition to straight paths, you can create an almost infinite variety of curved paths,</span>
 <span>with a selection of different methods, ranging from simple arcs and circles to complex</span>
 <span>quadratic and B&eacute;zier curves.</span>
+<br/>
 <span>Actually, you don&rsquo;t need to use paths to create many lines, rectangles, and curves,</span>
 <span>because you can draw them directly by simply calling their methods. But using paths</span>
 <span>gives you more precise control, so I tend to almost always draw on the canvas within</span>
@@ -1211,7 +1371,9 @@ title: "The HTML5 Canvas"
 <span>location of the center of the arc,</span>
 <span>and the radius in pixels. As well as these values, you need to pass a pair of radian off‐</span>
 <span>sets and an optional direction, like this:</span>
+<br/>
 <span>context.arc(55, 85, 45, 0, Math.PI / 2, false)</span>
+<br/>
 <span>Since the default direction is clockwise (a value of</span>
 <span>false</span>
 <span>), this can be omitted, or</span>
@@ -1226,7 +1388,9 @@ title: "The HTML5 Canvas"
 <span>method is called, so the start</span>
 <span>and end points are joined up, whereas the other two sets of arcs are drawn before the</span>
 <span>path is closed, so they are not joined up.</span>
+<br/>
 <span>Example 23-16. Drawing a variety of arcs</span>
+<br/>
 <span>context.strokeStyle = 'blue'</span>
 <span>arcs =</span>
 <span>[</span>
@@ -1258,20 +1422,26 @@ title: "The HTML5 Canvas"
 <span>context.stroke()</span>
 <span>context.closePath()</span>
 <span>}</span>
+<br/>
 <span>To create shorter code, I drew all the arcs using loops, so that the length of each arc is</span>
 <span>stored in the array</span>
 <span>arcs</span>
 <span>. These values are in radians, and since a radian is equivalent</span>
 <span>to 180 &divide; &pi; (&pi; being the ratio of a circle&rsquo;s circumference to its diameter, or approxi‐</span>
 <span>mately 3.1415927), they evaluate as follows:</span>
+<br/>
 <span>Math.PI</span>
 <span>Equivalent to 180 degrees</span>
+<br/>
 <span>Math.PI * 2</span>
 <span>Equivalent to 360 degrees</span>
+<br/>
 <span>Math.PI / 2</span>
 <span>Equivalent to 90 degrees</span>
+<br/>
 <span>Math.PI / 180 * 59</span>
 <span>Equivalent to 59 degrees</span>
+<br/>
 <span>Figure 23-15</span>
 <span>shows the three rows of arcs and illustrates both the use of the direction</span>
 <span>argument</span>
@@ -1279,19 +1449,25 @@ title: "The HTML5 Canvas"
 <span>in the final set, and the importance of carefully choosing where you</span>
 <span>close paths depending on whether you want to draw a line connecting the start and</span>
 <span>end points.</span>
+<br/>
+<p><img src="images/23.15.png"/></p>
 <span>Figure 23-15. A variety of arc types</span>
+<br/>
 <span>If you prefer to work with degrees instead of radians, you could</span>
 <span>create a new</span>
 <span>Math</span>
 <span>library function, like this:</span>
+<br/>
 <span>Math.degreesToRadians = function(degrees)</span>
 <span>{</span>
 <span>return degrees * Math.PI / 180</span>
 <span>}</span>
+<br/>
 <span>And then replace the array-creating code, starting at the second</span>
 <span>line of</span>
 <span>Example 23-16</span>
 <span>, with the following:</span>
+<br/>
 <span>arcs =</span>
 <span>[</span>
 <span>Math.degreesToRadians(180),</span>
@@ -1309,9 +1485,12 @@ title: "The HTML5 Canvas"
 <span>and</span>
 <span>y</span>
 <span>coordinates and a radius):</span>
+<br/>
 <span>context.arcTo(100, 100, 200, 200, 100)</span>
+<br/>
 <span>The locations you pass to the method represent the points where imaginary tangent</span>
 <span>lines touch the circumference of the arc at its start and end points.</span>
+<br/>
 <span>To illustrate how this works,</span>
 <span>Example 23-17</span>
 <span>draws eight different arcs with radii from</span>
@@ -1321,8 +1500,10 @@ title: "The HTML5 Canvas"
 <span>pair of tangents at 90 degrees to each other, in a</span>
 <span>V</span>
 <span>shape.</span>
+<br/>
 <span>Example 23-17. Drawing eight arcs of</span>
 <span>different radii</span>
+<br/>
 <span>for (j = 0 ; j &lt;= 280 ; j += 40)</span>
 <span>{</span>
 <span>context.beginPath()</span>
@@ -1346,6 +1527,7 @@ title: "The HTML5 Canvas"
 <span>is drawn to the canvas with a call to</span>
 <span>stroke</span>
 <span>, and the path is closed.</span>
+<br/>
 <span>As you can see in</span>
 <span>Figure 23-16</span>
 <span>, when</span>
@@ -1356,6 +1538,8 @@ title: "The HTML5 Canvas"
 <span>ates a sharp join. In this case, it&rsquo;s a right angle (but if the two imaginary tangents are</span>
 <span>at other angles to each other, then the join will be at that angle). Then, as the radius</span>
 <span>increases in size, you can see the arcs getting larger and larger.</span>
+<br/>
+<p><img src="images/23.16.png"/></p>
 <span>Figure 23-16. Drawing arcs of different radii</span>
 <span>Essentially, what you can best use</span>
 <span>arcTo</span>
@@ -1374,6 +1558,7 @@ title: "The HTML5 Canvas"
 <span>Unlike with gravity, though, the farther away the attractor is, the</span>
 <span>more</span>
 <span>it pulls!</span>
+<br/>
 <span>In</span>
 <span>&nbsp;Example 23-18</span>
 <span>, there are six calls to this method, creating the path for a fluffy</span>
@@ -1381,7 +1566,9 @@ title: "The HTML5 Canvas"
 <span>&nbsp;Figure 23-17</span>
 <span>&nbsp;illustrates how the angles of the</span>
 <span>dashed line outside the cloud represent the attractor points applied to each curve.</span>
+<br/>
 <span>Example 23-18. Drawing a cloud with quadratic curves</span>
+<br/>
 <span>context.beginPath()</span>
 <span>context.moveTo(180, 60)</span>
 <span>context.quadraticCurveTo(240, 0, 300, 60)</span>
@@ -1393,7 +1580,10 @@ title: "The HTML5 Canvas"
 <span>context.fillStyle = 'white'</span>
 <span>context.fill()</span>
 <span>context.closePath()</span>
+<br/>
+<p><img src="images/23.17.png"/></p>
 <span>Figure 23-17. Drawing with quadratic curves</span>
+<br/>
 <span>Incidentally, to achieve the dotted line around the cloud in this</span>
 <span>image, I used the</span>
 <span>stroke</span>
@@ -1443,13 +1633,18 @@ title: "The HTML5 Canvas"
 <span>240,&ndash;240.</span>
 <span>Figure 23-18</span>
 <span>shows how this curve gets warped.</span>
+<br/>
 <span>Example 23-19. Creating a B&eacute;zier curve with two attractors</span>
+<br/>
 <span>context.beginPath()</span>
 <span>context.moveTo(240, 20)</span>
 <span>context.bezierCurveTo(720, 480, -240, -240, 240, 220)</span>
 <span>context.stroke()</span>
 <span>context.closePath()</span>
+<br/>
+<p><img src="images/23.18.png"/></p>
 <span>Figure 23-18. A B&eacute;zier curve with two attractors</span>
+<br/>
 <span>Attractors do not need to be at opposite sides of a canvas, because you can place them</span>
 <span>anywhere, and when they are near each other, they will exert a combined pull (rather</span>
 <span>than opposing pulls, as in the preceding example). Using these various types of curve</span>
@@ -1473,7 +1668,9 @@ title: "The HTML5 Canvas"
 <span>and</span>
 <span>y</span>
 <span>coordinates are passed:</span>
+<br/>
 <span>context.drawImage(myimage, 20, 20)</span>
+<br/>
 <span>This command draws the image contained in the</span>
 <span>myimage</span>
 <span>object onto the canvas with</span>
@@ -1483,6 +1680,7 @@ title: "The HTML5 Canvas"
 <span>To ensure that an image has been loaded before you use it, best</span>
 <span>practice is to enclose your image-handling code within a function</span>
 <span>that is triggered only upon image load, like this:</span>
+<br/>
 <span>myimage = new Image()</span>
 <span>myimage.src = 'image.gif'</span>
 <span>myimage.onload = function()</span>
@@ -1493,16 +1691,10 @@ title: "The HTML5 Canvas"
 <span>If you need to resize an image when it is placed on the canvas, you add a second pair</span>
 <span>of arguments to the call representing the width and height you require, like this</span>
 <span>(highlighted in bold):</span>
-<span>context.drawImage(myimage, 140, 20,</span>
-<span>220</span>
-<span>,</span>
-<span>220</span>
-<span>)</span>
-<span>context.drawImage(myimage, 380, 20,</span>
-<span>80</span>
-<span>,</span>
-<span>220</span>
-<span>)</span>
+<br/>
+<span>context.drawImage(myimage, 140, 20,220,)</span>
+<span>context.drawImage(myimage, 380, 20,80,220)</span>
+<br/>
 <span>Here the image is placed at two locations: the first is at 140,20, where the image is</span>
 <span>enlarged (from a 100-pixel square to a 220-pixel square), while the second goes to</span>
 <span>location 380,20 with the image being squashed horizontally and expanded vertically,</span>
@@ -1515,28 +1707,28 @@ title: "The HTML5 Canvas"
 <span>to place all the graphical images you intend to use in a single image file, and then just</span>
 <span>grab the sections of the image that you need. This is a trick developers often use to</span>
 <span>speed up page loading and decrease server hits.</span>
+<br/>
 <span>It&rsquo;s a little trickier to do this, though, because rather than add more arguments at the</span>
 <span>end of the list for this method, when extracting a portion of an image, you must place</span>
 <span>those arguments first.</span>
+<br/>
 <span>So, for example, to place an image at location 20,140, you might issue this command:</span>
 <span>context.drawImage(myimage, 20, 140)</span>
 <span>And to give it a width and height of 100&times;100 pixels, you would modify the call like</span>
 <span>this (highlighted in bold):</span>
-<span>context.drawImage(myimage, 20, 140,</span>
-<span>100</span>
-<span>,</span>
-<span>100</span>
-<span>)</span>
+<br/>
+<span>context.drawImage(myimage, 20, 140,100,100)</span>
+<br/>
 <span>But to grab (or crop) just a 40&times;40-pixel subsection (for example), with its top-left</span>
 <span>corner at location 30,30 of the image, you would call the method like this (with the</span>
 <span>new arguments in bold):</span>
-<span>context.drawImage(myimage,</span>
-<span>30, 30, 40, 40,</span>
-<span>20, 140)</span>
+<br/>
+<span>context.drawImage(myimage,30, 30, 40, 40,20, 140)</span>
+<br/>
 <span>And to resize the grabbed portion to 100 pixels square, you would use the following:</span>
-<span>context.drawImage(myimage,</span>
-<span>30, 30, 40, 40</span>
-<span>, 20, 140, 100, 100)</span>
+<br/>
+<span>context.drawImage(myimage,30, 30, 40, 40, 20, 140, 100, 100)</span>
+<br/>
 <span>I find this very confusing and cannot think of a logical reason for</span>
 <span>why this method works this way. But, since it does, I&rsquo;m afraid</span>
 <span>there&rsquo;s nothing you can do other than force yourself to remember</span>
@@ -1549,7 +1741,9 @@ title: "The HTML5 Canvas"
 <span>Figure 23-19</span>
 <span>. To make things clearer, I have spaced out the arguments so</span>
 <span>that values in each column provide the same information.</span>
+<br/>
 <span>Example 23-20. Various ways of drawing an image on the canvas</span>
+<br/>
 <span>myimage = new Image()</span>
 <span>myimage.src = 'image.png'</span>
 <span>myimage.onload = function()</span>
@@ -1559,11 +1753,14 @@ title: "The HTML5 Canvas"
 <span>context.drawImage(myimage, 380, 20, 80, 220)</span>
 <span>context.drawImage(myimage, 30, 30, 40, 40, 20, 140, 100, 100)</span>
 <span>}</span>
+<br/>
+<p><img src="images/23.19.png"/></p>
 <span>Figure 23-19. Drawing images to a canvas with resizing and cropping</span>
 <h4>Copying from a Canvas</h4>
 <span>You can also use a canvas as a source image for drawing to the same (or another) can‐</span>
 <span>vas. Just supply the canvas object name in place of an image object, and use all the</span>
 <span>remaining arguments in the same way as you would with an image.</span>
+<br/>
 <span>At this point, I would have loved to show you how to use a</span>
 <span>&lt;video&gt;</span>
 <span>element (explained in the following chapter) as an image source for</span>
@@ -1593,17 +1790,22 @@ title: "The HTML5 Canvas"
 <span>When you draw an image (or image section) or, indeed, anything else on the canvas,</span>
 <span>you can also specify a shadow that should be placed under it by setting one or more</span>
 <span>of the following properties:</span>
+<br/>
 <span>shadowOffsetX</span>
 <span>The horizontal offset in pixels by which the shadow should be shifted to the right (or</span>
 <span>to the left if the value is negative).</span>
+<br/>
 <span>shadowOffsetY</span>
 <span>The vertical offset in pixels by which the shadow should be shifted down (or up if the</span>
 <span>value is negative).</span>
+<br/>
 <span>shadowBlur</span>
 <span>The number of pixels over which to blur the shadow&rsquo;s outline.</span>
+<br/>
 <span>shadowColor</span>
 <span>The base color to use for the shadow. If a blur is in use, this color will blend with the</span>
 <span>background in the blurred area.</span>
+<br/>
 <span>These</span>
 <span>properties</span>
 <span>can</span>
@@ -1619,13 +1821,16 @@ title: "The HTML5 Canvas"
 <span>images,</span>
 <span>as</span>
 <span>in</span>
+<br/>
 <span>Example 23-21</span>
 <span>, in which some text, an image, and an object created using a path all</span>
 <span>have shadows added to them. In</span>
 <span>Figure 23-20</span>
 <span>, you can see the shadows intelligently</span>
 <span>flow around the visible portions of images, not just their rectangular boundaries.</span>
+<br/>
 <span>Example 23-21. Applying shadows when drawing on the canvas</span>
+<br/>
 <span>myimage = new Image()</span>
 <span>myimage.src = 'apple.png'</span>
 <span>orig = 95</span>
@@ -1665,6 +1870,8 @@ title: "The HTML5 Canvas"
 <span>context.shadowColor = 'black'</span>
 <span>context.drawImage(myimage, 245, 45)</span>
 <span>}</span>
+<br/>
+<p><img src="images/23.20.png"/></p>
 <span>Figure 23-20. Shadows under different types of drawing objects</span>
 <h3>Editing at the Pixel Level</h3>
 <span>Not only does the HTML5 canvas provide you with a powerful range of drawing</span>
@@ -1676,6 +1883,7 @@ title: "The HTML5 Canvas"
 <span>method, you can grab a portion (or all) of a canvas so that</span>
 <span>you can alter the retrieved data in any way you like, and then save it back or else‐</span>
 <span>where in the canvas (or to another canvas).</span>
+<br/>
 <span>To illustrate how this works,</span>
 <span>&nbsp;Example 23-22</span>
 <span>&nbsp;first loads in a ready-made image and</span>
@@ -1686,7 +1894,9 @@ title: "The HTML5 Canvas"
 <span>tweaked a little to shift each color toward sepia, as shown in</span>
 <span>Figure 23-21</span>
 <span>.</span>
+<br/>
 <span>Example 23-22. Manipulating image data</span>
+<br/>
 <span>myimage = new Image()</span>
 <span>myimage.src = 'photo.jpg'</span>
 <span>myimage.onload = function()</span>
@@ -1722,6 +1932,8 @@ title: "The HTML5 Canvas"
 <span>}</span>
 <span>context.putImageData(idata, 320, 0)</span>
 <span>}</span>
+<br/>
+<p><img src="images/23.21.png"/></p>
 <span>Figure 23-21. Converting an image to sepia (only a minor difference will be seen when</span>
 <span>this figure is viewed in grayscale)</span>
 <h4>The data Array</h4>
@@ -1734,34 +1946,43 @@ title: "The HTML5 Canvas"
 <span>. This method returns an array</span>
 <span>containing all the picture pixel data in its component parts of red, green, blue, and</span>
 <span>alpha transparency. Therefore, four items of data are used to store each colored pixel.</span>
+<br/>
 <span>All the data is stored sequentially in the data array, such that the value for red is fol‐</span>
 <span>lowed by that for blue, then green, and then alpha; then, the next item in the array is</span>
 <span>the red value for the following pixel, and so on, like the following (for the pixel at</span>
 <span>location 0,0):</span>
+<br/>
 <span>idata.data[0] // Red level</span>
 <span>idata.data[1] // Green level</span>
 <span>idata.data[2] // Blue level</span>
 <span>idata.data[3] // Alpha level</span>
+<br/>
 <span>Location 1,0 then follows, like this:</span>
+<br/>
 <span>idata.data[4] // Red level</span>
 <span>idata.data[5] // Green level</span>
 <span>idata.data[6] // Blue level</span>
 <span>idata.data[7] // Alpha level</span>
+<br/>
 <span>In this image, everything continues in the same fashion until the rightmost pixel of</span>
 <span>the image in row 0 (which is the 320th pixel, at location 319,0) is reached. At that</span>
 <span>point, the value 319 is multiplied by 4 (the number of items of data in each pixel) to</span>
 <span>arrive at the following array elements, which contain this pixel&rsquo;s data:</span>
+<br/>
 <span>idata.data[1276] // Red level</span>
 <span>idata.data[1277] // Green level</span>
 <span>idata.data[1278] // Blue level</span>
 <span>idata.data[1279] // Alpha level</span>
+<br/>
 <span>Then the data pointer moves all the way back to the first column of the image, but</span>
 <span>this time of row 1, at location 0,1 which (because each row in this image is 320 pixels</span>
 <span>wide), is at an offset of (0 &times; 4) + (1 &times; 320 &times; 4), or 1,280:</span>
+<br/>
 <span>idata.data[1280] // Red level</span>
 <span>idata.data[1281] // Green level</span>
 <span>idata.data[1282] // Blue level</span>
 <span>idata.data[1283] // Alpha level</span>
+<br/>
 <span>So, if the image data is stored in</span>
 <span>idata</span>
 <span>, the image width in</span>
@@ -1772,10 +1993,12 @@ title: "The HTML5 Canvas"
 <span>and</span>
 <span>y</span>
 <span>, the key formulae to use when directly accessing image data are:</span>
+<br/>
 <span>red = idata.data[x * 4 + y * w * 4 ]</span>
 <span>green = idata.data[x * 4 + y * w * 4 + 1]</span>
 <span>blue = idata.data[x * 4 + y * w * 4 + 2]</span>
 <span>alpha = idata.data[x * 4 + y * w * 4 + 3]</span>
+<br/>
 <span>Using this knowledge, we create the sepia effect in</span>
 <span>Figure 23-12</span>
 <span>by taking just the red,</span>
@@ -1783,12 +2006,14 @@ title: "The HTML5 Canvas"
 <span>pos</span>
 <span>is</span>
 <span>a variable pointer to the location in the array of the current pixel):</span>
+<br/>
 <span>average =</span>
 <span>(</span>
 <span>idata.data[pos] +</span>
 <span>idata.data[pos + 1] +</span>
 <span>idata.data[pos + 2]</span>
 <span>) / 3</span>
+<br/>
 <span>With</span>
 <span>average</span>
 <span>now containing the average color value (which we attain by adding all</span>
@@ -1797,9 +2022,11 @@ title: "The HTML5 Canvas"
 <span>idata.data[pos] = average + 50</span>
 <span>idata.data[pos + 1] = average</span>
 <span>idata.data[pos + 2] = average - 50</span>
+<br/>
 <span>The result is to increase the red and reduce the blue level of each pixel (of what would</span>
 <span>otherwise now become a monochrome image, if only the average value were written</span>
 <span>back to these colors), giving it a sepia cast.</span>
+<br/>
 <span>If you&rsquo;re interested in performing more advanced image manipula‐</span>
 <span>tions, you may wish to refer to</span>
 <span>Halfpap</span>
@@ -1817,7 +2044,9 @@ title: "The HTML5 Canvas"
 <span>and the coordinates of the top-left corner at which it should appear&mdash;as in the previ‐</span>
 <span>ous example, and as follows, which (in this case) places the modified copy of the</span>
 <span>image to the right of the original:</span>
+<br/>
 <span>context.putImageData(idata, 320, 0)</span>
+<br/>
 <span>If you wish to modify only part of a canvas, you don&rsquo;t have to grab</span>
 <span>the entire canvas; just fetch a section containing the area in which</span>
 <span>you are interested. And neither do you have to write back image</span>
@@ -1829,9 +2058,13 @@ title: "The HTML5 Canvas"
 <span>createImageData</span>
 <span>method. The following example</span>
 <span>creates an object with a width of 320 and height of 240 pixels:</span>
+<br/>
 <span>idata = createImageData(320, 240)</span>
+<br/>
 <span>Alternatively, you can create a new object from an existing object, like this:</span>
+<br/>
 <span>newimagedataobject = createImageData(imagedata)</span>
+<br/>
 <span>It&rsquo;s then up to you what you do with these objects to add pixel data to them or other‐</span>
 <span>wise modify them, how you paste them onto the canvas or create other objects from</span>
 <span>them, and so on.</span>
@@ -1845,56 +2078,73 @@ title: "The HTML5 Canvas"
 <span>composit‐</span>
 <span>ing</span>
 <span>options, and they are applied like this:</span>
+<br/>
 <span>context.globalCompositeOperationProperty = 'source-over'</span>
+<br/>
 <span>The compositing types are as follows:</span>
+<br/>
 <span>source-over</span>
 <span>The default. The source image is copied over the destination image.</span>
+<br/>
 <span>source-in</span>
 <span>Only parts of the source image that will appear within the destination are shown, and</span>
 <span>the destination image is removed. Any alpha transparency in the source image causes</span>
 <span>the destination under it to be removed.</span>
+<br/>
 <span>source-out</span>
 <span>Only parts of the source image that do not appear within the destination are shown,</span>
 <span>and the destination image is removed. Any alpha transparency in the source image</span>
 <span>causes the destination under it to be removed.</span>
+<br/>
 <span>source-atop</span>
 <span>The source image is displayed where it overlays the destination. The destination</span>
 <span>image is displayed where the destination image is opaque and the source image is</span>
 <span>transparent. Other regions are transparent.</span>
+<br/>
 <span>destination-over</span>
 <span>The source image is drawn under the destination image.</span>
+<br/>
 <span>destination-in</span>
 <span>The destination image displays where the source and destination image overlap, but</span>
 <span>not in any areas of source image transparency. The source image does not display.</span>
+<br/>
 <span>destination-out</span>
 <span>Only those parts of the destination outside of the source image&rsquo;s nontransparent sec‐</span>
 <span>tions are shown. The source image does not display.</span>
+<br/>
 <span>destination-atop</span>
 <span>The source image displays where the destination is not displayed. Where the destina‐</span>
 <span>tion and source overlap, the destination image is displayed. Any transparency in the</span>
 <span>source image prevents that area of the destination image being shown.</span>
+<br/>
 <span>lighter</span>
 <span>The sum of the source and destination is applied such that where they do not overlap,</span>
 <span>they display as normal; where they do overlap, the sum of both images is shown but</span>
 <span>lightened.</span>
+<br/>
 <span>darker</span>
 <span>The sum of the source and destination is applied such that where they do not overlap,</span>
 <span>they display as normal; where they do overlap, the sum of both images is shown but</span>
 <span>darkened.</span>
+<br/>
 <span>copy</span>
 <span>The source image is copied over the destination. Any transparent area of the source</span>
 <span>causes any destination that it overlaps to not display.</span>
+<br/>
 <span>xor</span>
 <span>Where the source and destination images do not overlap, they display as normal.</span>
 <span>Where they do overlap, their color values are</span>
 <span>exclusive-or</span>
 <span>ed.</span>
+<br/>
 <span>Example 23-23</span>
 <span>illustrates the effect of all of these compositing types by creating 12</span>
 <span>different canvases, each with two objects (a filled circle and the yin-yang image) offset</span>
 <span>from each other but overlapping.</span>
+<br/>
 <span>Example 23-23. Using all 12 types of compositing</span>
 <span>effects</span>
+<br/>
 <span>image = new Image()</span>
 <span>image.src = 'image.png'</span>
 <span>image.onload = function()</span>
@@ -1918,10 +2168,12 @@ title: "The HTML5 Canvas"
 <span>context.drawImage(image, 20, 20, 100, 100)</span>
 <span>}</span>
 <span>}</span>
+<br/>
 <span>As with some others in this chapter, this example (downloadable</span>
 <span>from the companion website) includes some HTML and/or CSS to</span>
 <span>enhance the display, which isn&rsquo;t shown here because it&rsquo;s not essen‐</span>
 <span>tial to the program&rsquo;s operation.</span>
+<br/>
 <span>This program uses a</span>
 <span>for</span>
 <span>loop to iterate through each compositing type, as stored in</span>
@@ -1934,12 +2186,15 @@ title: "The HTML5 Canvas"
 <span>through</span>
 <span>c12</span>
 <span>.</span>
+<br/>
 <span>In each canvas, a 100-pixel-diameter red circle is first placed at the top left, and then</span>
 <span>the compositing type is selected and the yin-yang image is placed over the circle but</span>
 <span>offset to the right and down by 20 pixels.</span>
 <span>Figure 23-22</span>
 <span>shows the results of each type</span>
 <span>in action. As you can see, it&rsquo;s possible to achieve a wide variety of effects.</span>
+<br/>
+<p><img src="images/23.22.png"/></p>
 <span>Figure 23-22. The 12 compositing effects in action</span>
 <h4>The globalAlpha Property</h4>
 <span>When drawing on the canvas, you can specify the amount of transparency to apply</span>
@@ -1953,7 +2208,9 @@ title: "The HTML5 Canvas"
 <span>0.9</span>
 <span>, such that</span>
 <span>future draw operations will be 90 percent opaque (or 10 percent transparent):</span>
+<br/>
 <span>context.globalAlpha = 0.9</span>
+<br/>
 <span>This property can be used with all other properties, including the compositing</span>
 <span>options.</span>
 <h3>Transformations</h3>
@@ -1973,6 +2230,7 @@ title: "The HTML5 Canvas"
 <span>scale</span>
 <span>method, supplying</span>
 <span>horizontal and vertical scaling factors, which can be negative, zero, or positive values.</span>
+<br/>
 <span>In</span>
 <span>&nbsp;Example 23-24</span>
 <span>&nbsp;the yin-yang image is drawn to the canvas at its original size of</span>
@@ -1988,19 +2246,25 @@ title: "The HTML5 Canvas"
 <span>back to normal, and the image is once more drawn, this time below the original.</span>
 <span>Figure 23-23</span>
 <span>shows the result.</span>
+<br/>
 <span>Example 23-24. Scaling up and down in size</span>
+<br/>
 <span>context.drawImage(myimage, 0, 0)</span>
 <span>context.scale(3, 2)</span>
 <span>context.drawImage(myimage, 40, 0)</span>
 <span>context.scale(.33, .5)</span>
 <span>context.drawImage(myimage, 0, 100)</span>
+<br/>
+<p><img src="images/23.23.png"/></p>
 <span>Figure 23-23. Scaling an image up and then down again</span>
+<br/>
 <span>If you look carefully, you may notice that the copy image under the original is a little</span>
 <span>bit fuzzy due to the scaling up and then down.</span>
 <span>If you use negative values for one or more scaling parameters, you</span>
 <span>can reverse an element in either the horizontal or vertical direction</span>
 <span>(or both), at the same time as (or instead of) scaling. For example,</span>
 <span>the following flips the context to create a mirror image:</span>
+<br/>
 <span>context.scale(-1, 1)</span>
 <h4>The save and restore Methods</h4>
 <span>If you need to use several scaling operations on different drawing elements, not only</span>
@@ -2011,6 +2275,7 @@ title: "The HTML5 Canvas"
 <span>again (and a two-times upscale requires a value of</span>
 <span>0.5</span>
 <span>to reverse).</span>
+<br/>
 <span>For this reason, you can call</span>
 <span>save</span>
 <span>to save the current context before issuing a</span>
@@ -2021,12 +2286,14 @@ title: "The HTML5 Canvas"
 <span>following, which can replace the code in</span>
 <span>Example 23-24</span>
 <span>:</span>
+<br/>
 <span>context.drawImage(myimage, 0, 0)</span>
 <span>context.save()</span>
 <span>context.scale(3, 2)</span>
 <span>context.drawImage(myimage, 40, 0)</span>
 <span>context.restore()</span>
 <span>context.drawImage(myimage, 0, 100)</span>
+<br/>
 <span>The</span>
 <span>save</span>
 <span>and</span>
@@ -2086,6 +2353,7 @@ title: "The HTML5 Canvas"
 <span>method, you can choose the angle at which to apply an object (or</span>
 <span>any of the drawing methods) to the canvas, specified in radians, which are the same</span>
 <span>as 180 / &pi;, or about 57 degrees, each.</span>
+<br/>
 <span>Rotation takes place around the canvas origin, which, by default, is its top-left corner</span>
 <span>(but as you&rsquo;ll see shortly, this can be changed).</span>
 <span>Example 23-25</span>
@@ -2095,12 +2363,15 @@ title: "The HTML5 Canvas"
 <span>/</span>
 <span>25</span>
 <span>radians.</span>
+<br/>
 <span>Example 23-25. Rotating an image</span>
+<br/>
 <span>for (j = 0 ; j &lt; 4 ; ++j)</span>
 <span>{</span>
 <span>context.drawImage(myimage, 20 + j * 120 , 20)</span>
 <span>context.rotate(Math.PI / 25)</span>
 <span>}</span>
+<br/>
 <span>As you can see in</span>
 <span>Figure 23-24</span>
 <span>, the result may not be quite what you expect, because</span>
@@ -2114,6 +2385,7 @@ title: "The HTML5 Canvas"
 <span>and</span>
 <span>restore</span>
 <span>methods.</span>
+<br/>
 <span>Radians are a sensible unit of measurement because there are &pi; &times; 2</span>
 <span>radians in a complete circle. So &pi; radians is a half circle, &pi; &divide; 2 radi‐</span>
 <span>ans is a quarter circle, and &pi; &divide; 2 &times; 3 (or &pi; &times; 1.5) radians is three-</span>
@@ -2121,6 +2393,8 @@ title: "The HTML5 Canvas"
 <span>value of &pi;, you can always refer to the value in</span>
 <span>Math.PI</span>
 <span>.</span>
+<br/>
+<p><img src="images/23.24.png"/></p>
 <span>Figure 23-24. An image at four different rotations</span>
 <h4>The translate Method</h4>
 <span>To change the origin of a rotation, you can call the</span>
@@ -2128,6 +2402,7 @@ title: "The HTML5 Canvas"
 <span>method to shift it to</span>
 <span>somewhere else, which can be anywhere inside (or outside) the canvas or, more usu‐</span>
 <span>ally, somewhere within the destination location of the object (usually its center).</span>
+<br/>
 <span>Example 23-26</span>
 <span>performs this translation prior to each call to</span>
 <span>rotate</span>
@@ -2139,7 +2414,9 @@ title: "The HTML5 Canvas"
 <span>methods</span>
 <span>are called before and after each operation to ensure that each rotation is applied inde‐</span>
 <span>pendently, not compounded on the previous one.</span>
+<br/>
 <span>Example 23-26. Rotating objects in place</span>
+<br/>
 <span>w = myimage.width</span>
 <span>h = myimage.height</span>
 <span>for (j = 0 ; j &lt; 4 ; ++j)</span>
@@ -2150,13 +2427,17 @@ title: "The HTML5 Canvas"
 <span>context.drawImage(myimage, -(w / 2), -(h / 2))</span>
 <span>context.restore()</span>
 <span>}</span>
+<br/>
 <span>In this example, before each rotation the context is saved and the origin is translated</span>
 <span>to a point exactly in the center of where each image will be drawn. We then issue the</span>
 <span>rotation and draw the image up and to the left of the new origin by supplying nega‐</span>
 <span>tive values, such that its center matches the origin point. The result of this is shown in</span>
 <span>Figure 23-25</span>
 <span>.</span>
+<br/>
+<p><img src="images/23.25.png"/></p>
 <span>Figure 23-25. Rotating images in place</span>
+<br/>
 <span>To recap: when you wish to rotate or transform (described next) an object in place,</span>
 <span>you should perform the following actions:</span>
 <span>1.</span>
@@ -2178,46 +2459,54 @@ title: "The HTML5 Canvas"
 <span>apply a transformation matrix to the objects you draw to the canvas, giving you a</span>
 <span>multitude of possibilities, and powerful features that can combine scaling and rotat‐</span>
 <span>ing in a single instruction.</span>
+<br/>
 <span>The transformation matrix used by this method is a 3&times;3 matrix of nine values, but</span>
 <span>only six of these are supplied externally to the</span>
 <span>transform</span>
 <span>method. So, rather than</span>
 <span>explain how this matrix multiplication works, I only need to explain the effects of its</span>
 <span>six arguments, which, in order, are as follows:</span>
+<br/>
 <span>1.</span>
 <span>Horizontal scale</span>
+<br/>
 <span>2.</span>
 <span>Horizontal skew</span>
+<br/>
 <span>3.</span>
 <span>Vertical skew</span>
+<br/>
 <span>4.</span>
 <span>Vertical scale</span>
+<br/>
 <span>5.</span>
 <span>Horizontal translate</span>
+<br/>
 <span>6.</span>
 <span>Vertical translate</span>
+<br/>
 <span>You can apply these values in many ways&mdash;for example, by emulating the</span>
 <span>scale</span>
 <span>method from</span>
 <span>Example 23-24</span>
 <span>by replacing this call:</span>
+<br/>
 <span>context.scale(3, 2)</span>
+<br/>
 <span>with the following:</span>
-<span>context.transform(</span>
-<span>3</span>
-<span>, 0, 0,</span>
-<span>2</span>
-<span>, 0, 0)</span>
+<br/>
+<span>context.transform(3, 0, 0, 2, 0, 0)</span>
+<br/>
 <span>Or, in the same way, you can replace this call from</span>
 <span>Example 23-26</span>
 <span>:</span>
+<br/>
 <span>context.translate(20 + w / 2 + j * (w + 20), 20 + h / 2)</span>
+<br/>
 <span>with the following:</span>
-<span>context.transform(1, 0, 0, 1,</span>
-<span>20 + w / 2 + j * (w + 20)</span>
-<span>,</span>
-<span>20 + h / 2</span>
-<span>)</span>
+<br/>
+<span>context.transform(1, 0, 0, 1, 20 + w / 2 + j * (w + 20),20 + h / 2)</span>
+<br/>
 <span>Note how the horizontal and vertical scaling arguments are given</span>
 <span>values of</span>
 <span>1</span>
@@ -2225,20 +2514,16 @@ title: "The HTML5 Canvas"
 <span>0</span>
 <span>to pre‐</span>
 <span>vent the result from being skewed.</span>
+<br/>
 <span>You could even combine the previous two lines of code to get a translation and scale</span>
 <span>at the same time, like this:</span>
-<span>context.transform(</span>
-<span>3</span>
-<span>, 0, 0,</span>
-<span>2</span>
-<span>,</span>
-<span>20 + w / 2 + j * (w + 20)</span>
-<span>,</span>
-<span>20 + h / 2</span>
-<span>)</span>
+<br/>
+<span>context.transform(3, 0, 0,2,20 + w / 2 + j * (w + 20),20 + h / 2)</span>
+<br/>
 <span>As you look at the skew arguments, as you might expect they result in an element</span>
 <span>being skewed in the direction specified&mdash;for example, creating a rhombus from a</span>
 <span>square.</span>
+<br/>
 <span>For example,</span>
 <span>Example 23-27</span>
 <span>draws the yin-yang image on the canvas, followed by a</span>
@@ -2252,13 +2537,18 @@ title: "The HTML5 Canvas"
 <span>along with it proportionally (see</span>
 <span>Figure 23-26</span>
 <span>).</span>
+<br/>
 <span>Example 23-27. Creating an original and skewed image</span>
+<br/>
 <span>context.drawImage(myimage, 20, 20)</span>
 <span>context.transform(1, 0,</span>
 <span>1</span>
 <span>, 1, 0, 0)</span>
 <span>context.drawImage(myimage, 140, 20)</span>
+<br/>
+<p><img src="images/23.26.png"/></p>
 <span>Figure 23-26. Horizontally skewing an object to the right</span>
+<br/>
 <span>You can even rotate an object with</span>
 <span>transform</span>
 <span>by supplying one</span>
@@ -2287,49 +2577,10 @@ title: "The HTML5 Canvas"
 <span>this example (which applies a horizontal positive skew with the value</span>
 <span>1</span>
 <span>):</span>
-<span>context.setTransform(1, 0,</span>
-<span>1</span>
-<span>, 1, 0, 0)</span>
+<br/>
+<span>context.setTransform(1, 0, 1, 1, 0, 0)</span>
+<br/>
 <span>To learn more about transformation matrixes, see the</span>
 <span>comprehen‐</span>
 <span>sive Wikipedia article</span>
 <span>.</span>
-<h3>Summary</h3>
-<span>As of this writing, the HTML5 standard is still not 100 percent applied across all</span>
-<span>major browsers but, thankfully, most of the canvas functionality is. And even though</span>
-<span>there&rsquo;s more to come, such as 3D contexts, the HTML5 canvas already represents a</span>
-<span>tremendous new asset for web developers to continue making bigger, better, and</span>
-<span>more-professional and compelling websites. In the following chapter, we&rsquo;ll take a look</span>
-<span>at two other major new enhancements to HTML: in-browser, plug-in-free audio and</span>
-<span>video.</span>
-<h3>Questions</h3>
-<span>1.</span>
-<span>How do you create a canvas element in HTML?</span>
-<span>2.</span>
-<span>How do you give JavaScript access to a canvas element?</span>
-<span>3.</span>
-<span>How do you start and finish the creation of a canvas path?</span>
-<span>4.</span>
-<span>What method can you use to extract data from a canvas into an image?</span>
-<span>5.</span>
-<span>How can you create gradient fills of more than two colors?</span>
-<span>6.</span>
-<span>How can you adjust the width of lines when drawing?</span>
-<span>7.</span>
-<span>Which method would you use to specify a section of a camera such that future</span>
-<span>drawing takes place only within that area?</span>
-<span>8.</span>
-<span>How can you draw a complex curve with two imaginary attractors?</span>
-<span>9.</span>
-<span>How many items of data per pixel are returned by the</span>
-<span>getImageData</span>
-<span>method?</span>
-<span>10.</span>
-<span>Which two parameters to the</span>
-<span>transform</span>
-<span>method apply to scaling operations?</span>
-<span>See</span>
-<span>Chapter 23 Answers</span>
-<span>in</span>
-<span>Appendix A</span>
-<span>for the answers to these questions.</span>
