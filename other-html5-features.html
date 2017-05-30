@@ -6,10 +6,12 @@ title: "Other HTML5 Features"
 <span>In this final chapter on HTML5, I explain how to use geolocation, local storage, and</span>
 <span>web workers; show you how to allow web apps to run offline; and demonstrate the</span>
 <span>use of in-browser dragging and dropping.</span>
+
 <span>Strictly speaking, most of these features (like much of HTML5) aren&rsquo;t really exten‐</span>
 <span>sions to HTML, because you access them with JavaScript rather than with HTML</span>
 <span>markup. They are simply technologies that are being embraced by browser develop‐</span>
 <span>ers, and have been given the handy umbrella name of HTML5.</span>
+
 <span>This means, though, that you need to have fully understood the JavaScript tutorial in</span>
 <span>this book in order to use them properly. That said, once you get the hang of them,</span>
 <span>you&rsquo;ll wonder how you ever did without these powerful new features.</span>
@@ -22,9 +24,11 @@ title: "Other HTML5 Features"
 <span>arrive enable the device to quite accurately know where it is; because the speed of</span>
 <span>light (and therefore radio waves) is a known constant, the time it takes a signal to get</span>
 <span>from a satellite to a GPS device indicates the satellite&rsquo;s distance.</span>
+
 <span>By noting the different times at which signals arrive from different satellites, which</span>
 <span>are in precisely known orbital locations at any one time, a simple triangulation calcu‐</span>
 <span>lation gives the device its position relative to the satellites within a few meters or less.</span>
+
 <span>Many mobile devices, such as phones and tablets, have GPS chips and can provide</span>
 <span>this information. But some don&rsquo;t, others have them tuned off, and others may be used</span>
 <span>indoors where they are shielded from the GPS satellites and therefore cannot receive</span>
@@ -39,6 +43,7 @@ title: "Other HTML5 Features"
 <span>rough radius around the tower, and the circle it creates represents the area in which</span>
 <span>you are likely to be located. This could place you anywhere within a mile or two of</span>
 <span>your actual location, down to within a few tens of meters.</span>
+
 <span>Failing that, there may be known Wi-Fi access points whose positions are known</span>
 <span>within range of your device, and since all access points have a unique identifying</span>
 <span>address called a</span>
@@ -46,6 +51,7 @@ title: "Other HTML5 Features"
 <span>address, a reasonably good approxima‐</span>
 <span>tion of location can be obtained, perhaps to within a street or two. This is the type of</span>
 <span>information that Google Street View vehicles have been collecting.</span>
+
 <span>And if that fails, the</span>
 <span>IP (Internet Protocol)</span>
 <span>address used by your device can be queried</span>
@@ -53,6 +59,7 @@ title: "Other HTML5 Features"
 <span>location of a major switch belonging to your Internet provider, which could be doz‐</span>
 <span>ens or even hundreds of miles away. But at the very least, your IP address can (usu‐</span>
 <span>ally) narrow down the country and sometimes the region you are in.</span>
+
 <span>IP addresses are commonly used by media companies for restrict‐</span>
 <span>ing playback of their content by territory. However, it&rsquo;s a simple</span>
 <span>matter to set up proxy servers that use a forwarding IP address (in</span>
@@ -71,7 +78,9 @@ title: "Other HTML5 Features"
 <span>depth, starting with the example I gave you before, shown again in</span>
 <span>Example 25-1</span>
 <span>.</span>
+
 <span>Example 25-1. Displaying a map of your current location</span>
+
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -150,6 +159,7 @@ title: "Other HTML5 Features"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+
 <span>Let&rsquo;s walk through this code and see how it works, starting with the</span>
 <span>&lt;head&gt;</span>
 <span>section,</span>
@@ -165,12 +175,15 @@ title: "Other HTML5 Features"
 <span>provided to make accessing HTML elements from JavaScript easier; and then also</span>
 <span>pulls in the JavaScript code for the Google Maps service, which is drawn on later in</span>
 <span>the program.</span>
+
 <span>After this, two</span>
 <span>&lt;div&gt;</span>
 <span>elements are created&mdash;one for displaying the connection status,</span>
 <span>and the other for the map:</span>
+
 <span>&lt;div id='status'&gt;&lt;/div&gt;</span>
 <span>&lt;div id='map'&gt;&lt;/div&gt;</span>
+
 <span>The remainder of the document is JavaScript, which immediately starts by interrogat‐</span>
 <span>ing the</span>
 <span>navigator.geolocation</span>
@@ -178,6 +191,7 @@ title: "Other HTML5 Features"
 <span>undefined</span>
 <span>, then</span>
 <span>geolocation is not supported by the browser and an error alert window is popped up.</span>
+
 <span>Otherwise, the</span>
 <span>getCurrentPosition</span>
 <span>method of the property is called, passing it the</span>
@@ -188,7 +202,9 @@ title: "Other HTML5 Features"
 <span>(remember that by passing function</span>
 <span>names, we pass the actual function code, not the result of calling the function, which</span>
 <span>would be the case if the function names had brackets attached):</span>
+
 <span>navigator.geolocation.getCurrentPosition(granted, denied)</span>
+
 <span>These functions appear later in the script and are for handling the two possibilities of</span>
 <span>permission to provide the user&rsquo;s location data:</span>
 <span>granted</span>
@@ -198,6 +214,7 @@ title: "Other HTML5 Features"
 <span>granted</span>
 <span>func‐</span>
 <span>tion comes first and is entered only if the data can be accessed.</span>
+
 <span>In this function, the</span>
 <span>innerHTML</span>
 <span>property of the</span>
@@ -213,10 +230,12 @@ title: "Other HTML5 Features"
 <span>div</span>
 <span>has some CSS styles applied to give it a border</span>
 <span>and set its dimensions:</span>
+
 <span>O('status').innerHTML = 'Permission Granted'</span>
 <span>S('map').border = '1px solid black'</span>
 <span>S('map').width = '640px'</span>
 <span>S('map').height = '320px'</span>
+
 <span>Next, the variables</span>
 <span>lat</span>
 <span>and</span>
@@ -228,9 +247,11 @@ title: "Other HTML5 Features"
 <span>map</span>
 <span>div</span>
 <span>element:</span>
+
 <span>var lat = position.coords.latitude</span>
 <span>var long = position.coords.longitude</span>
 <span>var gmap = O('map')</span>
+
 <span>After this, the object</span>
 <span>gopts</span>
 <span>is populated with the values in</span>
@@ -241,11 +262,13 @@ title: "Other HTML5 Features"
 <span>level is set (in this case to 9), and the</span>
 <span>ROADMAP</span>
 <span>map type is selected:</span>
+
 <span>var gopts =</span>
 <span>{</span>
 <span>center: new google.maps.LatLng(lat, long),</span>
 <span>zoom: 9, mapTypeId: google.maps.MapTypeId.ROADMAP</span>
 <span>}</span>
+
 <span>Last, in this function, we create a new</span>
 <span>map</span>
 <span>object by passing</span>
@@ -260,11 +283,16 @@ title: "Other HTML5 Features"
 <span>in just after the</span>
 <span>OSC.js</span>
 <span>file).</span>
+
 <span>var map = new google.maps.Map(gmap, gopts)</span>
+
 <span>If permission is granted to access the user&rsquo;s location, the result looks like</span>
 <span>Figure 25-1</span>
 <span>.</span>
+
+<p><img src="images/25.1.png"/></p>
 <span>Figure 25-1. An interactive map of the user&rsquo;s location is displayed</span>
+
 <span>If permission is denied or there is another issue, an error message is the only thing</span>
 <span>displayed, as output to the</span>
 <span>innerHTML</span>
@@ -275,6 +303,7 @@ title: "Other HTML5 Features"
 <span>denied</span>
 <span>func‐</span>
 <span>tion, according to the problem encountered:</span>
+
 <span>switch(error.code)</span>
 <span>{</span>
 <span>case 1: message = 'Permission Denied'; break;</span>
@@ -283,8 +312,10 @@ title: "Other HTML5 Features"
 <span>case 4: message = 'Unknown Error'; break;</span>
 <span>}</span>
 <span>O('status').innerHTML = message</span>
+
 <span>The Google map will be fully interactive and zoomable by the user, who can also</span>
 <span>change the map type to satellite imagery.</span>
+
 <span>You can set a different zoom level or imagery type by providing different values to the</span>
 <span>gopts</span>
 <span>object. For example, a value of</span>
@@ -301,6 +332,7 @@ title: "Other HTML5 Features"
 <span>erty will switch to satellite imagery, or</span>
 <span>HYBRID</span>
 <span>will combine map and satellite data.</span>
+
 <span>The</span>
 <span>sensor=false</span>
 <span>setting from the tail of the URL where the script</span>
@@ -329,18 +361,22 @@ title: "Other HTML5 Features"
 <span>ing purposes. Now this isn&rsquo;t as ominous as it sounds, because most of the tracking</span>
 <span>going on helps web surfers by saving usernames and passwords, keeping them logged</span>
 <span>into a social network such as Twitter or Facebook, and more.</span>
+
 <span>Cookies can also locally save your preferences for the way you access a website (rather</span>
 <span>than having those settings stored on the website&rsquo;s server) or can be used to keep track</span>
 <span>of a shopping cart as you build up an order on an ecommerce website.</span>
+
 <span>But yes, they can also be used more aggressively to track the websites you frequent</span>
 <span>and gain a picture of your interests to try to target advertising more effectively. That&rsquo;s</span>
 <span>why the European Union now requires all websites within its borders to alert you to</span>
 <span>this, and let you disable cookies if you so choose.</span>
+
 <span>But, as a web developer, think how useful it can be keeping data on user&rsquo;s devices,</span>
 <span>especially if you have a small budget for computer servers and disk space. For exam‐</span>
 <span>ple, you could create in-browser web apps and services for editing word processing</span>
 <span>documents, spreadsheets, and graphic images, saving all this data offsite on users&rsquo;</span>
 <span>computers and keeping your server purchasing budget as low as possible.</span>
+
 <span>From the user&rsquo;s point of view, think about how much faster a document can be loaded</span>
 <span>up locally than from across the Web, especially on a slow connection. Plus, there&rsquo;s</span>
 <span>more security if you know that a website is not storing copies of your documents. Of</span>
@@ -356,11 +392,13 @@ title: "Other HTML5 Features"
 <span>SSL (Secure Sockets Layer)</span>
 <span>encryption, each</span>
 <span>time a cookie is transmitted, it travels in the clear.</span>
+
 <span>But with HTML5, you have access to a much larger local storage space (typically</span>
 <span>between 5MB and 10MB per domain depending on the browser) that remains over</span>
 <span>page loads, and between website visits (and even after powering a computer down</span>
 <span>and back up again). Also, the local storage data is not sent to the server on each page</span>
 <span>load.</span>
+
 <span>You handle local storage data in key/value pairs. The key is the name assigned for ref‐</span>
 <span>erencing the data, and the value can hold any type of data, but it is saved as a string.</span>
 <span>All data is unique to the current domain, and for security reasons any local storage</span>
@@ -372,15 +410,18 @@ title: "Other HTML5 Features"
 <span>object. To test whether</span>
 <span>this object is available, you query its type to check whether or not it has been defined,</span>
 <span>like this:</span>
+
 <span>if (typeof localStorage == 'undefined')</span>
 <span>{</span>
 <span>// Local storage is not available, tell the user and quit.</span>
 <span>// Or maybe offer to save data on the web server instead?</span>
 <span>}</span>
+
 <span>How you handle the lack of local storage being available will depend on what you</span>
 <span>intend to use it for, so the code you place inside the</span>
 <span>if</span>
 <span>statement will be up to you.</span>
+
 <span>Once you&rsquo;ve ascertained that local storage is available, you can start making use of it</span>
 <span>with the</span>
 <span>setItem</span>
@@ -389,22 +430,30 @@ title: "Other HTML5 Features"
 <span>methods of the</span>
 <span>localStorage</span>
 <span>object, like this:</span>
+
 <span>localStorage.setItem('username', 'ceastwood')</span>
 <span>localStorage.setItem('password', 'makemyday')</span>
+
 <span>To later retrieve this data, pass the keys to the</span>
 <span>getItem</span>
 <span>method, like this:</span>
+
 <span>username = localStorage.getItem('username')</span>
 <span>password = localStorage.getItem('password')</span>
+
 <span>Unlike saving and reading cookies, you can call these methods at any time you like,</span>
 <span>not simply before any headers have been sent by the web server. The saved values will</span>
 <span>remain in local storage until erased in the following manner:</span>
+
 <span>localStorage.removeItem('username')</span>
 <span>localStorage.removeItem('password')</span>
+
 <span>Or, you can totally wipe the local storage for the current domain by calling the</span>
 <span>clear</span>
 <span>method, like this:</span>
+
 <span>localStorage.clear()</span>
+
 <span>Example 25-2</span>
 <span>combines the preceding examples into a single document that displays</span>
 <span>the current values of the two keys in a pop-up alert message, which initially will be</span>
@@ -416,7 +465,9 @@ title: "Other HTML5 Features"
 <span>.</span>
 <span>Figure 25-2</span>
 <span>shows the second of these three alert messages.</span>
+
 <span>Example 25-2. Getting, setting, and removing local storage data</span>
+
 <span>if (typeof localStorage == 'undefined')</span>
 <span>{</span>
 <span>alert("Local storage is not available")</span>
@@ -440,7 +491,10 @@ title: "Other HTML5 Features"
 <span>alert("The current values of 'username' and 'password' are\n\n" +</span>
 <span>username + " / " + password)</span>
 <span>}</span>
+
+<p><img src="images/25.2.png"/></p>
 <span>Figure 25-2. Two keys and their values are read from local storage</span>
+
 <span>You are not restricted to just storing usernames and passwords;</span>
 <span>you can include virtually any and all data, and as many key/value</span>
 <span>pairs as you like, up to the available storage limit for your domain.</span>
@@ -451,13 +505,16 @@ title: "Other HTML5 Features"
 <span>ground, without having to set up and monitor interrupts. Instead, whenever it has</span>
 <span>something to report, your background process communicates with the main Java‐</span>
 <span>Script through the use of an event.</span>
+
 <span>This means the JavaScript interpreter gets to decide how to allocate time slices most</span>
 <span>efficiently, and your code only needs to worry about communicating with the back‐</span>
 <span>ground task whenever there&rsquo;s information to convey.</span>
+
 <span>Example 25-3</span>
 <span>shows how you can set up web workers to compute a repetitive task in</span>
 <span>the background&mdash;in this instance, calculating prime numbers.</span>
 <span>Example 25-3. Setting up and communicating with a web worker</span>
+
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -495,6 +552,7 @@ title: "Other HTML5 Features"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+
 <span>This example first creates a</span>
 <span>&lt;span&gt;</span>
 <span>element with the ID of</span>
@@ -522,6 +580,7 @@ title: "Other HTML5 Features"
 <span>is displayed in the</span>
 <span>else</span>
 <span>section, alerting us that web workers are not available.</span>
+
 <span>Otherwise, a new</span>
 <span>worker</span>
 <span>object is created by calling</span>
@@ -540,13 +599,16 @@ title: "Other HTML5 Features"
 <span>property of the previously created</span>
 <span>&lt;span&gt;</span>
 <span>element.</span>
+
 <span>The web worker itself is saved in the file</span>
 <span>worker.js</span>
 <span>, in</span>
 <span>Example 25-4</span>
 <span>.</span>
+
 <span>Example 25-4.</span>
 <span>The worker.js web worker</span>
+
 <span>var n = 1</span>
 <span>search: while (true)</span>
 <span>{</span>
@@ -557,6 +619,7 @@ title: "Other HTML5 Features"
 <span>}</span>
 <span>postMessage(n)</span>
 <span>}</span>
+
 <span>This file assigns the value</span>
 <span>1</span>
 <span>to the variable</span>
@@ -577,6 +640,7 @@ title: "Other HTML5 Features"
 <span>because the number is not prime, and starts processing at the next higher value of</span>
 <span>n</span>
 <span>.</span>
+
 <span>But if all possible factors are tested and none result in a zero remainder, then</span>
 <span>n</span>
 <span>must</span>
@@ -586,16 +650,22 @@ title: "Other HTML5 Features"
 <span>onmessage</span>
 <span>event of the object that set up this web worker.</span>
 <span>The result looks like the following:</span>
+
 <span>Current highest prime number: 30477191</span>
+
 <span>To stop a web worker from running, issue a call to the</span>
 <span>terminate</span>
 <span>method of the</span>
 <span>worker</span>
 <span>object, like this:</span>
+
 <span>worker.terminate()</span>
+
 <span>If you wish to stop this particular example from running, you can</span>
 <span>enter the following into your browser&rsquo;s address bar:</span>
+
 <span>javascript:worker.terminate()</span>
+
 <span>Also note that due to the way Chrome handles security, you cannot</span>
 <span>use web workers on a file system, only from a web server (or run‐</span>
 <span>ning the files from</span>
@@ -615,13 +685,16 @@ title: "Other HTML5 Features"
 <span>and looks like</span>
 <span>Example 25-5</span>
 <span>.</span>
+
 <span>Example 25-5.</span>
 <span>The clock.appcache file</span>
+
 <span>CACHE MANIFEST</span>
 <span>clock.html</span>
 <span>OSC.js</span>
 <span>clock.css</span>
 <span>clock.js</span>
+
 <span>The first line in this file declares it to be a manifest file. The lines following list the</span>
 <span>files the browser needs to download and store, starting with</span>
 <span>&nbsp;Example 25-6</span>
@@ -631,8 +704,10 @@ title: "Other HTML5 Features"
 <span>OSC.js</span>
 <span>file, which is the same one used by many</span>
 <span>examples in this book.</span>
+
 <span>Example 25-6.</span>
 <span>The clock.html file</span>
+
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html manifest='clock.appcache'&gt;</span>
 <span>&lt;head&gt;</span>
@@ -645,10 +720,13 @@ title: "Other HTML5 Features"
 <span>&lt;p&gt;The time is: &lt;output id='clock'&gt;&lt;/output&gt;&lt;/p&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+
 <span>This file declares that it has a manifest file available from within the</span>
+
 <span>&lt;html&gt;</span>
 <span>tag:</span>
 <span>&lt;html manifest='clock.appcache'&gt;</span>
+
 <span>To support offline web apps, you will need to add the MIME type</span>
 <span>text/cache-manifest</span>
 <span>for</span>
@@ -664,7 +742,9 @@ title: "Other HTML5 Features"
 <span>.htaccess</span>
 <span>in the same folder as the files to be made avail‐</span>
 <span>able offline, with the following contents:</span>
+
 <span>AddType text/cache-manifest .appcache</span>
+
 <span>The files</span>
 <span>OSC.js</span>
 <span>,</span>
@@ -677,11 +757,14 @@ title: "Other HTML5 Features"
 <span>is listed in</span>
 <span>Example 25-7</span>
 <span>.</span>
+
 <span>Example 25-7. The clock.js file</span>
+
 <span>setInterval(function()</span>
 <span>{</span>
 <span>O('clock').innerHTML = new Date()</span>
 <span>}, 1000)</span>
+
 <span>This is a very simple anonymous function attached to an interval that repeats once a</span>
 <span>second to save the current date and time into the</span>
 <span>innerHTML</span>
@@ -690,6 +773,7 @@ title: "Other HTML5 Features"
 <span>element that has the ID of</span>
 <span>clock</span>
 <span>.</span>
+
 <span>The final file is the</span>
 <span>clock.css</span>
 <span>file (see</span>
@@ -698,8 +782,11 @@ title: "Other HTML5 Features"
 <span>to the</span>
 <span>&lt;output&gt;</span>
 <span>element.</span>
+
 <span>Example 25-8. The clock.css file</span>
+
 <span>output { font-weight:bold; }</span>
+
 <span>As long as the</span>
 <span>&nbsp;clock.appcache</span>
 <span>&nbsp;file lists them all, these four files (</span>
@@ -713,7 +800,9 @@ title: "Other HTML5 Features"
 <span>) together make up a working offline web application, which will</span>
 <span>be downloaded and made available locally by any web browser that understands off‐</span>
 <span>line web apps. When run, the output looks like this:</span>
+
 <span>The time is: Thu Jul 19 2018 15:24:26 GMT+0000 (GMT Standard Time)</span>
+
 <span>For details on the offline web application specifications, you can</span>
 <span>check out the official website at</span>
 <span>http://tinyurl.com/offlinewebapps</span>
@@ -735,7 +824,9 @@ title: "Other HTML5 Features"
 <span>in</span>
 <span>Example 25-9</span>
 <span>.</span>
+
 <span>Example 25-9. Dragging and dropping objects</span>
+
 <span>&lt;!DOCTYPE HTML&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -796,6 +887,7 @@ title: "Other HTML5 Features"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+
 <span>After setting up the HTML, title, and loading in the</span>
 <span>OSC.js</span>
 <span>file, this document styles</span>
@@ -805,6 +897,7 @@ title: "Other HTML5 Features"
 <span>dest</span>
 <span>, giving it a background color, border, set dimen‐</span>
 <span>sions, and padding.</span>
+
 <span>Then, in the</span>
 <span>&lt;body&gt;</span>
 <span>section, the</span>
@@ -829,6 +922,7 @@ title: "Other HTML5 Features"
 <span>is attached to the</span>
 <span>ondragstart</span>
 <span>event of each.</span>
+
 <span>In the</span>
 <span>&lt;script&gt;</span>
 <span>section, the</span>
@@ -851,6 +945,7 @@ title: "Other HTML5 Features"
 <span>dataTransfer</span>
 <span>object holds the data that is being dragged during a</span>
 <span>drag-and-drop operation.</span>
+
 <span>Finally, the</span>
 <span>drop</span>
 <span>event handler function also intercepts its default action so that drop‐</span>
@@ -862,13 +957,17 @@ title: "Other HTML5 Features"
 <span>div) using its</span>
 <span>appendChild</span>
 <span>method.</span>
+
 <span>If you try this example for yourself, you&rsquo;ll be able to drag and drop the images into</span>
 <span>the</span>
 <span>div</span>
 <span>element, where they will stay, as shown in</span>
 <span>Figure 25-3</span>
 <span>.</span>
+
+<p><img src="images/25.3.png"/></p>
 <span>Figure 25-3. Two images have been dragged and dropped</span>
+
 <span>Other events you can attach to include</span>
 <span>ondragenter</span>
 <span>for when a drag operation enters</span>
@@ -885,32 +984,41 @@ title: "Other HTML5 Features"
 <span>sage was being posted only to the same document anyway. But for obvious security</span>
 <span>reasons, cross-document messaging does need to be applied with caution, so you</span>
 <span>need to fully understand its workings if you plan to use it.</span>
+
 <span>Before HTML5, browser developers disallowed cross-site scripting, but as well as</span>
 <span>blocking potential attack sites, this prevented communication between legitimate</span>
 <span>pages. Document interaction of any kind generally had to occur through Ajax and a</span>
 <span>third-party web server, which was cumbersome and fiddly to build and maintain.</span>
+
 <span>But web messaging now allows scripts to interact across these boundaries by using</span>
 <span>some sensible security restraints to prevent malicious hacking attempts. It is achieved</span>
 <span>through use of the</span>
 <span>postMessage</span>
 <span>method, allowing plain-text messages to be sent</span>
 <span>from one domain to another.</span>
+
 <span>This requires that JavaScript first obtain the</span>
 <span>Window</span>
 <span>object of the receiving document,</span>
 <span>letting messages post to a variety of other windows, frames, or iframes directly related</span>
 <span>to the sender&rsquo;s document. The received message event has the following attributes:</span>
+
 <span>data</span>
 <span>The incoming message</span>
+
 <span>origin</span>
 <span>The origin of the sender document, including the scheme, hostname, and port</span>
+
 <span>source</span>
 <span>The source window of the sender document</span>
+
 <span>The code to send messages is just a single instruction, in which you pass the message</span>
 <span>to be sent and the domain to which it applies, as in</span>
 <span>Example 25-10</span>
 <span>.</span>
+
 <span>Example 25-10. Sending web messages to an iframe</span>
+
 <span>&lt;!DOCTYPE HTML&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -933,6 +1041,7 @@ title: "Other HTML5 Features"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+
 <span>Here the usual use is made of the</span>
 <span>OSC.js</span>
 <span>file to pull in the</span>
@@ -965,7 +1074,9 @@ title: "Other HTML5 Features"
 <span>property of the iframe object,</span>
 <span>not the iframe object itself. This is important because web messaging requires posts to</span>
 <span>be made to a window, not to an object within a window.</span>
+
 <span>Example 25-11. Receiving messages from another document</span>
+
 <span>&lt;!DOCTYPE HTML&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -1002,6 +1113,7 @@ title: "Other HTML5 Features"
 <span>&lt;/script&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+
 <span>This example sets up a little styling to make output clearer, and then creates a</span>
 <span>div</span>
 <span>element with the ID</span>
@@ -1021,7 +1133,10 @@ title: "Other HTML5 Features"
 <span>property values are then displayed, as shown in</span>
 <span>Figure 25-4</span>
 <span>.</span>
+
+<p><img src="images/25.4.png"/></p>
 <span>Figure 25-4. The iframe has so far received 17 messages</span>
+
 <span>Web messaging works only across domains, so you cannot test it by loading files in</span>
 <span>from a file system; you must use a web server. As you can see from</span>
 <span>Figure 25-4</span>
@@ -1034,6 +1149,7 @@ title: "Other HTML5 Features"
 <span>object, and the current message value is</span>
 <span>Message 17</span>
 <span>.</span>
+
 <span>At the moment,</span>
 <span>Example 25-10</span>
 <span>is not at all secure because the domain value passed to</span>
@@ -1041,17 +1157,17 @@ title: "Other HTML5 Features"
 <span>is the wildcard</span>
 <span>*</span>
 <span>:</span>
-<span>O('frame').contentWindow.postMessage('Message ' + count++,</span>
-<span>'*'</span>
-<span>)</span>
+
+<span>O('frame').contentWindow.postMessage('Message ' + count++,'*')</span>
+
 <span>To direct messages only to documents originating from a particular domain, you can</span>
 <span>change this parameter. In the current case, a value of</span>
 <span>http://localhost</span>
 <span>would</span>
 <span>ensure that only documents loaded from the local server will be sent any messages:</span>
-<span>O('frame').contentWindow.postMessage('Message ' + count++,</span>
-<span>'http://localhost'</span>
-<span>)</span>
+
+<span>O('frame').contentWindow.postMessage('Message ' + count++,'http://localhost')</span>
+
 <span>Likewise, as it stands, the listener program displays any and all messages it receives.</span>
 <span>This is also not a very secure state of affairs, because malicious documents also</span>
 <span>present in the browser can attempt to send messages that unwary listener code in</span>
@@ -1059,6 +1175,7 @@ title: "Other HTML5 Features"
 <span>your listeners react to by using an</span>
 <span>if</span>
 <span>statement, like this:</span>
+
 <span>window.onmessage = function(event)</span>
 <span>{</span>
 <span>if (event.origin) == 'http://localhost')</span>
@@ -1072,6 +1189,7 @@ title: "Other HTML5 Features"
 <span>'&lt;b&gt;Data:&lt;/b&gt; ' + event.data</span>
 <span>}</span>
 <span>}</span>
+
 <span>If you always use the proper domain for the site you are working</span>
 <span>with, your web messaging communications will be more secure.</span>
 <span>However, be aware that since messages are sent in the clear, there</span>
@@ -1081,6 +1199,7 @@ title: "Other HTML5 Features"
 <span>encryption scheme for all your web messages, and also consider</span>
 <span>introducing your own two-way communication protocols to verify</span>
 <span>each message as being authentic.</span>
+
 <span>Normally, you won&rsquo;t alert the user to the</span>
 <span>origin</span>
 <span>or</span>
@@ -1116,6 +1235,7 @@ title: "Other HTML5 Features"
 <span>the</span>
 <span>properties of an item such as a book, providing a range of information that a com‐</span>
 <span>puter can use to understand, for example, its authors, publishers, contents, and so on.</span>
+
 <span>Or, more frequently these days, microdata is important for search engines and social</span>
 <span>networking sites.</span>
 <span>&nbsp;Example 25-12</span>
@@ -1125,7 +1245,9 @@ title: "Other HTML5 Features"
 <span>Figure 25-5</span>
 <span>, which will look</span>
 <span>the same with or without microdata, because it is never visible to the user.</span>
+
 <span>Example 25-12. Adding microdata to HTML</span>
+
 <span>&lt;!DOCTYPE html&gt;</span>
 <span>&lt;html&gt;</span>
 <span>&lt;head&gt;</span>
@@ -1186,15 +1308,20 @@ title: "Other HTML5 Features"
 <span>&lt;/section&gt;</span>
 <span>&lt;/body&gt;</span>
 <span>&lt;/html&gt;</span>
+
+<p><img src="images/25.5.png"/></p>
 <span>Figure 25-5. This document contains microdata, which is not visible</span>
+
 <span>Browsers don&rsquo;t yet really do anything with microdata, but it&rsquo;s still very worth getting</span>
 <span>to know it. Using the right microdata gives lots of information to search engines like</span>
 <span>Google or Bing, and may help to promote clearly annotated pages in the rankings as</span>
 <span>compared to sites that don&rsquo;t implement microdata.</span>
+
 <span>However, at some point, browsers may also find a use for this information, and you&rsquo;ll</span>
 <span>be able to determine whether or not they support microdata by checking whether the</span>
 <span>getItems</span>
 <span>method exists, like this:</span>
+
 <span>if (!!document.getItems)</span>
 <span>{</span>
 <span>// Microdata is supported</span>
@@ -1203,6 +1330,7 @@ title: "Other HTML5 Features"
 <span>{</span>
 <span>// Microdata is not supported</span>
 <span>}</span>
+
 <span>The</span>
 <span>!!</span>
 <span>pair of</span>
@@ -1215,6 +1343,7 @@ title: "Other HTML5 Features"
 <span>is returned and microdata is supported; otherwise,</span>
 <span>false</span>
 <span>is returned.</span>
+
 <span>Currently, only the Mozilla Firefox and Opera browsers support accessing microdata,</span>
 <span>but the other browsers are sure to follow soon. When they do, you&rsquo;ll be able to extract</span>
 <span>this data in the following manner, in which (after the page has loaded) the</span>
@@ -1233,6 +1362,7 @@ title: "Other HTML5 Features"
 <span>fetching the latter object&rsquo;s</span>
 <span>textContent</span>
 <span>property:</span>
+
 <span>window.onload = function()</span>
 <span>{</span>
 <span>if (!!document.getItems)</span>
@@ -1241,11 +1371,15 @@ title: "Other HTML5 Features"
 <span>alert(data.properties['jobTitle'][0].textContent)</span>
 <span>}</span>
 <span>}</span>
+
 <span>Browsers that support this feature will display as</span>
 <span>Figure 25-6</span>
 <span>, but other browsers will</span>
 <span>not trigger the pop-up window.</span>
+
+<p><img src="images/25.6.png"/></p>
 <span>Figure 25-6. Displaying the value for the &lsquo;jobTitle&rsquo; microdata key</span>
+
 <span>Google has stated that it definitely uses microdata when it finds it, and that microdata</span>
 <span>is also the preferred snippet format for Google+, so it&rsquo;s well worth starting to add it to</span>
 <span>your HTML where applicable. For a complete breakdown of the myriad of microdata</span>
@@ -1307,32 +1441,3 @@ title: "Other HTML5 Features"
 <span>&nbsp;http://tinyurl.com/h5markup</span>
 <span>&nbsp;(check out the elements</span>
 <span>sporting a NEW icon).</span>
-<h3>Summary</h3>
-<span>This concludes your introduction to HTML5. You now have a number of powerful</span>
-<span>new features with which to make even more dynamic and compelling websites. In the</span>
-<span>final chapter, I&rsquo;ll show you how you can bring all the different technologies in this</span>
-<span>book together to create a mini&ndash;social networking site.</span>
-<h3>Questions</h3>
-<span>1.</span>
-<span>What method do you call to request geolocation data from a web browser?</span>
-<span>2.</span>
-<span>How can you determine whether or not a browser supports local storage?</span>
-<span>3.</span>
-<span>What method can you call to erase all local storage data for the current domain?</span>
-<span>4.</span>
-<span>What is the best way for web workers to communicate with a main program?</span>
-<span>5.</span>
-<span>How can your code inform a web browser that the document can be run offline</span>
-<span>as a local web app?</span>
-<span>6.</span>
-<span>To support drag-and-drop operations, how can you prevent the default action of</span>
-<span>disallowing drag-and-drop for these events?</span>
-<span>7.</span>
-<span>How can you make cross-document messaging more secure?</span>
-<span>8.</span>
-<span>What is the purpose of microdata?</span>
-<span>See</span>
-<span>Chapter 25 Answers</span>
-<span>in</span>
-<span>Appendix A</span>
-<span>for the answers to these questions.</span>
