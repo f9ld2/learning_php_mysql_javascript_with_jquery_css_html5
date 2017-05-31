@@ -18,8 +18,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>is an item of data that a web server saves to your computer&rsquo;s hard disk via a</span>
 <span>web browser. It can contain almost any alphanumeric information (as long as it&rsquo;s</span>
 <span>under 4 KB) and can be retrieved from your computer and returned to the server.</span>
-<span>Common uses include session tracking, maintaining data across multiple visits, hold‐</span>
-<span>ing shopping cart contents, storing login details, and more.</span>
+<span>Common uses include session tracking, maintaining data across multiple visits, holding shopping cart contents, storing login details, and more.</span>
 <br/>
 <span>Because of their privacy implications, cookies can be read only from the issuing</span>
 <span>domain. In other words, if a cookie is issued by, for example,</span>
@@ -89,8 +88,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>, it does not have to resend the cookie, but just returns the</span>
 <span>requested page.</span>
 <h4>Setting a Cookie</h4>
-<span>Setting a cookie in PHP is a simple matter. As long as no HTML has yet been trans‐</span>
-<span>ferred, you can call the</span>
+<span>Setting a cookie in PHP is a simple matter. As long as no HTML has yet been transferred, you can call the</span>
 <span>setcookie</span>
 <span>function, which has the following syntax (see</span>
 <span>Table 12-1</span>
@@ -225,16 +223,13 @@ title: "Cookies, Sessions, and Authentication"
 <span>applications have specialized needs or more stringent security requirements that call</span>
 <span>for other techniques.</span>
 <br/>
-<span>To use HTTP authentication, PHP sends a header request asking to start an authenti‐</span>
-<span>cation dialog with the browser. The server must have this feature turned on in order</span>
+<span>To use HTTP authentication, PHP sends a header request asking to start an authentication dialog with the browser. The server must have this feature turned on in order</span>
 <span>for it to work, but because it&rsquo;s so common, your server is likely to offer the feature.</span>
 <br/>
 <span>Although it is usually installed with Apache, HTTP authentication</span>
-<span>may not necessarily be installed on the server you use. So attempt‐</span>
-<span>ing to run these examples may generate an error telling you that the</span>
+<span>may not necessarily be installed on the server you use. So attempting to run these examples may generate an error telling you that the</span>
 <span>feature is not enabled, in which case you must install the module,</span>
-<span>change the configuration file to load the module, or ask your sys‐</span>
-<span>tem administrator to do these fixes.</span>
+<span>change the configuration file to load the module, or ask your system administrator to do these fixes.</span>
 <br/>
 <span>After entering your URL into the browser or visiting via a link, the user will see an</span>
 <span>&ldquo;</span>
@@ -283,8 +278,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>'cgi-fcgi'</span>
 <span>,</span>
 <span>'cli'</span>
-<span>, and so on. Basic authentication is not recom‐</span>
-<span>mended anyway on a production website, as it is very insecure, but</span>
+<span>, and so on. Basic authentication is not recommended anyway on a production website, as it is very insecure, but</span>
 <span>you need to know how it works for maintaining legacy code. Please</span>
 <span>refer to</span>
 <span>http://php.net/php_sapi_name</span>
@@ -337,8 +331,7 @@ title: "Cookies, Sessions, and Authentication"
 <br/>
 <span>Once a user has been authenticated, you will not be able to get the</span>
 <span>authentication dialog to pop up again unless the user closes and</span>
-<span>reopens all browser windows, as the web browser will keep return‐</span>
-<span>ing the same username and password to PHP. You may need to</span>
+<span>reopens all browser windows, as the web browser will keep returning the same username and password to PHP. You may need to</span>
 <span>close and reopen your browser a few times as you work through</span>
 <span>this section and try different things out.</span>
 <br/>
@@ -387,14 +380,12 @@ title: "Cookies, Sessions, and Authentication"
 <span>at a better way to handle usernames and passwords.</span>
 <h4>Storing Usernames and Passwords</h4>
 <span>Obviously, MySQL is the natural way to store usernames and passwords. But again,</span>
-<span>we don&rsquo;t want to store the passwords as clear text, because our website could be com‐</span>
-<span>promised if the database were accessed by a hacker. Instead, we&rsquo;ll use a neat trick</span>
+<span>we don&rsquo;t want to store the passwords as clear text, because our website could be compromised if the database were accessed by a hacker. Instead, we&rsquo;ll use a neat trick</span>
 <span>called a</span>
 <span>one-way function</span>
 <span>.</span>
 <br/>
-<span>This type of function is easy to use and converts a string of text into a seemingly ran‐</span>
-<span>dom string. Because of their one-way nature, such functions are virtually impossible</span>
+<span>This type of function is easy to use and converts a string of text into a seemingly random string. Because of their one-way nature, such functions are virtually impossible</span>
 <span>to reverse, so their output can be safely stored in a database&mdash;and anyone who steals</span>
 <span>it will be none the wiser as to the passwords used.</span>
 <br/>
@@ -406,8 +397,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>of</span>
 <span>sha1</span>
 <span>can apparently be hacked (plus sha1 and sha2 were designed by the NSA and</span>
-<span>therefore considerable caution is recommended for their use in highly secure imple‐</span>
-<span>mentations).</span>
+<span>therefore considerable caution is recommended for their use in highly secure implementations).</span>
 <br/>
 <span>So now I have moved on to using the PHP</span>
 <span>hash</span>
@@ -434,8 +424,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>hash</span>
 <span>on its own is not enough to protect a database of passwords,</span>
 <span>because it could still be susceptible to a brute force attack that uses another database</span>
-<span>of known 32-character hexadecimal tokens. Such databases do exist, as a quick Goo‐</span>
-<span>gle search will verify, although probably only for md5 and sha1 or sha2 at the</span>
+<span>of known 32-character hexadecimal tokens. Such databases do exist, as a quick Google search will verify, although probably only for md5 and sha1 or sha2 at the</span>
 <span>moment.</span>
 <br/>
 <span>Thankfully, though, we can put a spanner in the works of any such attempts by</span>
@@ -455,8 +444,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>Given just the database, and without access to your PHP code, it should now be next</span>
 <span>to impossible to work out the stored passwords.</span>
 <br/>
-<span>All you have to do when verifying someone&rsquo;s login password is to add these same ran‐</span>
-<span>dom strings back in before and after it, and then check the resulting token from a</span>
+<span>All you have to do when verifying someone&rsquo;s login password is to add these same random strings back in before and after it, and then check the resulting token from a</span>
 <span>hash</span>
 <span>call against the one stored in the database for that user.</span>
 <br/>
@@ -536,8 +524,7 @@ title: "Cookies, Sessions, and Authentication"
 <br/>
 <span>Using the data in this table, we can now modify</span>
 <span>Example 12-2</span>
-<span>to properly authenti‐</span>
-<span>cate users, and</span>
+<span>to properly authenticate users, and</span>
 <span>&nbsp;Example 12-4</span>
 <span>&nbsp;shows the code needed to do this. Type it, save it as</span>
 <span>authenticate.php</span>
@@ -636,13 +623,11 @@ title: "Cookies, Sessions, and Authentication"
 <span>(see</span>
 <span>Figure 12-4</span>
 <span>). Otherwise, an error message is displayed. As mentioned before, the</span>
-<span>error message is the same regardless of whether such a username exists, as this pro‐</span>
-<span>vides minimal information to potential hackers or password guessers.</span>
+<span>error message is the same regardless of whether such a username exists, as this provides minimal information to potential hackers or password guessers.</span>
 <p><img src="images/12.4.png"/></p>
 <span>Figure 12-4. Bill Smith has now been authenticated</span>
 <br/>
-<span>You can try this out for yourself by calling up the program in your browser and enter‐</span>
-<span>ing a username of</span>
+<span>You can try this out for yourself by calling up the program in your browser and entering a username of</span>
 <span>bsmith</span>
 <span>and password of</span>
 <span>mysecret</span>
@@ -670,8 +655,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>htmlemtities</span>
 <span>function. But as long as your code</span>
 <span>allows for strings that may end up larger than the provided input</span>
-<span>width, and as long as you always run passwords through this sani‐</span>
-<span>tization, you&rsquo;ll be just fine.</span>
+<span>width, and as long as you always run passwords through this sanitization, you&rsquo;ll be just fine.</span>
 <h3>Using Sessions</h3>
 <span>Because your program can&rsquo;t tell what variables were set in other programs&mdash;or even</span>
 <span>what values the same program set the previous time it ran&mdash;you&rsquo;ll sometimes want to</span>
@@ -679,8 +663,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>setting hidden fields in a form, as seen in</span>
 <span>Chapter 10</span>
 <span>, and checking the value of the</span>
-<span>fields after the form is submitted, but PHP provides a much more powerful and sim‐</span>
-<span>pler solution in the form of</span>
+<span>fields after the form is submitted, but PHP provides a much more powerful and simpler solution in the form of</span>
 <span>sessions</span>
 <span>. These are groups of variables that are stored on</span>
 <span>the server but relate only to the current user. To ensure that the right variables are</span>
@@ -723,8 +706,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>) and save it</span>
 <span>as</span>
 <span>authenticate2.php</span>
-<span>. But don&rsquo;t run it in your browser yet, as you will also need to cre‐</span>
-<span>ate a second program in a moment.</span>
+<span>. But don&rsquo;t run it in your browser yet, as you will also need to create a second program in a moment.</span>
 <br/>
 <span>Example 12-5. Setting a session</span>
 <span>after successful authentication</span>
@@ -788,8 +770,7 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 ?&gt;
 </code>
 </pre>
-<span>One other addition to the program is the &ldquo;Click here to continue&rdquo; link with a destina‐</span>
-<span>tion URL of</span>
+<span>One other addition to the program is the &ldquo;Click here to continue&rdquo; link with a destination URL of</span>
 <span>continue.php</span>
 <span>. This will be used to illustrate how the session will transfer</span>
 <span>to another program or PHP web page. So create</span>
@@ -840,8 +821,7 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 <p><img src="images/12.5.png"/></p>
 <span>Figure 12-5. Maintaining user data with sessions</span>
 <br/>
-<span>Sessions neatly confine to a single program the extensive code required to authenti‐</span>
-<span>cate and log in a user. Once a user has been authenticated, and you have created a</span>
+<span>Sessions neatly confine to a single program the extensive code required to authenticate and log in a user. Once a user has been authenticated, and you have created a</span>
 <span>session, your program code becomes very simple indeed. You need only to call up</span>
 <span>session_start</span>
 <span>and look up any variables to which you need access from</span>
@@ -853,8 +833,7 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 <span>, a quick test of whether</span>
 <span>$_SESSION['username']</span>
 <span>has a value is</span>
-<span>enough to let you know that the current user is authenticated, because session vari‐</span>
-<span>ables are stored on the server (unlike cookies, which are stored on the web browser)</span>
+<span>enough to let you know that the current user is authenticated, because session variables are stored on the server (unlike cookies, which are stored on the web browser)</span>
 <span>and can therefore be trusted.</span>
 <br/>
 <span>If</span>
@@ -868,8 +847,7 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 <br/>
 <span>The</span>
 <span>continue.php</span>
-<span>program prints back the value of the user&rsquo;s pass‐</span>
-<span>word to show you how session variables work. In practice, you</span>
+<span>program prints back the value of the user&rsquo;s password to show you how session variables work. In practice, you</span>
 <span>already know that the user is logged in, so you shouldn&rsquo;t need to</span>
 <span>keep track of (or display) any passwords, and in fact doing so</span>
 <span>would be a security risk.</span>
@@ -888,8 +866,7 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 <span>as</span>
 <span>in</span>
 <span>Example 12-7</span>
-<span>. That example provides a useful function for totally destroying a ses‐</span>
-<span>sion, logging a user out, and unsetting all session variables.</span>
+<span>. That example provides a useful function for totally destroying a session, logging a user out, and unsetting all session variables.</span>
 <br/>
 <span>Example 12-7. A handy function to destroy a session and its data</span>
 <pre>
@@ -952,8 +929,7 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 <h4>Setting a Time-Out</h4>
 <span>There are other times when you might wish to close a user&rsquo;s session yourself, such as</span>
 <span>when the user has forgotten or neglected to log out, and you want the program to do</span>
-<span>so for her for her own security. You do this by setting the time-out after which a log‐</span>
-<span>out will automatically occur if there has been no activity.</span>
+<span>so for her for her own security. You do this by setting the time-out after which a logout will automatically occur if there has been no activity.</span>
 <br/>
 <span>To do this, use the</span>
 <span>ini_set</span>
@@ -1066,16 +1042,14 @@ $_SERVER['HTTP_USER_AGENT']);
 <span>and see how the number changes back. You have created two different sessions of</span>
 <span>your own choosing here, and you could easily create as many as you needed.</span>
 <br/>
-<span>The reason this approach is so dangerous is that a malicious attacker could try to dis‐</span>
-<span>tribute these types of URLs to unsuspecting users, and if any of them followed these</span>
+<span>The reason this approach is so dangerous is that a malicious attacker could try to distribute these types of URLs to unsuspecting users, and if any of them followed these</span>
 <span>links, the attacker would be able to come back and take over any sessions that had not</span>
 <span>been deleted or expired!</span>
 <br/>
 <span>To prevent this, add a simple check to change the session ID using</span>
 <span>session_regener</span>
 <span>ate_id</span>
-<span>. This function keeps all current session variable values, but replaces the ses‐</span>
-<span>sion ID with a new one that an attacker cannot know.</span>
+<span>. This function keeps all current session variable values, but replaces the session ID with a new one that an attacker cannot know.</span>
 <br/>
 <span>To do this, check for a special session variable that you arbitrarily invent. If it doesn&rsquo;t</span>
 <span>exist, you know that this is a new session, so you simply change the session ID and set</span>
@@ -1119,21 +1093,18 @@ $_SERVER['HTTP_USER_AGENT']);
 <h6>Using a shared server</h6>
 <span>On a server shared with other accounts, you will not want to have all your session</span>
 <span>data saved into the same directory as theirs. Instead, you should choose a directory to</span>
-<span>which only your account has access (and that is not web-visible) to store your ses‐</span>
-<span>sions, by placing an</span>
+<span>which only your account has access (and that is not web-visible) to store your sessions, by placing an</span>
 <span>ini_set</span>
 <span>call near the start of a program, like this:</span>
 <pre><code class="php">ini_set('session.save_path', '/home/user/myaccount/sessions');</code></pre>
-<span>The configuration option will keep this new value only during the program&rsquo;s execu‐</span>
-<span>tion, and the original configuration will be restored at the program&rsquo;s ending.</span>
+<span>The configuration option will keep this new value only during the program&rsquo;s execution, and the original configuration will be restored at the program&rsquo;s ending.</span>
 <br/>
 <span>This sessions folder can fill up quickly; you may wish to periodically clear out older</span>
 <span>sessions according to how busy your server gets. The more it&rsquo;s used, the less time you</span>
 <span>will want to keep a session stored.</span>
 <br/>
 <span>Remember that your websites can and will be subject to hacking</span>
-<span>attempts. There are automated bots running riot around the Inter‐</span>
-<span>net, trying to find sites vulnerable to exploits. So whatever you do,</span>
+<span>attempts. There are automated bots running riot around the Internet, trying to find sites vulnerable to exploits. So whatever you do,</span>
 <span>whenever you are handling data that is not 100 percent generated</span>
 <span>within your own program, you should always treat it with the</span>
 <span>utmost caution.</span>

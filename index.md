@@ -153,14 +153,12 @@ title: "Introduction to Dynamic Web Content"
     <span>Once the dust had settled, three main technologies stood heads and shoulders above</span>
     <span>the others. Although Perl was still a popular scripting language with a strong follow</span>
     <span>ing, PHP&rsquo;s simplicity and built-in links to the MySQL database program had earned it</span>
-    <span>more than double the number of users. And JavaScript, which had become an essen‐</span>
-    <span>tial part of the equation for dynamically manipulating Cascading Style Sheets (CSS)</span>
+    <span>more than double the number of users. And JavaScript, which had become an essential part of the equation for dynamically manipulating Cascading Style Sheets (CSS)</span>
     <span>and HTML, now took on the even more muscular task of handling the client side of</span>
     <span>the Ajax process. Under Ajax, web pages perform data handling and send requests to</span>
     <span>web servers in the background without the web user being aware that this is going</span>
     <span>on.</span><br/>
-    <span>No doubt the symbiotic nature of PHP and MySQL helped propel them both for‐</span>
-    <span>ward, but what attracted developers to them in the first place? The simple answer has</span>
+    <span>No doubt the symbiotic nature of PHP and MySQL helped propel them both forward, but what attracted developers to them in the first place? The simple answer has</span>
     <span>to be the ease with which you can use them to quickly create dynamic elements on</span>
     <span>websites. MySQL is a fast and powerful, yet easy to use, database system that offers</span>
     <span>just about anything a website would need in order to find and serve up data to brows</span>
@@ -222,8 +220,7 @@ Here's the latest news.
     <span>in front and</span>
     <span>?&gt;</span>
     <span>after</span>
-    <span>them to ensure that the PHP interpreter processes them. To facili‐</span>
-    <span>tate this, you may wish to prepare a file called</span>
+    <span>them to ensure that the PHP interpreter processes them. To facilitate this, you may wish to prepare a file called</span>
     <span>&nbsp;example.php</span>
     <span>&nbsp;with</span>
     <span>those tags in place.</span><br/>
@@ -266,17 +263,14 @@ Here's the latest news.
     <span>shows how simple it can be to add new data to a database.</span>
     <span>INSERT</span>
     <span>is an example of</span>
-    <span>Structured Query Language (SQL), a language designed in the early 1970s and remi‐</span>
-    <span>niscent of one of the oldest programming languages, COBOL. It is well suited, how‐</span>
-    <span>ever, to database queries, which is why it is still in use after all this time.</span><br/>
+    <span>Structured Query Language (SQL), a language designed in the early 1970s and reminiscent of one of the oldest programming languages, COBOL. It is well suited, however, to database queries, which is why it is still in use after all this time.</span><br/>
     <span>It&rsquo;s equally easy to look up data. Let&rsquo;s assume that you have an email address for a user</span>
     <span>and need to look up that person&rsquo;s name. To do this, you could issue a MySQL query</span>
     <span>such as the following:</span>
     <pre><code class="sql">SELECT surname,firstname FROM users WHERE email='jsmith@mysite.com';</code></pre>
     <span>MySQL will then return</span>
     <span>Smith, John</span>
-    <span>and any other pairs of names that may be asso‐</span>
-    <span>ciated with that email address in the database.</span><br/>
+    <span>and any other pairs of names that may be associated with that email address in the database.</span><br/>
     <span>As you&rsquo;d expect, there&rsquo;s quite a bit more that you can do with MySQL than just simple</span>
     <span>INSERT</span>
     <span>and</span>
@@ -297,8 +291,7 @@ Here's the latest news.
     <h4>Using JavaScript</h4>
     <span>The oldest of the three core technologies in this book, JavaScript, was created to</span>
     <span>enable scripting access to all the elements of an HTML document. In other words, it</span>
-    <span>provides a means for dynamic user interaction such as checking email address valid‐</span>
-    <span>ity in input forms, and displaying prompts such as &ldquo;Did you really mean that?&rdquo;</span>
+    <span>provides a means for dynamic user interaction such as checking email address validity in input forms, and displaying prompts such as &ldquo;Did you really mean that?&rdquo;</span>
     <span>(although it cannot be relied upon for security, which should always be performed on</span>
     <span>the web server).</span><br/>
     <span>Combined with CSS (see the following section), JavaScript is the power behind</span>
@@ -311,8 +304,7 @@ Here's the latest news.
     <span>Thankfully, the developers have mostly now come to their senses and have realized</span>
     <span>the need for full compatibility with one another, so they don&rsquo;t have to write multi </span>
     <span>exception code. But there remain millions of legacy browsers that will be in use for a</span>
-    <span>good many years to come. Luckily, there are solutions for the incompatibility prob‐</span>
-    <span>lems, and later in this book we&rsquo;ll look at libraries and techniques that enable you to</span>
+    <span>good many years to come. Luckily, there are solutions for the incompatibility problems, and later in this book we&rsquo;ll look at libraries and techniques that enable you to</span>
     <span>safely ignore these differences.</span><br/>
     <span>For now, let&rsquo;s take a look at how to use basic JavaScript, accepted by all browsers:</span>
     <pre><code class="javascript">
@@ -337,10 +329,8 @@ Here's the latest news.
     <span>and just use</span>
     <span>&lt;script&gt;</span>
     <span>to start the interpretation of the JavaScript.</span><br/>
-    <span>As previously mentioned, JavaScript was originally developed to offer dynamic con‐</span>
-    <span>trol over the various elements within an HTML document, and that is still its main</span>
-    <span>use. But more and more, JavaScript is being used for Ajax. This is a term for the pro‐</span>
-    <span>cess of accessing the web server in the background. (It originally meant</span>
+    <span>As previously mentioned, JavaScript was originally developed to offer dynamic control over the various elements within an HTML document, and that is still its main</span>
+    <span>use. But more and more, JavaScript is being used for Ajax. This is a term for the process of accessing the web server in the background. (It originally meant</span>
     <span>Asynchronous</span>
     <span>JavaScript and XML</span>
     <span>, but that phrase is already a bit outdated.)</span><br/>
@@ -356,8 +346,7 @@ Here's the latest news.
     <span>Then, in</span>
     <span>Chapter 21</span>
     <span>, we take a good look at the jQuery framework, which you can</span>
-    <span>use to save reinventing the wheel when you need fast, cross browser code to manipu‐</span>
-    <span>late your web pages. Of course, there are other frameworks available too, but jQuery</span>
+    <span>use to save reinventing the wheel when you need fast, cross browser code to manipulate your web pages. Of course, there are other frameworks available too, but jQuery</span>
     <span>is by far the most popular and, due to continuous maintenance, is extremely reliable,</span>
     <span>and a major tool in the utility kit of many seasoned web developers.</span>
     <a id="using-css"></a>
@@ -381,19 +370,15 @@ Here's the latest news.
     <span>Chapter 18</span>
     <span>, there are many different ways you can lay out CSS rules,</span>
     <span>and you can also include them directly within tags or save a set of rules to an external</span>
-    <span>file to be loaded in separately. This flexibility not only lets you style your HTML pre‐</span>
-    <span>cisely, but it can also (for example) provide built-in hover functionality to animate</span>
-    <span>objects as the mouse passes over them. You will also learn how to access all of an ele‐</span>
-    <span>ment&rsquo;s CSS properties from JavaScript as well as HTML.</span>
+    <span>file to be loaded in separately. This flexibility not only lets you style your HTML precisely, but it can also (for example) provide built-in hover functionality to animate</span>
+    <span>objects as the mouse passes over them. You will also learn how to access all of an element&rsquo;s CSS properties from JavaScript as well as HTML.</span>
     <a id="and-then-there-s-html5"></a>
     <h3>And Then There&rsquo;s HTML5</h3>
     <span>As useful as all these additions to the web standards became, they were not enough</span>
     <span>for ever more ambitious developers. For example, there was still no simple way to</span>
     <span>manipulate graphics in a web browser without resorting to plug-ins such as Flash.</span>
-    <span>And the same went for inserting audio and video into web pages. Plus, several annoy‐</span>
-    <span>ing inconsistencies had crept into HTML during its evolution.</span><br/>
-    <span>So, to clear all this up and take the Internet beyond Web 2.0 and into its next itera‐</span>
-    <span>tion, a new standard for HTML was created to address all these shortcomings. It was</span>
+    <span>And the same went for inserting audio and video into web pages. Plus, several annoying inconsistencies had crept into HTML during its evolution.</span><br/>
+    <span>So, to clear all this up and take the Internet beyond Web 2.0 and into its next iteration, a new standard for HTML was created to address all these shortcomings. It was</span>
     <span>called</span>
     <span>HTML5</span>
     <span>and it began development as long ago as 2004, when the first draft was</span>
@@ -401,12 +386,11 @@ Here's the latest news.
     <span>web browsers). But it wasn&rsquo;t until the start of 2013 that the final draft was submitted</span>
     <span>to the World Wide Web Consortium (W3C), the international governing body for</span>
     <span>web standards.</span><br/>
-    <span>With nine years for it to develop, you might think that would be the end of the speci‐</span>
-    <span>fication, but that&rsquo;s not how things work on the Internet. Although websites come and</span>
+    <span>With nine years for it to develop, you might think that would be the end of the specification, but that&rsquo;s not how things work on the Internet. Although websites come and</span>
     <span>go at great speed, the underlying software is developed slowly and carefully, and so</span>
     <span>the stable recommendation for HTML5 is expected only after this edition of the book</span>
-    <span>has been published in late 2014. And then guess what? Work will move on to ver‐</span>
-    <span>sions 5.1 and higher, beginning in 2015. It&rsquo;s a never-ending cycle of development.</span><br/>
+    <span>has been published in late 2014. And then guess what? Work will move on to versions</span>
+    <span> 5.1 and higher, beginning in 2015. It&rsquo;s a never-ending cycle of development.</span><br/>
     <span>However, while HTML5.1 is planned to bring some handy improvements (mainly to</span>
     <span>the canvas), basic HTML5 is the new standard web developers now need to work to,</span>
     <span>and it will remain in place for many years to come. So learning everything you can</span>
@@ -433,9 +417,9 @@ Here's the latest news.
     <span>&lt;br /&gt;</span>
     <span>, in which a closing</span>
     <span>/</span>
-    <span>character was added (since all ele‐</span>
-    <span>ments were expected to include a closing tag featuring this charac‐</span>
-    <span>ter). But now things have gone full circle, and you can use either</span>
+    <span>character was added (since all elements</span>
+    <span> were expected to include a closing tag featuring this character)</span>
+    <span>. But now things have gone full circle, and you can use either</span>
     <span>version of these types of element. So, for the sake of brevity and</span>
     <span>fewer keystrokes, in this book I have reverted to the former style of</span>
     <span>&lt;br&gt;</span>
@@ -452,8 +436,8 @@ Here's the latest news.
     <span>files from images and Flash files to MP3 audio files, RSS (Really Simple Syndication)</span>
     <span>feeds, and so on. To do this, each element a web client encounters in an HTML page</span>
     <span>is also requested from the server, which then serves it up.</span><br/>
-    <span>But these objects don&rsquo;t have to be static files such as GIF images. They can all be gen‐</span>
-    <span>erated by programs such as PHP scripts. That&rsquo;s right: PHP can even create images and</span>
+    <span>But these objects don&rsquo;t have to be static files such as GIF images. They can all be generated</span>
+    <span> by programs such as PHP scripts. That&rsquo;s right: PHP can even create images and</span>
     <span>other files for you, either on the fly or in advance to serve up later.</span><br/>
     <span>To do this, you normally have modules either precompiled into Apache or PHP or</span>
     <span>called up at runtime. One such module is the GD (Graphics Draw) library, which</span>
@@ -464,8 +448,8 @@ Here's the latest news.
     <span>server to handle a varying range of URL types and rewrite them to its own internal</span>
     <span>requirements, and the Proxy module, which you can use to serve up often requested</span>
     <span>pages from a cache to ease the load on the server.</span><br/>
-    <span>Later in the book, you&rsquo;ll see how to use some of these modules to enhance the fea‐</span>
-    <span>tures provided by the three core technologies.</span><br/>
+    <span>Later in the book, you&rsquo;ll see how to use some of these modules to enhance the features</span>
+    <span> provided by the three core technologies.</span><br/>
     <a id="about-open-source"></a>
     <h3>About Open Source</h3>
     <span>Whether or not being open source is the reason these technologies are so popular has</span>
@@ -473,8 +457,8 @@ Here's the latest news.
     <span>are</span>
     <span>the three most commonly used</span>
     <span>tools in their categories. What can be said definitively, though, is that their being</span>
-    <span>open source means that they have been developed in the community by teams of pro‐</span>
-    <span>grammers writing the features they themselves want and need, with the original code</span>
+    <span>open source means that they have been developed in the community by teams of programmers</span>
+    <span> writing the features they themselves want and need, with the original code</span>
     <span>available for all to see and change. Bugs can be found and security breaches can be</span>
     <span>prevented before they happen.</span><br/>
     <span>There&rsquo;s another benefit: all these programs are free to use. There&rsquo;s no worrying about</span>
@@ -503,8 +487,8 @@ Here's the latest news.
     <span>Figure 1-3. Gmail uses Ajax to check the availability of usernames</span><br/>
     <span>The steps involved in this Ajax process would be similar to the following:</span><br/>
     <span>1.</span>
-    <span>The server outputs the HTML to create the web form, which asks for the neces‐</span>
-    <span>sary details, such as username, first name, last name, and email address.</span><br/>
+    <span>The server outputs the HTML to create the web form, which asks for the necessary</span>
+    <span> details, such as username, first name, last name, and email address.</span><br/>
     <span>2.</span>
     <span>At the same time, the server attaches some JavaScript to the HTML to monitor</span>
     <span>the username input box and check for two things: (a) whether some text has been</span>
@@ -515,8 +499,8 @@ Here's the latest news.
     <span>JavaScript code passes the username that was entered back to a PHP script on the</span>
     <span>web server and awaits a response.</span><br/>
     <span>4.</span>
-    <span>The web server looks up the username and replies back to the JavaScript regard‐</span>
-    <span>ing whether that name has already been taken.</span><br/>
+    <span>The web server looks up the username and replies back to the JavaScript regarding</span>
+    <span> whether that name has already been taken.</span><br/>
     <span>5.</span>
     <span>The JavaScript then places an indication next to the username input box to show</span>
     <span>whether the name is one available to the user perhaps a green checkmark or a</span>
@@ -543,12 +527,12 @@ Here's the latest news.
     <span>would be a workable solution, but nowhere near as tidy or pleasurable as on the fly</span>
     <span>form-field processing.</span><br/>
     <span>Ajax can be used for a lot more than simple input verification and processing,</span>
-    <span>though; we&rsquo;ll explore many additional things that you can do with it in the Ajax chap‐</span>
-    <span>ters later in this book.</span><br/>
+    <span>though; we&rsquo;ll explore many additional things that you can do with it in the Ajax chapters</span>
+    <span> later in this book.</span><br/>
     <span>In this chapter, you have read a good introduction to the core technologies of PHP,</span>
     <span>MySQL, JavaScript, CSS, and HTML5 (as well as Apache), and have learned how they</span>
     <span>work together. In</span>
     <span>Chapter 2</span>
-    <span>, we&rsquo;ll look at how you can install your own web develop‐</span>
-    <span>ment server on which to practice everything that you will be learning.</span>
+    <span>, we&rsquo;ll look at how you can install your own web development</span>
+    <span> server on which to practice everything that you will be learning.</span>
 </section>

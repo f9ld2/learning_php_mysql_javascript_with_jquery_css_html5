@@ -9,16 +9,12 @@ title: "Mastering MySQL"
 <span>and the tables they comprise, as well as inserting, looking up, changing, and deleting</span>
 <span>data.</span>
 <br/>
-<span>With that knowledge under your belt, we now need to look at how to design databa‐</span>
-<span>ses for maximum speed and efficiency. For example, how do you decide what data to</span>
-<span>place in which table? Well, over the years, a number of guidelines have been devel‐</span>
-<span>oped that&mdash;if you follow them&mdash;ensure that your databases will be efficient and capa‐</span>
-<span>ble of growing as you feed them more and more data.</span>
+<span>With that knowledge under your belt, we now need to look at how to design databases for maximum speed and efficiency. For example, how do you decide what data to</span>
+<span>place in which table? Well, over the years, a number of guidelines have been developed that&mdash;if you follow them&mdash;ensure that your databases will be efficient and capable of growing as you feed them more and more data.</span>
 <h3>Database Design</h3>
 <span>It&rsquo;s very important that you design a database correctly before you start to create it;</span>
 <span>otherwise, you are almost certainly going to have to go back and change it by splitting</span>
-<span>up some tables, merging others, and moving various columns about in order to ach‐</span>
-<span>ieve sensible relationships that MySQL can easily use.</span>
+<span>up some tables, merging others, and moving various columns about in order to achieve sensible relationships that MySQL can easily use.</span>
 <br/>
 <span>Sitting down with a sheet of paper and a pencil and writing down a selection of the</span>
 <span>queries that you think you and your users are likely to ask is an excellent starting</span>
@@ -57,8 +53,7 @@ title: "Mastering MySQL"
 <span>bought by many customers and be ignored by still more potential customers.</span>
 <br/>
 <span>When you plan to do a lot of searches on something, it can often benefit by having its</span>
-<span>own table. And when couplings between things are loose, it&rsquo;s best to put them in sep‐</span>
-<span>arate tables.</span>
+<span>own table. And when couplings between things are loose, it&rsquo;s best to put them in separate tables.</span>
 <br/>
 <span>Taking into account those simple rules of thumb, we can guess we&rsquo;ll need at least</span>
 <span>three tables to accommodate all these queries:</span>
@@ -77,19 +72,16 @@ title: "Mastering MySQL"
 <span>basic principles, and then it just takes practice for it to feel natural.</span>
 <br/>
 <span>The magic involves giving every author a unique identifier. Do the same for every</span>
-<span>book and for every customer. We saw the means of doing that in the previous chap‐</span>
-<span>ter: the</span>
+<span>book and for every customer. We saw the means of doing that in the previous chapter: the</span>
 <span>primary key</span>
 <span>. For a book, it makes sense to use the ISBN, although you then</span>
-<span>have to deal with multiple editions that have different ISBNs. For authors and cus‐</span>
-<span>tomers, you can just assign arbitrary keys, which the</span>
+<span>have to deal with multiple editions that have different ISBNs. For authors and customers, you can just assign arbitrary keys, which the</span>
 <span>AUTO_INCREMENT</span>
 <span>feature that</span>
 <span>you saw in the last chapter makes easy.</span>
 <br/>
 <span>In short, every table will be designed around some object that you&rsquo;re likely to search</span>
-<span>for a lot&mdash;an author, book, or customer, in this case&mdash;and that object will have a pri‐</span>
-<span>mary key. Don&rsquo;t choose a key that could possibly have the same value for different</span>
+<span>for a lot&mdash;an author, book, or customer, in this case&mdash;and that object will have a primary key. Don&rsquo;t choose a key that could possibly have the same value for different</span>
 <span>objects. The ISBN is a rare case for which an industry has provided a primary key</span>
 <span>that you can rely on to be unique for each product. Most of the time, you&rsquo;ll create an</span>
 <span>arbitrary key for this purpose, using</span>
@@ -110,24 +102,20 @@ title: "Mastering MySQL"
 <span>Books</span>
 <span>table, and</span>
 <span>you have to correct a typographic error in a title, you&rsquo;ll have to search through both</span>
-<span>tables and make sure you make the same change every place the title is listed. It&rsquo;s bet‐</span>
-<span>ter to keep the title in one place and use the ISBN in other places.</span>
+<span>tables and make sure you make the same change every place the title is listed. It&rsquo;s better to keep the title in one place and use the ISBN in other places.</span>
 <br/>
 <span>But in the process of splitting a database into multiple tables, it&rsquo;s important not to go</span>
 <span>too far and create more tables than is necessary, which would also lead to inefficient</span>
 <span>design and slower access.</span>
 <br/>
-<span>Luckily, E. F. Codd, the inventor of the relational model, analyzed the concept of nor‐</span>
-<span>malization and split it into three separate schemas called</span>
+<span>Luckily, E. F. Codd, the inventor of the relational model, analyzed the concept of normalization and split it into three separate schemas called</span>
 <span>First</span>
 <span>,</span>
 <span>Second</span>
 <span>, and</span>
-<span>Third Nor‐</span>
-<span>mal Form</span>
+<span>Third Normal Form</span>
 <span>. If you modify a database to satisfy each of these forms in order, you will</span>
-<span>ensure that your database is optimally balanced for fast access, and minimum mem‐</span>
-<span>ory and disk space usage.</span>
+<span>ensure that your database is optimally balanced for fast access, and minimum memory and disk space usage.</span>
 <br/>
 <span>To see how the normalization process works, let&rsquo;s start with the rather monstrous</span>
 <span>database in</span>
@@ -237,8 +225,7 @@ title: "Mastering MySQL"
 <span>details to a separate</span>
 <span>table.</span>
 <br/>
-<span>However, Rule 3 is satisfied, because the primary key of ISBN has already been cre‐</span>
-<span>ated.</span>
+<span>However, Rule 3 is satisfied, because the primary key of ISBN has already been created.</span>
 <br/>
 <span>Table 9-2</span>
 <span>shows the result of removing the</span>
@@ -385,8 +372,7 @@ title: "Mastering MySQL"
 <span>Chapter 8</span>
 <span>in which keys are used in</span>
 <span>WHERE</span>
-<span>clauses for searching. But a key can also be useful to uniquely iden‐</span>
-<span>tify an item. Thus, a unique key is often used as a primary key in</span>
+<span>clauses for searching. But a key can also be useful to uniquely identify an item. Thus, a unique key is often used as a primary key in</span>
 <span>one table, and as a foreign key to link rows in that table to rows in</span>
 <span>another table.</span>
 <h4>Second Normal Form</h4>
@@ -467,8 +453,7 @@ title: "Mastering MySQL"
 <span>Table 9-5</span>
 <span>, we can see</span>
 <span>that there&rsquo;s still more normalization work to do, because Darren Ryder&rsquo;s details are</span>
-<span>still duplicated. And it could also be argued that First Normal Form Rule 2 (all col‐</span>
-<span>umns should contain a single value) has not been properly complied with, because</span>
+<span>still duplicated. And it could also be argued that First Normal Form Rule 2 (all columns should contain a single value) has not been properly complied with, because</span>
 <span>the addresses really need to be broken into separate columns for</span>
 <span>Address</span>
 <span>,</span>
@@ -583,8 +568,7 @@ title: "Mastering MySQL"
 <span>At the same time, in order to normalize</span>
 <span>Table 9-6</span>
 <span>, we had to remove the information</span>
-<span>on customer purchases, because otherwise, there would be multiple instances of cus‐</span>
-<span>tomer details for each book purchased. Instead, the purchase data is now placed in a</span>
+<span>on customer purchases, because otherwise, there would be multiple instances of customer details for each book purchased. Instead, the purchase data is now placed in a</span>
 <span>new table called</span>
 <span>Purchases</span>
 <span>(see</span>
@@ -710,8 +694,7 @@ title: "Mastering MySQL"
 <span>Table 9-7</span>
 <span>, the</span>
 <span>Purchases</span>
-<span>table; looking at the ISBN col‐</span>
-<span>umn here, you will see that he purchased titles 0596527403 and 0596101015 on</span>
+<span>table; looking at the ISBN column here, you will see that he purchased titles 0596527403 and 0596101015 on</span>
 <span>December 19, 2008. This looks like a lot of trouble for a human, but it&rsquo;s not so hard</span>
 <span>for MySQL.</span>
 <br/>
@@ -745,8 +728,7 @@ title: "Mastering MySQL"
 <span>Third Normal Form</span>
 <span>, which requires that data that is</span>
 <span>not</span>
-<span>directly depen‐</span>
-<span>dent on the primary key but</span>
+<span>directly dependent on the primary key but</span>
 <span>is</span>
 <span>dependent on another value in the table should also be</span>
 <span>moved into separate tables, according to the dependence.</span>
@@ -762,8 +744,7 @@ title: "Mastering MySQL"
 <span>,</span>
 <span>and</span>
 <span>Zip code</span>
-<span>keys are not directly related to each customer, because many other peo‐</span>
-<span>ple will have the same details in their addresses, too. However, they are directly</span>
+<span>keys are not directly related to each customer, because many other people will have the same details in their addresses, too. However, they are directly</span>
 <span>related to each other, in that the street</span>
 <span>Address</span>
 <span>relies on the</span>
@@ -928,14 +909,12 @@ title: "Mastering MySQL"
 <span>have advantages. For example, take a look at</span>
 <span>Table 9-11</span>
 <span>, where it has been possible to</span>
-<span>include both a state&rsquo;s name and its two-letter abbreviation. It could also contain popu‐</span>
-<span>lation details and other demographics, if you desired.</span>
+<span>include both a state&rsquo;s name and its two-letter abbreviation. It could also contain population details and other demographics, if you desired.</span>
 <br/>
 <span>Table 9-10</span>
 <span>&nbsp;could also contain even more localized demographics</span>
 <span>that could be useful to you and/or your customers. By splitting up</span>
-<span>these pieces of data, you can make it easier to maintain your data‐</span>
-<span>base in the future, should it be necessary to add columns.</span>
+<span>these pieces of data, you can make it easier to maintain your database in the future, should it be necessary to add columns.</span>
 <br/>
 <span>Deciding whether to use the Third Normal Form can be tricky. Your evaluation</span>
 <span>should rest on what data you may need to add at a later date. If you are absolutely</span>
@@ -970,8 +949,7 @@ title: "Mastering MySQL"
 <span>never fully normalize your tables on sites that will cause MySQL to thrash.</span>
 <br/>
 <span>Normalization requires spreading data across multiple tables, and this means making</span>
-<span>multiple calls to MySQL for each query. On a very popular site, if you have normal‐</span>
-<span>ized tables, your database access will slow down considerably once you get above a</span>
+<span>multiple calls to MySQL for each query. On a very popular site, if you have normalized tables, your database access will slow down considerably once you get above a</span>
 <span>few dozen concurrent users, because they will be creating hundreds of database</span>
 <span>accesses between them. In fact, I would go so far as to say you should denormalize</span>
 <span>any commonly looked-up data as much as you can.</span>
@@ -1003,8 +981,7 @@ title: "Mastering MySQL"
 <span>database management system because its tables store not</span>
 <span>only data but the</span>
 <span>relationships</span>
-<span>among the data. There are three categories of relation‐</span>
-<span>ships.</span>
+<span>among the data. There are three categories of relationships.</span>
 <h4>One-to-One</h4>
 <span>A</span>
 <span>one-to-one relationship</span>
@@ -1015,8 +992,7 @@ title: "Mastering MySQL"
 <span>of a one-to-one relationship is the relationship between the name of a state and its</span>
 <span>two-character abbreviation.</span>
 <br/>
-<span>However, for the sake of argument, let&rsquo;s assume that there can always be only one cus‐</span>
-<span>tomer at any address. In such a case, the Customers&ndash;Addresses relationship in</span>
+<span>However, for the sake of argument, let&rsquo;s assume that there can always be only one customer at any address. In such a case, the Customers&ndash;Addresses relationship in</span>
 <span>Figure 9-1</span>
 <span>is a one-to-one relationship: only one customer lives at each address, and</span>
 <span>each address can have only one customer.</span>
@@ -1025,8 +1001,7 @@ title: "Mastering MySQL"
 <span>Table 9-8</span>
 <span>, split into two tables</span>
 <br/>
-<span>Usually, when two items have a one-to-one relationship, you just include them as col‐</span>
-<span>umns in the same table. There are two reasons for splitting them into separate tables:</span>
+<span>Usually, when two items have a one-to-one relationship, you just include them as columns in the same table. There are two reasons for splitting them into separate tables:</span>
 <br/>
 <span>&bull;</span>
 <span>You want to be prepared in case the relationship changes later.</span>
@@ -1035,8 +1010,7 @@ title: "Mastering MySQL"
 <span>The table has a lot of columns, and you think that performance or maintenance</span>
 <span>would be improved by splitting it.</span>
 <br/>
-<span>Of course, when you build your own databases in the real world, you will have to cre‐</span>
-<span>ate one-to-many Customer&ndash;Address relationships (</span>
+<span>Of course, when you build your own databases in the real world, you will have to create one-to-many Customer&ndash;Address relationships (</span>
 <span>one</span>
 <span>address,</span>
 <span>many</span>
@@ -1060,13 +1034,11 @@ title: "Mastering MySQL"
 <span>Table 9-7</span>
 <span>, the</span>
 <span>Purchases</span>
-<span>table, can (and does) contain more than one pur‐</span>
-<span>chase from customers. Therefore,</span>
+<span>table, can (and does) contain more than one purchase from customers. Therefore,</span>
 <span>one</span>
 <span>customer has a relationship with</span>
 <span>many</span>
-<span>purcha‐</span>
-<span>ses.</span>
+<span>purchases.</span>
 <br/>
 <span>You can see these two tables alongside each other in</span>
 <span>&nbsp;Figure 9-2</span>
@@ -1123,8 +1095,7 @@ title: "Mastering MySQL"
     </tr>
 </table>
 <br/>
-<span>With this intermediary table in place, you can traverse all the information in the data‐</span>
-<span>base through a series of relations. You can take an address as a starting point and find</span>
+<span>With this intermediary table in place, you can traverse all the information in the database through a series of relations. You can take an address as a starting point and find</span>
 <span>out the authors of any books purchased by the customer living at that address.</span>
 <br/>
 <span>For example, let&rsquo;s suppose that you want to find out about purchases in the 23219 zip</span>
@@ -1163,15 +1134,11 @@ title: "Mastering MySQL"
 <span>Customers</span>
 <span>table to match the customer ID numbers to the customers&rsquo; zip codes.</span>
 <h4>Databases and Anonymity</h4>
-<span>An interesting aspect of using relations is that you can accumulate a lot of informa‐</span>
-<span>tion about some item&mdash;such as a customer&mdash;without actually knowing who that cus‐</span>
-<span>tomer is. Note that in the previous example we went from customers&rsquo; zip codes to</span>
+<span>An interesting aspect of using relations is that you can accumulate a lot of information about some item&mdash;such as a customer&mdash;without actually knowing who that customer is. Note that in the previous example we went from customers&rsquo; zip codes to</span>
 <span>customers&rsquo; purchases, and back again, without finding out the name of a customer.</span>
-<span>Databases can be used to track people, but they can also be used to help preserve peo‐</span>
-<span>ple&rsquo;s privacy while still finding useful information.</span>
+<span>Databases can be used to track people, but they can also be used to help preserve people&rsquo;s privacy while still finding useful information.</span>
 <h3>Transactions</h3>
-<span>In some applications, it is vitally important that a sequence of queries runs in the cor‐</span>
-<span>rect order and that every single query successfully completes. For example, suppose</span>
+<span>In some applications, it is vitally important that a sequence of queries runs in the correct order and that every single query successfully completes. For example, suppose</span>
 <span>that you are creating a sequence of queries to transfer funds from one bank account</span>
 <span>to another. You would not want either of the following events to occur:</span>
 <br/>
@@ -1190,16 +1157,13 @@ title: "Mastering MySQL"
 <span>all one at a time if any one fails? The answer is absolutely not, because MySQL comes</span>
 <span>with powerful transaction-handling features to cover just these types of eventualities.</span>
 <br/>
-<span>In addition, transactions allow concurrent access to a database by many users or pro‐</span>
-<span>grams at the same time. MySQL handles this seamlessly by ensuring that all transac‐</span>
-<span>tions are queued and that users or programs take their turns and don&rsquo;t tread on each</span>
+<span>In addition, transactions allow concurrent access to a database by many users or programs at the same time. MySQL handles this seamlessly by ensuring that all transactions are queued and that users or programs take their turns and don&rsquo;t tread on each</span>
 <span>other&rsquo;s toes.</span>
 <h4>Transaction Storage Engines</h4>
 <span>To be able to use MySQL&rsquo;s transaction facility, you have to be using MySQL&rsquo;s</span>
 <span>InnoDB</span>
 <span>storage engine. This is easy to do, as it&rsquo;s simply another parameter that you use when</span>
-<span>creating a table. So go ahead and create a table of bank accounts by typing the com‐</span>
-<span>mands in</span>
+<span>creating a table. So go ahead and create a table of bank accounts by typing the commands in</span>
 <span>&nbsp;Example 9-1</span>
 <span>. (Remember that to do this, you will need access to the</span>
 <span>MySQL command line, and must also have already selected a suitable database in</span>
@@ -1240,8 +1204,7 @@ title: "Mastering MySQL"
     SELECT * FROM accounts;
 </code>
 </pre>
-<span>The third line displays the contents of the table to confirm that the rows were cor‐</span>
-<span>rectly inserted. The output should look like this:</span>
+<span>The third line displays the contents of the table to confirm that the rows were correctly inserted. The output should look like this:</span>
 <pre>
 <code class="sql">
 +--------+---------+
@@ -1294,14 +1257,12 @@ SELECT * FROM accounts;
 <span>, which</span>
 <span>is explained next.</span>
 <h4>Using COMMIT</h4>
-<span>When you are satisfied that a series of queries in a transaction has successfully com‐</span>
-<span>pleted, issue a</span>
+<span>When you are satisfied that a series of queries in a transaction has successfully completed, issue a</span>
 <span>COMMIT</span>
 <span>command to commit all the changes to the database. Until it</span>
 <span>receives a</span>
 <span>COMMIT</span>
-<span>, MySQL considers all the changes you make to be merely tempo‐</span>
-<span>rary. This feature gives you the opportunity to cancel a transaction by not sending a</span>
+<span>, MySQL considers all the changes you make to be merely temporary. This feature gives you the opportunity to cancel a transaction by not sending a</span>
 <span>COMMIT</span>
 <span>but by issuing a</span>
 <span>ROLLBACK</span>
@@ -1310,8 +1271,7 @@ SELECT * FROM accounts;
 <span>Using the</span>
 <span>ROLLBACK</span>
 <span>command, you can tell MySQL to forget all the queries made</span>
-<span>since the start of a transaction and to end the transaction. See this in action by enter‐</span>
-<span>ing the funds-transfer transaction in</span>
+<span>since the start of a transaction and to end the transaction. See this in action by entering the funds-transfer transaction in</span>
 <span>Example 9-4</span>
 <span>.</span>
 <br/>
@@ -1462,8 +1422,7 @@ PRIMARY
 <br/>
 <span>Thankfully, backing up and restoring MySQL data is easy with the</span>
 <span>mysqldump</span>
-<span>com‐</span>
-<span>mand.</span>
+<span>command.</span>
 <h4>Using mysqldump</h4>
 <span>With</span>
 <span>mysqldump</span>
@@ -1552,8 +1511,7 @@ PRIMARY
 <span>-u</span>
 <span>user</span>
 <span>part is mandatory&mdash;unless you have root access</span>
-<span>without a password and are executing as root (not recommended). The result of issu‐</span>
-<span>ing this command will look something like</span>
+<span>without a password and are executing as root (not recommended). The result of issuing this command will look something like</span>
 <span>Figure 9-4</span>
 <span>.</span>
 <p><img src="images/9.4.png"/></p>
@@ -1580,8 +1538,7 @@ PRIMARY
 <pre><code class="sql">mysqldump -u user -p password publications &gt; publications.sql</code></pre>
 <span>The command in</span>
 <span>Example 9-8</span>
-<span>stores the backup file into the cur‐</span>
-<span>rent directory. If you need it to be saved elsewhere, you should</span>
+<span>stores the backup file into the current directory. If you need it to be saved elsewhere, you should</span>
 <span>insert a file path before the filename. You must also ensure that the</span>
 <span>directory you are backing up to has the right permissions set to</span>
 <span>allow the file to be written.</span>
@@ -1615,8 +1572,7 @@ PRIMARY
 <span>&nbsp;classics</span>
 <span>&nbsp;table from the</span>
 <span>publications</span>
-<span>database), you should first lock the table from within the MySQL com‐</span>
-<span>mand line, by issuing a command such as the following:</span>
+<span>database), you should first lock the table from within the MySQL command line, by issuing a command such as the following:</span>
 <pre><code class="sql">LOCK TABLES publications.classics READ;</code></pre>
 <span>This ensures that MySQL remains running for read purposes, but writes cannot be</span>
 <span>made. Then, while keeping the MySQL command line open, use another terminal</span>
@@ -1627,8 +1583,7 @@ PRIMARY
 <span>have been locked during the current session:</span>
 <pre><code class="sql">UNLOCK TABLES;</code></pre>
 <h6>Backing up all tables</h6>
-<span>If you want to back up all your MySQL databases at once (including the system data‐</span>
-<span>bases such as</span>
+<span>If you want to back up all your MySQL databases at once (including the system databases such as</span>
 <span>mysql</span>
 <span>), you can use a command such as the one in</span>
 <span>Example 9-9</span>
@@ -1685,8 +1640,7 @@ PRIMARY
 <h4>Dumping Data in CSV Format</h4>
 <span>As previously mentioned, the</span>
 <span>mysqldump</span>
-<span>program is very flexible and supports vari‐</span>
-<span>ous types of output, such as the CSV format.</span>
+<span>program is very flexible and supports various types of output, such as the CSV format.</span>
 <span>Example 9-13</span>
 <span>shows how you can dump</span>
 <span>the data from the</span>

@@ -3,21 +3,16 @@ layout: default
 title: "JavaScript and PHP Validation and Error Handling"
 ---
 <h2>JavaScript and PHP Validation and Error Handling</h2>
-<span>With your solid foundation in both PHP and JavaScript, it&rsquo;s time to bring these tech‐</span>
-<span>nologies together to create web forms that are as user-friendly as possible.</span>
+<span>With your solid foundation in both PHP and JavaScript, it&rsquo;s time to bring these technologies together to create web forms that are as user-friendly as possible.</span>
 <br/>
-<span>We&rsquo;ll be using PHP to create the forms and JavaScript to perform client-side valida‐</span>
-<span>tion to ensure that the data is as complete and correct as it can be before it is submit‐</span>
-<span>ted. Final validation of the input will then be made by PHP, which will, if necessary,</span>
+<span>We&rsquo;ll be using PHP to create the forms and JavaScript to perform client-side validation to ensure that the data is as complete and correct as it can be before it is submitted. Final validation of the input will then be made by PHP, which will, if necessary,</span>
 <span>present the form again to the user for further modification.</span>
 <br/>
-<span>In the process, this chapter will cover validation and regular expressions in both Java‐</span>
-<span>Script and PHP.</span>
+<span>In the process, this chapter will cover validation and regular expressions in both JavaScript and PHP.</span>
 <h3>Validating User Input with JavaScript</h3>
 <span>JavaScript validation should be considered an assistance more to your users than to</span>
 <span>your websites because, as I have already stressed many times, you cannot trust any</span>
-<span>data submitted to your server, even if it has supposedly been validated with Java‐</span>
-<span>Script. This is because hackers can quite easily simulate your web forms and submit</span>
+<span>data submitted to your server, even if it has supposedly been validated with JavaScript. This is because hackers can quite easily simulate your web forms and submit</span>
 <span>any data of their choosing.</span>
 <br/>
 <span>Another reason you cannot rely on JavaScript to perform all your input validation is</span>
@@ -27,8 +22,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>if they are not to be left empty, ensuring that email addresses conform to the proper</span>
 <span>format, and ensuring that values entered are within expected bounds.</span>
 <h4>The validate.html Document (Part 1)</h4>
-<span>Let&rsquo;s begin with a general sign-up form, common on most sites that offer member‐</span>
-<span>ships or registered users. The inputs requested will be</span>
+<span>Let&rsquo;s begin with a general sign-up form, common on most sites that offer memberships or registered users. The inputs requested will be</span>
 <span>forename</span>
 <span>,</span>
 <span>surname</span>
@@ -110,8 +104,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>Example 16-1</span>
 <br/>
 <span>Let&rsquo;s look at how this document is made up. The first few lines set up the document</span>
-<span>and use a little CSS to make the form look a little less plain. The parts of the docu‐</span>
-<span>ment related to JavaScript come next and are shown in bold.</span>
+<span>and use a little CSS to make the form look a little less plain. The parts of the document related to JavaScript come next and are shown in bold.</span>
 <br/>
 <span>Between the</span>
 <span>&lt;script&gt;</span>
@@ -287,8 +280,7 @@ function validateEmail(field)
 <span>even though it&rsquo;s empty for all intents and purposes. You can fix this by adding an</span>
 <span>extra statement to trim whitespace from the field before checking whether it&rsquo;s empty,</span>
 <span>use a regular expression to make sure there&rsquo;s something besides whitespace in the</span>
-<span>field, or&mdash;as I do here&mdash;just let the user make the mistake and allow the PHP pro‐</span>
-<span>gram to catch it on the server.</span>
+<span>field, or&mdash;as I do here&mdash;just let the user make the mistake and allow the PHP program to catch it on the server.</span>
 <h6>Validating the surname</h6>
 <span>The</span>
 <span>validateSurname</span>
@@ -320,8 +312,7 @@ function validateEmail(field)
 <span>if...else</span>
 <span>statements commence by returning an error if</span>
 <span>field</span>
-<span>has not been fil‐</span>
-<span>led in. If it&rsquo;s not the empty string, but is fewer than five characters in length, another</span>
+<span>has not been filled in. If it&rsquo;s not the empty string, but is fewer than five characters in length, another</span>
 <span>error message is returned.</span>
 <br/>
 <span>Then the JavaScript</span>
@@ -388,17 +379,14 @@ function validateEmail(field)
 <br/>
 <span>If those two checks are satisfied, the</span>
 <span>test</span>
-<span>function is called to see whether any disal‐</span>
-<span>lowed characters appear in the field. If any of these tests fail, an error message is</span>
-<span>returned. The allowed characters in an email address are uppercase and lowercase let‐</span>
-<span>ters, numbers, and the</span>
+<span>function is called to see whether any disallowed characters appear in the field. If any of these tests fail, an error message is</span>
+<span>returned. The allowed characters in an email address are uppercase and lowercase letters, numbers, and the</span>
 <span>_</span>
 <span>,</span>
 <span>-</span>
 <span>, period, and</span>
 <span>@</span>
-<span>characters, as detailed in the regular expres‐</span>
-<span>sion passed to the</span>
+<span>characters, as detailed in the regular expression passed to the</span>
 <span>test</span>
 <span>method. If no errors are found, the empty string is returned</span>
 <span>to indicate successful validation. On the last line, the script and document are closed.</span>
@@ -412,8 +400,7 @@ function validateEmail(field)
 <span>Of course, because they are generic in construction and could apply to many types of</span>
 <span>validations you might require, these six functions make ideal candidates for moving</span>
 <span>out into a separate JavaScript file. You could name the file something like</span>
-<span>&nbsp;vali‐</span>
-<span>date_functions.js</span>
+<span>&nbsp;validate_functions.js</span>
 <span>and include it right after the initial script section in</span>
 <span>Example 16-1</span>
 <span>,</span>
@@ -424,8 +411,7 @@ function validateEmail(field)
 <span>achieved it using</span>
 <span>&nbsp;regular expressions</span>
 <span>, which are supported by both JavaScript and</span>
-<span>PHP. They make it possible to construct the most powerful of pattern-matching algo‐</span>
-<span>rithms within a single expression.</span>
+<span>PHP. They make it possible to construct the most powerful of pattern-matching algorithms within a single expression.</span>
 <h4>Matching Through Metacharacters</h4>
 <span>Every regular expression must be enclosed in slashes. Within these slashes, certain</span>
 <span>characters have special meanings; they are called</span>
@@ -433,8 +419,7 @@ function validateEmail(field)
 <span>. For instance, an</span>
 <span>asterisk (</span>
 <span>*</span>
-<span>) has a meaning similar to what you have seen if you use a shell or Win‐</span>
-<span>dows command prompt (but not quite the same). An asterisk means, &ldquo;The text you&rsquo;re</span>
+<span>) has a meaning similar to what you have seen if you use a shell or Windows command prompt (but not quite the same). An asterisk means, &ldquo;The text you&rsquo;re</span>
 <span>trying to match may have any number of the preceding characters&mdash;or none at all.&rdquo;</span>
 <br/>
 <span>For instance, let&rsquo;s say you&rsquo;re looking for the name</span>
@@ -490,13 +475,11 @@ function validateEmail(field)
 <br/>
 <span>The dot matches any character, and the</span>
 <span>*</span>
-<span>expands it to match zero or more charac‐</span>
-<span>ters, so this is saying, &ldquo;Match anything that lies between</span>
+<span>expands it to match zero or more characters, so this is saying, &ldquo;Match anything that lies between</span>
 <span>&lt;</span>
 <span>and</span>
 <span>&gt;</span>
-<span>, even if there&rsquo;s noth‐</span>
-<span>ing.&rdquo; You will match</span>
+<span>, even if there&rsquo;s nothing.&rdquo; You will match</span>
 <span>&lt;&gt;</span>
 <span>,</span>
 <span>&lt;em&gt;</span>
@@ -513,8 +496,7 @@ function validateEmail(field)
 <br/>
 <span class="t30">/&lt;.+&gt;/</span>
 <br/>
-<span>The plus sign expands the dot to match one or more characters, saying, &ldquo;Match any‐</span>
-<span>thing that lies between</span>
+<span>The plus sign expands the dot to match one or more characters, saying, &ldquo;Match anything that lies between</span>
 <span>&lt;</span>
 <span>and</span>
 <span>&gt;</span>
@@ -564,8 +546,7 @@ function validateEmail(field)
 <span>) before it, because otherwise it&rsquo;s a metacharacter and matches anything.</span>
 <span>As an example, suppose you want to match the floating-point number</span>
 <span>5.0</span>
-<span>. The regu‐</span>
-<span>lar expression is as follows:</span>
+<span>. The regular expression is as follows:</span>
 <br/>
 <span class="t30">/5\.0/</span>
 <br/>
@@ -622,8 +603,7 @@ function validateEmail(field)
 <span>1,000</span>
 <span>would be taken into account, and the remaining</span>
 <span>,00</span>
-<span>would be ignored. Requir‐</span>
-<span>ing a space afterward ensures that matching will continue right through to the end of</span>
+<span>would be ignored. Requiring a space afterward ensures that matching will continue right through to the end of</span>
 <span>a number.</span>
 <h4>Character Classes</h4>
 <span>Sometimes you want to match something fuzzy, but not so broad that you want to use</span>
@@ -663,11 +643,9 @@ function validateEmail(field)
 <br/>
 <span class="t30">/[0-9]/</span>
 <br/>
-<span>Digits are such a common item in regular expressions that a single character is pro‐</span>
-<span>vided to represent them:</span>
+<span>Digits are such a common item in regular expressions that a single character is provided to represent them:</span>
 <span>\d</span>
-<span>. You can use it in place of the bracketed regular expres‐</span>
-<span>sion to match a digit:</span>
+<span>. You can use it in place of the bracketed regular expression to match a digit:</span>
 <span class="t30">/\d/</span>
 <h4>Negation</h4>
 <span>One other important feature of the square brackets is</span>
@@ -805,12 +783,10 @@ function validateEmail(field)
 <span>the regular expression, the expression has to appear at the beginning of a line of text;</span>
 <span>otherwise, it doesn&rsquo;t match. Similarly, if a dollar sign (</span>
 <span>$</span>
-<span>) appears at the end of the reg‐</span>
-<span>ular expression, the expression has to appear at the end of a line of text.</span>
+<span>) appears at the end of the regular expression, the expression has to appear at the end of a line of text.</span>
 <span>It may be somewhat confusing that</span>
 <span>^</span>
-<span>can mean &ldquo;negate the charac‐</span>
-<span>ter class&rdquo; inside square brackets and &ldquo;match the beginning of the</span>
+<span>can mean &ldquo;negate the character class&rdquo; inside square brackets and &ldquo;match the beginning of the</span>
 <span>line&rdquo; if it&rsquo;s at the beginning of the regular expression. Unfortunately,</span>
 <span>the same character is used for two different things, so take care</span>
 <span>when using it.</span>
@@ -1167,8 +1143,7 @@ function validateEmail(field)
 <span>I like cats, and cats like me</span>
 <span>. Similarly,</span>
 <span>/dogs/gi</span>
-<span>will match both occur‐</span>
-<span>rences of the word</span>
+<span>will match both occurrences of the word</span>
 <span>dogs</span>
 <span>(</span>
 <span>Dogs</span>
@@ -1186,8 +1161,7 @@ function validateEmail(field)
 <span>replace</span>
 <span>. Whereas</span>
 <span>test</span>
-<span>just tells you whether its argu‐</span>
-<span>ment matches the regular expression,</span>
+<span>just tells you whether its argument matches the regular expression,</span>
 <span>replace</span>
 <span>takes a second parameter: the string to</span>
 <span>replace the text that matches. Like most functions,</span>
@@ -1292,8 +1266,7 @@ for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";
 <span>is passed to the function and the element</span>
 <span>$match[0]</span>
 <span>is assigned the</span>
-<span>matches made, but this time as a subarray. To display the subarray, this example iter‐</span>
-<span>ates through it with a</span>
+<span>matches made, but this time as a subarray. To display the subarray, this example iterates through it with a</span>
 <span>for</span>
 <span>loop.</span>
 <br/>
@@ -1312,8 +1285,7 @@ for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";
 <span>suggest the</span>
 <span>Wikipedia entry</span>
 <span>, or Jeffrey Friedl&rsquo;s excellent book</span>
-<span>Mas‐</span>
-<span>tering Regular Expressions</span>
+<span>Mastering Regular Expressions</span>
 <span>.</span>
 <h3>Redisplaying a Form After PHP Validation</h3>
 <span>OK, back to form validation. So far we&rsquo;ve created the HTML document</span>
@@ -1321,13 +1293,11 @@ for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";
 <span>,</span>
 <span>which will post through to the PHP program</span>
 <span>adduser.php</span>
-<span>, but only if JavaScript vali‐</span>
-<span>dates the fields or if JavaScript is disabled or unavailable.</span>
+<span>, but only if JavaScript validates the fields or if JavaScript is disabled or unavailable.</span>
 <br/>
 <span>So now it&rsquo;s time to create</span>
 <span>adduser.php</span>
-<span>to receive the posted form, perform its own val‐</span>
-<span>idation,</span>
+<span>to receive the posted form, perform its own validation,</span>
 <span>and</span>
 <span>then</span>
 <span>present</span>
@@ -1565,8 +1535,7 @@ for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";
 <span>, and so on. If you will be using a</span>
 <span>hash function to store encrypted passwords, this will not be an</span>
 <span>issue as long as when you later check the password entered, it is</span>
-<span>sanitized in the same way, so that the same inputs will be com‐</span>
-<span>pared.</span>
+<span>sanitized in the same way, so that the same inputs will be compared.</span>
 <br/>
 <span>The result of submitting the form with JavaScript disabled (and two fields incorrectly</span>
 <span>completed) is shown in</span>
@@ -1597,9 +1566,7 @@ for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";
 <span>If you browsed through this example (or typed it or downloaded it from the</span>
 <span>http://</span>
 <span>lpmj.net</span>
-<span>&nbsp;website), you&rsquo;ll have seen that the PHP code is almost a clone of the Java‐</span>
-<span>Script code; the same regular expressions are used to validate each field in very simi‐</span>
-<span>lar functions.</span>
+<span>&nbsp;website), you&rsquo;ll have seen that the PHP code is almost a clone of the JavaScript code; the same regular expressions are used to validate each field in very similar functions.</span>
 <br/>
 <span>But there are a couple of things to note. First, the</span>
 <span>fix_string</span>
@@ -1631,8 +1598,7 @@ for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";
 <span>Example 16-3</span>
 <span>, which</span>
 <span>incorporates all the HTML. And, of course, you&rsquo;d also need to</span>
-<span>make a minor tweak for the case when it&rsquo;s the first time the pro‐</span>
-<span>gram is called up, to prevent it from displaying errors when all the</span>
+<span>make a minor tweak for the case when it&rsquo;s the first time the program is called up, to prevent it from displaying errors when all the</span>
 <span>fields are empty. You also might drop the six JavaScript functions</span>
 <span>into their own</span>
 <span>.js</span>
