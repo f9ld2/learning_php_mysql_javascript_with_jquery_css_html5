@@ -106,19 +106,15 @@ title: "Bringing It All Together"
 <span>The project uses five main functions:</span>
 <br/>
 <span>createTable</span>
-<span>Checks whether a table already exists and, if not, creates it</span>
-<br/>
+<div class="t30">Checks whether a table already exists and, if not, creates it</div>
 <span>queryMysql</span>
-<span>Issues a query to MySQL, outputting an error message if it fails</span>
-<br/>
+<div class="t30">Issues a query to MySQL, outputting an error message if it fails</div>
 <span>destroySession</span>
-<span>Destroys a PHP session and clears its data to log users out</span>
-<br/>
+<div class="t30">Destroys a PHP session and clears its data to log users out</div>
 <span>sanitizeString</span>
-<span>Removes potentially malicious code or tags from user input</span>
-<br/>
+<div class="t30">Removes potentially malicious code or tags from user input</div>
 <span>showProfile</span>
-<span>Displays a user&rsquo;s image and &ldquo;about me&rdquo; message if he has one</span>
+<div class="t30">Displays a user&rsquo;s image and &ldquo;about me&rdquo; message if he has one</div>
 <br/>
 <span>All of these should be obvious in their action to you by now, with the possible excep‐</span>
 <span>tion of</span>
@@ -145,59 +141,66 @@ title: "Bringing It All Together"
 <span>ion website), and you&rsquo;ll be ready to move on to the next section.</span>
 <br/>
 <span>Example 26-1. functions.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>$dbhost = 'localhost'; // Unlikely to require changing</span>
-<span>$dbname = 'robinsnest'; // Modify these...</span>
-<span>$dbuser = 'robinsnest'; // ...variables according</span>
-<span>$dbpass = 'rnpassword'; // ...to your installation</span>
-<span>$appname = "Robin's Nest"; // ...and preference</span>
-<span>$connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);</span>
-<span>if ($connection-&gt;connect_error) die($connection-&gt;connect_error);</span>
-<span>function createTable($name, $query)</span>
-<span>{</span>
-<span>queryMysql("CREATE TABLE IF NOT EXISTS $name($query)");</span>
-<span>echo "Table '$name' created or already exists.&lt;br&gt;";</span>
-<span>}</span>
-<span>function queryMysql($query)</span>
-<span>{</span>
-<span>global $connection;</span>
-<span>$result = $connection-&gt;query($query);</span>
-<span>if (!$result) die($connection-&gt;error);</span>
-<span>return $result;</span>
-<span>}</span>
-<span>function destroySession()</span>
-<span>{</span>
-<span>$_SESSION=array();</span>
-<span>if (session_id() != "" || isset($_COOKIE[session_name()]))</span>
-<span>&nbsp;</span>
-<span>setcookie(session_name(), '', time()-2592000, '/');</span>
-<span>session_destroy();</span>
-<span>}</span>
-<span>function sanitizeString($var)</span>
-<span>{</span>
-<span>global $connection;</span>
-<span>$var = strip_tags($var);</span>
-<span>$var = htmlentities($var);</span>
-<span>$var = stripslashes($var);</span>
-<span>return $connection-&gt;real_escape_string($var);</span>
-<span>}</span>
-<span>function showProfile($user)</span>
-<span>{</span>
-<span>if (file_exists("$user.jpg"))</span>
-<span>&nbsp;</span>
-<span>echo "&lt;img src='$user.jpg' style='float:left;'&gt;";</span>
-<span>$result = queryMysql("SELECT * FROM profiles WHERE user='$user'");</span>
-<span>if ($result-&gt;num_rows)</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$row = $result-&gt;fetch_array(MYSQLI_ASSOC);</span>
-<span>&nbsp;</span>
-<span>echo stripslashes($row['text']) . "&lt;br style='clear:left;'&gt;&lt;br&gt;";</span>
-<span>}</span>
-<span>}</span>
-<span>?&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+    $dbhost = 'localhost'; // Unlikely to require changing
+    $dbname = 'robinsnest'; // Modify these...
+    $dbuser = 'robinsnest'; // ...variables according
+    $dbpass = 'rnpassword'; // ...to your installation
+    $appname = "Robin's Nest"; // ...and preference
+    $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+    
+    if ($connection-&gt;connect_error) die($connection-&gt;connect_error);
+    
+    function createTable($name, $query)
+    {
+        queryMysql("CREATE TABLE IF NOT EXISTS $name($query)");
+        echo "Table '$name' created or already exists.&lt;br&gt;";
+    }
+    
+    function queryMysql($query)
+    {
+        global $connection;
+        $result = $connection-&gt;query($query);
+        if (!$result) die($connection-&gt;error);
+        return $result;
+    }
+    
+    function destroySession()
+    {
+        $_SESSION=array();
+        if (session_id() != "" || isset($_COOKIE[session_name()]))
+            setcookie(session_name(), '', time()-2592000, '/');
+        
+        session_destroy();
+    }
+    
+    function sanitizeString($var)
+    {
+        global $connection;
+        $var = strip_tags($var);
+        $var = htmlentities($var);
+        $var = stripslashes($var);
+        return $connection-&gt;real_escape_string($var);
+    }
+    
+    function showProfile($user)
+    {
+        if (file_exists("$user.jpg"))
+        
+        echo "&lt;img src='$user.jpg' style='float:left;'&gt;";
+        $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
+        
+        if ($result-&gt;num_rows)
+        {
+            $row = $result-&gt;fetch_array(MYSQLI_ASSOC);
+            echo stripslashes($row['text']) . "&lt;br style='clear:left;'&gt;&lt;br&gt;";
+        }
+    }
+?&gt;
+</code>
+</pre>
 <span>If you read a previous edition of this book, in which these examples</span>
 <span>used the old</span>
 <span>mysql</span>
@@ -286,57 +289,48 @@ title: "Bringing It All Together"
 <span>and turning the links in the lists to rounded buttons.</span>
 <br/>
 <span>Example 26-2. header.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>session_start();</span>
-<span>echo "&lt;!DOCTYPE html&gt;\n&lt;html&gt;&lt;head&gt;";</span>
-<span>require_once 'functions.php';</span>
-<span>$userstr = ' (Guest)';</span>
-<span>if (isset($_SESSION['user']))</span>
-<span>{</span>
-<span>$user = $_SESSION['user'];</span>
-<span>$loggedin = TRUE;</span>
-<span>$userstr = " ($user)";</span>
-<span>}</span>
-<span>else $loggedin = FALSE;</span>
-<span>echo "&lt;title&gt;$appname$userstr&lt;/title&gt;&lt;link rel='stylesheet' " .</span>
-<span>&nbsp;</span>
-<span>"href='styles.css' type='text/css'&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;/head&gt;&lt;body&gt;&lt;center&gt;&lt;canvas id='logo' width='624' " .</span>
-<span>&nbsp;</span>
-<span>"height='96'&gt;$appname&lt;/canvas&gt;&lt;/center&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;div class='appname'&gt;$appname$userstr&lt;/div&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;script src='javascript.js'&gt;&lt;/script&gt;";</span>
-<span>if ($loggedin)</span>
-<span>echo "&lt;br &gt;&lt;ul class='menu'&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;li&gt;&lt;a href='members.php?view=$user'&gt;Home&lt;/a&gt;&lt;/li&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;li&gt;&lt;a href='members.php'&gt;Members&lt;/a&gt;&lt;/li&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;li&gt;&lt;a href='friends.php'&gt;Friends&lt;/a&gt;&lt;/li&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;li&gt;&lt;a href='messages.php'&gt;Messages&lt;/a&gt;&lt;/li&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;li&gt;&lt;a href='profile.php'&gt;Edit Profile&lt;/a&gt;&lt;/li&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;li&gt;&lt;a href='logout.php'&gt;Log out&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;";</span>
-<span>else</span>
-<span>echo ("&lt;br&gt;&lt;ul class='menu'&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;li&gt;&lt;a href='index.php'&gt;Home&lt;/a&gt;&lt;/li&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;li&gt;&lt;a href='signup.php'&gt;Sign up&lt;/a&gt;&lt;/li&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;li&gt;&lt;a href='login.php'&gt;Log in&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;" .</span>
-<span>&nbsp;</span>
-<span>"&lt;span class='info'&gt;&amp;#8658; You must be logged in to " .</span>
-<span>&nbsp;</span>
-<span>"view this page.&lt;/span&gt;&lt;br&gt;&lt;br&gt;");</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+    session_start();
+    echo "&lt;!DOCTYPE html&gt;\n&lt;html&gt;&lt;head&gt;";
+    
+    require_once 'functions.php';
+    $userstr = ' (Guest)';
+    
+    if (isset($_SESSION['user']))
+    {
+        $user = $_SESSION['user'];
+        $loggedin = TRUE;
+        $userstr = " ($user)";
+    }
+    else $loggedin = FALSE;
+
+    echo    "&lt;title&gt;$appname$userstr&lt;/title&gt;&lt;link rel='stylesheet' " .
+            "href='styles.css' type='text/css'&gt;" .
+            "&lt;/head&gt;&lt;body&gt;&lt;center&gt;&lt;canvas id='logo' width='624' " .
+            "height='96'&gt;$appname&lt;/canvas&gt;&lt;/center&gt;" .
+            "&lt;div class='appname'&gt;$appname$userstr&lt;/div&gt;" .
+            "&lt;script src='javascript.js'&gt;&lt;/script&gt;";
+        
+    if ($loggedin)
+        echo    "&lt;br &gt;&lt;ul class='menu'&gt;" .
+                "&lt;li&gt;&lt;a href='members.php?view=$user'&gt;Home&lt;/a&gt;&lt;/li&gt;" .
+                "&lt;li&gt;&lt;a href='members.php'&gt;Members&lt;/a&gt;&lt;/li&gt;" .
+                "&lt;li&gt;&lt;a href='friends.php'&gt;Friends&lt;/a&gt;&lt;/li&gt;" .
+                "&lt;li&gt;&lt;a href='messages.php'&gt;Messages&lt;/a&gt;&lt;/li&gt;" .
+                "&lt;li&gt;&lt;a href='profile.php'&gt;Edit Profile&lt;/a&gt;&lt;/li&gt;" .
+                "&lt;li&gt;&lt;a href='logout.php'&gt;Log out&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;";
+    else
+        echo    ("&lt;br&gt;&lt;ul class='menu'&gt;" .
+                "&lt;li&gt;&lt;a href='index.php'&gt;Home&lt;/a&gt;&lt;/li&gt;" .
+                "&lt;li&gt;&lt;a href='signup.php'&gt;Sign up&lt;/a&gt;&lt;/li&gt;" .
+                "&lt;li&gt;&lt;a href='login.php'&gt;Log in&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;" .
+                "&lt;span class='info'&gt;&amp;#8658; You must be logged in to " .
+                "view this page.&lt;/span&gt;&lt;br&gt;&lt;br&gt;");
+?&gt;
+</code>
+</pre>
 <span>Using the</span>
 <span>&lt;br&gt;</span>
 <span>tag, as in the preceding example, is a quick and</span>
@@ -398,60 +392,50 @@ title: "Bringing It All Together"
 <span>DROP TABLE</span>
 <span>command before re-creating a table.</span>
 <span>Example 26-3. setup.php</span>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Setting up database&lt;/title&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;h3&gt;Setting up...&lt;/h3&gt;</span>
-<span>&lt;?php</span>
-<span>require_once 'functions.php';</span>
-<span>createTable('members',</span>
-<span>&nbsp;</span>
-<span>'user VARCHAR(16),</span>
-<span>&nbsp;</span>
-<span>pass VARCHAR(16),</span>
-<span>&nbsp;</span>
-<span>INDEX(user(6))');</span>
-<span>createTable('messages',</span>
-<span>&nbsp;</span>
-<span>'id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,</span>
-<span>&nbsp;</span>
-<span>auth VARCHAR(16),</span>
-<span>&nbsp;</span>
-<span>recip VARCHAR(16),</span>
-<span>&nbsp;</span>
-<span>pm CHAR(1),</span>
-<span>&nbsp;</span>
-<span>time INT UNSIGNED,</span>
-<span>&nbsp;</span>
-<span>message VARCHAR(4096),</span>
-<span>&nbsp;</span>
-<span>INDEX(auth(6)),</span>
-<span>&nbsp;</span>
-<span>INDEX(recip(6))');</span>
-<span>createTable('friends',</span>
-<span>&nbsp;</span>
-<span>'user VARCHAR(16),</span>
-<span>&nbsp;</span>
-<span>friend VARCHAR(16),</span>
-<span>&nbsp;</span>
-<span>INDEX(user(6)),</span>
-<span>&nbsp;</span>
-<span>INDEX(friend(6))');</span>
-<span>createTable('profiles',</span>
-<span>&nbsp;</span>
-<span>'user VARCHAR(16),</span>
-<span>&nbsp;</span>
-<span>text VARCHAR(4096),</span>
-<span>&nbsp;</span>
-<span>INDEX(user(6))');</span>
-<span>?&gt;</span>
-<span>&lt;br&gt;...done.</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Setting up database&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h3&gt;Setting up...&lt;/h3&gt;
+        &lt;?php
+
+            require_once 'functions.php';
+
+            createTable('members',
+                        'user VARCHAR(16),
+                        pass VARCHAR(16),
+                        INDEX(user(6))');
+
+            createTable('messages',
+                        'id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                        auth VARCHAR(16),
+                        recip VARCHAR(16),
+                        pm CHAR(1),
+                        time INT UNSIGNED,
+                        message VARCHAR(4096),
+                        INDEX(auth(6)),
+                        INDEX(recip(6))');
+
+            createTable('friends',
+                        'user VARCHAR(16),
+                        friend VARCHAR(16),
+                        INDEX(user(6)),
+                        INDEX(friend(6))');
+                        createTable('profiles',
+                        'user VARCHAR(16),
+                        text VARCHAR(4096),
+                        INDEX(user(6))');
+        ?&gt;
+
+        &lt;br&gt;...done.
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <span>For this example to work, you must first ensure that you have</span>
 <span>already created the database specified in the variable</span>
 <span>$dbname</span>
@@ -479,17 +463,20 @@ title: "Bringing It All Together"
 <span>.</span>
 <br/>
 <span>Example 26-4. index.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>require_once 'header.php';</span>
-<span>echo "&lt;br&gt;&lt;span class='main'&gt;Welcome to $appname,";</span>
-<span>if ($loggedin) echo " $user, you are logged in.";</span>
-<span>else echo ' please sign up and/or log in to join in.';</span>
-<span>?&gt;</span>
-<span>&lt;/span&gt;&lt;br&gt;&lt;br&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+    &lt;?php
+        require_once 'header.php';
+        echo "&lt;br&gt;&lt;span class='main'&gt;Welcome to $appname,";
+        
+        if ($loggedin) echo " $user, you are logged in.";
+        else echo ' please sign up and/or log in to join in.';
+    ?&gt;
+    &lt;/span&gt;&lt;br&gt;&lt;br&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/26.1.png"/></p>
 <span>Figure 26-1. The main page of the site</span>
 <h3>signup.php</h3>
@@ -588,129 +575,101 @@ title: "Bringing It All Together"
 <br/>
 <span>Example 26-5. signup.php</span>
 <br/>
-<span>&lt;?php</span>
-<span>require_once 'header.php';</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&lt;script&gt;</span>
-<span>&nbsp;</span>
-<span>function checkUser(user)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (user.value == '')</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>O('info').innerHTML = ''</span>
-<span>&nbsp;</span>
-<span>return</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>params = "user=" + user.value</span>
-<span>&nbsp;</span>
-<span>request = new ajaxRequest()</span>
-<span>&nbsp;</span>
-<span>request.open("POST", "checkuser.php", true)</span>
-<span>&nbsp;</span>
-<span>request.setRequestHeader("Content-type",</span>
-<span>&nbsp;</span>
-<span>"application/x-www-form-urlencoded")</span>
-<span>&nbsp;</span>
-<span>request.setRequestHeader("Content-length", params.length)</span>
-<span>&nbsp;</span>
-<span>request.setRequestHeader("Connection", "close")</span>
-<span>&nbsp;</span>
-<span>request.onreadystatechange = function()</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>if (this.readyState == 4)</span>
-<span>&nbsp;</span>
-<span>if (this.status == 200)</span>
-<span>&nbsp;</span>
-<span>if (this.responseText != null)</span>
-<span>&nbsp;</span>
-<span>O('info').innerHTML = this.responseText</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>request.send(params)</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>function ajaxRequest()</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>try { var request = new XMLHttpRequest() }</span>
-<span>&nbsp;</span>
-<span>catch(e1) {</span>
-<span>&nbsp;</span>
-<span>try { request = new ActiveXObject("Msxml2.XMLHTTP") }</span>
-<span>&nbsp;</span>
-<span>catch(e2) {</span>
-<span>&nbsp;</span>
-<span>try { request = new ActiveXObject("Microsoft.XMLHTTP") }</span>
-<span>&nbsp;</span>
-<span>catch(e3) {</span>
-<span>&nbsp;</span>
-<span>request = false</span>
-<span>&nbsp;</span>
-<span>} } }</span>
-<span>&nbsp;</span>
-<span>return request</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&lt;/script&gt;</span>
-<span>&lt;div class='main'&gt;&lt;h3&gt;Please enter your details to sign up&lt;/h3&gt;</span>
-<span>_END;</span>
-<span>$error = $user = $pass = "";</span>
-<span>if (isset($_SESSION['user'])) destroySession();</span>
-<span>if (isset($_POST['user']))</span>
-<span>{</span>
-<span>$user = sanitizeString($_POST['user']);</span>
-<span>$pass = sanitizeString($_POST['pass']);</span>
-<span>if ($user == "" || $pass == "")</span>
-<span>&nbsp;</span>
-<span>$error = "Not all fields were entered&lt;br&gt;&lt;br&gt;";</span>
-<span>else</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$result = queryMysql("SELECT * FROM members WHERE user='$user'");</span>
-<span>&nbsp;</span>
-<span>if ($result-&gt;num_rows)</span>
-<span>&nbsp;</span>
-<span>$error = "That username already exists&lt;br&gt;&lt;br&gt;";</span>
-<span>&nbsp;</span>
-<span>else</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>queryMysql("INSERT INTO members VALUES('$user', '$pass')");</span>
-<span>&nbsp;</span>
-<span>die("&lt;h4&gt;Account created&lt;/h4&gt;Please Log in.&lt;br&gt;&lt;br&gt;");</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>}</span>
-<span>}</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&lt;form method='post' action='signup.php'&gt;$error</span>
-<span>&lt;span class='fieldname'&gt;Username&lt;/span&gt;</span>
-<span>&lt;input type='text' maxlength='16' name='user' value='$user'</span>
-<span>&nbsp;</span>
-<span>onBlur='checkUser(this)'&gt;&lt;span id='info'&gt;&lt;/span&gt;&lt;br&gt;</span>
-<span>&lt;span class='fieldname'&gt;Password&lt;/span&gt;</span>
-<span>&lt;input type='text' maxlength='16' name='pass'</span>
-<span>&nbsp;</span>
-<span>value='$pass'&gt;&lt;br&gt;</span>
-<span>_END;</span>
-<span>?&gt;</span>
-<span>&lt;span class='fieldname'&gt;&amp;nbsp;&lt;/span&gt;</span>
-<span>&lt;input type='submit' value='Sign up'&gt;</span>
-<span>&lt;/form&gt;&lt;/div&gt;&lt;br&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+require_once 'header.php';
+
+echo &lt;&lt;&lt;_END
+    &lt;script&gt;
+    function checkUser(user)
+    {
+        if (user.value == '')
+        {
+            O('info').innerHTML = ''
+            return
+        }
+        
+        params = "user=" + user.value
+        request = new ajaxRequest()
+        
+        request.open("POST", "checkuser.php", true)
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+        request.setRequestHeader("Content-length", params.length)
+        request.setRequestHeader("Connection", "close")
+        
+        request.onreadystatechange = function()
+        {
+            if (this.readyState == 4)
+                if (this.status == 200)
+                    if (this.responseText != null)
+                        O('info').innerHTML = this.responseText
+        }
+        
+        request.send(params)
+    }
+    
+    function ajaxRequest()
+    {
+        try { var request = new XMLHttpRequest() }
+        catch(e1) {
+            try { request = new ActiveXObject("Msxml2.XMLHTTP") }
+            catch(e2) {
+                try { request = new ActiveXObject("Microsoft.XMLHTTP") }
+                catch(e3) {
+                    request = false
+                } 
+            } 
+        }
+        
+        return request
+    }
+    &lt;/script&gt;
+    &lt;div class='main'&gt;&lt;h3&gt;Please enter your details to sign up&lt;/h3&gt;
+_END;
+
+$error = $user = $pass = "";
+if (isset($_SESSION['user'])) destroySession();
+
+if (isset($_POST['user']))
+{
+    $user = sanitizeString($_POST['user']);
+    $pass = sanitizeString($_POST['pass']);
+    
+    if ($user == "" || $pass == "")
+        $error = "Not all fields were entered&lt;br&gt;&lt;br&gt;";
+    else
+    {
+        $result = queryMysql("SELECT * FROM members WHERE user='$user'");
+        
+        if ($result-&gt;num_rows)
+            $error = "That username already exists&lt;br&gt;&lt;br&gt;";
+        else
+        {
+            queryMysql("INSERT INTO members VALUES('$user', '$pass')");
+            die("&lt;h4&gt;Account created&lt;/h4&gt;Please Log in.&lt;br&gt;&lt;br&gt;");
+        }
+    }
+}
+echo &lt;&lt;&lt;_END
+    &lt;form method='post' action='signup.php'&gt;$error
+    &lt;span class='fieldname'&gt;Username&lt;/span&gt;
+    &lt;input type='text' maxlength='16' name='user' value='$user'
+    onBlur='checkUser(this)'&gt;&lt;span id='info'&gt;&lt;/span&gt;&lt;br&gt;
+    &lt;span class='fieldname'&gt;Password&lt;/span&gt;
+    &lt;input type='text' maxlength='16' name='pass'
+    value='$pass'&gt;&lt;br&gt;
+_END;
+
+?&gt;
+    &lt;span class='fieldname'&gt;&amp;nbsp;&lt;/span&gt;
+    &lt;input type='submit' value='Sign up'&gt;
+    &lt;/form&gt;&lt;/div&gt;&lt;br&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+<p><img src="images/26.2.png"/></p>
 <span>Figure 26-2. The sign-up page</span>
 <span>On a production server, I wouldn&rsquo;t recommend storing user pass‐</span>
 <span>words in the clear as I&rsquo;ve done here (for reasons of space and sim‐</span>
@@ -771,25 +730,24 @@ title: "Bringing It All Together"
 <span>either a cross or a checkmark.</span>
 <br/>
 <span>Example 26-6. checkuser.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>require_once 'functions.php';</span>
-<span>if (isset($_POST['user']))</span>
-<span>{</span>
-<span>$user = sanitizeString($_POST['user']);</span>
-<span>$result = queryMysql("SELECT * FROM members WHERE user='$user'");</span>
-<span>if ($result-&gt;num_rows)</span>
-<span>&nbsp;</span>
-<span>echo "&lt;span class='taken'&gt;&amp;nbsp;&amp;#x2718; " .</span>
-<span>&nbsp;</span>
-<span>"This username is taken&lt;/span&gt;";</span>
-<span>else</span>
-<span>&nbsp;</span>
-<span>echo "&lt;span class='available'&gt;&amp;nbsp;&amp;#x2714; " .</span>
-<span>&nbsp;</span>
-<span>"This username is available&lt;/span&gt;";</span>
-<span>}</span>
-<span>?&gt;</span>
+<pre>
+<code class="php">
+&lt;?php
+require_once 'functions.php';
+if (isset($_POST['user']))
+{
+    $user = sanitizeString($_POST['user']);
+    $result = queryMysql("SELECT * FROM members WHERE user='$user'");
+    if ($result-&gt;num_rows)
+        echo "&lt;span class='taken'&gt;&amp;nbsp;&amp;#x2718; " .
+                "This username is taken&lt;/span&gt;";
+    else
+        echo "&lt;span class='available'&gt;&amp;nbsp;&amp;#x2714; " .
+                "This username is available&lt;/span&gt;";
+}
+?&gt;
+</code>
+</pre>
 <h3>login.php</h3>
 <span>With users now able to sign up to the site,</span>
 <span>Example 26-7</span>
@@ -834,67 +792,53 @@ title: "Bringing It All Together"
 <span>isks to prevent it from being viewed by anyone looking over the user&rsquo;s shoulder.</span>
 <br/>
 <span>Example 26-7. login.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>require_once 'header.php';</span>
-<span>echo "&lt;div class='main'&gt;&lt;h3&gt;Please enter your details to log in&lt;/h3&gt;";</span>
-<span>$error = $user = $pass = "";</span>
-<span>if (isset($_POST['user']))</span>
-<span>{</span>
-<span>$user = sanitizeString($_POST['user']);</span>
-<span>$pass = sanitizeString($_POST['pass']);</span>
-<span>if ($user == "" || $pass == "")</span>
-<span>&nbsp;</span>
-<span>$error = "Not all fields were entered&lt;br&gt;";</span>
-<span>else</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$result = queryMySQL("SELECT user,pass FROM members</span>
-<span>&nbsp;</span>
-<span>WHERE user='$user' AND pass='$pass'");</span>
-<span>&nbsp;</span>
-<span>if ($result-&gt;num_rows == 0)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$error = "&lt;span class='error'&gt;Username/Password</span>
-<span>&nbsp;</span>
-<span>invalid&lt;/span&gt;&lt;br&gt;&lt;br&gt;";</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>else</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$_SESSION['user'] = $user;</span>
-<span>&nbsp;</span>
-<span>$_SESSION['pass'] = $pass;</span>
-<span>&nbsp;</span>
-<span>die("You are now logged in. Please &lt;a href='members.php?view=$user'&gt;" .</span>
-<span>&nbsp;</span>
-<span>"click here&lt;/a&gt; to continue.&lt;br&gt;&lt;br&gt;");</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>}</span>
-<span>}</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&lt;form method='post' action='login.php'&gt;$error</span>
-<span>&lt;span class='fieldname'&gt;Username&lt;/span&gt;&lt;input type='text'</span>
-<span>&nbsp;</span>
-<span>maxlength='16' name='user' value='$user'&gt;&lt;br&gt;</span>
-<span>&lt;span class='fieldname'&gt;Password&lt;/span&gt;&lt;input type='password'</span>
-<span>&nbsp;</span>
-<span>maxlength='16' name='pass' value='$pass'&gt;</span>
-<span>_END;</span>
-<span>?&gt;</span>
-<span>&lt;br&gt;</span>
-<span>&lt;span class='fieldname'&gt;&amp;nbsp;&lt;/span&gt;</span>
-<span>&lt;input type='submit' value='Login'&gt;</span>
-<span>&lt;/form&gt;&lt;br&gt;&lt;/div&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+require_once 'header.php';
+echo "&lt;div class='main'&gt;&lt;h3&gt;Please enter your details to log in&lt;/h3&gt;";
+
+$error = $user = $pass = "";
+if (isset($_POST['user']))
+{
+    $user = sanitizeString($_POST['user']);
+    $pass = sanitizeString($_POST['pass']);
+    if ($user == "" || $pass == "")
+        $error = "Not all fields were entered&lt;br&gt;";
+    else
+    {
+        $result = queryMySQL("SELECT user,pass FROM members WHERE user='$user' AND pass='$pass'");
+        if ($result-&gt;num_rows == 0)
+        {
+            $error = "&lt;span class='error'&gt;Username/Password
+            invalid&lt;/span&gt;&lt;br&gt;&lt;br&gt;";
+        }
+        else
+        {
+            $_SESSION['user'] = $user;
+            $_SESSION['pass'] = $pass;
+            die("You are now logged in. Please &lt;a href='members.php?view=$user'&gt;" .
+            "click here&lt;/a&gt; to continue.&lt;br&gt;&lt;br&gt;");
+        }
+    }
+}
+
+echo &lt;&lt;&lt;_END
+    &lt;form method='post' action='login.php'&gt;$error
+    &lt;span class='fieldname'&gt;Username&lt;/span&gt;&lt;input type='text'
+    maxlength='16' name='user' value='$user'&gt;&lt;br&gt;
+    &lt;span class='fieldname'&gt;Password&lt;/span&gt;&lt;input type='password'
+    maxlength='16' name='pass' value='$pass'&gt;
+_END;
+?&gt;
+    &lt;br&gt;
+    &lt;span class='fieldname'&gt;&amp;nbsp;&lt;/span&gt;
+    &lt;input type='submit' value='Login'&gt;
+    &lt;/form&gt;&lt;br&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/26.3.png"/></p>
 <span>Figure 26-3. The login page</span>
 <br/>
@@ -979,9 +923,7 @@ title: "Bringing It All Together"
 <span>$h</span>
 <span>using the following statement,</span>
 <span>which is a quick way of assigning values from an array to separate variables:</span>
-<br/>
-<span>list($w, $h) = getimagesize($saveto);</span>
-<br/>
+<pre><code class="php">list($w, $h) = getimagesize($saveto);</code></pre>
 <span>Then, using the value of</span>
 <span>$max</span>
 <span>(which is set to</span>
@@ -1050,118 +992,95 @@ title: "Bringing It All Together"
 <br/>
 <span>Example 26-8.</span>
 <span>profile.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>require_once 'header.php';</span>
-<span>if (!$loggedin) die();</span>
-<span>echo "&lt;div class='main'&gt;&lt;h3&gt;Your Profile&lt;/h3&gt;";</span>
-<span>$result = queryMysql("SELECT * FROM profiles WHERE user='$user'");</span>
-<span>if (isset($_POST['text']))</span>
-<span>{</span>
-<span>$text = sanitizeString($_POST['text']);</span>
-<span>$text = preg_replace('/\s\s+/', ' ', $text);</span>
-<span>if ($result-&gt;num_rows)</span>
-<span>&nbsp;</span>
-<span>queryMysql("UPDATE profiles SET text='$text' where user='$user'");</span>
-<span>else queryMysql("INSERT INTO profiles VALUES('$user', '$text')");</span>
-<span>}</span>
-<span>else</span>
-<span>{</span>
-<span>if ($result-&gt;num_rows)</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$row = $result-&gt;fetch_array(MYSQLI_ASSOC);</span>
-<span>&nbsp;</span>
-<span>$text = stripslashes($row['text']);</span>
-<span>}</span>
-<span>else $text = "";</span>
-<span>}</span>
-<span>$text = stripslashes(preg_replace('/\s\s+/', ' ', $text));</span>
-<span>if (isset($_FILES['image']['name']))</span>
-<span>{</span>
-<span>$saveto = "$user.jpg";</span>
-<span>move_uploaded_file($_FILES['image']['tmp_name'], $saveto);</span>
-<span>$typeok = TRUE;</span>
-<span>switch($_FILES['image']['type'])</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>case "image/gif": $src = imagecreatefromgif($saveto); break;</span>
-<span>&nbsp;</span>
-<span>case "image/jpeg": // Both regular and progressive jpegs</span>
-<span>&nbsp;</span>
-<span>case "image/pjpeg": $src = imagecreatefromjpeg($saveto); break;</span>
-<span>&nbsp;</span>
-<span>case "image/png": $src = imagecreatefrompng($saveto); break;</span>
-<span>&nbsp;</span>
-<span>default: $typeok = FALSE; break;</span>
-<span>}</span>
-<span>if ($typeok)</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>list($w, $h) = getimagesize($saveto);</span>
-<span>&nbsp;</span>
-<span>$max = 100;</span>
-<span>&nbsp;</span>
-<span>$tw = $w;</span>
-<span>&nbsp;</span>
-<span>$th = $h;</span>
-<span>&nbsp;</span>
-<span>if ($w &gt; $h &amp;&amp; $max &lt; $w)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$th = $max / $w * $h;</span>
-<span>&nbsp;</span>
-<span>$tw = $max;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>elseif ($h &gt; $w &amp;&amp; $max &lt; $h)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$tw = $max / $h * $w;</span>
-<span>&nbsp;</span>
-<span>$th = $max;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>elseif ($max &lt; $w)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$tw = $th = $max;</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>&nbsp;</span>
-<span>$tmp = imagecreatetruecolor($tw, $th);</span>
-<span>&nbsp;</span>
-<span>imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);</span>
-<span>&nbsp;</span>
-<span>imageconvolution($tmp, array(array(-1, -1, -1),</span>
-<span>&nbsp;</span>
-<span>array(-1, 16, -1), array(-1, -1, -1)), 8, 0);</span>
-<span>&nbsp;</span>
-<span>imagejpeg($tmp, $saveto);</span>
-<span>&nbsp;</span>
-<span>imagedestroy($tmp);</span>
-<span>&nbsp;</span>
-<span>imagedestroy($src);</span>
-<span>}</span>
-<span>}</span>
-<span>showProfile($user);</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&lt;form method='post' action='profile.php' enctype='multipart/form-data'&gt;</span>
-<span>&lt;h3&gt;Enter or edit your details and/or upload an image&lt;/h3&gt;</span>
-<span>&lt;textarea name='text' cols='50' rows='3'&gt;$text&lt;/textarea&gt;&lt;br&gt;</span>
-<span>_END;</span>
-<span>?&gt;</span>
-<span>Image: &lt;input type='file' name='image' size='14'&gt;</span>
-<span>&lt;input type='submit' value='Save Profile'&gt;</span>
-<span>&lt;/form&gt;&lt;/div&gt;&lt;br&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+require_once 'header.php';
+
+if (!$loggedin) die();
+
+echo "&lt;div class='main'&gt;&lt;h3&gt;Your Profile&lt;/h3&gt;";
+$result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
+
+if (isset($_POST['text']))
+{
+    $text = sanitizeString($_POST['text']);
+    $text = preg_replace('/\s\s+/', ' ', $text);
+    
+    if ($result-&gt;num_rows)
+        queryMysql("UPDATE profiles SET text='$text' where user='$user'");
+    else queryMysql("INSERT INTO profiles VALUES('$user', '$text')");
+}
+else
+{
+    if ($result-&gt;num_rows)
+    {
+        $row = $result-&gt;fetch_array(MYSQLI_ASSOC);
+        $text = stripslashes($row['text']);
+    }
+    else $text = "";
+}
+
+$text = stripslashes(preg_replace('/\s\s+/', ' ', $text));
+if (isset($_FILES['image']['name']))
+{
+    $saveto = "$user.jpg";
+    move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
+    $typeok = TRUE;
+    switch($_FILES['image']['type'])
+    {
+        case "image/gif": $src = imagecreatefromgif($saveto); break;
+        case "image/jpeg": // Both regular and progressive jpegs
+        case "image/pjpeg": $src = imagecreatefromjpeg($saveto); break;
+        case "image/png": $src = imagecreatefrompng($saveto); break;
+        default: $typeok = FALSE; break;
+    }
+    
+    if ($typeok)
+    {
+        list($w, $h) = getimagesize($saveto);
+        $max = 100;
+        $tw = $w;
+        $th = $h;
+        if ($w &gt; $h &amp;&amp; $max &lt; $w)
+        {
+            $th = $max / $w * $h;
+            $tw = $max;
+        }
+        elseif ($h &gt; $w &amp;&amp; $max &lt; $h)
+        {
+            $tw = $max / $h * $w;
+            $th = $max;
+        }
+        elseif ($max &lt; $w)
+        {
+            $tw = $th = $max;
+        }
+
+        $tmp = imagecreatetruecolor($tw, $th);
+        imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);
+        imageconvolution($tmp, array(array(-1, -1, -1),
+        array(-1, 16, -1), array(-1, -1, -1)), 8, 0);
+        imagejpeg($tmp, $saveto);
+        imagedestroy($tmp);
+        imagedestroy($src);
+    }
+}
+
+showProfile($user);
+echo &lt;&lt;&lt;_END
+    &lt;form method='post' action='profile.php' enctype='multipart/form-data'&gt;
+    &lt;h3&gt;Enter or edit your details and/or upload an image&lt;/h3&gt;
+    &lt;textarea name='text' cols='50' rows='3'&gt;$text&lt;/textarea&gt;&lt;br&gt;
+_END;
+?&gt;
+    Image: &lt;input type='file' name='image' size='14'&gt;
+    &lt;input type='submit' value='Save Profile'&gt;
+    &lt;/form&gt;&lt;/div&gt;&lt;br&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/26.4.png"/></p>
 <span>Figure 26-4. Editing a user profile</span>
 <br/>
@@ -1240,74 +1159,74 @@ title: "Bringing It All Together"
 <span>ing.</span>
 <br/>
 <span>Example 26-9. members.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>require_once 'header.php';</span>
-<span>if (!$loggedin) die();</span>
-<span>echo "&lt;div class='main'&gt;";</span>
-<span>if (isset($_GET['view']))</span>
-<span>{</span>
-<span>$view = sanitizeString($_GET['view']);</span>
-<span>if ($view == $user) $name = "Your";</span>
-<span>else $name = "$view's";</span>
-<span>echo "&lt;h3&gt;$name Profile&lt;/h3&gt;";</span>
-<span>showProfile($view);</span>
-<span>echo "&lt;a class='button' href='messages.php?view=$view'&gt;" .</span>
-<span>&nbsp;</span>
-<span>"View $name messages&lt;/a&gt;&lt;br&gt;&lt;br&gt;";</span>
-<span>die("&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;");</span>
-<span>}</span>
-<span>if (isset($_GET['add']))</span>
-<span>{</span>
-<span>$add = sanitizeString($_GET['add']);</span>
-<span>$result = queryMysql("SELECT * FROM friends WHERE user='$add'</span>
-<span>&nbsp;</span>
-<span>AND friend='$user'");</span>
-<span>if (!$result-&gt;num_rows)</span>
-<span>&nbsp;</span>
-<span>queryMysql("INSERT INTO friends VALUES ('$add', '$user')");</span>
-<span>}</span>
-<span>elseif (isset($_GET['remove']))</span>
-<span>{</span>
-<span>$remove = sanitizeString($_GET['remove']);</span>
-<span>queryMysql("DELETE FROM friends WHERE user='$remove' AND friend='$user'");</span>
-<span>}</span>
-<span>$result = queryMysql("SELECT user FROM members ORDER BY user");</span>
-<span>$num = $result-&gt;num_rows;</span>
-<span>echo "&lt;h3&gt;Other Members&lt;/h3&gt;&lt;ul&gt;";</span>
-<span>for ($j = 0 ; $j &lt; $num ; ++$j)</span>
-<span>{</span>
-<span>$row = $result-&gt;fetch_array(MYSQLI_ASSOC);</span>
-<span>if ($row['user'] == $user) continue;</span>
-<span>echo "&lt;li&gt;&lt;a href='members.php?view=" .</span>
-<span>&nbsp;</span>
-<span>$row['user'] . "'&gt;" . $row['user'] . "&lt;/a&gt;";</span>
-<span>$follow = "follow";</span>
-<span>$result1 = queryMysql("SELECT * FROM friends WHERE</span>
-<span>&nbsp;</span>
-<span>user='" . $row['user'] . "' AND friend='$user'");</span>
-<span>$t1 = $result1-&gt;num_rows;</span>
-<span>$result1 = queryMysql("SELECT * FROM friends WHERE</span>
-<span>&nbsp;</span>
-<span>user='$user' AND friend='" . $row['user'] . "'");</span>
-<span>$t2 = $result1-&gt;num_rows;</span>
-<span>if (($t1 + $t2) &gt; 1) echo " &amp;harr; is a mutual friend";</span>
-<span>elseif ($t1) echo " &amp;larr; you are following";</span>
-<span>elseif ($t2) { echo " &amp;rarr; is following you";</span>
-<span>&nbsp;</span>
-<span>$follow = "recip"; }</span>
-<span>if (!$t1) echo " [&lt;a href='members.php?add=" .</span>
-<span>&nbsp;</span>
-<span>$row['user'] . "'&gt;$follow&lt;/a&gt;]";</span>
-<span>else echo " [&lt;a href='members.php?remove=" .</span>
-<span>&nbsp;</span>
-<span>$row['user'] . "'&gt;drop&lt;/a&gt;]";</span>
-<span>}</span>
-<span>?&gt;</span>
-<span>&lt;/ul&gt;&lt;/div&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+require_once 'header.php';
+if (!$loggedin) die();
+
+echo "&lt;div class='main'&gt;";
+
+if (isset($_GET['view']))
+{
+    $view = sanitizeString($_GET['view']);
+    
+    if ($view == $user) $name = "Your";
+    else $name = "$view's";
+    
+    echo "&lt;h3&gt;$name Profile&lt;/h3&gt;";
+    showProfile($view);
+    echo "&lt;a class='button' href='messages.php?view=$view'&gt;" .
+         "View $name messages&lt;/a&gt;&lt;br&gt;&lt;br&gt;";
+    die("&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;");
+}
+
+if (isset($_GET['add']))
+{
+    $add = sanitizeString($_GET['add']);
+    $result = queryMysql("SELECT * FROM friends WHERE user='$add' AND friend='$user'");
+    if (!$result-&gt;num_rows)
+        queryMysql("INSERT INTO friends VALUES ('$add', '$user')");
+    }
+elseif (isset($_GET['remove']))
+{
+    $remove = sanitizeString($_GET['remove']);
+    queryMysql("DELETE FROM friends WHERE user='$remove' AND friend='$user'");
+}
+    
+$result = queryMysql("SELECT user FROM members ORDER BY user");
+$num = $result-&gt;num_rows;
+echo "&lt;h3&gt;Other Members&lt;/h3&gt;&lt;ul&gt;";
+
+for ($j = 0 ; $j &lt; $num ; ++$j)
+{
+    $row = $result-&gt;fetch_array(MYSQLI_ASSOC);
+    if ($row['user'] == $user) continue;
+    echo "&lt;li&gt;&lt;a href='members.php?view=" . $row['user'] . "'&gt;" . $row['user'] . "&lt;/a&gt;";
+    $follow = "follow";
+
+    $result1 = queryMysql("SELECT * FROM friends WHERE user='" . $row['user'] . "' AND friend='$user'");
+    $t1 = $result1-&gt;num_rows;
+
+    $result1 = queryMysql("SELECT * FROM friends WHERE user='$user' AND friend='" . $row['user'] . "'");
+    $t2 = $result1-&gt;num_rows;
+
+    if (($t1 + $t2) &gt; 1) echo " &amp;harr; is a mutual friend";
+    elseif ($t1) echo " &amp;larr; you are following";
+    elseif ($t2) { 
+        echo " &amp;rarr; is following you";
+        $follow = "recip"; 
+    }
+    
+    if (!$t1) echo " [&lt;a href='members.php?add=" .  $row['user'] . "'&gt;$follow&lt;/a&gt;]";
+    else echo " [&lt;a href='members.php?remove=" . $row['user'] . "'&gt;drop&lt;/a&gt;]";
+}
+?&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/26.5.png"/></p>
 <span>Figure 26-5. Using the members module</span>
 <br/>
@@ -1336,9 +1255,7 @@ title: "Bringing It All Together"
 <span>$following</span>
 <span>. Then a neat piece of code is used</span>
 <span>to extract all those who are both following and followed by the user, like this:</span>
-<br/>
-<span>$mutual = array_intersect($followers, $following);</span>
-<br/>
+<pre><code class="javascript">$mutual = array_intersect($followers, $following);</code></pre>
 <span>The</span>
 <span>array_intersect</span>
 <span>function extracts all members common to both arrays and</span>
@@ -1354,10 +1271,12 @@ title: "Bringing It All Together"
 <span>&nbsp;not</span>
 <span>&nbsp;mutual friends, like</span>
 <span>this:</span>
-<br/>
-<span>$followers = array_diff($followers, $mutual);</span>
-<span>$following = array_diff($following, $mutual);</span>
-<br/>
+<pre>
+<code class="php">
+$followers = array_diff($followers, $mutual);
+$following = array_diff($following, $mutual);
+</code>
+</pre>
 <span>This results in the array</span>
 <span>$mutual</span>
 <span>containing only mutual friends,</span>
@@ -1391,84 +1310,97 @@ title: "Bringing It All Together"
 <span>display the user&rsquo;s profile information on this screen.</span>
 <br/>
 <span>Example 26-10. friends.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>require_once 'header.php';</span>
-<span>if (!$loggedin) die();</span>
-<span>if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);</span>
-<span>else $view = $user;</span>
-<span>if ($view == $user)</span>
-<span>{</span>
-<span>$name1 = $name2 = "Your";</span>
-<span>$name3 = "You are";</span>
-<span>}</span>
-<span>else</span>
-<span>{</span>
-<span>$name1 = "&lt;a href='members.php?view=$view'&gt;$view&lt;/a&gt;'s";</span>
-<span>$name2 = "$view's";</span>
-<span>$name3 = "$view is";</span>
-<span>}</span>
-<span>echo "&lt;div class='main'&gt;";</span>
-<span>// Uncomment this line if you wish the user's profile to show here</span>
-<span>// showProfile($view);</span>
-<span>$followers = array();</span>
-<span>$following = array();</span>
-<span>$result = queryMysql("SELECT * FROM friends WHERE user='$view'");</span>
-<span>$num = $result-&gt;num_rows;</span>
-<span>for ($j = 0 ; $j &lt; $num ; ++$j)</span>
-<span>{</span>
-<span>$row = $result-&gt;fetch_array(MYSQLI_ASSOC);</span>
-<span>$followers[$j] = $row['friend'];</span>
-<span>}</span>
-<span>$result = queryMysql("SELECT * FROM friends WHERE friend='$view'");</span>
-<span>$num = $result-&gt;num_rows;</span>
-<span>for ($j = 0 ; $j &lt; $num ; ++$j)</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$row = $result-&gt;fetch_array(MYSQLI_ASSOC);</span>
-<span>&nbsp;</span>
-<span>$following[$j] = $row['user'];</span>
-<span>}</span>
-<span>$mutual = array_intersect($followers, $following);</span>
-<span>$followers = array_diff($followers, $mutual);</span>
-<span>$following = array_diff($following, $mutual);</span>
-<span>$friends = FALSE;</span>
-<span>if (sizeof($mutual))</span>
-<span>{</span>
-<span>echo "&lt;span class='subhead'&gt;$name2 mutual friends&lt;/span&gt;&lt;ul&gt;";</span>
-<span>foreach($mutual as $friend)</span>
-<span>&nbsp;</span>
-<span>echo "&lt;li&gt;&lt;a href='members.php?view=$friend'&gt;$friend&lt;/a&gt;";</span>
-<span>echo "&lt;/ul&gt;";</span>
-<span>$friends = TRUE;</span>
-<span>}</span>
-<span>if (sizeof($followers))</span>
-<span>{</span>
-<span>echo "&lt;span class='subhead'&gt;$name2 followers&lt;/span&gt;&lt;ul&gt;";</span>
-<span>foreach($followers as $friend)</span>
-<span>&nbsp;</span>
-<span>echo "&lt;li&gt;&lt;a href='members.php?view=$friend'&gt;$friend&lt;/a&gt;";</span>
-<span>echo "&lt;/ul&gt;";</span>
-<span>$friends = TRUE;</span>
-<span>}</span>
-<span>if (sizeof($following))</span>
-<span>{</span>
-<span>echo "&lt;span class='subhead'&gt;$name3 following&lt;/span&gt;&lt;ul&gt;";</span>
-<span>foreach($following as $friend)</span>
-<span>&nbsp;</span>
-<span>echo "&lt;li&gt;&lt;a href='members.php?view=$friend'&gt;$friend&lt;/a&gt;";</span>
-<span>echo "&lt;/ul&gt;";</span>
-<span>$friends = TRUE;</span>
-<span>}</span>
-<span>if (!$friends) echo "&lt;br&gt;You don't have any friends yet.&lt;br&gt;&lt;br&gt;";</span>
-<span>echo "&lt;a class='button' href='messages.php?view=$view'&gt;" .</span>
-<span>&nbsp;</span>
-<span>"View $name2 messages&lt;/a&gt;";</span>
-<span>?&gt;</span>
-<span>&lt;/div&gt;&lt;br&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+require_once 'header.php';
+if (!$loggedin) die();
+
+if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);
+else $view = $user;
+
+if ($view == $user)
+{
+    $name1 = $name2 = "Your";
+    $name3 = "You are";
+}
+else
+{
+    $name1 = "&lt;a href='members.php?view=$view'&gt;$view&lt;/a&gt;'s";
+    $name2 = "$view's";
+    $name3 = "$view is";
+}
+
+echo "&lt;div class='main'&gt;";
+// Uncomment this line if you wish the user's profile to show here
+// showProfile($view);
+
+$followers = array();
+$following = array();
+$result = queryMysql("SELECT * FROM friends WHERE user='$view'");
+
+$num = $result-&gt;num_rows;
+for ($j = 0 ; $j &lt; $num ; ++$j)
+{
+    $row = $result-&gt;fetch_array(MYSQLI_ASSOC);
+    $followers[$j] = $row['friend'];
+}
+
+$result = queryMysql("SELECT * FROM friends WHERE friend='$view'");
+$num = $result-&gt;num_rows;
+for ($j = 0 ; $j &lt; $num ; ++$j)
+{
+    $row = $result-&gt;fetch_array(MYSQLI_ASSOC);
+    $following[$j] = $row['user'];
+}
+
+$mutual = array_intersect($followers, $following);
+$followers = array_diff($followers, $mutual);
+$following = array_diff($following, $mutual);
+$friends = FALSE;
+
+if (sizeof($mutual))
+{
+    echo "&lt;span class='subhead'&gt;$name2 mutual friends&lt;/span&gt;&lt;ul&gt;";
+    
+    foreach($mutual as $friend)
+        echo "&lt;li&gt;&lt;a href='members.php?view=$friend'&gt;$friend&lt;/a&gt;";
+    
+    echo "&lt;/ul&gt;";
+    $friends = TRUE;
+}
+
+if (sizeof($followers))
+{
+    echo "&lt;span class='subhead'&gt;$name2 followers&lt;/span&gt;&lt;ul&gt;";
+    
+    foreach($followers as $friend)
+        echo "&lt;li&gt;&lt;a href='members.php?view=$friend'&gt;$friend&lt;/a&gt;";
+    echo "&lt;/ul&gt;";
+    
+    $friends = TRUE;
+}
+
+if (sizeof($following))
+{
+    echo "&lt;span class='subhead'&gt;$name3 following&lt;/span&gt;&lt;ul&gt;";
+    
+    foreach($following as $friend)
+        echo "&lt;li&gt;&lt;a href='members.php?view=$friend'&gt;$friend&lt;/a&gt;";
+        
+    echo "&lt;/ul&gt;";
+    
+    $friends = TRUE;
+}
+
+if (!$friends) echo "&lt;br&gt;You don't have any friends yet.&lt;br&gt;&lt;br&gt;";
+    echo "&lt;a class='button' href='messages.php?view=$view'&gt;" . "View $name2 messages&lt;/a&gt;";
+?&gt;
+&lt;/div&gt;&lt;br&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/26.6.png"/></p>
 <span>Figure 26-6. Displaying a user&rsquo;s friends and followers</span>
 <br/>
@@ -1520,106 +1452,85 @@ title: "Bringing It All Together"
 <span>want.</span>
 <br/>
 <span>Example 26-11. messages.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>require_once 'header.php';</span>
-<span>if (!$loggedin) die();</span>
-<span>if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);</span>
-<span>else $view = $user;</span>
-<span>if (isset($_POST['text']))</span>
-<span>{</span>
-<span>$text = sanitizeString($_POST['text']);</span>
-<span>if ($text != "")</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$pm = substr(sanitizeString($_POST['pm']),0,1);</span>
-<span>&nbsp;</span>
-<span>$time = time();</span>
-<span>&nbsp;</span>
-<span>queryMysql("INSERT INTO messages VALUES(NULL, '$user',</span>
-<span>&nbsp;</span>
-<span>'$view', '$pm', $time, '$text')");</span>
-<span>}</span>
-<span>}</span>
-<span>if ($view != "")</span>
-<span>{</span>
-<span>if ($view == $user) $name1 = $name2 = "Your";</span>
-<span>else</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$name1 = "&lt;a href='members.php?view=$view'&gt;$view&lt;/a&gt;'s";</span>
-<span>&nbsp;</span>
-<span>$name2 = "$view's";</span>
-<span>}</span>
-<span>echo "&lt;div class='main'&gt;&lt;h3&gt;$name1 Messages&lt;/h3&gt;";</span>
-<span>showProfile($view);</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&nbsp;</span>
-<span>&lt;form method='post' action='messages.php?view=$view'&gt;</span>
-<span>&nbsp;</span>
-<span>Type here to leave a message:&lt;br&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;textarea name='text' cols='40' rows='3'&gt;&lt;/textarea&gt;&lt;br&gt;</span>
-<span>&nbsp;</span>
-<span>Public&lt;input type='radio' name='pm' value='0' checked='checked'&gt;</span>
-<span>&nbsp;</span>
-<span>Private&lt;input type='radio' name='pm' value='1'&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;input type='submit' value='Post Message'&gt;&lt;/form&gt;&lt;br&gt;</span>
-<span>_END;</span>
-<span>if (isset($_GET['erase']))</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$erase = sanitizeString($_GET['erase']);</span>
-<span>&nbsp;</span>
-<span>queryMysql("DELETE FROM messages WHERE id=$erase AND recip='$user'");</span>
-<span>}</span>
-<span>$query = "SELECT * FROM messages WHERE recip='$view' ORDER BY time DESC";</span>
-<span>$result = queryMysql($query);</span>
-<span>$num = $result-&gt;num_rows;</span>
-<span>for ($j = 0 ; $j &lt; $num ; ++$j)</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>$row = $result-&gt;fetch_array(MYSQLI_ASSOC);</span>
-<span>&nbsp;</span>
-<span>if ($row['pm'] == 0 || $row['auth'] == $user || $row['recip'] == $user)</span>
-<span>&nbsp;</span>
-<span>{</span>
-<span>&nbsp;</span>
-<span>echo date('M jS \'y g:ia:', $row['time']);</span>
-<span>&nbsp;</span>
-<span>echo " &lt;a href='messages.php?view=" . $row['auth'] . "'&gt;" .</span>
-<span>&nbsp;</span>
-<span>$row['auth']. "&lt;/a&gt; ";</span>
-<span>&nbsp;</span>
-<span>if ($row['pm'] == 0)</span>
-<span>&nbsp;</span>
-<span>echo "wrote: &amp;quot;" . $row['message'] . "&amp;quot; ";</span>
-<span>&nbsp;</span>
-<span>else</span>
-<span>&nbsp;</span>
-<span>echo "whispered: &lt;span class='whisper'&gt;&amp;quot;" .</span>
-<span>&nbsp;</span>
-<span>$row['message'] . "&amp;quot;&lt;/span&gt; ";</span>
-<span>&nbsp;</span>
-<span>if ($row['recip'] == $user)</span>
-<span>&nbsp;</span>
-<span>echo "[&lt;a href='messages.php?view=$view" .</span>
-<span>&nbsp;</span>
-<span>"&amp;erase=" . $row['id'] . "'&gt;erase&lt;/a&gt;]";</span>
-<span>&nbsp;</span>
-<span>echo "&lt;br&gt;";</span>
-<span>&nbsp;</span>
-<span>}</span>
-<span>}</span>
-<span>}</span>
-<span>if (!$num) echo "&lt;br&gt;&lt;span class='info'&gt;No messages yet&lt;/span&gt;&lt;br&gt;&lt;br&gt;";</span>
-<span>echo "&lt;br&gt;&lt;a class='button' href='messages.php?view=$view'&gt;Refresh messages&lt;/a&gt;";</span>
-<span>?&gt;</span>
-<span>&lt;/div&gt;&lt;br&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+require_once 'header.php';
+if (!$loggedin) die();
+
+if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);
+else $view = $user;
+
+if (isset($_POST['text']))
+{
+    $text = sanitizeString($_POST['text']);
+    if ($text != "")
+    {
+        $pm = substr(sanitizeString($_POST['pm']),0,1);
+        $time = time();
+        queryMysql("INSERT INTO messages VALUES(NULL, '$user', '$view', '$pm', $time, '$text')");
+    }
+}
+
+if ($view != "")
+{
+    if ($view == $user) $name1 = $name2 = "Your";
+    else
+    {
+        $name1 = "&lt;a href='members.php?view=$view'&gt;$view&lt;/a&gt;'s";
+        $name2 = "$view's";
+    }
+    
+    echo "&lt;div class='main'&gt;&lt;h3&gt;$name1 Messages&lt;/h3&gt;";
+    showProfile($view);
+    echo &lt;&lt;&lt;_END
+            &lt;form method='post' action='messages.php?view=$view'&gt;
+            Type here to leave a message:&lt;br&gt;
+            &lt;textarea name='text' cols='40' rows='3'&gt;&lt;/textarea&gt;&lt;br&gt;
+            Public&lt;input type='radio' name='pm' value='0' checked='checked'&gt;
+            Private&lt;input type='radio' name='pm' value='1'&gt;
+            &lt;input type='submit' value='Post Message'&gt;&lt;/form&gt;&lt;br&gt;
+_END;
+
+if (isset($_GET['erase']))
+{
+    $erase = sanitizeString($_GET['erase']);
+    queryMysql("DELETE FROM messages WHERE id=$erase AND recip='$user'");
+}
+
+$query = "SELECT * FROM messages WHERE recip='$view' ORDER BY time DESC";
+$result = queryMysql($query);
+$num = $result-&gt;num_rows;
+
+for ($j = 0 ; $j &lt; $num ; ++$j)
+{
+    $row = $result-&gt;fetch_array(MYSQLI_ASSOC);
+
+    if ($row['pm'] == 0 || $row['auth'] == $user || $row['recip'] == $user)
+    {
+        echo date('M jS \'y g:ia:', $row['time']);
+        echo " &lt;a href='messages.php?view=" . $row['auth'] . "'&gt;" . $row['auth']. "&lt;/a&gt; ";
+
+        if ($row['pm'] == 0)
+            echo "wrote: &amp;quot;" . $row['message'] . "&amp;quot; ";
+        else
+            echo "whispered: &lt;span class='whisper'&gt;&amp;quot;" . $row['message'] . "&amp;quot;&lt;/span&gt; ";
+
+        if ($row['recip'] == $user)
+            echo "[&lt;a href='messages.php?view=$view" . "&amp;erase=" . $row['id'] . "'&gt;erase&lt;/a&gt;]";
+            echo "&lt;br&gt;";
+        }
+    }
+}
+
+if (!$num) echo "&lt;br&gt;&lt;span class='info'&gt;No messages yet&lt;/span&gt;&lt;br&gt;&lt;br&gt;";
+echo "&lt;br&gt;&lt;a class='button' href='messages.php?view=$view'&gt;Refresh messages&lt;/a&gt;";
+?&gt;
+&lt;/div&gt;&lt;br&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/26.7.png"/></p>
 <span>Figure 26-7. The messaging module</span>
 <br/>
@@ -1639,24 +1550,22 @@ title: "Bringing It All Together"
 <span>clean).</span>
 <br/>
 <span>Example 26-12. logout.php</span>
-<br/>
-<span>&lt;?php</span>
-<span>require_once 'header.php';</span>
-<span>if (isset($_SESSION['user']))</span>
-<span>{</span>
-<span>destroySession();</span>
-<span>echo "&lt;div class='main'&gt;You have been logged out. Please " .</span>
-<span>&nbsp;</span>
-<span>"&lt;a href='index.php'&gt;click here&lt;/a&gt; to refresh the screen.";</span>
-<span>}</span>
-<span>else echo "&lt;div class='main'&gt;&lt;br&gt;" .</span>
-<span>&nbsp;</span>
-<span>"You cannot log out because you are not logged in";</span>
-<span>?&gt;</span>
-<span>&lt;br&gt;&lt;br&gt;&lt;/div&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<br/>
+<pre>
+<code class="php">
+&lt;?php
+require_once 'header.php';
+if (isset($_SESSION['user']))
+{
+    destroySession();
+    echo "&lt;div class='main'&gt;You have been logged out. Please " ."&lt;a href='index.php'&gt;click here&lt;/a&gt; to refresh the screen.";
+}
+else echo "&lt;div class='main'&gt;&lt;br&gt;" ."You cannot log out because you are not logged in";
+?&gt;
+    &lt;br&gt;&lt;br&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
 <p><img src="images/26.8.png"/></p>
 <span>Figure 26-8. The logout page</span>
 <br/>
@@ -1667,168 +1576,134 @@ title: "Bringing It All Together"
 <span>of sets of declarations, as follows:</span>
 <br/>
 <span>*</span>
-<span>Sets the default font family and size for the project using the universal selector.</span>
-<br/>
+<div class="t30">Sets the default font family and size for the project using the universal selector.</div>
+
 <span>body</span>
-<span>Sets the width of the project window, centers it horizontally, specifies a background</span>
-<span>color, and gives it a border.</span>
-<br/>
+<div class="t30">Sets the width of the project window, centers it horizontally, specifies a background color, and gives it a border.</div>
+
 <span>html</span>
-<span>Sets the background color of the HTML section.</span>
-<br/>
+<div class="t30">Sets the background color of the HTML section.</div>
+
 <span>img</span>
-<span>Gives all images a border, shadow, and a righthand margin.</span>
-<br/>
-<span>li a</span>
-<span>and</span>
-<span>.button</span>
-<span>Remove underlines from hyperlinks in all</span>
-<span>&lt;a&gt;</span>
-<span>tags that are within a</span>
-<span>&lt;li&gt;</span>
-<span>element,</span>
-<span>and all elements employing the</span>
-<span>button</span>
-<span>class.</span>
-<br/>
-<span>li a:hover</span>
-<span>and</span>
-<span>.button:hover</span>
-<span>Sets the color in which</span>
-<span>&lt;li&gt;</span>
-<span>elements and the</span>
-<span>button</span>
-<span>class should display text when</span>
-<span>hovered over.</span>
-<br/>
+<div class="t30">Gives all images a border, shadow, and a righthand margin.</div>
+
+<span>li a and .button</span>
+<div class="t30">Remove underlines from hyperlinks in all &lt;a&gt; tags that are within a &lt;li&gt;
+element, and all elements employing the button class.</div>
+
+<span>li a:hover and .button:hover</span>
+<div class="t30">Sets the color in which &lt;li&gt; elements and the button class should display text when hovered over.</div>
+
 <span>.appname</span>
-<span>Sets the properties for the heading (which uses the</span>
-<span>appname</span>
-<span>class), including center‐</span>
-<span>ing, background and text colors, the font family and size, and the padding.</span>
-<br/>
+<div class="t30">Sets the properties for the heading (which uses the appname class), including center‐ing, background and text colors, the font family and size, and the padding.</div>
+
 <span>.fieldname</span>
-<span>Sets the width of elements using the</span>
-<span>fieldname</span>
-<span>class by first floating them.</span>
-<br/>
+<div class="t30">Sets the width of elements using the fieldname class by first floating them.</div>
+
 <span>.main</span>
-<span>This class applies an indent to elements that use it.</span>
-<br/>
+<div class="t30">This class applies an indent to elements that use it.</div>
+
 <span>.info</span>
-<span>This class is used for displaying important information. It sets a background and</span>
-<span>foreground text color, applies a border and padding, and indents elements that</span>
-<span>employ it.</span>
-<br/>
-<span>.menu li</span>
-<span>and</span>
-<span>.button</span>
-<span>These declarations ensure that all</span>
-<span>&lt;li&gt;</span>
-<span>elements and the</span>
-<span>button</span>
-<span>class display inline,</span>
-<span>have padding applied, and include a border, a background and foreground text color,</span>
-<span>a right margin, rounded borders, and a shadow&mdash;resulting in a button effect.</span>
-<br/>
+<div class="t30">This class is used for displaying important information. It sets a background and foreground text color, applies a border and padding, and indents elements that employ it.</div>
+
+<span>.menu li and .button</span>
+<div class="t30">These declarations ensure that all &lt;li&gt; elements and the button
+class display inline, have padding applied, and include a border, a background and foreground text color,
+a right margin, rounded borders, and a shadow&mdash;resulting in a button effect.</div>
+
 <span>.subhead</span>
-<span>Emphasizes sections of text.</span>
-<br/>
-<span>.taken</span>
-<span>,</span>
-<span>.available</span>
-<span>,</span>
-<span>.error</span>
-<span>, and</span>
-<span>.whisper</span>
-<span>These declarations set the colors and font styles to be used for displaying different</span>
-<span>types of information.</span>
-<br/>
+<div class="t30">Emphasizes sections of text.</div>
+
+<span>.taken, .available, .error, and .whisper</span>
+<div class="t30">These declarations set the colors and font styles to be used for displaying different types of information.</div>
+
 <span>#logo</span>
-<span>These rules style the logo text as a fallback in case a non-HTML5 browser is in use</span>
-<span>and the canvas logo doesn&rsquo;t get created.</span>
+<div class="t30">These rules style the logo text as a fallback in case a non-HTML5 browser is in use and the canvas logo doesn&rsquo;t get created.</div>
 <br/>
 <span>Example 26-13. styles.css</span>
-<br/>
-<span>* {</span>
-<span>font-family:verdana,sans-serif;</span>
-<span>font-size :14pt;</span>
-<span>}</span>
-<span>body {</span>
-<span>width :700px;</span>
-<span>margin :20px auto;</span>
-<span>background:#f8f8f8;</span>
-<span>border :1px solid #888;</span>
-<span>}</span>
-<span>html {</span>
-<span>background:#fff</span>
-<span>}</span>
-<span>img {</span>
-<span>border :1px solid black;</span>
-<span>margin-right :15px;</span>
-<span>-moz-box-shadow :2px 2px 2px #888;</span>
-<span>-webkit-box-shadow:2px 2px 2px #888;</span>
-<span>box-shadow :2px 2px 2px #888;</span>
-<span>}</span>
-<span>li a, .button {</span>
-<span>text-decoration:none;</span>
-<span>}</span>
-<span>li a:hover, .button:hover {</span>
-<span>color:green;</span>
-<span>}</span>
-<span>.appname {</span>
-<span>text-align :center;</span>
-<span>background :#eb8;</span>
-<span>color :#40d;</span>
-<span>font-family:helvetica;</span>
-<span>font-size :20pt;</span>
-<span>padding :4px;</span>
-<span>}</span>
-<span>.fieldname {</span>
-<span>float:left;</span>
-<span>width:120px;</span>
-<span>}</span>
-<span>.main {</span>
-<span>margin-left:40px;</span>
-<span>}</span>
-<span>.info {</span>
-<span>background :lightgreen;</span>
-<span>color :blue;</span>
-<span>border :1px solid green;</span>
-<span>padding :5px 10px;</span>
-<span>margin-left:40px;</span>
-<span>}</span>
-<span>.menu li, .button {</span>
-<span>display :inline;</span>
-<span>padding :4px 6px;</span>
-<span>border :1px solid #777;</span>
-<span>background :#ddd;</span>
-<span>color :#d04;</span>
-<span>margin-right :8px;</span>
-<span>border-radius :5px;</span>
-<span>-moz-box-shadow :2px 2px 2px #888;</span>
-<span>-webkit-box-shadow:2px 2px 2px #888;</span>
-<span>box-shadow :2px 2px 2px #888;</span>
-<span>}</span>
-<span>.subhead {</span>
-<span>font-weight:bold;</span>
-<span>}</span>
-<span>.taken, .error {</span>
-<span>color:red;</span>
-<span>}</span>
-<span>.available {</span>
-<span>color:green;</span>
-<span>}</span>
-<span>.whisper {</span>
-<span>font-style:italic;</span>
-<span>color :#006600;</span>
-<span>}</span>
-<span>#logo {</span>
-<span>font-family:Georgia;</span>
-<span>font-weight:bold;</span>
-<span>font-style :italic;</span>
-<span>font-size :97px;</span>
-<span>}</span>
+<pre>
+<code class="css">
+* {
+    font-family:verdana,sans-serif;
+    font-size :14pt;
+}
+body {
+    width :700px;
+    margin :20px auto;
+    background:#f8f8f8;
+    border :1px solid #888;
+}
+html {
+    background:#fff
+}
+img {
+    border :1px solid black;
+    margin-right :15px;
+    -moz-box-shadow :2px 2px 2px #888;
+    -webkit-box-shadow:2px 2px 2px #888;
+    box-shadow :2px 2px 2px #888;
+}
+li a, .button {
+    text-decoration:none;
+}
+li a:hover, .button:hover {
+    color:green;
+}
+.appname {
+    text-align :center;
+    background :#eb8;
+    color :#40d;
+    font-family:helvetica;
+    font-size :20pt;
+    padding :4px;
+}
+.fieldname {
+    float:left;
+    width:120px;
+}
+.main {
+    margin-left:40px;
+}
+.info {
+    background :lightgreen;
+    color :blue;
+    border :1px solid green;
+    padding :5px 10px;
+    margin-left:40px;
+}
+.menu li, .button {
+    display :inline;
+    padding :4px 6px;
+    border :1px solid #777;
+    background :#ddd;
+    color :#d04;
+    margin-right :8px;
+    border-radius :5px;
+    -moz-box-shadow :2px 2px 2px #888;
+    -webkit-box-shadow:2px 2px 2px #888;
+    box-shadow :2px 2px 2px #888;
+}
+.subhead {
+    font-weight:bold;
+}
+.taken, .error {
+    color:red;
+}
+.available {
+    color:green;
+}
+.whisper {
+    font-style:italic;
+    color :#006600;
+}
+#logo {
+    font-family:Georgia;
+    font-weight:bold;
+    font-style :italic;
+    font-size :97px;
+}
+</code>
+</pre>
 <h3>javascript.js</h3>
 <span>Finally, there&rsquo;s the JavaScript file (see</span>
 <span>Example 26-14</span>
@@ -1844,43 +1719,50 @@ title: "Bringing It All Together"
 <span>.</span>
 <br/>
 <span>Example 26-14. javascript.js</span>
-<br/>
-<span>canvas = O('logo')</span>
-<span>context = canvas.getContext('2d')</span>
-<span>context.font = 'bold italic 97px Georgia'</span>
-<span>context.textBaseline = 'top'</span>
-<span>image = new Image()</span>
-<span>image.src = 'robin.gif'</span>
-<span>image.onload = function()</span>
-<span>{</span>
-<span>gradient = context.createLinearGradient(0, 0, 0, 89)</span>
-<span>gradient.addColorStop(0.00, '#faa')</span>
-<span>gradient.addColorStop(0.66, '#f00')</span>
-<span>context.fillStyle = gradient</span>
-<span>context.fillText( "R bin's Nest", 0, 0)</span>
-<span>context.strokeText("R bin's Nest", 0, 0)</span>
-<span>context.drawImage(image, 64, 32)</span>
-<span>}</span>
-<span>function O(obj)</span>
-<span>{</span>
-<span>if (typeof obj == 'object') return obj</span>
-<span>else return document.getElementById(obj)</span>
-<span>}</span>
-<span>function S(obj)</span>
-<span>{</span>
-<span>return O(obj).style</span>
-<span>}</span>
-<span>function C(name)</span>
-<span>{</span>
-<span>var elements = document.getElementsByTagName('*')</span>
-<span>var objects = []</span>
-<span>for (var i = 0 ; i &lt; elements.length ; ++i)</span>
-<span>if (elements[i].className == name)</span>
-<span>&nbsp;</span>
-<span>objects.push(elements[i])</span>
-<span>return objects</span>
-<span>}</span>
-<br/>
+<pre>
+<code class="css">
+canvas = O('logo')
+context = canvas.getContext('2d')
+
+context.font = 'bold italic 97px Georgia'
+context.textBaseline = 'top'
+image = new Image()
+image.src = 'robin.gif'
+
+image.onload = function()
+{
+    gradient = context.createLinearGradient(0, 0, 0, 89)
+    gradient.addColorStop(0.00, '#faa')
+    gradient.addColorStop(0.66, '#f00')
+    
+    context.fillStyle = gradient
+    context.fillText( "R bin's Nest", 0, 0)
+    context.strokeText("R bin's Nest", 0, 0)
+    context.drawImage(image, 64, 32)
+}
+
+function O(obj)
+{
+    if (typeof obj == 'object') return obj
+    else return document.getElementById(obj)
+}
+
+function S(obj)
+{
+    return O(obj).style
+}
+
+function C(name)
+{
+    var elements = document.getElementsByTagName('*')
+    var objects = []
+    for (var i = 0 ; i &lt; elements.length ; ++i)
+        if (elements[i].className == name)
+            objects.push(elements[i])
+    return objects
+}
+</code>
+</pre>
 <span>And that, as they say, is that. If you write anything based on this code or any other</span>
 <span>examples in this book, or have gained in any other way from it, then I am glad to have</span>
 <span>been of help and thank you for reading this book.</span>

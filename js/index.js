@@ -1,13 +1,45 @@
 //<pre><code class="javascript"></code></pre>
 <pre>
-<code class="javascript">
-window.onload = function()
+<code class="css">
+canvas = O('logo')
+context = canvas.getContext('2d')
+
+context.font = 'bold italic 97px Georgia'
+context.textBaseline = 'top'
+image = new Image()
+image.src = 'robin.gif'
+
+image.onload = function()
 {
-    if (!!document.getItems)
-    {
-        data = document.getItems('http://schema.org/Person')[0]
-        alert(data.properties['jobTitle'][0].textContent)
-    }
+    gradient = context.createLinearGradient(0, 0, 0, 89)
+    gradient.addColorStop(0.00, '#faa')
+    gradient.addColorStop(0.66, '#f00')
+    
+    context.fillStyle = gradient
+    context.fillText( "R bin's Nest", 0, 0)
+    context.strokeText("R bin's Nest", 0, 0)
+    context.drawImage(image, 64, 32)
+}
+
+function O(obj)
+{
+    if (typeof obj == 'object') return obj
+    else return document.getElementById(obj)
+}
+
+function S(obj)
+{
+    return O(obj).style
+}
+
+function C(name)
+{
+    var elements = document.getElementsByTagName('*')
+    var objects = []
+    for (var i = 0 ; i &lt; elements.length ; ++i)
+        if (elements[i].className == name)
+            objects.push(elements[i])
+    return objects
 }
 </code>
 </pre>
