@@ -5,10 +5,8 @@ title: "Introduction to Dynamic Web Content"
 <section>
     <h2>Introduction to Dynamic Web Content</h2>
     <span>The World Wide Web is a constantly evolving network that has already traveled far</span>
-    <span>beyond its conception in the early 1990s, when it was created to solve a specific prob‐</span>
-    <span>lem. State-of-the-art experiments at CERN (the European Laboratory for Particle</span>
-    <span>Physics now best known as the operator of the Large Hadron Collider) were pro‐</span>
-    <span>ducing incredible amounts of data so much that the data was proving unwieldy to</span>
+    <span>beyond its conception in the early 1990s, when it was created to solve a specific problem. State-of-the-art experiments at CERN (the European Laboratory for Particle</span>
+    <span>Physics now best known as the operator of the Large Hadron Collider) were producing incredible amounts of data so much that the data was proving unwieldy to</span>
     <span>distribute to the participating scientists who were spread out across the world.</span><br/>
     <span>At this time, the Internet was already in place, with several hundred thousand com</span>
     <span>puters connected to it, so Tim Berners-Lee (a CERN fellow) devised a method of nav</span>
@@ -16,8 +14,8 @@ title: "Introduction to Dynamic Web Content"
     <span>Hypertext Transfer Protocol, or HTTP. He also created a markup language called</span>
     <span>Hypertext Markup Language, or HTML. To bring these together, he wrote the first</span>
     <span>web browser and web server, tools that we now take for granted.</span><br/>
-    <span>But back then, the concept was revolutionary. The most connectivity so far experi‐</span>
-    <span>enced by at home modem users was dialing up and connecting to a bulletin board</span>
+    <span>But back then, the concept was revolutionary. The most connectivity so far experienced</span>
+    <span> by at home modem users was dialing up and connecting to a bulletin board</span>
     <span>that was hosted by a single computer, where you could communicate and swap data</span>
     <span>only with other users of that service. Consequently, you needed to be a member of</span>
     <span>many bulletin board systems in order to effectively communicate electronically with</span>
@@ -71,12 +69,10 @@ title: "Introduction to Dynamic Web Content"
     <span>into your browser&rsquo;s address bar.</span><br/>
     <span>2.</span>
     <span>Your browser looks up the IP address for</span>
-    <span>server.com</span>
-    <span>.</span><br/>
+    <span>server.com.</span><br/>
     <span>3.</span>
     <span>Your browser issues a request for the home page at</span>
-    <span>server.com</span>
-    <span>.</span><br/>
+    <span>server.com.</span><br/>
     <span>4.</span>
     <span>The request crosses the Internet and arrives at the</span>
     <span>server.com</span>
@@ -417,11 +413,11 @@ Here's the latest news.
     <span>about it now will stand you in very good stead.</span><br/>
     <span>There&rsquo;s actually a great deal of new stuff in HTML (and quite a few things that have</span>
     <span>been changed or removed), but in summary, here&rsquo;s what you get:</span><br/>
-    <i>Markup</i><br/>
+    <i>Markup</i>
     <div class="t30">Including new elements such as &lt;nav&gt; and &lt;footer&gt; , and deprecated elements like &lt;font&gt; and &lt;center&gt; .</div>
-    <i>New APIs</i><br/>
+    <i>New APIs</i>
     <div class="t30">Such as the &lt;canvas&gt; element for writing and drawing on a graphics canvas, &lt;audio&gt; and &lt;video&gt; elements, offline web applications, microdata, and local storage.</div>
-    <i>Applications</i><br/>
+    <i>Applications</i>
     <div class="t30">Including two new rendering technologies: MathML (Math Markup Language) for
     displaying mathematical formulae and SVG (Scalable Vector Graphics) for creating graphical elements outside of the new &lt;canvas&gt; element. However, MathML and
     SVG are somewhat specialist, and are so feature-packed they would need a book of their own, so I don&rsquo;t cover them here.<br/>
