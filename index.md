@@ -53,7 +53,7 @@ title: "Introduction to Dynamic Web Content"
     <span>And when you bring JavaScript and CSS into the mix too, you have a recipe for building highly dynamic and interactive websites.</span>
     <a id="using-php"></a>
     <h4>Using PHP</h4>
-    <span>With PHP, it&rsquo;s a simple matter to embed dynamic activity in web pages. When you give pages the.php extension, they have instant access to the scripting language. From a developer&rsquo;s point of view, all you have to do is write code such as the following:</span>
+    <span>With PHP, it&rsquo;s a simple matter to embed dynamic activity in web pages. When you give pages the .php extension, they have instant access to the scripting language. From a developer&rsquo;s point of view, all you have to do is write code such as the following:</span>
 <pre><code class="php">
 &lt;?php
     echo " Today is ". date("l"). ". ";
@@ -67,7 +67,7 @@ Here's the latest news.
     <span>PHP is a flexible language, and some people prefer to place the PHP construct directly next to PHP code, like this:</span>
     <pre><code class="php">Today is &lt;?php echo date("l"); ?&gt;. Here's the latest news.</code></pre>
     <span>There are also other ways of formatting and outputting information, which I&rsquo;ll explain in the chapters on PHP. The point is that with PHP, web developers have a scripting language that, although not as fast as compiling your code in C or a similar language, is incredibly speedy and also integrates seamlessly with HTML markup.</span><br/>
-    <span>If you intend to enter the PHP examples in this book to work along with me, you must remember to add &lt;?php in front and ?&gt; after them to ensure that the PHP interpreter processes them. To facilitate this, you may wish to prepare a file called &nbsp;example.php &nbsp;with those tags in place.</span><br/>
+    <span>If you intend to enter the PHP examples in this book to work along with me, you must remember to add &lt;?php in front and ?&gt; after them to ensure that the PHP interpreter processes them. To facilitate this, you may wish to prepare a file called &nbsp;example .php &nbsp;with those tags in place.</span><br/>
     <span>Using PHP, you have unlimited control over your web server. Whether you need to modify HTML on the fly, process a credit card, add user details to a database, or fetch information from a third party website, you can do it all from within the same PHP files in which the HTML itself resides.</span><br/>
     <a id="using-mysql"></a>
     <h4>Using MySQL</h4>
