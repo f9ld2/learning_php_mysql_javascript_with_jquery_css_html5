@@ -29,12 +29,12 @@ title: "Introduction to Dynamic Web Content"
     <span>6. The web page is retrieved by the server and returned to the browser.</span><br/>
     <span>7. Your browser displays the web page.</span><br/>
     <span>For an average web page, this process takes place once for each object within the page: a graphic, an embedded video or Flash file, and even a CSS template.</span><br/>
-    <span>In step 2, notice that the browser looked up the IP address of &nbsp;server.com . Every machine attached to the Internet has an IP address your computer included. But we generally access web servers by name, such as google.com . As you probably know, the browser consults an additional Internet service called the Domain Name Service (DNS) to find its associated IP address and then uses it to communicate with the computer.</span><br/>
+    <span>In step 2, notice that the browser looked up the IP address of &nbsp;server.com. Every machine attached to the Internet has an IP address your computer included. But we generally access web servers by name, such as google.com. As you probably know, the browser consults an additional Internet service called the Domain Name Service (DNS) to find its associated IP address and then uses it to communicate with the computer.</span><br/>
     <span>For dynamic web pages, the procedure is a little more involved, because it may bring both PHP and MySQL into the mix (see Figure 1-2 ).</span><br/>
     <p><img src="images/1.2.png"/></p>
     <span>Figure 1-2. A dynamic client/server request/response sequence</span><br/>
     <span>1. You enter http://server.com into your browser&rsquo;s address bar.</span><br/>
-    <span>2. Your browser looks up the IP address for server.com .</span><br/>
+    <span>2. Your browser looks up the IP address for server.com.</span><br/>
     <span>3. Your browser issues a request to that address for the web server&rsquo;s home page.</span><br/>
     <span>4. The request crosses the Internet and arrives at the server.com web server.</span><br/>
     <span>5. The web server, having received the request, fetches the home page from its hard disk.</span><br/>
@@ -53,10 +53,10 @@ title: "Introduction to Dynamic Web Content"
     <span>And when you bring JavaScript and CSS into the mix too, you have a recipe for build- ing highly dynamic and interactive websites.</span>
     <a id="using-php"></a>
     <h4>Using PHP</h4>
-    <span>With PHP, it&rsquo;s a simple matter to embed dynamic activity in web pages. When you give pages the .php extension, they have instant access to the scripting language. From a developer&rsquo;s point of view, all you have to do is write code such as the following:</span>
+    <span>With PHP, it&rsquo;s a simple matter to embed dynamic activity in web pages. When you give pages the.php extension, they have instant access to the scripting language. From a developer&rsquo;s point of view, all you have to do is write code such as the following:</span>
 <pre><code class="php">
 &lt;?php
-    echo " Today is " . date("l") . ". ";
+    echo " Today is ". date("l"). ". ";
 ?&gt;
 Here's the latest news.
 </code>
@@ -93,11 +93,11 @@ Here's the latest news.
   document.write("Today is " + Date() );
 &lt;/script&gt;
         </code></pre>
-    <span>This code snippet tells the web browser to interpret everything within the script tags as JavaScript, which the browser then does by writing the text Today is to the current document, along with the date, by using the JavaScript function Date . The result will look something like this:</span><br/>
+    <span>This code snippet tells the web browser to interpret everything within the script tags as JavaScript, which the browser then does by writing the text Today is to the current document, along with the date, by using the JavaScript function Date. The result will look something like this:</span><br/>
     <span><b class="t30">Today is Sun Jan 01 2017 01:23:45</b></span><br/>
     <span>Unless you need to specify an exact version of JavaScript, you can normally omit the type="text/javascript" and just use &lt;script&gt; to start the interpretation of the JavaScript.</span><br/>
     <span>As previously mentioned, JavaScript was originally developed to offer dynamic control over the various elements within an HTML document, and that is still its main use. But more and more, JavaScript is being used for Ajax. This is a term for the process of accessing the web server in the background. (It originally meant Asynchronous JavaScript and XML , but that phrase is already a bit outdated.)</span><br/>
-    <span>Ajax is the main process behind what is now known as Web 2.0 (a term popularized by Tim O&rsquo;Reilly, the founder and CEO of this book&rsquo;s publishing company), in which web pages have started to resemble standalone programs, because they don&rsquo;t have to be reloaded in their entirety. Instead, a quick Ajax call can pull in and update a single element on a web page, such as changing your photograph on a social networking site or replacing a button that you click with the answer to a question. This subject is fully covered in Chapter 17 .</span><br/>
+    <span>Ajax is the main process behind what is now known as Web 2.0 (a term popularized by Tim O&rsquo;Reilly, the founder and CEO of this book&rsquo;s publishing company), in which web pages have started to resemble standalone programs, because they don&rsquo;t have to be reloaded in their entirety. Instead, a quick Ajax call can pull in and update a single element on a web page, such as changing your photograph on a social networking site or replacing a button that you click with the answer to a question. This subject is fully covered in Chapter 17.</span><br/>
     <span>Then, in Chapter 21 , we take a good look at the jQuery framework, which you can use to save reinventing the wheel when you need fast, cross browser code to manipulate your web pages. Of course, there are other frameworks available too, but jQuery is by far the most popular and, due to continuous maintenance, is extremely reliable, and a major tool in the utility kit of many seasoned web developers.</span>
     <a id="using-css"></a>
     <h4>Using CSS</h4>
@@ -114,7 +114,7 @@ Here's the latest news.
     <span>However, while HTML5.1 is planned to bring some handy improvements (mainly to the canvas), basic HTML5 is the new standard web developers now need to work to, and it will remain in place for many years to come. So learning everything you can about it now will stand you in very good stead.</span><br/>
     <span>There&rsquo;s actually a great deal of new stuff in HTML (and quite a few things that have been changed or removed), but in summary, here&rsquo;s what you get:</span><br/>
     <i>Markup</i>
-    <div class="t30">Including new elements such as &lt;nav&gt; and &lt;footer&gt; , and deprecated elements like &lt;font&gt; and &lt;center&gt; .</div>
+    <div class="t30">Including new elements such as &lt;nav&gt; and &lt;footer&gt; , and deprecated elements like &lt;font&gt; and &lt;center&gt;.</div>
     <i>New APIs</i>
     <div class="t30">Such as the &lt;canvas&gt; element for writing and drawing on a graphics canvas, &lt;audio&gt; and &lt;video&gt; elements, offline web applications, microdata, and local storage.</div>
     <i>Applications</i>
@@ -122,8 +122,8 @@ Here's the latest news.
     displaying mathematical formulae and SVG (Scalable Vector Graphics) for creating graphical elements outside of the new &lt;canvas&gt; element. However, MathML and
     SVG are somewhat specialist, and are so feature-packed they would need a book of their own, so I don&rsquo;t cover them here.<br/>
     </div>
-    <span>All these things (and more) are covered in detail starting in Chapter 22 .</span><br/>
-    <span>One of the little things I like about the HTML5 specification is that XHTML syntax is no longer required for self-closing elements. In the past, you could display a line break using the &lt;br&gt; element. Then, to ensure future compatibility with XHTML (the planned replacement for HTML that never happened), this was changed to &lt;br /&gt; , in which a closing / character was added (since all elements  were expected to include a closing tag featuring this character) . But now things have gone full circle, and you can use either version of these types of element. So, for the sake of brevity and fewer keystrokes, in this book I have reverted to the former style of &lt;br&gt; , &lt;hr&gt; , and so on.</span><br/>
+    <span>All these things (and more) are covered in detail starting in Chapter 22.</span><br/>
+    <span>One of the little things I like about the HTML5 specification is that XHTML syntax is no longer required for self-closing elements. In the past, you could display a line break using the &lt;br&gt; element. Then, to ensure future compatibility with XHTML (the planned replacement for HTML that never happened), this was changed to &lt;br /&gt; , in which a closing / character was added (since all elements  were expected to include a closing tag featuring this character). But now things have gone full circle, and you can use either version of these types of element. So, for the sake of brevity and fewer keystrokes, in this book I have reverted to the former style of &lt;br&gt; , &lt;hr&gt; , and so on.</span><br/>
     <a id="the-apache-web-server"></a>
     <h3>The Apache Web Server</h3>
     <span>In addition to PHP, MySQL, JavaScript, CSS, and HTML5, there&rsquo;s a sixth hero in the dynamic Web: the web server. In the case of this book, that means the Apache web server. We&rsquo;ve discussed a little of what a web server does during the HTTP server/ client exchange, but it does much more behind the scenes.</span><br/>

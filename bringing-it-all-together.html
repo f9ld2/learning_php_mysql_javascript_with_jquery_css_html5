@@ -33,13 +33,13 @@ title: "Bringing It All Together"
 <br/>
 <span>I decided to name the project Robin&rsquo;s Nest , but you have to modify only one line of code (in functions.php ) to change this to a name of your choice.</span>
 <h3>On the Website</h3>
-<span>All the examples in this chapter can be found on the companion website located at http://lpmj.net . You can also download the examples from there to your computer by clicking the Download Examples link. This will download an archive file called exam‐ ples.zip , which you should extract to a suitable location on your computer.</span>
+<span>All the examples in this chapter can be found on the companion website located at http://lpmj.net. You can also download the examples from there to your computer by clicking the Download Examples link. This will download an archive file called exam‐ ples.zip , which you should extract to a suitable location on your computer.</span>
 <br/>
 <span>Of particular interest to this chapter, within the zip file you&rsquo;ll find there&rsquo;s a folder called robinsnest , in which all the following examples have been saved with the correct filenames required by this sample application. So you can easily copy them all to your web development folder to try them out.</span>
 <h3>functions.php</h3>
 <span>Let&rsquo;s jump right into the project, starting with &nbsp;Example 26-1 , &nbsp;functions.php , the include file of the main functions. This file contains a little more than just the functions, though, because I have added the database login details here instead of using yet another separate file. So the first half-dozen lines of code define the host, database name, username, and password of the database to use.</span>
 <br/>
-<span>It doesn&rsquo;t matter what you call the database, as long as it already exists (see Chapter 8 for instructions on how to create a new database). Also make sure to correctly assign a MySQL username and password to $dbuser and $dbpass . With correct values, the subsequent two lines will open a connection to MySQL and select the database. The last of the initial instructions sets the name of the social networking site by assigning the value Robin's Nest to the variable $appname . If you want to change the name, this is the place to do so.</span>
+<span>It doesn&rsquo;t matter what you call the database, as long as it already exists (see Chapter 8 for instructions on how to create a new database). Also make sure to correctly assign a MySQL username and password to $dbuser and $dbpass. With correct values, the subsequent two lines will open a connection to MySQL and select the database. The last of the initial instructions sets the name of the social networking site by assigning the value Robin's Nest to the variable $appname. If you want to change the name, this is the place to do so.</span>
 <h4>The Functions</h4>
 <span>The project uses five main functions:</span>
 <br/>
@@ -66,9 +66,9 @@ title: "Bringing It All Together"
 &lt;?php
     $dbhost = 'localhost'; // Unlikely to require changing
     $dbname = 'robinsnest'; // Modify these...
-    $dbuser = 'robinsnest'; // ...variables according
-    $dbpass = 'rnpassword'; // ...to your installation
-    $appname = "Robin's Nest"; // ...and preference
+    $dbuser = 'robinsnest'; //...variables according
+    $dbpass = 'rnpassword'; //...to your installation
+    $appname = "Robin's Nest"; //...and preference
     $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
     
     if ($connection-&gt;connect_error) die($connection-&gt;connect_error);
@@ -115,19 +115,19 @@ title: "Bringing It All Together"
         if ($result-&gt;num_rows)
         {
             $row = $result-&gt;fetch_array(MYSQLI_ASSOC);
-            echo stripslashes($row['text']) . "&lt;br style='clear:left;'&gt;&lt;br&gt;";
+            echo stripslashes($row['text']). "&lt;br style='clear:left;'&gt;&lt;br&gt;";
         }
     }
 ?&gt;
 </code>
 </pre>
-<span>If you read a previous edition of this book, in which these examples used the old mysql extension, you should note that in order to reference the MySQL database using mysqli , you must apply the global keyword in the queryMysql and sanitizeString functions, to allow them to use the value in $connection .</span>
+<span>If you read a previous edition of this book, in which these examples used the old mysql extension, you should note that in order to reference the MySQL database using mysqli , you must apply the global keyword in the queryMysql and sanitizeString functions, to allow them to use the value in $connection.</span>
 <h3>header.php</h3>
-<span>For uniformity, each page of the project needs to have access to the same set of features. Therefore, I placed these things in &nbsp;Example 26-2 , &nbsp;header.php . This is the file that is actually included by the other files and it includes functions.php . This means that only a single require_once is needed in each file.</span>
+<span>For uniformity, each page of the project needs to have access to the same set of features. Therefore, I placed these things in &nbsp;Example 26-2 , &nbsp;header.php. This is the file that is actually included by the other files and it includes functions.php. This means that only a single require_once is needed in each file.</span>
 <br/>
-<span>header.php starts by calling the function session_start . As you&rsquo;ll recall from Chapter 12 , this sets up a session that will remember certain values we want stored across different PHP files.</span>
+<span>header.php starts by calling the function session_start. As you&rsquo;ll recall from Chapter 12 , this sets up a session that will remember certain values we want stored across different PHP files.</span>
 <br/>
-<span>With the session started, the program then checks whether the session variable user is currently assigned a value. If so, a user has logged in and the variable $loggedin is set to TRUE .</span>
+<span>With the session started, the program then checks whether the session variable user is currently assigned a value. If so, a user has logged in and the variable $loggedin is set to TRUE.</span>
 <br/>
 <span>After the main setup code in which a style sheet is loaded, a canvas element is created for the logo, and a div is also created. The file javascript.js (see Example 26-14 , later on) is loaded to pull in the O , S , and C functions; these would normally be in the OSC.js file, but to keep the number of files down I&rsquo;ve added them to the JavaScript used to create the logo.</span>
 <br/>
@@ -153,27 +153,27 @@ title: "Bringing It All Together"
     }
     else $loggedin = FALSE;
 
-    echo    "&lt;title&gt;$appname$userstr&lt;/title&gt;&lt;link rel='stylesheet' " .
-            "href='styles.css' type='text/css'&gt;" .
-            "&lt;/head&gt;&lt;body&gt;&lt;center&gt;&lt;canvas id='logo' width='624' " .
-            "height='96'&gt;$appname&lt;/canvas&gt;&lt;/center&gt;" .
-            "&lt;div class='appname'&gt;$appname$userstr&lt;/div&gt;" .
+    echo    "&lt;title&gt;$appname$userstr&lt;/title&gt;&lt;link rel='stylesheet' ".
+            "href='styles.css' type='text/css'&gt;".
+            "&lt;/head&gt;&lt;body&gt;&lt;center&gt;&lt;canvas id='logo' width='624' ".
+            "height='96'&gt;$appname&lt;/canvas&gt;&lt;/center&gt;".
+            "&lt;div class='appname'&gt;$appname$userstr&lt;/div&gt;".
             "&lt;script src='javascript.js'&gt;&lt;/script&gt;";
         
     if ($loggedin)
-        echo    "&lt;br &gt;&lt;ul class='menu'&gt;" .
-                "&lt;li&gt;&lt;a href='members.php?view=$user'&gt;Home&lt;/a&gt;&lt;/li&gt;" .
-                "&lt;li&gt;&lt;a href='members.php'&gt;Members&lt;/a&gt;&lt;/li&gt;" .
-                "&lt;li&gt;&lt;a href='friends.php'&gt;Friends&lt;/a&gt;&lt;/li&gt;" .
-                "&lt;li&gt;&lt;a href='messages.php'&gt;Messages&lt;/a&gt;&lt;/li&gt;" .
-                "&lt;li&gt;&lt;a href='profile.php'&gt;Edit Profile&lt;/a&gt;&lt;/li&gt;" .
+        echo    "&lt;br &gt;&lt;ul class='menu'&gt;".
+                "&lt;li&gt;&lt;a href='members.php?view=$user'&gt;Home&lt;/a&gt;&lt;/li&gt;".
+                "&lt;li&gt;&lt;a href='members.php'&gt;Members&lt;/a&gt;&lt;/li&gt;".
+                "&lt;li&gt;&lt;a href='friends.php'&gt;Friends&lt;/a&gt;&lt;/li&gt;".
+                "&lt;li&gt;&lt;a href='messages.php'&gt;Messages&lt;/a&gt;&lt;/li&gt;".
+                "&lt;li&gt;&lt;a href='profile.php'&gt;Edit Profile&lt;/a&gt;&lt;/li&gt;".
                 "&lt;li&gt;&lt;a href='logout.php'&gt;Log out&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;";
     else
-        echo    ("&lt;br&gt;&lt;ul class='menu'&gt;" .
-                "&lt;li&gt;&lt;a href='index.php'&gt;Home&lt;/a&gt;&lt;/li&gt;" .
-                "&lt;li&gt;&lt;a href='signup.php'&gt;Sign up&lt;/a&gt;&lt;/li&gt;" .
-                "&lt;li&gt;&lt;a href='login.php'&gt;Log in&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;" .
-                "&lt;span class='info'&gt;&amp;#8658; You must be logged in to " .
+        echo    ("&lt;br&gt;&lt;ul class='menu'&gt;".
+                "&lt;li&gt;&lt;a href='index.php'&gt;Home&lt;/a&gt;&lt;/li&gt;".
+                "&lt;li&gt;&lt;a href='signup.php'&gt;Sign up&lt;/a&gt;&lt;/li&gt;".
+                "&lt;li&gt;&lt;a href='login.php'&gt;Log in&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;".
+                "&lt;span class='info'&gt;&amp;#8658; You must be logged in to ".
                 "view this page.&lt;/span&gt;&lt;br&gt;&lt;br&gt;");
 ?&gt;
 </code>
@@ -237,11 +237,11 @@ title: "Bringing It All Together"
 &lt;/html&gt;
 </code>
 </pre>
-<span>For this example to work, you must first ensure that you have already created the database specified in the variable $dbname in Example 26-1 , and also have granted access to it by the user given the name in $dbuser , with the password in $dbpass .</span>
+<span>For this example to work, you must first ensure that you have already created the database specified in the variable $dbname in Example 26-1 , and also have granted access to it by the user given the name in $dbuser , with the password in $dbpass.</span>
 <h3>index.php</h3>
 <span>This file is a trivial file but necessary nonetheless to give the project a home page. All it does is display a simple welcome message. In a finished application, this would be where you sell the virtues of your site to encourage sign-ups.</span>
 <br/>
-<span>Incidentally, seeing as all the MySQL tables have been created and the include files saved, you can now load Example 26-4 , index.php , into your browser to get your first peek at the new application. It should look like Figure 26-1 .</span>
+<span>Incidentally, seeing as all the MySQL tables have been created and the include files saved, you can now load Example 26-4 , index.php , into your browser to get your first peek at the new application. It should look like Figure 26-1.</span>
 <br/>
 <span>Example 26-4. index.php</span>
 <pre>
@@ -261,19 +261,19 @@ title: "Bringing It All Together"
 <p><img src="images/26.1.png"/></p>
 <span>Figure 26-1. The main page of the site</span>
 <h3>signup.php</h3>
-<span>Now we need a module to enable users to join the new network, and that&rsquo;s Example 26-5 , &nbsp;signup.php . This is a slightly longer program, but you&rsquo;ve seen all its parts before.</span>
+<span>Now we need a module to enable users to join the new network, and that&rsquo;s Example 26-5 , &nbsp;signup.php. This is a slightly longer program, but you&rsquo;ve seen all its parts before.</span>
 <br/>
-<span>Let&rsquo;s start by looking at the end block of HTML. This is a simple form that allows a username and password to be entered. But note the use of the empty span given the id of 'info' . This will be the destination of the Ajax call in this program that checks whether a desired username is available. See Chapter 18 for a complete description of how this works.</span>
+<span>Let&rsquo;s start by looking at the end block of HTML. This is a simple form that allows a username and password to be entered. But note the use of the empty span given the id of 'info'. This will be the destination of the Ajax call in this program that checks whether a desired username is available. See Chapter 18 for a complete description of how this works.</span>
 <h4>Checking for Username Availability</h4>
-<span>Now go back to the program start and you&rsquo;ll see a block of JavaScript that starts with the function checkUser . This is called by the JavaScript onBlur event when focus is removed from the username field of the form. First it sets the contents of the span I mentioned (with the id of info ) to an empty string, which clears it in case it previously had a value.</span>
+<span>Now go back to the program start and you&rsquo;ll see a block of JavaScript that starts with the function checkUser. This is called by the JavaScript onBlur event when focus is removed from the username field of the form. First it sets the contents of the span I mentioned (with the id of info ) to an empty string, which clears it in case it previously had a value.</span>
 <br/>
 <span>Next a request is made to the program checkuser.php , which reports whether the username user is available. The returned result of the Ajax call, a friendly message, is then placed in the info span.</span>
 <br/>
-<span>After the JavaScript section comes some PHP code that you should recognize from the &nbsp;Chapter 16 &nbsp;discussion of form validation. This section also uses the sanitize String function to remove potentially malicious characters before looking up the username in the database and, if it&rsquo;s not already taken, inserting the new username $user and password $pass .</span>
+<span>After the JavaScript section comes some PHP code that you should recognize from the &nbsp;Chapter 16 &nbsp;discussion of form validation. This section also uses the sanitize String function to remove potentially malicious characters before looking up the username in the database and, if it&rsquo;s not already taken, inserting the new username $user and password $pass.</span>
 <h4>Logging In</h4>
 <span>Upon successfully signing up, the user is then prompted to log in. A more fluid response at this point might be to automatically log in a newly created user, but, as I don&rsquo;t want to overly complicate the code, I have kept the sign-up and login modules separate from each other. You can easily implement this if you want to, however.</span>
 <br/>
-<span>This file uses the CSS class fieldname to arrange the form fields, aligning them neatly under each other in columns. When loaded into a browser (and in conjunction with checkuser.php , shown later), this program will look like &nbsp;Figure 26-2 , where you can see that the Ajax call has identified that the username Robin is available. If you would like the password field to show only asterisks, change its type from text to password .</span>
+<span>This file uses the CSS class fieldname to arrange the form fields, aligning them neatly under each other in columns. When loaded into a browser (and in conjunction with checkuser.php , shown later), this program will look like &nbsp;Figure 26-2 , where you can see that the Ajax call has identified that the username Robin is available. If you would like the password field to show only asterisks, change its type from text to password.</span>
 <br/>
 <span>Example 26-5. signup.php</span>
 <br/>
@@ -374,7 +374,7 @@ _END;
 <p><img src="images/26.2.png"/></p>
 <span>Figure 26-2. The sign-up page On a production server, I wouldn&rsquo;t recommend storing user passwords in the clear as I&rsquo;ve done here (for reasons of space and simplicity). Instead, you should salt them and store them as one-way hash strings. See Chapter 13 for more details on how to do this.</span>
 <h3>checkuser.php</h3>
-<span>To go with signup.php , here&rsquo;s Example 26-6 , checkuser.php , which looks up a username in the database and returns a string indicating whether it has already been taken. Because it relies on the functions sanitizeString and queryMysql , the program first includes the file functions.php .</span>
+<span>To go with signup.php , here&rsquo;s Example 26-6 , checkuser.php , which looks up a username in the database and returns a string indicating whether it has already been taken. Because it relies on the functions sanitizeString and queryMysql , the program first includes the file functions.php.</span>
 <br/>
 <span>Then, if the $_POST variable user has a value, the function looks it up in the database and, depending on whether it exists as a username, outputs either &ldquo;Sorry, this username is taken&rdquo; or &ldquo; This username is available.&rdquo; Just checking the function mysql_num_rows against the result is sufficient for this, as it will return 0 for not found, or 1 if it is found.</span>
 <br/>
@@ -390,10 +390,10 @@ if (isset($_POST['user']))
     $user = sanitizeString($_POST['user']);
     $result = queryMysql("SELECT * FROM members WHERE user='$user'");
     if ($result-&gt;num_rows)
-        echo "&lt;span class='taken'&gt;&amp;nbsp;&amp;#x2718; " .
+        echo "&lt;span class='taken'&gt;&amp;nbsp;&amp;#x2718; ".
                 "This username is taken&lt;/span&gt;";
     else
-        echo "&lt;span class='available'&gt;&amp;nbsp;&amp;#x2714; " .
+        echo "&lt;span class='available'&gt;&amp;nbsp;&amp;#x2714; ".
                 "This username is available&lt;/span&gt;";
 }
 ?&gt;
@@ -406,7 +406,7 @@ if (isset($_POST['user']))
 <br/>
 <span>You may be interested in the use of the die function upon successfully logging in. This is there because it combines an echo and an exit command in one, thus saving a line of code. For styling, this (and most of the files) applies the class main to indent the content from the left-hand edge.</span>
 <br/>
-<span>When you call this program up in your browser, it should look like Figure 26-3 . Note how the input type of password has been used here to mask the password with asterisks to prevent it from being viewed by anyone looking over the user&rsquo;s shoulder.</span>
+<span>When you call this program up in your browser, it should look like Figure 26-3. Note how the input type of password has been used here to mask the password with asterisks to prevent it from being viewed by anyone looking over the user&rsquo;s shoulder.</span>
 <br/>
 <span>Example 26-7. login.php</span>
 <pre>
@@ -434,7 +434,7 @@ if (isset($_POST['user']))
         {
             $_SESSION['user'] = $user;
             $_SESSION['pass'] = $pass;
-            die("You are now logged in. Please &lt;a href='members.php?view=$user'&gt;" .
+            die("You are now logged in. Please &lt;a href='members.php?view=$user'&gt;".
             "click here&lt;/a&gt; to continue.&lt;br&gt;&lt;br&gt;");
         }
     }
@@ -460,9 +460,9 @@ _END;
 <span>Figure 26-3. The login page</span>
 <br/>
 <h3>profile.php</h3>
-<span>One of the first things that new users may want to do after signing up and logging in is to create a profile, which can be done via Example 26-8 , profile.php . I think you&rsquo;ll find some interesting code here, such as routines to upload, resize, and sharpen images.</span>
+<span>One of the first things that new users may want to do after signing up and logging in is to create a profile, which can be done via Example 26-8 , profile.php. I think you&rsquo;ll find some interesting code here, such as routines to upload, resize, and sharpen images.</span>
 <br/>
-<span>Let&rsquo;s start by looking at the main HTML at the end of the code. This is like the forms you&rsquo;ve just seen, but this time it has the parameter enctype='multipart/form-data' . This allows us to send more than one type of data at a time, enabling the posting of an image as well as some text. There&rsquo;s also an input type of file , which creates a Browse button that a user can press to select a file to be uploaded.</span>
+<span>Let&rsquo;s start by looking at the main HTML at the end of the code. This is like the forms you&rsquo;ve just seen, but this time it has the parameter enctype='multipart/form-data'. This allows us to send more than one type of data at a time, enabling the posting of an image as well as some text. There&rsquo;s also an input type of file , which creates a Browse button that a user can press to select a file to be uploaded.</span>
 <br/>
 <span>When the form is submitted, the code at the start of the program is executed. The first thing it does is ensure that a user is logged in before allowing program execution to proceed. Only then is the page heading displayed.</span>
 <h4>Adding the &ldquo;About Me&rdquo; Text</h4>
@@ -470,7 +470,7 @@ _END;
 <br/>
 <span>If no text was posted, the database is queried to see whether any text already exists in order to prepopulate the textarea for the user to edit it.</span>
 <h4>Adding a Profile Image</h4>
-<span>Next we move on to the section where the $_FILES system variable is checked to see whether an image has been uploaded. If so, a string variable called $saveto is created, based on the user&rsquo;s username followed by the extension .jpg . For example, user Jill will cause $saveto to have the value Jill.jpg . This is the file where the uploaded image will be saved for use in the user&rsquo;s profile.</span>
+<span>Next we move on to the section where the $_FILES system variable is checked to see whether an image has been uploaded. If so, a string variable called $saveto is created, based on the user&rsquo;s username followed by the extension.jpg. For example, user Jill will cause $saveto to have the value Jill.jpg. This is the file where the uploaded image will be saved for use in the user&rsquo;s profile.</span>
 <br/>
 <span>Following this, the uploaded image type is examined and is accepted only if it is a jpeg , png , or gif image. Upon success, the variable $src is populated with the uploaded image using one of the imagecreatefrom functions according to the image type uploaded. The image is now in a raw format that PHP can process. If the image is not of an allowed type, the flag $typeok is set to FALSE , preventing the final section of image upload code from being processed.</span>
 <h4>Processing the Image</h4>
@@ -478,7 +478,7 @@ _END;
 <pre><code class="php">list($w, $h) = getimagesize($saveto);</code></pre>
 <span>Then, using the value of $max (which is set to 100 ), we calculate new dimensions that will result in a new image of the same ratio, but with no dimension greater than 100 pixels. This results in giving the variables $tw and $th the new values needed. If you want smaller or larger thumbnails, simply change the value of $max accordingly.</span>
 <br/>
-<span>Next, the function imagecreatetruecolor is called to create a new, blank canvas $tw wide and $th high in $tmp . Then imagecopyresampled is called to resample the image from $src , to the new $tmp . Sometimes resampling images can result in a slightly blurred copy, so the next piece of code uses the imageconvolution function to sharpen the image up a bit.</span>
+<span>Next, the function imagecreatetruecolor is called to create a new, blank canvas $tw wide and $th high in $tmp. Then imagecopyresampled is called to resample the image from $src , to the new $tmp. Sometimes resampling images can result in a slightly blurred copy, so the next piece of code uses the imageconvolution function to sharpen the image up a bit.</span>
 <br/>
 <span>Finally, the image is saved as a &nbsp;jpeg &nbsp;file in the location defined by the variable $saveto , after which we remove both the original and the resized image canvases from memory using the imagedestroy function, returning the memory that was used.</span>
 <h4>Displaying the Current Profile</h4>
@@ -582,7 +582,7 @@ _END;
 <h3>members.php</h3>
 <span>Using Example 26-9 , members.php , your users will be able to find other members and choose to add them as friends (or drop them if they are already friends). This program has two modes. The first lists all members and their relationships to you, and the second shows a user&rsquo;s profile.</span>
 <h4>Viewing a User&rsquo;s Profile</h4>
-<span>The code for the latter mode comes first, where a test is made for the Get variable view . If it exists, a user wants to view someone&rsquo;s profile, so the program does that using the showProfile function, along with providing a couple of links to the user&rsquo;s friends and messages.</span>
+<span>The code for the latter mode comes first, where a test is made for the Get variable view. If it exists, a user wants to view someone&rsquo;s profile, so the program does that using the showProfile function, along with providing a couple of links to the user&rsquo;s friends and messages.</span>
 <h4>Adding and Dropping Friends</h4>
 <span>After that, the two Get variables, add and remove , are tested. If one or the other has a value, it will be the username of a user to either add or drop as a friend. We achieve this by looking up the user in the MySQL friends table and either inserting a friend username or removing it from the table.</span>
 <br/>
@@ -596,7 +596,7 @@ _END;
 <br/>
 <span>Icons are also displayed to show the relationships. A double pointing arrow means that the users are mutual friends. A left-pointing arrow indicates the user is following another member. And a right-pointing arrow indicates that another member is following the user.</span>
 <br/>
-<span>Finally, depending on whether the user is following another member, a link is provided to either add or drop that member as a friend. When you call Example 26-9 up in a browser, it will look like Figure 26-5 . See how the user is invited to &ldquo;follow&rdquo; a nonfollowing member, but if the member is already following the user, a &ldquo;recip&rdquo; link to reciprocate the friendship is offered. In the case of a user already following another member, the user can select &ldquo;drop&rdquo; to end the following.</span>
+<span>Finally, depending on whether the user is following another member, a link is provided to either add or drop that member as a friend. When you call Example 26-9 up in a browser, it will look like Figure 26-5. See how the user is invited to &ldquo;follow&rdquo; a nonfollowing member, but if the member is already following the user, a &ldquo;recip&rdquo; link to reciprocate the friendship is offered. In the case of a user already following another member, the user can select &ldquo;drop&rdquo; to end the following.</span>
 <br/>
 <span>Example 26-9. members.php</span>
 <pre>
@@ -616,7 +616,7 @@ if (isset($_GET['view']))
     
     echo "&lt;h3&gt;$name Profile&lt;/h3&gt;";
     showProfile($view);
-    echo "&lt;a class='button' href='messages.php?view=$view'&gt;" .
+    echo "&lt;a class='button' href='messages.php?view=$view'&gt;".
          "View $name messages&lt;/a&gt;&lt;br&gt;&lt;br&gt;";
     die("&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;");
 }
@@ -642,13 +642,13 @@ for ($j = 0 ; $j &lt; $num ; ++$j)
 {
     $row = $result-&gt;fetch_array(MYSQLI_ASSOC);
     if ($row['user'] == $user) continue;
-    echo "&lt;li&gt;&lt;a href='members.php?view=" . $row['user'] . "'&gt;" . $row['user'] . "&lt;/a&gt;";
+    echo "&lt;li&gt;&lt;a href='members.php?view=". $row['user']. "'&gt;". $row['user']. "&lt;/a&gt;";
     $follow = "follow";
 
-    $result1 = queryMysql("SELECT * FROM friends WHERE user='" . $row['user'] . "' AND friend='$user'");
+    $result1 = queryMysql("SELECT * FROM friends WHERE user='". $row['user']. "' AND friend='$user'");
     $t1 = $result1-&gt;num_rows;
 
-    $result1 = queryMysql("SELECT * FROM friends WHERE user='$user' AND friend='" . $row['user'] . "'");
+    $result1 = queryMysql("SELECT * FROM friends WHERE user='$user' AND friend='". $row['user']. "'");
     $t2 = $result1-&gt;num_rows;
 
     if (($t1 + $t2) &gt; 1) echo " &amp;harr; is a mutual friend";
@@ -658,8 +658,8 @@ for ($j = 0 ; $j &lt; $num ; ++$j)
         $follow = "recip"; 
     }
     
-    if (!$t1) echo " [&lt;a href='members.php?add=" .  $row['user'] . "'&gt;$follow&lt;/a&gt;]";
-    else echo " [&lt;a href='members.php?remove=" . $row['user'] . "'&gt;drop&lt;/a&gt;]";
+    if (!$t1) echo " [&lt;a href='members.php?add=".  $row['user']. "'&gt;$follow&lt;/a&gt;]";
+    else echo " [&lt;a href='members.php?remove=". $row['user']. "'&gt;drop&lt;/a&gt;]";
 }
 ?&gt;
 &lt;/ul&gt;&lt;/div&gt;
@@ -672,11 +672,11 @@ for ($j = 0 ; $j &lt; $num ; ++$j)
 <br/>
 <span>On a production server, there could be thousands or even hundreds of thousands of users, so you would probably substantially modify this program to include searching the &ldquo;about me&rdquo; text, support paging of the output a screen at a time, and so on.</span>
 <h3>friends.php</h3>
-<span>The module that shows a user&rsquo;s friends and followers is Example 26-10 , friends.php . This interrogates the friends table just like the members.php program, but only for a single user. It then shows all of that user&rsquo;s mutual friends and followers along with the people he is following.</span>
+<span>The module that shows a user&rsquo;s friends and followers is Example 26-10 , friends.php. This interrogates the friends table just like the members.php program, but only for a single user. It then shows all of that user&rsquo;s mutual friends and followers along with the people he is following.</span>
 <br/>
-<span>All the followers are saved into an array called $followers , and all the people being followed are placed in an array called $following . Then a neat piece of code is used to extract all those who are both following and followed by the user, like this:</span>
+<span>All the followers are saved into an array called $followers , and all the people being followed are placed in an array called $following. Then a neat piece of code is used to extract all those who are both following and followed by the user, like this:</span>
 <pre><code class="javascript">$mutual = array_intersect($followers, $following);</code></pre>
-<span>The array_intersect function extracts all members common to both arrays and returns a new array containing only those people. This array is then stored in $mutual . Now it&rsquo;s possible to use the array_diff function for each of the $followers and $following arrays to keep only those people who are &nbsp;not &nbsp;mutual friends, like this:</span>
+<span>The array_intersect function extracts all members common to both arrays and returns a new array containing only those people. This array is then stored in $mutual. Now it&rsquo;s possible to use the array_diff function for each of the $followers and $following arrays to keep only those people who are &nbsp;not &nbsp;mutual friends, like this:</span>
 <pre>
 <code class="php">
 $followers = array_diff($followers, $mutual);
@@ -685,7 +685,7 @@ $following = array_diff($following, $mutual);
 </pre>
 <span>This results in the array $mutual containing only mutual friends, $followers containing only followers (and no mutual friends), and $following containing only people being followed (and no mutual friends).</span>
 <br/>
-<span>Now that we&rsquo;re armed with these arrays, it&rsquo;s a simple matter to separately display each category of members, as can be seen in &nbsp;Figure 26-6 . The PHP sizeof function returns the number of elements in an array; here I use it just to trigger code when the size is nonzero (that is, friends of that type exist). Note how, by using the variables $name1 , $name2 , and $name3 in the relevant places, the code can tell when you&rsquo;re looking at your own friends list, using the words Your and You are , instead of simply displaying the username. The commented line can be uncommented if you wish to display the user&rsquo;s profile information on this screen.</span>
+<span>Now that we&rsquo;re armed with these arrays, it&rsquo;s a simple matter to separately display each category of members, as can be seen in &nbsp;Figure 26-6. The PHP sizeof function returns the number of elements in an array; here I use it just to trigger code when the size is nonzero (that is, friends of that type exist). Note how, by using the variables $name1 , $name2 , and $name3 in the relevant places, the code can tell when you&rsquo;re looking at your own friends list, using the words Your and You are , instead of simply displaying the username. The commented line can be uncommented if you wish to display the user&rsquo;s profile information on this screen.</span>
 <br/>
 <span>Example 26-10. friends.php</span>
 <pre>
@@ -772,7 +772,7 @@ if (sizeof($following))
 }
 
 if (!$friends) echo "&lt;br&gt;You don't have any friends yet.&lt;br&gt;&lt;br&gt;";
-    echo "&lt;a class='button' href='messages.php?view=$view'&gt;" . "View $name2 messages&lt;/a&gt;";
+    echo "&lt;a class='button' href='messages.php?view=$view'&gt;". "View $name2 messages&lt;/a&gt;";
 ?&gt;
 &lt;/div&gt;&lt;br&gt;
 &lt;/body&gt;
@@ -783,13 +783,13 @@ if (!$friends) echo "&lt;br&gt;You don't have any friends yet.&lt;br&gt;&lt;br&g
 <span>Figure 26-6. Displaying a user&rsquo;s friends and followers</span>
 <br/>
 <h3>messages.php</h3>
-<span>The last of the main modules is Example 26-11 , messages.php . The program starts by checking whether a message has been posted in variable text . If so, it is inserted into the messages table. At the same time, the value of pm is also stored. This indicates whether a message is private or public. A 0 represents a public message, and 1 is private.</span>
+<span>The last of the main modules is Example 26-11 , messages.php. The program starts by checking whether a message has been posted in variable text. If so, it is inserted into the messages table. At the same time, the value of pm is also stored. This indicates whether a message is private or public. A 0 represents a public message, and 1 is private.</span>
 <br/>
 <span>Next, the user&rsquo;s profile and a form for entering a message are displayed, along with radio buttons to choose between a private or public message. After this, all the messages are shown, depending on whether they are private or public. If they are public, all users can see them, but private messages are visible only to the sender and recipient. This is all handled by a couple of queries to the MySQL database. Additionally, when a message is private, it is introduced by the word whispered and shown in italic.</span>
 <br/>
 <span>Finally, the program displays a couple of links to refresh the messages (in case another user has posted one in the meantime) and to view the user&rsquo;s friends. The trick using the variables $name1 and $name2 is again used so that when you view your own profile, the word Your is displayed instead of the username.</span>
 <br/>
-<span>You can see the result of viewing this program with a browser in Figure 26-7 . Note how users viewing their own messages are provided with links to erase any they don&rsquo;t want.</span>
+<span>You can see the result of viewing this program with a browser in Figure 26-7. Note how users viewing their own messages are provided with links to erase any they don&rsquo;t want.</span>
 <br/>
 <span>Example 26-11. messages.php</span>
 <pre>
@@ -849,15 +849,15 @@ for ($j = 0 ; $j &lt; $num ; ++$j)
     if ($row['pm'] == 0 || $row['auth'] == $user || $row['recip'] == $user)
     {
         echo date('M jS \'y g:ia:', $row['time']);
-        echo " &lt;a href='messages.php?view=" . $row['auth'] . "'&gt;" . $row['auth']. "&lt;/a&gt; ";
+        echo " &lt;a href='messages.php?view=". $row['auth']. "'&gt;". $row['auth']. "&lt;/a&gt; ";
 
         if ($row['pm'] == 0)
-            echo "wrote: &amp;quot;" . $row['message'] . "&amp;quot; ";
+            echo "wrote: &amp;quot;". $row['message']. "&amp;quot; ";
         else
-            echo "whispered: &lt;span class='whisper'&gt;&amp;quot;" . $row['message'] . "&amp;quot;&lt;/span&gt; ";
+            echo "whispered: &lt;span class='whisper'&gt;&amp;quot;". $row['message']. "&amp;quot;&lt;/span&gt; ";
 
         if ($row['recip'] == $user)
-            echo "[&lt;a href='messages.php?view=$view" . "&amp;erase=" . $row['id'] . "'&gt;erase&lt;/a&gt;]";
+            echo "[&lt;a href='messages.php?view=$view". "&amp;erase=". $row['id']. "'&gt;erase&lt;/a&gt;]";
             echo "&lt;br&gt;";
         }
     }
@@ -885,9 +885,9 @@ require_once 'header.php';
 if (isset($_SESSION['user']))
 {
     destroySession();
-    echo "&lt;div class='main'&gt;You have been logged out. Please " ."&lt;a href='index.php'&gt;click here&lt;/a&gt; to refresh the screen.";
+    echo "&lt;div class='main'&gt;You have been logged out. Please "."&lt;a href='index.php'&gt;click here&lt;/a&gt; to refresh the screen.";
 }
-else echo "&lt;div class='main'&gt;&lt;br&gt;" ."You cannot log out because you are not logged in";
+else echo "&lt;div class='main'&gt;&lt;br&gt;"."You cannot log out because you are not logged in";
 ?&gt;
     &lt;br&gt;&lt;br&gt;&lt;/div&gt;
 &lt;/body&gt;
@@ -898,7 +898,7 @@ else echo "&lt;div class='main'&gt;&lt;br&gt;" ."You cannot log out because you 
 <span>Figure 26-8. The logout page</span>
 <br/>
 <h3>styles.css</h3>
-<span>The style sheet used for this project is shown in Example 26-13 . There are a number of sets of declarations, as follows:</span>
+<span>The style sheet used for this project is shown in Example 26-13. There are a number of sets of declarations, as follows:</span>
 <br/>
 <span>*</span>
 <div class="t30">Sets the default font family and size for the project using the universal selector.</div>
@@ -912,11 +912,11 @@ else echo "&lt;div class='main'&gt;&lt;br&gt;" ."You cannot log out because you 
 <span>img</span>
 <div class="t30">Gives all images a border, shadow, and a righthand margin.</div>
 
-<span>li a and .button</span>
+<span>li a and.button</span>
 <div class="t30">Remove underlines from hyperlinks in all &lt;a&gt; tags that are within a &lt;li&gt;
 element, and all elements employing the button class.</div>
 
-<span>li a:hover and .button:hover</span>
+<span>li a:hover and.button:hover</span>
 <div class="t30">Sets the color in which &lt;li&gt; elements and the button class should display text when hovered over.</div>
 
 <span>.appname</span>
@@ -931,7 +931,7 @@ element, and all elements employing the button class.</div>
 <span>.info</span>
 <div class="t30">This class is used for displaying important information. It sets a background and foreground text color, applies a border and padding, and indents elements that employ it.</div>
 
-<span>.menu li and .button</span>
+<span>.menu li and.button</span>
 <div class="t30">These declarations ensure that all &lt;li&gt; elements and the button
 class display inline, have padding applied, and include a border, a background and foreground text color,
 a right margin, rounded borders, and a shadow&mdash;resulting in a button effect.</div>
@@ -939,7 +939,7 @@ a right margin, rounded borders, and a shadow&mdash;resulting in a button effect
 <span>.subhead</span>
 <div class="t30">Emphasizes sections of text.</div>
 
-<span>.taken, .available, .error, and .whisper</span>
+<span>.taken,.available,.error, and.whisper</span>
 <div class="t30">These declarations set the colors and font styles to be used for displaying different types of information.</div>
 
 <span>#logo</span>
@@ -968,10 +968,10 @@ img {
     -webkit-box-shadow:2px 2px 2px #888;
     box-shadow :2px 2px 2px #888;
 }
-li a, .button {
+li a,.button {
     text-decoration:none;
 }
-li a:hover, .button:hover {
+li a:hover,.button:hover {
     color:green;
 }
 .appname {
@@ -996,7 +996,7 @@ li a:hover, .button:hover {
     padding :5px 10px;
     margin-left:40px;
 }
-.menu li, .button {
+.menu li,.button {
     display :inline;
     padding :4px 6px;
     border :1px solid #777;
@@ -1011,7 +1011,7 @@ li a:hover, .button:hover {
 .subhead {
     font-weight:bold;
 }
-.taken, .error {
+.taken,.error {
     color:red;
 }
 .available {
@@ -1030,7 +1030,7 @@ li a:hover, .button:hover {
 </code>
 </pre>
 <h3>javascript.js</h3>
-<span>Finally, there&rsquo;s the JavaScript file (see Example 26-14 ), which contains the O , S , and C functions used throughout this book, along with some code to draw the logo for the site using an HTML5 canvas, as explained in Chapter 23 .</span>
+<span>Finally, there&rsquo;s the JavaScript file (see Example 26-14 ), which contains the O , S , and C functions used throughout this book, along with some code to draw the logo for the site using an HTML5 canvas, as explained in Chapter 23.</span>
 <br/>
 <span>Example 26-14. javascript.js</span>
 <pre>

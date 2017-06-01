@@ -86,7 +86,7 @@ title: "Practical PHP"
 <pre><code class="php">printf("&lt;span style='color:#%X%X%X'&gt;Hello&lt;/span&gt;", 65, 127, 245);</code></pre>
 <span>Check the format of the color specification between the apostrophes ( '' ) carefully. First comes the pound, or hash, sign ( # ) expected by the color specification. Then come three %X format specifiers, one for each of your numbers. The resulting output from this command is as follows:</span>
 <pre><code class="html">&lt;span style='color:#417FF5'&gt;Hello&lt;/span&gt;</code></pre>
-<span>Usually, you&rsquo;ll find it convenient to use variables or expressions as arguments to printf . For instance, if you stored values for your colors in the three variables $r , $g , and $b , you could create a darker color with this:</span>
+<span>Usually, you&rsquo;ll find it convenient to use variables or expressions as arguments to printf. For instance, if you stored values for your colors in the three variables $r , $g , and $b , you could create a darker color with this:</span>
 <pre><code class="php">printf("&lt;span style='color:#%X%X%X'&gt;Hello&lt;/span&gt;", $r-20, $g-20, $b-20);</code></pre>
 <h4>Precision Setting</h4>
 <span>Not only can you specify a conversion type, but you can also set the precision of the displayed result. For example, amounts of currency are usually displayed with only two digits of precision. However, after a calculation, a value may have a greater precision than this, such as 123.42 / 12, which results in 10.285. To ensure that such values are correctly stored internally, but displayed with only two digits of precision, you can insert the string ".2" between the % symbol and the conversion specifier:</span>
@@ -130,7 +130,7 @@ title: "Practical PHP"
 <br/>
 <span>&bull; Regardless of whether there&rsquo;s a precision specifier, if there is a number, then that represents the number of characters to which the output should be padded. In the previous example, this is 15 characters. If the output is already equal to or greater than the padding length, then this argument is ignored.</span>
 <br/>
-<span>&bull; The leftmost parameter allowed after the % symbol is a 0 , which is ignored unless a padding value has been set, in which case the output is padded with zeros instead of spaces. If a pad character other than zero or a space is required, you can use any one of your choices as long as you preface it with a single quotation mark, like this: '# .</span>
+<span>&bull; The leftmost parameter allowed after the % symbol is a 0 , which is ignored unless a padding value has been set, in which case the output is padded with zeros instead of spaces. If a pad character other than zero or a space is required, you can use any one of your choices as long as you preface it with a single quotation mark, like this: '#.</span>
 <br/>
 <span>&bull; On the left is the % symbol, which starts the conversion.</span>
 <br/>
@@ -284,7 +284,7 @@ title: "Practical PHP"
 <br/>
 <span>To display the date, use the date function, which supports a plethora of formatting options, enabling you to display the date any way you wish. The format is as follows:</span>
 <pre><code class="php">date($format, $timestamp);</code></pre>
-<span>The parameter $format should be a string containing formatting specifiers as detailed in Table 7-4 , and $timestamp should be a Unix timestamp. For the complete list of specifiers, please see http://php.net/manual/en/function.date.php . The following command will output the current date and time in the format "Thursday July 6th, 2017 - 1:38pm" :</span>
+<span>The parameter $format should be a string containing formatting specifiers as detailed in Table 7-4 , and $timestamp should be a Unix timestamp. For the complete list of specifiers, please see http://php.net/manual/en/function.date.php. The following command will output the current date and time in the format "Thursday July 6th, 2017 - 1:38pm" :</span>
 <pre><code class="php">echo date("l F jS, Y - g:ia", time());</code></pre>
 <span>Table 7-4. The major date function format specifiers</span>
 <br/>
@@ -510,7 +510,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>To determine whether a file already exists, you can use the file_exists function, which returns either TRUE or FALSE , and is used like this:</span>
 <pre><code class="php">if (file_exists("testfile.txt")) echo "File exists";</code></pre>
 <h4>Creating a File</h4>
-<span>At this point, testfile.txt doesn&rsquo;t exist, so let&rsquo;s create it and write a few lines to it. Type Example 7-4 and save it as testfile.php .</span>
+<span>At this point, testfile.txt doesn&rsquo;t exist, so let&rsquo;s create it and write a few lines to it. Type Example 7-4 and save it as testfile.php.</span>
 <br/>
 <span>Example 7-4. Creating a simple text file</span>
 <pre>
@@ -530,14 +530,14 @@ http://php.net/manual/en/class.datetime.php.
 ?&gt;
 </code>
 </pre>
-<span>When you run this in a browser, all being well, you will receive the message File 'testfile.txt' written successfully . If you receive an error message, your hard disk may be full or, more likely, you may not have permission to create or write to the file, in which case you should modify the attributes of the destination folder according to your operating system. Otherwise, the file testfile.txt should now be residing in the same folder in which you saved the testfile.php program. Try opening the file in a text or program editor&mdash;the contents will look like this:</span>
+<span>When you run this in a browser, all being well, you will receive the message File 'testfile.txt' written successfully. If you receive an error message, your hard disk may be full or, more likely, you may not have permission to create or write to the file, in which case you should modify the attributes of the destination folder according to your operating system. Otherwise, the file testfile.txt should now be residing in the same folder in which you saved the testfile.php program. Try opening the file in a text or program editor&mdash;the contents will look like this:</span>
 <br/>
 <b class="t30">Line 1</b><br/>
 <b class="t30">Line 2</b><br/>
 <b class="t30">Line 3</b><br/>
 <span>This simple example shows the sequence that all file handling takes:</span>
 <br/>
-<span>1. Always start by opening the file. You do this through a call to fopen .</span>
+<span>1. Always start by opening the file. You do this through a call to fopen.</span>
 <br/>
 <span>2. Then you can call other functions; here we write to the file ( fwrite ), but you can also read from an existing file ( fread or fgets ) and do other things.</span>
 <br/>
@@ -545,11 +545,11 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>Every open file requires a file resource so that PHP can access and manage it. The preceding example sets the variable $fh (which I chose to stand for file handle ) to the value returned by the fopen function. Thereafter, each file-handling function that accesses the opened file, such as fwrite or fclose , must be passed $fh as a parameter to identify the file being accessed. Don&rsquo;t worry about the content of the $fh variable; it&rsquo;s a number PHP uses to refer to internal information about the file&mdash;you just pass the variable to other functions.</span>
 <br/>
-<span>Upon failure, FALSE will be returned by fopen . The previous example shows a simple way to capture and respond to the failure: it calls the die function to end the program and give the user an error message. A web application would never abort in this crude way (you would create a web page with an error message instead), but this is fine for our testing purposes.</span>
+<span>Upon failure, FALSE will be returned by fopen. The previous example shows a simple way to capture and respond to the failure: it calls the die function to end the program and give the user an error message. A web application would never abort in this crude way (you would create a web page with an error message instead), but this is fine for our testing purposes.</span>
 <br/>
 <span>Notice the second parameter to the fopen call. It is simply the character w , which tells the function to open the file for writing. The function creates the file if it doesn&rsquo;t already exist. Be careful when playing around with these functions: if the file already exists, the w mode parameter causes the fopen call to delete the old contents (even if you don&rsquo;t write anything new!).</span>
 <br/>
-<span>There are several different mode parameters that can be used here, as detailed in Table 7-5 .</span>
+<span>There are several different mode parameters that can be used here, as detailed in Table 7-5.</span>
 <br/>
 <span>Table 7-5. The supported fopen modes</span>
 <table class="tbl-left">
@@ -596,7 +596,7 @@ http://php.net/manual/en/class.datetime.php.
 </table>
 
 <h4>Reading from Files</h4>
-<span>The easiest way to read from a text file is to grab a whole line through fgets (think of the final s as standing for string ), as in Example 7-5 .</span>
+<span>The easiest way to read from a text file is to grab a whole line through fgets (think of the final s as standing for string ), as in Example 7-5.</span>
 <br/>
 <span>Example 7-5. Reading a file with fgets</span>
 <pre>
@@ -614,7 +614,7 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <b class="t30">Line 1</b>
 <br/>
-<span>Or you can retrieve multiple lines or portions of lines through the fread function, as in Example 7-6 .</span>
+<span>Or you can retrieve multiple lines or portions of lines through the fread function, as in Example 7-6.</span>
 <br/>
 <span>Example 7-6. Reading a file with fread</span>
 <pre>
@@ -634,7 +634,7 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>The fread function is commonly used with binary data. But if you use it on text data that spans more than one line, remember to count newline characters.</span>
 <h4>Copying Files</h4>
-<span>Let&rsquo;s try out the PHP copy function to create a clone of testfile.txt . Type Example 7-7 and save it as copyfile.php , and then call up the program in your browser.</span>
+<span>Let&rsquo;s try out the PHP copy function to create a clone of testfile.txt. Type Example 7-7 and save it as copyfile.php , and then call up the program in your browser.</span>
 <br/>
 <span>Example 7-7. Copying a file</span>
 <pre>
@@ -645,7 +645,7 @@ http://php.net/manual/en/class.datetime.php.
 ?&gt;
 </code>
 </pre>
-<span>If you check your folder again, you&rsquo;ll see that you now have the new file testfile2.txt in it. By the way, if you don&rsquo;t want your programs to exit on a failed copy attempt, you could try the alternate syntax in Example 7-8 .</span>
+<span>If you check your folder again, you&rsquo;ll see that you now have the new file testfile2.txt in it. By the way, if you don&rsquo;t want your programs to exit on a failed copy attempt, you could try the alternate syntax in Example 7-8.</span>
 <br/>
 <span>Example 7-8. Alternate syntax for copying a file</span>
 <br/>
@@ -658,7 +658,7 @@ http://php.net/manual/en/class.datetime.php.
 </code>
 </pre>
 <h4>Moving a File</h4>
-<span>To move a file, rename it with the rename function, as in Example 7-9 .</span>
+<span>To move a file, rename it with the rename function, as in Example 7-9.</span>
 <br/>
 <span>Example 7-9. Moving a file</span>
 <br/>
@@ -686,13 +686,13 @@ http://php.net/manual/en/class.datetime.php.
 </pre>
 <span>Whenever you access files on your hard disk directly, you must also always ensure that it is impossible for your file system to be compromised. For example, if you are deleting a file based on user input, you must make absolutely certain it is a file that can be safely deleted and that the user is allowed to delete it.</span>
 <br/>
-<span>As with moving a file, a warning message will be displayed if the file doesn&rsquo;t exist, which you can avoid by using file_exists to first check for its existence before calling unlink .</span>
+<span>As with moving a file, a warning message will be displayed if the file doesn&rsquo;t exist, which you can avoid by using file_exists to first check for its existence before calling unlink.</span>
 <h4>Updating Files</h4>
 <span>Often, you will want to add more data to a saved file, which you can do in many ways. You can use one of the append write modes (see Table 7-5 ), or you can simply open a file for reading and writing with one of the other modes that supports writing, and move the file pointer to the correct place within the file that you wish to write to or read from.</span>
 <br/>
 <span>The file pointer is the position within a file at which the next file access will take place, whether it&rsquo;s a read or a write. It is not the same as the &nbsp;file handle &nbsp;(as stored in the variable $fh in Example 7-4 ), which contains details about the file being accessed.</span>
 <br/>
-<span>You can see this in action by typing Example 7-11 and saving it as update.php . Then call it up in your browser.</span>
+<span>You can see this in action by typing Example 7-11 and saving it as update.php. Then call it up in your browser.</span>
 <br/>
 <span>Example 7-11. Updating a file</span>
 <pre>
@@ -715,15 +715,15 @@ http://php.net/manual/en/class.datetime.php.
 <b class="t30">Line 1</b><br/>
 <span>The first line has successfully been copied and then appended to the file&rsquo;s end.</span>
 <br/>
-<span>As used here, in addition to the $fh file handle, the fseek function was passed two other parameters, 0 and SEEK_END . SEEK_END tells the function to move the file pointer to the end of the file, and 0 tells it how many positions it should then be moved backward from that point. In the case of Example 7-11 , a value of 0 is used, because the pointer is required to remain at the file&rsquo;s end.</span>
+<span>As used here, in addition to the $fh file handle, the fseek function was passed two other parameters, 0 and SEEK_END. SEEK_END tells the function to move the file pointer to the end of the file, and 0 tells it how many positions it should then be moved backward from that point. In the case of Example 7-11 , a value of 0 is used, because the pointer is required to remain at the file&rsquo;s end.</span>
 <br/>
-<span>There are two other seek options available to the fseek function: SEEK_SET and SEEK_CUR . The SEEK_SET option tells the function to set the file pointer to the exact position given by the preceding parameter. Thus, the following example moves the file pointer to position 18:</span>
+<span>There are two other seek options available to the fseek function: SEEK_SET and SEEK_CUR. The SEEK_SET option tells the function to set the file pointer to the exact position given by the preceding parameter. Thus, the following example moves the file pointer to position 18:</span>
 <pre><code class="php">fseek($fh, 18, SEEK_SET);</code></pre>
 <span>SEEK_CUR sets the file pointer to the current position plus the value of the given offset. Therefore, if the file pointer is currently at position 18, the following call will move it to position 23:</span>
 <pre><code class="php">fseek($fh, 5, SEEK_CUR);</code></pre>
 <span>Although this is not recommended unless you have very specific reasons for it, it is even possible to use text files such as this (but with fixed line lengths) as simple flat file databases. Your program can then use fseek to move back and forth within such a file to retrieve, update, and add new records. You can also delete records by overwriting them with zero characters, and so on.</span>
 <h4>Locking Files for Multiple Accesses</h4>
-<span>Web programs are often called by many users at the same time. If more than one person tries to write to a file simultaneously, it can become corrupted. And if one person writes to it while another is reading from it, the file is all right, but the person reading it can get odd results. To handle simultaneous users, you must use the file-locking flock function. This function queues up all other requests to access a file until your program releases the lock. So, whenever your programs use write access on files that may be accessed concurrently by multiple users, you should also add file locking to them, as in Example 7-12 , which is an updated version of Example 7-11 .</span>
+<span>Web programs are often called by many users at the same time. If more than one person tries to write to a file simultaneously, it can become corrupted. And if one person writes to it while another is reading from it, the file is all right, but the person reading it can get odd results. To handle simultaneous users, you must use the file-locking flock function. This function queues up all other requests to access a file until your program releases the lock. So, whenever your programs use write access on files that may be accessed concurrently by multiple users, you should also add file locking to them, as in Example 7-12 , which is an updated version of Example 7-11.</span>
 <br/>
 <span>Example 7-12. Updating a file with file locking</span>
 <pre>
@@ -759,7 +759,7 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>flock will not work on NFS and many other networked file systems. Also, when using a multithreaded server like ISAPI, you may not be able to rely on flock to protect files against other PHP scripts running in parallel threads of the same server instance. Additionally, flock is not supported on any system using the old FAT file system, such as older versions of Windows.</span>
 <h4>Reading an Entire File</h4>
-<span>A handy function for reading in an entire file without having to use file handles is file_get_contents . It&rsquo;s very easy to use, as you can see in Example 7-13 .</span>
+<span>A handy function for reading in an entire file without having to use file handles is file_get_contents. It&rsquo;s very easy to use, as you can see in Example 7-13.</span>
 <br/>
 <span>Example 7-13. Using file_get_contents</span>
 <pre>
@@ -771,7 +771,7 @@ http://php.net/manual/en/class.datetime.php.
 ?&gt;
 </code>
 </pre>
-<span>But the function is actually a lot more useful than that, because you can also use it to fetch a file from a server across the Internet, as in Example 7-14 , which requests the HTML from the O&rsquo;Reilly home page, and then displays it as if the user had surfed to the page itself. The result will be similar to Figure 7-1 .</span>
+<span>But the function is actually a lot more useful than that, because you can also use it to fetch a file from a server across the Internet, as in Example 7-14 , which requests the HTML from the O&rsquo;Reilly home page, and then displays it as if the user had surfed to the page itself. The result will be similar to Figure 7-1.</span>
 <br/>
 <span>Example 7-14. Grabbing the O&rsquo;Reilly home page</span>
 <pre>
@@ -784,7 +784,7 @@ http://php.net/manual/en/class.datetime.php.
 <p><img src="images/7.1.png"/></p>
 <span>Figure 7-1. The O&rsquo;Reilly home page grabbed with file_get_contents</span>
 <h4>Uploading Files</h4>
-<span>Uploading files to a web server is a subject that seems daunting to many people, but it actually couldn&rsquo;t be much easier. All you need to do to upload a file from a form is choose a special type of encoding called multipart/form-data , and your browser will handle the rest. To see how this works, type the program in Example 7-15 and save it as upload.php . When you run it, you&rsquo;ll see a form in your browser that lets you upload a file of your choice.</span>
+<span>Uploading files to a web server is a subject that seems daunting to many people, but it actually couldn&rsquo;t be much easier. All you need to do to upload a file from a form is choose a special type of encoding called multipart/form-data , and your browser will handle the rest. To see how this works, type the program in Example 7-15 and save it as upload.php. When you run it, you&rsquo;ll see a form in your browser that lets you upload a file of your choice.</span>
 <br/>
 <span>Example 7-15. Image uploader upload.php</span>
 <pre>
@@ -810,19 +810,19 @@ http://php.net/manual/en/class.datetime.php.
 
 <span>Let&rsquo;s examine this program a section at a time. The first line of the multiline echo statement starts an HTML document, displays the title, and then starts the document&rsquo;s body.</span>
 <br/>
-<span>Next we come to the form that selects the Post method of form submission, sets the target for posted data to the program &nbsp;upload.php (the program itself), and tells the web browser that the data posted should be encoded via the content MIME type of multipart/form-data .</span>
+<span>Next we come to the form that selects the Post method of form submission, sets the target for posted data to the program &nbsp;upload.php (the program itself), and tells the web browser that the data posted should be encoded via the content MIME type of multipart/form-data.</span>
 <br/>
 <span>With the form set up, the next lines display the prompt Select File: and then request two inputs. The first request is for a file; it uses an input type of file , a name of filename , and an input field with a width of 10 characters. The second requested input is just a Submit button that is given the label Upload (which replaces the default button text of Submit Query). And then the form is closed.</span>
 <br/>
 <span>This short program shows a common technique in web programming in which a single program is called twice: once when the user first visits a page, and again when the user presses the Submit button.</span>
 <br/>
-<span>The PHP code to receive the uploaded data is fairly simple, because all uploaded files are placed into the associative system array $_FILES . Therefore, a quick check to see whether $_FILES contains anything is sufficient to determine whether the user has uploaded a file. This is done with the statement if ($_FILES) .</span>
+<span>The PHP code to receive the uploaded data is fairly simple, because all uploaded files are placed into the associative system array $_FILES. Therefore, a quick check to see whether $_FILES contains anything is sufficient to determine whether the user has uploaded a file. This is done with the statement if ($_FILES).</span>
 <br/>
 <span>The first time the user visits the page, before uploading a file, $_FILES is empty, so the program skips this block of code. When the user uploads a file, the program runs again and discovers an element in the $_FILES array.</span>
 <br/>
-<span>Once the program realizes that a file was uploaded, the actual name, as read from the uploading computer, is retrieved and placed into the variable $name . Now all that&rsquo;s necessary is to move the file from the temporary location in which PHP stored the uploaded file to a more permanent one. We do this using the move_uploaded_file function, passing it the original name of the file, with which it is saved to the current directory.</span>
+<span>Once the program realizes that a file was uploaded, the actual name, as read from the uploading computer, is retrieved and placed into the variable $name. Now all that&rsquo;s necessary is to move the file from the temporary location in which PHP stored the uploaded file to a more permanent one. We do this using the move_uploaded_file function, passing it the original name of the file, with which it is saved to the current directory.</span>
 <br/>
-<span>Finally, the uploaded image is displayed within an IMG tag, and the result should look like Figure 7-2 .</span>
+<span>Finally, the uploaded image is displayed within an IMG tag, and the result should look like Figure 7-2.</span>
 <br/>
 <span>If you run this program and receive warning messages such as Per mission denied for the move_uploaded_file function call, then you may not have the correct permissions set for the folder in which the program is running.</span>
 <p><img src="images/7.2.png"/></p>
@@ -834,7 +834,7 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>Array element Contents $_FILES[' file '][' name '] The name of the uploaded file (e.g., smiley.jpg ) $_FILES[' file '][' type '] The content type of the file (e.g., image/jpeg ) $_FILES[' file '][' size '] The file&rsquo;s size in bytes $_FILES[' file '][' tmp_name '] The name of the temporary file stored on the server $_FILES[' file '][' error '] The error code resulting from the file upload</span>
 <br/>
-<span>Content types used to be known as &nbsp;MIME (Multipurpose Internet Mail Extension) types, but because their use later expanded to the whole Internet, now they are often called Internet media types . Table 7-7 shows some of the more frequently used types that turn up in $_FILES[' file '][' type '] .</span>
+<span>Content types used to be known as &nbsp;MIME (Multipurpose Internet Mail Extension) types, but because their use later expanded to the whole Internet, now they are often called Internet media types. Table 7-7 shows some of the more frequently used types that turn up in $_FILES[' file '][' type '].</span>
 <br/>
 <span>Table 7-7. Some common Internet media content types</span>
 <table class="tbl-left">
@@ -868,7 +868,7 @@ http://php.net/manual/en/class.datetime.php.
 <br/>
 <span>In addition to maliciously formed input data, some of the things you also have to check are whether a file was actually received and, if so, whether the right type of data was sent.</span>
 <br/>
-<span>Taking all these things into account, &nbsp;Example 7-16 , &nbsp;upload2.php , is a more secure rewrite of upload.php .</span>
+<span>Taking all these things into account, &nbsp;Example 7-16 , &nbsp;upload2.php , is a more secure rewrite of upload.php.</span>
 <br/>
 <span>Example 7-16. A more secure version of upload.php</span>
 <pre>
@@ -908,13 +908,13 @@ http://php.net/manual/en/class.datetime.php.
 ?&gt;
 </code>
 </pre>
-<span>The non-HTML section of code has been expanded from the half-dozen lines of Example 7-15 to more than 20 lines, starting at if ($_FILES) .</span>
+<span>The non-HTML section of code has been expanded from the half-dozen lines of Example 7-15 to more than 20 lines, starting at if ($_FILES).</span>
 <br/>
 <span>As with the previous version, this if line checks whether any data was actually posted, but there is now a matching else near the bottom of the program that echoes a message to screen when nothing has been uploaded.</span>
 <br/>
-<span>Within the if statement, the variable $name is assigned the value of the filename as retrieved from the uploading computer (just as before), but this time we won&rsquo;t rely on the user having sent us valid data. Instead a switch statement is used to check the uploaded content type against the four types of image this program supports. If a match is made, the variable $ext is set to the three-letter file extension for that type. Should no match be found, the file uploaded was not of an accepted type and the variable $ext is set to the empty string "" .</span>
+<span>Within the if statement, the variable $name is assigned the value of the filename as retrieved from the uploading computer (just as before), but this time we won&rsquo;t rely on the user having sent us valid data. Instead a switch statement is used to check the uploaded content type against the four types of image this program supports. If a match is made, the variable $ext is set to the three-letter file extension for that type. Should no match be found, the file uploaded was not of an accepted type and the variable $ext is set to the empty string "".</span>
 <br/>
-<span>The next section of code then checks the variable $ext to see whether it contains a string and, if so, creates a new filename called $n with the base name image and the extension stored in $ext . This means that the program is in full control over the name of the file to be created, as it can be only one of image.jpg , image.gif , image.png , or image.tif .</span>
+<span>The next section of code then checks the variable $ext to see whether it contains a string and, if so, creates a new filename called $n with the base name image and the extension stored in $ext. This means that the program is in full control over the name of the file to be created, as it can be only one of image.jpg , image.gif , image.png , or image.tif.</span>
 <br/>
 <span>Safe in the knowledge that the program has not been compromised, the rest of the PHP code is much the same as in the previous version. It moves the uploaded temporary image to its new location and then displays it, while also displaying the old and new image names.</span>
 <br/>
@@ -936,7 +936,7 @@ http://php.net/manual/en/class.datetime.php.
 <h3>System Calls</h3>
 <span>Sometimes PHP will not have the function you need to perform a certain action, but the operating system it is running on may. In such cases, you can use the exec system call to do the job.</span>
 <br/>
-<span>For example, to quickly view the contents of the current directory, you can use a program such as Example 7-17 . If you are on a Windows system, it will run as is using the Windows dir command. On Linux, Unix, or Mac OS X, comment out or remove the first line and uncomment the second to use the ls system command. You may wish to type this program, save it as exec.php , and call it up in your browser.</span>
+<span>For example, to quickly view the contents of the current directory, you can use a program such as Example 7-17. If you are on a Windows system, it will run as is using the Windows dir command. On Linux, Unix, or Mac OS X, comment out or remove the first line and uncomment the second to use the ls system command. You may wish to type this program, save it as exec.php , and call it up in your browser.</span>
 <br/>
 <span>Example 7-17. Executing a system command</span>
 <pre>
@@ -960,8 +960,8 @@ http://php.net/manual/en/class.datetime.php.
 <b class="t30">Volume in drive C is Hard Disk</b><br/>
 <b class="t30">Volume Serial Number is DC63-0E29</b><br/>
 <b class="t30">Directory of C:\xampp\htdocs</b><br/>
-<b class="t30">09/07/2014 10:06 &lt;DIR&gt; .</b><br/>
-<b class="t30">09/07/2014 10:06 &lt;DIR&gt; ..</b><br/>
+<b class="t30">09/07/2014 10:06 &lt;DIR&gt;.</b><br/>
+<b class="t30">09/07/2014 10:06 &lt;DIR&gt;..</b><br/>
 <b class="t30">08/07/2014 09:16 &lt;DIR&gt; forbidden</b><br/>
 <b class="t30">08/07/2014 09:16 &lt;DIR&gt; img</b><br/>
 <b class="t30">30/03/2013 12:28 202 index.html</b><br/>
@@ -991,4 +991,4 @@ http://php.net/manual/en/class.datetime.php.
 <pre><code class="html">&lt;!DOCTYPE html&gt;</code></pre>
 <span>Just the simple word html is sufficient to tell the browser that your web page is designed for HTML5 and, because all the latest versions of the most popular browsers have been supporting most of the HTML5 specification since 2011 or so, this document type is generally the only one you need, unless you choose to cater to older browsers.</span>
 <br/>
-<span>For all intents and purposes, when writing HTML documents, web developers can safely ignore the old XHTML document types and syntax (such as using &lt;br /&gt; instead of the simpler &lt;br&gt; tag). But if you find yourself having to cater to a very old browser or an unusual application that relies on XHTML, then you can get more information on how to do that at http://xhtml.com .</span>
+<span>For all intents and purposes, when writing HTML documents, web developers can safely ignore the old XHTML document types and syntax (such as using &lt;br /&gt; instead of the simpler &lt;br&gt; tag). But if you find yourself having to cater to a very old browser or an unusual application that relies on XHTML, then you can get more information on how to do that at http://xhtml.com.</span>

@@ -15,7 +15,7 @@ title: "Introduction to jQuery"
 <br/>
 <span>To fill these gaps, a number of libraries of functions to minimize the differences between browsers have been developed, many of which also provide easy hooks into the DOM (Document Object Model), and for Ajax, and event and animation handling. These include the likes of AngularJS , jQuery , MooTools , Prototype , script.aculo.us , and YUI (among many others).</span>
 <h3>Why jQuery?</h3>
-<span>There&rsquo;s room to cover only one library in this book, however, so I have opted for the most widely used, jQuery, which is now installed on over 60 percent of all websites, according to http://w3techs.com , and (as far as I can tell from their graphs) is more used than all its major competitors combined. Incidentally, if you ever want to see how the various libraries stack up at any point, search for javascript at similartech.com .</span>
+<span>There&rsquo;s room to cover only one library in this book, however, so I have opted for the most widely used, jQuery, which is now installed on over 60 percent of all websites, according to http://w3techs.com , and (as far as I can tell from their graphs) is more used than all its major competitors combined. Incidentally, if you ever want to see how the various libraries stack up at any point, search for javascript at similartech.com.</span>
 <br/>
 <span>With jQuery, not only do you get a very high level of cross-browser compatibility (yes, even including Internet Explorer), you also have quick and easy access to HTML and DOM manipulation, special functions to interact directly with CSS, the ability to control events, powerful tools to create professional effects and animations, and functions for conducting Ajax communications with the web server. jQuery is also the base for a wide range of plug-ins and other utilities too.</span>
 <br/>
@@ -37,7 +37,7 @@ title: "Introduction to jQuery"
 <h6>Compressed or Editable</h6>
 <span>You also must decide if you wish to use a version of jQuery that has been minified (compressed) in size to minimize bandwidth and decrease loading time, or whether you want to use an uncompressed version (perhaps because you want to make an edit to it yourself&mdash;which you are fully entitled to do). Generally, a minified version is best, but most web servers support gzip for on-the-fly compression and decompression, so this is becoming less important (although minification does remove comments too).</span>
 <h4>Downloading</h4>
-<span>Every released version of jQuery is listed in both compressed and minified forms at jquery.com/download .</span>
+<span>Every released version of jQuery is listed in both compressed and minified forms at jquery.com/download.</span>
 <br/>
 <span>All you need to do is choose the one you need, right-click the link displayed alongside, and save it to your hard disk. From there, you can upload it to your web server and then include it within &lt;script&gt; tags, like this (for the minified version of release 1.11.1):</span>
 <pre><code class="javascript">&lt;script src='http://myserver.com/jquery-1.11.1.min.js'&gt;&lt;/script&gt;</code></pre>
@@ -61,7 +61,7 @@ title: "Introduction to jQuery"
 </pre>
 <span>In the case of the Microsoft CDN (aspnetcdn.com), you should begin the URL with the base directory of ajax.aspnetcdn.com/ajax/jQuery/ , and then follow that with the filename you require.</span>
 <br/>
-<span>For Google, however, you must split the filename (for example, jquery-1.11.1.min.js ) into a folder and filename (like this: &nbsp;1.11.1/jquery.min.js ). Then precede that with ajax.googleapis.com/ajax/libs/jquery/ .</span>
+<span>For Google, however, you must split the filename (for example, jquery-1.11.1.min.js ) into a folder and filename (like this: &nbsp;1.11.1/jquery.min.js ). Then precede that with ajax.googleapis.com/ajax/libs/jquery/.</span>
 <br/>
 <span>An added benefit of using a CDN is that most other websites also do this, so that jQuery may well already be cached in the user&rsquo;s browser, and might not even require re-delivering. With 60 percent or more of websites using jQuery, this can be a lot of valuable bandwidth and time saved.</span>
 <h4>Always Using the Latest Version</h4>
@@ -113,7 +113,7 @@ title: "Introduction to jQuery"
 &lt;/html&gt;
 </code>
 </pre>
-<span>When you load this example into a browser, the result will be similar to Figure 21-1 . Of course, this particular instruction simply replicates what you can do with normal CSS, but the idea is to illustrate jQuery syntax, so I&rsquo;m keeping things simple, for now.</span>
+<span>When you load this example into a browser, the result will be similar to Figure 21-1. Of course, this particular instruction simply replicates what you can do with normal CSS, but the idea is to illustrate jQuery syntax, so I&rsquo;m keeping things simple, for now.</span>
 <br/>
 <span>Another way of issuing this command is by calling the jQuery function (which works in the same way as $ ), like this:</span>
 <pre><code class="javascript">jQuery('code').css('border', '1px solid #aaa')</code></pre>
@@ -124,7 +124,7 @@ title: "Introduction to jQuery"
 <pre><code class="javascript">$.noConflict()</code></pre>
 <span>Once you do this, to access jQuery thereafter, you must call the jQuery function. Or, you can replace use of the $ symbol with an object name of your choice, like this:</span>
 <pre><code class="javascript">jq = $.noConflict()</code></pre>
-<span>Now you can use the keyword jq , wherever you had previously used $ .</span>
+<span>Now you can use the keyword jq , wherever you had previously used $.</span>
 <br/>
 <span>To distinguish and keep track of jQuery objects separately from standard element objects, some developers prefix a $ to the front of any object created with jQuery (so that they end up looking like PHP variables!).</span>
 <h3>Selectors</h3>
@@ -140,9 +140,9 @@ title: "Introduction to jQuery"
 <pre><code class="javascript">color = $('#elem').css('color')</code></pre>
 <span>Remember that the value returned is the computed value. In other words, jQuery will compute and return the value as used by the browser at the moment the method is called, not the original value that may have been assigned to the property via a style sheet or in any other way.</span>
 <br/>
-<span>So, if the text color is blue (for example), the value assigned to the variable color in the preceding statement will be rgb(0, 0, 255) , even if the color was originally set using the color name blue , or the hex strings #00f or #0000ff . This computed value, though, will always be in a form that can be assigned back to the element (or any other element) via the second argument of the css method.</span>
+<span>So, if the text color is blue (for example), the value assigned to the variable color in the preceding statement will be rgb(0, 0, 255) , even if the color was originally set using the color name blue , or the hex strings #00f or #0000ff. This computed value, though, will always be in a form that can be assigned back to the element (or any other element) via the second argument of the css method.</span>
 <br/>
-<span>Be wary with any computed dimensions returned by this method because, depending on the current box-sizing setting (see Chapter 19 ), they may or may not necessarily be what you expect. When you need to get or set widths and heights without consideration for box-sizing , you should use the width and height methods (and their siblings), as described in the section &ldquo;Modifying Dimensions&rdquo; on page 535 .</span>
+<span>Be wary with any computed dimensions returned by this method because, depending on the current box-sizing setting (see Chapter 19 ), they may or may not necessarily be what you expect. When you need to get or set widths and heights without consideration for box-sizing , you should use the width and height methods (and their siblings), as described in the section &ldquo;Modifying Dimensions&rdquo; on page 535.</span>
 <h4>The Element Selector</h4>
 <span>To select an element to be manipulated by jQuery, just list its name within the parentheses following the $ symbol (or jQuery function name). For example, if you wish to change the background color of all &lt;blockquote&gt; elements, you could use a statement such as the following:</span>
 <pre><code class="javascript">$('blockquote').css('background', 'lime')</code></pre>
@@ -154,8 +154,8 @@ title: "Introduction to jQuery"
 <pre><code class="javascript">$('.new').css('text-decoration', 'underline')</code></pre>
 <h4>Combining Selectors</h4>
 <span>Just as with CSS, you may combine selectors into a single jQuery selection using commas, as with the following example:</span>
-<pre><code class="javascript">$('blockquote, #advert, .new').css('font-weight', 'bold')</code></pre>
-<span>Example 21-2 brings all these types of selectors together into a single example (with the jQuery statements shown in bold), the result of which you can see in Figure 21-2 .</span>
+<pre><code class="javascript">$('blockquote, #advert,.new').css('font-weight', 'bold')</code></pre>
+<span>Example 21-2 brings all these types of selectors together into a single example (with the jQuery statements shown in bold), the result of which you can see in Figure 21-2.</span>
 <br/>
 <span>Example 21-2. Using jQuery with different selectors</span>
 <pre>
@@ -177,7 +177,7 @@ title: "Introduction to jQuery"
             $('blockquote').css('background', 'lime')
             $('#advert').css('border', '3px dashed red')
             $('.new').css('text-decoration', 'underline')
-            $('blockquote, #advert, .new').css('font-weight', 'bold')
+            $('blockquote, #advert,.new').css('font-weight', 'bold')
         &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -201,7 +201,7 @@ $('#clickme').click(function()
 </pre>
 <span>When the element with the ID of clickme is clicked, the innerHTML property of the element with the ID of result is updated using the jQuery html function.</span>
 <br/>
-<span>jQuery objects (created with either the $ or jQuery methods) are not the same as JavaScript objects created with getElementById . In plain JavaScript, you can use a statement like object = docu ment.getElementById('result') followed by (for example) object.innerHTML = 'something' . But in the preceding example, $('#result').innerHTML would not work, because innerHTML is not a property of a jQuery object. Hence the use of the jQuery method html to achieve the required result. Example 21-3 fleshes out the idea (which you can see running in Figure 21-3 ).</span>
+<span>jQuery objects (created with either the $ or jQuery methods) are not the same as JavaScript objects created with getElementById. In plain JavaScript, you can use a statement like object = docu ment.getElementById('result') followed by (for example) object.innerHTML = 'something'. But in the preceding example, $('#result').innerHTML would not work, because innerHTML is not a property of a jQuery object. Hence the use of the jQuery method html to achieve the required result. Example 21-3 fleshes out the idea (which you can see running in Figure 21-3 ).</span>
 <br/>
 <span>Example 21-3. Processing an event</span>
 <pre>
@@ -230,7 +230,7 @@ $('#clickme').click(function()
 <br/>
 <span>When accessing an event with jQuery, omit the on prefix that you would use in standard JavaScript. So, for example, the onmouseover event name becomes the mouseover function in jQuery, onclick becomes click , and so on.</span>
 <h3>Waiting Until the Document Is Ready</h3>
-<span>Since jQuery is so closely related to the DOM in what it lets you achieve, more often than not you will need to wait until a web page has loaded before manipulating parts of it. Without jQuery, this can be achieved with the onload event, but there&rsquo;s a more efficient, cross-browser jQuery method called ready , which you can call to enable it at the earliest possible moment, even sooner than onload . This means jQuery can get working on a page that much more quickly, and un-user-friendly delays are minimized.</span>
+<span>Since jQuery is so closely related to the DOM in what it lets you achieve, more often than not you will need to wait until a web page has loaded before manipulating parts of it. Without jQuery, this can be achieved with the onload event, but there&rsquo;s a more efficient, cross-browser jQuery method called ready , which you can call to enable it at the earliest possible moment, even sooner than onload. This means jQuery can get working on a page that much more quickly, and un-user-friendly delays are minimized.</span>
 <br/>
 <span>To make use of this feature, place your jQuery code within the following structure:</span>
 <pre>
@@ -241,7 +241,7 @@ $('document').ready(function()
 })
 </code>
 </pre>
-<span>Now the code will wait there until the document is ready, and only then will it be called by the ready method. In fact, there&rsquo;s a shorter version you can use that takes even less typing, as shown in Example 21-4 .</span>
+<span>Now the code will wait there until the document is ready, and only then will it be called by the ready method. In fact, there&rsquo;s a shorter version you can use that takes even less typing, as shown in Example 21-4.</span>
 <br/>
 <span>Example 21-4. The smallest jQuery &lsquo;ready&rsquo; code encapsulation function</span>
 <pre>
@@ -258,11 +258,11 @@ $(function()
 <br/>
 <span>The only time end-of-page scripts may not be a good idea is if a document could appear to be ready when it isn&rsquo;t, or if all external style sheets have not yet loaded (which can really be identified only by testing), causing users to think they can interact with it before your script is ready. In such cases, implement the ready function and all will be well. In fact, if in doubt, place your script at the page end &nbsp;and &nbsp;use the ready function and you&rsquo;ll get the best of both worlds.</span>
 <h3>Event Functions and Properties</h3>
-<span>You&rsquo;ve just seen the ready event method, but there are several dozen jQuery event methods and associated properties you can access (far too many to detail here). However, the following are some of the more commonly used and they&rsquo;ll get you started for most projects. For a comprehensive summary of all available events, though, please check out api.jquery.com/category/events .</span>
+<span>You&rsquo;ve just seen the ready event method, but there are several dozen jQuery event methods and associated properties you can access (far too many to detail here). However, the following are some of the more commonly used and they&rsquo;ll get you started for most projects. For a comprehensive summary of all available events, though, please check out api.jquery.com/category/events.</span>
 <h4>The blur and focus Events</h4>
 <span>The blur event triggers when focus is removed from an element, causing it to blur, and is a good partner for the focus event. Both can be used to add a handler to the event, or they will trigger the event if you omit any arguments from the method&rsquo;s parentheses.</span>
 <br/>
-<span>In &nbsp;Example 21-5 , there are four input fields, and the first is given immediate focus with a quick call to the focus method, applying it to the element with the ID of first . Then a pair of handlers are added to all input elements. The focus handler sets their background to yellow when focus is given, and the blur handler sets their background to light gray when focus is removed (or blurred).</span>
+<span>In &nbsp;Example 21-5 , there are four input fields, and the first is given immediate focus with a quick call to the focus method, applying it to the element with the ID of first. Then a pair of handlers are added to all input elements. The focus handler sets their background to yellow when focus is given, and the blur handler sets their background to light gray when focus is removed (or blurred).</span>
 <br/>
 <span>Example 21-5. Using the focus and blur events</span>
 <pre>
@@ -279,7 +279,7 @@ $(function()
         &lt;script&gt;
             $('#first').focus()
             $('input').focus(function() { $(this).css('background', '#ff0') } )
-            $('input') .blur(function() { $(this).css('background', '#aaa') } )
+            $('input').blur(function() { $(this).css('background', '#aaa') } )
         &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -299,7 +299,7 @@ $(function()
 <span>You saw the click event a little earlier, but there&rsquo;s an event for handling double-clicks too. To use either, attach the event&rsquo;s method to a jQuery selection, and for its argument place a jQuery method to invoke when the event triggers, like this:</span>
 <pre>
 <code class="javascript">
-$('.myclass') .click( function() { $(this).slideUp() })
+$('.myclass').click( function() { $(this).slideUp() })
 $('.myclass').dblclick( function() { $(this).hide() })
 </code>
 </pre>
@@ -313,7 +313,7 @@ function doslide()
 }
 </code>
 </pre>
-<span>The slideUp and hide methods are detailed in the section, &ldquo;Special Effects&rdquo; on page 521 . For now, though, just try running Example 21-6 , and either click or double-click the buttons to see how some disappear with an animation (using slideUp ), and some just vanish (using hide ), as shown in Figure 21-5 .</span>
+<span>The slideUp and hide methods are detailed in the section, &ldquo;Special Effects&rdquo; on page 521. For now, though, just try running Example 21-6 , and either click or double-click the buttons to see how some disappear with an animation (using slideUp ), and some just vanish (using hide ), as shown in Figure 21-5.</span>
 <br/>
 <span>Example 21-6. Attaching to the click and dblclick events</span>
 <pre>
@@ -344,7 +344,7 @@ function doslide()
 <h4>The keypress Event</h4>
 <span>From time to time, you need better control over user keyboard interaction, particularly when processing complex forms or when writing games. For cases such as these, you can use the keypress method, which can be attached to anything that accepts keyboard input, such as an input field, or even the document itself.</span>
 <br/>
-<span>In Example 21-7 , the method has been attached to the document in order to intercept all key presses, and the result of running it can be seen in Figure 21-6 .</span>
+<span>In Example 21-7 , the method has been attached to the document in order to intercept all key presses, and the result of running it can be seen in Figure 21-6.</span>
 <br/>
 <span>Example 21-7. Intercepting key presses</span>
 <pre>
@@ -380,11 +380,11 @@ function doslide()
 <br/>
 <span>There are a few things of note in this example that you will need to bear in mind when writing your own keyboard handlers. For example, because browsers return differing values for this event, the which property of the event object is normalized by jQuery to return the same character codes across all browsers. So this is where to look for which key was pressed.</span>
 <br/>
-<span>Being a character code, though, the value in which is a number, which you can turn into a single letter string by passing it through String.fromCharCode . You don&rsquo;t have to do this because you can easily respond to ASCII values in your code. But this method is useful when you need to work with characters.</span>
+<span>Being a character code, though, the value in which is a number, which you can turn into a single letter string by passing it through String.fromCharCode. You don&rsquo;t have to do this because you can easily respond to ASCII values in your code. But this method is useful when you need to work with characters.</span>
 <br/>
-<span>When a key press is recognized, a simple statement to that effect is inserted into the innerHTML property of the div element with the ID of result .</span>
+<span>When a key press is recognized, a simple statement to that effect is inserted into the innerHTML property of the div element with the ID of result.</span>
 <br/>
-<span>This is a good example of where the document.write function should not be used, because the document will have already fully loaded by the time the user presses a key. If document.write were called to display the information at this time, it would erase the current document. So this is where writing into the HTML of an element is the perfect, nondestructive means of supplying user feedback, as explained in &ldquo;About document.write&rdquo; on page 328 &nbsp;in Chapter 13 .</span>
+<span>This is a good example of where the document.write function should not be used, because the document will have already fully loaded by the time the user presses a key. If document.write were called to display the information at this time, it would erase the current document. So this is where writing into the HTML of an element is the perfect, nondestructive means of supplying user feedback, as explained in &ldquo;About document.write&rdquo; on page 328 &nbsp;in Chapter 13.</span>
 <h4>Considerate Programming</h4>
 <span>When you are anticipating user input, you should decide which values you will respond to, and then ignore all others, just in case another event handler needs access to them. This is considerate practice for any other utilities (and the main browser itself) that may also be running. For example, in the preceding example I have chosen to accept only the characters a&ndash;z, A&ndash;Z and 0&ndash;9, ignoring all others.</span>
 <br/>
@@ -430,7 +430,7 @@ function doslide()
             })
 
             $('#pad').mousedown(function() { pendown = true } )
-            $('#pad') .mouseup(function() { pendown = false } )
+            $('#pad').mouseup(function() { pendown = false } )
         &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -454,7 +454,7 @@ function doslide()
 <code class="javascript">
 $('#pad').mousemove(function(event)
 {
-    ...
+   ...
 })
 </code>
 </pre>
@@ -467,7 +467,7 @@ var xpos = event.pageX - canvas.offsetLeft
 var ypos = event.pageY - canvas.offsetTop
 </code>
 </pre>
-<span>Now that we know where the mouse pointer is in relation to the canvas, the next pair of lines test the value of pendown . If it is true , then the mouse button is being pressed, and so a lineTo call is made to draw a line to the current location. Otherwise, the pen is up, and so moveTo is called to simply update the current location:</span>
+<span>Now that we know where the mouse pointer is in relation to the canvas, the next pair of lines test the value of pendown. If it is true , then the mouse button is being pressed, and so a lineTo call is made to draw a line to the current location. Otherwise, the pen is up, and so moveTo is called to simply update the current location:</span>
 <pre>
 <code class="javascript">
 if (pendown) context.lineTo(xpos, ypos)
@@ -478,14 +478,14 @@ else context.moveTo(xpos, ypos)
 <pre>
 <code class="javascript">
 $('#pad').mousedown(function() { pendown = true } )
-$('#pad') .mouseup(function() { pendown = false } )
+$('#pad').mouseup(function() { pendown = false } )
 </code>
 </pre>
 <span>In this example, you see the combination of three different event handlers working together to create a simple utility, using both local variables for internal expressions, and global variables where an object or the state of something must be made available across multiple functions.</span>
 <h4>Other Mouse Events</h4>
 <span>The mouseenter and mouseleave events trigger whenever the mouse passes into an element or leaves it. No position values are supplied because you are simply assumed to want to make a Boolean decision about what to do regarding these events.</span>
 <br/>
-<span>In Example 21-9 , a pair of anonymous functions are attached to these events, altering the HTML of an element accordingly, as shown in Figure 21-8 .</span>
+<span>In Example 21-9 , a pair of anonymous functions are attached to these events, altering the HTML of an element accordingly, as shown in Figure 21-8.</span>
 <br/>
 <span>Example 21-9. Detecting the mouse entering and leaving an element</span>
 <pre>
@@ -511,13 +511,13 @@ $('#pad') .mouseup(function() { pendown = false } )
 <br/>
 <span>When the mouse enters the bounds of the selected element, that element&rsquo;s innerHTML property is updated (with a call to html ). Then when the mouse leaves again, a further update is made to the element&rsquo;s HTML.</span>
 <h4>Alternative Mouse Methods</h4>
-<span>A number of other jQuery mouse event functions are available to cover a wide range of circumstances, all of which are detailed at &nbsp;api.jquery.com/category/events/mouse- events .</span>
+<span>A number of other jQuery mouse event functions are available to cover a wide range of circumstances, all of which are detailed at &nbsp;api.jquery.com/category/events/mouse- events.</span>
 <br/>
 <span>For example, you can use the following alternative mouseover and mouseout methods to achieve similar results:</span>
 <pre>
 <code class="javascript">
 $('#test').mouseover(function() { $(this).html('Cut it out!') } )
-$('#test') .mouseout(function() { $(this).html('Try it this time...') } )
+$('#test').mouseout(function() { $(this).html('Try it this time...') } )
 </code>
 </pre>
 <span>Or you could use the hover method to bind two handlers with a single function call, like this:</span>
@@ -536,9 +536,9 @@ $('#test').mouseover(function() { $(this).html('Cut it out!') } )
 </pre>
 <span>Here the period operator at the start of the second statement attaches it to the first, so that it creates a chain of methods.</span>
 <br/>
-<span>The preceding examples show how to capture mouse click, mouse movement, and keyboard events, and therefore they are mostly suitable for desktop environments&mdash;which is what jQuery is primarily targeted at. However, there is a version of jQuery for mobile devices that provides all the touch-handling event control you could wish for (and much more), available at jquerymobile.com .</span>
+<span>The preceding examples show how to capture mouse click, mouse movement, and keyboard events, and therefore they are mostly suitable for desktop environments&mdash;which is what jQuery is primarily targeted at. However, there is a version of jQuery for mobile devices that provides all the touch-handling event control you could wish for (and much more), available at jquerymobile.com.</span>
 <h4>The submit Event</h4>
-<span>When a form is submitted, you may often want to perform some error checking on the data entered, before it gets submitted to the server. One way to do this is to intercept the submit event of the form as in Example 21-10 . Figure 21-9 shows the result of loading this document and then submitting the form with one or more fields left empty:</span>
+<span>When a form is submitted, you may often want to perform some error checking on the data entered, before it gets submitted to the server. One way to do this is to intercept the submit event of the form as in Example 21-10. Figure 21-9 shows the result of loading this document and then submitting the form with one or more fields left empty:</span>
 <br/>
 <span>Example 21-10. Intercepting the submit event of a form</span>
 <pre>
@@ -581,7 +581,7 @@ $('#test').mouseover(function() { $(this).html('Cut it out!') } )
 if ($('#fname').val() == '' || $('#lname').val() == '')
 </code>
 </pre>
-<span>Here the jQuery val method is used to retrieve the value in the value property of each field. This is neater than using $('#fname')[0] (as in &nbsp;Example 21-8 ) to get access to the DOM object, and then appending value to it to read the field&rsquo;s value, like this: $('#fname')[0].value .</span>
+<span>Here the jQuery val method is used to retrieve the value in the value property of each field. This is neater than using $('#fname')[0] (as in &nbsp;Example 21-8 ) to get access to the DOM object, and then appending value to it to read the field&rsquo;s value, like this: $('#fname')[0].value.</span>
 <br/>
 <span>In this example, by returning the value false if one or more fields is empty, the normal submission process is cancelled. To enable the submission to proceed, you can return true , or just not return anything.</span>
 <h3>Special Effects</h3>
@@ -596,7 +596,7 @@ if ($('#fname').val() == '' || $('#lname').val() == '')
 <div class="t30">When a duration value is supplied, the effect will take place over the assigned time,which can be a value in milliseconds, or the strings fast or slow.</div>
 <br/>
 <span>Easing</span>
-<div class="t30">There are only two easing options in the jQuery library,swing and linear. The default is swing and it gives a more natural effect than linear . For more easing options, you can check out plug-ins like the jQuery UI easing options at &nbsp;jqueryui.com/easing.</div>
+<div class="t30">There are only two easing options in the jQuery library,swing and linear. The default is swing and it gives a more natural effect than linear. For more easing options, you can check out plug-ins like the jQuery UI easing options at &nbsp;jqueryui.com/easing.</div>
 <br/>
 <span>Callback</span>
 <div class="t30">If you supply a callback function, it will be called after the effect method completes.</div>
@@ -616,11 +616,11 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 </pre>
 <span>As you&rsquo;ll see in the section &ldquo;Method chaining&rdquo; on page 529 , you can attach function calls (that supply arguments) to each other and they will then be animated in turn, like the following, which will hide and then reveal an element:</span>
 <pre><code class="javascript">$('#object').hide(1000).show(1000)</code></pre>
-<span>Other less commonly used arguments are also supported by many of these methods, and you can get full details on them (and all the other supported effects methods) by visiting api.jquery.com/category/effects .</span>
+<span>Other less commonly used arguments are also supported by many of these methods, and you can get full details on them (and all the other supported effects methods) by visiting api.jquery.com/category/effects.</span>
 <h4>Hiding and Showing</h4>
 <span>Probably the simplest effect is to hide and show elements in response to user interaction. As shown in the previous section, you can provide no, or a variety of arguments to the hide and show methods and, by default, when none are supplied, the result is just like instantly hiding or revealing an element.</span>
 <br/>
-<span>The way these two methods work when arguments are supplied is to modify the width , height , and opacity properties of an element simultaneously, until they reach 0 for hide , or reach their original values for show . When hiding, the display property of the element is set to none when fully hidden, and after calling show , its previous value is reassigned once the element is fully restored. Example 21-11 lets you try hide and show for yourself (as shown in Figure 21-10 ).</span>
+<span>The way these two methods work when arguments are supplied is to modify the width , height , and opacity properties of an element simultaneously, until they reach 0 for hide , or reach their original values for show. When hiding, the display property of the element is set to none when fully hidden, and after calling show , its previous value is reassigned once the element is fully restored. Example 21-11 lets you try hide and show for yourself (as shown in Figure 21-10 ).</span>
 <br/>
 <span>Example 21-11. Hiding and showing an element</span>
 <pre>
@@ -646,7 +646,7 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 <p><img src="images/21.10.png"/></p>
 <span>Figure 21-10. The element is in the process of being revealed</span>
 <h4>The toggle Method</h4>
-<span>As an alternative to calling both the hide and show methods, you can use the toggle method instead, which enables you to replace the previous example with Example 21-12 .</span>
+<span>As an alternative to calling both the hide and show methods, you can use the toggle method instead, which enables you to replace the previous example with Example 21-12.</span>
 <br/>
 <span>Example 21-12. Using the toggle method</span>
 <pre>
@@ -671,9 +671,9 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 <br/>
 <span>There are four main jQuery methods that set either one state or another, and which offer toggling versions to simplify coding. In addition to toggle , there&rsquo;s fadeToggle , slideToggle , and toggle Class , all described in this chapter.</span>
 <h4>Fading In and Out</h4>
-<span>There are four methods for managing fades: fadeIn , fadeOut , fadeToggle , and fadeTo . You should be getting the idea of how jQuery works by now, and realize that the first three are similar to show , hide , and toggle . The last one, though, is a little different in that it lets you specify an opacity value to which an element (or elements) should be faded, between 0 and 1.</span>
+<span>There are four methods for managing fades: fadeIn , fadeOut , fadeToggle , and fadeTo. You should be getting the idea of how jQuery works by now, and realize that the first three are similar to show , hide , and toggle. The last one, though, is a little different in that it lets you specify an opacity value to which an element (or elements) should be faded, between 0 and 1.</span>
 <br/>
-<span>Example 21-13 provides four buttons with which to try out each of these methods, as shown in Figure 21-11 .</span>
+<span>Example 21-13 provides four buttons with which to try out each of these methods, as shown in Figure 21-11.</span>
 <br/>
 <span>Example 21-13. The four fade methods</span>
 <pre>
@@ -691,10 +691,10 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
         &lt;button id='fadeto'&gt;fadeTo&lt;/button&gt;
         &lt;p id='text'&gt;Click the buttons above&lt;/p&gt;
         &lt;script&gt;
-            $('#fadeout') .click(function() { $('#text').fadeOut( 'slow' ) })
-            $('#fadein') .click(function() { $('#text').fadeIn( 'slow' ) })
+            $('#fadeout').click(function() { $('#text').fadeOut( 'slow' ) })
+            $('#fadein').click(function() { $('#text').fadeIn( 'slow' ) })
             $('#fadetoggle').click(function() { $('#text').fadeToggle('slow' ) })
-            $('#fadeto') .click(function() { $('#text').fadeTo( 'slow', 0.5) })
+            $('#fadeto').click(function() { $('#text').fadeTo( 'slow', 0.5) })
         &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -703,7 +703,7 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 <p><img src="images/21.11.png"/></p>
 <span>Figure 21-11. The text has been faded to 50 percent opacity</span>
 <h4>Sliding Elements Up and Down</h4>
-<span>Another way to make elements disappear and reappear is to alter their height over time to make them appear to slide up and down. There are three methods available to do this: slideDown , slideUp , and slideToggle . They work in a similar way to the previous functions, as coded in Example 21-14 , and shown in Figure 21-12 .</span>
+<span>Another way to make elements disappear and reappear is to alter their height over time to make them appear to slide up and down. There are three methods available to do this: slideDown , slideUp , and slideToggle. They work in a similar way to the previous functions, as coded in Example 21-14 , and shown in Figure 21-12.</span>
 <br/>
 <span>Example 21-14. Using the slide methods</span>
 <pre>
@@ -731,8 +731,8 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
         comparison only&lt;/p&gt;
         &lt;/div&gt;
         &lt;script&gt;
-            $('#slideup') .click(function() { $('#para').slideUp( 'slow') })
-            $('#slidedown') .click(function() { $('#para').slideDown( 'slow') })
+            $('#slideup').click(function() { $('#para').slideUp( 'slow') })
+            $('#slidedown').click(function() { $('#para').slideDown( 'slow') })
             $('#slidetoggle').click(function() { $('#para').slideToggle('slow') })
         &lt;/script&gt;
     &lt;/body&gt;
@@ -744,7 +744,7 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 <br/>
 <span>These methods work well when you have menus and submenus that you want to open up or close dynamically, according to the sections clicked by the user.</span>
 <h4>Animations</h4>
-<span>Now we can really start to have some fun by actually moving elements around in the browser. To do this, though, because the default value of static will not allow them to move, you must remember to first give your elements&rsquo; position properties, values of relative , fixed , or absolute .</span>
+<span>Now we can really start to have some fun by actually moving elements around in the browser. To do this, though, because the default value of static will not allow them to move, you must remember to first give your elements&rsquo; position properties, values of relative , fixed , or absolute.</span>
 <br/>
 <span>To animate an element, all you do is supply a list of CSS properties (excluding colors) to the animate method. Unlike the previous effects methods, animate requires this list of properties first, and then you can supply any duration, easing, and callback arguments you need.</span>
 <br/>
@@ -780,10 +780,10 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
             function bounce()
             {
                 $('#ball')
-                .animate( { left:'270px', top :'380px' }, 'slow', 'linear')
-                .animate( { left:'540px', top :'190px' }, 'slow', 'linear')
-                .animate( { left:'270px', top :'0px' }, 'slow', 'linear')
-                .animate( { left:'0px', top :'190px' }, 'slow', 'linear')
+               .animate( { left:'270px', top :'380px' }, 'slow', 'linear')
+               .animate( { left:'540px', top :'190px' }, 'slow', 'linear')
+               .animate( { left:'270px', top :'0px' }, 'slow', 'linear')
+               .animate( { left:'0px', top :'190px' }, 'slow', 'linear')
             }
         &lt;/script&gt;
     &lt;/body&gt;
@@ -812,7 +812,7 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 .animate( { height:'hide', width:'toggle' }, 'slow', 'linear')
 </code>
 </pre>
-<span>If you wish to modify any hyphenated CSS properties and they&rsquo;re not being passed within quotation marks (as with height and width in this example), you must convert their names to camelCase first, by removing the hyphens and capitalizing the letter following. For example, to animate the left-margin property of an element, you would supply the name of leftMargin . However, when supplying a hyphenated property name within a string (for example: css('font-weight', 'bold') , you shouldn&rsquo;t convert it to camelCase.</span>
+<span>If you wish to modify any hyphenated CSS properties and they&rsquo;re not being passed within quotation marks (as with height and width in this example), you must convert their names to camelCase first, by removing the hyphens and capitalizing the letter following. For example, to animate the left-margin property of an element, you would supply the name of leftMargin. However, when supplying a hyphenated property name within a string (for example: css('font-weight', 'bold') , you shouldn&rsquo;t convert it to camelCase.</span>
 <h6>Method chaining</h6>
 <span>Because of the way that method chaining works, when jQuery methods have been given arguments, they will run sequentially. So each of these methods is called only after the previous one has finished animating. Any methods you call without arguments, however, will run immediately and quickly, without animation.</span>
 <br/>
@@ -832,7 +832,7 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 <br/>
 <span>For more information on managing jQuery queues, check out api.jquery.com/queue , where you&rsquo;ll also learn how to directly manipulate the contents of queues to get exactly the effects you need.</span>
 <h3>Manipulating the DOM</h3>
-<span>Because jQuery is so tightly linked with the DOM, of necessity the examples in this chapter have already utilized some of its DOM-accessing methods, such as html and val . But let&rsquo;s now look at all the DOM methods in detail to discover exactly what you can get access to with jQuery, and how.</span>
+<span>Because jQuery is so tightly linked with the DOM, of necessity the examples in this chapter have already utilized some of its DOM-accessing methods, such as html and val. But let&rsquo;s now look at all the DOM methods in detail to discover exactly what you can get access to with jQuery, and how.</span>
 <br/>
 <span>In &nbsp;Example 21-3 , you saw how to use the html method to change the innerHTML property of an element. This method can be used either to set the HTML or retrieve it from an HTML document. &nbsp;Example 21-16 &nbsp;(with the jQuery highlighted in bold) shows how to retrieve the HTML content of an element (as shown in Figure 21-14 ).</span>
 <br/>
@@ -893,7 +893,7 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 &lt;/html&gt;
 </code>
 </pre>
-<span>The first jQuery statement uses the text method to change the text inside the &lt;a&gt; element, and the second one changes the href and title attribute values to match, by supplying the data in the form of an associative array. The third statement displays the changed element contents in an alert window, by first retrieving it with the html method, as shown in Figure 21-15 .</span>
+<span>The first jQuery statement uses the text method to change the text inside the &lt;a&gt; element, and the second one changes the href and title attribute values to match, by supplying the data in the form of an associative array. The third statement displays the changed element contents in an alert window, by first retrieving it with the html method, as shown in Figure 21-15.</span>
 <p><img src="images/21.15.png"/></p>
 <span>Figure 21-15. The link has now been completely modified</span>
 <br/>
@@ -902,7 +902,7 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 <h4>Adding and Removing Elements</h4>
 <span>While it is possible to insert elements into the DOM using the html method, this is suitable only for creating child elements of a particular element. Therefore, jQuery provides a number of methods for manipulating any part of the DOM.</span>
 <br/>
-<span>These methods are append , prepend , after , before , remove , and empty , and an example of each is included in Example 21-18 .</span>
+<span>These methods are append , prepend , after , before , remove , and empty , and an example of each is included in Example 21-18.</span>
 <br/>
 <span>Example 21-18. Adding and removing elements</span>
 <pre>
@@ -944,9 +944,9 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 <br/>
 <span>The prepend method has been used to insert the string Link: before the inner text or HTML of all &lt;a&gt; elements, like this:</span>
 <pre><code class="javascript">$('a').prepend('Link: ')</code></pre>
-<span>Then an attribute selector is used to select all elements that have an href attribute starting with http . The string http denotes links that are not relative (and therefore are absolute), in which case an external link icon is appended to the end of the inner text or HTML of all matching elements, like this:</span>
+<span>Then an attribute selector is used to select all elements that have an href attribute starting with http. The string http denotes links that are not relative (and therefore are absolute), in which case an external link icon is appended to the end of the inner text or HTML of all matching elements, like this:</span>
 <pre><code class="javascript">$("[href^='http']").append(" &lt;img src='link.png'&gt;")</code></pre>
-<span>The ^= operator is how only the start of the string is matched. If just the = operator were used, only entire strings that matched would be selected. CSS selectors are covered in detail in Chapter 18 and Chapter 19 .</span>
+<span>The ^= operator is how only the start of the string is matched. If just the = operator were used, only entire strings that matched would be selected. CSS selectors are covered in detail in Chapter 18 and Chapter 19.</span>
 <br/>
 <span>Next, using chained methods, the before and after methods are employed to place sibling elements either before or after another one. In this instance, I have chosen to place an &lt;hr&gt; element both before and after &lt;code&gt; elements, like this:</span>
 <pre><code class="javascript">$('code').before('&lt;hr&gt;').after('&lt;hr&gt;')</code></pre>
@@ -971,7 +971,7 @@ $('#object').hide(200, 'linear', function() { alert('Finished!') } )
 <h4>The width and height Methods</h4>
 <span>Both the width and height methods can get the width or height of the first element that matches a selector, or set the width or height of all matching elements. For example, to get the width of an element with the ID of elem , you could use this statement:</span>
 <pre><code class="javascript">width = $('#elem').width()</code></pre>
-<span>The value returned to the variable width is a numeric value, which is different than returning the CSS value from a call to the css method, such as the following, which would return (for example) 230px , rather than just the number 230 .</span>
+<span>The value returned to the variable width is a numeric value, which is different than returning the CSS value from a call to the css method, such as the following, which would return (for example) 230px , rather than just the number 230.</span>
 <pre><code class="javascript">width = $('#elem').css('width')</code></pre>
 <span>You can also obtain the width of either the current window or the document, like this:</span>
 <pre>
@@ -984,7 +984,7 @@ width = $(document).width()
 <pre><code class="javascript">width = $('#elem').css('width')</code></pre>
 <span>Setting values is just as easy. For example, to set all elements that use the class box to 100 &times; 100 pixels, you could use this statement:</span>
 <pre><code class="javascript">$('.box').width(100).height(100)</code></pre>
-<span>Example 21-19 combines these actions into a single program that displays as Figure 21-17 .</span>
+<span>Example 21-19 combines these actions into a single program that displays as Figure 21-17.</span>
 <br/>
 <span>Example 21-19. Getting and setting element dimensions</span>
 <pre>
@@ -1099,16 +1099,16 @@ width = $(document).width()
         &lt;li&gt;Item 3&lt;/li&gt;
     &lt;/ul&gt;
     &lt;script&gt;
-        $('li').parent() .css('font-weight', 'bold')
+        $('li').parent().css('font-weight', 'bold')
         $('li').parent('.memo').css('list-style-type', 'circle')
     &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code>
 </pre>
-<span>The three lists are all the same, except that the middle one&rsquo;s &lt;ul&gt; element uses a class of memo . In the script section, the first statement applies a value of bold to the font- weight property of all parents of &lt;li&gt; elements. In this instance, it causes all the &lt;ul&gt; elements to display in bold.</span>
+<span>The three lists are all the same, except that the middle one&rsquo;s &lt;ul&gt; element uses a class of memo. In the script section, the first statement applies a value of bold to the font- weight property of all parents of &lt;li&gt; elements. In this instance, it causes all the &lt;ul&gt; elements to display in bold.</span>
 <br/>
-<span>The second statement is similar, but also passes the class name memo to the parent method, so that only that parent will be selected. Then the css method is called to set the list-style-type property of the selected list to circle . &nbsp;Figure 21-18 &nbsp;shows these two statements in effect.</span>
+<span>The second statement is similar, but also passes the class name memo to the parent method, so that only that parent will be selected. Then the css method is called to set the list-style-type property of the selected list to circle. &nbsp;Figure 21-18 &nbsp;shows these two statements in effect.</span>
 <p><img src="images/21.18.png"/></p>
 <span>Figure 21-18. Accessing parent elements with and without filters</span>
 <br/>
@@ -1158,7 +1158,7 @@ width = $(document).width()
         &lt;/div&gt;
     &lt;/div&gt;
     &lt;script&gt;
-        $('#elem').parents('div') .css('background', 'yellow')
+        $('#elem').parents('div').css('background', 'yellow')
         $('#elem').parentsUntil('div').css('text-decoration', 'underline')
     &lt;/script&gt;
 &lt;/body&gt;
@@ -1169,7 +1169,7 @@ width = $(document).width()
 <p><img src="images/21.19.png"/></p>
 <span>Figure 21-19. Comparing the parents and parentsUntil methods</span>
 <br/>
-<span>However, the second statement uses parentsUntil so that the selection stops at the first &lt;div&gt; element encountered. This means that when the underline styling is applied, it is applied only to the closest parent &lt;div&gt; that contains the &lt;li&gt; element with the ID of elem . The outer &lt;div&gt; is not reached, and because it doesn&rsquo;t get styled, the second list doesn&rsquo;t display underlined.</span>
+<span>However, the second statement uses parentsUntil so that the selection stops at the first &lt;div&gt; element encountered. This means that when the underline styling is applied, it is applied only to the closest parent &lt;div&gt; that contains the &lt;li&gt; element with the ID of elem. The outer &lt;div&gt; is not reached, and because it doesn&rsquo;t get styled, the second list doesn&rsquo;t display underlined.</span>
 <h4>Child Elements</h4>
 <span>To access the children of an element, you use the children method, like this: my_children = $('#elem').children() Just like the parent method, this goes only one level and returns a list of none, one, or more matching selections. You can also pass a filter argument to it to select between the children, like this:</span>
 <pre><code class="javascript">li_children = $('#elem').children('li')</code></pre>
@@ -1180,7 +1180,7 @@ width = $(document).width()
 <span>However, unlike parents , you must provide a filter selector to the find method, but if you need to select all descendants, you can use the universal selector, like this:</span>
 <pre><code class="javascript">all_descendants = $('#elem').find('*')</code></pre>
 <h4>Sibling Elements</h4>
-<span>When it comes to selecting siblings, there&rsquo;s an even wider range of methods available, starting with siblings .</span>
+<span>When it comes to selecting siblings, there&rsquo;s an even wider range of methods available, starting with siblings.</span>
 <br/>
 <span>The siblings method will return all the matching elements that are children of the same parent, except for the element used for selecting. So, taking the example of the following snippet, if you look up the siblings of the &lt;li&gt; element with the ID of two , it will return only the first and third &lt;li&gt; elements.</span>
 <pre>
@@ -1251,7 +1251,7 @@ width = $(document).width()
 <pre><code class="javascript">$('#new').nextAll().css('font-weight', 'bold')</code></pre>
 <span>When calling nextAll , you can also supply a filter to select from the elements that are matched, such as the following, which will style only the following siblings that use the class info : (in this snippet, however, there are no elements that use that class, so the statement will do nothing):</span>
 <pre><code class="javascript">$('#new').nextAll('.info').css('font-weight', 'bold')</code></pre>
-<span>Or, consider the case of this snippet, in which one item has the ID new and another has the ID old .</span>
+<span>Or, consider the case of this snippet, in which one item has the ID new and another has the ID old.</span>
 <pre>
 <code class="javascript">
 &lt;ul&gt;
@@ -1307,12 +1307,12 @@ width = $(document).width()
             &lt;li&gt;Item 5&lt;/li&gt;
         &lt;/ul&gt;
         &lt;script&gt;
-            $('ul&gt;li').first() .css('text-decoration', 'underline')
-            $('ul&gt;li').last() .css('font-style', 'italic')
-            $('ul&gt;li').eq(1) .css('font-weight', 'bold')
+            $('ul&gt;li').first().css('text-decoration', 'underline')
+            $('ul&gt;li').last().css('font-style', 'italic')
+            $('ul&gt;li').eq(1).css('font-weight', 'bold')
             $('ul&gt;li').filter(':even').css('background', 'cyan')
-            $('ul&gt;li').not('#new') .css('color', 'blue')
-            $('ul&gt;li').has('ol') .css('text-decoration', 'line-through')
+            $('ul&gt;li').not('#new').css('color', 'blue')
+            $('ul&gt;li').has('ol').css('text-decoration', 'line-through')
         &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -1324,7 +1324,7 @@ width = $(document).width()
 <h4>The is Method</h4>
 <span>There is also a way you can query a jQuery selector to return a Boolean value for use in plain JavaScript, which is the is method. Unlike other jQuery filtering methods, this function doesn&rsquo;t create a new jQuery object that can then have other methods appended to it, or that can then be further filtered.</span>
 <br/>
-<span>Instead it returns just true or false , making the method most suitable for using in conditional statements. &nbsp;Example 21-24 &nbsp;uses the is method attached to a call to parent in an event handler for a set of buttons. When any button is clicked, the handler is called, and the is method is able to return a value of true or false , when asked whether the parent element is a &lt;div&gt; , as shown in Figure 21-22 .</span>
+<span>Instead it returns just true or false , making the method most suitable for using in conditional statements. &nbsp;Example 21-24 &nbsp;uses the is method attached to a call to parent in an event handler for a set of buttons. When any button is clicked, the handler is called, and the is method is able to return a value of true or false , when asked whether the parent element is a &lt;div&gt; , as shown in Figure 21-22.</span>
 <br/>
 <span>Example 21-24. Reporting the parent element with is</span>
 <pre>
@@ -1397,7 +1397,7 @@ width = $(document).width()
 </pre>
 <span>To do this, the $.each method is passed the array, along with an anonymous function to process it. The function takes two arguments, the index into the array (called name ), and the contents of each element (called type ).</span>
 <br/>
-<span>The value in typ e is then tested to see if it is Guinea Pig , and if so, the value in name is pushed onto the guineapigs array. Upon completion, the contents of guineapigs is displayed by writing into the &lt;div&gt; element with the ID of info . To separate the items in the array, the JavaScript join method is used with the &amp; symbol as a separator. The result of loading this example into a browser is simply to display the text &ldquo;The guinea pig names are: Scratchy &amp; Squeeky.&rdquo;</span>
+<span>The value in typ e is then tested to see if it is Guinea Pig , and if so, the value in name is pushed onto the guineapigs array. Upon completion, the contents of guineapigs is displayed by writing into the &lt;div&gt; element with the ID of info. To separate the items in the array, the JavaScript join method is used with the &amp; symbol as a separator. The result of loading this example into a browser is simply to display the text &ldquo;The guinea pig names are: Scratchy &amp; Squeeky.&rdquo;</span>
 <h4>The $.map Method</h4>
 <span>Another way to achieve this is with the $.map method, which returns all the values that your function returns in an array, saving you from having to create an array, and then push matches onto it&mdash;as we had to in the preceding example. Instead you can create and populate the array at the same time, by assigning the array returned by $.map to it, like this (the end result being the same but with less code):</span>
 <pre>
@@ -1407,7 +1407,7 @@ guineapigs = $.map(pets, function(type, name){
 })
 </code>
 </pre>
-<span>Watch out when you change between using the $.each and $.map methods, because $.each passes arguments to the function in the order index , value , but map uses the order value , index . This is why the two arguments are swapped in the preceding $.map example.</span>
+<span>Watch out when you change between using the $.each and $.map methods, because $.each passes arguments to the function in the order index , value , but map uses the order value , index. This is why the two arguments are swapped in the preceding $.map example.</span>
 <h3>Using Ajax</h3>
 <span>In Chapter 17 , I showed in detail how to implement Ajax communications between JavaScript in a browser, and PHP running on a web server. I also provided some handy and compact functions you can call to simplify the process.</span>
 <br/>
@@ -1473,17 +1473,17 @@ guineapigs = $.map(pets, function(type, name){
 </pre>
 <span>The urlget.php program remains unchanged from Example 17-5 , because this example and Example 17-4 are interchangeable.</span>
 <br/>
-<span>Remember that the security restrictions of Ajax require that the communication takes place with the same server that supplied the main web document. You must also use a web server for Ajax communication, not a local file system. These examples are therefore best tested using a production or development server, as described in Chapter 2 .</span>
+<span>Remember that the security restrictions of Ajax require that the communication takes place with the same server that supplied the main web document. You must also use a web server for Ajax communication, not a local file system. These examples are therefore best tested using a production or development server, as described in Chapter 2.</span>
 <h3>Plug-Ins</h3>
 <span>There&rsquo;s room in this chapter to cover only the core jQuery library, and while that&rsquo;s more than enough for a beginner to be getting on with, the time will come when you&rsquo;ll find you need even more features and functionality. Thankfully, other jQuery projects can help you there, because a range of official and third-party plug-ins are now available to provide just about any features you can imagine.</span>
 <h4>The jQuery User Interface</h4>
 <span>First, there&rsquo;s the jQuery User Interface (known as jQuery UI), which takes off directly where jQuery leaves off. With it you can add dragging and dropping, resizing, and sorting methods to your web pages, as well as more animations and effects, animated color transitions, more easing effects, and a bunch of widgets to create menus and other features such as accordions, buttons, pickers, progress bars, sliders, spinners, tabs, tool tips, and much more.</span>
 <br/>
-<span>If you want to see some demos before deciding whether to download, check out jqueryui.com/demos .</span>
+<span>If you want to see some demos before deciding whether to download, check out jqueryui.com/demos.</span>
 <br/>
-<span>The whole package is under 400 KB zipped and is freely downloadable and usable with almost no restrictions (just the very generous MIT license), from jqueryui.com .</span>
+<span>The whole package is under 400 KB zipped and is freely downloadable and usable with almost no restrictions (just the very generous MIT license), from jqueryui.com.</span>
 <h4>Other Plug-Ins</h4>
-<span>You can also add a wide variety of free, ready-made plug-ins to jQuery from numerous developers, all brought together at plugins.jquery.com .</span>
+<span>You can also add a wide variety of free, ready-made plug-ins to jQuery from numerous developers, all brought together at plugins.jquery.com.</span>
 <br/>
 <span>Some of the plug-ins include extensive form handling and verification, slideshows, user responsiveness, image manipulation, even more animations, and much more.</span>
 <h4>jQuery Mobile</h4>
@@ -1491,8 +1491,8 @@ guineapigs = $.map(pets, function(type, name){
 <br/>
 <span>The jQuery Mobile download is fully customizable and can be tailored exactly to your requirements, as shown in Figure 21-23 , where the ThemeRoller app is being used.</span>
 <p><img src="images/21.23.png"/></p>
-<span>Figure 21-23. Creating a mobile theme with the ThemeRoller app You&rsquo;ll find jQuery mobile especially useful if you are writing web apps, and can find out more and download it from jquerymobile.com .</span>
+<span>Figure 21-23. Creating a mobile theme with the ThemeRoller app You&rsquo;ll find jQuery mobile especially useful if you are writing web apps, and can find out more and download it from jquerymobile.com.</span>
 <br/>
-<span>You&rsquo;ve come a long way in this chapter, learning material that sometimes takes up entire books. I hope you&rsquo;ve found everything clear, though, because jQuery is very easy to learn and use. Please take a moment now to peruse Appendix E , which lists all the main jQuery objects, events, and methods, and should serve as a handy reference. If you need any other information, please check out jquery.com .</span>
+<span>You&rsquo;ve come a long way in this chapter, learning material that sometimes takes up entire books. I hope you&rsquo;ve found everything clear, though, because jQuery is very easy to learn and use. Please take a moment now to peruse Appendix E , which lists all the main jQuery objects, events, and methods, and should serve as a handy reference. If you need any other information, please check out jquery.com.</span>
 <br/>
 <span>For the remaining chapters, we&rsquo;ll turn our gaze to all the new goodies available in HTML5, and then bring everything we&rsquo;ve learned together into a mini social networking project.</span>
