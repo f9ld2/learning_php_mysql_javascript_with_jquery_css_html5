@@ -3,117 +3,49 @@ layout: default
 title: "PHP Functions and Objects"
 ---
 <h2>PHP Functions and Objects</h2>
-<span>The basic requirements of any programming language include somewhere to store</span>
-<span>data, a means of directing program flow, and a few bits and pieces such as expression</span>
-<span>evaluation, file management, and text output. PHP has all these, plus tools like</span>
-<span>else</span>
-<span>and</span>
-<span>elseif</span>
-<span>to make life easier. But even with all these in our toolkit, programming</span>
-<span>can be clumsy and tedious, especially if you have to rewrite portions of very similar</span>
-<span>code each time you need them.</span>
+<span>The basic requirements of any programming language include somewhere to store data, a means of directing program flow, and a few bits and pieces such as expression evaluation, file management, and text output. PHP has all these, plus tools like else and elseif to make life easier. But even with all these in our toolkit, programming can be clumsy and tedious, especially if you have to rewrite portions of very similar code each time you need them.</span>
 <br/>
-<span>That&rsquo;s where functions and objects come in. As you might guess, a</span>
-<span>function</span>
-<span>is a set of</span>
-<span>statements that performs a particular function and&mdash;optionally&mdash;returns a value. You</span>
-<span>can pull out a section of code that you have used more than once, place it into a function, and call the function by name when you want the code.</span>
+<span>That&rsquo;s where functions and objects come in. As you might guess, a function is a set of statements that performs a particular function and&mdash;optionally&mdash;returns a value. You can pull out a section of code that you have used more than once, place it into a function, and call the function by name when you want the code.</span>
 <br/>
 <span>Functions have many advantages over contiguous, inline code. For example, they:</span>
 <br/>
-<span>&bull;</span>
-<span>Involve less typing</span>
+<span>&bull; Involve less typing</span>
 <br/>
-<span>&bull;</span>
-<span>Reduce syntax and other programming errors</span>
+<span>&bull; Reduce syntax and other programming errors</span>
 <br/>
-<span>&bull;</span>
-<span>Decrease the loading time of program files</span>
+<span>&bull; Decrease the loading time of program files</span>
 <br/>
-<span>&bull;</span>
-<span>Decrease execution time, because each function is compiled only once, no matter</span>
-<span>how often you call it</span>
+<span>&bull; Decrease execution time, because each function is compiled only once, no matter how often you call it</span>
 <br/>
-<span>&bull;</span>
-<span>Accept arguments and can therefore be used for general as well as specific cases</span>
+<span>&bull; Accept arguments and can therefore be used for general as well as specific cases</span>
 <br/>
-<span>Objects take this concept a step further. An</span>
-<span>&nbsp;object</span>
-<span>&nbsp;incorporates one or more functions, and the data they use, into a single structure called a</span>
-<span>class</span>
-<span>.</span>
+<span>Objects take this concept a step further. An &nbsp;object &nbsp;incorporates one or more functions, and the data they use, into a single structure called a class .</span>
 <br/>
-<span>In this chapter, you&rsquo;ll learn all about using functions, from defining and calling them</span>
-<span>to passing arguments back and forth. With that knowledge under your belt, you&rsquo;ll</span>
-<span>start creating functions and using them in your own objects (where they will be</span>
-<span>referred to as</span>
-<span>methods</span>
-<span>).</span>
+<span>In this chapter, you&rsquo;ll learn all about using functions, from defining and calling them to passing arguments back and forth. With that knowledge under your belt, you&rsquo;ll start creating functions and using them in your own objects (where they will be referred to as methods ).</span>
 <h3>PHP Functions</h3>
-<span>PHP comes with hundreds of ready-made, built-in functions, making it a very rich</span>
-<span>language. To use a function, call it by name. For example, you can see the</span>
-<span>print</span>
-<span>function in action here:</span>
+<span>PHP comes with hundreds of ready-made, built-in functions, making it a very rich language. To use a function, call it by name. For example, you can see the print function in action here:</span>
 <pre><code class="php">print("print is a pseudo-function");</code></pre>
-<span>The parentheses tell PHP that you&rsquo;re referring to a function. Otherwise, it thinks</span>
-<span>you&rsquo;re referring to a constant. You may see a warning such as this:</span>
+<span>The parentheses tell PHP that you&rsquo;re referring to a function. Otherwise, it thinks you&rsquo;re referring to a constant. You may see a warning such as this:</span>
 <br/>
 <b class="t30">Notice: Use of undefined constant fname - assumed 'fname'</b>
 <br/>
-<span>followed by the text string</span>
-<span>fname</span>
-<span>, under the assumption that you must have wanted to</span>
-<span>put a literal string in your code. (Things are even more confusing if there is actually a</span>
-<span>constant named</span>
-<span>fname</span>
-<span>, in which case PHP uses its value.)</span>
+<span>followed by the text string fname , under the assumption that you must have wanted to put a literal string in your code. (Things are even more confusing if there is actually a constant named fname , in which case PHP uses its value.)</span>
 <br/>
-<span>Strictly speaking,</span>
-<span>print</span>
-<span>is a pseudofunction, commonly called a</span>
-<span>construct</span>
-<span>. The difference is that you can omit the parentheses:</span>
+<span>Strictly speaking, print is a pseudofunction, commonly called a construct . The difference is that you can omit the parentheses:</span>
 <br/>
 <span>print "print doesn't require parentheses";</span>
 <br/>
-<span>You do have to put parentheses after any other functions you call,</span>
-<span>even if they&rsquo;re empty (that is, if you&rsquo;re not passing any argument to</span>
-<span>the function).</span>
+<span>You do have to put parentheses after any other functions you call, even if they&rsquo;re empty (that is, if you&rsquo;re not passing any argument to the function).</span>
 <br/>
-<span>Functions can take any number of arguments, including zero. For example,</span>
-<span>phpinfo</span>
-<span>,</span>
-<span>as shown next, displays lots of information about the current installation of PHP and</span>
-<span>requires no argument. The result of calling this function can be seen in</span>
-<span>Figure 5-1</span>
-<span>.</span>
+<span>Functions can take any number of arguments, including zero. For example, phpinfo , as shown next, displays lots of information about the current installation of PHP and requires no argument. The result of calling this function can be seen in Figure 5-1 .</span>
 <pre><code class="php">phpinfo();</code></pre>
-<span>The</span>
-<span>phpinfo</span>
-<span>function is extremely useful for obtaining information about your current PHP installation, but that information</span>
-<span>could also be very useful to potential hackers. Therefore, never</span>
-<span>leave a call to this function in any web-ready code.</span>
+<span>The phpinfo function is extremely useful for obtaining information about your current PHP installation, but that information could also be very useful to potential hackers. Therefore, never leave a call to this function in any web-ready code.</span>
 <p><img src="images/5.1.png"/></p>
 <span>Figure 5-1. The output of PHP&rsquo;s built-in phpinfo function</span>
 <br/>
-<span>Some</span>
-<span>of</span>
-<span>the</span>
-<span>built-in</span>
-<span>functions</span>
-<span>that</span>
-<span>use</span>
-<span>one</span>
-<span>or</span>
-<span>more</span>
-<span>arguments</span>
-<span>appear</span>
-<span>in</span>
-<span>Example 5-1</span>
-<span>.</span>
+<span>Some of the built-in functions that use one or more arguments appear in Example 5-1 .</span>
 <br/>
-<span>Example 5-1.</span>
-<span>Three string functions</span>
+<span>Example 5-1. Three string functions</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -127,17 +59,7 @@ title: "PHP Functions and Objects"
 <br/>
 <b class="t30">Hello world. Hip Hip HOORAY!</b>
 <br/>
-<span>As you can see, the</span>
-<span>strrev</span>
-<span>function reversed the order of characters in the string,</span>
-<span>str_repeat</span>
-<span>repeated the string</span>
-<span>"Hip "</span>
-<span>twice (as required by a second argument), and</span>
-<span>strtoupper</span>
-<span>converted</span>
-<span>"hooray!"</span>
-<span>to uppercase.</span>
+<span>As you can see, the strrev function reversed the order of characters in the string, str_repeat repeated the string "Hip " twice (as required by a second argument), and strtoupper converted "hooray!" to uppercase.</span>
 <h4>Defining a Function</h4>
 <span>The general syntax for a function is as follows:</span>
 <pre>
@@ -148,62 +70,23 @@ title: "PHP Functions and Objects"
     }
 </code>
 </pre>
-<span>I&rsquo;ll explain all the square brackets, in case you find them confusing. The first line of</span>
-<span>the syntax indicates the following:</span>
+<span>I&rsquo;ll explain all the square brackets, in case you find them confusing. The first line of the syntax indicates the following:</span>
 <br/>
-<span>&bull;</span>
-<span>A definition starts with the word</span>
-<span>function</span>
-<span>.</span>
+<span>&bull; A definition starts with the word function .</span>
 <br/>
-<span>&bull;</span>
-<span>A name follows, which must start with a letter or underscore, followed by any</span>
-<span>number of letters, numbers, or underscores.</span>
+<span>&bull; A name follows, which must start with a letter or underscore, followed by any number of letters, numbers, or underscores.</span>
 <br/>
-<span>&bull;</span>
-<span>The parentheses are required.</span>
+<span>&bull; The parentheses are required.</span>
 <br/>
-<span>&bull;</span>
-<span>One or more parameters, separated by commas, are optional.</span>
+<span>&bull; One or more parameters, separated by commas, are optional.</span>
 <br/>
-<span>Function names are case-insensitive, so all of the following strings can refer to the</span>
-<span>print</span>
-<span>function:</span>
-<span>PRINT</span>
-<span>,</span>
-<span>Print</span>
-<span>, and</span>
-<span>PrInT</span>
-<span>.</span>
+<span>Function names are case-insensitive, so all of the following strings can refer to the print function: PRINT , Print , and PrInT .</span>
 <br/>
-<span>The opening curly brace starts the statements that will execute when you call the</span>
-<span>function; a matching curly brace must close it. These statements may include one or</span>
-<span>more</span>
-<span>return</span>
-<span>statements, which force the function to cease execution and return to</span>
-<span>the calling code. If a value is attached to the</span>
-<span>return</span>
-<span>statement, the calling code can</span>
-<span>retrieve it, as we&rsquo;ll see next.</span>
+<span>The opening curly brace starts the statements that will execute when you call the function; a matching curly brace must close it. These statements may include one or more return statements, which force the function to cease execution and return to the calling code. If a value is attached to the return statement, the calling code can retrieve it, as we&rsquo;ll see next.</span>
 <h4>Returning a Value</h4>
-<span>Let&rsquo;s take a look at a simple function to convert a person&rsquo;s full name to lowercase and</span>
-<span>then capitalize the first letter of each name.</span>
+<span>Let&rsquo;s take a look at a simple function to convert a person&rsquo;s full name to lowercase and then capitalize the first letter of each name.</span>
 <br/>
-<span>We&rsquo;ve</span>
-<span>already</span>
-<span>seen</span>
-<span>an</span>
-<span>example</span>
-<span>of</span>
-<span>PHP&rsquo;s</span>
-<span>built-in</span>
-<span>strtoupper</span>
-<span>function</span>
-<span>in</span>
-<span>Example 5-1</span>
-<span>. For our current function, we&rsquo;ll use its counterpart,</span>
-<span>strtolower</span>
-<span>:</span>
+<span>We&rsquo;ve already seen an example of PHP&rsquo;s built-in strtoupper function in Example 5-1 . For our current function, we&rsquo;ll use its counterpart, strtolower :</span>
 <pre>
 <code class="php">
     $lowered = strtolower("aNY # of Letters and Punctuation you WANT");
@@ -214,10 +97,7 @@ title: "PHP Functions and Objects"
 <br/>
 <b class="t30">any # of letters and punctuation you want</b>
 <br/>
-<span>We don&rsquo;t want names all lowercase, though; we want the first letter of each name capitalized. (We&rsquo;re not going to deal with subtle cases such as Mary-Ann or Jo-En-Lai for</span>
-<span>this example.) Luckily, PHP also provides a</span>
-<span>ucfirst</span>
-<span>function that sets the first character of a string to uppercase:</span>
+<span>We don&rsquo;t want names all lowercase, though; we want the first letter of each name capitalized. (We&rsquo;re not going to deal with subtle cases such as Mary-Ann or Jo-En-Lai for this example.) Luckily, PHP also provides a ucfirst function that sets the first character of a string to uppercase:</span>
 <pre>
 <code class="php">
     $ucfixed = ucfirst("any # of letters and punctuation you want");
@@ -228,69 +108,25 @@ title: "PHP Functions and Objects"
 <br/>
 <b class="t30">Any # of letters and punctuation you want</b>
 <br/>
-<span>Now we can do our first bit of program design: to get a word with its initial letter</span>
-<span>capitalized, we call</span>
-<span>strtolower</span>
-<span>on a string first, and then</span>
-<span>ucfirst</span>
-<span>. The way to do this</span>
-<span>is to nest a call to</span>
-<span>strtolower</span>
-<span>within</span>
-<span>ucfirst</span>
-<span>. Let&rsquo;s see why, because it&rsquo;s important to</span>
-<span>understand the order in which code is evaluated.</span>
+<span>Now we can do our first bit of program design: to get a word with its initial letter capitalized, we call strtolower on a string first, and then ucfirst . The way to do this is to nest a call to strtolower within ucfirst . Let&rsquo;s see why, because it&rsquo;s important to understand the order in which code is evaluated.</span>
 <br/>
-<span>Say you make a simple call to the</span>
-<span>print</span>
-<span>function:</span>
+<span>Say you make a simple call to the print function:</span>
 <pre><code class="php">print(5-8);</code></pre>
-<span>The expression</span>
-<span>5-8</span>
-<span>is evaluated first, and the output is</span>
-<span>&ndash;</span>
-<span>3</span>
-<span>. (As you saw in the previous chapter, PHP converts the result to a string in order to display it.) If the expression contains a function, that function is evaluated first as well:</span>
+<span>The expression 5-8 is evaluated first, and the output is &ndash; 3 . (As you saw in the previous chapter, PHP converts the result to a string in order to display it.) If the expression contains a function, that function is evaluated first as well:</span>
 <pre><code class="php">print(abs(5-8));</code></pre>
-<span>PHP is doing several things in executing that short statement:</span>
-<span>1.</span>
-<span>Evaluate</span>
-<span>5-8</span>
-<span>to produce</span>
-<span>&ndash;</span>
-<span>3</span>
-<span>.</span>
+<span>PHP is doing several things in executing that short statement: 1. Evaluate 5-8 to produce &ndash; 3 .</span>
 <br/>
-<span>2.</span>
-<span>Use the</span>
-<span>abs</span>
-<span>function to turn</span>
-<span>&ndash;</span>
-<span>3</span>
-<span>into</span>
-<span>3</span>
-<span>.</span>
+<span>2. Use the abs function to turn &ndash; 3 into 3 .</span>
 <br/>
-<span>3.</span>
-<span>Convert the result to a string and output it using the</span>
-<span>print</span>
-<span>function.</span>
+<span>3. Convert the result to a string and output it using the print function.</span>
 <br/>
 <span>It all works, because PHP evaluates each element from the inside out. The same procedure is in operation when we call the following:</span>
 <pre><code class="php">ucfirst(strtolower("aNY # of Letters and Punctuation you WANT"));</code></pre>
-<span>PHP passes our string to</span>
-<span>strtolower</span>
-<span>and then to</span>
-<span>ucfirst</span>
-<span>, producing (as we&rsquo;ve</span>
-<span>already seen when we played with the functions separately):</span>
+<span>PHP passes our string to strtolower and then to ucfirst , producing (as we&rsquo;ve already seen when we played with the functions separately):</span>
 <br/>
 <b class="t30">Any # of letters and punctuation you want</b>
 <br/>
-<span>Now let&rsquo;s define a function (shown in</span>
-<span>Example 5-2</span>
-<span>) that takes three names and makes</span>
-<span>each one lowercased with an initial capital letter.</span>
+<span>Now let&rsquo;s define a function (shown in Example 5-2 ) that takes three names and makes each one lowercased with an initial capital letter.</span>
 <br/>
 <span>Example 5-2. Cleaning up a full name</span>
 <pre>
@@ -308,20 +144,13 @@ title: "PHP Functions and Objects"
 ?&gt;
 </code>
 </pre>
-<span>You may well find yourself writing this type of code, because users often leave their</span>
-<span>Caps Lock key on, accidentally insert capital letters in the wrong places, and even forget capitals altogether. The output from this example is shown here:</span>
+<span>You may well find yourself writing this type of code, because users often leave their Caps Lock key on, accidentally insert capital letters in the wrong places, and even forget capitals altogether. The output from this example is shown here:</span>
 <br/>
 <b class="t30">William Henry Gates</b>
 <h4>Returning an Array</h4>
 <span>We just saw a function returning a single value. There are also ways of getting multiple values from a function.</span>
 <br/>
-<span>The first method is to return them within an array. As you saw in</span>
-<span>Chapter 3</span>
-<span>, an array</span>
-<span>is like a bunch of variables stuck together in a row.</span>
-<span>Example 5-3</span>
-<span>shows how you can</span>
-<span>use an array to return function values.</span>
+<span>The first method is to return them within an array. As you saw in Chapter 3 , an array is like a bunch of variables stuck together in a row. Example 5-3 shows how you can use an array to return function values.</span>
 <br/>
 <span>Example 5-3. Returning multiple values in an array</span>
 <pre>
@@ -339,55 +168,21 @@ title: "PHP Functions and Objects"
 ?&gt;
 </code>
 </pre>
-<span>This method has the benefit of keeping all three names separate, rather than concatenating them into a single string, so you can refer to any user simply by first or last</span>
-<span>name, without having to extract either name from the returned string.</span>
+<span>This method has the benefit of keeping all three names separate, rather than concatenating them into a single string, so you can refer to any user simply by first or last name, without having to extract either name from the returned string.</span>
 <h4>Do Not Pass Arguments by Reference</h4>
-<span>In PHP versions prior to 5.3.0, you used to be able to preface a variable with the</span>
-<span>&amp;</span>
-<span>symbol to tell the parser to pass a reference to the variable, not the variable&rsquo;s value.</span>
-<span>This granted a function access to the variable (allowing different values to be written</span>
-<span>back to it) and could be a security risk, and also a cause of tricky-to-track bugs. It is</span>
-<span>also the antithesis of object oriented programming (OOP).</span>
+<span>In PHP versions prior to 5.3.0, you used to be able to preface a variable with the &amp; symbol to tell the parser to pass a reference to the variable, not the variable&rsquo;s value. This granted a function access to the variable (allowing different values to be written back to it) and could be a security risk, and also a cause of tricky-to-track bugs. It is also the antithesis of object oriented programming (OOP).</span>
 <br/>
-<span>Passing by reference was deprecated in PHP 5.3.0 and was removed</span>
-<span>in PHP 5.4.0. You should therefore not use this feature other than</span>
-<span>on</span>
-<span>legacy</span>
-<span>websites,</span>
-<span>and</span>
-<span>even</span>
-<span>there</span>
-<span>you</span>
-<span>are</span>
-<span>recommended</span>
-<span>to</span>
-<span>rewrite code that passes by reference, because it will halt with a</span>
-<span>fatal error on newer versions of PHP.</span>
+<span>Passing by reference was deprecated in PHP 5.3.0 and was removed in PHP 5.4.0. You should therefore not use this feature other than on legacy websites, and even there you are recommended to rewrite code that passes by reference, because it will halt with a fatal error on newer versions of PHP.</span>
 <br/>
-<span>In case you are called upon to maintain legacy code you need to know how this used</span>
-<span>to work so that you can build replacement routines where necessary. This concept</span>
-<span>can be hard to get your head around, though, so let&rsquo;s go back to the matchbox metaphor from</span>
-<span>Chapter 3</span>
-<span>.</span>
+<span>In case you are called upon to maintain legacy code you need to know how this used to work so that you can build replacement routines where necessary. This concept can be hard to get your head around, though, so let&rsquo;s go back to the matchbox metaphor from Chapter 3 .</span>
 <br/>
-<span>Imagine that, instead of taking a piece of paper out of a matchbox, reading it, copying</span>
-<span>it to another piece of paper, putting the original back, and passing the copy to a function (phew!), you simply attach a piece of thread to the original piece of paper and</span>
-<span>pass one end of it to the function (see</span>
-<span>Figure 5-2</span>
-<span>).</span>
+<span>Imagine that, instead of taking a piece of paper out of a matchbox, reading it, copying it to another piece of paper, putting the original back, and passing the copy to a function (phew!), you simply attach a piece of thread to the original piece of paper and pass one end of it to the function (see Figure 5-2 ).</span>
 <p><img src="images/5.2.png"/></p>
 <span>Figure 5-2. Imagining a reference as a thread attached to a variable</span>
 <br/>
-<span>Now the function can follow the thread to find the data to be accessed. This avoids all</span>
-<span>the overhead of creating a copy of the variable just for the function&rsquo;s use. What&rsquo;s</span>
-<span>more, the function can now modify the variable&rsquo;s value.</span>
+<span>Now the function can follow the thread to find the data to be accessed. This avoids all the overhead of creating a copy of the variable just for the function&rsquo;s use. What&rsquo;s more, the function can now modify the variable&rsquo;s value.</span>
 <br/>
-<span>This means you can rewrite</span>
-<span>Example 5-3</span>
-<span>to pass references to all the parameters, and</span>
-<span>then the function can modify these directly (see</span>
-<span>Example 5-4</span>
-<span>).</span>
+<span>This means you can rewrite Example 5-3 to pass references to all the parameters, and then the function can modify these directly (see Example 5-4 ).</span>
 <br/>
 <span>Example 5-4. Returning values from a function by reference</span>
 <pre>
@@ -411,64 +206,17 @@ title: "PHP Functions and Objects"
     ?&gt;
 </code>
 </pre>
-<span>Rather than passing strings directly to the function, you first assign them to variables</span>
-<span>and print them out to see their &ldquo;before&rdquo; values. Then you call the function as before,</span>
-<span>but put a</span>
-<span>&amp;</span>
-<span>symbol in front of each parameter, which tells PHP to pass the variables&rsquo;</span>
-<span>references only.</span>
+<span>Rather than passing strings directly to the function, you first assign them to variables and print them out to see their &ldquo;before&rdquo; values. Then you call the function as before, but put a &amp; symbol in front of each parameter, which tells PHP to pass the variables&rsquo; references only.</span>
 <br/>
-<span>Now the variables</span>
-<span>$n1</span>
-<span>,</span>
-<span>$n2</span>
-<span>, and</span>
-<span>$n3</span>
-<span>are attached to &ldquo;threads&rdquo; that lead to the values of</span>
-<span>$a1</span>
-<span>,</span>
-<span>$a2</span>
-<span>, and</span>
-<span>$a3</span>
-<span>. In other words, there is one group of values, but two sets of variable names are allowed to access them.</span>
+<span>Now the variables $n1 , $n2 , and $n3 are attached to &ldquo;threads&rdquo; that lead to the values of $a1 , $a2 , and $a3 . In other words, there is one group of values, but two sets of variable names are allowed to access them.</span>
 <br/>
-<span>Therefore, the function</span>
-<span>fix_names</span>
-<span>only has to assign new values to</span>
-<span>$n1</span>
-<span>,</span>
-<span>$n2</span>
-<span>, and</span>
-<span>$n3</span>
-<span>to update the values of</span>
-<span>$a1</span>
-<span>,</span>
-<span>$a2</span>
-<span>, and</span>
-<span>$a3</span>
-<span>. The output from this code is:</span><br/>
+<span>Therefore, the function fix_names only has to assign new values to $n1 , $n2 , and $n3 to update the values of $a1 , $a2 , and $a3 . The output from this code is:</span><br/>
 <b class="t30">WILLIAM henry gatES</b><br/>
 <b class="t30">William Henry Gates</b>
 <br/>
-<span>As you see, both of the</span>
-<span>echo</span>
-<span>statements use only the values of</span>
-<span>$a1</span>
-<span>,</span>
-<span>$a2</span>
-<span>, and</span>
-<span>$a3</span>
-<span>.</span>
-<span>I must reemphasize that this is no longer supported programming practice in PHP,</span>
-<span>and you should therefore convert any code that relies on passing by reference. Sometimes it&rsquo;s as simple as removing the</span>
-<span>&amp;</span>
-<span>symbols, because often they were not required</span>
-<span>in the first place. Or, as in the following example, you can use global variables instead.</span>
+<span>As you see, both of the echo statements use only the values of $a1 , $a2 , and $a3 . I must reemphasize that this is no longer supported programming practice in PHP, and you should therefore convert any code that relies on passing by reference. Sometimes it&rsquo;s as simple as removing the &amp; symbols, because often they were not required in the first place. Or, as in the following example, you can use global variables instead.</span>
 <h4>Returning Global Variables</h4>
-<span>The better way to give a function access to an externally created variable, is by declaring it a global variable from within the function. The global keyword followed by the</span>
-<span>variable name gives every part of your code full access to it (see</span>
-<span>Example 5-5</span>
-<span>).</span>
+<span>The better way to give a function access to an externally created variable, is by declaring it a global variable from within the function. The global keyword followed by the variable name gives every part of your code full access to it (see Example 5-5 ).</span>
 <br/>
 <span>Example 5-5. Returning values in global variables</span>
 <pre>
@@ -491,69 +239,23 @@ title: "PHP Functions and Objects"
 ?&gt;
 </code>
 </pre>
-<span>Now you don&rsquo;t have to pass parameters to the function, and it doesn&rsquo;t have to accept</span>
-<span>them. Once declared, these variables remain global and available to the rest of your</span>
-<span>program, including its functions.</span>
-<span>In order to retain as much local scope as possible, you should try</span>
-<span>returning arrays or using variables by association. Otherwise, you</span>
-<span>will begin to lose some of the benefits of functions.</span>
+<span>Now you don&rsquo;t have to pass parameters to the function, and it doesn&rsquo;t have to accept them. Once declared, these variables remain global and available to the rest of your program, including its functions. In order to retain as much local scope as possible, you should try returning arrays or using variables by association. Otherwise, you will begin to lose some of the benefits of functions.</span>
 <h4>Recap of Variable Scope</h4>
-<span>A quick reminder of what you know from</span>
-<span>Chapter 3</span>
-<span>:</span>
+<span>A quick reminder of what you know from Chapter 3 :</span>
 <br/>
-<span>&bull;</span>
-<span>Local variables</span>
-<span>are accessible just from the part of code where you define them. If</span>
-<span>they&rsquo;re outside of a function, they can be accessed by all code outside of functions, classes, and so on. If a variable is inside a function, only that function can</span>
-<span>access the variable, and its value is lost when the function returns.</span>
+<span>&bull; Local variables are accessible just from the part of code where you define them. If they&rsquo;re outside of a function, they can be accessed by all code outside of functions, classes, and so on. If a variable is inside a function, only that function can access the variable, and its value is lost when the function returns.</span>
 <br/>
-<span>&bull;</span>
-<span>Global variables</span>
-<span>are accessible from all parts of your code.</span>
+<span>&bull; Global variables are accessible from all parts of your code.</span>
 <br/>
-<span>&bull;</span>
-<span>Static variables</span>
-<span>&nbsp;are accessible only within the function that declared them but</span>
-<span>retain their value over multiple calls.</span>
+<span>&bull; Static variables &nbsp;are accessible only within the function that declared them but retain their value over multiple calls.</span>
 <h3>Including and Requiring Files</h3>
-<span>As you progress in your use of PHP programming, you are likely to start building a</span>
-<span>library of functions that you think you will need again. You&rsquo;ll also probably start</span>
-<span>using libraries created by other programmers.</span>
+<span>As you progress in your use of PHP programming, you are likely to start building a library of functions that you think you will need again. You&rsquo;ll also probably start using libraries created by other programmers.</span>
 <br/>
-<span>There&rsquo;s no need to copy and paste these functions into your code. You can save them</span>
-<span>in separate files and use commands to pull them in. There are two types of command</span>
-<span>to perform this action:</span>
-<span>include</span>
-<span>and</span>
-<span>require</span>
-<span>.</span>
+<span>There&rsquo;s no need to copy and paste these functions into your code. You can save them in separate files and use commands to pull them in. There are two types of command to perform this action: include and require .</span>
 <h4>The include Statement</h4>
-<span>Using</span>
-<span>include</span>
-<span>, you can tell PHP to fetch a particular file and load all its contents. It&rsquo;s</span>
-<span>as</span>
-<span>if</span>
-<span>you</span>
-<span>pasted</span>
-<span>the</span>
-<span>included</span>
-<span>file</span>
-<span>into</span>
-<span>the</span>
-<span>current</span>
-<span>file</span>
-<span>at</span>
-<span>the</span>
-<span>insertion</span>
-<span>point.</span>
-<span>Example 5-6</span>
-<span>shows how you would include a file called</span>
-<span>library.php</span>
-<span>.</span>
+<span>Using include , you can tell PHP to fetch a particular file and load all its contents. It&rsquo;s as if you pasted the included file into the current file at the insertion point. Example 5-6 shows how you would include a file called library.php .</span>
 <br/>
-<span>Example 5-6. Including a PHP</span>
-<span>file</span><br/>
+<span>Example 5-6. Including a PHP file</span><br/>
 <pre>
 <code class="php">
 &lt;?php
@@ -563,29 +265,9 @@ title: "PHP Functions and Objects"
 </code>
 </pre>
 <h4>Using include_once</h4>
-<span>Each time you issue the</span>
-<span>include</span>
-<span>directive, it includes the requested file again, even if</span>
-<span>you&rsquo;ve already inserted it. For instance, suppose that</span>
-<span>library.php</span>
-<span>contains a lot of useful functions, so you include it in your file, but also include another library that</span>
-<span>includes</span>
-<span>library.php</span>
-<span>.</span>
-<span>Through</span>
-<span>nesting,</span>
-<span>you&rsquo;ve</span>
-<span>inadvertently</span>
-<span>included</span>
-<span>library.php</span>
-<span>twice. This will produce error messages, because you&rsquo;re trying to define the same constant or function multiple times. So you should use</span>
-<span>include_once</span>
-<span>instead (see</span>
-<span>Example 5-7</span>
-<span>).</span>
+<span>Each time you issue the include directive, it includes the requested file again, even if you&rsquo;ve already inserted it. For instance, suppose that library.php contains a lot of useful functions, so you include it in your file, but also include another library that includes library.php . Through nesting, you&rsquo;ve inadvertently included library.php twice. This will produce error messages, because you&rsquo;re trying to define the same constant or function multiple times. So you should use include_once instead (see Example 5-7 ).</span>
 <br/>
-<span>Example 5-7. Including a PHP</span>
-<span>file only once</span>
+<span>Example 5-7. Including a PHP file only once</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -594,58 +276,15 @@ title: "PHP Functions and Objects"
 ?&gt;
 </code>
 </pre>
-<span>Then, whenever another</span>
-<span>include</span>
-<span>or</span>
-<span>include_once</span>
-<span>is encountered, if it has already</span>
-<span>been executed, it will be completely ignored. To determine whether the file has</span>
-<span>already been executed, the absolute file path is matched after all relative paths are</span>
-<span>resolved and the file is found in your</span>
-<span>include</span>
-<span>path.</span>
+<span>Then, whenever another include or include_once is encountered, if it has already been executed, it will be completely ignored. To determine whether the file has already been executed, the absolute file path is matched after all relative paths are resolved and the file is found in your include path.</span>
 <br/>
-<span>In general, it&rsquo;s probably best to stick with</span>
-<span>include_once</span>
-<span>and ignore</span>
-<span>the basic</span>
-<span>include</span>
-<span>statement. That way, you will never have the</span>
-<span>problem of files being included multiple times.</span>
+<span>In general, it&rsquo;s probably best to stick with include_once and ignore the basic include statement. That way, you will never have the problem of files being included multiple times.</span>
 <h4>Using require and require_once</h4>
-<span>A potential problem with</span>
-<span>include</span>
-<span>and</span>
-<span>include_once</span>
-<span>is that PHP will only</span>
-<span>attempt</span>
-<span>to</span>
-<span>include the requested file. Program execution continues even if the file is not found.</span>
+<span>A potential problem with include and include_once is that PHP will only attempt to include the requested file. Program execution continues even if the file is not found.</span>
 <br/>
-<span>When it is absolutely essential to include a file,</span>
-<span>require</span>
-<span>it. For the same reasons I</span>
-<span>gave</span>
-<span>for</span>
-<span>using</span>
-<span>include_once</span>
-<span>,</span>
-<span>I</span>
-<span>recommend</span>
-<span>that</span>
-<span>you</span>
-<span>generally</span>
-<span>stick</span>
-<span>with</span>
-<span>require_once</span>
-<span>whenever you need to</span>
-<span>require</span>
-<span>a file (see</span>
-<span>Example 5-8</span>
-<span>).</span>
+<span>When it is absolutely essential to include a file, require it. For the same reasons I gave for using include_once , I recommend that you generally stick with require_once whenever you need to require a file (see Example 5-8 ).</span>
 <br/>
-<span>Example 5-8. Requiring a PHP</span>
-<span>file only once</span>
+<span>Example 5-8. Requiring a PHP file only once</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -655,15 +294,9 @@ title: "PHP Functions and Objects"
 </code>
 </pre>
 <h3>PHP Version Compatibility</h3>
-<span>PHP is in an ongoing process of development, and there are multiple versions. If you</span>
-<span>need to check whether a particular function is available to your code, you can use the</span>
-<span>function_exists</span>
-<span>function, which checks all predefined and user-created functions.</span>
+<span>PHP is in an ongoing process of development, and there are multiple versions. If you need to check whether a particular function is available to your code, you can use the function_exists function, which checks all predefined and user-created functions.</span>
 <br/>
-<span>Example 5-9</span>
-<span>checks for</span>
-<span>array_combine</span>
-<span>, a function specific to PHP version 5.</span>
+<span>Example 5-9 checks for array_combine , a function specific to PHP version 5.</span>
 <br/>
 <span>Example 5-9. Checking for a function&rsquo;s existence</span>
 <pre>
@@ -680,131 +313,38 @@ title: "PHP Functions and Objects"
 ?&gt;
 </code>
 </pre>
-<span>Using code such as this, you can take advantage of features in newer versions of PHP</span>
-<span>and yet still have your code run on earlier versions, as long as you replicate any features that are missing. Your functions may be slower than the built-in ones, but at</span>
-<span>least your code will be much more portable.</span>
+<span>Using code such as this, you can take advantage of features in newer versions of PHP and yet still have your code run on earlier versions, as long as you replicate any features that are missing. Your functions may be slower than the built-in ones, but at least your code will be much more portable.</span>
 <br/>
-<span>You can also use the</span>
-<span>phpversion</span>
-<span>function to determine which version of PHP your</span>
-<span>code is running on. The returned result will be similar to the following, depending on</span>
-<span>the version:</span>
-<span>5.5.11</span>
+<span>You can also use the phpversion function to determine which version of PHP your code is running on. The returned result will be similar to the following, depending on the version: 5.5.11</span>
 <h3>PHP Objects</h3>
-<span>In much the same way that functions represent a huge increase in programming</span>
-<span>power over the early days of computing, where sometimes the best program navigation available was a very basic</span>
-<span>GOTO</span>
-<span>or</span>
-<span>GOSUB</span>
-<span>statement,</span>
-<span>object-oriented programming</span>
-<span>(OOP) takes the use of functions to a whole new level.</span>
+<span>In much the same way that functions represent a huge increase in programming power over the early days of computing, where sometimes the best program navigation available was a very basic GOTO or GOSUB statement, object-oriented programming (OOP) takes the use of functions to a whole new level.</span>
 <br/>
-<span>Once you get the hang of condensing reusable bits of code into functions, it&rsquo;s not that</span>
-<span>great a leap to consider bundling the functions and their data into objects.</span>
+<span>Once you get the hang of condensing reusable bits of code into functions, it&rsquo;s not that great a leap to consider bundling the functions and their data into objects.</span>
 <br/>
-<span>Let&rsquo;s take a social networking site that has many parts. One handles all user functions;</span>
-<span>that is, code to enable new users to sign up and existing users to modify their details.</span>
-<span>In standard PHP, you might create a few functions to handle this and embed some</span>
-<span>calls to the MySQL database to keep track of all the users.</span>
+<span>Let&rsquo;s take a social networking site that has many parts. One handles all user functions; that is, code to enable new users to sign up and existing users to modify their details. In standard PHP, you might create a few functions to handle this and embed some calls to the MySQL database to keep track of all the users.</span>
 <br/>
-<span>Imagine how much easier it would be to create an object to represent the current user.</span>
-<span>To do this, you could create a class, perhaps called</span>
-<span>User</span>
-<span>, that would contain all the</span>
-<span>code required for handling users and all the variables needed for manipulating the</span>
-<span>data within the class. Then, whenever you need to manipulate a user&rsquo;s data, you could</span>
-<span>simply create a new object with the</span>
-<span>User</span>
-<span>class.</span>
+<span>Imagine how much easier it would be to create an object to represent the current user. To do this, you could create a class, perhaps called User , that would contain all the code required for handling users and all the variables needed for manipulating the data within the class. Then, whenever you need to manipulate a user&rsquo;s data, you could simply create a new object with the User class.</span>
 <br/>
-<span>You could treat this new object as if it were the actual user. For example, you could</span>
-<span>pass the object a name, password, and email address; ask it whether such a user</span>
-<span>already exists; and, if not, have it create a new user with those attributes. You could</span>
-<span>even have an instant messaging object, or one for managing whether two users are</span>
-<span>friends.</span>
+<span>You could treat this new object as if it were the actual user. For example, you could pass the object a name, password, and email address; ask it whether such a user already exists; and, if not, have it create a new user with those attributes. You could even have an instant messaging object, or one for managing whether two users are friends.</span>
 <h4>Terminology</h4>
-<span>When creating a program to use objects, you need to design a composite of data and</span>
-<span>code called a</span>
-<span>class</span>
-<span>. Each new object based on this class is called an</span>
-<span>instance</span>
-<span>(or</span>
-<span>occurrence</span>
-<span>) of that class.</span>
+<span>When creating a program to use objects, you need to design a composite of data and code called a class . Each new object based on this class is called an instance (or occurrence ) of that class.</span>
 <br/>
-<span>The data associated with an object is called its</span>
-<span>&nbsp;properties</span>
-<span>; the functions it uses are</span>
-<span>called</span>
-<span>&nbsp;methods</span>
-<span>. In defining a class, you supply the names of its properties and the</span>
-<span>code for its methods. See</span>
-<span>Figure 5-3</span>
-<span>for a jukebox metaphor for an object. Think of</span>
-<span>the CDs that it holds in the carousel as its properties; the method of playing them is</span>
-<span>to press buttons on the front panel. There is also the slot for inserting coins (the</span>
-<span>method used to activate the object), and the laser disc reader (the method used to</span>
-<span>retrieve the music, or properties, from the CDs).</span>
+<span>The data associated with an object is called its &nbsp;properties ; the functions it uses are called &nbsp;methods . In defining a class, you supply the names of its properties and the code for its methods. See Figure 5-3 for a jukebox metaphor for an object. Think of the CDs that it holds in the carousel as its properties; the method of playing them is to press buttons on the front panel. There is also the slot for inserting coins (the method used to activate the object), and the laser disc reader (the method used to retrieve the music, or properties, from the CDs).</span>
 <br/>
-<span>When you&rsquo;re creating objects, it is best to use</span>
-<span>encapsulation</span>
-<span>, or writing a class in such</span>
-<span>a way that only its methods can be used to manipulate its properties. In other words,</span>
-<span>you deny outside code direct access to its data. The methods you supply are known as</span>
-<span>the object&rsquo;s</span>
-<span>interface</span>
-<span>.</span>
+<span>When you&rsquo;re creating objects, it is best to use encapsulation , or writing a class in such a way that only its methods can be used to manipulate its properties. In other words, you deny outside code direct access to its data. The methods you supply are known as the object&rsquo;s interface .</span>
 <br/>
-<span>This approach makes debugging easy: you have to fix faulty code only within a class.</span>
-<span>Additionally, when you want to upgrade a program, if you have used proper encapsulation and maintained the same interface, you can simply develop new replacement</span>
-<span>classes, debug them fully, and then swap them in for the old ones. If they don&rsquo;t work,</span>
-<span>you can swap the old ones back in to immediately fix the problem before further</span>
-<span>debugging the new classes.</span>
+<span>This approach makes debugging easy: you have to fix faulty code only within a class. Additionally, when you want to upgrade a program, if you have used proper encapsulation and maintained the same interface, you can simply develop new replacement classes, debug them fully, and then swap them in for the old ones. If they don&rsquo;t work, you can swap the old ones back in to immediately fix the problem before further debugging the new classes.</span>
 <br/>
-<span>Once you have created a class, you may find that you need another class that is similar to it but not quite the same. The quick and easy thing to do is to define a new class</span>
-<span>using</span>
-<span>inheritance</span>
-<span>. When you do this, your new class has all the properties of the one</span>
-<span>it has inherited from. The original class is now called the</span>
-<span>superclass</span>
-<span>, and the new one</span>
-<span>is the</span>
-<span>subclass</span>
-<span>(or</span>
-<span>derived</span>
-<span>class).</span>
+<span>Once you have created a class, you may find that you need another class that is similar to it but not quite the same. The quick and easy thing to do is to define a new class using inheritance . When you do this, your new class has all the properties of the one it has inherited from. The original class is now called the superclass , and the new one is the subclass (or derived class).</span>
 <br/>
 <p><img src="images/5.3.png"/></p>
 <span>Figure 5-3. A jukebox: a great example of a self-contained object</span>
 <br/>
-<span>In our jukebox example, if you invent a new jukebox that can play a video along with</span>
-<span>the music, you can inherit all the properties and methods from the original jukebox</span>
-<span>superclass and add some new properties (videos) and new methods (a movie player).</span>
+<span>In our jukebox example, if you invent a new jukebox that can play a video along with the music, you can inherit all the properties and methods from the original jukebox superclass and add some new properties (videos) and new methods (a movie player).</span>
 <br/>
-<span>An excellent benefit of this system is that if you improve the speed or any other aspect</span>
-<span>of the superclass, its subclasses will receive the same benefit.</span>
+<span>An excellent benefit of this system is that if you improve the speed or any other aspect of the superclass, its subclasses will receive the same benefit.</span>
 <h4>Declaring a Class</h4>
-<span>Before you can use an object, you must define a class with the</span>
-<span>class</span>
-<span>keyword. Class</span>
-<span>definitions contain the class name (which is case-sensitive), its properties, and its</span>
-<span>methods.</span>
-<span>Example 5-10</span>
-<span>defines the class</span>
-<span>User</span>
-<span>with two properties, which are:</span>
-<span>$name</span>
-<span>and</span>
-<span>$password</span>
-<span>(indicated by the</span>
-<span>public</span>
-<span>keyword&mdash;see</span>
-<span>&ldquo;Property and Method Scope</span>
-<span>in PHP 5&rdquo; on page 115</span>
-<span>). It also creates a new instance (called</span>
-<span>$object</span>
-<span>) of this class.</span>
+<span>Before you can use an object, you must define a class with the class keyword. Class definitions contain the class name (which is case-sensitive), its properties, and its methods. Example 5-10 defines the class User with two properties, which are: $name and $password (indicated by the public keyword&mdash;see &ldquo;Property and Method Scope in PHP 5&rdquo; on page 115 ). It also creates a new instance (called $object ) of this class.</span>
 <br/>
 <span>Example 5-10. Declaring a class and examining an object</span>
 <pre>
@@ -825,17 +365,7 @@ title: "PHP Functions and Objects"
 ?&gt;
 </code>
 </pre>
-<span>Here I have also used an invaluable function called</span>
-<span>print_r</span>
-<span>. It asks PHP to display</span>
-<span>information about a variable in human-readable form. The</span>
-<span>_r</span>
-<span>stands for</span>
-<span>in human-</span>
-<span>readable format</span>
-<span>. In the case of the new object</span>
-<span>$object</span>
-<span>, it prints the following:</span>
+<span>Here I have also used an invaluable function called print_r . It asks PHP to display information about a variable in human-readable form. The _r stands for in human- readable format . In the case of the new object $object , it prints the following:</span>
 <pre>
 <code class="php">
     User Object
@@ -845,43 +375,22 @@ title: "PHP Functions and Objects"
     )
 </code>
 </pre>
-<span>However, a browser compresses all the whitespace, so the output in a browser is</span>
-<span>slightly harder to read:</span>
+<span>However, a browser compresses all the whitespace, so the output in a browser is slightly harder to read:</span>
 <pre><code class="php">User Object ( [name] =&gt; [password] =&gt; )</code></pre>
-<span>In any case, the output says that</span>
-<span>$object</span>
-<span>is a user-defined object that has the properties</span>
-<span>name</span>
-<span>and</span>
-<span>password</span>
-<span>.</span>
+<span>In any case, the output says that $object is a user-defined object that has the properties name and password .</span>
 <h4>Creating an Object</h4>
-<span>To create an object with a specified class, use the</span>
-<span>new</span>
-<span>keyword, like this:</span>
-<span>object =</span>
-<span>new Class</span>
-<span>. Here are a couple of ways in which we could do this:</span>
+<span>To create an object with a specified class, use the new keyword, like this: object = new Class . Here are a couple of ways in which we could do this:</span>
 <pre>
 <code class="php">
     $object = new User;
     $temp = new User('name', 'password');
 </code>
 </pre>
-<span>On the first line, we simply assign an object to the</span>
-<span>User</span>
-<span>class. In the second, we pass</span>
-<span>parameters to the call.</span>
+<span>On the first line, we simply assign an object to the User class. In the second, we pass parameters to the call.</span>
 <br/>
-<span>A class may require or prohibit arguments; it may also allow arguments but not</span>
-<span>require them.</span>
+<span>A class may require or prohibit arguments; it may also allow arguments but not require them.</span>
 <h4>Accessing Objects</h4>
-<span>Let&rsquo;s add a few lines to</span>
-<span>Example 5-10</span>
-<span>and check the results.</span>
-<span>Example 5-11</span>
-<span>extends the</span>
-<span>previous code by setting object properties and calling a method.</span>
+<span>Let&rsquo;s add a few lines to Example 5-10 and check the results. Example 5-11 extends the previous code by setting object properties and calling a method.</span>
 <br/>
 <span>Example 5-11. Creating and interacting with an object</span>
 <pre>
@@ -908,41 +417,11 @@ class User
 </code>
 </pre>
 
-<span>As you can see, the syntax for accessing an object&rsquo;s property is</span>
-<span>$object-&gt;property</span>
-<span>.</span>
-<span>Likewise, you call a method like this:</span>
-<span>$object-&gt;method()</span>
-<span>.</span>
+<span>As you can see, the syntax for accessing an object&rsquo;s property is $object-&gt;property . Likewise, you call a method like this: $object-&gt;method() .</span>
 <br/>
-<span>You should note that the example</span>
-<span>property</span>
-<span>and</span>
-<span>method</span>
-<span>do not have</span>
-<span>$</span>
-<span>signs in front</span>
-<span>of them. If you were to preface them with</span>
-<span>$</span>
-<span>signs, the code would not work, as it</span>
-<span>would try to reference the value inside a variable. For example, the expression</span>
-<span>$object-&gt;$property</span>
-<span>would attempt to look up the value assigned to a variable</span>
-<span>named</span>
-<span>$property</span>
-<span>(let&rsquo;s say that value is the string</span>
-<span>brown</span>
-<span>) and then attempt to reference the property</span>
-<span>$object-&gt;brown</span>
-<span>. If</span>
-<span>$property</span>
-<span>is undefined, an attempt to reference</span>
-<span>$object-&gt;NULL</span>
-<span>would occur and cause an error.</span>
+<span>You should note that the example property and method do not have $ signs in front of them. If you were to preface them with $ signs, the code would not work, as it would try to reference the value inside a variable. For example, the expression $object-&gt;$property would attempt to look up the value assigned to a variable named $property (let&rsquo;s say that value is the string brown ) and then attempt to reference the property $object-&gt;brown . If $property is undefined, an attempt to reference $object-&gt;NULL would occur and cause an error.</span>
 <br/>
-<span>When looked at using a browser&rsquo;s View Source facility, the output from</span>
-<span>Example 5-11</span>
-<span>is as follows:</span>
+<span>When looked at using a browser&rsquo;s View Source facility, the output from Example 5-11 is as follows:</span>
 <pre>
 <code class="php">
     User Object
@@ -958,40 +437,15 @@ class User
     Save User code goes here
 </code>
 </pre>
-<span>Again,</span>
-<span>print_r</span>
-<span>shows its utility by providing the contents of</span>
-<span>$object</span>
-<span>before and</span>
-<span>after property assignment. From now on, I&rsquo;ll omit</span>
-<span>print_r</span>
-<span>statements, but if you are</span>
-<span>working along with this book on your development server, you can put some in to see</span>
-<span>exactly what is happening.</span>
+<span>Again, print_r shows its utility by providing the contents of $object before and after property assignment. From now on, I&rsquo;ll omit print_r statements, but if you are working along with this book on your development server, you can put some in to see exactly what is happening.</span>
 <br/>
-<span>You can also see that the code in the method</span>
-<span>save_user</span>
-<span>was executed via the call to</span>
-<span>that method. It printed the string reminding us to create some code.</span>
+<span>You can also see that the code in the method save_user was executed via the call to that method. It printed the string reminding us to create some code.</span>
 <br/>
-<span>You can place functions and class definitions anywhere in your</span>
-<span>code, before or after statements that use them. Generally, though, it</span>
-<span>is considered good practice to place them toward the end of a file.</span>
+<span>You can place functions and class definitions anywhere in your code, before or after statements that use them. Generally, though, it is considered good practice to place them toward the end of a file.</span>
 <h4>Cloning Objects</h4>
-<span>Once you have created an object, it is passed by reference when you pass it as a</span>
-<span>parameter. In the matchbox metaphor, this is like keeping several threads attached to</span>
-<span>an object stored in a matchbox, so that you can follow any attached thread to access</span>
-<span>it.</span>
+<span>Once you have created an object, it is passed by reference when you pass it as a parameter. In the matchbox metaphor, this is like keeping several threads attached to an object stored in a matchbox, so that you can follow any attached thread to access it.</span>
 <br/>
-<span>In other words, making object assignments does not copy objects in their entirety.</span>
-<span>You&rsquo;ll see how this works in</span>
-<span>Example 5-12</span>
-<span>, where we define a very simple</span>
-<span>User</span>
-<span>class</span>
-<span>with no methods and only the property</span>
-<span>name</span>
-<span>.</span>
+<span>In other words, making object assignments does not copy objects in their entirety. You&rsquo;ll see how this works in Example 5-12 , where we define a very simple User class with no methods and only the property name .</span>
 <br/>
 <span>Example 5-12. Copying an object?</span>
 <pre>
@@ -1011,52 +465,15 @@ class User
 ?&gt;
 </code>
 </pre>
-<span>We&rsquo;ve created the object</span>
-<span>$object1</span>
-<span>and assigned the value</span>
-<span>Alice</span>
-<span>to the</span>
-<span>name</span>
-<span>property.</span>
-<span>Then we create</span>
-<span>$object2</span>
-<span>, assigning it the value of</span>
-<span>$object1</span>
-<span>, and assign the value</span>
-<span>Amy</span>
-<span>just to the</span>
-<span>name</span>
-<span>property of</span>
-<span>$object2</span>
-<span>&mdash;</span>
-<span>or so we might think. But this code outputs</span>
-<span>the following:</span>
+<span>We&rsquo;ve created the object $object1 and assigned the value Alice to the name property. Then we create $object2 , assigning it the value of $object1 , and assign the value Amy just to the name property of $object2 &mdash; or so we might think. But this code outputs the following:</span>
 <br/>
 <b class="t30">object1 name = Amy</b>
 <br/>
 <b class="t30">object2 name = Amy</b>
 <br/>
-<span>What has happened? Both</span>
-<span>$object1</span>
-<span>and</span>
-<span>$object2</span>
-<span>refer to the</span>
-<span>same</span>
-<span>object, so changing the name property of</span>
-<span>$object2</span>
-<span>to</span>
-<span>Amy</span>
-<span>also sets that property for</span>
-<span>$object1</span>
-<span>.</span>
+<span>What has happened? Both $object1 and $object2 refer to the same object, so changing the name property of $object2 to Amy also sets that property for $object1 .</span>
 <br/>
-<span>To avoid this confusion, you can use the</span>
-<span>clone</span>
-<span>operator, which creates a new instance</span>
-<span>of the class and copies the property values from the original instance to the new</span>
-<span>instance.</span>
-<span>Example 5-13</span>
-<span>illustrates this usage.</span>
+<span>To avoid this confusion, you can use the clone operator, which creates a new instance of the class and copies the property values from the original instance to the new instance. Example 5-13 illustrates this usage.</span>
 <br/>
 <span>Example 5-13. Cloning an object</span>
 <pre>
@@ -1083,15 +500,9 @@ class User
 <br/>
 <b class="t30">object2 name = Amy</b>
 <h4>Constructors</h4>
-<span>When creating a new object, you can pass a list of arguments to the class being called.</span>
-<span>These are passed to a special method within the class, called the</span>
-<span>constructor</span>
-<span>, which</span>
-<span>initializes various properties.</span>
+<span>When creating a new object, you can pass a list of arguments to the class being called. These are passed to a special method within the class, called the constructor , which initializes various properties.</span>
 <br/>
-<span>In the past, you would normally give this method the same name as the class, as in</span>
-<span>Example 5-14</span>
-<span>.</span>
+<span>In the past, you would normally give this method the same name as the class, as in Example 5-14 .</span>
 <br/>
 <span>Example 5-14. Creating a constructor method</span>
 <pre>
@@ -1108,14 +519,7 @@ class User
 ?&gt;
 </code>
 </pre>
-<span>However, PHP 5 provides a more logical approach to naming the constructor, which</span>
-<span>is to use the function name</span>
-<span>__construct</span>
-<span>(that is,</span>
-<span>construct</span>
-<span>preceded by two underscore characters), as in</span>
-<span>Example 5-15</span>
-<span>.</span>
+<span>However, PHP 5 provides a more logical approach to naming the constructor, which is to use the function name __construct (that is, construct preceded by two underscore characters), as in Example 5-15 .</span>
 <br/>
 <span>Example 5-15. Creating a constructor method in PHP 5</span>
 <pre>
@@ -1133,12 +537,7 @@ class User
 </code>
 </pre>
 <h4>PHP 5 Destructors</h4>
-<span>Also new in PHP 5 is the ability to create</span>
-<span>&nbsp;destructor</span>
-<span>methods. This ability is useful</span>
-<span>when code has made the last reference to an object or when a script reaches the end.</span>
-<span>Example 5-16</span>
-<span>shows how to create a destructor method.</span>
+<span>Also new in PHP 5 is the ability to create &nbsp;destructor methods. This ability is useful when code has made the last reference to an object or when a script reaches the end. Example 5-16 shows how to create a destructor method.</span>
 <br/>
 <span>Example 5-16. Creating a destructor method in PHP 5</span>
 <pre>
@@ -1155,23 +554,9 @@ class User
 </code>
 </pre>
 <h4>Writing Methods</h4>
-<span>As you have seen, declaring a method is similar to declaring a function, but there are</span>
-<span>a few differences. For example, method names beginning with a double underscore</span>
-<span>(</span>
-<span>__</span>
-<span>) are reserved, and you should not create any of this form.</span>
+<span>As you have seen, declaring a method is similar to declaring a function, but there are a few differences. For example, method names beginning with a double underscore ( __ ) are reserved, and you should not create any of this form.</span>
 <br/>
-<span>You also have access to a special variable called</span>
-<span>$this</span>
-<span>, which can be used to access the</span>
-<span>current object&rsquo;s properties. To see how it works, take a look at</span>
-<span>Example 5-17</span>
-<span>, which</span>
-<span>contains a different method from the</span>
-<span>User</span>
-<span>class definition called</span>
-<span>get_password</span>
-<span>.</span>
+<span>You also have access to a special variable called $this , which can be used to access the current object&rsquo;s properties. To see how it works, take a look at Example 5-17 , which contains a different method from the User class definition called get_password .</span>
 <br/>
 <span>Example 5-17. Using the variable $this in a method</span>
 <pre>
@@ -1189,26 +574,9 @@ class User
 ?&gt;
 </code>
 </pre>
-<span>get_password</span>
-<span>uses the</span>
-<span>$this</span>
-<span>variable to access the current object and then return the</span>
-<span>value of that object&rsquo;s</span>
-<span>password</span>
-<span>property. Note how the preceding</span>
-<span>$</span>
-<span>of the property</span>
-<span>$password</span>
-<span>is omitted when we use the</span>
-<span>-&gt;</span>
-<span>operator. Leaving the</span>
-<span>$</span>
-<span>in place is a typical</span>
-<span>error you may run into, particularly when you first use this feature.</span>
+<span>get_password uses the $this variable to access the current object and then return the value of that object&rsquo;s password property. Note how the preceding $ of the property $password is omitted when we use the -&gt; operator. Leaving the $ in place is a typical error you may run into, particularly when you first use this feature.</span>
 <br/>
-<span>Here&rsquo;s how you would use the class defined in</span>
-<span>Example 5-17</span>
-<span>:</span>
+<span>Here&rsquo;s how you would use the class defined in Example 5-17 :</span>
 <pre>
 <code class="php">
     $object = new User;
@@ -1216,16 +584,9 @@ class User
     echo $object-&gt;get_password();
 </code>
 </pre>
-<span>This code prints the password</span>
-<span>secret</span>
-<span>.</span>
+<span>This code prints the password secret .</span>
 <h4>Static Methods in PHP 5</h4>
-<span>If you are using PHP 5, you can also define a method as</span>
-<span>static</span>
-<span>, which means that it is</span>
-<span>called on a class, not on an object. A static method has no access to any object properties and is created and accessed as in</span>
-<span>Example 5-18</span>
-<span>.</span>
+<span>If you are using PHP 5, you can also define a method as static , which means that it is called on a class, not on an object. A static method has no access to any object properties and is created and accessed as in Example 5-18 .</span>
 <br/>
 <span>Example 5-18. Creating and accessing a static method</span>
 <pre>
@@ -1243,31 +604,13 @@ class User
 ?&gt;
 </code>
 </pre>
-<span>Note how we call the class itself, along with the static method, using a double colon</span>
-<span>(also known as the</span>
-<span>scope resolution</span>
-<span>operator), not</span>
-<span>-&gt;</span>
-<span>. Static functions are useful for</span>
-<span>performing actions relating to the class itself, but not to specific instances of the class.</span>
-<span>You can see another example of a static method in</span>
-<span>Example 5-21</span>
-<span>.</span>
+<span>Note how we call the class itself, along with the static method, using a double colon (also known as the scope resolution operator), not -&gt; . Static functions are useful for performing actions relating to the class itself, but not to specific instances of the class. You can see another example of a static method in Example 5-21 .</span>
 <br/>
-<span>If you try to access</span>
-<span>$this-&gt;property</span>
-<span>, or other object properties</span>
-<span>from within a static function, you will receive an error message.</span>
+<span>If you try to access $this-&gt;property , or other object properties from within a static function, you will receive an error message.</span>
 <h4>Declaring Properties</h4>
-<span>It is not necessary to explicitly declare properties within classes, as they can be</span>
-<span>implicitly defined when first used. To illustrate this, in</span>
-<span>Example 5-19</span>
-<span>the class</span>
-<span>User</span>
-<span>has no properties and no methods but is legal code.</span>
+<span>It is not necessary to explicitly declare properties within classes, as they can be implicitly defined when first used. To illustrate this, in Example 5-19 the class User has no properties and no methods but is legal code.</span>
 <br/>
-<span>Example 5-19.</span>
-<span>Defining a property implicitly</span>
+<span>Example 5-19. Defining a property implicitly</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -1279,24 +622,11 @@ class User
 ?&gt;
 </code>
 </pre>
-<span>This code correctly outputs the string</span>
-<span>Alice</span>
-<span>without a problem, because PHP implicitly declares the variable</span>
-<span>$object1-&gt;name</span>
-<span>for you. But this kind of programming can</span>
-<span>lead to bugs that are infuriatingly difficult to discover, because</span>
-<span>name</span>
-<span>was declared</span>
-<span>from outside the class.</span>
+<span>This code correctly outputs the string Alice without a problem, because PHP implicitly declares the variable $object1-&gt;name for you. But this kind of programming can lead to bugs that are infuriatingly difficult to discover, because name was declared from outside the class.</span>
 <br/>
-<span>To help yourself and anyone else who will maintain your code, I advise that you get</span>
-<span>into the habit of always declaring your properties explicitly within classes. You&rsquo;ll be</span>
-<span>glad you did.</span>
+<span>To help yourself and anyone else who will maintain your code, I advise that you get into the habit of always declaring your properties explicitly within classes. You&rsquo;ll be glad you did.</span>
 <br/>
-<span>Also, when you declare a property within a class, you may assign a default value to it.</span>
-<span>The value you use must be a constant and not the result of a function or expression.</span>
-<span>Example 5-20</span>
-<span>shows a few valid and invalid assignments.</span>
+<span>Also, when you declare a property within a class, you may assign a default value to it. The value you use must be a constant and not the result of a function or expression. Example 5-20 shows a few valid and invalid assignments.</span>
 <br/>
 <span>Example 5-20. Valid and invalid property declarations</span>
 <pre>
@@ -1313,12 +643,7 @@ class User
 </code>
 </pre>
 <h4>Declaring Constants</h4>
-<span>In the same way that you can create a global constant with the</span>
-<span>define</span>
-<span>function, you</span>
-<span>can define constants inside classes. The generally accepted practice is to use uppercase letters to make them stand out, as in</span>
-<span>Example 5-21</span>
-<span>.</span>
+<span>In the same way that you can create a global constant with the define function, you can define constants inside classes. The generally accepted practice is to use uppercase letters to make them stand out, as in Example 5-21 .</span>
 <br/>
 <span>Example 5-21. Defining constants within a class</span>
 <pre>
@@ -1340,13 +665,7 @@ class User
 ?&gt;
 </code>
 </pre>
-<span>You can reference constants directly, using the</span>
-<span>self</span>
-<span>keyword and double colon operator. Note that this code calls the class directly, using the double colon operator at line</span>
-<span>1, without creating an instance of it first. As you would expect, the value printed</span>
-<span>when you run this code is</span>
-<span>1</span>
-<span>.</span>
+<span>You can reference constants directly, using the self keyword and double colon operator. Note that this code calls the class directly, using the double colon operator at line 1, without creating an instance of it first. As you would expect, the value printed when you run this code is 1 .</span>
 <br/>
 <span>Remember that once you define a constant, you can&rsquo;t change it.</span>
 <h4>Property and Method Scope in PHP 5</h4>
@@ -1364,36 +683,11 @@ These members can be referenced only by methods within the same class&mdash;not 
 subclasses.
 </div>
 <span>Here&rsquo;s how to decide which you need to use:</span><br/>
-<span>&bull;</span>
-<span>Use</span>
-<span>public</span>
-<span>when outside code</span>
-<span>should</span>
-<span>access this member and extending classes</span>
-<span>should</span>
-<span>also inherit it.</span>
+<span>&bull; Use public when outside code should access this member and extending classes should also inherit it.</span>
 <br/>
-<span>&bull;</span>
-<span>Use</span>
-<span>protected</span>
-<span>when outside code</span>
-<span>should not</span>
-<span>access this member but extending</span>
-<span>classes</span>
-<span>should</span>
-<span>inherit it.</span>
+<span>&bull; Use protected when outside code should not access this member but extending classes should inherit it.</span>
 <br/>
-<span>&bull;</span>
-<span>Use</span>
-<span>private</span>
-<span>when outside code</span>
-<span>&nbsp;should not</span>
-<span>&nbsp;access this member and extending</span>
-<span>classes also</span>
-<span>should not</span>
-<span>inherit it.</span>
-<span>Example 5-22</span>
-<span>illustrates the use of these keywords.</span>
+<span>&bull; Use private when outside code &nbsp;should not &nbsp;access this member and extending classes also should not inherit it. Example 5-22 illustrates the use of these keywords.</span>
 <br/>
 <span>Example 5-22. Changing property and method scope</span>
 <br/>
@@ -1415,35 +709,15 @@ subclasses.
 </code>
 </pre>
 <h4>Static Properties and Methods</h4>
-<span>Most data and methods apply to instances of a class. For example, in a</span>
-<span>User</span>
-<span>class, you</span>
-<span>want to do such things as set a particular user&rsquo;s password or check when the user has</span>
-<span>been registered. These facts and operations apply separately to each user and therefore use instance-specific properties and methods.</span>
+<span>Most data and methods apply to instances of a class. For example, in a User class, you want to do such things as set a particular user&rsquo;s password or check when the user has been registered. These facts and operations apply separately to each user and therefore use instance-specific properties and methods.</span>
 <br/>
-<span>But occasionally you&rsquo;ll want to maintain data about a whole class. For instance, to</span>
-<span>report how many users are registered, you will store a variable that applies to the</span>
-<span>whole</span>
-<span>User</span>
-<span>class. PHP provides static properties and methods for such data.</span>
+<span>But occasionally you&rsquo;ll want to maintain data about a whole class. For instance, to report how many users are registered, you will store a variable that applies to the whole User class. PHP provides static properties and methods for such data.</span>
 <br/>
-<span>As shown briefly in</span>
-<span>Example 5-18</span>
-<span>, declaring members of a class</span>
-<span>static</span>
-<span>makes them</span>
-<span>accessible without an instantiation of the class. A property declared</span>
-<span>static</span>
-<span>cannot be</span>
-<span>directly accessed within an instance of a class, but a static method can.</span>
+<span>As shown briefly in Example 5-18 , declaring members of a class static makes them accessible without an instantiation of the class. A property declared static cannot be directly accessed within an instance of a class, but a static method can.</span>
 <br/>
-<span>Example 5-23</span>
-<span>defines a class called</span>
-<span>Test</span>
-<span>with a static property and a public method.</span>
+<span>Example 5-23 defines a class called Test with a static property and a public method.</span>
 <br/>
-<span>Example 5-23.</span>
-<span>Defining a class with a static property</span>
+<span>Example 5-23. Defining a class with a static property</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -1473,49 +747,13 @@ subclasses.
 <br/>
 <b class="t30">Test C:</b>
 <br/>
-<span>This example shows that the property</span>
-<span>$static_property</span>
-<span>could be directly referenced</span>
-<span>from the class itself via the double colon operator in Test A. Also, Test B could obtain</span>
-<span>its value by calling the</span>
-<span>get_sp</span>
-<span>method of the object</span>
-<span>$temp</span>
-<span>, created from class</span>
-<span>Test</span>
-<span>.</span>
-<span>But Test C failed, because the static property</span>
-<span>$static_property</span>
-<span>was not accessible to</span>
-<span>the object</span>
-<span>$temp</span>
-<span>.</span>
+<span>This example shows that the property $static_property could be directly referenced from the class itself via the double colon operator in Test A. Also, Test B could obtain its value by calling the get_sp method of the object $temp , created from class Test . But Test C failed, because the static property $static_property was not accessible to the object $temp .</span>
 <br/>
-<span>Note how the method</span>
-<span>get_sp</span>
-<span>accesses</span>
-<span>$static_property</span>
-<span>using the keyword</span>
-<span>self</span>
-<span>.</span>
-<span>This is how a static property or constant can be directly accessed within a class.</span>
+<span>Note how the method get_sp accesses $static_property using the keyword self . This is how a static property or constant can be directly accessed within a class.</span>
 <h4>Inheritance</h4>
-<span>Once you have written a class, you can derive subclasses from it. This can save lots of</span>
-<span>painstaking code rewriting: you can take a class similar to the one you need to write,</span>
-<span>extend it to a subclass, and just modify the parts that are different. You achieve this</span>
-<span>using the</span>
-<span>extends</span>
-<span>operator.</span>
+<span>Once you have written a class, you can derive subclasses from it. This can save lots of painstaking code rewriting: you can take a class similar to the one you need to write, extend it to a subclass, and just modify the parts that are different. You achieve this using the extends operator.</span>
 <br/>
-<span>In</span>
-<span>Example 5-24</span>
-<span>, the class</span>
-<span>Subscriber</span>
-<span>is declared a subclass of</span>
-<span>User</span>
-<span>by means of the</span>
-<span>extends</span>
-<span>operator.</span>
+<span>In Example 5-24 , the class Subscriber is declared a subclass of User by means of the extends operator.</span>
 <br/>
 <span>Example 5-24. Inheriting and extending a class</span>
 <pre>
@@ -1554,24 +792,7 @@ subclasses.
 </code>
 </pre>
 
-<span>The original</span>
-<span>User</span>
-<span>class has two properties,</span>
-<span>$name</span>
-<span>and</span>
-<span>$password</span>
-<span>, and a method to</span>
-<span>save the current user to the database.</span>
-<span>Subscriber</span>
-<span>extends this class by adding an</span>
-<span>additional two properties,</span>
-<span>$phone</span>
-<span>and</span>
-<span>$email</span>
-<span>, and includes a method of displaying</span>
-<span>the properties of the current object using the variable</span>
-<span>$this</span>
-<span>, which refers to the current values of the object being accessed. The output from this code is as follows:</span>
+<span>The original User class has two properties, $name and $password , and a method to save the current user to the database. Subscriber extends this class by adding an additional two properties, $phone and $email , and includes a method of displaying the properties of the current object using the variable $this , which refers to the current values of the object being accessed. The output from this code is as follows:</span>
 <br/>
 <b class="t30">Name: Fred</b>
 <br/>
@@ -1582,13 +803,7 @@ subclasses.
 <b class="t30">Email: fred@bloggs.com</b>
 <br/>
 <h6>The parent operator</h6>
-<span>If you write a method in a subclass with the same name as one in its parent class, its</span>
-<span>statements will override those of the parent class. Sometimes this is not the behavior</span>
-<span>you want, and you need to access the parent&rsquo;s method. To do this, you can use the</span>
-<span>parent</span>
-<span>operator, as in</span>
-<span>Example 5-25</span>
-<span>.</span>
+<span>If you write a method in a subclass with the same name as one in its parent class, its statements will override those of the parent class. Sometimes this is not the behavior you want, and you need to access the parent&rsquo;s method. To do this, you can use the parent operator, as in Example 5-25 .</span>
 <br/>
 <span>Example 5-25. Overriding a method and using the parent operator</span>
 <pre>
@@ -1621,44 +836,16 @@ subclasses.
 </code>
 </pre>
 
-<span>This code creates a class called</span>
-<span>Dad</span>
-<span>and then a subclass called</span>
-<span>Son</span>
-<span>that inherits its</span>
-<span>properties and methods, and then overrides the method</span>
-<span>test</span>
-<span>. Therefore, when line 2</span>
-<span>calls the method</span>
-<span>test</span>
-<span>, the new method is executed. The only way to execute the overridden</span>
-<span>test</span>
-<span>method in the</span>
-<span>Dad</span>
-<span>class is to use the</span>
-<span>parent</span>
-<span>operator, as shown in function</span>
-<span>test2</span>
-<span>of class</span>
-<span>Son</span>
-<span>. The code outputs the following:</span>
+<span>This code creates a class called Dad and then a subclass called Son that inherits its properties and methods, and then overrides the method test . Therefore, when line 2 calls the method test , the new method is executed. The only way to execute the overridden test method in the Dad class is to use the parent operator, as shown in function test2 of class Son . The code outputs the following:</span>
 <br/>
 <b class="t30">[Class Son] I am Luke</b>
 <br/>
 <b class="t30">[Class Dad] I am your Father</b>
 <br/>
-<span>If you wish to ensure that your code calls a method from the current class, you can</span>
-<span>use the</span>
-<span>self</span>
-<span>keyword, like this:</span>
+<span>If you wish to ensure that your code calls a method from the current class, you can use the self keyword, like this:</span>
 <pre><code class="php">self::method();</code></pre>
 <h6>Subclass constructors</h6>
-<span>When you extend a class and declare your own constructor, you should be aware that</span>
-<span>PHP will not automatically call the constructor method of the parent class. If you</span>
-<span>want to be certain that all initialization code is executed, subclasses should always call</span>
-<span>the parent constructors, as in</span>
-<span>Example 5-26</span>
-<span>.</span>
+<span>When you extend a class and declare your own constructor, you should be aware that PHP will not automatically call the constructor method of the parent class. If you want to be certain that all initialization code is executed, subclasses should always call the parent constructors, as in Example 5-26 .</span>
 <br/>
 <span>Example 5-26. Calling the parent class constructor</span>
 <pre>
@@ -1692,20 +879,7 @@ subclasses.
 ?&gt;
 </code>
 </pre>
-<span>This example takes advantage of inheritance in the typical manner. The</span>
-<span>Wildcat</span>
-<span>class</span>
-<span>has created the property</span>
-<span>$fur</span>
-<span>, which we&rsquo;d like to reuse, so we create the</span>
-<span>Tiger</span>
-<span>class to</span>
-<span>inherit</span>
-<span>$fur</span>
-<span>and additionally create another property,</span>
-<span>$stripes</span>
-<span>. To verify that both</span>
-<span>constructors have been called, the program outputs the following:</span>
+<span>This example takes advantage of inheritance in the typical manner. The Wildcat class has created the property $fur , which we&rsquo;d like to reuse, so we create the Tiger class to inherit $fur and additionally create another property, $stripes . To verify that both constructors have been called, the program outputs the following:</span>
 <br/>
 <b class="t30">Tigers have...</b>
 <br/>
@@ -1714,15 +888,9 @@ subclasses.
 <b class="t30">Stripes: TRUE</b>
 <br/>
 <h6>Final methods</h6>
-<span>When you wish to prevent a subclass from overriding a superclass method, you can</span>
-<span>use the</span>
-<span>final</span>
-<span>keyword.</span>
-<span>Example 5-27</span>
-<span>shows how.</span>
+<span>When you wish to prevent a subclass from overriding a superclass method, you can use the final keyword. Example 5-27 shows how.</span>
 <br/>
-<span>Example 5-27. Creating a</span>
-<span>final method</span>
+<span>Example 5-27. Creating a final method</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -1737,9 +905,4 @@ subclasses.
 </code>
 </pre>
 
-<span>Once you have digested the contents of this chapter, you should have a strong feel for</span>
-<span>what PHP can do for you. You should be able to use functions with ease and, if you</span>
-<span>wish, write object-oriented code. In</span>
-<span>Chapter 6</span>
-<span>, we&rsquo;ll finish off our initial exploration</span>
-<span>of PHP by looking at the workings of PHP arrays.</span>
+<span>Once you have digested the contents of this chapter, you should have a strong feel for what PHP can do for you. You should be able to use functions with ease and, if you wish, write object-oriented code. In Chapter 6 , we&rsquo;ll finish off our initial exploration of PHP by looking at the workings of PHP arrays.</span>

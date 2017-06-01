@@ -3,47 +3,21 @@ layout: default
 title: "Form Handling"
 ---
 <h2>Form Handling</h2>
-<span>The main way that website users interact with PHP and MySQL is through the use of</span>
-<span>HTML forms. These were introduced very early on in the development of the World</span>
-<span>Wide Web in 1993&mdash;even before the advent of ecommerce&mdash;and have remained a</span>
-<span>mainstay ever since, due to their simplicity and ease of use.</span>
+<span>The main way that website users interact with PHP and MySQL is through the use of HTML forms. These were introduced very early on in the development of the World Wide Web in 1993&mdash;even before the advent of ecommerce&mdash;and have remained a mainstay ever since, due to their simplicity and ease of use.</span>
 <br/>
-<span>Of course, enhancements have been made over the years to add extra functionality to</span>
-<span>HTML form handling, so this chapter will bring you up to speed on state-of-the-art</span>
-<span>form handling and show you the best ways to implement forms for good usability</span>
-<span>and security. Plus, as you will see a little later on, the HTML5 specification has further</span>
-<span>improved the use of forms.</span>
+<span>Of course, enhancements have been made over the years to add extra functionality to HTML form handling, so this chapter will bring you up to speed on state-of-the-art form handling and show you the best ways to implement forms for good usability and security. Plus, as you will see a little later on, the HTML5 specification has further improved the use of forms.</span>
 <h3>Building Forms</h3>
-<span>Handling forms is a multipart process. First a form is created, into which a user can</span>
-<span>enter the required details. This data is then sent to the web server, where it is interpreted, often with some error checking. If the PHP code identifies one or more fields</span>
-<span>that require reentering, the form may be redisplayed with an error message. When</span>
-<span>the code is satisfied with the accuracy of the input, it takes some action that usually</span>
-<span>involves the database, such as entering details about a purchase.</span>
+<span>Handling forms is a multipart process. First a form is created, into which a user can enter the required details. This data is then sent to the web server, where it is interpreted, often with some error checking. If the PHP code identifies one or more fields that require reentering, the form may be redisplayed with an error message. When the code is satisfied with the accuracy of the input, it takes some action that usually involves the database, such as entering details about a purchase.</span>
 <br/>
 <span>To build a form, you must have at least the following elements:</span>
 <br/>
-<span>&bull;</span>
-<span>An opening</span>
-<span>&lt;form&gt;</span>
-<span>and closing</span>
-<span>&lt;/form&gt;</span>
-<span>tag</span>
+<span>&bull; An opening &lt;form&gt; and closing &lt;/form&gt; tag</span>
 <br/>
-<span>&bull;</span>
-<span>A submission type specifying either a Get or Post method</span>
+<span>&bull; A submission type specifying either a Get or Post method</span>
 <br/>
-<span>&bull;</span>
-<span>One or more</span>
-<span>input</span>
-<span>fields</span>
+<span>&bull; One or more input fields</span>
 <br/>
-<span>&bull;</span>
-<span>The destination URL to which the form data is to be submitted</span>
-<span>Example 11-1</span>
-<span>shows a very simple form created with PHP, which you should type in</span>
-<span>and save as</span>
-<span>formtest.php</span>
-<span>.</span>
+<span>&bull; The destination URL to which the form data is to be submitted Example 11-1 shows a very simple form created with PHP, which you should type in and save as formtest.php .</span>
 <br/>
 <span>Example 11-1. formtest.php&mdash;a simple PHP form handler</span>
 <pre>
@@ -66,44 +40,17 @@ _END;
 ?&gt;
 </code>
 </pre>
-<span>The first thing to notice about this example is that, as you have already seen in this</span>
-<span>book, rather than dropping in and out of PHP code, the</span>
-<span>echo &lt;&lt;&lt;_END..._END</span>
-<span>construct is used whenever multiline HTML must be output.</span>
+<span>The first thing to notice about this example is that, as you have already seen in this book, rather than dropping in and out of PHP code, the echo &lt;&lt;&lt;_END..._END construct is used whenever multiline HTML must be output.</span>
 <br/>
-<span>Inside of this multiline output is some standard code for commencing an HTML</span>
-<span>document, displaying its title, and starting the body of the document. This is followed</span>
-<span>by the form, which is set to send its data using the Post method to the PHP program</span>
-<span>formtest.php</span>
-<span>, which is the name of the program itself.</span>
+<span>Inside of this multiline output is some standard code for commencing an HTML document, displaying its title, and starting the body of the document. This is followed by the form, which is set to send its data using the Post method to the PHP program formtest.php , which is the name of the program itself.</span>
 <br/>
-<span>The rest of the program just closes all the items it opened: the form, the body of the</span>
-<span>HTML document, and the PHP</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>statement. The result of opening this</span>
-<span>program in a web browser is shown in</span>
-<span>Figure 11-1</span>
-<span>.</span>
+<span>The rest of the program just closes all the items it opened: the form, the body of the HTML document, and the PHP echo &lt;&lt;&lt;_END statement. The result of opening this program in a web browser is shown in Figure 11-1 .</span>
 <p><img src="images/11.1.png"/></p>
 <span>Figure 11-1. The result of opening formtest.php in a web browser</span>
 <h3>Retrieving Submitted Data</h3>
-<span>Example 11-1</span>
-<span>is only one part of the multipart form-handling process. If you enter a</span>
-<span>name and click the Submit Query button, absolutely nothing will happen other than</span>
-<span>the form being redisplayed. So now it&rsquo;s time to add some PHP code to process the</span>
-<span>data submitted by the form.</span>
+<span>Example 11-1 is only one part of the multipart form-handling process. If you enter a name and click the Submit Query button, absolutely nothing will happen other than the form being redisplayed. So now it&rsquo;s time to add some PHP code to process the data submitted by the form.</span>
 <br/>
-<span>Example 11-2</span>
-<span>expands on the previous program to include data processing. Type it or</span>
-<span>modify</span>
-<span>formtest.php</span>
-<span>by adding in the new lines, save it as</span>
-<span>formtest2.php</span>
-<span>, and try the</span>
-<span>program for yourself. The result of running this program and entering a name is</span>
-<span>shown in</span>
-<span>Figure 11-2</span>
-<span>.</span>
+<span>Example 11-2 expands on the previous program to include data processing. Type it or modify formtest.php by adding in the new lines, save it as formtest2.php , and try the program for yourself. The result of running this program and entering a name is shown in Figure 11-2 .</span>
 <br/>
 <span>Example 11-2. Updated version of formtest.php</span>
 <pre>
@@ -129,119 +76,27 @@ _END;
 ?&gt;
 </code>
 </pre>
-<span>The only changes are a couple of lines at the start that check the</span>
-<span>$_POST</span>
-<span>associative</span>
-<span>array for the field</span>
-<span>&nbsp;name</span>
-<span>&nbsp;having been submitted.</span>
-<span>&nbsp;Chapter 10</span>
-<span>&nbsp;introduced the</span>
-<span>$_POST</span>
-<span>associative array, which contains an element for each field in an HTML form. In</span>
-<span>Example 11-2</span>
-<span>, the input name used was</span>
-<span>name</span>
-<span>and the form method was Post, so element</span>
-<span>name</span>
-<span>of the</span>
-<span>$_POST</span>
-<span>array contains the value in</span>
-<span>$_POST['name']</span>
-<span>.</span>
+<span>The only changes are a couple of lines at the start that check the $_POST associative array for the field &nbsp;name &nbsp;having been submitted. &nbsp;Chapter 10 &nbsp;introduced the $_POST associative array, which contains an element for each field in an HTML form. In Example 11-2 , the input name used was name and the form method was Post, so element name of the $_POST array contains the value in $_POST['name'] .</span>
 <br/>
-<span>The PHP</span>
-<span>isset</span>
-<span>function is used to test whether</span>
-<span>$_POST['name']</span>
-<span>has been assigned a</span>
-<span>value. If nothing was posted, the program assigns the value</span>
-<span>(Not entered)</span>
-<span>; otherwise, it stores the value that was entered. Then a single line has been added after the</span>
-<span>&lt;body&gt;</span>
-<span>statement to display that value, which is stored in</span>
-<span>$name</span>
-<span>.</span>
+<span>The PHP isset function is used to test whether $_POST['name'] has been assigned a value. If nothing was posted, the program assigns the value (Not entered) ; otherwise, it stores the value that was entered. Then a single line has been added after the &lt;body&gt; statement to display that value, which is stored in $name .</span>
 <br/>
-<span>Notice how the</span>
-<span>&lt;input&gt;</span>
-<span>elements in this example do not use the</span>
-<span>/&gt;</span>
-<span>form of self-closing, because in the new world of HTML5 this style</span>
-<span>is optional (and it was never actually required in HTML4 anyway;</span>
-<span>it</span>
-<span>was</span>
-<span>recommended</span>
-<span>purely</span>
-<span>because</span>
-<span>XHTML</span>
-<span>was</span>
-<span>planned</span>
-<span>to</span>
-<span>supersede HTML at some point&mdash;but this never happened). So</span>
-<span>since I&rsquo;m always in favor of less work when programming, I no</span>
-<span>longer use these characters except for actual XHTML (where this</span>
-<span>type of closing remains necessary), saving both a space and a slash</span>
-<span>for every self-closing tag.</span>
+<span>Notice how the &lt;input&gt; elements in this example do not use the /&gt; form of self-closing, because in the new world of HTML5 this style is optional (and it was never actually required in HTML4 anyway; it was recommended purely because XHTML was planned to supersede HTML at some point&mdash;but this never happened). So since I&rsquo;m always in favor of less work when programming, I no longer use these characters except for actual XHTML (where this type of closing remains necessary), saving both a space and a slash for every self-closing tag.</span>
 <p><img src="images/11.2.png"/></p>
 <span>Figure 11-2. formtest.php with data handling</span>
 <h4>register_globals: An Old Solution Hangs On</h4>
-<span>Before security became such a big issue, the default behavior of PHP was to assign the</span>
-<span>$_POST</span>
-<span>and</span>
-<span>$_GET</span>
-<span>arrays directly to PHP variables. For example, there would be no</span>
-<span>need to use the instruction</span>
-<span>$name=$_POST['name'];</span>
-<span>because</span>
-<span>$name</span>
-<span>would already be</span>
-<span>given that value automatically by PHP at the program start!</span>
+<span>Before security became such a big issue, the default behavior of PHP was to assign the $_POST and $_GET arrays directly to PHP variables. For example, there would be no need to use the instruction $name=$_POST['name']; because $name would already be given that value automatically by PHP at the program start!</span>
 <br/>
-<span>Initially (prior to version 4.2.0 of PHP), this seemed a very useful idea that saved a lot</span>
-<span>of extra code writing, but this practice has now been discontinued and the feature is</span>
-<span>disabled by default. Should you find</span>
-<span>register_globals</span>
-<span>enabled on a production web</span>
-<span>server for which you are developing, you should urgently ask your server administrator to disable it.</span>
+<span>Initially (prior to version 4.2.0 of PHP), this seemed a very useful idea that saved a lot of extra code writing, but this practice has now been discontinued and the feature is disabled by default. Should you find register_globals enabled on a production web server for which you are developing, you should urgently ask your server administrator to disable it.</span>
 <br/>
-<span>So why disable</span>
-<span>register_globals</span>
-<span>? It enables anyone to enter a Get input on the tail</span>
-<span>of a URL, like this:</span>
-<span>http://myserver.com?override=1</span>
-<span>. If your code were ever to use the</span>
-<span>variable</span>
-<span>$override</span>
-<span>and you forgot to initialize it (for example, with the statement</span>
-<span>$override=0;</span>
-<span>), the program could be compromised by such an exploit.</span>
+<span>So why disable register_globals ? It enables anyone to enter a Get input on the tail of a URL, like this: http://myserver.com?override=1 . If your code were ever to use the variable $override and you forgot to initialize it (for example, with the statement $override=0; ), the program could be compromised by such an exploit.</span>
 <br/>
-<span>In fact, because many installations on the Web still have this gaping hole, I advise you</span>
-<span>to always initialize every variable you use, just in case your code will ever run on such</span>
-<span>a system. Initialization is also good programming practice, because you can comment</span>
-<span>each initialization to remind yourself and other programmers what a variable is for.</span>
+<span>In fact, because many installations on the Web still have this gaping hole, I advise you to always initialize every variable you use, just in case your code will ever run on such a system. Initialization is also good programming practice, because you can comment each initialization to remind yourself and other programmers what a variable is for.</span>
 <br/>
-<span>If you ever find yourself maintaining code that seems to assume</span>
-<span>values for certain variables for no apparent reason, you can make</span>
-<span>an educated guess that the programmer probably wrote the code</span>
-<span>using</span>
-<span>register_globals</span>
-<span>, and that these values are intended to be</span>
-<span>extracted from a Post or Get. If so, I recommend that you rewrite</span>
-<span>the code to load these variables explicitly from the correct</span>
-<span>$_POST</span>
-<span>or</span>
-<span>$_GET</span>
-<span>array.</span>
+<span>If you ever find yourself maintaining code that seems to assume values for certain variables for no apparent reason, you can make an educated guess that the programmer probably wrote the code using register_globals , and that these values are intended to be extracted from a Post or Get. If so, I recommend that you rewrite the code to load these variables explicitly from the correct $_POST or $_GET array.</span>
 <h4>Default Values</h4>
-<span>Sometimes it&rsquo;s convenient to offer your site visitors a default value in a web form. For</span>
-<span>example, suppose you put up a loan repayment calculator widget on a real estate website. It could make sense to enter default values of, say, 25 years and 6 percent interest, so that the user can simply type either the principle sum to borrow or the amount</span>
-<span>that she can afford to pay each month.</span>
+<span>Sometimes it&rsquo;s convenient to offer your site visitors a default value in a web form. For example, suppose you put up a loan repayment calculator widget on a real estate website. It could make sense to enter default values of, say, 25 years and 6 percent interest, so that the user can simply type either the principle sum to borrow or the amount that she can afford to pay each month.</span>
 <br/>
-<span>In this case, the HTML for those two values would be something like</span>
-<span>Example 11-3</span>
-<span>.</span>
+<span>In this case, the HTML for those two values would be something like Example 11-3 .</span>
 <br/>
 <span>Example 11-3. Setting default values</span>
 <pre>
@@ -255,508 +110,165 @@ _END;
     &lt;/pre&gt;&lt;/form&gt;
 </code>
 </pre>
-<span>If you wish to try this (and the other HTML code samples), type it</span>
-<span>and save it with an</span>
-<span>.html</span>
-<span>(or</span>
-<span>.htm</span>
-<span>) file extension, such as</span>
-<span>test.html</span>
-<span>(or</span>
-<span>test.htm</span>
-<span>), and then load that file into your browser.</span>
+<span>If you wish to try this (and the other HTML code samples), type it and save it with an .html (or .htm ) file extension, such as test.html (or test.htm ), and then load that file into your browser.</span>
 <br/>
-<span>Take a look at the third and fourth inputs. By populating the</span>
-<span>value</span>
-<span>attribute, you display a default value in the field, which the users can then change if they wish. With</span>
-<span>sensible default values, you can often make your web forms more user-friendly by</span>
-<span>minimizing</span>
-<span>unnecessary</span>
-<span>typing.</span>
-<span>The</span>
-<span>result</span>
-<span>of</span>
-<span>the</span>
-<span>previous</span>
-<span>code</span>
-<span>looks</span>
-<span>like</span>
-<span>Figure 11-3</span>
-<span>. Of course, this was created to illustrate default values and, because the</span>
-<span>program</span>
-<span>calc.php</span>
-<span>has not been written, the form will not do anything if submitted.</span>
+<span>Take a look at the third and fourth inputs. By populating the value attribute, you display a default value in the field, which the users can then change if they wish. With sensible default values, you can often make your web forms more user-friendly by minimizing unnecessary typing. The result of the previous code looks like Figure 11-3 . Of course, this was created to illustrate default values and, because the program calc.php has not been written, the form will not do anything if submitted.</span>
 <p><img src="images/11.3.png"/></p>
 <span>Figure 11-3. Using default values for selected form fields</span>
 <br/>
-<span>Default values are also used for hidden fields if you want to pass extra information</span>
-<span>from your web page to your program, in addition to what users enter. We&rsquo;ll look at</span>
-<span>hidden fields later in this chapter.</span>
+<span>Default values are also used for hidden fields if you want to pass extra information from your web page to your program, in addition to what users enter. We&rsquo;ll look at hidden fields later in this chapter.</span>
 <h4>Input Types</h4>
-<span>HTML forms are very versatile and allow you to submit a wide range of input types,</span>
-<span>from text boxes and text areas to checkboxes, radio buttons, and more.</span>
+<span>HTML forms are very versatile and allow you to submit a wide range of input types, from text boxes and text areas to checkboxes, radio buttons, and more.</span>
 <h6>Text boxes</h6>
-<span>The input type you will probably use most often is the text box. It accepts a wide</span>
-<span>range of alphanumeric text and other characters in a single-line box. The general format of a text box input is as follows:</span>
+<span>The input type you will probably use most often is the text box. It accepts a wide range of alphanumeric text and other characters in a single-line box. The general format of a text box input is as follows:</span>
 <pre><code class="html">&lt;input type="text" name="name" size="size" maxlength="length" value="value"&gt;</code></pre>
-<span>We&rsquo;ve already covered the</span>
-<span>name</span>
-<span>and</span>
-<span>value</span>
-<span>attributes, but two more are introduced</span>
-<span>here:</span>
-<span>size</span>
-<span>and</span>
-<span>maxlength</span>
-<span>. The</span>
-<span>size</span>
-<span>attribute specifies the width of the box (in characters of the current font) as it should appear on the screen, and</span>
-<span>maxlength</span>
-<span>specifies</span>
-<span>the maximum number of characters that a user is allowed to enter into the field.</span>
+<span>We&rsquo;ve already covered the name and value attributes, but two more are introduced here: size and maxlength . The size attribute specifies the width of the box (in characters of the current font) as it should appear on the screen, and maxlength specifies the maximum number of characters that a user is allowed to enter into the field.</span>
 <br/>
-<span>The only required attributes are</span>
-<span>type</span>
-<span>, which tells the web browser what type of input</span>
-<span>to expect, and</span>
-<span>name</span>
-<span>, for giving the input a name that will be used to process the field</span>
-<span>upon receipt of the submitted form.</span>
+<span>The only required attributes are type , which tells the web browser what type of input to expect, and name , for giving the input a name that will be used to process the field upon receipt of the submitted form.</span>
 <h6>Text areas</h6>
-<span>When you need to accept input of more than a short line of text, use a text area. This</span>
-<span>is similar to a text box, but, because it allows multiple lines, it has some different</span>
-<span>attributes. Its general format looks like this:</span>
+<span>When you need to accept input of more than a short line of text, use a text area. This is similar to a text box, but, because it allows multiple lines, it has some different attributes. Its general format looks like this:</span>
 <pre><code class="html">&lt;textarea name="name" cols="width" rows="height" wrap="type"&gt;&lt;/textarea&gt;</code></pre>
-<span>The first thing to notice is that</span>
-<span>&lt;textarea&gt;</span>
-<span>has its own tag and is not a subtype of the</span>
-<span>&lt;input&gt;</span>
-<span>tag. It therefore requires a closing</span>
-<span>&lt;/textarea&gt;</span>
-<span>to end input.</span>
+<span>The first thing to notice is that &lt;textarea&gt; has its own tag and is not a subtype of the &lt;input&gt; tag. It therefore requires a closing &lt;/textarea&gt; to end input.</span>
 <br/>
-<span>Instead of a default attribute, if you have default text to display, you must put it before</span>
-<span>the closing</span>
-<span>&lt;/textarea&gt;</span>
-<span>, and it will then be displayed and be editable by the user:</span>
-<span>&lt;textarea name="</span>
-<span>name</span>
-<span>" cols="</span>
-<span>width</span>
-<span>" rows="</span>
-<span>height</span>
-<span>" wrap="</span>
-<span>type</span>
-<span>"&gt;</span>
-<span>This is some default text.</span>
-<span>&lt;/textarea&gt;</span>
+<span>Instead of a default attribute, if you have default text to display, you must put it before the closing &lt;/textarea&gt; , and it will then be displayed and be editable by the user: &lt;textarea name=" name " cols=" width " rows=" height " wrap=" type "&gt; This is some default text. &lt;/textarea&gt;</span>
 <br/>
-<span>To control the width and height, use the</span>
-<span>cols</span>
-<span>and</span>
-<span>rows</span>
-<span>attributes. Both use the character spacing of the current font to determine the size of the area. If you omit these</span>
-<span>values, a default input box will be created that will vary in dimensions depending on</span>
-<span>the browser used, so you should always define them to be certain about how your</span>
-<span>form will appear.</span>
+<span>To control the width and height, use the cols and rows attributes. Both use the character spacing of the current font to determine the size of the area. If you omit these values, a default input box will be created that will vary in dimensions depending on the browser used, so you should always define them to be certain about how your form will appear.</span>
 <br/>
-<span>Last, you can control how the text entered into the box will wrap (and how any such</span>
-<span>wrapping will be sent to the server) using the</span>
-<span>wrap</span>
-<span>attribute.</span>
-<span>&nbsp;Table 11-1</span>
-<span>&nbsp;shows the</span>
-<span>wrap types available. If you leave out the</span>
-<span>wrap</span>
-<span>attribute, soft wrapping is used.</span>
+<span>Last, you can control how the text entered into the box will wrap (and how any such wrapping will be sent to the server) using the wrap attribute. &nbsp;Table 11-1 &nbsp;shows the wrap types available. If you leave out the wrap attribute, soft wrapping is used.</span>
 <br/>
 <span>Table 11-1. The wrap types available in a textarea input</span>
 <br/>
-<span>Type</span>
-<span>Action</span>
-<span>off</span>
-<span>Text does not wrap, and lines appear exactly as the user types them.</span>
-<span>soft</span>
-<span>Text wraps but is sent to the server as one long string without carriage returns and line feeds.</span>
-<span>hard</span>
-<span>Text wraps and is sent to the server in wrapped format with soft returns and line feeds.</span>
+<span>Type Action off Text does not wrap, and lines appear exactly as the user types them. soft Text wraps but is sent to the server as one long string without carriage returns and line feeds. hard Text wraps and is sent to the server in wrapped format with soft returns and line feeds.</span>
 <h6>Checkboxes</h6>
-<span>When you want to offer a number of different options to a user, from which he can</span>
-<span>select one or more items, checkboxes are the way to go. Here is the format to use:</span>
+<span>When you want to offer a number of different options to a user, from which he can select one or more items, checkboxes are the way to go. Here is the format to use:</span>
 <pre><code class="html">&lt;input type="checkbox" name="name" value="value" checked="checked"&gt;</code></pre>
-<span>If you include the</span>
-<span>checked</span>
-<span>attribute, the box is already checked when the browser is</span>
-<span>displayed. The string you assign to the attribute should be either a double quote or</span>
-<span>the value</span>
-<span>"checked"</span>
-<span>, or there should be no value assigned. If you don&rsquo;t include the</span>
-<span>attribute, the box is shown unchecked. Here is an example of creating an unchecked</span>
-<span>box:</span>
+<span>If you include the checked attribute, the box is already checked when the browser is displayed. The string you assign to the attribute should be either a double quote or the value "checked" , or there should be no value assigned. If you don&rsquo;t include the attribute, the box is shown unchecked. Here is an example of creating an unchecked box:</span>
 <br/>
 <span>I Agree &lt;input type="checkbox" name="agree"&gt;</span>
 <br/>
-<span>If the user doesn&rsquo;t check the box, no value will be submitted. But if he does, a value of</span>
-<span>"on"</span>
-<span>will be submitted for the field named</span>
-<span>agree</span>
-<span>. If you prefer to have your own</span>
-<span>value submitted instead of the word</span>
-<span>&nbsp;on</span>
-<span>&nbsp;(such as the number 1), you could use the</span>
-<span>following syntax:</span>
+<span>If the user doesn&rsquo;t check the box, no value will be submitted. But if he does, a value of "on" will be submitted for the field named agree . If you prefer to have your own value submitted instead of the word &nbsp;on &nbsp;(such as the number 1), you could use the following syntax:</span>
 <br/>
 <span>I Agree &lt;input type="checkbox" name="agree" value="1"&gt;</span>
 <br/>
-<span>On the other hand, if you wish to offer a newsletter to your readers when submitting</span>
-<span>a form, you might want to have the checkbox already checked as the default value:</span>
+<span>On the other hand, if you wish to offer a newsletter to your readers when submitting a form, you might want to have the checkbox already checked as the default value:</span>
 <br/>
 <span>Subscribe? &lt;input type="checkbox" name="news" checked="checked"&gt;</span>
 <br/>
-<span>If you want to allow groups of items to be selected at one time, assign them all the</span>
-<span>same name. However, only the last item checked will be submitted, unless you pass</span>
-<span>an array as the name. For example,</span>
-<span>Example 11-4</span>
-<span>allows the user to select his favorite</span>
-<span>ice creams (see</span>
-<span>Figure 11-4</span>
-<span>for how it displays in a browser).</span>
+<span>If you want to allow groups of items to be selected at one time, assign them all the same name. However, only the last item checked will be submitted, unless you pass an array as the name. For example, Example 11-4 allows the user to select his favorite ice creams (see Figure 11-4 for how it displays in a browser).</span>
 <br/>
-<span>Example 11-4.</span>
-<span>Offering multiple checkbox choices</span>
+<span>Example 11-4. Offering multiple checkbox choices</span>
 <br/>
-<span>Vanilla &lt;input type="checkbox" name="ice" value="Vanilla"&gt;</span>
-<span>Chocolate &lt;input type="checkbox" name="ice" value="Chocolate"&gt;</span>
-<span>Strawberry &lt;input type="checkbox" name="ice" value="Strawberry"&gt;</span>
+<span>Vanilla &lt;input type="checkbox" name="ice" value="Vanilla"&gt; Chocolate &lt;input type="checkbox" name="ice" value="Chocolate"&gt; Strawberry &lt;input type="checkbox" name="ice" value="Strawberry"&gt;</span>
 <p><img src="images/11.4.png"/></p>
 <span>Figure 11-4. Using checkboxes to make quick selections</span>
 <br/>
-<span>If only one of the checkboxes is selected, such as the second one, only that item will</span>
-<span>be submitted (the field named</span>
-<span>ice</span>
-<span>would be assigned the value</span>
-<span>"Chocolate"</span>
-<span>). But if</span>
-<span>two or more are selected, only the last value will be submitted, with prior values being</span>
-<span>ignored.</span>
+<span>If only one of the checkboxes is selected, such as the second one, only that item will be submitted (the field named ice would be assigned the value "Chocolate" ). But if two or more are selected, only the last value will be submitted, with prior values being ignored.</span>
 <br/>
-<span>If you</span>
-<span>want</span>
-<span>exclusive behavior&mdash;so that only one item can be submitted&mdash;then you</span>
-<span>should use</span>
-<span>&nbsp;radio buttons</span>
-<span>&nbsp;(see the next section), but to allow multiple submissions,</span>
-<span>you have to slightly alter the HTML, as in</span>
-<span>&nbsp;Example 11-5</span>
-<span>&nbsp;(note the addition of the</span>
-<span>square brackets,</span>
-<span>[]</span>
-<span>, following the values of</span>
-<span>ice</span>
-<span>).</span>
+<span>If you want exclusive behavior&mdash;so that only one item can be submitted&mdash;then you should use &nbsp;radio buttons &nbsp;(see the next section), but to allow multiple submissions, you have to slightly alter the HTML, as in &nbsp;Example 11-5 &nbsp;(note the addition of the square brackets, [] , following the values of ice ).</span>
 <br/>
 <span>Example 11-5. Submitting multiple values with an array</span>
 <br/>
-<span>Vanilla &lt;input type="checkbox" name="ice[]" value="Vanilla"&gt;</span>
-<span>Chocolate &lt;input type="checkbox" name="ice[]" value="Chocolate"&gt;</span>
-<span>Strawberry &lt;input type="checkbox" name="ice[]" value="Strawberry"&gt;</span>
+<span>Vanilla &lt;input type="checkbox" name="ice[]" value="Vanilla"&gt; Chocolate &lt;input type="checkbox" name="ice[]" value="Chocolate"&gt; Strawberry &lt;input type="checkbox" name="ice[]" value="Strawberry"&gt;</span>
 <br/>
-<span>Now, when the form is submitted, if any of these items have been checked, an array</span>
-<span>called</span>
-<span>ice</span>
-<span>will be submitted that contains any and all values. In each case, you can</span>
-<span>extract either the single submitted value, or the array of values, to a variable like this:</span>
+<span>Now, when the form is submitted, if any of these items have been checked, an array called ice will be submitted that contains any and all values. In each case, you can extract either the single submitted value, or the array of values, to a variable like this:</span>
 <br/>
 <span>$ice = $_POST['ice'];</span>
 <br/>
-<span>If the field</span>
-<span>ice</span>
-<span>has been posted as a single value,</span>
-<span>$ice</span>
-<span>will be a single string, such as</span>
-<span>"Strawberry"</span>
-<span>. But if</span>
-<span>ice</span>
-<span>was defined in the form as an array (like</span>
-<span>&nbsp;Example 11-5</span>
-<span>),</span>
-<span>$ice</span>
-<span>will be an array, and its number of elements will be the number of values submitted.</span>
-<span>Table 11-2</span>
-<span>shows the seven possible sets of values that could be submitted by</span>
-<span>this HTML for one, two, or all three selections. In each case, an array of one, two, or</span>
-<span>three items is created.</span>
+<span>If the field ice has been posted as a single value, $ice will be a single string, such as "Strawberry" . But if ice was defined in the form as an array (like &nbsp;Example 11-5 ), $ice will be an array, and its number of elements will be the number of values submitted. Table 11-2 shows the seven possible sets of values that could be submitted by this HTML for one, two, or all three selections. In each case, an array of one, two, or three items is created.</span>
 <br/>
 <span>Table 11-2. The seven possible sets of values for the array $ice</span>
 <br/>
-<span>One value submitted</span>
-<span>Two values submitted</span>
-<span>Three values submitted</span>
-<span>$ice[0] =&gt; Vanilla</span>
-<span>$ice[0] =&gt; Chocolate</span>
-<span>$ice[0] =&gt; Strawberry</span>
-<span>$ice[0] =&gt; Vanilla</span>
-<span>$ice[1] =&gt; Chocolate</span>
-<span>$ice[0] =&gt; Vanilla</span>
-<span>$ice[1] =&gt; Strawberry</span>
-<span>$ice[0] =&gt; Chocolate</span>
-<span>$ice[1] =&gt; Strawberry</span>
-<span>$ice[0] =&gt; Vanilla</span>
-<span>$ice[1] =&gt; Chocolate</span>
-<span>$ice[2] =&gt; Strawberry</span>
+<span>One value submitted Two values submitted Three values submitted $ice[0] =&gt; Vanilla $ice[0] =&gt; Chocolate $ice[0] =&gt; Strawberry $ice[0] =&gt; Vanilla $ice[1] =&gt; Chocolate $ice[0] =&gt; Vanilla $ice[1] =&gt; Strawberry $ice[0] =&gt; Chocolate $ice[1] =&gt; Strawberry $ice[0] =&gt; Vanilla $ice[1] =&gt; Chocolate $ice[2] =&gt; Strawberry</span>
 <br/>
-<span>If</span>
-<span>$ice</span>
-<span>is an array, the PHP code to display its contents is quite simple and might look</span>
-<span>like this:</span>
+<span>If $ice is an array, the PHP code to display its contents is quite simple and might look like this:</span>
 <br/>
 <span>foreach($ice as $item) echo "$item&lt;br&gt;";</span>
 <br/>
-<span>This uses the standard PHP</span>
-<span>foreach</span>
-<span>construct to iterate through the array</span>
-<span>$ice</span>
-<span>and</span>
-<span>pass each element&rsquo;s value into the variable</span>
-<span>$item</span>
-<span>, which is then displayed via the</span>
-<span>echo</span>
-<span>command. The</span>
-<span>&lt;br&gt;</span>
-<span>is just an HTML formatting device to force a new line after each</span>
-<span>flavor in the display. By default, checkboxes are square.</span>
+<span>This uses the standard PHP foreach construct to iterate through the array $ice and pass each element&rsquo;s value into the variable $item , which is then displayed via the echo command. The &lt;br&gt; is just an HTML formatting device to force a new line after each flavor in the display. By default, checkboxes are square.</span>
 <h6>Radio buttons</h6>
-<span>Radio buttons are named after the push-in preset buttons found on many older</span>
-<span>radios, where any previously depressed button pops back up when another is pressed.</span>
-<span>They are used when you want only a single value to be returned from a selection of</span>
-<span>two or more options. All the buttons in a group must use the same name and,</span>
-<span>because only a single value is returned, you do not have to pass an array.</span>
+<span>Radio buttons are named after the push-in preset buttons found on many older radios, where any previously depressed button pops back up when another is pressed. They are used when you want only a single value to be returned from a selection of two or more options. All the buttons in a group must use the same name and, because only a single value is returned, you do not have to pass an array.</span>
 <br/>
-<span>For example, if your website offers a choice of delivery times for items purchased</span>
-<span>from your store, you might use HTML like that in</span>
-<span>Example 11-6</span>
-<span>(see</span>
-<span>Figure 11-5</span>
-<span>to</span>
-<span>see how it displays).</span>
+<span>For example, if your website offers a choice of delivery times for items purchased from your store, you might use HTML like that in Example 11-6 (see Figure 11-5 to see how it displays).</span>
 <br/>
 <span>Example 11-6. Using radio buttons</span>
 <br/>
-<span>8am-Noon&lt;input type="radio" name="time" value="1"&gt;</span>
-<span>Noon-4pm&lt;input type="radio" name="time" value="2" checked="checked"&gt;</span>
-<span>4pm-8pm&lt;input type="radio" name="time" value="3"&gt;</span>
+<span>8am-Noon&lt;input type="radio" name="time" value="1"&gt; Noon-4pm&lt;input type="radio" name="time" value="2" checked="checked"&gt; 4pm-8pm&lt;input type="radio" name="time" value="3"&gt;</span>
 <p><img src="images/11.5.png"/></p>
 <span>Figure 11-5. Selecting a single value with radio buttons</span>
 <br/>
-<span>Here, the second option of Noon&ndash;4pm has been selected by default. This default</span>
-<span>choice ensures that at least one delivery time will be chosen by the user, which she</span>
-<span>can change to one of the other two options if she prefers. Had one of the items not</span>
-<span>been already checked, the user might forget to select an option, and no value would</span>
-<span>be submitted at all for the delivery time. By default, radio buttons are round.</span>
+<span>Here, the second option of Noon&ndash;4pm has been selected by default. This default choice ensures that at least one delivery time will be chosen by the user, which she can change to one of the other two options if she prefers. Had one of the items not been already checked, the user might forget to select an option, and no value would be submitted at all for the delivery time. By default, radio buttons are round.</span>
 <h6>Hidden fields</h6>
-<span>Sometimes it is convenient to have hidden form fields so that you can keep track of</span>
-<span>the state of form entry. For example, you might wish to know whether a form has</span>
-<span>already been submitted. You can achieve this by adding some HTML in your PHP</span>
-<span>code, such as the following:</span>
+<span>Sometimes it is convenient to have hidden form fields so that you can keep track of the state of form entry. For example, you might wish to know whether a form has already been submitted. You can achieve this by adding some HTML in your PHP code, such as the following:</span>
 <br/>
 <span>echo '&lt;input type="hidden" name="submitted" value="yes"&gt;'</span>
 <br/>
-<span>This is a simple PHP</span>
-<span>echo</span>
-<span>statement that adds an</span>
-<span>input</span>
-<span>field to the HTML form. Let&rsquo;s</span>
-<span>assume the form was created outside the program and displayed to the user. The first</span>
-<span>time the PHP program receives the input, this line of code has not run, so there will</span>
-<span>be no field named</span>
-<span>submitted</span>
-<span>. The PHP program re-creates the form, adding the</span>
-<span>input</span>
-<span>field. So when the visitor resubmits the form, the PHP program receives it with</span>
-<span>the</span>
-<span>submitted</span>
-<span>field set to</span>
-<span>"yes"</span>
-<span>. The code can simply check whether the field is</span>
-<span>present:</span>
+<span>This is a simple PHP echo statement that adds an input field to the HTML form. Let&rsquo;s assume the form was created outside the program and displayed to the user. The first time the PHP program receives the input, this line of code has not run, so there will be no field named submitted . The PHP program re-creates the form, adding the input field. So when the visitor resubmits the form, the PHP program receives it with the submitted field set to "yes" . The code can simply check whether the field is present:</span>
 <br/>
-<span>if (isset($_POST['submitted']))</span>
-<span>{...</span>
+<span>if (isset($_POST['submitted'])) {...</span>
 <br/>
-<span>Hidden fields can also be useful for storing other details, such as a session ID string</span>
-<span>that you might create to identify a user, and so on.</span>
+<span>Hidden fields can also be useful for storing other details, such as a session ID string that you might create to identify a user, and so on.</span>
 <br/>
-<span>Never treat hidden fields as secure&mdash;because they are not. Someone</span>
-<span>could easily view the HTML containing them by using a browser&rsquo;s</span>
-<span>View Source feature.</span>
+<span>Never treat hidden fields as secure&mdash;because they are not. Someone could easily view the HTML containing them by using a browser&rsquo;s View Source feature.</span>
 <h6>&lt;select&gt;</h6>
-<span>The</span>
-<span>&lt;select&gt;</span>
-<span>tag lets you create a drop-down list of options, offering either single or</span>
-<span>multiple selections. It conforms to the following syntax:</span>
+<span>The &lt;select&gt; tag lets you create a drop-down list of options, offering either single or multiple selections. It conforms to the following syntax:</span>
 <br/>
-<span>&lt;select name="</span>
-<span>name</span>
-<span>" size="</span>
-<span>size</span>
-<span>" multiple="multiple"&gt;</span>
+<span>&lt;select name=" name " size=" size " multiple="multiple"&gt;</span>
 <br/>
-<span>The attribute</span>
-<span>size</span>
-<span>is the number of lines to display. Clicking on the display causes a</span>
-<span>list to drop down, showing all the options. If you use the</span>
-<span>multiple</span>
-<span>attribute, a user</span>
-<span>can select multiple options from the list by pressing the Ctrl key when clicking. So to</span>
-<span>ask a user for his favorite vegetable from a choice of five, you might use HTML as in</span>
-<span>Example 11-7</span>
-<span>, which offers a single selection.</span>
+<span>The attribute size is the number of lines to display. Clicking on the display causes a list to drop down, showing all the options. If you use the multiple attribute, a user can select multiple options from the list by pressing the Ctrl key when clicking. So to ask a user for his favorite vegetable from a choice of five, you might use HTML as in Example 11-7 , which offers a single selection.</span>
 <br/>
 <span>Example 11-7. Using select</span>
 <br/>
-<span>Vegetables</span>
-<span>&lt;select name="veg" size="1"&gt;</span>
-<span>&lt;option value="Peas"&gt;Peas&lt;/option&gt;</span>
-<span>&lt;option value="Beans"&gt;Beans&lt;/option&gt;</span>
-<span>&lt;option value="Carrots"&gt;Carrots&lt;/option&gt;</span>
-<span>&lt;option value="Cabbage"&gt;Cabbage&lt;/option&gt;</span>
-<span>&lt;option value="Broccoli"&gt;Broccoli&lt;/option&gt;</span>
-<span>&lt;/select&gt;</span>
+<span>Vegetables &lt;select name="veg" size="1"&gt; &lt;option value="Peas"&gt;Peas&lt;/option&gt; &lt;option value="Beans"&gt;Beans&lt;/option&gt; &lt;option value="Carrots"&gt;Carrots&lt;/option&gt; &lt;option value="Cabbage"&gt;Cabbage&lt;/option&gt; &lt;option value="Broccoli"&gt;Broccoli&lt;/option&gt; &lt;/select&gt;</span>
 <br/>
-<span>This HTML offers five choices, with the first one,</span>
-<span>Peas</span>
-<span>, preselected (due to it being the</span>
-<span>first item).</span>
-<span>Figure 11-6</span>
-<span>shows the output where the list has been clicked to drop it down,</span>
-<span>and the option</span>
-<span>Carrots</span>
-<span>has been highlighted. If you want to have a different default option</span>
-<span>offered first (such as</span>
-<span>Beans</span>
-<span>), use the</span>
-<span>&lt;selected&gt;</span>
-<span>tag, like this:</span>
+<span>This HTML offers five choices, with the first one, Peas , preselected (due to it being the first item). Figure 11-6 shows the output where the list has been clicked to drop it down, and the option Carrots has been highlighted. If you want to have a different default option offered first (such as Beans ), use the &lt;selected&gt; tag, like this:</span>
 <br/>
 <span>&lt;option selected="selected" value="Beans"&gt;Beans&lt;/option&gt;</span>
 <p><img src="images/11.6.png"/></p>
 <span>Figure 11-6. Creating a drop-down list with select</span>
 <br/>
-<span>You can also allow users to select more than one item, as in</span>
-<span>Example 11-8</span>
-<span>.</span>
+<span>You can also allow users to select more than one item, as in Example 11-8 .</span>
 <br/>
 <span>Example 11-8. Using select with the multiple attribute</span>
 <br/>
-<span>Vegetables</span>
-<span>&lt;select name="veg" size="5" multiple="multiple"&gt;</span>
-<span>&lt;option value="Peas"&gt;Peas&lt;/option&gt;</span>
-<span>&lt;option value="Beans"&gt;Beans&lt;/option&gt;</span>
-<span>&lt;option value="Carrots"&gt;Carrots&lt;/option&gt;</span>
-<span>&lt;option value="Cabbage"&gt;Cabbage&lt;/option&gt;</span>
-<span>&lt;option value="Broccoli"&gt;Broccoli&lt;/option&gt;</span>
-<span>&lt;/select&gt;</span>
+<span>Vegetables &lt;select name="veg" size="5" multiple="multiple"&gt; &lt;option value="Peas"&gt;Peas&lt;/option&gt; &lt;option value="Beans"&gt;Beans&lt;/option&gt; &lt;option value="Carrots"&gt;Carrots&lt;/option&gt; &lt;option value="Cabbage"&gt;Cabbage&lt;/option&gt; &lt;option value="Broccoli"&gt;Broccoli&lt;/option&gt; &lt;/select&gt;</span>
 <br/>
-<span>This HTML is not very different; only the size has been changed to</span>
-<span>"5"</span>
-<span>and the</span>
-<span>attribute</span>
-<span>multiple</span>
-<span>has been added. But, as you can see from</span>
-<span>Figure 11-7</span>
-<span>, it is now</span>
-<span>possible for the user to select more than one option by using the Ctrl key when clicking. You can leave out the</span>
-<span>size</span>
-<span>attribute if you wish, and the output will be the same;</span>
-<span>however, with a larger list, the drop-down box might take up too much screen space,</span>
-<span>so I recommend that you pick a suitable number of rows and stick with it. I also recommend against multiple select boxes smaller than two rows in height&mdash;some browsers may not correctly display the scroll bars needed to access it.</span>
+<span>This HTML is not very different; only the size has been changed to "5" and the attribute multiple has been added. But, as you can see from Figure 11-7 , it is now possible for the user to select more than one option by using the Ctrl key when clicking. You can leave out the size attribute if you wish, and the output will be the same; however, with a larger list, the drop-down box might take up too much screen space, so I recommend that you pick a suitable number of rows and stick with it. I also recommend against multiple select boxes smaller than two rows in height&mdash;some browsers may not correctly display the scroll bars needed to access it.</span>
 <p><img src="images/11.7.png"/></p>
 <span>Figure 11-7. Using a select with the multiple attribute</span>
 <br/>
-<span>You can also use the</span>
-<span>selected</span>
-<span>attribute within a multiple select and can, in fact, have</span>
-<span>more than one option preselected if you wish.</span>
+<span>You can also use the selected attribute within a multiple select and can, in fact, have more than one option preselected if you wish.</span>
 <h6>Labels</h6>
-<span>You can provide an even better user experience by utilizing the</span>
-<span>&lt;label&gt;</span>
-<span>tag. With it,</span>
-<span>you can surround a form element, making it selectable by clicking any visible part</span>
-<span>contained between the opening and closing</span>
-<span>&lt;label&gt;</span>
-<span>tags.</span>
+<span>You can provide an even better user experience by utilizing the &lt;label&gt; tag. With it, you can surround a form element, making it selectable by clicking any visible part contained between the opening and closing &lt;label&gt; tags.</span>
 <br/>
-<span>For example, going back to the example of choosing a delivery time, you could allow</span>
-<span>the user to click the radio button itself</span>
-<span>and</span>
-<span>the associated text, like this:</span>
+<span>For example, going back to the example of choosing a delivery time, you could allow the user to click the radio button itself and the associated text, like this:</span>
 <br/>
 <span>&lt;label&gt;8am-Noon&lt;input type="radio" name="time" value="1"&gt;&lt;/label&gt;</span>
 <br/>
-<span>The text will not be underlined like a hyperlink when you do this, but as the mouse</span>
-<span>passes over, it will change to an arrow instead of a text cursor, indicating that the</span>
-<span>whole item is clickable.</span>
+<span>The text will not be underlined like a hyperlink when you do this, but as the mouse passes over, it will change to an arrow instead of a text cursor, indicating that the whole item is clickable.</span>
 <h6>The submit button</h6>
-<span>To match the type of form being submitted, you can change the text of the submit</span>
-<span>button to anything you like by using the</span>
-<span>value</span>
-<span>attribute, like this:</span>
+<span>To match the type of form being submitted, you can change the text of the submit button to anything you like by using the value attribute, like this:</span>
 <br/>
 <span>&lt;input type="submit" value="Search"&gt;</span>
 <br/>
-<span>You can also replace the standard text button with a graphic image of your choice,</span>
-<span>using HTML such as this:</span>
+<span>You can also replace the standard text button with a graphic image of your choice, using HTML such as this:</span>
 <br/>
 <span>&lt;input type="image" name="submit" src="image.gif"&gt;</span>
 <h4>Sanitizing Input</h4>
-<span>Now we return to PHP programming. It can never be emphasized enough that handling user data is a security minefield, and that it is essential to learn to treat all such</span>
-<span>data with utmost caution from the word go. It&rsquo;s actually not that difficult to sanitize</span>
-<span>user input from potential hacking attempts, but it must be done.</span>
+<span>Now we return to PHP programming. It can never be emphasized enough that handling user data is a security minefield, and that it is essential to learn to treat all such data with utmost caution from the word go. It&rsquo;s actually not that difficult to sanitize user input from potential hacking attempts, but it must be done.</span>
 <br/>
-<span>The first thing to remember is that regardless of what constraints you have placed in</span>
-<span>an HTML form to limit the types and sizes of inputs, it is a trivial matter for a hacker</span>
-<span>to use her browser&rsquo;s View Source feature to extract the form and modify it to provide</span>
-<span>malicious input to your website.</span>
+<span>The first thing to remember is that regardless of what constraints you have placed in an HTML form to limit the types and sizes of inputs, it is a trivial matter for a hacker to use her browser&rsquo;s View Source feature to extract the form and modify it to provide malicious input to your website.</span>
 <br/>
-<span>Therefore, you must never trust any variable that you fetch from either the</span>
-<span>$_GET</span>
-<span>or</span>
-<span>$_POST</span>
-<span>arrays until you have processed it. If you don&rsquo;t, users may try to inject JavaScript into the data to interfere with your site&rsquo;s operation, or even attempt to add</span>
-<span>MySQL commands to compromise your database.</span>
+<span>Therefore, you must never trust any variable that you fetch from either the $_GET or $_POST arrays until you have processed it. If you don&rsquo;t, users may try to inject JavaScript into the data to interfere with your site&rsquo;s operation, or even attempt to add MySQL commands to compromise your database.</span>
 <br/>
-<span>Therefore, instead of just using code such as the following when reading in user</span>
-<span>input:</span>
+<span>Therefore, instead of just using code such as the following when reading in user input:</span>
 <br/>
 <span>$variable = $_POST['user_input'];</span>
 <br/>
-<span>you should also use one or more of the following lines of code. For example, to prevent escape characters from being injected into a string that will be presented to</span>
-<span>MySQL, use the following. Remember that this function takes into account the current character set of a MySQL connection, so it must be used with a</span>
-<span>mysqli</span>
-<span>connection object (in this instance,</span>
-<span>$connection</span>
-<span>), as discussed in</span>
-<span>Chapter 10</span>
-<span>.</span>
+<span>you should also use one or more of the following lines of code. For example, to prevent escape characters from being injected into a string that will be presented to MySQL, use the following. Remember that this function takes into account the current character set of a MySQL connection, so it must be used with a mysqli connection object (in this instance, $connection ), as discussed in Chapter 10 .</span>
 <br/>
 <span>$variable = $connection-&gt;real_escape_string($variable);</span>
 <br/>
-<span>Remember that the safest way to secure MySQL from hacking</span>
-<span>attempts</span>
-<span>is</span>
-<span>to</span>
-<span>use</span>
-<span>placeholders</span>
-<span>and</span>
-<span>prepared</span>
-<span>statements,</span>
-<span>as</span>
-<span>described in</span>
-<span>Chapter 10</span>
-<span>. If you do so for all accesses to MySQL, it</span>
-<span>becomes unnecessary to escape data being transferred into or out</span>
-<span>of the database. You will, however, still need to sanitize input when</span>
-<span>including it within HTML.</span>
+<span>Remember that the safest way to secure MySQL from hacking attempts is to use placeholders and prepared statements, as described in Chapter 10 . If you do so for all accesses to MySQL, it becomes unnecessary to escape data being transferred into or out of the database. You will, however, still need to sanitize input when including it within HTML.</span>
 <br/>
 <span>To get rid of unwanted slashes, use this:</span>
 <br/>
@@ -766,542 +278,142 @@ _END;
 <br/>
 <span>$variable = htmlentities($variable);</span>
 <br/>
-<span>For example, this would change a string of interpretable HTML code like</span>
-<span>&lt;b&gt;hi&lt;/b&gt;</span>
-<span>into</span>
-<span>&amp;lt;b&amp;gt;hi&amp;lt;/b&amp;gt;</span>
-<span>, which displays as text, and won&rsquo;t be interpreted as</span>
-<span>HTML tags.</span>
+<span>For example, this would change a string of interpretable HTML code like &lt;b&gt;hi&lt;/b&gt; into &amp;lt;b&amp;gt;hi&amp;lt;/b&amp;gt; , which displays as text, and won&rsquo;t be interpreted as HTML tags.</span>
 <br/>
-<span>Finally, if you wish to strip HTML entirely from an input, use the following (but</span>
-<span>ensure you use it before calling</span>
-<span>htmlentities</span>
-<span>, which replaces any angle brackets</span>
-<span>used as part of HTML tags):</span>
+<span>Finally, if you wish to strip HTML entirely from an input, use the following (but ensure you use it before calling htmlentities , which replaces any angle brackets used as part of HTML tags):</span>
 <br/>
 <span>$variable = strip_tags($variable);</span>
 <br/>
-<span>In</span>
-<span>fact,</span>
-<span>until</span>
-<span>you</span>
-<span>know</span>
-<span>exactly</span>
-<span>what</span>
-<span>sanitization</span>
-<span>you</span>
-<span>require</span>
-<span>for</span>
-<span>a</span>
-<span>program,</span>
-<span>Example 11-9</span>
-<span>shows a pair of functions that brings all these checks together to provide a very good level of security.</span>
+<span>In fact, until you know exactly what sanitization you require for a program, Example 11-9 shows a pair of functions that brings all these checks together to provide a very good level of security.</span>
 <br/>
-<span>Example 11-9.</span>
-<span>The sanitizeString and sanitizeMySQL functions</span>
+<span>Example 11-9. The sanitizeString and sanitizeMySQL functions</span>
 <br/>
-<span>&lt;?php</span>
-<span>function sanitizeString($var)</span>
-<span>{</span>
-<span>$var = stripslashes($var);</span>
-<span>$var = strip_tags($var);</span>
-<span>$var = htmlentities($var);</span>
-<span>return $var;</span>
-<span>}</span>
-<span>function sanitizeMySQL($connection, $var)</span>
-<span>{</span>
-<span>$var = $connection-&gt;real_escape_string($var);</span>
-<span>$var = sanitizeString($var);</span>
-<span>return $var;</span>
-<span>}</span>
-<span>?&gt;</span>
+<span>&lt;?php function sanitizeString($var) { $var = stripslashes($var); $var = strip_tags($var); $var = htmlentities($var); return $var; } function sanitizeMySQL($connection, $var) { $var = $connection-&gt;real_escape_string($var); $var = sanitizeString($var); return $var; } ?&gt;</span>
 <br/>
-<span>Add this code to the end of your PHP programs, and you can then call it for each user</span>
-<span>input to sanitize, like this:</span>
+<span>Add this code to the end of your PHP programs, and you can then call it for each user input to sanitize, like this:</span>
 <br/>
 <span>$var = sanitizeString($_POST['user_input']);</span>
 <br/>
-<span>Or, when you have an open MySQL connection, and a</span>
-<span>mysqli</span>
-<span>connection object (in</span>
-<span>this case, called</span>
-<span>$connection</span>
-<span>):</span>
+<span>Or, when you have an open MySQL connection, and a mysqli connection object (in this case, called $connection ):</span>
 <br/>
 <span>$var = sanitizeMySQL($connection, $_POST['user_input']);</span>
 <br/>
-<span>If you are using the procedural version of the</span>
-<span>mysqli</span>
-<span>extension,</span>
-<span>you will need to modify the</span>
-<span>sanitizeMySQL</span>
-<span>function to call the</span>
-<span>mysqli_real_escape_string</span>
-<span>function,</span>
-<span>like</span>
-<span>this</span>
-<span>(in</span>
-<span>which</span>
-<span>case</span>
-<span>$connection</span>
-<span>will then be a handle, not an object):</span>
+<span>If you are using the procedural version of the mysqli extension, you will need to modify the sanitizeMySQL function to call the mysqli_real_escape_string function, like this (in which case $connection will then be a handle, not an object):</span>
 <br/>
 <span>$var = mysqli_real_escape_string($connection, $var);</span>
 <h3>An Example Program</h3>
-<span>So let&rsquo;s look at how a real-life PHP program integrates with an HTML form by creating the program</span>
-<span>convert.php</span>
-<span>listed in</span>
-<span>Example 11-10</span>
-<span>. Type it as shown and try it for</span>
-<span>yourself.</span>
+<span>So let&rsquo;s look at how a real-life PHP program integrates with an HTML form by creating the program convert.php listed in Example 11-10 . Type it as shown and try it for yourself.</span>
 <br/>
 <span>Example 11-10. A program to convert values between Fahrenheit and Celsius</span>
 <br/>
-<span>&lt;?php // convert.php</span>
-<span>$f = $c = '';</span>
-<span>if (isset($_POST['f'])) $f = sanitizeString($_POST['f']);</span>
-<span>if (isset($_POST['c'])) $c = sanitizeString($_POST['c']);</span>
-<span>if ($f != '')</span>
-<span>{</span>
-<span>$c = intval((5 / 9) * ($f - 32));</span>
-<span>$out = "$f &deg;f equals $c &deg;c";</span>
-<span>}</span>
-<span>elseif($c != '')</span>
-<span>{</span>
-<span>$f = intval((9 / 5) * $c + 32);</span>
-<span>$out = "$c &deg;c equals $f &deg;f";</span>
-<span>}</span>
-<span>else $out = "";</span>
-<span>echo &lt;&lt;&lt;_END</span>
-<span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span>
-<span>&lt;title&gt;Temperature Converter&lt;/title&gt;</span>
-<span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-<span>&lt;pre&gt;</span>
-<span>&nbsp;</span>
-<span>Enter either Fahrenheit or Celsius and click on Convert</span>
-<span>&nbsp;</span>
-<span>&lt;b&gt;$out&lt;/b&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;form method="post" action="convert.php"&gt;</span>
-<span>&nbsp;</span>
-<span>Fahrenheit &lt;input type="text" name="f" size="7"&gt;</span>
-<span>&nbsp;</span>
-<span>Celsius &lt;input type="text" name="c" size="7"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;input type="submit" value="Convert"&gt;</span>
-<span>&nbsp;</span>
-<span>&lt;/form&gt;</span>
-<span>&lt;/pre&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span>
-<span>_END;</span>
-<span>function sanitizeString($var)</span>
-<span>{</span>
-<span>$var = stripslashes($var);</span>
-<span>$var = strip_tags($var);</span>
-<span>$var = htmlentities($var);</span>
-<span>return $var;</span>
-<span>}</span>
-<span>?&gt;</span>
+<span>&lt;?php // convert.php $f = $c = ''; if (isset($_POST['f'])) $f = sanitizeString($_POST['f']); if (isset($_POST['c'])) $c = sanitizeString($_POST['c']); if ($f != '') { $c = intval((5 / 9) * ($f - 32)); $out = "$f &deg;f equals $c &deg;c"; } elseif($c != '') { $f = intval((9 / 5) * $c + 32); $out = "$c &deg;c equals $f &deg;f"; } else $out = ""; echo &lt;&lt;&lt;_END &lt;html&gt; &lt;head&gt; &lt;title&gt;Temperature Converter&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;pre&gt; &nbsp; Enter either Fahrenheit or Celsius and click on Convert &nbsp; &lt;b&gt;$out&lt;/b&gt; &nbsp; &lt;form method="post" action="convert.php"&gt; &nbsp; Fahrenheit &lt;input type="text" name="f" size="7"&gt; &nbsp; Celsius &lt;input type="text" name="c" size="7"&gt; &nbsp; &lt;input type="submit" value="Convert"&gt; &nbsp; &lt;/form&gt; &lt;/pre&gt; &lt;/body&gt; &lt;/html&gt; _END; function sanitizeString($var) { $var = stripslashes($var); $var = strip_tags($var); $var = htmlentities($var); return $var; } ?&gt;</span>
 <br/>
-<span>When you call up</span>
-<span>&nbsp;convert.php</span>
-<span>&nbsp;in a browser, the result should look something like</span>
-<span>Figure 11-8</span>
-<span>.</span>
+<span>When you call up &nbsp;convert.php &nbsp;in a browser, the result should look something like Figure 11-8 .</span>
 <p><img src="images/11.8.png"/></p>
 <span>Figure 11-8. The temperature conversion program in action</span>
 <br/>
-<span>To break the program down, the first line initializes the variables</span>
-<span>$c</span>
-<span>and</span>
-<span>$f</span>
-<span>in case</span>
-<span>they do not get posted to the program. The next two lines fetch the values of either</span>
-<span>the field named</span>
-<span>f</span>
-<span>or the one named</span>
-<span>c</span>
-<span>, for an input Fahrenheit or Celsius value. If the</span>
-<span>user inputs both, the Celsius is simply ignored and the Fahrenheit value is converted.</span>
-<span>As a security measure, the new function</span>
-<span>sanitizeString</span>
-<span>from</span>
-<span>Example 11-9</span>
-<span>is also</span>
-<span>used.</span>
+<span>To break the program down, the first line initializes the variables $c and $f in case they do not get posted to the program. The next two lines fetch the values of either the field named f or the one named c , for an input Fahrenheit or Celsius value. If the user inputs both, the Celsius is simply ignored and the Fahrenheit value is converted. As a security measure, the new function sanitizeString from Example 11-9 is also used.</span>
 <br/>
-<span>So, having either submitted values or empty strings in both</span>
-<span>$f</span>
-<span>and</span>
-<span>$c</span>
-<span>, the next portion of code constitutes an</span>
-<span>if...elseif...else</span>
-<span>structure that first tests whether</span>
-<span>$f</span>
-<span>has a value. If not, it checks</span>
-<span>$c</span>
-<span>; otherwise, the variable</span>
-<span>$out</span>
-<span>is set to the empty string</span>
-<span>(more on that in a moment).</span>
+<span>So, having either submitted values or empty strings in both $f and $c , the next portion of code constitutes an if...elseif...else structure that first tests whether $f has a value. If not, it checks $c ; otherwise, the variable $out is set to the empty string (more on that in a moment).</span>
 <br/>
-<span>If</span>
-<span>$f</span>
-<span>is found to have a value, the variable</span>
-<span>$c</span>
-<span>is assigned a simple mathematical</span>
-<span>expression that converts the value of</span>
-<span>$f</span>
-<span>from Fahrenheit to Celsius. The formula used</span>
-<span>is Celsius = (5 / 9) &times; (Fahrenheit &ndash; 32). The variable</span>
-<span>$out</span>
-<span>is then set to a message</span>
-<span>string explaining the conversion.</span>
+<span>If $f is found to have a value, the variable $c is assigned a simple mathematical expression that converts the value of $f from Fahrenheit to Celsius. The formula used is Celsius = (5 / 9) &times; (Fahrenheit &ndash; 32). The variable $out is then set to a message string explaining the conversion.</span>
 <br/>
-<span>On the other hand, if</span>
-<span>$c</span>
-<span>is found to have a value, a complementary operation is performed to convert the value of</span>
-<span>$c</span>
-<span>from Celsius to Fahrenheit and assign the result to</span>
-<span>$f</span>
-<span>. The formula used is Fahrenheit = (9 / 5) &times; Celsius + 32. As with the previous section, the string</span>
-<span>$out</span>
-<span>is then set to contain a message about the conversion.</span>
+<span>On the other hand, if $c is found to have a value, a complementary operation is performed to convert the value of $c from Celsius to Fahrenheit and assign the result to $f . The formula used is Fahrenheit = (9 / 5) &times; Celsius + 32. As with the previous section, the string $out is then set to contain a message about the conversion.</span>
 <br/>
-<span>In both conversions, the PHP</span>
-<span>intval</span>
-<span>function is called to convert the result of the</span>
-<span>conversion to an integer value. It&rsquo;s not necessary, but looks better.</span>
+<span>In both conversions, the PHP intval function is called to convert the result of the conversion to an integer value. It&rsquo;s not necessary, but looks better.</span>
 <br/>
-<span>With all the arithmetic done, the program now outputs the HTML, which starts with</span>
-<span>the basic head and title and then contains some introductory text before displaying</span>
-<span>the value of</span>
-<span>$out</span>
-<span>. If no temperature conversion was made,</span>
-<span>$out</span>
-<span>will have a value of</span>
-<span>NULL</span>
-<span>and nothing will be displayed, which is exactly what we want when the form</span>
-<span>hasn&rsquo;t yet been submitted. But if a conversion was made,</span>
-<span>$out</span>
-<span>contains the result,</span>
-<span>which is displayed.</span>
+<span>With all the arithmetic done, the program now outputs the HTML, which starts with the basic head and title and then contains some introductory text before displaying the value of $out . If no temperature conversion was made, $out will have a value of NULL and nothing will be displayed, which is exactly what we want when the form hasn&rsquo;t yet been submitted. But if a conversion was made, $out contains the result, which is displayed.</span>
 <br/>
-<span>After this, we come to the form, which is set to submit using the Post method to the</span>
-<span>file</span>
-<span>convert.php</span>
-<span>(the program itself). Within the form, there are two inputs for either a</span>
-<span>Fahrenheit or Celsius value to be entered. A submit button with the text Convert is</span>
-<span>then displayed, and the form is closed.</span>
+<span>After this, we come to the form, which is set to submit using the Post method to the file convert.php (the program itself). Within the form, there are two inputs for either a Fahrenheit or Celsius value to be entered. A submit button with the text Convert is then displayed, and the form is closed.</span>
 <br/>
-<span>After outputting the HTML to close the document, we come finally to the function</span>
-<span>sanitizeString</span>
-<span>from</span>
-<span>Example 11-9</span>
-<span>. Try playing with the example by inputting different values into the fields; for a bit of fun, can you find a value for which Fahrenheit</span>
-<span>and Celsius are the same?</span>
+<span>After outputting the HTML to close the document, we come finally to the function sanitizeString from Example 11-9 . Try playing with the example by inputting different values into the fields; for a bit of fun, can you find a value for which Fahrenheit and Celsius are the same?</span>
 <br/>
-<span>All the examples in this chapter have used the Post method to send</span>
-<span>form data. I recommend this, as it&rsquo;s the neatest and most secure</span>
-<span>method. However, the forms can easily be changed to use the Get</span>
-<span>method, as long as values are fetched from the</span>
-<span>$_GET</span>
-<span>array instead</span>
-<span>of the</span>
-<span>$_POST</span>
-<span>array. Reasons to do this might include making the</span>
-<span>result of a search bookmarkable or directly linkable from another</span>
-<span>page.</span>
+<span>All the examples in this chapter have used the Post method to send form data. I recommend this, as it&rsquo;s the neatest and most secure method. However, the forms can easily be changed to use the Get method, as long as values are fetched from the $_GET array instead of the $_POST array. Reasons to do this might include making the result of a search bookmarkable or directly linkable from another page.</span>
 <h3>What&rsquo;s New in HTML5?</h3>
-<span>With HTML5, developers can draw on a number of useful enhancements to form</span>
-<span>handling to make using forms easier than ever, including new attributes; color, date,</span>
-<span>and time pickers; and new input types&mdash;although some of these features are not yet</span>
-<span>implanted across all major browsers. The following new features, however, will work</span>
-<span>on all browsers.</span>
+<span>With HTML5, developers can draw on a number of useful enhancements to form handling to make using forms easier than ever, including new attributes; color, date, and time pickers; and new input types&mdash;although some of these features are not yet implanted across all major browsers. The following new features, however, will work on all browsers.</span>
 <h4>The autocomplete Attribute</h4>
-<span>You can apply the</span>
-<span>autocomplete</span>
-<span>attribute to either the</span>
-<span>&lt;form&gt;</span>
-<span>element, or to any of</span>
-<span>the</span>
-<span>color</span>
-<span>,</span>
-<span>date</span>
-<span>,</span>
-<span>email</span>
-<span>,</span>
-<span>password</span>
-<span>,</span>
-<span>range</span>
-<span>,</span>
-<span>search</span>
-<span>,</span>
-<span>tel</span>
-<span>,</span>
-<span>text</span>
-<span>, or</span>
-<span>url</span>
-<span>types of the</span>
-<span>&lt;input&gt;</span>
-<span>element.</span>
+<span>You can apply the autocomplete attribute to either the &lt;form&gt; element, or to any of the color , date , email , password , range , search , tel , text , or url types of the &lt;input&gt; element.</span>
 <br/>
-<span>With autocomplete enabled, previous user inputs are recalled and automatically</span>
-<span>entered into fields as suggestions. You can also disable this feature by turning autocomplete off. Here&rsquo;s how to turn autocomplete on for an entire form but disable it for</span>
-<span>specific fields (highlighted in bold):</span>
+<span>With autocomplete enabled, previous user inputs are recalled and automatically entered into fields as suggestions. You can also disable this feature by turning autocomplete off. Here&rsquo;s how to turn autocomplete on for an entire form but disable it for specific fields (highlighted in bold):</span>
 <br/>
-<span>&lt;form action='myform.php' method='post'</span>
-<span>autocomplete='on'</span>
-<span>&gt;</span>
-<span>&lt;input type='text' name='username'&gt;</span>
-<span>&lt;input type='password' name='password'</span>
-<span>autocomplete='off'</span>
-<span>&gt;</span>
-<span>&lt;/form&gt;</span>
+<span>&lt;form action='myform.php' method='post' autocomplete='on' &gt; &lt;input type='text' name='username'&gt; &lt;input type='password' name='password' autocomplete='off' &gt; &lt;/form&gt;</span>
 <h4>The autofocus Attribute</h4>
-<span>The</span>
-<span>autofocus</span>
-<span>attribute gives immediate focus to an element when a page loads. It</span>
-<span>can be applied to any</span>
-<span>&lt;input&gt;</span>
-<span>,</span>
-<span>&lt;textarea&gt;</span>
-<span>, or</span>
-<span>&lt;button&gt;</span>
-<span>element, like this:</span>
+<span>The autofocus attribute gives immediate focus to an element when a page loads. It can be applied to any &lt;input&gt; , &lt;textarea&gt; , or &lt;button&gt; element, like this:</span>
 <br/>
-<span>&lt;input type='text' name='query'</span>
-<span>autofocus='autofocus'</span>
-<span>&gt;</span>
+<span>&lt;input type='text' name='query' autofocus='autofocus' &gt;</span>
 <br/>
-<span>Browsers that use touch interfaces (such as Android, iOS, or Windows Phone) usually ignore the</span>
-<span>autofocus</span>
-<span>attribute, leaving it to</span>
-<span>the user to tap on a field to give it focus; otherwise, the zoom in,</span>
-<span>focusing,</span>
-<span>and</span>
-<span>pop-up</span>
-<span>keyboards</span>
-<span>this</span>
-<span>attribute</span>
-<span>would</span>
-<span>generate</span>
-<span>could quickly become very annoying.</span>
+<span>Browsers that use touch interfaces (such as Android, iOS, or Windows Phone) usually ignore the autofocus attribute, leaving it to the user to tap on a field to give it focus; otherwise, the zoom in, focusing, and pop-up keyboards this attribute would generate could quickly become very annoying.</span>
 <br/>
-<span>Because this feature will cause the focus to move in to an input element, the Backspace key will no longer take the user back a web page (although Alt-Left and Alt-</span>
-<span>Right will still move backward and forward within the browsing history).</span>
+<span>Because this feature will cause the focus to move in to an input element, the Backspace key will no longer take the user back a web page (although Alt-Left and Alt- Right will still move backward and forward within the browsing history).</span>
 <h4>The placeholder Attribute</h4>
-<span>The</span>
-<span>placeholder</span>
-<span>attribute lets you place into any blank input field a helpful hint to</span>
-<span>explain to users what they should enter. You use it like this:</span>
+<span>The placeholder attribute lets you place into any blank input field a helpful hint to explain to users what they should enter. You use it like this:</span>
 <br/>
-<span>&lt;input type='text' name='name' size='50'</span>
-<span>placeholder='First &amp; Last name'</span>
-<span>&gt;</span>
+<span>&lt;input type='text' name='name' size='50' placeholder='First &amp; Last name' &gt;</span>
 <br/>
 <span>The input field will display the placeholder text as a prompt until the user starts typing, at which point the placeholder will disappear.</span>
 <h4>The required Attribute</h4>
-<span>The</span>
-<span>required</span>
-<span>attribute is used to ensure that a field has been completed before a</span>
-<span>form is submitted. You use it like this:</span>
+<span>The required attribute is used to ensure that a field has been completed before a form is submitted. You use it like this:</span>
 <br/>
-<span>&lt;input type='text' name='creditcard'</span>
-<span>required='required'</span>
-<span>&gt;</span>
+<span>&lt;input type='text' name='creditcard' required='required' &gt;</span>
 <br/>
-<span>When the browser detects attempted form submission where there&rsquo;s an uncompleted</span>
-<span>required</span>
-<span>input, a message is displayed, prompting the user to complete the field.</span>
+<span>When the browser detects attempted form submission where there&rsquo;s an uncompleted required input, a message is displayed, prompting the user to complete the field.</span>
 <h4>Override Attributes</h4>
-<span>With override attributes, you can override form settings on an element-by-element</span>
-<span>basis. So, for example, using the</span>
-<span>formaction</span>
-<span>attribute, you can specify that a submit</span>
-<span>button should submit a form to a different URL than is specified in the form itself,</span>
-<span>like the following (in which the default and overridden action URLs are bold):</span>
+<span>With override attributes, you can override form settings on an element-by-element basis. So, for example, using the formaction attribute, you can specify that a submit button should submit a form to a different URL than is specified in the form itself, like the following (in which the default and overridden action URLs are bold):</span>
 <br/>
-<span>&lt;form</span>
-<span>action='url1.php'</span>
-<span>method='post'&gt;</span>
-<span>&lt;input type='text' name='field'&gt;</span>
-<span>&lt;input type='submit'</span>
-<span>formaction='url2.php'</span>
-<span>&gt;</span>
-<span>&lt;/form&gt;</span>
+<span>&lt;form action='url1.php' method='post'&gt; &lt;input type='text' name='field'&gt; &lt;input type='submit' formaction='url2.php' &gt; &lt;/form&gt;</span>
 <br/>
-<span>HTML5 also brings support for the</span>
-<span>formenctype</span>
-<span>,</span>
-<span>formmethod</span>
-<span>,</span>
-<span>formnovalidate</span>
-<span>, and</span>
-<span>formtarget</span>
-<span>override attributes, which you can use in exactly the same manner as</span>
-<span>for</span>
-<span>maction</span>
-<span>to override one of these settings.</span>
+<span>HTML5 also brings support for the formenctype , formmethod , formnovalidate , and formtarget override attributes, which you can use in exactly the same manner as for maction to override one of these settings.</span>
 <br/>
-<span>The form overrides have been supported in most major browsers</span>
-<span>for a few years, but have been featured in Internet Explorer only</span>
-<span>since version 10.</span>
+<span>The form overrides have been supported in most major browsers for a few years, but have been featured in Internet Explorer only since version 10.</span>
 <h4>The width and height Attributes</h4>
 <span>Using these new attributes, you can alter the dimensions of an input image, like this:</span>
 <br/>
-<span>&lt;input type='image' src='picture.png'</span>
-<span>width='120' height='80'</span>
-<span>&gt;</span>
+<span>&lt;input type='image' src='picture.png' width='120' height='80' &gt;</span>
 <h3>Features Awaiting Full Implementation</h3>
-<span>Since HTML5 is still in its early days (even though it&rsquo;s been around for many years),</span>
-<span>browser developers have been implementing features according to their own schedules, so many parts of the specification are available only on some browsers. However,</span>
-<span>during the life of this edition, more and more of them will become available across</span>
-<span>the board, so it&rsquo;s worth mentioning what&rsquo;s coming here so that you&rsquo;ll be ready to use</span>
-<span>them sooner rather than later.</span>
+<span>Since HTML5 is still in its early days (even though it&rsquo;s been around for many years), browser developers have been implementing features according to their own schedules, so many parts of the specification are available only on some browsers. However, during the life of this edition, more and more of them will become available across the board, so it&rsquo;s worth mentioning what&rsquo;s coming here so that you&rsquo;ll be ready to use them sooner rather than later.</span>
 <h4>The form Attribute</h4>
-<span>With HTML5, you no longer have to place</span>
-<span>&lt;input&gt;</span>
-<span>elements within</span>
-<span>&lt;form&gt;</span>
-<span>elements,</span>
-<span>because you can specify the form to which an input applies by supplying a</span>
-<span>form</span>
-<span>attribute. The following code shows a form being created, but with its input outside</span>
-<span>of the</span>
-<span>&lt;form&gt;</span>
-<span>and</span>
-<span>&lt;/form&gt;</span>
-<span>tags:</span>
+<span>With HTML5, you no longer have to place &lt;input&gt; elements within &lt;form&gt; elements, because you can specify the form to which an input applies by supplying a form attribute. The following code shows a form being created, but with its input outside of the &lt;form&gt; and &lt;/form&gt; tags:</span>
 <br/>
-<span>&lt;form action='myscript.php' method='post'</span>
-<span>id='form1'</span>
-<span>&gt;</span>
-<span>&lt;/form&gt;</span>
-<span>&lt;input type='text' name='username'</span>
-<span>form='form1'</span>
-<span>&gt;</span>
+<span>&lt;form action='myscript.php' method='post' id='form1' &gt; &lt;/form&gt; &lt;input type='text' name='username' form='form1' &gt;</span>
 <br/>
-<span>To do this, you must give the form an ID using the</span>
-<span>id</span>
-<span>attribute, and this is the ID to</span>
-<span>which the</span>
-<span>form</span>
-<span>attribute of an input element must refer.</span>
+<span>To do this, you must give the form an ID using the id attribute, and this is the ID to which the form attribute of an input element must refer.</span>
 <br/>
 <span>At the time of writing, this attribute is unsupported by Internet Explorer.</span>
 <h4>The list Attribute</h4>
-<span>HTML5 supports attaching lists to inputs to enable users to easily select from a predefined list. But, at the time of writing, only Firefox, Chrome, Safari, and IE support</span>
-<span>the</span>
-<span>list</span>
-<span>attribute. Nevertheless, once Opera picks it up, it will be a very handy feature, which you&rsquo;ll be able to use like this:</span>
+<span>HTML5 supports attaching lists to inputs to enable users to easily select from a predefined list. But, at the time of writing, only Firefox, Chrome, Safari, and IE support the list attribute. Nevertheless, once Opera picks it up, it will be a very handy feature, which you&rsquo;ll be able to use like this:</span>
 <br/>
-<span>Select destination:</span>
-<span>&lt;input type='url' name='site'</span>
-<span>list='links'</span>
-<span>&gt;</span>
-<span>&lt;</span>
-<span>datalist id='links'</span>
-<span>&gt;</span>
-<span>&lt;option label='Google' value='http://google.com'&gt;</span>
-<span>&lt;option label='Yahoo!' value='http://yahoo.com'&gt;</span>
-<span>&lt;option label='Bing' value='http://bing.com'&gt;</span>
-<span>&lt;option label='Ask' value='http://ask.com'&gt;</span>
-<span>&lt;</span>
-<span>/datalist</span>
-<span>&gt;</span>
+<span>Select destination: &lt;input type='url' name='site' list='links' &gt; &lt; datalist id='links' &gt; &lt;option label='Google' value='http://google.com'&gt; &lt;option label='Yahoo!' value='http://yahoo.com'&gt; &lt;option label='Bing' value='http://bing.com'&gt; &lt;option label='Ask' value='http://ask.com'&gt; &lt; /datalist &gt;</span>
 <h4>The min and max Attributes</h4>
-<span>With the</span>
-<span>min</span>
-<span>and</span>
-<span>max</span>
-<span>attributes, you can specify minimum and maximum values for</span>
-<span>inputs, but currently not in Firefox or IE. You use the attributes like this:</span>
+<span>With the min and max attributes, you can specify minimum and maximum values for inputs, but currently not in Firefox or IE. You use the attributes like this:</span>
 <br/>
-<span>&lt;input type='time' name='alarm' value='07:00'</span>
-<span>min='05:00' max='09:00'</span>
-<span>&gt;</span>
+<span>&lt;input type='time' name='alarm' value='07:00' min='05:00' max='09:00' &gt;</span>
 <br/>
-<span>The browser will then either offer up and down selectors for the range of values</span>
-<span>allowed, or simply disallow values outside of that range. In tests, however, I have</span>
-<span>found this attribute to be flaky in some implementations, and suggest you fully test</span>
-<span>before implementing this feature, even when it is available on all browsers.</span>
+<span>The browser will then either offer up and down selectors for the range of values allowed, or simply disallow values outside of that range. In tests, however, I have found this attribute to be flaky in some implementations, and suggest you fully test before implementing this feature, even when it is available on all browsers.</span>
 <h4>The step Attribute</h4>
-<span>Often used with</span>
-<span>min</span>
-<span>and</span>
-<span>max</span>
-<span>, the</span>
-<span>step</span>
-<span>attribute supports stepping through number</span>
-<span>or date values, like this:</span>
+<span>Often used with min and max , the step attribute supports stepping through number or date values, like this:</span>
 <br/>
-<span>&lt;input type='time' name='meeting' value='12:00'</span>
-<span>min='09:00' max='16:00'</span>
-<span>step='3600'</span>
-<span>&gt;</span>
+<span>&lt;input type='time' name='meeting' value='12:00' min='09:00' max='16:00' step='3600' &gt;</span>
 <br/>
-<span>When you are stepping through date or time values, each unit represents 1 second.</span>
-<span>This attribute is not yet supported by Firefox or IE.</span>
+<span>When you are stepping through date or time values, each unit represents 1 second. This attribute is not yet supported by Firefox or IE.</span>
 <h4>The color Input Type</h4>
-<span>The</span>
-<span>color</span>
-<span>input type calls up a color picker so that you can simply click the color of</span>
-<span>your choice. You use it like this:</span>
+<span>The color input type calls up a color picker so that you can simply click the color of your choice. You use it like this:</span>
 <br/>
-<span>Choose a color &lt;input</span>
-<span>type='color'</span>
-<span>name='color'&gt;</span>
+<span>Choose a color &lt;input type='color' name='color'&gt;</span>
 <br/>
 <span>Neither Firefox nor IE supports this input type at the time of writing.</span>
 <h4>The number and range Input Types</h4>
-<span>The</span>
-<span>number</span>
-<span>and</span>
-<span>range</span>
-<span>input types restrict input to either a number or a number</span>
-<span>within a specified range, like this:</span>
+<span>The number and range input types restrict input to either a number or a number within a specified range, like this:</span>
 <br/>
-<span>&lt;input type='number' name='age'&gt;</span>
-<span>&lt;input type='range' name='num' min='0' max='100' value='50' step='1'&gt;</span>
+<span>&lt;input type='number' name='age'&gt; &lt;input type='range' name='num' min='0' max='100' value='50' step='1'&gt;</span>
 <br/>
-<span>Firefox does not appear to support the</span>
-<span>number</span>
-<span>input type at the time of writing.</span>
+<span>Firefox does not appear to support the number input type at the time of writing.</span>
 <h4>Date and Time Pickers</h4>
-<span>When you choose an input type of</span>
-<span>date</span>
-<span>,</span>
-<span>month</span>
-<span>,</span>
-<span>week</span>
-<span>,</span>
-<span>time</span>
-<span>,</span>
-<span>datetime</span>
-<span>, or</span>
-<span>datetime-</span>
-<span>local</span>
-<span>, a picker will pop up on supported browsers from which the user can make a</span>
-<span>selection, like this one, which inputs the time:</span>
+<span>When you choose an input type of date , month , week , time , datetime , or datetime- local , a picker will pop up on supported browsers from which the user can make a selection, like this one, which inputs the time:</span>
 <br/>
-<span>&lt;input</span>
-<span>type='time'</span>
-<span>name='time' value='12:34'&gt;</span>
+<span>&lt;input type='time' name='time' value='12:34'&gt;</span>
 <br/>
-<span>However, without support from IE or Firefox, these pickers are probably not worth</span>
-<span>using in your web pages yet.</span>
+<span>However, without support from IE or Firefox, these pickers are probably not worth using in your web pages yet.</span>
 <br/>
-<span>There are a few other form-related enhancements to HTML5 that are still under</span>
-<span>development, and you can keep abreast of them at</span>
-<span>http://tinyurl.com/h5forms</span>
-<span>(or this</span>
-<span>direct URL:</span>
-<span>http://www.w3.org/TR/html5/forms.html</span>
-<span>).</span>
+<span>There are a few other form-related enhancements to HTML5 that are still under development, and you can keep abreast of them at http://tinyurl.com/h5forms (or this direct URL: http://www.w3.org/TR/html5/forms.html ).</span>
 <br/>
-<span>The next chapter will show you how to use cookies and authentication to store users&rsquo;</span>
-<span>preferences and keep them logged in, and how to maintain a complete user session.</span>
+<span>The next chapter will show you how to use cookies and authentication to store users&rsquo; preferences and keep them logged in, and how to maintain a complete user session.</span>

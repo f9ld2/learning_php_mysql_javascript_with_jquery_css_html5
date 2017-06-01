@@ -3,65 +3,29 @@ layout: default
 title: "Using Ajax"
 ---
 <h2>Using Ajax</h2>
-<span>The term</span>
-<span>&nbsp;Ajax</span>
-<span>&nbsp;was first coined in 2005. It stands for</span>
-<span>&nbsp;Asynchronous JavaScript and</span>
-<span>XML</span>
-<span>, which, in simple terms, means using a set of methods built in to JavaScript to</span>
-<span>transfer data between the browser and a server in the background. An excellent</span>
-<span>example of this technology is Google Maps (see</span>
-<span>Figure 17-1</span>
-<span>), in which new sections</span>
-<span>of a map are downloaded from the server when needed, without requiring a page</span>
-<span>refresh.</span>
+<span>The term &nbsp;Ajax &nbsp;was first coined in 2005. It stands for &nbsp;Asynchronous JavaScript and XML , which, in simple terms, means using a set of methods built in to JavaScript to transfer data between the browser and a server in the background. An excellent example of this technology is Google Maps (see Figure 17-1 ), in which new sections of a map are downloaded from the server when needed, without requiring a page refresh.</span>
 <br/>
-<span>Using Ajax not only substantially reduces the amount of data that must be sent back</span>
-<span>and forth, but also makes web pages seamlessly dynamic&mdash;allowing them to behave</span>
-<span>more like self-contained applications. The results are a much improved user interface</span>
-<span>and better responsiveness.</span>
+<span>Using Ajax not only substantially reduces the amount of data that must be sent back and forth, but also makes web pages seamlessly dynamic&mdash;allowing them to behave more like self-contained applications. The results are a much improved user interface and better responsiveness.</span>
 <h3>What Is Ajax?</h3>
-<span>The beginnings of Ajax as used today started with the release of Internet Explorer 5 in</span>
-<span>1999, which introduced a new ActiveX object,</span>
-<span>XMLHttpRequest</span>
-<span>. ActiveX is Microsoft&rsquo;s technology for signing plug-ins that install additional software to your computer. Other browser developers later followed suit, but rather than using ActiveX,</span>
-<span>they all implemented the feature as a native part of the JavaScript interpreter.</span>
+<span>The beginnings of Ajax as used today started with the release of Internet Explorer 5 in 1999, which introduced a new ActiveX object, XMLHttpRequest . ActiveX is Microsoft&rsquo;s technology for signing plug-ins that install additional software to your computer. Other browser developers later followed suit, but rather than using ActiveX, they all implemented the feature as a native part of the JavaScript interpreter.</span>
 <br/>
-<span>However, even before then, an early form of Ajax had already surfaced that used hidden frames on a page that interacted with the server in the background. Chat rooms</span>
-<span>were early adopters of this technology, using it to poll for and display new message</span>
-<span>posts without requiring page reloads.</span>
+<span>However, even before then, an early form of Ajax had already surfaced that used hidden frames on a page that interacted with the server in the background. Chat rooms were early adopters of this technology, using it to poll for and display new message posts without requiring page reloads.</span>
 <br/>
 <span>So let&rsquo;s see how to implement Ajax by using JavaScript.</span>
 <p><img src="images/17.1.jpeg"/></p>
 <span>Figure 17-1. Google Maps is an excellent example of Ajax in action</span>
 <h3>Using XMLHttpRequest</h3>
-<span>Because of the differences between browser implementations of</span>
-<span>XMLHttpRequest</span>
-<span>, you</span>
-<span>must create a special function in order to ensure that your code will work on all</span>
-<span>major browsers.</span>
+<span>Because of the differences between browser implementations of XMLHttpRequest , you must create a special function in order to ensure that your code will work on all major browsers.</span>
 <br/>
-<span>To do this, you must understand the three ways of creating an</span>
-<span>XMLHttpRequest</span>
-<span>object:</span>
+<span>To do this, you must understand the three ways of creating an XMLHttpRequest object:</span>
 <br/>
-<span>&bull;</span>
-<span>IE 5:</span>
-<span>request = new ActiveXObject("Microsoft.XMLHTTP")</span>
+<span>&bull; IE 5: request = new ActiveXObject("Microsoft.XMLHTTP")</span>
 <br/>
-<span>&bull;</span>
-<span>IE 6+:</span>
-<span>request = new ActiveXObject("Msxml2.XMLHTTP")</span>
+<span>&bull; IE 6+: request = new ActiveXObject("Msxml2.XMLHTTP")</span>
 <br/>
-<span>&bull;</span>
-<span>All others:</span>
-<span>request = new XMLHttpRequest()</span>
+<span>&bull; All others: request = new XMLHttpRequest()</span>
 <br/>
-<span>This is the case because Microsoft chose to implement a change with the release of</span>
-<span>Internet Explorer 6, while all other browsers use a slightly different method. Therefore, the code in</span>
-<span>Example 17-1</span>
-<span>will work for all major browsers released over the last</span>
-<span>few years.</span>
+<span>This is the case because Microsoft chose to implement a change with the release of Internet Explorer 6, while all other browsers use a slightly different method. Therefore, the code in Example 17-1 will work for all major browsers released over the last few years.</span>
 <br/>
 <span>Example 17-1. A cross-browser Ajax function</span>
 <pre>
@@ -96,40 +60,11 @@ title: "Using Ajax"
 &lt;/script&gt;
 </code>
 </pre>
-<span>You may remember the introduction to error handling in the previous chapter, using</span>
-<span>the</span>
-<span>try...catch</span>
-<span>construct.</span>
-<span>Example 17-1</span>
-<span>is a perfect illustration of its utility, because</span>
-<span>it uses the</span>
-<span>try</span>
-<span>keyword to execute the non-IE Ajax command, and upon success,</span>
-<span>jumps on to the final</span>
-<span>return</span>
+<span>You may remember the introduction to error handling in the previous chapter, using the try...catch construct. Example 17-1 is a perfect illustration of its utility, because it uses the try keyword to execute the non-IE Ajax command, and upon success, jumps on to the final return</span>
 <br/>
-<span>statement, where the new object is returned.</span>
-<span>Otherwise, a</span>
-<span>catch</span>
-<span>traps the error, and the subsequent command is executed. Again,</span>
-<span>upon success, the new object is returned; otherwise, the final of the three commands</span>
-<span>is tried. If that attempt fails, then the browser doesn&rsquo;t support Ajax and the</span>
-<span>request</span>
-<span>object is set to</span>
-<span>false</span>
-<span>; otherwise, the object is returned. So there you have it: a cross-</span>
-<span>browser Ajax request function that you may wish to add to your library of useful</span>
-<span>JavaScript functions.</span>
+<span>statement, where the new object is returned. Otherwise, a catch traps the error, and the subsequent command is executed. Again, upon success, the new object is returned; otherwise, the final of the three commands is tried. If that attempt fails, then the browser doesn&rsquo;t support Ajax and the request object is set to false ; otherwise, the object is returned. So there you have it: a cross- browser Ajax request function that you may wish to add to your library of useful JavaScript functions.</span>
 <br/>
-<span>OK, so now you have a means of creating an</span>
-<span>XMLHttpRequest</span>
-<span>object, but what can</span>
-<span>you do with these objects? Well, each one comes with a set of properties (variables)</span>
-<span>and methods (functions), which are detailed in</span>
-<span>Table 17-1</span>
-<span>and</span>
-<span>Table 17-2</span>
-<span>.</span>
+<span>OK, so now you have a means of creating an XMLHttpRequest object, but what can you do with these objects? Well, each one comes with a set of properties (variables) and methods (functions), which are detailed in Table 17-1 and Table 17-2 .</span>
 <br/>
 <span>Table 17-1. An XMLHttpRequest object&rsquo;s properties</span>
 <table class="tbl-left">
@@ -215,24 +150,11 @@ title: "Using Ajax"
     </tr>
 </table>
 <br/>
-<span>These properties and methods give you control over what data you send to the server</span>
-<span>and receive back, as well as a choice of send and receive methods. For example, you</span>
-<span>can choose whether to request data in plain text (which could include HTML and</span>
-<span>other tags) or in XML format. You can also decide whether you wish to use the Post</span>
-<span>or Get method to send to the server.</span>
+<span>These properties and methods give you control over what data you send to the server and receive back, as well as a choice of send and receive methods. For example, you can choose whether to request data in plain text (which could include HTML and other tags) or in XML format. You can also decide whether you wish to use the Post or Get method to send to the server.</span>
 <br/>
-<span>Let&rsquo;s look at the Post method first by creating a very simple pair of documents: a combination of HTML and JavaScript, and a PHP program to interact via Ajax with the</span>
-<span>first. Hopefully you&rsquo;ll enjoy these examples, because they illustrate just what Web 2.0</span>
-<span>and Ajax are all about. With a few lines of JavaScript, they request a web document</span>
-<span>from a third-party web server, which is then returned to the browser by your server</span>
-<span>and placed within a section of the current document.</span>
+<span>Let&rsquo;s look at the Post method first by creating a very simple pair of documents: a combination of HTML and JavaScript, and a PHP program to interact via Ajax with the first. Hopefully you&rsquo;ll enjoy these examples, because they illustrate just what Web 2.0 and Ajax are all about. With a few lines of JavaScript, they request a web document from a third-party web server, which is then returned to the browser by your server and placed within a section of the current document.</span>
 <h4>Your First Ajax Program</h4>
-<span>Type and save the code in</span>
-<span>Example 17-2</span>
-<span>as</span>
-<span>urlpost.html</span>
-<span>, but don&rsquo;t load it into your</span>
-<span>browser yet.</span><br/>
+<span>Type and save the code in Example 17-2 as urlpost.html , but don&rsquo;t load it into your browser yet.</span><br/>
 <span>Example 17-2. urlpost.html</span><br/>
 <pre>
 <code class="javascript">
@@ -302,53 +224,13 @@ title: "Using Ajax"
 &lt;/html&gt;
 </code>
 </pre>
-<span>Let&rsquo;s go through this document and look at what it does, starting with the first six</span>
-<span>lines, which simply set up an HTML document and display a heading. The next line</span>
-<span>creates a DIV with the ID</span>
-<span>info</span>
-<span>, containing the text</span>
-<span>This sentence will be</span>
-<span>replaced</span>
-<span>by default. Later on, the text returned from the Ajax call will be inserted</span>
-<span>here.</span>
+<span>Let&rsquo;s go through this document and look at what it does, starting with the first six lines, which simply set up an HTML document and display a heading. The next line creates a DIV with the ID info , containing the text This sentence will be replaced by default. Later on, the text returned from the Ajax call will be inserted here.</span>
 <br/>
-<span>The next six lines are required for making an HTTP Post Ajax request. The first sets</span>
-<span>the variable</span>
-<span>params</span>
-<span>to a</span>
-<span>parameter</span>
-<span>=</span>
-<span>value</span>
-<span>pair, which is what we&rsquo;ll send to the server.</span>
-<span>Then the Ajax object</span>
-<span>request</span>
-<span>is created. After this, the</span>
-<span>open</span>
-<span>method is called to set</span>
-<span>the object to make a Post request to</span>
-<span>urlpost.php</span>
-<span>in asynchronous mode. The last three</span>
-<span>lines in this group set up headers that are required for the receiving server to know</span>
-<span>that a Post request is coming.</span>
+<span>The next six lines are required for making an HTTP Post Ajax request. The first sets the variable params to a parameter = value pair, which is what we&rsquo;ll send to the server. Then the Ajax object request is created. After this, the open method is called to set the object to make a Post request to urlpost.php in asynchronous mode. The last three lines in this group set up headers that are required for the receiving server to know that a Post request is coming.</span>
 <h6>The readyState property</h6>
-<span>Now we get to the nitty-gritty of an Ajax call, which all hangs on the</span>
-<span>readyState</span>
-<span>property. The &ldquo;asynchronous&rdquo; aspect of Ajax allows the browser to keep accepting</span>
-<span>user input and changing the screen, while our program sets the</span>
-<span>onreadystatechange</span>
-<span>property to call a function of our choice each time</span>
-<span>readyState</span>
-<span>changes. In this case, a</span>
-<span>nameless (or anonymous), inline function has been used, as opposed to a separate,</span>
-<span>named function. This type of function is known as a</span>
-<span>callback</span>
-<span>function, as it is called</span>
-<span>back each time</span>
-<span>readyState</span>
-<span>changes.</span>
+<span>Now we get to the nitty-gritty of an Ajax call, which all hangs on the readyState property. The &ldquo;asynchronous&rdquo; aspect of Ajax allows the browser to keep accepting user input and changing the screen, while our program sets the onreadystatechange property to call a function of our choice each time readyState changes. In this case, a nameless (or anonymous), inline function has been used, as opposed to a separate, named function. This type of function is known as a callback function, as it is called back each time readyState changes.</span>
 <br/>
-<span>The syntax to set up the callback function using an inline, anonymous function is as</span>
-<span>follows:</span>
+<span>The syntax to set up the callback function using an inline, anonymous function is as follows:</span>
 <pre>
 <code class="javascript">
 request.onreadystatechange = function()
@@ -374,95 +256,21 @@ function ajaxCallback()
 }
 </code>
 </pre>
-<span>Looking at</span>
-<span>Table 17-1</span>
-<span>, you&rsquo;ll see that</span>
-<span>readyState</span>
-<span>can have five values. But only one</span>
-<span>concerns us: value</span>
-<span>4</span>
-<span>, which represents a completed Ajax call. Therefore, each time the</span>
-<span>new function gets called, it returns without doing anything until</span>
-<span>readyState</span>
-<span>has a</span>
-<span>value of</span>
-<span>4</span>
-<span>. When our function detects that value, it next inspects the</span>
-<span>status</span>
-<span>of the</span>
-<span>call to ensure it has a value of</span>
-<span>200</span>
-<span>, which means that the call succeeded. If it&rsquo;s not</span>
-<span>200</span>
-<span>,</span>
-<span>an alert pop up displays the error message contained in</span>
-<span>statusText</span>
-<span>.</span>
+<span>Looking at Table 17-1 , you&rsquo;ll see that readyState can have five values. But only one concerns us: value 4 , which represents a completed Ajax call. Therefore, each time the new function gets called, it returns without doing anything until readyState has a value of 4 . When our function detects that value, it next inspects the status of the call to ensure it has a value of 200 , which means that the call succeeded. If it&rsquo;s not 200 , an alert pop up displays the error message contained in statusText .</span>
 <br/>
-<span>You will notice that all of these object properties are referenced</span>
-<span>using</span>
-<span>this.readyState</span>
-<span>,</span>
-<span>this.status</span>
-<span>, and so on, rather than the</span>
-<span>object&rsquo;s</span>
-<span>current</span>
-<span>name,</span>
-<span>request</span>
-<span>,</span>
-<span>as</span>
-<span>in</span>
-<span>request.readyState</span>
-<span>or</span>
-<span>request.status</span>
-<span>. This is so that you can easily copy and paste the</span>
-<span>code and it will work with any object name, because the</span>
-<span>this</span>
-<span>keyword always refers to the current object.</span>
+<span>You will notice that all of these object properties are referenced using this.readyState , this.status , and so on, rather than the object&rsquo;s current name, request , as in request.readyState or request.status . This is so that you can easily copy and paste the code and it will work with any object name, because the this keyword always refers to the current object.</span>
 <br/>
-<span>So, having ascertained that the</span>
-<span>readyState</span>
-<span>is</span>
-<span>4</span>
-<span>and the status is</span>
-<span>200</span>
-<span>, we test the</span>
-<span>responseText</span>
-<span>value to see whether it contains a value. If not, an error message is displayed in an alert box. Otherwise, the inner HTML of the DIV is assigned the value of</span>
-<span>responseText</span>
-<span>, like this:</span>
+<span>So, having ascertained that the readyState is 4 and the status is 200 , we test the responseText value to see whether it contains a value. If not, an error message is displayed in an alert box. Otherwise, the inner HTML of the DIV is assigned the value of responseText , like this:</span>
 <pre><code class="javascript">document.getElementById('info').innerHTML = this.responseText</code></pre>
-<span>In this line, the element</span>
-<span>info</span>
-<span>is referenced via the</span>
-<span>getElementByID</span>
-<span>method, and then</span>
-<span>its</span>
-<span>innerHTML</span>
-<span>property is assigned the value that was returned by the Ajax call.</span>
+<span>In this line, the element info is referenced via the getElementByID method, and then its innerHTML property is assigned the value that was returned by the Ajax call.</span>
 <br/>
-<span>After all this setting up and preparation, the Ajax request is finally sent to the server</span>
-<span>via the following command, which passes the parameters already defined in the variable</span>
-<span>params</span>
-<span>:</span>
+<span>After all this setting up and preparation, the Ajax request is finally sent to the server via the following command, which passes the parameters already defined in the variable params :</span>
 <pre><code class="javascript">request.send(params)</code></pre>
-<span>After that, all the preceding code is activated each time</span>
-<span>readyState</span>
-<span>changes.</span>
+<span>After that, all the preceding code is activated each time readyState changes.</span>
 <br/>
-<span>The remainder of the document is the</span>
-<span>ajaxRequest</span>
-<span>function from</span>
-<span>Example 17-1</span>
-<span>, and</span>
-<span>the closing script and HTML tags.</span>
+<span>The remainder of the document is the ajaxRequest function from Example 17-1 , and the closing script and HTML tags.</span>
 <h6>The server half of the Ajax process</h6>
-<span>Now we get to the PHP half of the equation, which you can see in</span>
-<span>Example 17-3</span>
-<span>. Type</span>
-<span>it and save it as</span>
-<span>urlpost.php</span>
-<span>.</span>
+<span>Now we get to the PHP half of the equation, which you can see in Example 17-3 . Type it and save it as urlpost.php .</span>
 <br/>
 <span>Example 17-3. urlpost.php</span>
 <pre>
@@ -482,55 +290,19 @@ function ajaxCallback()
 ?&gt;
 </code>
 </pre>
-<span>As you can see, this is short and sweet, and also makes use of the ever-important</span>
-<span>Sani</span>
-<span>tizeString</span>
-<span>function, as should be done with all posted data. In this instance, unsanitized data could result in the user gaining an advantage over your code.</span>
+<span>As you can see, this is short and sweet, and also makes use of the ever-important Sani tizeString function, as should be done with all posted data. In this instance, unsanitized data could result in the user gaining an advantage over your code.</span>
 <br/>
-<span>This program uses the</span>
-<span>file_get_contents</span>
-<span>PHP function to load in the web page at</span>
-<span>the URL supplied to it in the Post variable</span>
-<span>$_POST['url']</span>
-<span>. The</span>
-<span>file_get_contents</span>
-<span>function is versatile in that it loads in the entire contents of a file or web page from</span>
-<span>either a local or a remote server; it even takes into account moved pages and other</span>
-<span>redirects.</span>
+<span>This program uses the file_get_contents PHP function to load in the web page at the URL supplied to it in the Post variable $_POST['url'] . The file_get_contents function is versatile in that it loads in the entire contents of a file or web page from either a local or a remote server; it even takes into account moved pages and other redirects.</span>
 <br/>
-<span>Once you have typed the program, you are ready to call up</span>
-<span>urlpost.html</span>
-<span>into your web</span>
-<span>browser and, after a few seconds, you should see the contents of the Amazon mobile</span>
-<span>front page loaded into the DIV that we created for that purpose. It won&rsquo;t be as fast as</span>
-<span>directly loading the web page, because it is transferred twice: once to the server and</span>
-<span>again from the server to your browser. The result should look like</span>
-<span>Figure 17-2</span>
-<span>.</span>
+<span>Once you have typed the program, you are ready to call up urlpost.html into your web browser and, after a few seconds, you should see the contents of the Amazon mobile front page loaded into the DIV that we created for that purpose. It won&rsquo;t be as fast as directly loading the web page, because it is transferred twice: once to the server and again from the server to your browser. The result should look like Figure 17-2 .</span>
 <p><img src="images/17.2.png"/></p>
 <span>Figure 17-2. The Amazon mobile website has been loaded into a DIV</span>
 <br/>
-<span>Not only have we succeeded in making an Ajax call and having a response returned to</span>
-<span>JavaScript, but we&rsquo;ve also harnessed the power of PHP to enable the merging in of a</span>
-<span>totally unrelated web object. Incidentally, if we had tried to find a way to fetch the</span>
-<span>Amazon mobile web page directly via Ajax (without recourse to the PHP server-side</span>
-<span>module), we wouldn&rsquo;t have succeeded, because there are security blocks preventing</span>
-<span>cross-domain Ajax. So this example also illustrates a handy solution to a practical</span>
-<span>problem.</span>
+<span>Not only have we succeeded in making an Ajax call and having a response returned to JavaScript, but we&rsquo;ve also harnessed the power of PHP to enable the merging in of a totally unrelated web object. Incidentally, if we had tried to find a way to fetch the Amazon mobile web page directly via Ajax (without recourse to the PHP server-side module), we wouldn&rsquo;t have succeeded, because there are security blocks preventing cross-domain Ajax. So this example also illustrates a handy solution to a practical problem.</span>
 <h4>Using Get Instead of Post</h4>
-<span>As with submitting any form data, you have the option of submitting your data in</span>
-<span>the form of Get requests, and you will save a few lines of code if you do so. However,</span>
-<span>there is a downside: some browsers may cache Get requests, whereas Post requests</span>
-<span>will never be cached. You don&rsquo;t want to cache a request, because the browser will just</span>
-<span>redisplay what it got the last time instead of going to the server for fresh input. The</span>
-<span>solution to this is to use a workaround that adds a random parameter to each request,</span>
-<span>ensuring that each URL requested is unique.</span>
+<span>As with submitting any form data, you have the option of submitting your data in the form of Get requests, and you will save a few lines of code if you do so. However, there is a downside: some browsers may cache Get requests, whereas Post requests will never be cached. You don&rsquo;t want to cache a request, because the browser will just redisplay what it got the last time instead of going to the server for fresh input. The solution to this is to use a workaround that adds a random parameter to each request, ensuring that each URL requested is unique.</span>
 <br/>
-<span>Example 17-4</span>
-<span>shows how you would achieve the same result as with</span>
-<span>Example 17-2</span>
-<span>,</span>
-<span>but using an Ajax Get request instead of Post.</span>
+<span>Example 17-4 shows how you would achieve the same result as with Example 17-2 , but using an Ajax Get request instead of Post.</span>
 <br/>
 <span>Example 17-4. urlget.html</span>
 <pre>
@@ -598,46 +370,17 @@ function ajaxCallback()
 &lt;/html&gt;
 </code>
 </pre>
-<span>The differences to note between the two documents are highlighted in bold, and</span>
-<span>described as follows:</span>
+<span>The differences to note between the two documents are highlighted in bold, and described as follows:</span>
 <br/>
-<span>&bull;</span>
-<span>It is not necessary to send headers for a Get request.</span>
+<span>&bull; It is not necessary to send headers for a Get request.</span>
 <br/>
-<span>&bull;</span>
-<span>We call the</span>
-<span>open</span>
-<span>method using a Get request, supplying a URL with a string comprising a</span>
-<span>?</span>
-<span>symbol followed by the parameter/value pair</span>
-<span>url=amazon.com/gp/aw</span>
-<span>.</span>
+<span>&bull; We call the open method using a Get request, supplying a URL with a string comprising a ? symbol followed by the parameter/value pair url=amazon.com/gp/aw .</span>
 <br/>
-<span>&bull;</span>
-<span>We start a second parameter/value pair using an</span>
-<span>&amp;</span>
-<span>symbol, and then set the value</span>
-<span>of the parameter</span>
-<span>nocache</span>
-<span>to a random value between 0 and a million. This is</span>
-<span>used to ensure that each URL requested is different, and therefore that no</span>
-<span>requests will be cached.</span>
+<span>&bull; We start a second parameter/value pair using an &amp; symbol, and then set the value of the parameter nocache to a random value between 0 and a million. This is used to ensure that each URL requested is different, and therefore that no requests will be cached.</span>
 <br/>
-<span>&bull;</span>
-<span>The call to</span>
-<span>send</span>
-<span>now contains only a parameter of</span>
-<span>null</span>
-<span>, as no parameters are</span>
-<span>being passed via a Post request. Note that leaving the parameter out is not an</span>
-<span>option, as it would result in an error.</span>
+<span>&bull; The call to send now contains only a parameter of null , as no parameters are being passed via a Post request. Note that leaving the parameter out is not an option, as it would result in an error.</span>
 <br/>
-<span>To accompany this new document, the PHP program must be modified to respond to</span>
-<span>a Get request, as in</span>
-<span>Example 17-5</span>
-<span>,</span>
-<span>urlget.php</span>
-<span>.</span>
+<span>To accompany this new document, the PHP program must be modified to respond to a Get request, as in Example 17-5 , urlget.php .</span>
 <br/>
 <span>Example 17-5. urlget.php</span>
 <pre>
@@ -657,32 +400,11 @@ function ajaxCallback()
 ?&gt;
 </code>
 </pre>
-<span>All that&rsquo;s different between this and</span>
-<span>&nbsp;Example 17-3</span>
-<span>&nbsp;is that the references to</span>
-<span>$_POST</span>
-<span>have been replaced with</span>
-<span>$_GET</span>
-<span>. The end result of calling up</span>
-<span>&nbsp;urlget.html</span>
-<span>&nbsp;in your</span>
-<span>browser is identical to loading in</span>
-<span>urlpost.html</span>
-<span>.</span>
+<span>All that&rsquo;s different between this and &nbsp;Example 17-3 &nbsp;is that the references to $_POST have been replaced with $_GET . The end result of calling up &nbsp;urlget.html &nbsp;in your browser is identical to loading in urlpost.html .</span>
 <h4>Sending XML Requests</h4>
-<span>Although the objects we&rsquo;ve been creating are called</span>
-<span>XMLHttpRequest</span>
-<span>objects, so far we</span>
-<span>have made absolutely no use of XML. This is where the Ajax term is a bit of a misnomer, because the technology actually allows you to request any type of textual data,</span>
-<span>only one of which is XML. As you have seen, we have requested an entire HTML</span>
-<span>document via Ajax, but we could equally have asked for a text page, a string or number, or even spreadsheet data.</span>
+<span>Although the objects we&rsquo;ve been creating are called XMLHttpRequest objects, so far we have made absolutely no use of XML. This is where the Ajax term is a bit of a misnomer, because the technology actually allows you to request any type of textual data, only one of which is XML. As you have seen, we have requested an entire HTML document via Ajax, but we could equally have asked for a text page, a string or number, or even spreadsheet data.</span>
 <br/>
-<span>So let&rsquo;s modify the previous example document and PHP program to fetch some</span>
-<span>XML data. To do this, first take a look at the PHP program,</span>
-<span>&nbsp;xmlget.php</span>
-<span>, shown in</span>
-<span>Example 17-6</span>
-<span>.</span>
+<span>So let&rsquo;s modify the previous example document and PHP program to fetch some XML data. To do this, first take a look at the PHP program, &nbsp;xmlget.php , shown in Example 17-6 .</span>
 <br/>
 <span>Example 17-6. xmlget.php</span>
 <pre>
@@ -703,15 +425,9 @@ function ajaxCallback()
 ?&gt;
 </code>
 </pre>
-<span>This program has been very slightly modified (shown in bold highlighting) to output</span>
-<span>the correct XML header before returning a fetched document. No checking is made</span>
-<span>here, as it is assumed that the calling Ajax will request an actual XML document.</span>
+<span>This program has been very slightly modified (shown in bold highlighting) to output the correct XML header before returning a fetched document. No checking is made here, as it is assumed that the calling Ajax will request an actual XML document.</span>
 <br/>
-<span>Now on to the HTML document,</span>
-<span>xmlget.html</span>
-<span>, shown in</span>
-<span>Example 17-7</span>
-<span>.</span>
+<span>Now on to the HTML document, xmlget.html , shown in Example 17-7 .</span>
 <br/>
 <span>Example 17-7. xmlget.html</span>
 <pre>
@@ -785,50 +501,14 @@ function ajaxCallback()
 &lt;/html&gt;
 </code>
 </pre>
-<span>Again, the differences have been highlighted in bold, so you can see that this code is</span>
-<span>substantially similar to previous versions, except that the URL now being requested,</span>
-<span>rss.news.yahoo.com/rss/topstories</span>
-<span>, contains an XML document, the</span>
-<span>&nbsp;Yahoo! News Top</span>
-<span>Stories</span>
-<span>feed.</span>
+<span>Again, the differences have been highlighted in bold, so you can see that this code is substantially similar to previous versions, except that the URL now being requested, rss.news.yahoo.com/rss/topstories , contains an XML document, the &nbsp;Yahoo! News Top Stories feed.</span>
 <br/>
-<span>The other big change is the use of the</span>
-<span>responseXML</span>
-<span>property, which replaces the</span>
-<span>responseText</span>
-<span>property. Whenever a server returns XML data,</span>
-<span>responseXML</span>
-<span>will contain the XML returned.</span>
+<span>The other big change is the use of the responseXML property, which replaces the responseText property. Whenever a server returns XML data, responseXML will contain the XML returned.</span>
 <br/>
-<span>However,</span>
-<span>responseXML</span>
-<span>doesn&rsquo;t simply contain a string of XML text: it is actually a</span>
-<span>complete XML document object that we can examine and parse using DOM tree</span>
-<span>methods and properties. This means it is accessible, for example, by the JavaScript</span>
-<span>getElementsByTagName</span>
-<span>method.</span>
+<span>However, responseXML doesn&rsquo;t simply contain a string of XML text: it is actually a complete XML document object that we can examine and parse using DOM tree methods and properties. This means it is accessible, for example, by the JavaScript getElementsByTagName method.</span>
 <br/>
 <h6>About XML</h6>
-<span>An</span>
-<span>XML</span>
-<span>document</span>
-<span>will</span>
-<span>generally</span>
-<span>take</span>
-<span>the</span>
-<span>form</span>
-<span>of</span>
-<span>the</span>
-<span>RSS</span>
-<span>feed</span>
-<span>shown</span>
-<span>in</span>
-<span>Example 17-8</span>
-<span>. However, the beauty of XML is that we can store this type of structure</span>
-<span>internally in a DOM tree (see</span>
-<span>Figure 17-3</span>
-<span>) to make it quickly searchable.</span>
+<span>An XML document will generally take the form of the RSS feed shown in Example 17-8 . However, the beauty of XML is that we can store this type of structure internally in a DOM tree (see Figure 17-3 ) to make it quickly searchable.</span>
 <br/>
 <span>Example 17-8. An XML document</span>
 <pre>
@@ -855,51 +535,20 @@ function ajaxCallback()
 </code>
 </pre>
 <p><img src="images/17.3.png"/></p>
-<span>Figure 17-3. The DOM tree of</span>
-<span>Example 17-8</span>
+<span>Figure 17-3. The DOM tree of Example 17-8</span>
 <br/>
-<span>Therefore, using the</span>
-<span>getElementsByTagName</span>
-<span>method, you can quickly extract the values associated with various tags without a lot of string searching. This is exactly what</span>
-<span>we do in</span>
-<span>Example 17-7</span>
-<span>, where the following command is issued:</span>
+<span>Therefore, using the getElementsByTagName method, you can quickly extract the values associated with various tags without a lot of string searching. This is exactly what we do in Example 17-7 , where the following command is issued:</span>
 <pre><code class="javascript">titles = this.responseXML.getElementsByTagName('title')</code></pre>
-<span>This single command has the effect of placing all the values of the</span>
-<span>title</span>
-<span>elements</span>
-<span>into the array</span>
-<span>titles</span>
-<span>. From there, it is a simple matter to extract them with the following expression (where</span>
-<span>j</span>
-<span>is the title to access):</span>
+<span>This single command has the effect of placing all the values of the title elements into the array titles . From there, it is a simple matter to extract them with the following expression (where j is the title to access):</span>
 <pre><code class="javascript">titles[j].childNodes[0].nodeValue</code></pre>
-<span>All the titles are then appended to the string variable</span>
-<span>out</span>
-<span>and, once all have been processed, the result is inserted into the empty DIV at the document start. When you call</span>
-<span>up</span>
-<span>xmlget.html</span>
-<span>in your browser, the result will be something like</span>
-<span>Figure 17-4</span>
-<span>.</span>
+<span>All the titles are then appended to the string variable out and, once all have been processed, the result is inserted into the empty DIV at the document start. When you call up xmlget.html in your browser, the result will be something like Figure 17-4 .</span>
 <p><img src="images/17.4.png"/></p>
 <span>Figure 17-4. Fetching a Yahoo! XML news feed via Ajax</span>
 <br/>
-<span>As with all form data, you can use either the Post or the Get</span>
-<span>method when requesting XML data; your choice will make little</span>
-<span>difference to the result.</span>
+<span>As with all form data, you can use either the Post or the Get method when requesting XML data; your choice will make little difference to the result.</span>
 <h6>Why use XML?</h6>
-<span>You may ask why you would use XML other than for fetching XML documents such</span>
-<span>as RSS feeds. Well, the simple answer is that you don&rsquo;t have to, but if you wish to pass</span>
-<span>structured data back to your Ajax applications, it could be a real pain to send a simple, unorganized jumble of text that would need complicated processing in JavaScript.</span>
+<span>You may ask why you would use XML other than for fetching XML documents such as RSS feeds. Well, the simple answer is that you don&rsquo;t have to, but if you wish to pass structured data back to your Ajax applications, it could be a real pain to send a simple, unorganized jumble of text that would need complicated processing in JavaScript.</span>
 <br/>
-<span>Instead, you can create an XML document and pass that back to the Ajax function,</span>
-<span>which will automatically place it into a DOM tree, as easily accessible as the HTML</span>
-<span>DOM object with which you are now familiar.</span>
+<span>Instead, you can create an XML document and pass that back to the Ajax function, which will automatically place it into a DOM tree, as easily accessible as the HTML DOM object with which you are now familiar.</span>
 <h4>Using Frameworks for Ajax</h4>
-<span>Now that you know how to code your own Ajax routines, you might like to investigate some of the free frameworks that are available to make it even easier, and which</span>
-<span>offer many more advanced features. In particular, I would suggest you check out</span>
-<span>jQuery, probably the most commonly used framework, and which I introduce in</span>
-<span>Chapter 21</span>
-<span>. In the following chapter, though, we&rsquo;ll look at how to apply styling to</span>
-<span>your websites with CSS.</span>
+<span>Now that you know how to code your own Ajax routines, you might like to investigate some of the free frameworks that are available to make it even easier, and which offer many more advanced features. In particular, I would suggest you check out jQuery, probably the most commonly used framework, and which I introduce in Chapter 21 . In the following chapter, though, we&rsquo;ll look at how to apply styling to your websites with CSS.</span>

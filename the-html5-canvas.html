@@ -3,31 +3,13 @@ layout: default
 title: "The HTML5 Canvas"
 ---
 <h2>The HTML5 Canvas</h2>
-<span>Although the collective term given to the new web technologies is</span>
-<span>HTML5</span>
-<span>, they are</span>
-<span>not all simply HTML tags and properties. Such is the case with the canvas element.</span>
-<span>Yes, you create a canvas by using the</span>
-<span>&lt;canvas&gt;</span>
-<span>tag, and maybe supply a width and</span>
-<span>height, and can modify it a little with CSS, but to actually write to (or read from) a</span>
-<span>canvas, you must use JavaScript.</span>
+<span>Although the collective term given to the new web technologies is HTML5 , they are not all simply HTML tags and properties. Such is the case with the canvas element. Yes, you create a canvas by using the &lt;canvas&gt; tag, and maybe supply a width and height, and can modify it a little with CSS, but to actually write to (or read from) a canvas, you must use JavaScript.</span>
 <br/>
-<span>Thankfully, the JavaScript you need to learn is minimal and very easy to implement,</span>
-<span>plus I&rsquo;ve already provided you with a set of three ready-made functions in</span>
-<span>Chapter 21</span>
-<span>(in the file</span>
-<span>OSC.js</span>
-<span>) to make accessing objects such as the canvas even more straightforward. So let&rsquo;s dive right in and start using the new</span>
-<span>&lt;canvas&gt;</span>
-<span>tag.</span>
+<span>Thankfully, the JavaScript you need to learn is minimal and very easy to implement, plus I&rsquo;ve already provided you with a set of three ready-made functions in Chapter 21 (in the file OSC.js ) to make accessing objects such as the canvas even more straightforward. So let&rsquo;s dive right in and start using the new &lt;canvas&gt; tag.</span>
 <h3>Creating and Accessing a Canvas</h3>
-<span>In the previous chapter, I showed you how to draw a simple circle to display the Japanese flag, as in</span>
-<span>Example 23-1</span>
-<span>. Let&rsquo;s now look at what exactly is going on.</span>
+<span>In the previous chapter, I showed you how to draw a simple circle to display the Japanese flag, as in Example 23-1 . Let&rsquo;s now look at what exactly is going on.</span>
 <br/>
-<span>Example 23-1. Displaying the Japanese</span>
-<span>flag by using a canvas</span>
+<span>Example 23-1. Displaying the Japanese flag by using a canvas</span>
 <pre>
 <code class="html">
 &lt;!DOCTYPE html&gt;
@@ -56,124 +38,45 @@ title: "The HTML5 Canvas"
 &lt;/html&gt;
 </code>
 </pre>
-<span>First, the</span>
-<span>&lt;!DOCTYPE html&gt;</span>
-<span>declaration is issued to tell the browser that the document</span>
-<span>will use HTML5. After this, a title is displayed and the three functions in the</span>
-<span>OSC.js</span>
-<span>file are loaded in.</span>
+<span>First, the &lt;!DOCTYPE html&gt; declaration is issued to tell the browser that the document will use HTML5. After this, a title is displayed and the three functions in the OSC.js file are loaded in.</span>
 <br/>
-<span>In the body of the document, a</span>
-<span>canvas</span>
-<span>element is defined, given an ID of</span>
-<span>mycanvas</span>
-<span>,</span>
-<span>and given a width and height of 320 by 240 pixels.</span>
+<span>In the body of the document, a canvas element is defined, given an ID of mycanvas , and given a width and height of 320 by 240 pixels.</span>
 <br/>
-<span>This is followed by a section of JavaScript that styles and draws on the canvas. We</span>
-<span>begin by creating a</span>
-<span>canvas</span>
-<span>object by calling the</span>
-<span>O</span>
-<span>function on the</span>
-<span>canvas</span>
-<span>element. As</span>
-<span>you will recall, this calls the</span>
-<span>document.getElementById</span>
-<span>function, and is therefore a</span>
-<span>much shorter way of referencing the element.</span>
+<span>This is followed by a section of JavaScript that styles and draws on the canvas. We begin by creating a canvas object by calling the O function on the canvas element. As you will recall, this calls the document.getElementById function, and is therefore a much shorter way of referencing the element.</span>
 <br/>
 <span>This is all stuff you&rsquo;ve seen before, but next comes something new:</span>
 <pre><code class="javascript">context = canvas.getContext('2d')</code></pre>
-<span>This command calls the</span>
-<span>getContext</span>
-<span>method of the new</span>
-<span>canvas</span>
-<span>object just created,</span>
-<span>requesting two-dimensional access to the canvas by passing the value</span>
-<span>'2d'</span>
-<span>.</span>
+<span>This command calls the getContext method of the new canvas object just created, requesting two-dimensional access to the canvas by passing the value '2d' .</span>
 <br/>
-<span>As you might guess, there are plans for a three-dimensional context</span>
-<span>available for the canvas (probably based on the OpenGL ES API),</span>
-<span>which will support the argument</span>
-<span>'3d'</span>
-<span>. But for now, if you want to</span>
-<span>display 3D on a canvas, you&rsquo;ll need to do the math yourself and</span>
-<span>&ldquo;</span>
-<span>fake&rdquo; it in 2D. Or you could investigate WebGL (which is based on</span>
-<span>OpenGL ES). There&rsquo;s no room to cover it here, but you can find a</span>
-<span>great tutorial at</span>
-<span>http://learningwebgl.com</span>
-<span>.</span>
+<span>As you might guess, there are plans for a three-dimensional context available for the canvas (probably based on the OpenGL ES API), which will support the argument '3d' . But for now, if you want to display 3D on a canvas, you&rsquo;ll need to do the math yourself and &ldquo; fake&rdquo; it in 2D. Or you could investigate WebGL (which is based on OpenGL ES). There&rsquo;s no room to cover it here, but you can find a great tutorial at http://learningwebgl.com .</span>
 <br/>
-<span>Armed with this context in the object</span>
-<span>context</span>
-<span>, we prime the subsequent drawing</span>
-<span>commands by setting the</span>
-<span>fillStyle</span>
-<span>property of context to the value</span>
-<span>'red'</span>
-<span>:</span>
+<span>Armed with this context in the object context , we prime the subsequent drawing commands by setting the fillStyle property of context to the value 'red' :</span>
 <pre><code class="javascript">context.fillStyle = 'red'</code></pre>
-<span>Then the</span>
-<span>S</span>
-<span>function is called to set the border property of the canvas to a 1-pixel,</span>
-<span>solid black line to outline the flag image:</span>
+<span>Then the S function is called to set the border property of the canvas to a 1-pixel, solid black line to outline the flag image:</span>
 <pre><code class="javascript">S(canvas).border = '1px solid black'</code></pre>
-<span>With everything prepared, a path is opened on the context and the drawing position</span>
-<span>is moved to the location 160,120:</span>
+<span>With everything prepared, a path is opened on the context and the drawing position is moved to the location 160,120:</span>
 <pre>
 <code class="javascript">
 context.beginPath()
 context.moveTo(160, 120)
 </code>
 </pre>
-<span>After that, an arc is drawn centered on that coordinate, with a radius of 70 pixels,</span>
-<span>beginning at an angle of 0 degrees (which is the righthand edge of the circle as you</span>
-<span>look at it), and continuing all the way around the circle in radians as determined by a</span>
-<span>value of 2 &times; &pi;:</span>
+<span>After that, an arc is drawn centered on that coordinate, with a radius of 70 pixels, beginning at an angle of 0 degrees (which is the righthand edge of the circle as you look at it), and continuing all the way around the circle in radians as determined by a value of 2 &times; &pi;:</span>
 <pre><code class="javascript">context.arc(160, 120, 70, 0, Math.PI * 2, false)</code></pre>
-<span>The final value of</span>
-<span>false</span>
-<span>indicates a clockwise direction for drawing the arc; a value of</span>
-<span>true</span>
-<span>would indicate that the drawing should occur in a counterclockwise direction.</span>
+<span>The final value of false indicates a clockwise direction for drawing the arc; a value of true would indicate that the drawing should occur in a counterclockwise direction.</span>
 <br/>
-<span>Finally, we close and fill the path, using the preselected value in the</span>
-<span>fillStyle</span>
-<span>property that we set to</span>
-<span>'red'</span>
-<span>a few lines earlier:</span>
+<span>Finally, we close and fill the path, using the preselected value in the fillStyle property that we set to 'red' a few lines earlier:</span>
 <pre>
 <code class="javascript">
 context.closePath()
 context.fill()
 </code>
 </pre>
-<span>The result of loading this document into a web browser looks like</span>
-<span>Figure 22-1</span>
-<span>in the</span>
-<span>previous chapter.</span>
+<span>The result of loading this document into a web browser looks like Figure 22-1 in the previous chapter.</span>
 <h4>The toDataURL Function</h4>
-<span>When you have created an image in a canvas, you will sometimes want to make a</span>
-<span>copy of it, perhaps to repeat elsewhere on a web page, to save to local storage, or to</span>
-<span>upload to a web server. This is particularly handy since users cannot use drag and</span>
-<span>drop to save a canvas image.</span>
+<span>When you have created an image in a canvas, you will sometimes want to make a copy of it, perhaps to repeat elsewhere on a web page, to save to local storage, or to upload to a web server. This is particularly handy since users cannot use drag and drop to save a canvas image.</span>
 <br/>
-<span>To illustrate how you do this, in</span>
-<span>Example 23-2</span>
-<span>I have added a few lines of code to the</span>
-<span>previous example (highlighted in bold). These create a new</span>
-<span>&lt;img&gt;</span>
-<span>element with the</span>
-<span>ID</span>
-<span>'myimage'</span>
-<span>, give it a solid black border, and then copy the canvas image into the</span>
-<span>&lt;img&gt;</span>
-<span>element (see</span>
-<span>Figure 23-1</span>
-<span>).</span>
+<span>To illustrate how you do this, in Example 23-2 I have added a few lines of code to the previous example (highlighted in bold). These create a new &lt;img&gt; element with the ID 'myimage' , give it a solid black border, and then copy the canvas image into the &lt;img&gt; element (see Figure 23-1 ).</span>
 <br/>
 <span>Example 23-2. Copying a canvas image</span>
 <pre>
@@ -210,79 +113,29 @@ context.fill()
 <p><img src="images/23.1.png"/></p>
 <span>Figure 23-1. The image on the right is copied from the lefthand canvas</span>
 <br/>
-<span>If you try this code for yourself, you will notice that while you cannot drag and drop</span>
-<span>the lefthand canvas image, you can do so with the righthand picture, which you could</span>
-<span>also save to local storage or upload to a web server using the right JavaScript (and</span>
-<span>PHP on the server end).</span>
+<span>If you try this code for yourself, you will notice that while you cannot drag and drop the lefthand canvas image, you can do so with the righthand picture, which you could also save to local storage or upload to a web server using the right JavaScript (and PHP on the server end).</span>
 <h4>Specifying an Image Type</h4>
-<span>When creating an image from a canvas, you can specify the type of image you want</span>
-<span>out of</span>
-<span>.jpg</span>
-<span>and</span>
-<span>.png</span>
-<span>. The default is</span>
-<span>.png</span>
-<span>(</span>
-<span>'image/png'</span>
-<span>), but should you prefer</span>
-<span>.jpg</span>
-<span>, you</span>
-<span>can alter the call to</span>
-<span>toDataURL</span>
-<span>. At the same time, you can also specify the amount of</span>
-<span>compression to use between</span>
-<span>0</span>
-<span>(for lowest quality) and</span>
-<span>1</span>
-<span>(for highest quality). The following uses a compression value of</span>
-<span>0.4</span>
-<span>, and should generate a reasonably good-</span>
-<span>looking image at a fairly low file size:</span>
+<span>When creating an image from a canvas, you can specify the type of image you want out of .jpg and .png . The default is .png ( 'image/png' ), but should you prefer .jpg , you can alter the call to toDataURL . At the same time, you can also specify the amount of compression to use between 0 (for lowest quality) and 1 (for highest quality). The following uses a compression value of 0.4 , and should generate a reasonably good- looking image at a fairly low file size:</span>
 <pre><code class="javascript">O('myimage').src = canvas.toDataURL('image/jpeg', 0.4)</code></pre>
-<span>You should remember that the</span>
-<span>toDataURL</span>
-<span>method applies to a</span>
-<span>canvas</span>
-<span>object, not to any context created from that object.</span>
+<span>You should remember that the toDataURL method applies to a canvas object, not to any context created from that object.</span>
 <br/>
-<span>Now that you know how to create canvas images and then copy or otherwise use</span>
-<span>them, it&rsquo;s time to look at the drawing commands available, starting with rectangles.</span>
+<span>Now that you know how to create canvas images and then copy or otherwise use them, it&rsquo;s time to look at the drawing commands available, starting with rectangles.</span>
 <h4>The fillRect Method</h4>
-<span>There are two different methods you can call for drawing rectangles, the first of</span>
-<span>which is</span>
-<span>fillRect</span>
-<span>. To use it, you simply supply the top-left coordinates of your rectangle, followed by the width and height in pixels, like this:</span>
+<span>There are two different methods you can call for drawing rectangles, the first of which is fillRect . To use it, you simply supply the top-left coordinates of your rectangle, followed by the width and height in pixels, like this:</span>
 <pre><code class="javascript">context.fillRect(20, 20, 600, 200)</code></pre>
-<span>By default, the rectangle will be filled with black, but you can use any other color you</span>
-<span>like by first issuing a command such as the following, where the argument can be any</span>
-<span>acceptable CSS color name or value:</span>
+<span>By default, the rectangle will be filled with black, but you can use any other color you like by first issuing a command such as the following, where the argument can be any acceptable CSS color name or value:</span>
 <pre><code class="javascript">context.fillStyle = 'blue'</code></pre>
 <h4>The clearRect Method</h4>
-<span>You can also draw a rectangle in which all its color values (red, green, blue, and alpha</span>
-<span>transparency) have been set to</span>
-<span>0</span>
-<span>, like the following, which uses the same order of</span>
-<span>coordinates, and width and height arguments:</span>
+<span>You can also draw a rectangle in which all its color values (red, green, blue, and alpha transparency) have been set to 0 , like the following, which uses the same order of coordinates, and width and height arguments:</span>
 <pre><code class="javascript">context.clearRect(40, 40, 560, 160)</code></pre>
-<span>Once the</span>
-<span>clearRect</span>
-<span>method is applied, the new clear rectangle will strip all color</span>
-<span>from the area it covers, leaving only any underlying CSS color that has been applied</span>
-<span>to the</span>
-<span>canvas</span>
-<span>element.</span>
+<span>Once the clearRect method is applied, the new clear rectangle will strip all color from the area it covers, leaving only any underlying CSS color that has been applied to the canvas element.</span>
 <h4>The strokeRect Method</h4>
 <span>When you want only an outlined rectangle, you can use a command such as the following, which will use the default of black or the currently selected stroke color:</span>
 <pre><code class="javascript">context.strokeRect(60, 60, 520, 120)</code></pre>
 <span>To change the color used, you can first issue a command such as the following, supplying any valid CSS color argument:</span>
 <pre><code class="javascript">context.strokeStyle = 'green'</code></pre>
 <h4>Combining These Commands</h4>
-<span>In</span>
-<span>Example 23-3</span>
-<span>, the preceding rectangle-drawing commands have been combined to</span>
-<span>display the image shown in</span>
-<span>Figure 23-2</span>
-<span>.</span>
+<span>In Example 23-3 , the preceding rectangle-drawing commands have been combined to display the image shown in Figure 23-2 .</span>
 <br/>
 <span>Example 23-3. Drawing several rectangles</span>
 <pre>
@@ -312,23 +165,11 @@ context.fill()
 <p><img src="images/23.2.png"/></p>
 <span>Figure 23-2. Drawing concentric rectangles</span>
 <br/>
-<span>Later in this chapter, you&rsquo;ll see how you can further modify output by changing</span>
-<span>stroke types and widths, but first let&rsquo;s turn to modifying fills by applying gradients.</span>
+<span>Later in this chapter, you&rsquo;ll see how you can further modify output by changing stroke types and widths, but first let&rsquo;s turn to modifying fills by applying gradients.</span>
 <h4>The createLinearGradient Method</h4>
-<span>There are a couple of ways to apply a gradient to a fill, but the simplest is with the</span>
-<span>createLinearGradient</span>
-<span>method. You specify start and end</span>
-<span>x</span>
-<span>and</span>
-<span>y</span>
-<span>coordinates relative to the canvas (not the object being filled). This allows for greater subtlety. For</span>
-<span>example, you can specify that a gradient begin at the far left and end at the far right of</span>
-<span>a canvas, but apply it only within the area defined in a fill command, as shown in</span>
-<span>Example 23-4</span>
-<span>.</span>
+<span>There are a couple of ways to apply a gradient to a fill, but the simplest is with the createLinearGradient method. You specify start and end x and y coordinates relative to the canvas (not the object being filled). This allows for greater subtlety. For example, you can specify that a gradient begin at the far left and end at the far right of a canvas, but apply it only within the area defined in a fill command, as shown in Example 23-4 .</span>
 <br/>
-<span>Example 23-4. Applying a gradient</span>
-<span>fill</span>
+<span>Example 23-4. Applying a gradient fill</span>
 <pre>
 <code class="javascript">
 gradient = context.createLinearGradient(0, 80, 640,80)
@@ -338,56 +179,20 @@ context.fillStyle = gradient
 context.fillRect(80, 80, 480,80)
 </code>
 </pre>
-<span>For brevity and clarity in this and many of the following examples,</span>
-<span>only salient lines of code are shown. Complete examples with the</span>
-<span>surrounding HTML, setup, and other sections of code are available</span>
-<span>to freely download from the companion website at</span>
-<span>http://lpmj.net</span>
-<span>.</span>
+<span>For brevity and clarity in this and many of the following examples, only salient lines of code are shown. Complete examples with the surrounding HTML, setup, and other sections of code are available to freely download from the companion website at http://lpmj.net .</span>
 <br/>
-<span>In this example, we create a gradient fill object named</span>
-<span>gradient</span>
-<span>by making a call to</span>
-<span>the</span>
-<span>createLinearGradient</span>
-<span>method of the</span>
-<span>context</span>
-<span>object. The start position of 0,80</span>
-<span>is halfway down the lefthand canvas edge, while the end of 640,80 is halfway down</span>
-<span>the right-hand edge.</span>
+<span>In this example, we create a gradient fill object named gradient by making a call to the createLinearGradient method of the context object. The start position of 0,80 is halfway down the lefthand canvas edge, while the end of 640,80 is halfway down the right-hand edge.</span>
 <br/>
-<span>Then a couple of color stops are provided such that the very first color of the gradient</span>
-<span>is white, and the final color is black. The gradient will then transition smoothly</span>
-<span>between these colors across the canvas from left to right.</span>
+<span>Then a couple of color stops are provided such that the very first color of the gradient is white, and the final color is black. The gradient will then transition smoothly between these colors across the canvas from left to right.</span>
 <br/>
-<span>With the</span>
-<span>gradient</span>
-<span>object now ready, it is applied to the</span>
-<span>fillStyle</span>
-<span>property of the</span>
-<span>context</span>
-<span>object, so that the final</span>
-<span>fillRect</span>
-<span>call can use it. In this call, the fill is applied</span>
-<span>only in a central rectangular area of the canvas, so, although the gradient goes from</span>
-<span>the far left to the far right of the canvas, the portion of it shown is only from 80 pixels</span>
-<span>in and down from the top-left corner, to a width of 480 and depth of 80 pixels. The</span>
-<span>result (when added to the previous example code) looks like</span>
-<span>Figure 23-3</span>
-<span>.</span>
+<span>With the gradient object now ready, it is applied to the fillStyle property of the context object, so that the final fillRect call can use it. In this call, the fill is applied only in a central rectangular area of the canvas, so, although the gradient goes from the far left to the far right of the canvas, the portion of it shown is only from 80 pixels in and down from the top-left corner, to a width of 480 and depth of 80 pixels. The result (when added to the previous example code) looks like Figure 23-3 .</span>
 <br/>
 <p><img src="images/23.3.png"/></p>
 <span>Figure 23-3. The central rectangle has a horizontal gradient fill</span>
 <br/>
-<span>By specifying different start and end coordinates for a gradient, you can make it slant</span>
-<span>in any direction, as demonstrated with</span>
-<span>Example 23-5</span>
-<span>and shown in</span>
-<span>Figure 23-4</span>
-<span>.</span>
+<span>By specifying different start and end coordinates for a gradient, you can make it slant in any direction, as demonstrated with Example 23-5 and shown in Figure 23-4 .</span>
 <br/>
-<span>Example 23-5. A variety of gradients at</span>
-<span>different angles and colors</span>
+<span>Example 23-5. A variety of gradients at different angles and colors</span>
 <pre>
 <code class="javascript">
 gradient = context.createLinearGradient(0, 0, 160, 0)
@@ -415,31 +220,13 @@ context.fillRect(485, 20, 135, 200)
 <p><img src="images/23.4.png"/></p>
 <span>Figure 23-4. A range of different linear gradients</span>
 <br/>
-<span>In this example, I chose to place the gradients directly on top of the areas to be filled</span>
-<span>in order to more clearly show the maximum variation in color from start to end.</span>
+<span>In this example, I chose to place the gradients directly on top of the areas to be filled in order to more clearly show the maximum variation in color from start to end.</span>
 <br/>
-<span>To create your gradient, determine the direction in which you want it to flow and</span>
-<span>then locate two points to represent the start and end. No matter what values you supply for these points, the gradient will smoothly transition in the direction given, even</span>
-<span>if the points are outside the fill area.</span>
+<span>To create your gradient, determine the direction in which you want it to flow and then locate two points to represent the start and end. No matter what values you supply for these points, the gradient will smoothly transition in the direction given, even if the points are outside the fill area.</span>
 <h4>The addColorStop Method in Detail</h4>
-<span>You can use as many color stops in a gradient as you like, not just the two start and</span>
-<span>end colors used so far in these examples. This makes it possible to clearly describe</span>
-<span>almost any type of gradient effect you can imagine. To do this, you must specify the</span>
-<span>percent of the gradient that each color should take up, by allocating a floating-point</span>
-<span>start position along the gradient range between</span>
-<span>0</span>
-<span>and</span>
-<span>1</span>
-<span>. You do not enter a color&rsquo;s</span>
-<span>end position, as it is deduced from the start position of the next color stop, or the</span>
-<span>gradient end if there isn&rsquo;t another color.</span>
+<span>You can use as many color stops in a gradient as you like, not just the two start and end colors used so far in these examples. This makes it possible to clearly describe almost any type of gradient effect you can imagine. To do this, you must specify the percent of the gradient that each color should take up, by allocating a floating-point start position along the gradient range between 0 and 1 . You do not enter a color&rsquo;s end position, as it is deduced from the start position of the next color stop, or the gradient end if there isn&rsquo;t another color.</span>
 <br/>
-<span>In the preceding examples, only the two start and end values were chosen, but to create a rainbow effect, you could set up your color stops as shown in</span>
-<span>Example 23-6</span>
-<span>(and</span>
-<span>displayed in</span>
-<span>Figure 23-5</span>
-<span>).</span>
+<span>In the preceding examples, only the two start and end values were chosen, but to create a rainbow effect, you could set up your color stops as shown in Example 23-6 (and displayed in Figure 23-5 ).</span>
 <br/>
 <span>Example 23-6. Adding multiple color stops</span>
 <pre>
@@ -456,75 +243,31 @@ gradient.addColorStop(0.84, 'violet')
 <p><img src="images/23.5.png"/></p>
 <span>Figure 23-5. A rainbow effect with seven stop colors</span>
 <br/>
-<span>In</span>
-<span>&nbsp;Example 23-6</span>
-<span>, all the colors are spaced roughly equidistantly (with each color</span>
-<span>given 14 percent of the gradient, and the final one 16), but you don&rsquo;t have to stick to</span>
-<span>that; you can squish several colors near each other, while spacing others out. It&rsquo;s</span>
-<span>entirely up to you as to how many colors you use and where in the gradient they start</span>
-<span>and end.</span>
+<span>In &nbsp;Example 23-6 , all the colors are spaced roughly equidistantly (with each color given 14 percent of the gradient, and the final one 16), but you don&rsquo;t have to stick to that; you can squish several colors near each other, while spacing others out. It&rsquo;s entirely up to you as to how many colors you use and where in the gradient they start and end.</span>
 <h4>The createRadialGradient Method</h4>
-<span>You aren&rsquo;t restricted to only linear gradients in HTML; you can create radial gradients</span>
-<span>on a canvas too. It&rsquo;s a little more complex than with a linear gradient, but not much</span>
-<span>more so.</span>
+<span>You aren&rsquo;t restricted to only linear gradients in HTML; you can create radial gradients on a canvas too. It&rsquo;s a little more complex than with a linear gradient, but not much more so.</span>
 <br/>
-<span>What you need to do is pass the center location as a pair of</span>
-<span>x</span>
-<span>and</span>
-<span>y</span>
-<span>coordinates, along</span>
-<span>with a radius in pixels. These are used as the start of the gradient and outer circumference, respectively. Then you also pass another set of coordinates and a radius to</span>
-<span>specify the end of the gradient.</span>
-<span>So, for example, to create a gradient that simply starts at the center of a circle and</span>
-<span>then expands out, you could issue a command such as the one in</span>
-<span>Example 23-7</span>
-<span>(and</span>
-<span>displayed in</span>
-<span>Figure 23-6</span>
-<span>).</span>
+<span>What you need to do is pass the center location as a pair of x and y coordinates, along with a radius in pixels. These are used as the start of the gradient and outer circumference, respectively. Then you also pass another set of coordinates and a radius to specify the end of the gradient. So, for example, to create a gradient that simply starts at the center of a circle and then expands out, you could issue a command such as the one in Example 23-7 (and displayed in Figure 23-6 ).</span>
 <br/>
 <span>Example 23-7. Creating a radial gradient</span>
 <pre><code class="javascript">gradient = context.createRadialGradient (320, 120, 0, 320, 120, 320)</code></pre>
 <p><img src="images/23.6.jpeg"/></p>
 <span>Figure 23-6. A centered radial gradient</span>
 <br/>
-<span>Or you can be fancy and move the location of the start and end of a radial gradient, as</span>
-<span>in</span>
-<span>Example 23-8</span>
-<span>(displayed in</span>
-<span>Figure 23-7</span>
-<span>), which starts centered on location 0,120</span>
-<span>with a radius of 0 pixels, and ends centered at 480,120 with a radius of 480 pixels.</span>
+<span>Or you can be fancy and move the location of the start and end of a radial gradient, as in Example 23-8 (displayed in Figure 23-7 ), which starts centered on location 0,120 with a radius of 0 pixels, and ends centered at 480,120 with a radius of 480 pixels.</span>
 <br/>
 <span>Example 23-8. Stretching a radial gradient</span>
 <pre><code class="javascript">gradient = context.createRadialGradient(0, 120, 0, 480, 120, 480)</code></pre>
 <p><img src="images/23.7.png"/></p>
 <span>Figure 23-7. A stretched radial gradient</span>
 <br/>
-<span>By manipulating the figures supplied to this method, you can create a wide range of weird and wonderful effects&mdash;try it for yourself</span>
-<span>with the supplied examples.</span>
+<span>By manipulating the figures supplied to this method, you can create a wide range of weird and wonderful effects&mdash;try it for yourself with the supplied examples.</span>
 <h4>Using Patterns for Fills</h4>
-<span>In a similar manner to gradient fills, you can also apply an image as a fill pattern. This</span>
-<span>can be an image anywhere in the current document, or even one created from a canvas via the</span>
-<span>toDataURL</span>
-<span>method (explained earlier in this chapter).</span>
+<span>In a similar manner to gradient fills, you can also apply an image as a fill pattern. This can be an image anywhere in the current document, or even one created from a canvas via the toDataURL method (explained earlier in this chapter).</span>
 <br/>
-<span>Example 23-9</span>
-<span>loads a 100&times;100-pixel image (the yin-yang symbol) into the new image</span>
-<span>object</span>
-<span>image</span>
-<span>, and then the</span>
-<span>onload</span>
-<span>event of the object has a function attached to it that</span>
-<span>creates a repeating pattern for the</span>
-<span>fillStyle</span>
-<span>property of the context. This is then</span>
-<span>used to fill a 600&times;200-pixel area within the canvas, as shown in</span>
-<span>Figure 23-8</span>
-<span>.</span>
+<span>Example 23-9 loads a 100&times;100-pixel image (the yin-yang symbol) into the new image object image , and then the onload event of the object has a function attached to it that creates a repeating pattern for the fillStyle property of the context. This is then used to fill a 600&times;200-pixel area within the canvas, as shown in Figure 23-8 .</span>
 <br/>
-<span>Example 23-9. Using an image for a pattern</span>
-<span>fill</span>
+<span>Example 23-9. Using an image for a pattern fill</span>
 <pre>
 <code class="javascript">
 image = new Image()
@@ -540,11 +283,7 @@ image.onload = function()
 <p><img src="images/23.8.png"/></p>
 <span>Figure 23-8. Tiling an image by using it as a pattern fill</span>
 <br/>
-<span>We create the pattern by using the</span>
-<span>createPattern</span>
-<span>method, which also supports nonrepeating patterns, or ones that just repeat in the x- or y-axes. We achieve this by</span>
-<span>passing one of the following values to it as the second argument after the image to</span>
-<span>use:</span>
+<span>We create the pattern by using the createPattern method, which also supports nonrepeating patterns, or ones that just repeat in the x- or y-axes. We achieve this by passing one of the following values to it as the second argument after the image to use:</span>
 <br/>
 <div>repeat</div>
 <div class="t30">Repeat the image both vertically and horizontally.</div>
@@ -554,46 +293,15 @@ image.onload = function()
 <div class="t30">Repeat the image vertically.</div>
 <div>no-repeat</div>
 <div class="t30">Do not repeat the image.</div><br/>
-<span>The fill pattern is based on the entire canvas area, so where the fill command is set to</span>
-<span>apply only to a smaller area within the canvas, the images appear cut off at the top</span>
-<span>and left.</span>
+<span>The fill pattern is based on the entire canvas area, so where the fill command is set to apply only to a smaller area within the canvas, the images appear cut off at the top and left.</span>
 <br/>
-<span>If the</span>
-<span>onload</span>
-<span>event had not been used in this example and, instead,</span>
-<span>the code was simply executed as soon as encountered, the image</span>
-<span>might not have already loaded in time, and may not be displayed.</span>
-<span>Attaching to this event ensures that the image is available for use in</span>
-<span>the canvas, because the event triggers only upon successful loading</span>
-<span>of an image.</span>
+<span>If the onload event had not been used in this example and, instead, the code was simply executed as soon as encountered, the image might not have already loaded in time, and may not be displayed. Attaching to this event ensures that the image is available for use in the canvas, because the event triggers only upon successful loading of an image.</span>
 <h3>Writing Text to the Canvas</h3>
-<span>As you would expect from a set of graphics features, writing to the canvas with text is</span>
-<span>fully supported with a variety of font, alignment, and fill methods. But why would</span>
-<span>you want to write text to the canvas when there&rsquo;s already such good support for web</span>
-<span>fonts in CSS these days?</span>
+<span>As you would expect from a set of graphics features, writing to the canvas with text is fully supported with a variety of font, alignment, and fill methods. But why would you want to write text to the canvas when there&rsquo;s already such good support for web fonts in CSS these days?</span>
 <br/>
-<span>Well, suppose you wish to display a graph or table with graphical elements. You&rsquo;ll</span>
-<span>surely also want to label parts of it. What&rsquo;s more, using the available commands, you</span>
-<span>can produce much more than simply a colored font. So let&rsquo;s start by assuming you&rsquo;ve</span>
-<span>been tasked to create a header for a website on basket weaving, called WickerpediA</span>
-<span>(actually there&rsquo;s already one of these, but let&rsquo;s go ahead anyway).</span>
+<span>Well, suppose you wish to display a graph or table with graphical elements. You&rsquo;ll surely also want to label parts of it. What&rsquo;s more, using the available commands, you can produce much more than simply a colored font. So let&rsquo;s start by assuming you&rsquo;ve been tasked to create a header for a website on basket weaving, called WickerpediA (actually there&rsquo;s already one of these, but let&rsquo;s go ahead anyway).</span>
 <br/>
-<span>To start with, you need to select a suitable font and size it appropriately, perhaps as in</span>
-<span>Example 23-10</span>
-<span>, in which a</span>
-<span>font</span>
-<span>style of bold, a size of 140 pixels, and a typeface of</span>
-<span>Times have been selected. Also, the</span>
-<span>textBaseline</span>
-<span>property has been set to</span>
-<span>top</span>
-<span>so that</span>
-<span>the</span>
-<span>strokeText</span>
-<span>method can pass coordinates of 0,0 for the top-left origin of the text,</span>
-<span>placing it at the top left of the canvas.</span>
-<span>Figure 23-9</span>
-<span>shows what this looks like.</span>
+<span>To start with, you need to select a suitable font and size it appropriately, perhaps as in Example 23-10 , in which a font style of bold, a size of 140 pixels, and a typeface of Times have been selected. Also, the textBaseline property has been set to top so that the strokeText method can pass coordinates of 0,0 for the top-left origin of the text, placing it at the top left of the canvas. Figure 23-9 shows what this looks like.</span>
 <br/>
 <span>Example 23-10. Writing text to the canvas</span>
 <pre>
@@ -606,30 +314,13 @@ context.strokeText('WickerpediA', 0, 0)
 <p><img src="images/23.9.png"/></p>
 <span>Figure 23-9. The text has been written to the canvas</span>
 <h4>The strokeText Method</h4>
-<span>To write text to the canvas, you send the text string and a pair of coordinates to the</span>
-<span>strokeText</span>
-<span>method, like this:</span>
+<span>To write text to the canvas, you send the text string and a pair of coordinates to the strokeText method, like this:</span>
 <pre><code class="javascript">context.strokeText('WickerpediA', 0, 0)</code></pre>
-<span>The</span>
-<span>x</span>
-<span>and</span>
-<span>y</span>
-<span>coordinates supplied will be used as a relative reference by the</span>
-<span>textBase</span>
-<span>Line</span>
-<span>and</span>
-<span>textAlign</span>
-<span>properties.</span>
+<span>The x and y coordinates supplied will be used as a relative reference by the textBase Line and textAlign properties.</span>
 <br/>
-<span>This method&mdash;using line drawing&mdash;is only one way of drawing text to the canvas. So,</span>
-<span>in addition to all the following properties that affect text, line-drawing properties</span>
-<span>such as</span>
-<span>lineWidth</span>
-<span>(detailed later in this chapter) will also affect how text displays.</span>
+<span>This method&mdash;using line drawing&mdash;is only one way of drawing text to the canvas. So, in addition to all the following properties that affect text, line-drawing properties such as lineWidth (detailed later in this chapter) will also affect how text displays.</span>
 <h4>The textBaseLine Property</h4>
-<span>The</span>
-<span>textBaseLine</span>
-<span>property can be given any of the following values:</span>
+<span>The textBaseLine property can be given any of the following values:</span>
 <br/>
 <span>top</span>
 <div class="t30">Aligns to the top of the text</div>
@@ -640,63 +331,12 @@ context.strokeText('WickerpediA', 0, 0)
 <span>bottom</span>
 <div class="t30">Aligns to the bottom of the font</div>
 <h4>The font Property</h4>
-<span>The</span>
-<span>font</span>
-<span>style can be any of</span>
-<span>bold</span>
-<span>,</span>
-<span>italic</span>
-<span>, or</span>
-<span>normal</span>
-<span>(the default), or a combination</span>
-<span>of</span>
-<span>italic bold</span>
-<span>, and the size values can be specified in</span>
-<span>em</span>
-<span>,</span>
-<span>ex</span>
-<span>,</span>
-<span>px</span>
-<span>,</span>
-<span>%</span>
-<span>,</span>
-<span>in</span>
-<span>,</span>
-<span>cm</span>
-<span>,</span>
-<span>mm</span>
-<span>,</span>
-<span>pt</span>
-<span>, or</span>
-<span>pc</span>
-<span>measures, just as with CSS. The font should be one available to the current</span>
-<span>browser, which generally means one of</span>
-<span>Helvetica</span>
-<span>,</span>
-<span>Impact</span>
-<span>,</span>
-<span>Courier</span>
-<span>,</span>
-<span>Times</span>
-<span>, or</span>
-<span>Arial</span>
-<span>,</span>
-<span>or you can choose the default</span>
-<span>Serif</span>
-<span>or</span>
-<span>Sans-serif</span>
-<span>font of the user&rsquo;s system. However, if you know that a particular font is available to the browser, you can use it.</span>
+<span>The font style can be any of bold , italic , or normal (the default), or a combination of italic bold , and the size values can be specified in em , ex , px , % , in , cm , mm , pt , or pc measures, just as with CSS. The font should be one available to the current browser, which generally means one of Helvetica , Impact , Courier , Times , or Arial , or you can choose the default Serif or Sans-serif font of the user&rsquo;s system. However, if you know that a particular font is available to the browser, you can use it.</span>
 <br/>
-<span>If you want to use a font such as</span>
-<span>Times New Roman</span>
-<span>, which incorporates spaces in its name, you should change the relevant line to</span>
-<span>something like this, in which the outer quotes are different from</span>
-<span>the ones surrounding the font name:</span>
+<span>If you want to use a font such as Times New Roman , which incorporates spaces in its name, you should change the relevant line to something like this, in which the outer quotes are different from the ones surrounding the font name:</span>
 <pre><code class="javascript">context.font = 'bold 140px "Times New Roman"'</code></pre>
 <h4>The textAlign Property</h4>
-<span>As well as choosing how to align your text vertically, you can specify horizontal alignment by giving the</span>
-<span>textAlign</span>
-<span>property one of the following values:</span>
+<span>As well as choosing how to align your text vertically, you can specify horizontal alignment by giving the textAlign property one of the following values:</span>
 <br/>
 <span>start</span>
 <div class="t30">Aligns the text to the left if the document direction is left to right; otherwise, right. This is the default setting.</div>
@@ -710,20 +350,9 @@ context.strokeText('WickerpediA', 0, 0)
 <div class="t30">Centers the text.</div><br/>
 <span>You use the property like this:</span>
 <pre><code class="javascript">context.textAlign = 'center'</code></pre>
-<span>In the case of the current example, you need the text left-aligned so that it butts up</span>
-<span>neatly to the edge of the canvas, so the</span>
-<span>textAlign</span>
-<span>property is not used, and therefore</span>
-<span>the default left alignment occurs.</span>
+<span>In the case of the current example, you need the text left-aligned so that it butts up neatly to the edge of the canvas, so the textAlign property is not used, and therefore the default left alignment occurs.</span>
 <h4>The fillText Method</h4>
-<span>You can also choose to use a fill property to fill in canvas text, which can be any of a</span>
-<span>solid color, a linear or radial gradient, or a pattern fill. So let&rsquo;s use a pattern fill for</span>
-<span>your heading, based on the texture of a wicker basket, as in</span>
-<span>Example 23-11</span>
-<span>, the result</span>
-<span>of which is shown in</span>
-<span>Figure 23-10</span>
-<span>.</span>
+<span>You can also choose to use a fill property to fill in canvas text, which can be any of a solid color, a linear or radial gradient, or a pattern fill. So let&rsquo;s use a pattern fill for your heading, based on the texture of a wicker basket, as in Example 23-11 , the result of which is shown in Figure 23-10 .</span>
 <br/>
 <span>Example 23-11. Filling in the text with a pattern</span>
 <pre>
@@ -742,88 +371,29 @@ image.onload = function()
 <p><img src="images/23.10.png"/></p>
 <span>Figure 23-10. The text now has a pattern fill</span>
 <br/>
-<span>For good measure, I also kept the</span>
-<span>strokeText</span>
-<span>call in this example to ensure a black</span>
-<span>outline to the text; without it, there wasn&rsquo;t enough definition at the edges.</span>
+<span>For good measure, I also kept the strokeText call in this example to ensure a black outline to the text; without it, there wasn&rsquo;t enough definition at the edges.</span>
 <br/>
-<span>A wide variety of other fill types or patterns can also be used here, and the simplicity</span>
-<span>of the canvas makes it easy to experiment. What&rsquo;s more: if you wish, once you have</span>
-<span>the heading just right, you can also choose to save a copy by issuing a call</span>
-<span>toDataURL</span>
-<span>,</span>
-<span>as detailed earlier in the chapter. Then you can use the image as a logo for uploading</span>
-<span>to other sites, for example.</span>
+<span>A wide variety of other fill types or patterns can also be used here, and the simplicity of the canvas makes it easy to experiment. What&rsquo;s more: if you wish, once you have the heading just right, you can also choose to save a copy by issuing a call toDataURL , as detailed earlier in the chapter. Then you can use the image as a logo for uploading to other sites, for example.</span>
 <h4>The measureText Method</h4>
-<span>When working with canvas text, you may sometimes need to know how much space</span>
-<span>it will occupy so that you can best position it. You can achieve this with the</span>
-<span>measure</span>
-<span>Text</span>
-<span>method, as follows (assuming all the various text properties have already been</span>
-<span>defined at this point):</span>
+<span>When working with canvas text, you may sometimes need to know how much space it will occupy so that you can best position it. You can achieve this with the measure Text method, as follows (assuming all the various text properties have already been defined at this point):</span>
 <pre>
 <code class="javascript">
 metrics = context.measureText('WickerpediA')
 width = metrics.width
 </code>
 </pre>
-<span>Since the height of the text in pixels is equal to the font size in points when the font is</span>
-<span>defined, the</span>
-<span>metrics</span>
-<span>object doesn&rsquo;t provide a height metric.</span>
+<span>Since the height of the text in pixels is equal to the font size in points when the font is defined, the metrics object doesn&rsquo;t provide a height metric.</span>
 <h3>Drawing Lines</h3>
-<span>The canvas provides a plethora of line-drawing functions to cater to almost every</span>
-<span>need, including choices of lines, line caps and joins, and paths and curves of all types.</span>
-<span>But let&rsquo;s start with a property I touched on in the previous section on writing text to</span>
-<span>the canvas.</span>
+<span>The canvas provides a plethora of line-drawing functions to cater to almost every need, including choices of lines, line caps and joins, and paths and curves of all types. But let&rsquo;s start with a property I touched on in the previous section on writing text to the canvas.</span>
 <h4>The lineWidth Property</h4>
-<span>All the canvas methods that draw using lines make use of</span>
-<span>lineWidth</span>
-<span>and a number of</span>
-<span>other line properties. Using it is as simple as specifying a line width in pixels, like this,</span>
-<span>which sets the width to 3 pixels:</span>
+<span>All the canvas methods that draw using lines make use of lineWidth and a number of other line properties. Using it is as simple as specifying a line width in pixels, like this, which sets the width to 3 pixels:</span>
 <pre><code class="javascript">context.lineWidth = 3</code></pre>
 <h4>The lineCap and lineJoin Properties</h4>
-<span>When lines you draw come to an end and they are more than a pixel wide, you can</span>
-<span>choose how this</span>
-<span>line cap</span>
-<span>(as it is called) should appear by using the</span>
-<span>lineCap</span>
-<span>property,</span>
-<span>which can have the values</span>
-<span>butt</span>
-<span>,</span>
-<span>round</span>
-<span>, or</span>
-<span>square</span>
-<span>. For example:</span>
+<span>When lines you draw come to an end and they are more than a pixel wide, you can choose how this line cap (as it is called) should appear by using the lineCap property, which can have the values butt , round , or square . For example:</span>
 <pre><code class="javascript">context.lineCap = 'round'</code></pre>
-<span>Also, when you are joining lines together that are wider than a single pixel, it is</span>
-<span>important to specify exactly how they should meet. You achieve this with the</span>
-<span>line</span>
-<span>Join</span>
-<span>property, which can have values of</span>
-<span>round</span>
-<span>,</span>
-<span>bevel</span>
-<span>, or</span>
-<span>miter</span>
-<span>, like this:</span>
+<span>Also, when you are joining lines together that are wider than a single pixel, it is important to specify exactly how they should meet. You achieve this with the line Join property, which can have values of round , bevel , or miter , like this:</span>
 <pre><code class="javascript">context.lineJoin = 'bevel'</code></pre>
-<span>Example 23-12</span>
-<span>(shown here in full since it&rsquo;s a little more complicated) applies all three</span>
-<span>values of each property used in combination, creating the informative result shown in</span>
-<span>Figure 23-11</span>
-<span>. The</span>
-<span>beginPath</span>
-<span>,</span>
-<span>closePath</span>
-<span>,</span>
-<span>moveTo</span>
-<span>, and</span>
-<span>lineTo</span>
-<span>methods used by this</span>
-<span>example are explained next.</span>
+<span>Example 23-12 (shown here in full since it&rsquo;s a little more complicated) applies all three values of each property used in combination, creating the informative result shown in Figure 23-11 . The beginPath , closePath , moveTo , and lineTo methods used by this example are explained next.</span>
 <br/>
 <span>Example 23-12. Displaying combinations of line caps and joins</span>
 <pre>
@@ -873,55 +443,20 @@ width = metrics.width
 &lt;/html&gt;
 </code>
 </pre>
-<span>This code sets up a few properties and then nests a pair of loops: one for the line caps</span>
-<span>and one for the joins. Inside the central loop, the current values for the</span>
-<span>lineCap</span>
-<span>and</span>
-<span>lineJoin</span>
-<span>properties are first set, and then displayed in the canvas with the</span>
-<span>fillText</span>
-<span>method.</span>
+<span>This code sets up a few properties and then nests a pair of loops: one for the line caps and one for the joins. Inside the central loop, the current values for the lineCap and lineJoin properties are first set, and then displayed in the canvas with the fillText method.</span>
 <br/>
-<span>Using these settings, the code then draws nine shapes with a 20-pixel-wide line, each</span>
-<span>of which has a different combination of line cap and join settings, as shown in</span>
-<span>Figure 23-11</span>
-<span>.</span>
+<span>Using these settings, the code then draws nine shapes with a 20-pixel-wide line, each of which has a different combination of line cap and join settings, as shown in Figure 23-11 .</span>
 <br/>
 <p><img src="images/23.11.png"/></p>
 <span>Figure 23-11. All the combinations of line caps and joins</span>
 <br/>
-<span>As you can see, butted line caps are short, square ones are longer, and the round ones</span>
-<span>are somewhere between the two. At the same time, rounded line joins are curved,</span>
-<span>beveled ones are cut across the corner, and mitered ones have sharp corners. Line</span>
-<span>joins also apply to joins at angles other than 90 degrees.</span>
+<span>As you can see, butted line caps are short, square ones are longer, and the round ones are somewhere between the two. At the same time, rounded line joins are curved, beveled ones are cut across the corner, and mitered ones have sharp corners. Line joins also apply to joins at angles other than 90 degrees.</span>
 <h4>The miterLimit Property</h4>
-<span>If you find that your mitered joins get cut off too short, you can extend them by using</span>
-<span>the</span>
-<span>miterLimit</span>
-<span>property, like this:</span>
+<span>If you find that your mitered joins get cut off too short, you can extend them by using the miterLimit property, like this:</span>
 <pre><code class="javascript">context.miterLimit = 15</code></pre>
-<span>The default value is</span>
-<span>10</span>
-<span>, so you can reduce the miter limit too. If</span>
-<span>miterLimit</span>
-<span>is not set</span>
-<span>to a sufficiently large enough value for a miter, then sharply mitered joins will simply</span>
-<span>bevel instead. So, if you are having trouble with your pointed miters, simply increase</span>
-<span>the value you supply for</span>
-<span>miterLimit</span>
-<span>until the miter displays.</span>
+<span>The default value is 10 , so you can reduce the miter limit too. If miterLimit is not set to a sufficiently large enough value for a miter, then sharply mitered joins will simply bevel instead. So, if you are having trouble with your pointed miters, simply increase the value you supply for miterLimit until the miter displays.</span>
 <h3>Using Paths</h3>
-<span>The previous example made use of two methods to set up paths for the line-drawing</span>
-<span>methods to follow. The</span>
-<span>beginPath</span>
-<span>method sets the start of a path, and</span>
-<span>closePath</span>
-<span>sets</span>
-<span>the end. Inside each path, you can then use various methods for moving the location</span>
-<span>of drawing, and creating lines, curves, and other shapes. So let&rsquo;s examine the relevant</span>
-<span>section from</span>
-<span>Example 23-12</span>
-<span>, simplified to create just a single instance of the pattern:</span>
+<span>The previous example made use of two methods to set up paths for the line-drawing methods to follow. The beginPath method sets the start of a path, and closePath sets the end. Inside each path, you can then use various methods for moving the location of drawing, and creating lines, curves, and other shapes. So let&rsquo;s examine the relevant section from Example 23-12 , simplified to create just a single instance of the pattern:</span>
 <pre>
 <code class="javascript">
 context.beginPath()
@@ -933,70 +468,21 @@ context.stroke()
 context.closePath()
 </code>
 </pre>
-<span>In this code snippet, a path is started in the first line, and then the drawing location is</span>
-<span>moved to a position 20 pixels across and 100 down from the top-left corner of the</span>
-<span>canvas, using a call to the</span>
-<span>moveTo</span>
-<span>method.</span>
+<span>In this code snippet, a path is started in the first line, and then the drawing location is moved to a position 20 pixels across and 100 down from the top-left corner of the canvas, using a call to the moveTo method.</span>
 <br/>
-<span>This is followed by three calls to</span>
-<span>lineTo</span>
-<span>, which then draw three lines, first upward to</span>
-<span>the location 20,20, then to the right to 155,20, and then down again to 155,100. Once</span>
-<span>this path has been set out, the</span>
-<span>stroke</span>
-<span>method is called to lay it down, and finally the</span>
-<span>path is closed because it&rsquo;s no longer needed.</span>
+<span>This is followed by three calls to lineTo , which then draw three lines, first upward to the location 20,20, then to the right to 155,20, and then down again to 155,100. Once this path has been set out, the stroke method is called to lay it down, and finally the path is closed because it&rsquo;s no longer needed.</span>
 <br/>
 <span>It is essential to close paths as soon as you finish with them; otherwise, you can get some very unexpected results when using multiple paths.</span>
 <h4>The moveTo and LineTo Methods</h4>
-<span>The</span>
-<span>moveTo</span>
-<span>and</span>
-<span>LineTo</span>
-<span>methods both take simple</span>
-<span>x</span>
-<span>and</span>
-<span>y</span>
-<span>coordinates as their arguments, with the difference being that</span>
-<span>MoveTo</span>
-<span>picks up an imaginary pen from the current location and then moves it to a new one, while</span>
-<span>LineTo</span>
-<span>draws a line from the</span>
-<span>current location of the imaginary pen to the new one specified. Or, at least, a line will</span>
-<span>be drawn if the</span>
-<span>stroke</span>
-<span>method is called, but not otherwise. So let&rsquo;s just say that</span>
-<span>LineTo</span>
-<span>creates a</span>
-<span>potential</span>
-<span>drawn line, but it could equally be part of the outline for a</span>
-<span>fill area, for example.</span>
+<span>The moveTo and LineTo methods both take simple x and y coordinates as their arguments, with the difference being that MoveTo picks up an imaginary pen from the current location and then moves it to a new one, while LineTo draws a line from the current location of the imaginary pen to the new one specified. Or, at least, a line will be drawn if the stroke method is called, but not otherwise. So let&rsquo;s just say that LineTo creates a potential drawn line, but it could equally be part of the outline for a fill area, for example.</span>
 <h4>The stroke Method</h4>
-<span>The</span>
-<span>stroke</span>
-<span>method has the job of actually drawing all the lines created so far in a</span>
-<span>path onto the canvas. If it is issued from inside an unclosed path, this has the effect of</span>
-<span>immediately drawing everything up to the most recent imaginary pen location.</span>
+<span>The stroke method has the job of actually drawing all the lines created so far in a path onto the canvas. If it is issued from inside an unclosed path, this has the effect of immediately drawing everything up to the most recent imaginary pen location.</span>
 <br/>
-<span>However, if you close a path and then issue a call to</span>
-<span>stroke</span>
-<span>, it has the effect of also</span>
-<span>joining a path from the current location back to the start location, which in this</span>
-<span>example would turn the shapes into rectangles (which we don&rsquo;t want because we need</span>
-<span>to see the line caps as well as joins).</span>
+<span>However, if you close a path and then issue a call to stroke , it has the effect of also joining a path from the current location back to the start location, which in this example would turn the shapes into rectangles (which we don&rsquo;t want because we need to see the line caps as well as joins).</span>
 <br/>
-<span>This joining effect on closing a path is required (as you will see a</span>
-<span>little later) so that paths are properly closed before any</span>
-<span>fill</span>
-<span>methods are used on them; otherwise, they might overflow the bounds</span>
-<span>of the path.</span>
+<span>This joining effect on closing a path is required (as you will see a little later) so that paths are properly closed before any fill methods are used on them; otherwise, they might overflow the bounds of the path.</span>
 <h4>The rect Method</h4>
-<span>Should it have been necessary to create four-sided rectangles instead of the three-</span>
-<span>sided shapes in the preceding example (and you didn&rsquo;t wish to close the path yet),</span>
-<span>another</span>
-<span>lineTo</span>
-<span>call could have been issued to join everything up, like this (highlighted in bold):</span>
+<span>Should it have been necessary to create four-sided rectangles instead of the three- sided shapes in the preceding example (and you didn&rsquo;t wish to close the path yet), another lineTo call could have been issued to join everything up, like this (highlighted in bold):</span>
 <pre>
 <code class="javascript">
 context.beginPath()
@@ -1008,54 +494,13 @@ context.lineTo(20, 100)
 context.closePath()
 </code>
 </pre>
-<span>But there&rsquo;s a much simpler way to draw outlined rectangles, which is with the</span>
-<span>rect</span>
-<span>method, like this:</span>
+<span>But there&rsquo;s a much simpler way to draw outlined rectangles, which is with the rect method, like this:</span>
 <pre><code class="javascript">rect(20, 20, 155, 100)</code></pre>
-<span>In just a single call, this command takes two pairs of</span>
-<span>x</span>
-<span>and</span>
-<span>y</span>
-<span>coordinates and draws a</span>
-<span>rectangle</span>
-<span>with</span>
-<span>its</span>
-<span>top-left</span>
-<span>corner</span>
-<span>at</span>
-<span>location</span>
-<span>20,20,</span>
-<span>and</span>
-<span>bottom-right</span>
-<span>corner</span>
-<span>at</span>
-<span>155,100.</span>
+<span>In just a single call, this command takes two pairs of x and y coordinates and draws a rectangle with its top-left corner at location 20,20, and bottom-right corner at 155,100.</span>
 <h3>Filling Areas</h3>
-<span>Using paths, you can create complicated areas that can also be filled in with solid, gradient, or pattern fills. In</span>
-<span>Example 23-13</span>
-<span>, some basic trigonometry is used to create a</span>
-<span>complex star pattern. I won&rsquo;t detail how the math works because that&rsquo;s not important</span>
-<span>to the example (although if you want to play with the code, try changing the values</span>
-<span>assigned to</span>
-<span>points</span>
-<span>, and the</span>
-<span>scale1</span>
-<span>and</span>
-<span>scale2</span>
-<span>variables, for different effects).</span>
+<span>Using paths, you can create complicated areas that can also be filled in with solid, gradient, or pattern fills. In Example 23-13 , some basic trigonometry is used to create a complex star pattern. I won&rsquo;t detail how the math works because that&rsquo;s not important to the example (although if you want to play with the code, try changing the values assigned to points , and the scale1 and scale2 variables, for different effects).</span>
 <br/>
-<span>All you really need to look at, however, are the lines highlighted in bold, in which a</span>
-<span>path is started, a pair of</span>
-<span>lineTo</span>
-<span>calls defines the shape, the path is closed, and then</span>
-<span>the</span>
-<span>stroke</span>
-<span>and</span>
-<span>fill</span>
-<span>methods are used to draw the shape outline in orange and fill it</span>
-<span>in with yellow (as shown in</span>
-<span>Figure 23-12</span>
-<span>).</span>
+<span>All you really need to look at, however, are the lines highlighted in bold, in which a path is started, a pair of lineTo calls defines the shape, the path is closed, and then the stroke and fill methods are used to draw the shape outline in orange and fill it in with yellow (as shown in Figure 23-12 ).</span>
 <br/>
 <span>Example 23-13. Filling in a complex path</span>
 <pre>
@@ -1102,35 +547,11 @@ context.closePath()
 <p><img src="images/23.12.png"/></p>
 <span>Figure 23-12. Drawing and filling in a complex path</span>
 <br/>
-<span>With paths, it&rsquo;s possible to create as complex an object as you like,</span>
-<span>either using formulae or loops (as in this example), or simply with</span>
-<span>a long string of</span>
-<span>moveTo</span>
-<span>and/or</span>
-<span>LineTo</span>
-<span>or other calls.</span>
+<span>With paths, it&rsquo;s possible to create as complex an object as you like, either using formulae or loops (as in this example), or simply with a long string of moveTo and/or LineTo or other calls.</span>
 <h3>The clip Method</h3>
-<span>Sometimes when you are building a path, you may want to ignore sections of the canvas (perhaps if you are drawing partly &ldquo;behind&rdquo; another object, and wish only the</span>
-<span>visible part to display. You can achieve this using the</span>
-<span>clip</span>
-<span>method, which creates a</span>
-<span>boundary outside of which</span>
-<span>stroke</span>
-<span>,</span>
-<span>fill</span>
-<span>, or other methods will not have any effect.</span>
+<span>Sometimes when you are building a path, you may want to ignore sections of the canvas (perhaps if you are drawing partly &ldquo;behind&rdquo; another object, and wish only the visible part to display. You can achieve this using the clip method, which creates a boundary outside of which stroke , fill , or other methods will not have any effect.</span>
 <br/>
-<span>To illustrate this,</span>
-<span>Example 23-14</span>
-<span>creates an effect similar to window blinds by moving</span>
-<span>the imaginary pen pointer to the lefthand edge, then drawing a</span>
-<span>lineTo</span>
-<span>over to the</span>
-<span>righthand edge, another down by 30 pixels, and then another back to the lefthand</span>
-<span>edge, and so on. This creates a sort of snaking pattern in which a series of 30-pixel-</span>
-<span>deep, horizontal bars are drawn on the canvas, as shown in</span>
-<span>Figure 23-13</span>
-<span>.</span>
+<span>To illustrate this, Example 23-14 creates an effect similar to window blinds by moving the imaginary pen pointer to the lefthand edge, then drawing a lineTo over to the righthand edge, another down by 30 pixels, and then another back to the lefthand edge, and so on. This creates a sort of snaking pattern in which a series of 30-pixel- deep, horizontal bars are drawn on the canvas, as shown in Figure 23-13 .</span>
 <br/>
 <span>Example 23-14. Creating a clip area</span>
 <pre>
@@ -1152,24 +573,9 @@ context.closePath()
 <p><img src="images/23.13.png"/></p>
 <span>Figure 23-13. A path of horizontal bars</span>
 <br/>
-<span>To turn this example into a clipped area of the canvas, you simply need to replace the</span>
-<span>call to</span>
-<span>stroke</span>
-<span>(highlighted in bold in the example) with one to</span>
-<span>clip</span>
-<span>, like this:</span>
+<span>To turn this example into a clipped area of the canvas, you simply need to replace the call to stroke (highlighted in bold in the example) with one to clip , like this:</span>
 <pre><code class="javascript">context.clip()</code></pre>
-<span>Now the outline of the bars won&rsquo;t be seen, but the clipping area will be in place. To</span>
-<span>illustrate this,</span>
-<span>&nbsp;Example 23-15</span>
-<span>&nbsp;makes this method substitution and then adds to the</span>
-<span>previous example by drawing a simple picture on the canvas, of green grass below a</span>
-<span>blue sky containing a shining sun (modified from</span>
-<span>Example 23-12</span>
-<span>), with the changes</span>
-<span>highlighted in bold, and as shown in</span>
-<span>Figure 23-14</span>
-<span>.</span>
+<span>Now the outline of the bars won&rsquo;t be seen, but the clipping area will be in place. To illustrate this, &nbsp;Example 23-15 &nbsp;makes this method substitution and then adds to the previous example by drawing a simple picture on the canvas, of green grass below a blue sky containing a shining sun (modified from Example 23-12 ), with the changes highlighted in bold, and as shown in Figure 23-14 .</span>
 <br/>
 <span>Example 23-15. Drawing within the clipped area&rsquo;s bounds</span>
 <pre>
@@ -1231,11 +637,7 @@ context.fill()
 <br/>
 <span>OK, we&rsquo;re not going to win any competitions here, but you can see how powerful clipping can be when used effectively.</span>
 <h3>The isPointInPath Method</h3>
-<span>Sometimes you need to know whether a particular point lies in a path you&rsquo;ve constructed. However, you will probably want to use this function only if you&rsquo;re quite</span>
-<span>proficient with JavaScript and writing a fairly complex program&mdash;and will generally</span>
-<span>call it as part of a conditional</span>
-<span>if</span>
-<span>statement, like this:</span>
+<span>Sometimes you need to know whether a particular point lies in a path you&rsquo;ve constructed. However, you will probably want to use this function only if you&rsquo;re quite proficient with JavaScript and writing a fairly complex program&mdash;and will generally call it as part of a conditional if statement, like this:</span>
 <pre>
 <code class="javascript">
 if (context.isPointInPath(23, 87))
@@ -1244,54 +646,17 @@ if (context.isPointInPath(23, 87))
 }
 </code>
 </pre>
-<span>If the location specified lies along any of the points in the path, the method returns</span>
-<span>the value</span>
-<span>true</span>
-<span>, so the contents of the</span>
-<span>if</span>
-<span>statement are executed. Otherwise, the value</span>
-<span>false</span>
-<span>is returned, and the contents of the</span>
-<span>if</span>
-<span>don&rsquo;t get executed.</span>
+<span>If the location specified lies along any of the points in the path, the method returns the value true , so the contents of the if statement are executed. Otherwise, the value false is returned, and the contents of the if don&rsquo;t get executed.</span>
 <br/>
-<span>A perfect use for the</span>
-<span>isPointInPath</span>
-<span>method is for creating games</span>
-<span>using the canvas in which you wish to check for a missile hitting a</span>
-<span>target, a ball hitting a wall or bat, or similar boundary conditions.</span>
+<span>A perfect use for the isPointInPath method is for creating games using the canvas in which you wish to check for a missile hitting a target, a ball hitting a wall or bat, or similar boundary conditions.</span>
 <h3>Working with Curves</h3>
-<span>In addition to straight paths, you can create an almost infinite variety of curved paths,</span>
-<span>with a selection of different methods, ranging from simple arcs and circles to complex</span>
-<span>quadratic and B&eacute;zier curves.</span>
+<span>In addition to straight paths, you can create an almost infinite variety of curved paths, with a selection of different methods, ranging from simple arcs and circles to complex quadratic and B&eacute;zier curves.</span>
 <br/>
-<span>Actually, you don&rsquo;t need to use paths to create many lines, rectangles, and curves,</span>
-<span>because you can draw them directly by simply calling their methods. But using paths</span>
-<span>gives you more precise control, so I tend to almost always draw on the canvas within</span>
-<span>defined paths, as with the following examples.</span>
+<span>Actually, you don&rsquo;t need to use paths to create many lines, rectangles, and curves, because you can draw them directly by simply calling their methods. But using paths gives you more precise control, so I tend to almost always draw on the canvas within defined paths, as with the following examples.</span>
 <h4>The arc Method</h4>
-<span>The</span>
-<span>arc</span>
-<span>method requires you to pass it the</span>
-<span>x</span>
-<span>and</span>
-<span>y</span>
-<span>location of the center of the arc,</span>
-<span>and the radius in pixels. As well as these values, you need to pass a pair of radian offsets and an optional direction, like this:</span>
+<span>The arc method requires you to pass it the x and y location of the center of the arc, and the radius in pixels. As well as these values, you need to pass a pair of radian offsets and an optional direction, like this:</span>
 <pre><code class="javascript">context.arc(55, 85, 45, 0, Math.PI / 2, false)</code></pre>
-<span>Since the default direction is clockwise (a value of</span>
-<span>false</span>
-<span>), this can be omitted, or</span>
-<span>changed to</span>
-<span>true</span>
-<span>to draw the arc in a counterclockwise direction.</span>
-<span>Example 23-16</span>
-<span>creates three sets of four arcs, the first two of which draw in a clockwise direction, and the third of which draws counterclockwise. Additionally, the first</span>
-<span>set of four arcs has its paths closed before the</span>
-<span>stroke</span>
-<span>method is called, so the start</span>
-<span>and end points are joined up, whereas the other two sets of arcs are drawn before the</span>
-<span>path is closed, so they are not joined up.</span>
+<span>Since the default direction is clockwise (a value of false ), this can be omitted, or changed to true to draw the arc in a counterclockwise direction. Example 23-16 creates three sets of four arcs, the first two of which draw in a clockwise direction, and the third of which draws counterclockwise. Additionally, the first set of four arcs has its paths closed before the stroke method is called, so the start and end points are joined up, whereas the other two sets of arcs are drawn before the path is closed, so they are not joined up.</span>
 <br/>
 <span>Example 23-16. Drawing a variety of arcs</span>
 <pre>
@@ -1335,11 +700,7 @@ context.beginPath()
 }
 </code>
 </pre>
-<span>To create shorter code, I drew all the arcs using loops, so that the length of each arc is</span>
-<span>stored in the array</span>
-<span>arcs</span>
-<span>. These values are in radians, and since a radian is equivalent</span>
-<span>to 180 &divide; &pi; (&pi; being the ratio of a circle&rsquo;s circumference to its diameter, or approximately 3.1415927), they evaluate as follows:</span>
+<span>To create shorter code, I drew all the arcs using loops, so that the length of each arc is stored in the array arcs . These values are in radians, and since a radian is equivalent to 180 &divide; &pi; (&pi; being the ratio of a circle&rsquo;s circumference to its diameter, or approximately 3.1415927), they evaluate as follows:</span>
 <br/>
 <span>Math.PI</span>
 <div class="t30">Equivalent to 180 degrees</div>
@@ -1349,21 +710,12 @@ context.beginPath()
 <div class="t30">Equivalent to 90 degrees</div>
 <span>Math.PI / 180 * 59</span>
 <div class="t30">Equivalent to 59 degrees</div>
-<span>Figure 23-15</span>
-<span>shows the three rows of arcs and illustrates both the use of the direction</span>
-<span>argument</span>
-<span>true</span>
-<span>in the final set, and the importance of carefully choosing where you</span>
-<span>close paths depending on whether you want to draw a line connecting the start and</span>
-<span>end points.</span>
+<span>Figure 23-15 shows the three rows of arcs and illustrates both the use of the direction argument true in the final set, and the importance of carefully choosing where you close paths depending on whether you want to draw a line connecting the start and end points.</span>
 <br/>
 <p><img src="images/23.15.png"/></p>
 <span>Figure 23-15. A variety of arc types</span>
 <br/>
-<span>If you prefer to work with degrees instead of radians, you could</span>
-<span>create a new</span>
-<span>Math</span>
-<span>library function, like this:</span>
+<span>If you prefer to work with degrees instead of radians, you could create a new Math library function, like this:</span>
 <pre>
 <code class="javascript">
 Math.degreesToRadians = function(degrees)
@@ -1372,10 +724,7 @@ Math.degreesToRadians = function(degrees)
 }
 </code>
 </pre>
-<span>And then replace the array-creating code, starting at the second</span>
-<span>line of</span>
-<span>Example 23-16</span>
-<span>, with the following:</span>
+<span>And then replace the array-creating code, starting at the second line of Example 23-16 , with the following:</span>
 <pre>
 <code class="javascript">
 arcs =
@@ -1388,29 +737,13 @@ arcs =
 </code>
 </pre>
 <h4>The arcTo Method</h4>
-<span>Rather than creating a whole arc at once, you can choose to arc from the current location in the path to another one, like the following call to</span>
-<span>arcTo</span>
-<span>(which simply</span>
-<span>requires two pairs of</span>
-<span>x</span>
-<span>and</span>
-<span>y</span>
-<span>coordinates and a radius):</span>
+<span>Rather than creating a whole arc at once, you can choose to arc from the current location in the path to another one, like the following call to arcTo (which simply requires two pairs of x and y coordinates and a radius):</span>
 <pre><code class="javascript">context.arcTo(100, 100, 200, 200, 100)</code></pre>
-<span>The locations you pass to the method represent the points where imaginary tangent</span>
-<span>lines touch the circumference of the arc at its start and end points.</span>
+<span>The locations you pass to the method represent the points where imaginary tangent lines touch the circumference of the arc at its start and end points.</span>
 <br/>
-<span>To illustrate how this works,</span>
-<span>Example 23-17</span>
-<span>draws eight different arcs with radii from</span>
-<span>0 up to 280 pixels. Each time around the loop, a new path is created with a start point</span>
-<span>at location 20,20. Then an arc is drawn using imaginary tangent lines from that location to position 240,20, and from there to location 460,20. In this instance, it defines a</span>
-<span>pair of tangents at 90 degrees to each other, in a</span>
-<span>V</span>
-<span>shape.</span>
+<span>To illustrate how this works, Example 23-17 draws eight different arcs with radii from 0 up to 280 pixels. Each time around the loop, a new path is created with a start point at location 20,20. Then an arc is drawn using imaginary tangent lines from that location to position 240,20, and from there to location 460,20. In this instance, it defines a pair of tangents at 90 degrees to each other, in a V shape.</span>
 <br/>
-<span>Example 23-17. Drawing eight arcs of</span>
-<span>different radii</span>
+<span>Example 23-17. Drawing eight arcs of different radii</span>
 <pre>
 <code class="javascript">
 for (j = 0 ; j &lt;= 280 ; j += 40)
@@ -1424,58 +757,16 @@ for (j = 0 ; j &lt;= 280 ; j += 40)
 }
 </code>
 </pre>
-<span>The</span>
-<span>arcTo</span>
-<span>method draws only up to the point at which the arc touches the second</span>
-<span>imaginary tangent. So, after each call to</span>
-<span>arcTo</span>
-<span>, the</span>
-<span>lineTo</span>
-<span>method creates the</span>
-<span>remainder of the line from wherever</span>
-<span>arcTo</span>
-<span>left off to location 460,20. Then the result</span>
-<span>is drawn to the canvas with a call to</span>
-<span>stroke</span>
-<span>, and the path is closed.</span>
+<span>The arcTo method draws only up to the point at which the arc touches the second imaginary tangent. So, after each call to arcTo , the lineTo method creates the remainder of the line from wherever arcTo left off to location 460,20. Then the result is drawn to the canvas with a call to stroke , and the path is closed.</span>
 <br/>
-<span>As you can see in</span>
-<span>Figure 23-16</span>
-<span>, when</span>
-<span>arcTo</span>
-<span>is called with a radius value of</span>
-<span>0</span>
-<span>, it creates a sharp join. In this case, it&rsquo;s a right angle (but if the two imaginary tangents are</span>
-<span>at other angles to each other, then the join will be at that angle). Then, as the radius</span>
-<span>increases in size, you can see the arcs getting larger and larger.</span>
+<span>As you can see in Figure 23-16 , when arcTo is called with a radius value of 0 , it creates a sharp join. In this case, it&rsquo;s a right angle (but if the two imaginary tangents are at other angles to each other, then the join will be at that angle). Then, as the radius increases in size, you can see the arcs getting larger and larger.</span>
 <br/>
 <p><img src="images/23.16.png"/></p>
-<span>Figure 23-16. Drawing arcs of different radii</span>
-<span>Essentially, what you can best use</span>
-<span>arcTo</span>
-<span>for is to curve from one section of drawing to</span>
-<span>another, following an arc based on the previous and subsequent positions, as if they</span>
-<span>were tangential to the arc to be created. If this sounds complicated, don&rsquo;t worry: you&rsquo;ll</span>
-<span>soon get the hang of it and find it&rsquo;s actually a handy and logical way to draw arcs.</span>
+<span>Figure 23-16. Drawing arcs of different radii Essentially, what you can best use arcTo for is to curve from one section of drawing to another, following an arc based on the previous and subsequent positions, as if they were tangential to the arc to be created. If this sounds complicated, don&rsquo;t worry: you&rsquo;ll soon get the hang of it and find it&rsquo;s actually a handy and logical way to draw arcs.</span>
 <h4>The quadraticCurveTo Method</h4>
-<span>Useful as arcs are, they are only one type of curve and can be limiting for more-</span>
-<span>complex designs. But have no fear: there are still more ways to draw curves, such as</span>
-<span>the</span>
-<span>quadraticCurveTo</span>
-<span>method. Using this method, you can place an imaginary</span>
-<span>attractor near (or far from) a curve to pull it in that direction, in a similar way to the</span>
-<span>path of an object in space being pulled by the gravity of the planets and stars it passes.</span>
-<span>Unlike with gravity, though, the farther away the attractor is, the</span>
-<span>more</span>
-<span>it pulls!</span>
+<span>Useful as arcs are, they are only one type of curve and can be limiting for more- complex designs. But have no fear: there are still more ways to draw curves, such as the quadraticCurveTo method. Using this method, you can place an imaginary attractor near (or far from) a curve to pull it in that direction, in a similar way to the path of an object in space being pulled by the gravity of the planets and stars it passes. Unlike with gravity, though, the farther away the attractor is, the more it pulls!</span>
 <br/>
-<span>In</span>
-<span>&nbsp;Example 23-18</span>
-<span>, there are six calls to this method, creating the path for a fluffy</span>
-<span>cloud, which is then filled in white.</span>
-<span>&nbsp;Figure 23-17</span>
-<span>&nbsp;illustrates how the angles of the</span>
-<span>dashed line outside the cloud represent the attractor points applied to each curve.</span>
+<span>In &nbsp;Example 23-18 , there are six calls to this method, creating the path for a fluffy cloud, which is then filled in white. &nbsp;Figure 23-17 &nbsp;illustrates how the angles of the dashed line outside the cloud represent the attractor points applied to each curve.</span>
 <br/>
 <span>Example 23-18. Drawing a cloud with quadratic curves</span>
 <pre>
@@ -1498,53 +789,9 @@ context.closePath()
 <p><img src="images/23.17.png"/></p>
 <span>Figure 23-17. Drawing with quadratic curves</span>
 <br/>
-<span>Incidentally, to achieve the dotted line around the cloud in this</span>
-<span>image, I used the</span>
-<span>stroke</span>
-<span>method in conjunction with the</span>
-<span>setLine</span>
-<span>Dash</span>
-<span>method, which takes a list representing the dash and space</span>
-<span>lengths. In this instance, I used</span>
-<span>setLineDash([2, 3])</span>
-<span>, but you can</span>
-<span>create dash lines as complicated as you like, such as</span>
-<span>setLine</span>
-<span>Dash([1, 2, 1, 3, 5, 1, 2, 4])</span>
-<span>. However, I haven&rsquo;t documented this feature because it&rsquo;s been implemented only in IE,</span>
-<span>Opera, and Chrome so far. Fingers crossed that it&rsquo;ll be added to the</span>
-<span>other browsers soon, though, as it will be a great enhancement for</span>
-<span>creating</span>
-<span>contours</span>
-<span>and</span>
-<span>boundaries</span>
-<span>for</span>
-<span>mapping</span>
-<span>purposes,</span>
-<span>for</span>
-<span>example.</span>
+<span>Incidentally, to achieve the dotted line around the cloud in this image, I used the stroke method in conjunction with the setLine Dash method, which takes a list representing the dash and space lengths. In this instance, I used setLineDash([2, 3]) , but you can create dash lines as complicated as you like, such as setLine Dash([1, 2, 1, 3, 5, 1, 2, 4]) . However, I haven&rsquo;t documented this feature because it&rsquo;s been implemented only in IE, Opera, and Chrome so far. Fingers crossed that it&rsquo;ll be added to the other browsers soon, though, as it will be a great enhancement for creating contours and boundaries for mapping purposes, for example.</span>
 <h4>The bezierCurveTo Method</h4>
-<span>If you still don&rsquo;t find quadratic curves flexible enough for your needs, how about having access to two attractors for each curve? Using this method, you can do just that, as</span>
-<span>in</span>
-<span>Example 23-19</span>
-<span>, where a curve is created between location 24,20 and 240,220, but</span>
-<span>with</span>
-<span>invisible</span>
-<span>attractors</span>
-<span>off</span>
-<span>the</span>
-<span>canvas</span>
-<span>(in</span>
-<span>this</span>
-<span>case)</span>
-<span>at</span>
-<span>locations</span>
-<span>720,480</span>
-<span>and</span>
-<span>&ndash;</span>
-<span>240,&ndash;240.</span>
-<span>Figure 23-18</span>
-<span>shows how this curve gets warped.</span>
+<span>If you still don&rsquo;t find quadratic curves flexible enough for your needs, how about having access to two attractors for each curve? Using this method, you can do just that, as in Example 23-19 , where a curve is created between location 24,20 and 240,220, but with invisible attractors off the canvas (in this case) at locations 720,480 and &ndash; 240,&ndash;240. Figure 23-18 shows how this curve gets warped.</span>
 <br/>
 <span>Example 23-19. Creating a B&eacute;zier curve with two attractors</span>
 <pre>
@@ -1559,39 +806,13 @@ context.closePath()
 <p><img src="images/23.18.png"/></p>
 <span>Figure 23-18. A B&eacute;zier curve with two attractors</span>
 <br/>
-<span>Attractors do not need to be at opposite sides of a canvas, because you can place them</span>
-<span>anywhere, and when they are near each other, they will exert a combined pull (rather</span>
-<span>than opposing pulls, as in the preceding example). Using these various types of curve</span>
-<span>methods, it&rsquo;s possible for you to draw every type of curve you could ever need.</span>
+<span>Attractors do not need to be at opposite sides of a canvas, because you can place them anywhere, and when they are near each other, they will exert a combined pull (rather than opposing pulls, as in the preceding example). Using these various types of curve methods, it&rsquo;s possible for you to draw every type of curve you could ever need.</span>
 <h3>Manipulating Images</h3>
-<span>Not only can you draw and write on the canvas with graphical methods, but you can</span>
-<span>also place images on or extract them from a canvas. And you&rsquo;re not limited to simple</span>
-<span>copy and paste commands, because you can stretch and distort images when reading</span>
-<span>or writing them, and also have full control over compositing and shadow effects.</span>
+<span>Not only can you draw and write on the canvas with graphical methods, but you can also place images on or extract them from a canvas. And you&rsquo;re not limited to simple copy and paste commands, because you can stretch and distort images when reading or writing them, and also have full control over compositing and shadow effects.</span>
 <h4>The drawImage Method</h4>
-<span>Using the</span>
-<span>drawImage</span>
-<span>method, you can take an image object that was loaded from a</span>
-<span>website, uploaded to a server, or even extracted from a canvas, and draw it onto a</span>
-<span>canvas. The method supports a wide variety of arguments, many of which are</span>
-<span>optional, but at its simplest you call</span>
-<span>drawImage</span>
-<span>as follows, in which just the image and</span>
-<span>a pair of</span>
-<span>x</span>
-<span>and</span>
-<span>y</span>
-<span>coordinates are passed:</span>
+<span>Using the drawImage method, you can take an image object that was loaded from a website, uploaded to a server, or even extracted from a canvas, and draw it onto a canvas. The method supports a wide variety of arguments, many of which are optional, but at its simplest you call drawImage as follows, in which just the image and a pair of x and y coordinates are passed:</span>
 <pre><code class="javascript">context.drawImage(myimage, 20, 20)</code></pre>
-<span>This command draws the image contained in the</span>
-<span>myimage</span>
-<span>object onto the canvas with</span>
-<span>the context of</span>
-<span>context</span>
-<span>, with its top-left corner at location 20,20.</span>
-<span>To ensure that an image has been loaded before you use it, best</span>
-<span>practice is to enclose your image-handling code within a function</span>
-<span>that is triggered only upon image load, like this:</span>
+<span>This command draws the image contained in the myimage object onto the canvas with the context of context , with its top-left corner at location 20,20. To ensure that an image has been loaded before you use it, best practice is to enclose your image-handling code within a function that is triggered only upon image load, like this:</span>
 <pre>
 <code class="javascript">
 myimage = new Image()
@@ -1603,55 +824,26 @@ myimage.onload = function()
 </code>
 </pre>
 <h4>Resizing an Image</h4>
-<span>If you need to resize an image when it is placed on the canvas, you add a second pair</span>
-<span>of arguments to the call representing the width and height you require, like this</span>
-<span>(highlighted in bold):</span>
+<span>If you need to resize an image when it is placed on the canvas, you add a second pair of arguments to the call representing the width and height you require, like this (highlighted in bold):</span>
 <pre>
 <code class="javascript">
 context.drawImage(myimage, 140, 20,220,)
 context.drawImage(myimage, 380, 20,80,220)
 </code>
 </pre>
-<span>Here the image is placed at two locations: the first is at 140,20, where the image is</span>
-<span>enlarged (from a 100-pixel square to a 220-pixel square), while the second goes to</span>
-<span>location 380,20 with the image being squashed horizontally and expanded vertically,</span>
-<span>to a width and height of 80&times;220 pixels.</span>
+<span>Here the image is placed at two locations: the first is at 140,20, where the image is enlarged (from a 100-pixel square to a 220-pixel square), while the second goes to location 380,20 with the image being squashed horizontally and expanded vertically, to a width and height of 80&times;220 pixels.</span>
 <h4>Selecting an Image Area</h4>
-<span>You&rsquo;re not stuck having to use an entire image; it&rsquo;s also possible to choose an area</span>
-<span>within an image when using</span>
-<span>drawImage</span>
-<span>. This can be handy, for example, if you wish</span>
-<span>to place all the graphical images you intend to use in a single image file, and then just</span>
-<span>grab the sections of the image that you need. This is a trick developers often use to</span>
-<span>speed up page loading and decrease server hits.</span>
+<span>You&rsquo;re not stuck having to use an entire image; it&rsquo;s also possible to choose an area within an image when using drawImage . This can be handy, for example, if you wish to place all the graphical images you intend to use in a single image file, and then just grab the sections of the image that you need. This is a trick developers often use to speed up page loading and decrease server hits.</span>
 <br/>
-<span>It&rsquo;s a little trickier to do this, though, because rather than add more arguments at the</span>
-<span>end of the list for this method, when extracting a portion of an image, you must place</span>
-<span>those arguments first.</span>
+<span>It&rsquo;s a little trickier to do this, though, because rather than add more arguments at the end of the list for this method, when extracting a portion of an image, you must place those arguments first.</span>
 <br/>
-<span>So, for example, to place an image at location 20,140, you might issue this command:</span>
-<span>context.drawImage(myimage, 20, 140)</span>
-<span>And to give it a width and height of 100&times;100 pixels, you would modify the call like</span>
-<span>this (highlighted in bold):</span>
+<span>So, for example, to place an image at location 20,140, you might issue this command: context.drawImage(myimage, 20, 140) And to give it a width and height of 100&times;100 pixels, you would modify the call like this (highlighted in bold):</span>
 <pre><code class="javascript">context.drawImage(myimage, 20, 140,100,100)</code></pre>
-<span>But to grab (or crop) just a 40&times;40-pixel subsection (for example), with its top-left</span>
-<span>corner at location 30,30 of the image, you would call the method like this (with the</span>
-<span>new arguments in bold):</span>
+<span>But to grab (or crop) just a 40&times;40-pixel subsection (for example), with its top-left corner at location 30,30 of the image, you would call the method like this (with the new arguments in bold):</span>
 <pre><code class="javascript">context.drawImage(myimage,30, 30, 40, 40,20, 140)</code></pre>
 <span>And to resize the grabbed portion to 100 pixels square, you would use the following:</span>
 <pre><code class="javascript">context.drawImage(myimage,30, 30, 40, 40, 20, 140, 100, 100)</code></pre>
-<span>I find this very confusing and cannot think of a logical reason for</span>
-<span>why this method works this way. But, since it does, I&rsquo;m afraid</span>
-<span>there&rsquo;s nothing you can do other than force yourself to remember</span>
-<span>which arguments go where under which conditions.</span>
-<span>Example 23-20</span>
-<span>uses a variety of calls to the</span>
-<span>drawImage</span>
-<span>method to obtain the result</span>
-<span>shown in</span>
-<span>Figure 23-19</span>
-<span>. To make things clearer, I have spaced out the arguments so</span>
-<span>that values in each column provide the same information.</span>
+<span>I find this very confusing and cannot think of a logical reason for why this method works this way. But, since it does, I&rsquo;m afraid there&rsquo;s nothing you can do other than force yourself to remember which arguments go where under which conditions. Example 23-20 uses a variety of calls to the drawImage method to obtain the result shown in Figure 23-19 . To make things clearer, I have spaced out the arguments so that values in each column provide the same information.</span>
 <br/>
 <span>Example 23-20. Various ways of drawing an image on the canvas</span>
 <pre>
@@ -1671,36 +863,11 @@ myimage.onload = function()
 <p><img src="images/23.19.jpeg"/></p>
 <span>Figure 23-19. Drawing images to a canvas with resizing and cropping</span>
 <h4>Copying from a Canvas</h4>
-<span>You can also use a canvas as a source image for drawing to the same (or another) canvas. Just supply the canvas object name in place of an image object, and use all the</span>
-<span>remaining arguments in the same way as you would with an image.</span>
+<span>You can also use a canvas as a source image for drawing to the same (or another) canvas. Just supply the canvas object name in place of an image object, and use all the remaining arguments in the same way as you would with an image.</span>
 <br/>
-<span>At this point, I would have loved to show you how to use a</span>
-<span>&lt;video&gt;</span>
-<span>element (explained in the following chapter) as an image source for</span>
-<span>drawing on the canvas. But sadly, Internet Explorer doesn&rsquo;t yet support this functionality, so it&rsquo;s still too early to recommend the exciting</span>
-<span>features</span>
-<span>you</span>
-<span>can</span>
-<span>create</span>
-<span>this</span>
-<span>way&mdash;such</span>
-<span>as</span>
-<span>live</span>
-<span>video</span>
-<span>manipulation, colorization, embossing, and much more. However,</span>
-<span>if you&rsquo;re curious, you can learn more about how you can combine</span>
-<span>video</span>
-<span>with</span>
-<span>the</span>
-<span>canvas</span>
-<span>at</span>
-<span>http://html5doctor.com/video-canvas-</span>
-<span>magic</span>
-<span>.</span>
+<span>At this point, I would have loved to show you how to use a &lt;video&gt; element (explained in the following chapter) as an image source for drawing on the canvas. But sadly, Internet Explorer doesn&rsquo;t yet support this functionality, so it&rsquo;s still too early to recommend the exciting features you can create this way&mdash;such as live video manipulation, colorization, embossing, and much more. However, if you&rsquo;re curious, you can learn more about how you can combine video with the canvas at http://html5doctor.com/video-canvas- magic .</span>
 <h4>Adding Shadows</h4>
-<span>When you draw an image (or image section) or, indeed, anything else on the canvas,</span>
-<span>you can also specify a shadow that should be placed under it by setting one or more</span>
-<span>of the following properties:</span>
+<span>When you draw an image (or image section) or, indeed, anything else on the canvas, you can also specify a shadow that should be placed under it by setting one or more of the following properties:</span>
 <br/>
 <span>shadowOffsetX</span>
 <div class="t30">The horizontal offset in pixels by which the shadow should be shifted to the right (or to the left if the value is negative).</div>
@@ -1711,27 +878,7 @@ myimage.onload = function()
 <span>shadowColor</span>
 <div class="t30">The base color to use for the shadow. If a blur is in use, this color will blend with the background in the blurred area.</div>
 <br/>
-<span>These</span>
-<span>properties</span>
-<span>can</span>
-<span>apply</span>
-<span>to</span>
-<span>text</span>
-<span>and</span>
-<span>lines</span>
-<span>as</span>
-<span>well</span>
-<span>as</span>
-<span>solid</span>
-<span>images,</span>
-<span>as</span>
-<span>in</span>
-<span>Example 23-21</span>
-<span>, in which some text, an image, and an object created using a path all</span>
-<span>have shadows added to them. In</span>
-<span>Figure 23-20</span>
-<span>, you can see the shadows intelligently</span>
-<span>flow around the visible portions of images, not just their rectangular boundaries.</span>
+<span>These properties can apply to text and lines as well as solid images, as in Example 23-21 , in which some text, an image, and an object created using a path all have shadows added to them. In Figure 23-20 , you can see the shadows intelligently flow around the visible portions of images, not just their rectangular boundaries.</span>
 <br/>
 <span>Example 23-21. Applying shadows when drawing on the canvas</span>
 <pre>
@@ -1783,25 +930,11 @@ myimage.onload = function()
 <p><img src="images/23.20.jpeg"/></p>
 <span>Figure 23-20. Shadows under different types of drawing objects</span>
 <h3>Editing at the Pixel Level</h3>
-<span>Not only does the HTML5 canvas provide you with a powerful range of drawing</span>
-<span>methods, but it also lets you get your hands dirty and work under the hood directly at</span>
-<span>the pixel level with a trio of powerful methods.</span>
+<span>Not only does the HTML5 canvas provide you with a powerful range of drawing methods, but it also lets you get your hands dirty and work under the hood directly at the pixel level with a trio of powerful methods.</span>
 <h4>The getImageData Method</h4>
-<span>With the</span>
-<span>getImageData</span>
-<span>method, you can grab a portion (or all) of a canvas so that</span>
-<span>you can alter the retrieved data in any way you like, and then save it back or elsewhere in the canvas (or to another canvas).</span>
+<span>With the getImageData method, you can grab a portion (or all) of a canvas so that you can alter the retrieved data in any way you like, and then save it back or elsewhere in the canvas (or to another canvas).</span>
 <br/>
-<span>To illustrate how this works,</span>
-<span>&nbsp;Example 23-22</span>
-<span>&nbsp;first loads in a ready-made image and</span>
-<span>draws it onto a canvas. Then the canvas data is read back into an object called</span>
-<span>idata</span>
-<span>,</span>
-<span>where all the colors are averaged together to change each pixel to grayscale, and then</span>
-<span>tweaked a little to shift each color toward sepia, as shown in</span>
-<span>Figure 23-21</span>
-<span>.</span>
+<span>To illustrate how this works, &nbsp;Example 23-22 &nbsp;first loads in a ready-made image and draws it onto a canvas. Then the canvas data is read back into an object called idata , where all the colors are averaged together to change each pixel to grayscale, and then tweaked a little to shift each color toward sepia, as shown in Figure 23-21 .</span>
 <br/>
 <span>Example 23-22. Manipulating image data</span>
 <pre>
@@ -1837,22 +970,11 @@ myimage.onload = function()
 </code>
 </pre>
 <p><img src="images/23.21.jpeg"/></p>
-<span>Figure 23-21. Converting an image to sepia (only a minor difference will be seen when</span>
-<span>this figure is viewed in grayscale)</span>
+<span>Figure 23-21. Converting an image to sepia (only a minor difference will be seen when this figure is viewed in grayscale)</span>
 <h4>The data Array</h4>
-<span>This image manipulation works thanks to the</span>
-<span>data</span>
-<span>array, which is a property of the</span>
-<span>idata</span>
-<span>object returned by the call to</span>
-<span>getImageData</span>
-<span>. This method returns an array</span>
-<span>containing all the picture pixel data in its component parts of red, green, blue, and</span>
-<span>alpha transparency. Therefore, four items of data are used to store each colored pixel.</span>
+<span>This image manipulation works thanks to the data array, which is a property of the idata object returned by the call to getImageData . This method returns an array containing all the picture pixel data in its component parts of red, green, blue, and alpha transparency. Therefore, four items of data are used to store each colored pixel.</span>
 <br/>
-<span>All the data is stored sequentially in the data array, such that the value for red is followed by that for blue, then green, and then alpha; then, the next item in the array is</span>
-<span>the red value for the following pixel, and so on, like the following (for the pixel at</span>
-<span>location 0,0):</span>
+<span>All the data is stored sequentially in the data array, such that the value for red is followed by that for blue, then green, and then alpha; then, the next item in the array is the red value for the following pixel, and so on, like the following (for the pixel at location 0,0):</span>
 <pre>
 <code class="javascript">
 idata.data[0] // Red level
@@ -1870,10 +992,7 @@ idata.data[6] // Blue level
 idata.data[7] // Alpha level
 </code>
 </pre>
-<span>In this image, everything continues in the same fashion until the rightmost pixel of</span>
-<span>the image in row 0 (which is the 320th pixel, at location 319,0) is reached. At that</span>
-<span>point, the value 319 is multiplied by 4 (the number of items of data in each pixel) to</span>
-<span>arrive at the following array elements, which contain this pixel&rsquo;s data:</span>
+<span>In this image, everything continues in the same fashion until the rightmost pixel of the image in row 0 (which is the 320th pixel, at location 319,0) is reached. At that point, the value 319 is multiplied by 4 (the number of items of data in each pixel) to arrive at the following array elements, which contain this pixel&rsquo;s data:</span>
 <pre>
 <code class="javascript">
 idata.data[1276] // Red level
@@ -1882,9 +1001,7 @@ idata.data[1278] // Blue level
 idata.data[1279] // Alpha level
 </code>
 </pre>
-<span>Then the data pointer moves all the way back to the first column of the image, but</span>
-<span>this time of row 1, at location 0,1 which (because each row in this image is 320 pixels</span>
-<span>wide), is at an offset of (0 &times; 4) + (1 &times; 320 &times; 4), or 1,280:</span>
+<span>Then the data pointer moves all the way back to the first column of the image, but this time of row 1, at location 0,1 which (because each row in this image is 320 pixels wide), is at an offset of (0 &times; 4) + (1 &times; 320 &times; 4), or 1,280:</span>
 <pre>
 <code class="javascript">
 idata.data[1280] // Red level
@@ -1893,16 +1010,7 @@ idata.data[1282] // Blue level
 idata.data[1283] // Alpha level
 </code>
 </pre>
-<span>So, if the image data is stored in</span>
-<span>idata</span>
-<span>, the image width in</span>
-<span>w</span>
-<span>, and the pixel location to</span>
-<span>access in</span>
-<span>x</span>
-<span>and</span>
-<span>y</span>
-<span>, the key formulae to use when directly accessing image data are:</span>
+<span>So, if the image data is stored in idata , the image width in w , and the pixel location to access in x and y , the key formulae to use when directly accessing image data are:</span>
 <pre>
 <code class="javascript">
 red = idata.data[x * 4 + y * w * 4 ]
@@ -1911,13 +1019,7 @@ blue = idata.data[x * 4 + y * w * 4 + 2]
 alpha = idata.data[x * 4 + y * w * 4 + 3]
 </code>
 </pre>
-<span>Using this knowledge, we create the sepia effect in</span>
-<span>Figure 23-12</span>
-<span>by taking just the red,</span>
-<span>blue, and green components of each pixel and averaging them, like this (where</span>
-<span>pos</span>
-<span>is</span>
-<span>a variable pointer to the location in the array of the current pixel):</span>
+<span>Using this knowledge, we create the sepia effect in Figure 23-12 by taking just the red, blue, and green components of each pixel and averaging them, like this (where pos is a variable pointer to the location in the array of the current pixel):</span>
 <pre>
 <code class="javascript">
 average = (
@@ -1927,11 +1029,7 @@ average = (
 ) / 3
 </code>
 </pre>
-<span>With</span>
-<span>average</span>
-<span>now containing the average color value (which we attain by adding all</span>
-<span>the pixel values and dividing by 3), this value is written back to all colors of the pixel,</span>
-<span>but with the red boosted by a value of 50, and the blue reduced by the same amount:</span>
+<span>With average now containing the average color value (which we attain by adding all the pixel values and dividing by 3), this value is written back to all colors of the pixel, but with the red boosted by a value of 50, and the blue reduced by the same amount:</span>
 <pre>
 <code class="javascript">
 idata.data[pos] = average + 50
@@ -1939,50 +1037,23 @@ idata.data[pos + 1] = average
 idata.data[pos + 2] = average - 50
 </code>
 </pre>
-<span>The result is to increase the red and reduce the blue level of each pixel (of what would</span>
-<span>otherwise now become a monochrome image, if only the average value were written</span>
-<span>back to these colors), giving it a sepia cast.</span>
+<span>The result is to increase the red and reduce the blue level of each pixel (of what would otherwise now become a monochrome image, if only the average value were written back to these colors), giving it a sepia cast.</span>
 <br/>
-<span>If you&rsquo;re interested in performing more advanced image manipulations, you may wish to refer to</span>
-<span>Halfpap</span>
-<span>or</span>
-<span>HTML5 Rocks</span>
-<span>, which</span>
-<span>both cover using convolution on an HTML5 canvas in detail.</span>
+<span>If you&rsquo;re interested in performing more advanced image manipulations, you may wish to refer to Halfpap or HTML5 Rocks , which both cover using convolution on an HTML5 canvas in detail.</span>
 <h4>The putImageData Method</h4>
-<span>When you&rsquo;ve modified the image data array to your requirements, all you need to do</span>
-<span>to write it to the canvas is call the</span>
-<span>putImageData</span>
-<span>method, passing it the</span>
-<span>idata</span>
-<span>object</span>
-<span>and the coordinates of the top-left corner at which it should appear&mdash;as in the previous example, and as follows, which (in this case) places the modified copy of the</span>
-<span>image to the right of the original:</span>
+<span>When you&rsquo;ve modified the image data array to your requirements, all you need to do to write it to the canvas is call the putImageData method, passing it the idata object and the coordinates of the top-left corner at which it should appear&mdash;as in the previous example, and as follows, which (in this case) places the modified copy of the image to the right of the original:</span>
 <pre><code class="javascript">context.putImageData(idata, 320, 0)</code></pre>
-<span>If you wish to modify only part of a canvas, you don&rsquo;t have to grab</span>
-<span>the entire canvas; just fetch a section containing the area in which</span>
-<span>you are interested. And neither do you have to write back image</span>
-<span>data to the location from where you got it; image data can be written to any part of a canvas.</span>
+<span>If you wish to modify only part of a canvas, you don&rsquo;t have to grab the entire canvas; just fetch a section containing the area in which you are interested. And neither do you have to write back image data to the location from where you got it; image data can be written to any part of a canvas.</span>
 <h4>The createImageData Method</h4>
-<span>You don&rsquo;t have to create an object directly from a canvas; you can also create a new</span>
-<span>one with blank data by calling the</span>
-<span>createImageData</span>
-<span>method. The following example</span>
-<span>creates an object with a width of 320 and height of 240 pixels:</span>
+<span>You don&rsquo;t have to create an object directly from a canvas; you can also create a new one with blank data by calling the createImageData method. The following example creates an object with a width of 320 and height of 240 pixels:</span>
 <pre><code class="javascript">idata = createImageData(320, 240)</code></pre>
 <span>Alternatively, you can create a new object from an existing object, like this:</span>
 <pre><code class="javascript">newimagedataobject = createImageData(imagedata)</code></pre>
-<span>It&rsquo;s then up to you what you do with these objects to add pixel data to them or otherwise modify them, how you paste them onto the canvas or create other objects from</span>
-<span>them, and so on.</span>
+<span>It&rsquo;s then up to you what you do with these objects to add pixel data to them or otherwise modify them, how you paste them onto the canvas or create other objects from them, and so on.</span>
 <h3>Advanced Graphical Effects</h3>
-<span>Among the more advanced features available on the HTML5 canvas are the ability to</span>
-<span>assign various compositing and transparency effects, as well as to apply powerful</span>
-<span>transformations such as scaling, stretching, and rotating.</span>
+<span>Among the more advanced features available on the HTML5 canvas are the ability to assign various compositing and transparency effects, as well as to apply powerful transformations such as scaling, stretching, and rotating.</span>
 <h4>The globalCompositeOperation Property</h4>
-<span>There are 12 different methods available to fine-tune the way you place an object on</span>
-<span>the canvas, taking into account existing and future objects. These are called</span>
-<span>compositing</span>
-<span>options, and they are applied like this:</span>
+<span>There are 12 different methods available to fine-tune the way you place an object on the canvas, taking into account existing and future objects. These are called compositing options, and they are applied like this:</span>
 <pre><code class="javascript">context.globalCompositeOperationProperty = 'source-over'</code></pre>
 <span>The compositing types are as follows:</span>
 <br/>
@@ -2035,8 +1106,7 @@ Where they do overlap, their color values are exclusive-or ed.</div>
 different canvases, each with two objects (a filled circle and the yin-yang image) offset
 from each other but overlapping.</div>
 <br/>
-<span>Example 23-23. Using all 12 types of compositing</span>
-<span>effects</span>
+<span>Example 23-23. Using all 12 types of compositing effects</span>
 <pre>
 <code class="javascript">
 image = new Image()
@@ -2068,80 +1138,24 @@ image.onload = function()
 }
 </code>
 </pre>
-<span>As with some others in this chapter, this example (downloadable</span>
-<span>from the companion website) includes some HTML and/or CSS to</span>
-<span>enhance the display, which isn&rsquo;t shown here because it&rsquo;s not essential to the program&rsquo;s operation.</span>
+<span>As with some others in this chapter, this example (downloadable from the companion website) includes some HTML and/or CSS to enhance the display, which isn&rsquo;t shown here because it&rsquo;s not essential to the program&rsquo;s operation.</span>
 <br/>
-<span>This program uses a</span>
-<span>for</span>
-<span>loop to iterate through each compositing type, as stored in</span>
-<span>the array</span>
-<span>types</span>
-<span>. Each time around the loop, a new context is created on the next of</span>
-<span>the 12 canvas elements already created in some earlier HTML (not shown), with the</span>
-<span>IDs of</span>
-<span>c1</span>
-<span>through</span>
-<span>c12</span>
-<span>.</span>
+<span>This program uses a for loop to iterate through each compositing type, as stored in the array types . Each time around the loop, a new context is created on the next of the 12 canvas elements already created in some earlier HTML (not shown), with the IDs of c1 through c12 .</span>
 <br/>
-<span>In each canvas, a 100-pixel-diameter red circle is first placed at the top left, and then</span>
-<span>the compositing type is selected and the yin-yang image is placed over the circle but</span>
-<span>offset to the right and down by 20 pixels.</span>
-<span>Figure 23-22</span>
-<span>shows the results of each type</span>
-<span>in action. As you can see, it&rsquo;s possible to achieve a wide variety of effects.</span>
+<span>In each canvas, a 100-pixel-diameter red circle is first placed at the top left, and then the compositing type is selected and the yin-yang image is placed over the circle but offset to the right and down by 20 pixels. Figure 23-22 shows the results of each type in action. As you can see, it&rsquo;s possible to achieve a wide variety of effects.</span>
 <br/>
 <p><img src="images/23.22.png"/></p>
 <span>Figure 23-22. The 12 compositing effects in action</span>
 <h4>The globalAlpha Property</h4>
-<span>When drawing on the canvas, you can specify the amount of transparency to apply</span>
-<span>using the</span>
-<span>globalAlpha</span>
-<span>property, which supports values from</span>
-<span>0</span>
-<span>(fully transparent) to</span>
-<span>1</span>
-<span>(fully opaque). The following command sets the alpha to a value of</span>
-<span>0.9</span>
-<span>, such that</span>
-<span>future draw operations will be 90 percent opaque (or 10 percent transparent):</span>
+<span>When drawing on the canvas, you can specify the amount of transparency to apply using the globalAlpha property, which supports values from 0 (fully transparent) to 1 (fully opaque). The following command sets the alpha to a value of 0.9 , such that future draw operations will be 90 percent opaque (or 10 percent transparent):</span>
 <pre><code class="javascript">context.globalAlpha = 0.9</code></pre>
-<span>This property can be used with all other properties, including the compositing</span>
-<span>options.</span>
+<span>This property can be used with all other properties, including the compositing options.</span>
 <h3>Transformations</h3>
-<span>The canvas supports four functions for applying transformations to elements when</span>
-<span>drawing them to the HTML5 canvas:</span>
-<span>scale</span>
-<span>,</span>
-<span>rotate</span>
-<span>,</span>
-<span>translate</span>
-<span>, and</span>
-<span>transform</span>
-<span>.</span>
-<span>They can be used alone, or together to produce even more interesting effects.</span>
+<span>The canvas supports four functions for applying transformations to elements when drawing them to the HTML5 canvas: scale , rotate , translate , and transform . They can be used alone, or together to produce even more interesting effects.</span>
 <h4>The scale Method</h4>
-<span>You can scale future drawing operations by first calling the</span>
-<span>scale</span>
-<span>method, supplying</span>
-<span>horizontal and vertical scaling factors, which can be negative, zero, or positive values.</span>
+<span>You can scale future drawing operations by first calling the scale method, supplying horizontal and vertical scaling factors, which can be negative, zero, or positive values.</span>
 <br/>
-<span>In</span>
-<span>&nbsp;Example 23-24</span>
-<span>&nbsp;the yin-yang image is drawn to the canvas at its original size of</span>
-<span>100&times;100 pixels. Then scaling of 3 times horizontally and 2 times vertically is applied,</span>
-<span>and the</span>
-<span>drawImage</span>
-<span>function is called again to place the stretched image next to the</span>
-<span>original. Finally, scaling is reapplied with values of</span>
-<span>0.33</span>
-<span>and</span>
-<span>0.5</span>
-<span>to restore everything</span>
-<span>back to normal, and the image is once more drawn, this time below the original.</span>
-<span>Figure 23-23</span>
-<span>shows the result.</span>
+<span>In &nbsp;Example 23-24 &nbsp;the yin-yang image is drawn to the canvas at its original size of 100&times;100 pixels. Then scaling of 3 times horizontally and 2 times vertically is applied, and the drawImage function is called again to place the stretched image next to the original. Finally, scaling is reapplied with values of 0.33 and 0.5 to restore everything back to normal, and the image is once more drawn, this time below the original. Figure 23-23 shows the result.</span>
 <br/>
 <span>Example 23-24. Scaling up and down in size</span>
 <pre>
@@ -2156,32 +1170,12 @@ context.drawImage(myimage, 0, 100)
 <p><img src="images/23.23.jpeg"/></p>
 <span>Figure 23-23. Scaling an image up and then down again</span>
 <br/>
-<span>If you look carefully, you may notice that the copy image under the original is a little</span>
-<span>bit fuzzy due to the scaling up and then down.</span>
-<span>If you use negative values for one or more scaling parameters, you</span>
-<span>can reverse an element in either the horizontal or vertical direction</span>
-<span>(or both), at the same time as (or instead of) scaling. For example,</span>
-<span>the following flips the context to create a mirror image:</span>
+<span>If you look carefully, you may notice that the copy image under the original is a little bit fuzzy due to the scaling up and then down. If you use negative values for one or more scaling parameters, you can reverse an element in either the horizontal or vertical direction (or both), at the same time as (or instead of) scaling. For example, the following flips the context to create a mirror image:</span>
 <pre><code class="javascript">context.scale(-1, 1)</code></pre>
 <h4>The save and restore Methods</h4>
-<span>If you need to use several scaling operations on different drawing elements, not only</span>
-<span>can you introduce fuzziness into the results, but it can be very time-consuming to calculate that a three-times upward scaling requires a</span>
-<span>0.33</span>
-<span>value to scale back down</span>
-<span>again (and a two-times upscale requires a value of</span>
-<span>0.5</span>
-<span>to reverse).</span>
+<span>If you need to use several scaling operations on different drawing elements, not only can you introduce fuzziness into the results, but it can be very time-consuming to calculate that a three-times upward scaling requires a 0.33 value to scale back down again (and a two-times upscale requires a value of 0.5 to reverse).</span>
 <br/>
-<span>For this reason, you can call</span>
-<span>save</span>
-<span>to save the current context before issuing a</span>
-<span>scale</span>
-<span>call, and later return scaling back to normal by issuing a</span>
-<span>restore</span>
-<span>call. Check out the</span>
-<span>following, which can replace the code in</span>
-<span>Example 23-24</span>
-<span>:</span>
+<span>For this reason, you can call save to save the current context before issuing a scale call, and later return scaling back to normal by issuing a restore call. Check out the following, which can replace the code in Example 23-24 :</span>
 <pre>
 <code class="javascript">
 context.drawImage(myimage, 0, 0)
@@ -2192,74 +1186,11 @@ context.restore()
 context.drawImage(myimage, 0, 100)
 </code>
 </pre>
-<span>The</span>
-<span>save</span>
-<span>and</span>
-<span>restore</span>
-<span>methods are very powerful because they don&rsquo;t just apply to</span>
-<span>image scaling. In fact, they apply across all the following properties, and can therefore</span>
-<span>be used at any time to save the current properties, and then restore them later:</span>
-<span>fill</span>
-<span>Style</span>
-<span>,</span>
-<span>font</span>
-<span>,</span>
-<span>globalAlpha</span>
-<span>,</span>
-<span>globalCompositeOperation</span>
-<span>,</span>
-<span>lineCap</span>
-<span>,</span>
-<span>lineJoin</span>
-<span>,</span>
-<span>line</span>
-<span>Width</span>
-<span>,</span>
-<span>miterLimit</span>
-<span>,</span>
-<span>shadowBlur</span>
-<span>,</span>
-<span>shadowColor</span>
-<span>,</span>
-<span>shadowOffsetX</span>
-<span>,</span>
-<span>shadowOffsetY</span>
-<span>,</span>
-<span>strokeStyle</span>
-<span>,</span>
-<span>textAlign</span>
-<span>, and</span>
-<span>textBaseline</span>
-<span>. The properties of the following methods are also managed by</span>
-<span>save</span>
-<span>and</span>
-<span>restore</span>
-<span>:</span>
-<span>scale</span>
-<span>,</span>
-<span>rotate</span>
-<span>,</span>
-<span>translate</span>
-<span>, and</span>
-<span>trans</span>
-<span>form</span>
-<span>.</span>
+<span>The save and restore methods are very powerful because they don&rsquo;t just apply to image scaling. In fact, they apply across all the following properties, and can therefore be used at any time to save the current properties, and then restore them later: fill Style , font , globalAlpha , globalCompositeOperation , lineCap , lineJoin , line Width , miterLimit , shadowBlur , shadowColor , shadowOffsetX , shadowOffsetY , strokeStyle , textAlign , and textBaseline . The properties of the following methods are also managed by save and restore : scale , rotate , translate , and trans form .</span>
 <h4>The rotate Method</h4>
-<span>Using the</span>
-<span>rotate</span>
-<span>method, you can choose the angle at which to apply an object (or</span>
-<span>any of the drawing methods) to the canvas, specified in radians, which are the same</span>
-<span>as 180 / &pi;, or about 57 degrees, each.</span>
+<span>Using the rotate method, you can choose the angle at which to apply an object (or any of the drawing methods) to the canvas, specified in radians, which are the same as 180 / &pi;, or about 57 degrees, each.</span>
 <br/>
-<span>Rotation takes place around the canvas origin, which, by default, is its top-left corner</span>
-<span>(but as you&rsquo;ll see shortly, this can be changed).</span>
-<span>Example 23-25</span>
-<span>displays the yin-yang</span>
-<span>image four times, rotating each consecutive image by</span>
-<span>Math.PI</span>
-<span>/</span>
-<span>25</span>
-<span>radians.</span>
+<span>Rotation takes place around the canvas origin, which, by default, is its top-left corner (but as you&rsquo;ll see shortly, this can be changed). Example 23-25 displays the yin-yang image four times, rotating each consecutive image by Math.PI / 25 radians.</span>
 <br/>
 <span>Example 23-25. Rotating an image</span>
 <pre>
@@ -2271,44 +1202,16 @@ for (j = 0 ; j &lt; 4 ; ++j)
 }
 </code>
 </pre>
-<span>As you can see in</span>
-<span>Figure 23-24</span>
-<span>, the result may not be quite what you expect, because</span>
-<span>the image hasn&rsquo;t been rotated about itself. Rather, the rotations have taken place</span>
-<span>around the canvas origin at location 0,0. What&rsquo;s more, each new rotation has compounded the previous one. However, to correct for these things, you can always use</span>
-<span>the</span>
-<span>translate</span>
-<span>method in conjunction with the</span>
-<span>save</span>
-<span>and</span>
-<span>restore</span>
-<span>methods.</span>
+<span>As you can see in Figure 23-24 , the result may not be quite what you expect, because the image hasn&rsquo;t been rotated about itself. Rather, the rotations have taken place around the canvas origin at location 0,0. What&rsquo;s more, each new rotation has compounded the previous one. However, to correct for these things, you can always use the translate method in conjunction with the save and restore methods.</span>
 <br/>
-<span>Radians are a sensible unit of measurement because there are &pi; &times; 2</span>
-<span>radians in a complete circle. So &pi; radians is a half circle, &pi; &divide; 2 radians is a quarter circle, and &pi; &divide; 2 &times; 3 (or &pi; &times; 1.5) radians is three-</span>
-<span>quarters of a circle, and so on. To save having to remember the</span>
-<span>value of &pi;, you can always refer to the value in</span>
-<span>Math.PI</span>
-<span>.</span>
+<span>Radians are a sensible unit of measurement because there are &pi; &times; 2 radians in a complete circle. So &pi; radians is a half circle, &pi; &divide; 2 radians is a quarter circle, and &pi; &divide; 2 &times; 3 (or &pi; &times; 1.5) radians is three- quarters of a circle, and so on. To save having to remember the value of &pi;, you can always refer to the value in Math.PI .</span>
 <br/>
 <p><img src="images/23.24.png"/></p>
 <span>Figure 23-24. An image at four different rotations</span>
 <h4>The translate Method</h4>
-<span>To change the origin of a rotation, you can call the</span>
-<span>translate</span>
-<span>method to shift it to</span>
-<span>somewhere else, which can be anywhere inside (or outside) the canvas or, more usually, somewhere within the destination location of the object (usually its center).</span>
+<span>To change the origin of a rotation, you can call the translate method to shift it to somewhere else, which can be anywhere inside (or outside) the canvas or, more usually, somewhere within the destination location of the object (usually its center).</span>
 <br/>
-<span>Example 23-26</span>
-<span>performs this translation prior to each call to</span>
-<span>rotate</span>
-<span>, now resulting in</span>
-<span>the effect that was probably intended. Additionally, the</span>
-<span>save</span>
-<span>and</span>
-<span>restore</span>
-<span>methods</span>
-<span>are called before and after each operation to ensure that each rotation is applied independently, not compounded on the previous one.</span>
+<span>Example 23-26 performs this translation prior to each call to rotate , now resulting in the effect that was probably intended. Additionally, the save and restore methods are called before and after each operation to ensure that each rotation is applied independently, not compounded on the previous one.</span>
 <br/>
 <span>Example 23-26. Rotating objects in place</span>
 <pre>
@@ -2326,100 +1229,44 @@ for (j = 0 ; j &lt; 4 ; ++j)
 }
 </code>
 </pre>
-<span>In this example, before each rotation the context is saved and the origin is translated</span>
-<span>to a point exactly in the center of where each image will be drawn. We then issue the</span>
-<span>rotation and draw the image up and to the left of the new origin by supplying negative values, such that its center matches the origin point. The result of this is shown in</span>
-<span>Figure 23-25</span>
-<span>.</span>
+<span>In this example, before each rotation the context is saved and the origin is translated to a point exactly in the center of where each image will be drawn. We then issue the rotation and draw the image up and to the left of the new origin by supplying negative values, such that its center matches the origin point. The result of this is shown in Figure 23-25 .</span>
 <br/>
 <p><img src="images/23.25.png"/></p>
 <span>Figure 23-25. Rotating images in place</span>
 <br/>
-<span>To recap: when you wish to rotate or transform (described next) an object in place,</span>
-<span>you should perform the following actions:</span>
-<span>1.</span>
-<span>Save the context.</span>
-<span>2.</span>
-<span>Translate the canvas origin to the center of where the object is to be placed.</span>
-<span>3.</span>
-<span>Issue the rotation or transformation instruction.</span>
-<span>4.</span>
-<span>Draw the object with any drawing method supported, using a negative destination location point half the object&rsquo;s width to the left, and half its height upward.</span>
-<span>5.</span>
-<span>Restore the context to revert the origin.</span>
+<span>To recap: when you wish to rotate or transform (described next) an object in place, you should perform the following actions: 1. Save the context. 2. Translate the canvas origin to the center of where the object is to be placed. 3. Issue the rotation or transformation instruction. 4. Draw the object with any drawing method supported, using a negative destination location point half the object&rsquo;s width to the left, and half its height upward. 5. Restore the context to revert the origin.</span>
 <h4>The transform Method</h4>
-<span>When you&rsquo;ve exhausted all the other canvas features and still can&rsquo;t manipulate objects</span>
-<span>in just the way you need, it&rsquo;s time to turn to the</span>
-<span>transform</span>
-<span>method. With it, you can</span>
-<span>apply a transformation matrix to the objects you draw to the canvas, giving you a</span>
-<span>multitude of possibilities, and powerful features that can combine scaling and rotating in a single instruction.</span>
+<span>When you&rsquo;ve exhausted all the other canvas features and still can&rsquo;t manipulate objects in just the way you need, it&rsquo;s time to turn to the transform method. With it, you can apply a transformation matrix to the objects you draw to the canvas, giving you a multitude of possibilities, and powerful features that can combine scaling and rotating in a single instruction.</span>
 <br/>
-<span>The transformation matrix used by this method is a 3&times;3 matrix of nine values, but</span>
-<span>only six of these are supplied externally to the</span>
-<span>transform</span>
-<span>method. So, rather than</span>
-<span>explain how this matrix multiplication works, I only need to explain the effects of its</span>
-<span>six arguments, which, in order, are as follows:</span>
+<span>The transformation matrix used by this method is a 3&times;3 matrix of nine values, but only six of these are supplied externally to the transform method. So, rather than explain how this matrix multiplication works, I only need to explain the effects of its six arguments, which, in order, are as follows:</span>
 <br/>
-<span>1.</span>
-<span>Horizontal scale</span>
+<span>1. Horizontal scale</span>
 <br/>
-<span>2.</span>
-<span>Horizontal skew</span>
+<span>2. Horizontal skew</span>
 <br/>
-<span>3.</span>
-<span>Vertical skew</span>
+<span>3. Vertical skew</span>
 <br/>
-<span>4.</span>
-<span>Vertical scale</span>
+<span>4. Vertical scale</span>
 <br/>
-<span>5.</span>
-<span>Horizontal translate</span>
+<span>5. Horizontal translate</span>
 <br/>
-<span>6.</span>
-<span>Vertical translate</span>
+<span>6. Vertical translate</span>
 <br/>
-<span>You can apply these values in many ways&mdash;for example, by emulating the</span>
-<span>scale</span>
-<span>method from</span>
-<span>Example 23-24</span>
-<span>by replacing this call:</span>
+<span>You can apply these values in many ways&mdash;for example, by emulating the scale method from Example 23-24 by replacing this call:</span>
 <pre><code class="javascript">context.scale(3, 2)</code></pre>
 <span>with the following:</span>
 <pre><code class="javascript">context.transform(3, 0, 0, 2, 0, 0)</code></pre>
-<span>Or, in the same way, you can replace this call from</span>
-<span>Example 23-26</span>
-<span>:</span>
+<span>Or, in the same way, you can replace this call from Example 23-26 :</span>
 <pre><code class="javascript">context.translate(20 + w / 2 + j * (w + 20), 20 + h / 2)</code></pre>
 <span>with the following:</span>
 <pre><code class="javascript">context.transform(1, 0, 0, 1, 20 + w / 2 + j * (w + 20),20 + h / 2)</code></pre>
-<span>Note how the horizontal and vertical scaling arguments are given</span>
-<span>values of</span>
-<span>1</span>
-<span>to ensure a 1:1 result, while the skew values are</span>
-<span>0</span>
-<span>to prevent the result from being skewed.</span>
+<span>Note how the horizontal and vertical scaling arguments are given values of 1 to ensure a 1:1 result, while the skew values are 0 to prevent the result from being skewed.</span>
 <br/>
-<span>You could even combine the previous two lines of code to get a translation and scale</span>
-<span>at the same time, like this:</span>
+<span>You could even combine the previous two lines of code to get a translation and scale at the same time, like this:</span>
 <pre><code class="javascript">context.transform(3, 0, 0,2,20 + w / 2 + j * (w + 20),20 + h / 2)</code></pre>
-<span>As you look at the skew arguments, as you might expect they result in an element</span>
-<span>being skewed in the direction specified&mdash;for example, creating a rhombus from a</span>
-<span>square.</span>
+<span>As you look at the skew arguments, as you might expect they result in an element being skewed in the direction specified&mdash;for example, creating a rhombus from a square.</span>
 <br/>
-<span>For example,</span>
-<span>Example 23-27</span>
-<span>draws the yin-yang image on the canvas, followed by a</span>
-<span>skewed copy created with the</span>
-<span>transform</span>
-<span>method. The skew value can be any negative, zero, or positive amount, but I chose a horizontal value of</span>
-<span>1</span>
-<span>, which has skewed</span>
-<span>the bottom of the image by one image width to the right, and pulled everything else</span>
-<span>along with it proportionally (see</span>
-<span>Figure 23-26</span>
-<span>).</span>
+<span>For example, Example 23-27 draws the yin-yang image on the canvas, followed by a skewed copy created with the transform method. The skew value can be any negative, zero, or positive amount, but I chose a horizontal value of 1 , which has skewed the bottom of the image by one image width to the right, and pulled everything else along with it proportionally (see Figure 23-26 ).</span>
 <br/>
 <span>Example 23-27. Creating an original and skewed image</span>
 <pre>
@@ -2432,34 +1279,8 @@ context.drawImage(myimage, 140, 20)
 <p><img src="images/23.26.png"/></p>
 <span>Figure 23-26. Horizontally skewing an object to the right</span>
 <br/>
-<span>You can even rotate an object with</span>
-<span>transform</span>
-<span>by supplying one</span>
-<span>negative and one opposite positive skew value. But beware: when</span>
-<span>you do this, you&rsquo;ll modify the size of an element, and will therefore</span>
-<span>also need to adjust the scale arguments at the same time. Plus,</span>
-<span>you&rsquo;ll also need to remember to translate the origin. Thus, I recommend sticking with the</span>
-<span>rotate</span>
-<span>method for this until you are fully</span>
-<span>experienced with using</span>
-<span>transform</span>
-<span>.</span>
+<span>You can even rotate an object with transform by supplying one negative and one opposite positive skew value. But beware: when you do this, you&rsquo;ll modify the size of an element, and will therefore also need to adjust the scale arguments at the same time. Plus, you&rsquo;ll also need to remember to translate the origin. Thus, I recommend sticking with the rotate method for this until you are fully experienced with using transform .</span>
 <h4>The setTransform Method</h4>
-<span>As an alternative to using the</span>
-<span>save</span>
-<span>and</span>
-<span>restore</span>
-<span>methods, you can set an absolute</span>
-<span>transform, which has the effect of resetting the transformation matrix and then</span>
-<span>applying the supplied values. Use the</span>
-<span>setTransform</span>
-<span>method just like</span>
-<span>transform</span>
-<span>, as in</span>
-<span>this example (which applies a horizontal positive skew with the value</span>
-<span>1</span>
-<span>):</span>
+<span>As an alternative to using the save and restore methods, you can set an absolute transform, which has the effect of resetting the transformation matrix and then applying the supplied values. Use the setTransform method just like transform , as in this example (which applies a horizontal positive skew with the value 1 ):</span>
 <pre><code class="javascript">context.setTransform(1, 0, 1, 1, 0, 0)</code></pre>
-<span>To learn more about transformation matrixes, see the</span>
-<span>comprehensive Wikipedia article</span>
-<span>.</span>
+<span>To learn more about transformation matrixes, see the comprehensive Wikipedia article .</span>

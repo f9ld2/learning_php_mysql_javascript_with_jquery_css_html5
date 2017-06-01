@@ -3,72 +3,27 @@ layout: default
 title: "Other HTML5 Features"
 ---
 <h2>Other HTML5 Features</h2>
-<span>In this final chapter on HTML5, I explain how to use geolocation, local storage, and</span>
-<span>web workers; show you how to allow web apps to run offline; and demonstrate the</span>
-<span>use of in-browser dragging and dropping.</span>
+<span>In this final chapter on HTML5, I explain how to use geolocation, local storage, and web workers; show you how to allow web apps to run offline; and demonstrate the use of in-browser dragging and dropping.</span>
 <br/>
-<span>Strictly speaking, most of these features (like much of HTML5) aren&rsquo;t really extensions to HTML, because you access them with JavaScript rather than with HTML</span>
-<span>markup. They are simply technologies that are being embraced by browser developers, and have been given the handy umbrella name of HTML5.</span>
+<span>Strictly speaking, most of these features (like much of HTML5) aren&rsquo;t really extensions to HTML, because you access them with JavaScript rather than with HTML markup. They are simply technologies that are being embraced by browser developers, and have been given the handy umbrella name of HTML5.</span>
 <br/>
-<span>This means, though, that you need to have fully understood the JavaScript tutorial in</span>
-<span>this book in order to use them properly. That said, once you get the hang of them,</span>
-<span>you&rsquo;ll wonder how you ever did without these powerful new features.</span>
+<span>This means, though, that you need to have fully understood the JavaScript tutorial in this book in order to use them properly. That said, once you get the hang of them, you&rsquo;ll wonder how you ever did without these powerful new features.</span>
 <h3>Geolocation and the GPS Service</h3>
-<span>The</span>
-<span>&nbsp;GPS (Global Positioning Satellite)</span>
-<span>&nbsp;service consists of multiple satellites orbiting</span>
-<span>the earth whose positions are very precisely known. When a GPS-enabled device</span>
-<span>tunes into them, the different times at which signals from these various satellites</span>
-<span>arrive enable the device to quite accurately know where it is; because the speed of</span>
-<span>light (and therefore radio waves) is a known constant, the time it takes a signal to get</span>
-<span>from a satellite to a GPS device indicates the satellite&rsquo;s distance.</span>
+<span>The &nbsp;GPS (Global Positioning Satellite) &nbsp;service consists of multiple satellites orbiting the earth whose positions are very precisely known. When a GPS-enabled device tunes into them, the different times at which signals from these various satellites arrive enable the device to quite accurately know where it is; because the speed of light (and therefore radio waves) is a known constant, the time it takes a signal to get from a satellite to a GPS device indicates the satellite&rsquo;s distance.</span>
 <br/>
-<span>By noting the different times at which signals arrive from different satellites, which</span>
-<span>are in precisely known orbital locations at any one time, a simple triangulation calculation gives the device its position relative to the satellites within a few meters or less.</span>
+<span>By noting the different times at which signals arrive from different satellites, which are in precisely known orbital locations at any one time, a simple triangulation calculation gives the device its position relative to the satellites within a few meters or less.</span>
 <br/>
-<span>Many mobile devices, such as phones and tablets, have GPS chips and can provide</span>
-<span>this information. But some don&rsquo;t, others have them tuned off, and others may be used</span>
-<span>indoors where they are shielded from the GPS satellites and therefore cannot receive</span>
-<span>any signals. In these cases, additional techniques may be used to attempt to determine</span>
-<span>your location.</span>
+<span>Many mobile devices, such as phones and tablets, have GPS chips and can provide this information. But some don&rsquo;t, others have them tuned off, and others may be used indoors where they are shielded from the GPS satellites and therefore cannot receive any signals. In these cases, additional techniques may be used to attempt to determine your location.</span>
 <h3>Other Location Methods</h3>
-<span>If your device has mobile phone hardware but not GPS, it may attempt to triangulate</span>
-<span>its location by checking the timing of signals received from the various communication towers with which it can communicate (and whose positions are very precisely</span>
-<span>known). If there are a few towers, this can get almost as close to your location as GPS.</span>
-<span>But where there&rsquo;s only a single tower, the signal strength can be used to determine a</span>
-<span>rough radius around the tower, and the circle it creates represents the area in which</span>
-<span>you are likely to be located. This could place you anywhere within a mile or two of</span>
-<span>your actual location, down to within a few tens of meters.</span>
+<span>If your device has mobile phone hardware but not GPS, it may attempt to triangulate its location by checking the timing of signals received from the various communication towers with which it can communicate (and whose positions are very precisely known). If there are a few towers, this can get almost as close to your location as GPS. But where there&rsquo;s only a single tower, the signal strength can be used to determine a rough radius around the tower, and the circle it creates represents the area in which you are likely to be located. This could place you anywhere within a mile or two of your actual location, down to within a few tens of meters.</span>
 <br/>
-<span>Failing that, there may be known Wi-Fi access points whose positions are known</span>
-<span>within range of your device, and since all access points have a unique identifying</span>
-<span>address called a</span>
-<span>MAC (Media Access Control)</span>
-<span>address, a reasonably good approximation of location can be obtained, perhaps to within a street or two. This is the type of</span>
-<span>information that Google Street View vehicles have been collecting.</span>
+<span>Failing that, there may be known Wi-Fi access points whose positions are known within range of your device, and since all access points have a unique identifying address called a MAC (Media Access Control) address, a reasonably good approximation of location can be obtained, perhaps to within a street or two. This is the type of information that Google Street View vehicles have been collecting.</span>
 <br/>
-<span>And if that fails, the</span>
-<span>IP (Internet Protocol)</span>
-<span>address used by your device can be queried</span>
-<span>and used as a rough indicator of your location. Often, though, this provides only the</span>
-<span>location of a major switch belonging to your Internet provider, which could be dozens or even hundreds of miles away. But at the very least, your IP address can (usually) narrow down the country and sometimes the region you are in.</span>
+<span>And if that fails, the IP (Internet Protocol) address used by your device can be queried and used as a rough indicator of your location. Often, though, this provides only the location of a major switch belonging to your Internet provider, which could be dozens or even hundreds of miles away. But at the very least, your IP address can (usually) narrow down the country and sometimes the region you are in.</span>
 <br/>
-<span>IP addresses are commonly used by media companies for restricting playback of their content by territory. However, it&rsquo;s a simple</span>
-<span>matter to set up proxy servers that use a forwarding IP address (in</span>
-<span>the territory that is blocking outside access) to fetch and pass content through the blockade directly to a &ldquo;foreign&rdquo; browser. Proxy</span>
-<span>servers are also often employed to disguise a user&rsquo;s real IP address</span>
-<span>or bypass censorship restrictions, and can be shared across many</span>
-<span>users on a Wi-Fi hotspot (for example). Therefore, if you locate</span>
-<span>someone by IP address, you can&rsquo;t be completely sure that you have</span>
-<span>identified the right location, or even country, and should treat this</span>
-<span>information as only a best guess.</span>
+<span>IP addresses are commonly used by media companies for restricting playback of their content by territory. However, it&rsquo;s a simple matter to set up proxy servers that use a forwarding IP address (in the territory that is blocking outside access) to fetch and pass content through the blockade directly to a &ldquo;foreign&rdquo; browser. Proxy servers are also often employed to disguise a user&rsquo;s real IP address or bypass censorship restrictions, and can be shared across many users on a Wi-Fi hotspot (for example). Therefore, if you locate someone by IP address, you can&rsquo;t be completely sure that you have identified the right location, or even country, and should treat this information as only a best guess.</span>
 <h3>Geolocation and HTML5</h3>
-<span>In</span>
-<span>Chapter 22</span>
-<span>, I briefly introduced HTML5 geolocation. Now it&rsquo;s time to look at it in</span>
-<span>depth, starting with the example I gave you before, shown again in</span>
-<span>Example 25-1</span>
-<span>.</span>
+<span>In Chapter 22 , I briefly introduced HTML5 geolocation. Now it&rsquo;s time to look at it in depth, starting with the example I gave you before, shown again in Example 25-1 .</span>
 <br/>
 <span>Example 25-1. Displaying a map of your current location</span>
 <pre>
@@ -124,74 +79,22 @@ title: "Other HTML5 Features"
 &lt;/html&gt;
 </code>
 </pre>
-<span>Let&rsquo;s walk through this code and see how it works, starting with the</span>
-<span>&lt;head&gt;</span>
-<span>section,</span>
-<span>which displays a title; loads in the</span>
-<span>OSC.js</span>
-<span>file containing the</span>
-<span>O</span>
-<span>,</span>
-<span>S</span>
-<span>, and</span>
-<span>C</span>
-<span>functions I</span>
-<span>provided to make accessing HTML elements from JavaScript easier; and then also</span>
-<span>pulls in the JavaScript code for the Google Maps service, which is drawn on later in</span>
-<span>the program.</span>
+<span>Let&rsquo;s walk through this code and see how it works, starting with the &lt;head&gt; section, which displays a title; loads in the OSC.js file containing the O , S , and C functions I provided to make accessing HTML elements from JavaScript easier; and then also pulls in the JavaScript code for the Google Maps service, which is drawn on later in the program.</span>
 <br/>
-<span>After this, two</span>
-<span>&lt;div&gt;</span>
-<span>elements are created&mdash;one for displaying the connection status,</span>
-<span>and the other for the map:</span>
+<span>After this, two &lt;div&gt; elements are created&mdash;one for displaying the connection status, and the other for the map:</span>
 <pre>
 <code class="html">
 &lt;div id='status'&gt;&lt;/div&gt;
 &lt;div id='map'&gt;&lt;/div&gt;
 </code>
 </pre>
-<span>The remainder of the document is JavaScript, which immediately starts by interrogating the</span>
-<span>navigator.geolocation</span>
-<span>property. If the value returned is</span>
-<span>undefined</span>
-<span>, then</span>
-<span>geolocation is not supported by the browser and an error alert window is popped up.</span>
+<span>The remainder of the document is JavaScript, which immediately starts by interrogating the navigator.geolocation property. If the value returned is undefined , then geolocation is not supported by the browser and an error alert window is popped up.</span>
 <br/>
-<span>Otherwise, the</span>
-<span>getCurrentPosition</span>
-<span>method of the property is called, passing it the</span>
-<span>names of two functions:</span>
-<span>granted</span>
-<span>and</span>
-<span>denied</span>
-<span>(remember that by passing function</span>
-<span>names, we pass the actual function code, not the result of calling the function, which</span>
-<span>would be the case if the function names had brackets attached):</span>
+<span>Otherwise, the getCurrentPosition method of the property is called, passing it the names of two functions: granted and denied (remember that by passing function names, we pass the actual function code, not the result of calling the function, which would be the case if the function names had brackets attached):</span>
 <pre><code class="javascript">navigator.geolocation.getCurrentPosition(granted, denied)</code></pre>
-<span>These functions appear later in the script and are for handling the two possibilities of</span>
-<span>permission to provide the user&rsquo;s location data:</span>
-<span>granted</span>
-<span>or</span>
-<span>denied</span>
-<span>. The</span>
-<span>granted</span>
-<span>function comes first and is entered only if the data can be accessed.</span>
+<span>These functions appear later in the script and are for handling the two possibilities of permission to provide the user&rsquo;s location data: granted or denied . The granted function comes first and is entered only if the data can be accessed.</span>
 <br/>
-<span>In this function, the</span>
-<span>innerHTML</span>
-<span>property of the</span>
-<span>div</span>
-<span>element with the ID of</span>
-<span>status</span>
-<span>is</span>
-<span>set to the string</span>
-<span>Permission Granted</span>
-<span>to indicate success during the delay while the</span>
-<span>map is being fetched. Then the</span>
-<span>map</span>
-<span>div</span>
-<span>has some CSS styles applied to give it a border</span>
-<span>and set its dimensions:</span>
+<span>In this function, the innerHTML property of the div element with the ID of status is set to the string Permission Granted to indicate success during the delay while the map is being fetched. Then the map div has some CSS styles applied to give it a border and set its dimensions:</span>
 <pre>
 <code class="javascript">
 O('status').innerHTML = 'Permission Granted'
@@ -200,16 +103,7 @@ S('map').width = '640px'
 S('map').height = '320px'
 </code>
 </pre>
-<span>Next, the variables</span>
-<span>lat</span>
-<span>and</span>
-<span>long</span>
-<span>are given the values returned by the geolocation routines in the browser, and the object</span>
-<span>gmap</span>
-<span>is created to access the</span>
-<span>map</span>
-<span>div</span>
-<span>element:</span>
+<span>Next, the variables lat and long are given the values returned by the geolocation routines in the browser, and the object gmap is created to access the map div element:</span>
 <pre>
 <code class="javascript">
 var lat = position.coords.latitude
@@ -217,16 +111,7 @@ var long = position.coords.longitude
 var gmap = O('map')
 </code>
 </pre>
-<span>After this, the object</span>
-<span>gopts</span>
-<span>is populated with the values in</span>
-<span>lat</span>
-<span>and</span>
-<span>long</span>
-<span>, the zoom</span>
-<span>level is set (in this case to 9), and the</span>
-<span>ROADMAP</span>
-<span>map type is selected:</span>
+<span>After this, the object gopts is populated with the values in lat and long , the zoom level is set (in this case to 9), and the ROADMAP map type is selected:</span>
 <pre>
 <code class="javascript">
 var gopts =
@@ -236,37 +121,14 @@ var gopts =
 }
 </code>
 </pre>
-<span>Last, in this function, we create a new</span>
-<span>map</span>
-<span>object by passing</span>
-<span>gmap</span>
-<span>and</span>
-<span>gopts</span>
-<span>to the</span>
-<span>Map</span>
-<span>method of the</span>
-<span>google.maps</span>
-<span>object (the code for which you will recall was loaded</span>
-<span>in just after the</span>
-<span>OSC.js</span>
-<span>file).</span>
+<span>Last, in this function, we create a new map object by passing gmap and gopts to the Map method of the google.maps object (the code for which you will recall was loaded in just after the OSC.js file).</span>
 <pre><code class="javascript">var map = new google.maps.Map(gmap, gopts)</code></pre>
-<span>If permission is granted to access the user&rsquo;s location, the result looks like</span>
-<span>Figure 25-1</span>
-<span>.</span>
+<span>If permission is granted to access the user&rsquo;s location, the result looks like Figure 25-1 .</span>
 <br/>
 <p><img src="images/25.1.jpeg"/></p>
 <span>Figure 25-1. An interactive map of the user&rsquo;s location is displayed</span>
 <br/>
-<span>If permission is denied or there is another issue, an error message is the only thing</span>
-<span>displayed, as output to the</span>
-<span>innerHTML</span>
-<span>property of the</span>
-<span>status</span>
-<span>div</span>
-<span>by the</span>
-<span>denied</span>
-<span>function, according to the problem encountered:</span>
+<span>If permission is denied or there is another issue, an error message is the only thing displayed, as output to the innerHTML property of the status div by the denied function, according to the problem encountered:</span>
 <pre>
 <code class="javascript">
     switch(error.code)
@@ -279,98 +141,29 @@ var gopts =
     O('status').innerHTML = message
 </code>
 </pre>
-<span>The Google map will be fully interactive and zoomable by the user, who can also</span>
-<span>change the map type to satellite imagery.</span>
+<span>The Google map will be fully interactive and zoomable by the user, who can also change the map type to satellite imagery.</span>
 <br/>
-<span>You can set a different zoom level or imagery type by providing different values to the</span>
-<span>gopts</span>
-<span>object. For example, a value of</span>
-<span>1</span>
-<span>for</span>
-<span>zoom</span>
-<span>will zoom out the furthest, and</span>
-<span>20</span>
-<span>will zoom in the most. A value of</span>
-<span>SATELLITE</span>
-<span>for the</span>
-<span>google.maps.MapTypeId</span>
-<span>property will switch to satellite imagery, or</span>
-<span>HYBRID</span>
-<span>will combine map and satellite data.</span>
+<span>You can set a different zoom level or imagery type by providing different values to the gopts object. For example, a value of 1 for zoom will zoom out the furthest, and 20 will zoom in the most. A value of SATELLITE for the google.maps.MapTypeId property will switch to satellite imagery, or HYBRID will combine map and satellite data.</span>
 <br/>
-<span>The</span>
-<span>sensor=false</span>
-<span>setting from the tail of the URL where the script</span>
-<span>is loaded in (near the start of the document), should be set to</span>
-<span>true</span>
-<span>if you know that the user&rsquo;s device has a GPS sensor; otherwise,</span>
-<span>leave it as it is. If you simply want to display a Google map for a</span>
-<span>specific location, and not access the user&rsquo;s location data, you can</span>
-<span>use the core code in the</span>
-<span>granted</span>
-<span>function, replacing the</span>
-<span>lat</span>
-<span>and</span>
-<span>long</span>
-<span>(and other) values with ones of your choosing. Also, if you</span>
-<span>would prefer to use Bing maps instead of Google, refer to</span>
-<span>&nbsp;http://</span>
-<span>tinyurl.com/bingmapsapi</span>
-<span>, or the following long URL:</span>
-<span>&nbsp;http://micro</span>
-<span>soft.com/web/post/using-the-bing-maps-api</span>
-<span>.</span>
+<span>The sensor=false setting from the tail of the URL where the script is loaded in (near the start of the document), should be set to true if you know that the user&rsquo;s device has a GPS sensor; otherwise, leave it as it is. If you simply want to display a Google map for a specific location, and not access the user&rsquo;s location data, you can use the core code in the granted function, replacing the lat and long (and other) values with ones of your choosing. Also, if you would prefer to use Bing maps instead of Google, refer to &nbsp;http:// tinyurl.com/bingmapsapi , or the following long URL: &nbsp;http://micro soft.com/web/post/using-the-bing-maps-api .</span>
 <h3>Local Storage</h3>
-<span>Cookies are an essential part of the modern Internet because they enable websites to</span>
-<span>save on each user&rsquo;s machine small snippets of information that can be used for tracking purposes. Now this isn&rsquo;t as ominous as it sounds, because most of the tracking</span>
-<span>going on helps web surfers by saving usernames and passwords, keeping them logged</span>
-<span>into a social network such as Twitter or Facebook, and more.</span>
+<span>Cookies are an essential part of the modern Internet because they enable websites to save on each user&rsquo;s machine small snippets of information that can be used for tracking purposes. Now this isn&rsquo;t as ominous as it sounds, because most of the tracking going on helps web surfers by saving usernames and passwords, keeping them logged into a social network such as Twitter or Facebook, and more.</span>
 <br/>
-<span>Cookies can also locally save your preferences for the way you access a website (rather</span>
-<span>than having those settings stored on the website&rsquo;s server) or can be used to keep track</span>
-<span>of a shopping cart as you build up an order on an ecommerce website.</span>
+<span>Cookies can also locally save your preferences for the way you access a website (rather than having those settings stored on the website&rsquo;s server) or can be used to keep track of a shopping cart as you build up an order on an ecommerce website.</span>
 <br/>
-<span>But yes, they can also be used more aggressively to track the websites you frequent</span>
-<span>and gain a picture of your interests to try to target advertising more effectively. That&rsquo;s</span>
-<span>why the European Union now requires all websites within its borders to alert you to</span>
-<span>this, and let you disable cookies if you so choose.</span>
+<span>But yes, they can also be used more aggressively to track the websites you frequent and gain a picture of your interests to try to target advertising more effectively. That&rsquo;s why the European Union now requires all websites within its borders to alert you to this, and let you disable cookies if you so choose.</span>
 <br/>
-<span>But, as a web developer, think how useful it can be keeping data on user&rsquo;s devices,</span>
-<span>especially if you have a small budget for computer servers and disk space. For example, you could create in-browser web apps and services for editing word processing</span>
-<span>documents, spreadsheets, and graphic images, saving all this data offsite on users&rsquo;</span>
-<span>computers and keeping your server purchasing budget as low as possible.</span>
+<span>But, as a web developer, think how useful it can be keeping data on user&rsquo;s devices, especially if you have a small budget for computer servers and disk space. For example, you could create in-browser web apps and services for editing word processing documents, spreadsheets, and graphic images, saving all this data offsite on users&rsquo; computers and keeping your server purchasing budget as low as possible.</span>
 <br/>
-<span>From the user&rsquo;s point of view, think about how much faster a document can be loaded</span>
-<span>up locally than from across the Web, especially on a slow connection. Plus, there&rsquo;s</span>
-<span>more security if you know that a website is not storing copies of your documents. Of</span>
-<span>course, you can never guarantee that a website or web app is totally secure, and</span>
-<span>should never work on highly sensitive documents using software (or hardware) that</span>
-<span>can go online. But for minimally private documents such as family photographs, you</span>
-<span>might feel more comfortable using a web app that saves locally than one that saves</span>
-<span>files to an external server.</span>
+<span>From the user&rsquo;s point of view, think about how much faster a document can be loaded up locally than from across the Web, especially on a slow connection. Plus, there&rsquo;s more security if you know that a website is not storing copies of your documents. Of course, you can never guarantee that a website or web app is totally secure, and should never work on highly sensitive documents using software (or hardware) that can go online. But for minimally private documents such as family photographs, you might feel more comfortable using a web app that saves locally than one that saves files to an external server.</span>
 <h4>Using Local Storage</h4>
-<span>The biggest problem with using cookies for local storage is that you can save a maximum of 4KB of data in each. Cookies also have to be passed back and forth on every</span>
-<span>page reload. And, unless your server uses</span>
-<span>SSL (Secure Sockets Layer)</span>
-<span>encryption, each</span>
-<span>time a cookie is transmitted, it travels in the clear.</span>
+<span>The biggest problem with using cookies for local storage is that you can save a maximum of 4KB of data in each. Cookies also have to be passed back and forth on every page reload. And, unless your server uses SSL (Secure Sockets Layer) encryption, each time a cookie is transmitted, it travels in the clear.</span>
 <br/>
-<span>But with HTML5, you have access to a much larger local storage space (typically</span>
-<span>between 5MB and 10MB per domain depending on the browser) that remains over</span>
-<span>page loads, and between website visits (and even after powering a computer down</span>
-<span>and back up again). Also, the local storage data is not sent to the server on each page</span>
-<span>load.</span>
+<span>But with HTML5, you have access to a much larger local storage space (typically between 5MB and 10MB per domain depending on the browser) that remains over page loads, and between website visits (and even after powering a computer down and back up again). Also, the local storage data is not sent to the server on each page load.</span>
 <br/>
-<span>You handle local storage data in key/value pairs. The key is the name assigned for referencing the data, and the value can hold any type of data, but it is saved as a string.</span>
-<span>All data is unique to the current domain, and for security reasons any local storage</span>
-<span>created by websites with different domains is separate from the current local storage,</span>
-<span>and is not accessible by any domain other than the one that stored the data.</span>
+<span>You handle local storage data in key/value pairs. The key is the name assigned for referencing the data, and the value can hold any type of data, but it is saved as a string. All data is unique to the current domain, and for security reasons any local storage created by websites with different domains is separate from the current local storage, and is not accessible by any domain other than the one that stored the data.</span>
 <h4>The localStorage Object</h4>
-<span>You gain access to local storage by means of the</span>
-<span>localStorage</span>
-<span>object. To test whether</span>
-<span>this object is available, you query its type to check whether or not it has been defined,</span>
-<span>like this:</span>
+<span>You gain access to local storage by means of the localStorage object. To test whether this object is available, you query its type to check whether or not it has been defined, like this:</span>
 <pre>
 <code class="javascript">
 if (typeof localStorage == 'undefined')
@@ -380,58 +173,32 @@ if (typeof localStorage == 'undefined')
 }
 </code>
 </pre>
-<span>How you handle the lack of local storage being available will depend on what you</span>
-<span>intend to use it for, so the code you place inside the</span>
-<span>if</span>
-<span>statement will be up to you.</span>
+<span>How you handle the lack of local storage being available will depend on what you intend to use it for, so the code you place inside the if statement will be up to you.</span>
 <br/>
-<span>Once you&rsquo;ve ascertained that local storage is available, you can start making use of it</span>
-<span>with the</span>
-<span>setItem</span>
-<span>and</span>
-<span>getItem</span>
-<span>methods of the</span>
-<span>localStorage</span>
-<span>object, like this:</span>
+<span>Once you&rsquo;ve ascertained that local storage is available, you can start making use of it with the setItem and getItem methods of the localStorage object, like this:</span>
 <pre>
 <code class="javascript">
 localStorage.setItem('username', 'ceastwood')
 localStorage.setItem('password', 'makemyday')
 </code>
 </pre>
-<span>To later retrieve this data, pass the keys to the</span>
-<span>getItem</span>
-<span>method, like this:</span>
+<span>To later retrieve this data, pass the keys to the getItem method, like this:</span>
 <pre>
 <code class="javascript">
 username = localStorage.getItem('username')
 password = localStorage.getItem('password')
 </code>
 </pre>
-<span>Unlike saving and reading cookies, you can call these methods at any time you like,</span>
-<span>not simply before any headers have been sent by the web server. The saved values will</span>
-<span>remain in local storage until erased in the following manner:</span>
+<span>Unlike saving and reading cookies, you can call these methods at any time you like, not simply before any headers have been sent by the web server. The saved values will remain in local storage until erased in the following manner:</span>
 <pre>
 <code class="javascript">
 localStorage.removeItem('username')
 localStorage.removeItem('password')
 </code>
 </pre>
-<span>Or, you can totally wipe the local storage for the current domain by calling the</span>
-<span>clear</span>
-<span>method, like this:</span>
+<span>Or, you can totally wipe the local storage for the current domain by calling the clear method, like this:</span>
 <pre><code class="javascript">localStorage.clear()</code></pre>
-<span>Example 25-2</span>
-<span>combines the preceding examples into a single document that displays</span>
-<span>the current values of the two keys in a pop-up alert message, which initially will be</span>
-<span>null</span>
-<span>. Then the keys and values are saved to local storage, retrieved, and redisplayed,</span>
-<span>this time having assigned values. Finally, the keys are removed and then an attempt at</span>
-<span>retrieving these values is again made, but the returned values are once again</span>
-<span>null</span>
-<span>.</span>
-<span>Figure 25-2</span>
-<span>shows the second of these three alert messages.</span>
+<span>Example 25-2 combines the preceding examples into a single document that displays the current values of the two keys in a pop-up alert message, which initially will be null . Then the keys and values are saved to local storage, retrieved, and redisplayed, this time having assigned values. Finally, the keys are removed and then an attempt at retrieving these values is again made, but the returned values are once again null . Figure 25-2 shows the second of these three alert messages.</span>
 <br/>
 <span>Example 25-2. Getting, setting, and removing local storage data</span>
 <pre>
@@ -463,22 +230,13 @@ else
 <p><img src="images/25.2.png"/></p>
 <span>Figure 25-2. Two keys and their values are read from local storage</span>
 <br/>
-<span>You are not restricted to just storing usernames and passwords;</span>
-<span>you can include virtually any and all data, and as many key/value</span>
-<span>pairs as you like, up to the available storage limit for your domain.</span>
+<span>You are not restricted to just storing usernames and passwords; you can include virtually any and all data, and as many key/value pairs as you like, up to the available storage limit for your domain.</span>
 <h3>Web Workers</h3>
-<span>With</span>
-<span>web workers</span>
-<span>, you can create sections of JavaScript code that will run in the background, without having to set up and monitor interrupts. Instead, whenever it has</span>
-<span>something to report, your background process communicates with the main JavaScript through the use of an event.</span>
+<span>With web workers , you can create sections of JavaScript code that will run in the background, without having to set up and monitor interrupts. Instead, whenever it has something to report, your background process communicates with the main JavaScript through the use of an event.</span>
 <br/>
-<span>This means the JavaScript interpreter gets to decide how to allocate time slices most</span>
-<span>efficiently, and your code only needs to worry about communicating with the background task whenever there&rsquo;s information to convey.</span>
+<span>This means the JavaScript interpreter gets to decide how to allocate time slices most efficiently, and your code only needs to worry about communicating with the background task whenever there&rsquo;s information to convey.</span>
 <br/>
-<span>Example 25-3</span>
-<span>shows how you can set up web workers to compute a repetitive task in</span>
-<span>the background&mdash;in this instance, calculating prime numbers.</span>
-<span>Example 25-3. Setting up and communicating with a web worker</span>
+<span>Example 25-3 shows how you can set up web workers to compute a repetitive task in the background&mdash;in this instance, calculating prime numbers. Example 25-3. Setting up and communicating with a web worker</span>
 <pre>
 <code class="html">
 &lt;!DOCTYPE html&gt;
@@ -508,61 +266,13 @@ else
 &lt;/html&gt;
 </code>
 </pre>
-<span>This example first creates a</span>
-<span>&lt;span&gt;</span>
-<span>element with the ID of</span>
-<span>result</span>
-<span>in which output</span>
-<span>from the web worker will be placed. Then, in the</span>
-<span>&lt;script&gt;</span>
-<span>section,</span>
-<span>window.Worker</span>
-<span>is</span>
-<span>tested via a</span>
-<span>!!</span>
-<span>pair of</span>
-<span>not</span>
-<span>operators. This has the effect of returning a Boolean value</span>
-<span>of</span>
-<span>true</span>
-<span>if the</span>
-<span>Worker</span>
-<span>method exists, and</span>
-<span>false</span>
-<span>otherwise. If it is not</span>
-<span>true</span>
-<span>, a message</span>
-<span>is displayed in the</span>
-<span>else</span>
-<span>section, alerting us that web workers are not available.</span>
+<span>This example first creates a &lt;span&gt; element with the ID of result in which output from the web worker will be placed. Then, in the &lt;script&gt; section, window.Worker is tested via a !! pair of not operators. This has the effect of returning a Boolean value of true if the Worker method exists, and false otherwise. If it is not true , a message is displayed in the else section, alerting us that web workers are not available.</span>
 <br/>
-<span>Otherwise, a new</span>
-<span>worker</span>
-<span>object is created by calling</span>
-<span>Worker</span>
-<span>, passing it the filename</span>
-<span>worker.js</span>
-<span>&nbsp;(shown shortly). Then the</span>
-<span>onmessage</span>
-<span>event of the new</span>
-<span>worker</span>
-<span>object is</span>
-<span>attached to an anonymous function that places any message passed to it by</span>
-<span>worker.js</span>
-<span>into the</span>
-<span>innerHTML</span>
-<span>property of the previously created</span>
-<span>&lt;span&gt;</span>
-<span>element.</span>
+<span>Otherwise, a new worker object is created by calling Worker , passing it the filename worker.js &nbsp;(shown shortly). Then the onmessage event of the new worker object is attached to an anonymous function that places any message passed to it by worker.js into the innerHTML property of the previously created &lt;span&gt; element.</span>
 <br/>
-<span>The web worker itself is saved in the file</span>
-<span>worker.js</span>
-<span>, in</span>
-<span>Example 25-4</span>
-<span>.</span>
+<span>The web worker itself is saved in the file worker.js , in Example 25-4 .</span>
 <br/>
-<span>Example 25-4.</span>
-<span>The worker.js web worker</span>
+<span>Example 25-4. The worker.js web worker</span>
 <pre>
 <code class="javascript">
 var n = 1
@@ -577,69 +287,21 @@ search: while (true)
 }
 </code>
 </pre>
-<span>This file assigns the value</span>
-<span>1</span>
-<span>to the variable</span>
-<span>n</span>
-<span>. It then loops continuously, incrementing</span>
-<span>n</span>
-<span>and checking it for primality by a brute-force method of testing all values from</span>
-<span>1</span>
-<span>to</span>
-<span>the square root of</span>
-<span>n</span>
-<span>to see if they divide exactly into</span>
-<span>n</span>
-<span>, with no remainder. Should a</span>
-<span>factor be found, the</span>
-<span>continue</span>
-<span>command stops the brute-force attack immediately</span>
-<span>because the number is not prime, and starts processing at the next higher value of</span>
-<span>n</span>
-<span>.</span>
+<span>This file assigns the value 1 to the variable n . It then loops continuously, incrementing n and checking it for primality by a brute-force method of testing all values from 1 to the square root of n to see if they divide exactly into n , with no remainder. Should a factor be found, the continue command stops the brute-force attack immediately because the number is not prime, and starts processing at the next higher value of n .</span>
 <br/>
-<span>But if all possible factors are tested and none result in a zero remainder, then</span>
-<span>n</span>
-<span>must</span>
-<span>be prime, so its value is passed to</span>
-<span>postMessage</span>
-<span>, which sends a message back to the</span>
-<span>onmessage</span>
-<span>event of the object that set up this web worker.</span>
-<span>The result looks like the following:</span>
+<span>But if all possible factors are tested and none result in a zero remainder, then n must be prime, so its value is passed to postMessage , which sends a message back to the onmessage event of the object that set up this web worker. The result looks like the following:</span>
 <br/>
 <span>Current highest prime number: 30477191</span>
 <br/>
-<span>To stop a web worker from running, issue a call to the</span>
-<span>terminate</span>
-<span>method of the</span>
-<span>worker</span>
-<span>object, like this:</span>
+<span>To stop a web worker from running, issue a call to the terminate method of the worker object, like this:</span>
 <pre><code class="javascript">worker.terminate()</code></pre>
-<span>If you wish to stop this particular example from running, you can</span>
-<span>enter the following into your browser&rsquo;s address bar:</span>
+<span>If you wish to stop this particular example from running, you can enter the following into your browser&rsquo;s address bar:</span>
 <pre><code class="javascript">javascript:worker.terminate()</code></pre>
-<span>Also note that due to the way Chrome handles security, you cannot</span>
-<span>use web workers on a file system, only from a web server (or running the files from</span>
-<span>localhost</span>
-<span>on a development server such as</span>
-<span>Zend Server, detailed in</span>
-<span>Chapter 2</span>
-<span>).</span>
+<span>Also note that due to the way Chrome handles security, you cannot use web workers on a file system, only from a web server (or running the files from localhost on a development server such as Zend Server, detailed in Chapter 2 ).</span>
 <h3>Offline Web Applications</h3>
-<span>By providing the right information to a browser, you can tell it how to download all</span>
-<span>the components of a web page to enable it to be loaded and run offline. The main file</span>
-<span>you need is a manifest file with the file extension</span>
-<span>.appcache</span>
-<span>. To illustrate a simple web</span>
-<span>app, I chose to create a clock, so the manifest file is given the filename</span>
-<span>clock.appcache</span>
-<span>and looks like</span>
-<span>Example 25-5</span>
-<span>.</span>
+<span>By providing the right information to a browser, you can tell it how to download all the components of a web page to enable it to be loaded and run offline. The main file you need is a manifest file with the file extension .appcache . To illustrate a simple web app, I chose to create a clock, so the manifest file is given the filename clock.appcache and looks like Example 25-5 .</span>
 <br/>
-<span>Example 25-5.</span>
-<span>The clock.appcache file</span>
+<span>Example 25-5. The clock.appcache file</span>
 <pre>
 <code class="javascript">
 CACHE MANIFEST
@@ -649,18 +311,9 @@ clock.css
 clock.js
 </code>
 </pre>
-<span>The first line in this file declares it to be a manifest file. The lines following list the</span>
-<span>files the browser needs to download and store, starting with</span>
-<span>&nbsp;Example 25-6</span>
-<span>, the</span>
-<span>clock.html</span>
-<span>file, and followed by the</span>
-<span>OSC.js</span>
-<span>file, which is the same one used by many</span>
-<span>examples in this book.</span>
+<span>The first line in this file declares it to be a manifest file. The lines following list the files the browser needs to download and store, starting with &nbsp;Example 25-6 , the clock.html file, and followed by the OSC.js file, which is the same one used by many examples in this book.</span>
 <br/>
-<span>Example 25-6.</span>
-<span>The clock.html file</span>
+<span>Example 25-6. The clock.html file</span>
 <pre>
 <code class="html">
 &lt;!DOCTYPE html&gt;
@@ -679,39 +332,13 @@ clock.js
 </pre>
 <span>This file declares that it has a manifest file available from within the</span>
 <br/>
-<span>&lt;html&gt;</span>
-<span>tag:</span>
-<span>&lt;html manifest='clock.appcache'&gt;</span>
+<span>&lt;html&gt; tag: &lt;html manifest='clock.appcache'&gt;</span>
 <br/>
-<span>To support offline web apps, you will need to add the MIME type</span>
-<span>text/cache-manifest</span>
-<span>for</span>
-<span>the</span>
-<span>file</span>
-<span>extension</span>
-<span>.appcache</span>
-<span>to</span>
-<span>your</span>
-<span>server, in order for it to send the manifest file using the correct</span>
-<span>type. There&rsquo;s a neat shortcut you can use for this, which is to create</span>
-<span>a file called</span>
-<span>.htaccess</span>
-<span>in the same folder as the files to be made available offline, with the following contents:</span>
+<span>To support offline web apps, you will need to add the MIME type text/cache-manifest for the file extension .appcache to your server, in order for it to send the manifest file using the correct type. There&rsquo;s a neat shortcut you can use for this, which is to create a file called .htaccess in the same folder as the files to be made available offline, with the following contents:</span>
 <br/>
 <span>AddType text/cache-manifest .appcache</span>
 <br/>
-<span>The files</span>
-<span>OSC.js</span>
-<span>,</span>
-<span>clock.js</span>
-<span>, and</span>
-<span>clock.css</span>
-<span>are then imported and used by the document.</span>
-<span>The JavaScript in</span>
-<span>clock.js</span>
-<span>is listed in</span>
-<span>Example 25-7</span>
-<span>.</span>
+<span>The files OSC.js , clock.js , and clock.css are then imported and used by the document. The JavaScript in clock.js is listed in Example 25-7 .</span>
 <br/>
 <span>Example 25-7. The clock.js file</span>
 <pre>
@@ -722,60 +349,17 @@ setInterval(function()
 }, 1000)
 </code>
 </pre>
-<span>This is a very simple anonymous function attached to an interval that repeats once a</span>
-<span>second to save the current date and time into the</span>
-<span>innerHTML</span>
-<span>property of the</span>
-<span>&lt;output&gt;</span>
-<span>element that has the ID of</span>
-<span>clock</span>
-<span>.</span>
+<span>This is a very simple anonymous function attached to an interval that repeats once a second to save the current date and time into the innerHTML property of the &lt;output&gt; element that has the ID of clock .</span>
 <br/>
-<span>The final file is the</span>
-<span>clock.css</span>
-<span>file (see</span>
-<span>Example 25-8</span>
-<span>), which simply applies bold styling</span>
-<span>to the</span>
-<span>&lt;output&gt;</span>
-<span>element.</span>
+<span>The final file is the clock.css file (see Example 25-8 ), which simply applies bold styling to the &lt;output&gt; element.</span>
 <br/>
 <span>Example 25-8. The clock.css file</span>
 <pre><code class="css">output { font-weight:bold; }</code></pre>
-<span>As long as the</span>
-<span>&nbsp;clock.appcache</span>
-<span>&nbsp;file lists them all, these four files (</span>
-<span>clock.html</span>
-<span>,</span>
-<span>&nbsp;OSC.js</span>
-<span>,</span>
-<span>clock.css</span>
-<span>, and</span>
-<span>clock.js</span>
-<span>) together make up a working offline web application, which will</span>
-<span>be downloaded and made available locally by any web browser that understands offline web apps. When run, the output looks like this:</span>
+<span>As long as the &nbsp;clock.appcache &nbsp;file lists them all, these four files ( clock.html , &nbsp;OSC.js , clock.css , and clock.js ) together make up a working offline web application, which will be downloaded and made available locally by any web browser that understands offline web apps. When run, the output looks like this:</span>
 <pre><code class="javascript">The time is: Thu Jul 19 2018 15:24:26 GMT+0000 (GMT Standard Time)</code></pre>
-<span>For details on the offline web application specifications, you can</span>
-<span>check out the official website at</span>
-<span>http://tinyurl.com/offlinewebapps</span>
-<span>.</span>
+<span>For details on the offline web application specifications, you can check out the official website at http://tinyurl.com/offlinewebapps .</span>
 <h3>Drag and Drop</h3>
-<span>You can easily support dragging and dropping of objects on a web page by setting up</span>
-<span>event</span>
-<span>handlers</span>
-<span>for</span>
-<span>the</span>
-<span>ondragstart</span>
-<span>,</span>
-<span>ondragover</span>
-<span>,</span>
-<span>and</span>
-<span>ondrop</span>
-<span>events,</span>
-<span>as</span>
-<span>in</span>
-<span>Example 25-9</span>
-<span>.</span>
+<span>You can easily support dragging and dropping of objects on a web page by setting up event handlers for the ondragstart , ondragover , and ondrop events, as in Example 25-9 .</span>
 <br/>
 <span>Example 25-9. Dragging and dropping objects</span>
 <pre>
@@ -823,129 +407,36 @@ setInterval(function()
 &lt;/html&gt;
 </code>
 </pre>
-<span>After setting up the HTML, title, and loading in the</span>
-<span>OSC.js</span>
-<span>file, this document styles</span>
-<span>the</span>
-<span>div</span>
-<span>element with the ID of</span>
-<span>dest</span>
-<span>, giving it a background color, border, set dimensions, and padding.</span>
+<span>After setting up the HTML, title, and loading in the OSC.js file, this document styles the div element with the ID of dest , giving it a background color, border, set dimensions, and padding.</span>
 <br/>
-<span>Then, in the</span>
-<span>&lt;body&gt;</span>
-<span>section, the</span>
-<span>div</span>
-<span>element is created, and its</span>
-<span>ondrop</span>
-<span>and</span>
-<span>ondrag</span>
-<span>over</span>
-<span>events have the event handler functions</span>
-<span>drop</span>
-<span>and</span>
-<span>allow</span>
-<span>attached to them. After</span>
-<span>this there&rsquo;s some text, and then three images are displayed with their</span>
-<span>draggable</span>
-<span>properties set to</span>
-<span>true</span>
-<span>, and the function</span>
-<span>drag</span>
-<span>is attached to the</span>
-<span>ondragstart</span>
-<span>event of each.</span>
+<span>Then, in the &lt;body&gt; section, the div element is created, and its ondrop and ondrag over events have the event handler functions drop and allow attached to them. After this there&rsquo;s some text, and then three images are displayed with their draggable properties set to true , and the function drag is attached to the ondragstart event of each.</span>
 <br/>
-<span>In the</span>
-<span>&lt;script&gt;</span>
-<span>section, the</span>
-<span>allow</span>
-<span>event handler function simply prevents the default</span>
-<span>action for dragging (which is to disallow it), while the</span>
-<span>drag</span>
-<span>event handler function</span>
-<span>calls the</span>
-<span>setData</span>
-<span>method of the</span>
-<span>dataTransfer</span>
-<span>object of the event, passing it the</span>
-<span>MIME type</span>
-<span>image/png</span>
-<span>and the</span>
-<span>target.id</span>
-<span>of the event (which is the object being</span>
-<span>dragged). The</span>
-<span>dataTransfer</span>
-<span>object holds the data that is being dragged during a</span>
-<span>drag-and-drop operation.</span>
+<span>In the &lt;script&gt; section, the allow event handler function simply prevents the default action for dragging (which is to disallow it), while the drag event handler function calls the setData method of the dataTransfer object of the event, passing it the MIME type image/png and the target.id of the event (which is the object being dragged). The dataTransfer object holds the data that is being dragged during a drag-and-drop operation.</span>
 <br/>
-<span>Finally, the</span>
-<span>drop</span>
-<span>event handler function also intercepts its default action so that dropping is allowed, and then it fetches the contents of the object being dragged from the</span>
-<span>dataTransfer</span>
-<span>object, passing it the MIME type of the object. Then the dropped data</span>
-<span>is appended to the target (which is the</span>
-<span>dest</span>
-<span>div) using its</span>
-<span>appendChild</span>
-<span>method.</span>
+<span>Finally, the drop event handler function also intercepts its default action so that dropping is allowed, and then it fetches the contents of the object being dragged from the dataTransfer object, passing it the MIME type of the object. Then the dropped data is appended to the target (which is the dest div) using its appendChild method.</span>
 <br/>
-<span>If you try this example for yourself, you&rsquo;ll be able to drag and drop the images into</span>
-<span>the</span>
-<span>div</span>
-<span>element, where they will stay, as shown in</span>
-<span>Figure 25-3</span>
-<span>.</span>
+<span>If you try this example for yourself, you&rsquo;ll be able to drag and drop the images into the div element, where they will stay, as shown in Figure 25-3 .</span>
 <br/>
 <p><img src="images/25.3.png"/></p>
 <span>Figure 25-3. Two images have been dragged and dropped</span>
 <br/>
-<span>Other events you can attach to include</span>
-<span>ondragenter</span>
-<span>for when a drag operation enters</span>
-<span>an element,</span>
-<span>ondragleave</span>
-<span>for when one leaves an element, and</span>
-<span>ondragend</span>
-<span>for when a</span>
-<span>dragging operation ends, which you can use (for example) to modify the cursor during these operations.</span>
+<span>Other events you can attach to include ondragenter for when a drag operation enters an element, ondragleave for when one leaves an element, and ondragend for when a dragging operation ends, which you can use (for example) to modify the cursor during these operations.</span>
 <h3>Cross-Document Messaging</h3>
-<span>You&rsquo;ve already seen messaging in use a little earlier, in the web worker section. I didn&rsquo;t</span>
-<span>go into any details, however, as it wasn&rsquo;t the core topic being discussed, and the message was being posted only to the same document anyway. But for obvious security</span>
-<span>reasons, cross-document messaging does need to be applied with caution, so you</span>
-<span>need to fully understand its workings if you plan to use it.</span>
+<span>You&rsquo;ve already seen messaging in use a little earlier, in the web worker section. I didn&rsquo;t go into any details, however, as it wasn&rsquo;t the core topic being discussed, and the message was being posted only to the same document anyway. But for obvious security reasons, cross-document messaging does need to be applied with caution, so you need to fully understand its workings if you plan to use it.</span>
 <br/>
-<span>Before HTML5, browser developers disallowed cross-site scripting, but as well as</span>
-<span>blocking potential attack sites, this prevented communication between legitimate</span>
-<span>pages. Document interaction of any kind generally had to occur through Ajax and a</span>
-<span>third-party web server, which was cumbersome and fiddly to build and maintain.</span>
+<span>Before HTML5, browser developers disallowed cross-site scripting, but as well as blocking potential attack sites, this prevented communication between legitimate pages. Document interaction of any kind generally had to occur through Ajax and a third-party web server, which was cumbersome and fiddly to build and maintain.</span>
 <br/>
-<span>But web messaging now allows scripts to interact across these boundaries by using</span>
-<span>some sensible security restraints to prevent malicious hacking attempts. It is achieved</span>
-<span>through use of the</span>
-<span>postMessage</span>
-<span>method, allowing plain-text messages to be sent</span>
-<span>from one domain to another.</span>
+<span>But web messaging now allows scripts to interact across these boundaries by using some sensible security restraints to prevent malicious hacking attempts. It is achieved through use of the postMessage method, allowing plain-text messages to be sent from one domain to another.</span>
 <br/>
-<span>This requires that JavaScript first obtain the</span>
-<span>Window</span>
-<span>object of the receiving document,</span>
-<span>letting messages post to a variety of other windows, frames, or iframes directly related</span>
-<span>to the sender&rsquo;s document. The received message event has the following attributes:</span>
+<span>This requires that JavaScript first obtain the Window object of the receiving document, letting messages post to a variety of other windows, frames, or iframes directly related to the sender&rsquo;s document. The received message event has the following attributes:</span>
 <br/>
-<span>data</span>
-<span>The incoming message</span>
+<span>data The incoming message</span>
 <br/>
-<span>origin</span>
-<span>The origin of the sender document, including the scheme, hostname, and port</span>
+<span>origin The origin of the sender document, including the scheme, hostname, and port</span>
 <br/>
-<span>source</span>
-<span>The source window of the sender document</span>
+<span>source The source window of the sender document</span>
 <br/>
-<span>The code to send messages is just a single instruction, in which you pass the message</span>
-<span>to be sent and the domain to which it applies, as in</span>
-<span>Example 25-10</span>
-<span>.</span>
+<span>The code to send messages is just a single instruction, in which you pass the message to be sent and the domain to which it applies, as in Example 25-10 .</span>
 <br/>
 <span>Example 25-10. Sending web messages to an iframe</span>
 <pre>
@@ -969,38 +460,7 @@ setInterval(function()
 &lt;/html&gt;
 </code>
 </pre>
-<span>Here the usual use is made of the</span>
-<span>OSC.js</span>
-<span>file to pull in the</span>
-<span>O</span>
-<span>function, and then an</span>
-<span>iframe element with the ID of</span>
-<span>frame</span>
-<span>is created, which loads in</span>
-<span>Example 25-11</span>
-<span>. Then,</span>
-<span>within the</span>
-<span>&lt;script&gt;</span>
-<span>section, the variable</span>
-<span>count</span>
-<span>is initialized to</span>
-<span>1</span>
-<span>and a repeating</span>
-<span>interval is set up to occur every second to post the string</span>
-<span>'Message '</span>
-<span>(using the</span>
-<span>post</span>
-<span>Message</span>
-<span>method) along with the current value of</span>
-<span>count</span>
-<span>, which is then incremented.</span>
-<span>The</span>
-<span>postMessage</span>
-<span>call is attached to the</span>
-<span>contentWindow</span>
-<span>property of the iframe object,</span>
-<span>not the iframe object itself. This is important because web messaging requires posts to</span>
-<span>be made to a window, not to an object within a window.</span>
+<span>Here the usual use is made of the OSC.js file to pull in the O function, and then an iframe element with the ID of frame is created, which loads in Example 25-11 . Then, within the &lt;script&gt; section, the variable count is initialized to 1 and a repeating interval is set up to occur every second to post the string 'Message ' (using the post Message method) along with the current value of count , which is then incremented. The postMessage call is attached to the contentWindow property of the iframe object, not the iframe object itself. This is important because web messaging requires posts to be made to a window, not to an object within a window.</span>
 <br/>
 <span>Example 25-11. Receiving messages from another document</span>
 <pre>
@@ -1032,63 +492,18 @@ setInterval(function()
 &lt;/html&gt;
 </code>
 </pre>
-<span>This example sets up a little styling to make output clearer, and then creates a</span>
-<span>div</span>
-<span>element with the ID</span>
-<span>output</span>
-<span>, in which the contents of received messages will be</span>
-<span>placed. In the</span>
-<span>&lt;script&gt;</span>
-<span>section, there&rsquo;s a single anonymous function attached to the</span>
-<span>onmessage</span>
-<span>event of the window. In this function, the</span>
-<span>event.origin</span>
-<span>,</span>
-<span>event.source</span>
-<span>,</span>
-<span>and</span>
-<span>event.data</span>
-<span>property values are then displayed, as shown in</span>
-<span>Figure 25-4</span>
-<span>.</span>
+<span>This example sets up a little styling to make output clearer, and then creates a div element with the ID output , in which the contents of received messages will be placed. In the &lt;script&gt; section, there&rsquo;s a single anonymous function attached to the onmessage event of the window. In this function, the event.origin , event.source , and event.data property values are then displayed, as shown in Figure 25-4 .</span>
 <br/>
 <p><img src="images/25.4.png"/></p>
 <span>Figure 25-4. The iframe has so far received 17 messages</span>
 <br/>
-<span>Web messaging works only across domains, so you cannot test it by loading files in</span>
-<span>from a file system; you must use a web server. As you can see from</span>
-<span>Figure 25-4</span>
-<span>, the</span>
-<span>origin is</span>
-<span>http://localhost</span>
-<span>because these examples are running on a local development</span>
-<span>server. The source is the</span>
-<span>Window</span>
-<span>object, and the current message value is</span>
-<span>Message 17</span>
-<span>.</span>
+<span>Web messaging works only across domains, so you cannot test it by loading files in from a file system; you must use a web server. As you can see from Figure 25-4 , the origin is http://localhost because these examples are running on a local development server. The source is the Window object, and the current message value is Message 17 .</span>
 <br/>
-<span>At the moment,</span>
-<span>Example 25-10</span>
-<span>is not at all secure because the domain value passed to</span>
-<span>postMessage</span>
-<span>is the wildcard</span>
-<span>*</span>
-<span>:</span>
+<span>At the moment, Example 25-10 is not at all secure because the domain value passed to postMessage is the wildcard * :</span>
 <pre><code class="javascript">O('frame').contentWindow.postMessage('Message ' + count++,'*')</code></pre>
-<span>To direct messages only to documents originating from a particular domain, you can</span>
-<span>change this parameter. In the current case, a value of</span>
-<span>http://localhost</span>
-<span>would</span>
-<span>ensure that only documents loaded from the local server will be sent any messages:</span>
+<span>To direct messages only to documents originating from a particular domain, you can change this parameter. In the current case, a value of http://localhost would ensure that only documents loaded from the local server will be sent any messages:</span>
 <pre><code class="javascript">O('frame').contentWindow.postMessage('Message ' + count++,'http://localhost')</code></pre>
-<span>Likewise, as it stands, the listener program displays any and all messages it receives.</span>
-<span>This is also not a very secure state of affairs, because malicious documents also</span>
-<span>present in the browser can attempt to send messages that unwary listener code in</span>
-<span>other documents might otherwise access. Therefore, you can restrict the messages</span>
-<span>your listeners react to by using an</span>
-<span>if</span>
-<span>statement, like this:</span>
+<span>Likewise, as it stands, the listener program displays any and all messages it receives. This is also not a very secure state of affairs, because malicious documents also present in the browser can attempt to send messages that unwary listener code in other documents might otherwise access. Therefore, you can restrict the messages your listeners react to by using an if statement, like this:</span>
 <pre>
 <code class="javascript">
 window.onmessage = function(event)
@@ -1103,57 +518,13 @@ window.onmessage = function(event)
 }
 </code>
 </pre>
-<span>If you always use the proper domain for the site you are working</span>
-<span>with, your web messaging communications will be more secure.</span>
-<span>However, be aware that since messages are sent in the clear, there</span>
-<span>may be insecurities in some browsers or browser plug-ins that</span>
-<span>might make this kind of communication insecure. One way to</span>
-<span>boost your security, then, is to create your own obfuscation or</span>
-<span>encryption scheme for all your web messages, and also consider</span>
-<span>introducing your own two-way communication protocols to verify</span>
-<span>each message as being authentic.</span>
+<span>If you always use the proper domain for the site you are working with, your web messaging communications will be more secure. However, be aware that since messages are sent in the clear, there may be insecurities in some browsers or browser plug-ins that might make this kind of communication insecure. One way to boost your security, then, is to create your own obfuscation or encryption scheme for all your web messages, and also consider introducing your own two-way communication protocols to verify each message as being authentic.</span>
 <br/>
-<span>Normally, you won&rsquo;t alert the user to the</span>
-<span>origin</span>
-<span>or</span>
-<span>source</span>
-<span>values, and will simply</span>
-<span>make use of them for security checking. These examples, however, display those values to help you experiment with web messaging and see what is going on. As well as</span>
-<span>iframes, documents in pop-up windows and other tabs may also talk to each other</span>
-<span>using this method.</span>
+<span>Normally, you won&rsquo;t alert the user to the origin or source values, and will simply make use of them for security checking. These examples, however, display those values to help you experiment with web messaging and see what is going on. As well as iframes, documents in pop-up windows and other tabs may also talk to each other using this method.</span>
 <h3>Microdata</h3>
-<span>Microdata</span>
-<span>is a subset of HTML designed to provide metadata to a document in order</span>
-<span>to make it have meaning to software, just as it has meaning to a reader of the document. Microdata makes available the following new tag attributes:</span>
-<span>itemscope</span>
-<span>,</span>
-<span>item</span>
-<span>type</span>
-<span>,</span>
-<span>itemid</span>
-<span>,</span>
-<span>itemref</span>
-<span>,</span>
-<span>and</span>
-<span>itemprop</span>
-<span>.</span>
-<span>Using</span>
-<span>these,</span>
-<span>you</span>
-<span>can</span>
-<span>clearly</span>
-<span>define</span>
-<span>the</span>
-<span>properties of an item such as a book, providing a range of information that a computer can use to understand, for example, its authors, publishers, contents, and so on.</span>
+<span>Microdata is a subset of HTML designed to provide metadata to a document in order to make it have meaning to software, just as it has meaning to a reader of the document. Microdata makes available the following new tag attributes: itemscope , item type , itemid , itemref , and itemprop . Using these, you can clearly define the properties of an item such as a book, providing a range of information that a computer can use to understand, for example, its authors, publishers, contents, and so on.</span>
 <br/>
-<span>Or, more frequently these days, microdata is important for search engines and social</span>
-<span>networking sites.</span>
-<span>&nbsp;Example 25-12</span>
-<span>&nbsp;creates a short bio for George Washington as if it</span>
-<span>were a profile on a social networking site, with microdata added to the various elements (shown highlighted in bold). The result looks like</span>
-<span>Figure 25-5</span>
-<span>, which will look</span>
-<span>the same with or without microdata, because it is never visible to the user.</span>
+<span>Or, more frequently these days, microdata is important for search engines and social networking sites. &nbsp;Example 25-12 &nbsp;creates a short bio for George Washington as if it were a profile on a social networking site, with microdata added to the various elements (shown highlighted in bold). The result looks like Figure 25-5 , which will look the same with or without microdata, because it is never visible to the user.</span>
 <br/>
 <span>Example 25-12. Adding microdata to HTML</span>
 <br/>
@@ -1189,15 +560,9 @@ window.onmessage = function(event)
 <p><img src="images/25.5.png"/></p>
 <span>Figure 25-5. This document contains microdata, which is not visible</span>
 <br/>
-<span>Browsers don&rsquo;t yet really do anything with microdata, but it&rsquo;s still very worth getting</span>
-<span>to know it. Using the right microdata gives lots of information to search engines like</span>
-<span>Google or Bing, and may help to promote clearly annotated pages in the rankings as</span>
-<span>compared to sites that don&rsquo;t implement microdata.</span>
+<span>Browsers don&rsquo;t yet really do anything with microdata, but it&rsquo;s still very worth getting to know it. Using the right microdata gives lots of information to search engines like Google or Bing, and may help to promote clearly annotated pages in the rankings as compared to sites that don&rsquo;t implement microdata.</span>
 <br/>
-<span>However, at some point, browsers may also find a use for this information, and you&rsquo;ll</span>
-<span>be able to determine whether or not they support microdata by checking whether the</span>
-<span>getItems</span>
-<span>method exists, like this:</span>
+<span>However, at some point, browsers may also find a use for this information, and you&rsquo;ll be able to determine whether or not they support microdata by checking whether the getItems method exists, like this:</span>
 <pre>
 <code class="javascript">
 if (!!document.getItems)
@@ -1210,36 +575,9 @@ else
 }
 </code>
 </pre>
-<span>The</span>
-<span>!!</span>
-<span>pair of</span>
-<span>not</span>
-<span>operators is a shorthand way of returning a Boolean value representing the existence (or lack thereof) of the</span>
-<span>getItems</span>
-<span>method. If it exists, then</span>
-<span>true</span>
-<span>is returned and microdata is supported; otherwise,</span>
-<span>false</span>
-<span>is returned.</span>
+<span>The !! pair of not operators is a shorthand way of returning a Boolean value representing the existence (or lack thereof) of the getItems method. If it exists, then true is returned and microdata is supported; otherwise, false is returned.</span>
 <br/>
-<span>Currently, only the Mozilla Firefox and Opera browsers support accessing microdata,</span>
-<span>but the other browsers are sure to follow soon. When they do, you&rsquo;ll be able to extract</span>
-<span>this data in the following manner, in which (after the page has loaded) the</span>
-<span>data</span>
-<span>object</span>
-<span>is retrieved from a call to</span>
-<span>getItems</span>
-<span>, and the value for the key</span>
-<span>'jobTitle'</span>
-<span>(just as an</span>
-<span>example) is retrieved by accessing the</span>
-<span>data</span>
-<span>object&rsquo;s</span>
-<span>properties</span>
-<span>object, and then</span>
-<span>fetching the latter object&rsquo;s</span>
-<span>textContent</span>
-<span>property:</span>
+<span>Currently, only the Mozilla Firefox and Opera browsers support accessing microdata, but the other browsers are sure to follow soon. When they do, you&rsquo;ll be able to extract this data in the following manner, in which (after the page has loaded) the data object is retrieved from a call to getItems , and the value for the key 'jobTitle' (just as an example) is retrieved by accessing the data object&rsquo;s properties object, and then fetching the latter object&rsquo;s textContent property:</span>
 <pre>
 <code class="javascript">
 window.onload = function()
@@ -1252,72 +590,11 @@ window.onload = function()
 }
 </code>
 </pre>
-<span>Browsers that support this feature will display as</span>
-<span>Figure 25-6</span>
-<span>, but other browsers will</span>
-<span>not trigger the pop-up window.</span>
+<span>Browsers that support this feature will display as Figure 25-6 , but other browsers will not trigger the pop-up window.</span>
 <br/>
 <p><img src="images/25.6.jpeg"/></p>
 <span>Figure 25-6. Displaying the value for the &lsquo;jobTitle&rsquo; microdata key</span>
 <br/>
-<span>Google has stated that it definitely uses microdata when it finds it, and that microdata</span>
-<span>is also the preferred snippet format for Google+, so it&rsquo;s well worth starting to add it to</span>
-<span>your HTML where applicable. For a complete breakdown of the myriad of microdata</span>
-<span>properties available, check out</span>
-<span>http://schema.org</span>
-<span>, which is also the reference for the</span>
-<span>microdata schemes as declared in the</span>
-<span>itemType</span>
-<span>properties.</span>
+<span>Google has stated that it definitely uses microdata when it finds it, and that microdata is also the preferred snippet format for Google+, so it&rsquo;s well worth starting to add it to your HTML where applicable. For a complete breakdown of the myriad of microdata properties available, check out http://schema.org , which is also the reference for the microdata schemes as declared in the itemType properties.</span>
 <h3>Other HTML5 Tags</h3>
-<span>A number of other new HTML5 tags that have not yet been implemented in many</span>
-<span>browsers, and therefore I won&rsquo;t cover them (particularly since their specs could</span>
-<span>change). But, for the sake of completeness, these tags are</span>
-<span>&lt;article&gt;</span>
-<span>,</span>
-<span>&lt;aside&gt;</span>
-<span>,</span>
-<span>&lt;details&gt;</span>
-<span>,</span>
-<span>&lt;figcaption&gt;</span>
-<span>,</span>
-<span>&lt;figure&gt;</span>
-<span>,</span>
-<span>&lt;footer&gt;</span>
-<span>,</span>
-<span>&lt;header&gt;</span>
-<span>,</span>
-<span>&lt;hgroup&gt;</span>
-<span>,</span>
-<span>&lt;keygen&gt;</span>
-<span>,</span>
-<span>&lt;mark&gt;</span>
-<span>,</span>
-<span>&lt;menuitem&gt;</span>
-<span>,</span>
-<span>&lt;meter&gt;</span>
-<span>,</span>
-<span>&lt;nav&gt;</span>
-<span>,</span>
-<span>&lt;output&gt;</span>
-<span>,</span>
-<span>&lt;progress&gt;</span>
-<span>,</span>
-<span>&lt;rp&gt;</span>
-<span>,</span>
-<span>&lt;rt&gt;</span>
-<span>,</span>
-<span>&lt;ruby&gt;</span>
-<span>,</span>
-<span>&lt;section&gt;</span>
-<span>,</span>
-<span>&lt;summary&gt;</span>
-<span>,</span>
-<span>&lt;time&gt;</span>
-<span>, and</span>
-<span>&lt;wbr&gt;</span>
-<span>. You can get more information on these</span>
-<span>and all other HTML5 tags at</span>
-<span>&nbsp;http://tinyurl.com/h5markup</span>
-<span>&nbsp;(check out the elements</span>
-<span>sporting a NEW icon).</span>
+<span>A number of other new HTML5 tags that have not yet been implemented in many browsers, and therefore I won&rsquo;t cover them (particularly since their specs could change). But, for the sake of completeness, these tags are &lt;article&gt; , &lt;aside&gt; , &lt;details&gt; , &lt;figcaption&gt; , &lt;figure&gt; , &lt;footer&gt; , &lt;header&gt; , &lt;hgroup&gt; , &lt;keygen&gt; , &lt;mark&gt; , &lt;menuitem&gt; , &lt;meter&gt; , &lt;nav&gt; , &lt;output&gt; , &lt;progress&gt; , &lt;rp&gt; , &lt;rt&gt; , &lt;ruby&gt; , &lt;section&gt; , &lt;summary&gt; , &lt;time&gt; , and &lt;wbr&gt; . You can get more information on these and all other HTML5 tags at &nbsp;http://tinyurl.com/h5markup &nbsp;(check out the elements sporting a NEW icon).</span>

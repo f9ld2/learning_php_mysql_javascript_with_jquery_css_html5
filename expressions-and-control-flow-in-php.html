@@ -3,110 +3,27 @@ layout: default
 title: "Expressions and Control Flow in PHP"
 ---
 <h2>Expressions and Control Flow in PHP</h2>
-<span>The previous chapter introduced several topics in passing that this chapter covers</span>
-<span>more fully, such as making choices (branching) and creating complex expressions. In</span>
-<span>the previous chapter, I wanted to focus on the most basic syntax and operations in</span>
-<span>PHP, but I couldn&rsquo;t avoid touching on more-advanced topics. Now I can fill in the</span>
-<span>background that you need to use these powerful PHP features properly.</span>
+<span>The previous chapter introduced several topics in passing that this chapter covers more fully, such as making choices (branching) and creating complex expressions. In the previous chapter, I wanted to focus on the most basic syntax and operations in PHP, but I couldn&rsquo;t avoid touching on more-advanced topics. Now I can fill in the background that you need to use these powerful PHP features properly.</span>
 <br/>
-<span>In this chapter, you will get a thorough grounding in how PHP programming works</span>
-<span>in practice and in how to control the flow of the program.</span>
+<span>In this chapter, you will get a thorough grounding in how PHP programming works in practice and in how to control the flow of the program.</span>
 <h3>Expressions</h3>
-<span>Let&rsquo;s start with the most fundamental part of any programming language:</span>
-<span>expressions</span>
-<span>.</span>
+<span>Let&rsquo;s start with the most fundamental part of any programming language: expressions .</span>
 <br/>
-<span>An expression is a combination of values, variables, operators, and functions that</span>
-<span>results in a value. It&rsquo;s familiar to anyone who has taken high-school algebra:</span>
+<span>An expression is a combination of values, variables, operators, and functions that results in a value. It&rsquo;s familiar to anyone who has taken high-school algebra:</span>
 <br/>
-<span>y</span>
-<span>= 3(abs(2</span>
-<span>x</span>
-<span>) + 4)</span>
+<span>y = 3(abs(2 x ) + 4)</span>
 <br/>
 <span>which in PHP would be</span>
 <pre><code class="php">$y = 3 * (abs(2 * $x) + 4);</code></pre>
-<span>The value returned (</span>
-<span>y</span>
-<span>, or</span>
-<span>$y</span>
-<span>in this case) can be a number, a string, or a</span>
-<span>Boolean value</span>
-<span>(named after George Boole, a 19th-century English mathematician and philosopher).</span>
-<span>By now, you should be familiar with the first two value types, but I&rsquo;ll explain the</span>
-<span>third.</span>
+<span>The value returned ( y , or $y in this case) can be a number, a string, or a Boolean value (named after George Boole, a 19th-century English mathematician and philosopher). By now, you should be familiar with the first two value types, but I&rsquo;ll explain the third.</span>
 <h4>TRUE or FALSE?</h4>
-<span>A basic Boolean value can be either</span>
-<span>TRUE</span>
-<span>or</span>
-<span>FALSE</span>
-<span>. For example, the expression</span>
-<span>20 &gt;</span>
-<span>9</span>
-<span>(20 is greater than 9) is</span>
-<span>TRUE</span>
-<span>, and the expression</span>
-<span>5 == 6</span>
-<span>(5 is equal to 6) is</span>
-<span>FALSE</span>
-<span>.</span>
-<span>(You can combine Boolean operations using operators such as</span>
-<span>AND</span>
-<span>,</span>
-<span>OR</span>
-<span>, and</span>
-<span>XOR</span>
-<span>,</span>
-<span>which are covered later in this chapter.)</span>
+<span>A basic Boolean value can be either TRUE or FALSE . For example, the expression 20 &gt; 9 (20 is greater than 9) is TRUE , and the expression 5 == 6 (5 is equal to 6) is FALSE . (You can combine Boolean operations using operators such as AND , OR , and XOR , which are covered later in this chapter.)</span>
 <br/>
-<span>Note that I am using uppercase letters for the names</span>
-<span>TRUE</span>
-<span>and</span>
-<span>FALSE</span>
-<span>. This is because they are predefined constants in PHP. You</span>
-<span>can also use the lowercase versions, if you prefer, as they are also</span>
-<span>predefined. In fact, the lowercase versions are more stable, because</span>
-<span>PHP does not allow you to redefine them; the uppercase ones may</span>
-<span>be redefined&mdash;something you should bear in mind if you import</span>
-<span>third-party code.</span>
+<span>Note that I am using uppercase letters for the names TRUE and FALSE . This is because they are predefined constants in PHP. You can also use the lowercase versions, if you prefer, as they are also predefined. In fact, the lowercase versions are more stable, because PHP does not allow you to redefine them; the uppercase ones may be redefined&mdash;something you should bear in mind if you import third-party code.</span>
 <br/>
-<span>Example 4-1</span>
-<span>shows some simple expressions: the two I just mentioned, plus a couple</span>
-<span>more. For each line, it prints out a letter between</span>
-<span>a</span>
-<span>and</span>
-<span>d</span>
-<span>, followed by a colon and the</span>
-<span>result of the expressions. The</span>
-<span>&lt;br&gt;</span>
-<span>tag is there to create a line break and thus separate</span>
-<span>the output into four lines in HTML.</span>
+<span>Example 4-1 shows some simple expressions: the two I just mentioned, plus a couple more. For each line, it prints out a letter between a and d , followed by a colon and the result of the expressions. The &lt;br&gt; tag is there to create a line break and thus separate the output into four lines in HTML.</span>
 <br/>
-<span>Now that we are fully into the age of HTML5, and XHTML is no</span>
-<span>longer being planned to supersede HTML, you do not need to use</span>
-<span>the self-closing</span>
-<span>&lt;br /&gt;</span>
-<span>form of the</span>
-<span>&lt;br&gt;</span>
-<span>tag, or any void elements</span>
-<span>(ones without closing tags), because the</span>
-<span>/</span>
-<span>is now optional. Therefore, I have chosen to use the simpler style in this book. If you ever</span>
-<span>made HTML nonvoid tags self-closing (such as</span>
-<span>&lt;div /&gt;</span>
-<span>), they will</span>
-<span>not work in HTML5 because the</span>
-<span>/</span>
-<span>will be ignored, and you will</span>
-<span>need to replace them with (for example)</span>
-<span>&lt;div&gt;</span>
-<span>...</span>
-<span>&lt;/div&gt;</span>
-<span>. However,</span>
-<span>you must still use the</span>
-<span>&lt;br /&gt;</span>
-<span>form of HTML syntax when using</span>
-<span>XHTML.</span>
+<span>Now that we are fully into the age of HTML5, and XHTML is no longer being planned to supersede HTML, you do not need to use the self-closing &lt;br /&gt; form of the &lt;br&gt; tag, or any void elements (ones without closing tags), because the / is now optional. Therefore, I have chosen to use the simpler style in this book. If you ever made HTML nonvoid tags self-closing (such as &lt;div /&gt; ), they will not work in HTML5 because the / will be ignored, and you will need to replace them with (for example) &lt;div&gt; ... &lt;/div&gt; . However, you must still use the &lt;br /&gt; form of HTML syntax when using XHTML.</span>
 <br/>
 <span>Example 4-1. Four simple Boolean expressions</span>
 <pre>
@@ -125,29 +42,7 @@ title: "Expressions and Control Flow in PHP"
 <b class="t30">b: []</b><br/>
 <b class="t30">c: []</b><br/>
 <b class="t30">d: [1]</b><br/>
-<span>Notice that both expressions</span>
-<span>a:</span>
-<span>and</span>
-<span>d:</span>
-<span>evaluate to</span>
-<span>TRUE</span>
-<span>, which has a value of</span>
-<span>1</span>
-<span>. But</span>
-<span>b:</span>
-<span>and</span>
-<span>c:</span>
-<span>, which evaluate to</span>
-<span>FALSE</span>
-<span>, do not show any value, because in PHP the</span>
-<span>constant</span>
-<span>FALSE</span>
-<span>is defined as</span>
-<span>NULL</span>
-<span>, or nothing. To verify this for yourself, you could</span>
-<span>enter the code in</span>
-<span>Example 4-2</span>
-<span>.</span>
+<span>Notice that both expressions a: and d: evaluate to TRUE , which has a value of 1 . But b: and c: , which evaluate to FALSE , do not show any value, because in PHP the constant FALSE is defined as NULL , or nothing. To verify this for yourself, you could enter the code in Example 4-2 .</span>
 <br/>
 <span>Example 4-2. Outputting the values of TRUE and FALSE</span>
 <pre>
@@ -162,30 +57,11 @@ title: "Expressions and Control Flow in PHP"
 <br/>
 <b class="t30">a: [1]</b><br/>
 <b class="t30">b: []</b><br/>
-<span>By the way, in some languages</span>
-<span>FALSE</span>
-<span>may be defined as</span>
-<span>0</span>
-<span>or even</span>
-<span>&ndash;</span>
-<span>1</span>
-<span>, so it&rsquo;s worth</span>
-<span>checking on its definition in each language.</span>
+<span>By the way, in some languages FALSE may be defined as 0 or even &ndash; 1 , so it&rsquo;s worth checking on its definition in each language.</span>
 <h4>Literals and Variables</h4>
-<span>The simplest form of an expression is a</span>
-<span>literal</span>
-<span>, which simply means something that</span>
-<span>evaluates to itself, such as the number</span>
-<span>73</span>
-<span>or the string</span>
-<span>"Hello"</span>
-<span>. An expression could</span>
-<span>also simply be a variable, which evaluates to the value that has been assigned to it.</span>
-<span>They are both types of expressions, because they return a value.</span>
+<span>The simplest form of an expression is a literal , which simply means something that evaluates to itself, such as the number 73 or the string "Hello" . An expression could also simply be a variable, which evaluates to the value that has been assigned to it. They are both types of expressions, because they return a value.</span>
 <br/>
-<span>Example 4-3</span>
-<span>shows three literals and two variables, all of which return values, albeit</span>
-<span>of different types.</span>
+<span>Example 4-3 shows three literals and two variables, all of which return values, albeit of different types.</span>
 <br/>
 <span>Example 4-3. Literals and variables</span>
 <pre>
@@ -202,38 +78,16 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>And, as you&rsquo;d expect, you see a return value from all of these with the exception of</span>
-<span>c:</span>
-<span>,</span>
-<span>which evaluates to</span>
-<span>FALSE</span>
-<span>, returning nothing in the following output:</span>
+<span>And, as you&rsquo;d expect, you see a return value from all of these with the exception of c: , which evaluates to FALSE , returning nothing in the following output:</span>
 <br/>
 <b class="t30">a: 73</b><br/>
 <b class="t30">b: Hello</b><br/>
 <b class="t30">c:</b><br/>
 <b class="t30">d: Brian</b><br/>
 <b class="t30">e: 37</b><br/>
-<span>In conjunction with operators, it&rsquo;s possible to create more-complex expressions that</span>
-<span>evaluate to useful results.</span>
+<span>In conjunction with operators, it&rsquo;s possible to create more-complex expressions that evaluate to useful results.</span>
 <br/>
-<span>When you combine assignment or control-flow constructs with expressions, the</span>
-<span>result is a</span>
-<span>statement</span>
-<span>.</span>
-<span>Example 4-4</span>
-<span>shows one of each. The first assigns the result of the</span>
-<span>expression</span>
-<span>366 - $day_number</span>
-<span>to the variable</span>
-<span>$days_to_new_year</span>
-<span>, and the second</span>
-<span>outputs a friendly message only if the expression</span>
-<span>$days_to_new_year &lt; 30</span>
-<span>evaluates</span>
-<span>to</span>
-<span>TRUE</span>
-<span>.</span>
+<span>When you combine assignment or control-flow constructs with expressions, the result is a statement . Example 4-4 shows one of each. The first assigns the result of the expression 366 - $day_number to the variable $days_to_new_year , and the second outputs a friendly message only if the expression $days_to_new_year &lt; 30 evaluates to TRUE .</span>
 <br/>
 <span>Example 4-4. An expression and a statement</span>
 <pre>
@@ -248,10 +102,7 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 <h3>Operators</h3>
-<span>PHP offers a lot of powerful operators that range from arithmetic, string, and logical</span>
-<span>operators to assignment, comparison, and more (see</span>
-<span>Table 4-1</span>
-<span>).</span>
+<span>PHP offers a lot of powerful operators that range from arithmetic, string, and logical operators to assignment, comparison, and more (see Table 4-1 ).</span>
 <br/>
 <span>Table 4-1. PHP operator types</span>
 <table class="tbl-left">
@@ -309,83 +160,33 @@ title: "Expressions and Control Flow in PHP"
 <br/>
 <span>Each operator takes a different number of operands:</span>
 <br/>
-<span>&bull;</span>
-<span>Unary</span>
-<span>&nbsp;operators, such as incrementing (</span>
-<span>$a++</span>
-<span>) or negation (</span>
-<span>-$a</span>
-<span>), which take a</span>
-<span>single operand.</span>
+<span>&bull; Unary &nbsp;operators, such as incrementing ( $a++ ) or negation ( -$a ), which take a single operand.</span>
 <br/>
-<span>&bull;</span>
-<span>Binary</span>
-<span>operators, which represent the bulk of PHP operators, including addition,</span>
-<span>subtraction, multiplication, and division.</span>
+<span>&bull; Binary operators, which represent the bulk of PHP operators, including addition, subtraction, multiplication, and division.</span>
 <br/>
-<span>&bull;</span>
-<span>One</span>
-<span>ternary</span>
-<span>operator, which takes the form</span>
-<span>? x : y</span>
-<span>. It&rsquo;s a terse, single-line</span>
-<span>if</span>
-<span>statement that chooses between two expressions, depending on the result of a</span>
-<span>third one.</span>
+<span>&bull; One ternary operator, which takes the form ? x : y . It&rsquo;s a terse, single-line if statement that chooses between two expressions, depending on the result of a third one.</span>
 <h4>Operator Precedence</h4>
-<span>If all operators had the same precedence, they would be processed in the order in</span>
-<span>which they are encountered. In fact, many operators do have the same precedence, so</span>
-<span>let&rsquo;s look at a few in</span>
-<span>Example 4-5</span>
-<span>.</span>
+<span>If all operators had the same precedence, they would be processed in the order in which they are encountered. In fact, many operators do have the same precedence, so let&rsquo;s look at a few in Example 4-5 .</span>
 <br/>
-<span>Example 4-5.</span>
-<span>Three equivalent expressions</span>
-<span>1 + 2 + 3 - 4 + 5</span><br/>
+<span>Example 4-5. Three equivalent expressions 1 + 2 + 3 - 4 + 5</span><br/>
 <span>2 - 4 + 5 + 3 + 1</span><br/>
 <span>5 + 2 - 4 + 1 + 3</span><br/>
 <br/>
-<span>Here you will see that although the numbers (and their preceding operators) have</span>
-<span>been moved, the result of each expression is the value</span>
-<span>7</span>
-<span>, because the plus and minus</span>
-<span>operators have the same precedence. We can try the same thing with multiplication</span>
-<span>and division (see</span>
-<span>Example 4-6</span>
-<span>).</span>
+<span>Here you will see that although the numbers (and their preceding operators) have been moved, the result of each expression is the value 7 , because the plus and minus operators have the same precedence. We can try the same thing with multiplication and division (see Example 4-6 ).</span>
 <br/>
-<span>Example 4-6.</span>
-<span>Three expressions that are also equivalent</span>
+<span>Example 4-6. Three expressions that are also equivalent</span>
 <br/>
 <span>1 * 2 * 3 / 4 * 5</span><br/>
 <span>2 / 4 * 5 * 3 * 1</span><br/>
 <span>5 * 2 / 4 * 1 * 3</span><br/>
-<span>Here the resulting value is always</span>
-<span>7.5</span>
-<span>. But things change when we mix operators with</span>
-<span>different</span>
-<span>precedencies in an expression, as in</span>
-<span>Example 4-7</span>
-<span>.</span>
+<span>Here the resulting value is always 7.5 . But things change when we mix operators with different precedencies in an expression, as in Example 4-7 .</span>
 <br/>
-<span>Example 4-7.</span>
-<span>Three expressions using operators of mixed precedence</span>
+<span>Example 4-7. Three expressions using operators of mixed precedence</span>
 <br/>
 <span>1 + 2 * 3 - 4 * 5</span><br/>
 <span>2 - 4 * 5 * 3 + 1</span><br/>
 <span>5 + 2 - 4 + 1 * 3</span><br/>
-<span>If there were no operator precedence, these three expressions would evaluate to</span>
-<span>25</span>
-<span>,</span>
-<span>&ndash;</span>
-<span>29</span>
-<span>, and</span>
-<span>12</span>
-<span>, respectively. But because multiplication and division take precedence over</span>
-<span>addition and subtraction, there are implied parentheses around these parts of the</span>
-<span>expressions, which would look like</span>
-<span>Example 4-8</span>
-<span>if they were visible.</span>
+<span>If there were no operator precedence, these three expressions would evaluate to 25 , &ndash; 29 , and 12 , respectively. But because multiplication and division take precedence over addition and subtraction, there are implied parentheses around these parts of the expressions, which would look like Example 4-8 if they were visible.</span>
 <br/>
 <span>Example 4-8. Three expressions showing implied parentheses</span>
 <pre>
@@ -395,10 +196,7 @@ title: "Expressions and Control Flow in PHP"
     5 + 2 - 4 + (1 * 3)
 </code>
 </pre>
-<span>Clearly, PHP must evaluate the subexpressions within parentheses first to derive the</span>
-<span>semi-completed expressions in</span>
-<span>Example 4-9</span>
-<span>.</span>
+<span>Clearly, PHP must evaluate the subexpressions within parentheses first to derive the semi-completed expressions in Example 4-9 .</span>
 <br/>
 <span>Example 4-9. After evaluating the subexpressions in parentheses</span>
 <pre>
@@ -408,32 +206,11 @@ title: "Expressions and Control Flow in PHP"
     5 + 2 - 4 + (3)
 </code>
 </pre>
-<span>The final results of these expressions are</span>
-<span>&ndash;</span>
-<span>13</span>
-<span>,</span>
-<span>&ndash;</span>
-<span>57</span>
-<span>, and</span>
-<span>6</span>
-<span>, respectively (quite different</span>
-<span>from the results of</span>
-<span>25</span>
-<span>,</span>
-<span>&ndash;</span>
-<span>29</span>
-<span>, and</span>
-<span>12</span>
-<span>that we would have seen had there been no operator precedence).</span>
+<span>The final results of these expressions are &ndash; 13 , &ndash; 57 , and 6 , respectively (quite different from the results of 25 , &ndash; 29 , and 12 that we would have seen had there been no operator precedence).</span>
 <br/>
-<span>Of course, you can override the default operator precedence by inserting your own</span>
-<span>parentheses and forcing the original results that we would have seen had there been</span>
-<span>no operator precedence (see</span>
-<span>Example 4-10</span>
-<span>).</span>
+<span>Of course, you can override the default operator precedence by inserting your own parentheses and forcing the original results that we would have seen had there been no operator precedence (see Example 4-10 ).</span>
 <br/>
-<span>Example 4-10. Forcing</span>
-<span>left-to-right evaluation</span>
+<span>Example 4-10. Forcing left-to-right evaluation</span>
 <pre>
 <code class="php">
     ((1 + 2) * 3 - 4) * 5
@@ -441,18 +218,9 @@ title: "Expressions and Control Flow in PHP"
     (5 + 2 - 4 + 1) * 3
 </code>
 </pre>
-<span>With parentheses correctly inserted, we now see the values</span>
-<span>25</span>
-<span>,</span>
-<span>&ndash;</span>
-<span>29</span>
-<span>, and</span>
-<span>12</span>
-<span>, respectively.</span>
+<span>With parentheses correctly inserted, we now see the values 25 , &ndash; 29 , and 12 , respectively.</span>
 <br/>
-<span>Table 4-2</span>
-<span>lists PHP&rsquo;s operators in order of prece dence from high to low.</span>
-<span>Table 4-2. The precedence of PHP operators (high to low)</span>
+<span>Table 4-2 lists PHP&rsquo;s operators in order of prece dence from high to low. Table 4-2. The precedence of PHP operators (high to low)</span>
 <table class="tbl-left">
     <tr>
         <td>Operator(s)</td>
@@ -533,14 +301,9 @@ title: "Expressions and Control Flow in PHP"
 </table><br/>
 
 <h4>Associativity</h4>
-<span>We&rsquo;ve been looking at processing expressions from left to right, except where operator precedence is in effect. But some operators require processing from right to left,</span>
-<span>and this direction of processing is called the operator&rsquo;s</span>
-<span>associativity</span>
-<span>. For some operators, there is no associativity.</span>
+<span>We&rsquo;ve been looking at processing expressions from left to right, except where operator precedence is in effect. But some operators require processing from right to left, and this direction of processing is called the operator&rsquo;s associativity . For some operators, there is no associativity.</span>
 <br/>
-<span>Associativity becomes important in cases in which you do not explicitly force precedence, so you need to be aware of the default actions of operators, as detailed in</span>
-<span>Table 4-3</span>
-<span>, which lists operators and their associativity.</span>
+<span>Associativity becomes important in cases in which you do not explicitly force precedence, so you need to be aware of the default actions of operators, as detailed in Table 4-3 , which lists operators and their associativity.</span>
 <br/>
 <span>Table 4-3. Operator associativity</span>
 <table class="tbl-left">
@@ -661,12 +424,7 @@ title: "Expressions and Control Flow in PHP"
     </tr>
 </table><br/>
     
-<span>For example, let&rsquo;s take a look at the assignment operator in</span>
-<span>Example 4-11</span>
-<span>, where three</span>
-<span>variables are all set to the value</span>
-<span>0</span>
-<span>.</span>
+<span>For example, let&rsquo;s take a look at the assignment operator in Example 4-11 , where three variables are all set to the value 0 .</span>
 <br/>
 <span>Example 4-11. A multiple-assignment statement</span>
 <pre>
@@ -676,34 +434,13 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>This multiple assignment is possible only if the rightmost part of the expression is</span>
-<span>evaluated first, and then processing continues in a right-to-left direction.</span>
+<span>This multiple assignment is possible only if the rightmost part of the expression is evaluated first, and then processing continues in a right-to-left direction.</span>
 <br/>
-<span>As a beginner to PHP, you should avoid the potential pitfalls of</span>
-<span>operator associativity by always nesting your subexpressions within</span>
-<span>parentheses to force the order of evaluation. This will also help</span>
-<span>other programmers who may have to maintain your code to understand what is happening.</span>
+<span>As a beginner to PHP, you should avoid the potential pitfalls of operator associativity by always nesting your subexpressions within parentheses to force the order of evaluation. This will also help other programmers who may have to maintain your code to understand what is happening.</span>
 <h4>Relational Operators</h4>
-<span>Relational operators test two operands and return a Boolean result of either</span>
-<span>TRUE</span>
-<span>or</span>
-<span>FALSE</span>
-<span>. There are three types of relational operators:</span>
-<span>equality</span>
-<span>,</span>
-<span>comparison</span>
-<span>, and</span>
-<span>logical</span>
-<span>.</span>
+<span>Relational operators test two operands and return a Boolean result of either TRUE or FALSE . There are three types of relational operators: equality , comparison , and logical .</span>
 <h6>Equality</h6>
-<span>As we&rsquo;ve already encountered a few times in this chapter, the equality operator is</span>
-<span>==</span>
-<span>(two equals signs). It is important not to confuse it with the</span>
-<span>=</span>
-<span>(single equals sign)</span>
-<span>assignment operator. In</span>
-<span>Example 4-12</span>
-<span>, the first statement assigns a value and the second tests it for equality.</span>
+<span>As we&rsquo;ve already encountered a few times in this chapter, the equality operator is == (two equals signs). It is important not to confuse it with the = (single equals sign) assignment operator. In Example 4-12 , the first statement assigns a value and the second tests it for equality.</span>
 <br/>
 <span>Example 4-12. Assigning a value and testing for equality</span>
 <pre>
@@ -714,31 +451,11 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>As you see, by returning either</span>
-<span>TRUE</span>
-<span>or</span>
-<span>FALSE</span>
-<span>, the equality operator enables you to</span>
-<span>test for conditions using, for example, an</span>
-<span>if</span>
-<span>statement. But that&rsquo;s not the whole story,</span>
-<span>because PHP is a loosely typed language. If the two operands of an equality expression are of different types, PHP will convert them to whatever type makes the best</span>
-<span>sense to it.</span>
+<span>As you see, by returning either TRUE or FALSE , the equality operator enables you to test for conditions using, for example, an if statement. But that&rsquo;s not the whole story, because PHP is a loosely typed language. If the two operands of an equality expression are of different types, PHP will convert them to whatever type makes the best sense to it.</span>
 <br/>
-<span>For example, any strings composed entirely of numbers will be converted to numbers</span>
-<span>whenever compared with a number. In</span>
-<span>&nbsp;Example 4-13</span>
-<span>,</span>
-<span>$a</span>
-<span>and</span>
-<span>$b</span>
-<span>are two different</span>
-<span>strings, and we would therefore expect neither of the</span>
-<span>if</span>
-<span>statements to output a result.</span>
+<span>For example, any strings composed entirely of numbers will be converted to numbers whenever compared with a number. In &nbsp;Example 4-13 , $a and $b are two different strings, and we would therefore expect neither of the if statements to output a result.</span>
 <br/>
-<span>Example 4-13.</span>
-<span>The equality and identity operators</span>
+<span>Example 4-13. The equality and identity operators</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -749,46 +466,11 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>However, if you run the example, you will see that it outputs the number</span>
-<span>1</span>
-<span>, which</span>
-<span>means that the first</span>
-<span>if</span>
-<span>statement evaluated to</span>
-<span>TRUE</span>
-<span>. This is because both strings were</span>
-<span>first converted to numbers, and</span>
-<span>1000</span>
-<span>is the same numerical value as</span>
-<span>+1000</span>
-<span>.</span>
+<span>However, if you run the example, you will see that it outputs the number 1 , which means that the first if statement evaluated to TRUE . This is because both strings were first converted to numbers, and 1000 is the same numerical value as +1000 .</span>
 <br/>
-<span>In contrast, the second</span>
-<span>if</span>
-<span>statement uses the</span>
-<span>identity</span>
-<span>operator&mdash;three equals signs in</span>
-<span>a row&mdash;which prevents PHP from automatically converting types.</span>
-<span>$a</span>
-<span>and</span>
-<span>$b</span>
-<span>are</span>
-<span>therefore compared as strings and are found to be different, so nothing is output.</span>
+<span>In contrast, the second if statement uses the identity operator&mdash;three equals signs in a row&mdash;which prevents PHP from automatically converting types. $a and $b are therefore compared as strings and are found to be different, so nothing is output.</span>
 <br/>
-<span>As with forcing operator precedence, whenever you have any doubt about how PHP</span>
-<span>will convert operand types, you can use the identity operator to turn this behavior off.</span>
-<span>In the same way that you can use the equality operator to test for operands being</span>
-<span>equal, you can test for them</span>
-<span>not</span>
-<span>being equal using</span>
-<span>!=</span>
-<span>, the inequality operator. Take a</span>
-<span>look at</span>
-<span>Example 4-14</span>
-<span>, which is a rewrite of</span>
-<span>Example 4-13</span>
-<span>, in which the equality and</span>
-<span>identity operators have been replaced with their inverses.</span>
+<span>As with forcing operator precedence, whenever you have any doubt about how PHP will convert operand types, you can use the identity operator to turn this behavior off. In the same way that you can use the equality operator to test for operands being equal, you can test for them not being equal using != , the inequality operator. Take a look at Example 4-14 , which is a rewrite of Example 4-13 , in which the equality and identity operators have been replaced with their inverses.</span>
 <br/>
 <span>Example 4-14. The inequality and not-identical operators</span>
 <pre>
@@ -801,50 +483,13 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>And, as you might expect, the first</span>
-<span>if</span>
-<span>statement does not output the number</span>
-<span>1</span>
-<span>,</span>
-<span>because the code is asking whether</span>
-<span>$a</span>
-<span>and</span>
-<span>$b</span>
-<span>are</span>
-<span>not</span>
-<span>equal to each other numerically.</span>
+<span>And, as you might expect, the first if statement does not output the number 1 , because the code is asking whether $a and $b are not equal to each other numerically.</span>
 <br/>
-<span>Instead, it outputs the number</span>
-<span>2</span>
-<span>, because the second</span>
-<span>if</span>
-<span>statement is asking whether</span>
-<span>$a</span>
-<span>and</span>
-<span>$b</span>
-<span>are</span>
-<span>&nbsp;not</span>
-<span>&nbsp;identical to each other in their present operand types, and the</span>
-<span>answer is</span>
-<span>TRUE</span>
-<span>; they are not the same.</span>
+<span>Instead, it outputs the number 2 , because the second if statement is asking whether $a and $b are &nbsp;not &nbsp;identical to each other in their present operand types, and the answer is TRUE ; they are not the same.</span>
 <h6>Comparison operators</h6>
-<span>Using comparison operators, you can test for more than just equality and inequality.</span>
-<span>PHP also gives you</span>
-<span>&gt;</span>
-<span>(is greater than),</span>
-<span>&lt;</span>
-<span>(is less than),</span>
-<span>&gt;=</span>
-<span>(is greater than or equal to),</span>
-<span>and</span>
-<span>&lt;=</span>
-<span>(is less than or equal to) to play with.</span>
-<span>Example 4-15</span>
-<span>shows these in use.</span>
+<span>Using comparison operators, you can test for more than just equality and inequality. PHP also gives you &gt; (is greater than), &lt; (is less than), &gt;= (is greater than or equal to), and &lt;= (is less than or equal to) to play with. Example 4-15 shows these in use.</span>
 <br/>
-<span>Example 4-15.</span>
-<span>The four comparison operators</span>
+<span>Example 4-15. The four comparison operators</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -856,31 +501,13 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>In this example, where</span>
-<span>$a</span>
-<span>is</span>
-<span>2</span>
-<span>and</span>
-<span>$b</span>
-<span>is</span>
-<span>3</span>
-<span>, the following is output:</span>
+<span>In this example, where $a is 2 and $b is 3 , the following is output:</span>
 <br/>
 <b class="t30">2 is less than 3</b>
 <br/>
 <b class="t30">2 is less than or equal to 3</b>
 <br/>
-<span>Try this example yourself, altering the values of</span>
-<span>$a</span>
-<span>and</span>
-<span>$b</span>
-<span>, to see the results. Try setting them to the same value and see what happens.</span>
-<span>Logical operators</span>
-<span>Logical operators produce true-or-false results, and therefore are also known as</span>
-<span>Boolean operators</span>
-<span>. There are four of them (see</span>
-<span>Table 4-4</span>
-<span>).</span>
+<span>Try this example yourself, altering the values of $a and $b , to see the results. Try setting them to the same value and see what happens. Logical operators Logical operators produce true-or-false results, and therefore are also known as Boolean operators . There are four of them (see Table 4-4 ).</span>
 <br/>
 <span>Table 4-4. The logical operators</span>
 
@@ -907,17 +534,9 @@ title: "Expressions and Control Flow in PHP"
     </tr>
 </table><br/>
 
-<span>You can see these operators used in</span>
-<span>Example 4-16</span>
-<span>. Note that the</span>
-<span>!</span>
-<span>symbol is required</span>
-<span>by PHP in place of</span>
-<span>NOT</span>
-<span>. Furthermore, the operators can be lower- or uppercase.</span>
+<span>You can see these operators used in Example 4-16 . Note that the ! symbol is required by PHP in place of NOT . Furthermore, the operators can be lower- or uppercase.</span>
 <br/>
-<span>Example 4-16.</span>
-<span>The logical operators in use</span>
+<span>Example 4-16. The logical operators in use</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -929,84 +548,9 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>This example outputs</span>
-<span>NULL</span>
-<span>,</span>
-<span>1</span>
-<span>,</span>
-<span>1</span>
-<span>,</span>
-<span>NULL</span>
-<span>, meaning that only the second and third</span>
-<span>echo</span>
-<span>statements evaluate as</span>
-<span>TRUE</span>
-<span>. (Remember that</span>
-<span>NULL</span>
-<span>&mdash;</span>
-<span>or nothing&mdash;represents a value</span>
-<span>of</span>
-<span>FALSE</span>
-<span>.) This is because the</span>
-<span>AND</span>
-<span>statement requires both operands to be</span>
-<span>TRUE</span>
-<span>if it is</span>
-<span>going to return a value of</span>
-<span>TRUE</span>
-<span>, while the fourth statement performs a</span>
-<span>NOT</span>
-<span>on the</span>
-<span>value of</span>
-<span>$a</span>
-<span>, turning it from</span>
-<span>TRUE</span>
-<span>(a value of</span>
-<span>1</span>
-<span>) to</span>
-<span>FALSE</span>
-<span>. If you wish to experiment</span>
-<span>with this, try out the code, giving</span>
-<span>$a</span>
-<span>and</span>
-<span>$b</span>
-<span>varying values of</span>
-<span>1</span>
-<span>and</span>
-<span>0</span>
-<span>.</span>
-<span>When coding, remember that</span>
-<span>AND</span>
-<span>and</span>
-<span>OR</span>
-<span>have lower precedence</span>
-<span>than the other versions of the operators,</span>
-<span>&amp;&amp;</span>
-<span>and</span>
-<span>||</span>
-<span>. In complex</span>
-<span>expressions, it may be safer to use</span>
-<span>&amp;&amp;</span>
-<span>and</span>
-<span>||</span>
-<span>for this reason.</span>
+<span>This example outputs NULL , 1 , 1 , NULL , meaning that only the second and third echo statements evaluate as TRUE . (Remember that NULL &mdash; or nothing&mdash;represents a value of FALSE .) This is because the AND statement requires both operands to be TRUE if it is going to return a value of TRUE , while the fourth statement performs a NOT on the value of $a , turning it from TRUE (a value of 1 ) to FALSE . If you wish to experiment with this, try out the code, giving $a and $b varying values of 1 and 0 . When coding, remember that AND and OR have lower precedence than the other versions of the operators, &amp;&amp; and || . In complex expressions, it may be safer to use &amp;&amp; and || for this reason.</span>
 <br/>
-<span>The</span>
-<span>OR</span>
-<span>operator can cause unintentional problems in</span>
-<span>if</span>
-<span>statements, because the second operand will not be evaluated if the first is evaluated as</span>
-<span>TRUE</span>
-<span>. In</span>
-<span>Example 4-17</span>
-<span>,</span>
-<span>the function</span>
-<span>getnext</span>
-<span>will never be called if</span>
-<span>$finished</span>
-<span>has a value of</span>
-<span>1</span>
-<span>.</span>
+<span>The OR operator can cause unintentional problems in if statements, because the second operand will not be evaluated if the first is evaluated as TRUE . In Example 4-17 , the function getnext will never be called if $finished has a value of 1 .</span>
 <br/>
 <span>Example 4-17. A statement using the OR operator</span>
 <pre>
@@ -1016,17 +560,9 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>If you need</span>
-<span>getnext</span>
-<span>to be called at each</span>
-<span>if</span>
-<span>statement, you could rewrite the code as</span>
-<span>has been done in</span>
-<span>Example 4-18</span>
-<span>.</span>
+<span>If you need getnext to be called at each if statement, you could rewrite the code as has been done in Example 4-18 .</span>
 <br/>
-<span>Example 4-18.</span>
-<span>The &ldquo;if...OR&rdquo; statement modified to ensure calling of getnext</span>
+<span>Example 4-18. The &ldquo;if...OR&rdquo; statement modified to ensure calling of getnext</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -1035,31 +571,11 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>In this case, the code in function</span>
-<span>getnext</span>
-<span>will be executed and the value returned</span>
-<span>stored in</span>
-<span>$gn</span>
-<span>before the</span>
-<span>if</span>
-<span>statement.</span>
+<span>In this case, the code in function getnext will be executed and the value returned stored in $gn before the if statement.</span>
 <br/>
-<span>Another solution is to switch the two clauses to make sure that</span>
-<span>get</span>
-<span>next</span>
-<span>is executed, as it will then appear first in the expression.</span>
+<span>Another solution is to switch the two clauses to make sure that get next is executed, as it will then appear first in the expression.</span>
 <br/>
-<span>Table 4-5</span>
-<span>shows all the possible variations of using the logical operators. You should</span>
-<span>also note that</span>
-<span>!TRUE</span>
-<span>equals</span>
-<span>FALSE</span>
-<span>, and</span>
-<span>!FALSE</span>
-<span>equals</span>
-<span>TRUE</span>
-<span>.</span>
+<span>Table 4-5 shows all the possible variations of using the logical operators. You should also note that !TRUE equals FALSE , and !FALSE equals TRUE .</span>
 <br/>
 <span>Table 4-5. All possible PHP logical expressions</span>
 <table class="tbl-left">
@@ -1107,84 +623,21 @@ title: "Expressions and Control Flow in PHP"
 </table>
 
 <h3>Conditionals</h3>
-<span>Conditionals</span>
-<span>&nbsp;alter program flow. They enable you to ask questions about certain</span>
-<span>things and respond to the answers you get in different ways. Conditionals are central</span>
-<span>to dynamic web pages&mdash;the goal of using PHP in the first place&mdash;because they make</span>
-<span>it easy to create different output each time a page is viewed.</span>
+<span>Conditionals &nbsp;alter program flow. They enable you to ask questions about certain things and respond to the answers you get in different ways. Conditionals are central to dynamic web pages&mdash;the goal of using PHP in the first place&mdash;because they make it easy to create different output each time a page is viewed.</span>
 <br/>
-<span>There are three types of nonlooping conditionals: the</span>
-<span>if</span>
-<span>statement, the</span>
-<span>switch</span>
-<span>statement, and the</span>
-<span>?</span>
-<span>operator. By</span>
-<span>nonlooping</span>
-<span>, I mean that the actions initiated by the statement take place and program flow then moves on, whereas looping conditionals</span>
-<span>(which we&rsquo;ll get to shortly) execute code over and over until a condition is met.</span>
+<span>There are three types of nonlooping conditionals: the if statement, the switch statement, and the ? operator. By nonlooping , I mean that the actions initiated by the statement take place and program flow then moves on, whereas looping conditionals (which we&rsquo;ll get to shortly) execute code over and over until a condition is met.</span>
 <h4>The if Statement</h4>
-<span>One way of thinking about program flow is to imagine it as a single-lane highway that</span>
-<span>you</span>
-<span>are</span>
-<span>driving</span>
-<span>along.</span>
-<span>It&rsquo;s</span>
-<span>pretty</span>
-<span>much</span>
-<span>a</span>
-<span>straight</span>
-<span>line,</span>
-<span>but</span>
-<span>now</span>
-<span>and</span>
-<span>then</span>
-<span>you</span>
-<span>encounter various signs telling you where to go.</span>
+<span>One way of thinking about program flow is to imagine it as a single-lane highway that you are driving along. It&rsquo;s pretty much a straight line, but now and then you encounter various signs telling you where to go.</span>
 <br/>
-<span>In the case of an</span>
-<span>if</span>
-<span>statement, you could imagine coming across a detour sign that</span>
-<span>you have to follow if a certain condition is</span>
-<span>TRUE</span>
-<span>. If so, you drive off and follow the</span>
-<span>detour until you return to where it started and then continue on your way in your</span>
-<span>original direction. Or, if the condition isn&rsquo;t</span>
-<span>TRUE</span>
-<span>, you ignore the detour and carry on</span>
-<span>driving (see</span>
-<span>Figure 4-1</span>
-<span>).</span>
+<span>In the case of an if statement, you could imagine coming across a detour sign that you have to follow if a certain condition is TRUE . If so, you drive off and follow the detour until you return to where it started and then continue on your way in your original direction. Or, if the condition isn&rsquo;t TRUE , you ignore the detour and carry on driving (see Figure 4-1 ).</span>
 <p><image src="images/4.1.png"/></p>
 <span>Figure 4-1. Program flow is like a single-lane highway</span>
 <br/>
-<span>The contents of the</span>
-<span>if</span>
-<span>condition can be any valid PHP expression, including equality,</span>
-<span>comparison, tests for</span>
-<span>0</span>
-<span>and</span>
-<span>NULL</span>
-<span>, and even the values returned by functions (either</span>
-<span>built-in functions or ones that you write).</span>
+<span>The contents of the if condition can be any valid PHP expression, including equality, comparison, tests for 0 and NULL , and even the values returned by functions (either built-in functions or ones that you write).</span>
 <br/>
-<span>The actions to take when an</span>
-<span>if</span>
-<span>condition is</span>
-<span>TRUE</span>
-<span>are generally placed inside curly</span>
-<span>braces,</span>
-<span>{ }</span>
-<span>. However, you can ignore the braces if you have only a single statement to</span>
-<span>execute. But if you always use curly braces, you&rsquo;ll avoid having to hunt down difficult-</span>
-<span>to-trace bugs, such as when you add an extra line to a condition and it doesn&rsquo;t get</span>
-<span>evaluated due to lack of braces. (Note that for space and clarity, many of the examples</span>
-<span>in this book ignore this suggestion and omit the braces for single statements.)</span>
+<span>The actions to take when an if condition is TRUE are generally placed inside curly braces, { } . However, you can ignore the braces if you have only a single statement to execute. But if you always use curly braces, you&rsquo;ll avoid having to hunt down difficult- to-trace bugs, such as when you add an extra line to a condition and it doesn&rsquo;t get evaluated due to lack of braces. (Note that for space and clarity, many of the examples in this book ignore this suggestion and omit the braces for single statements.)</span>
 <br/>
-<span>In</span>
-<span>Example 4-19</span>
-<span>, imagine that it is the end of the month and all your bills have been</span>
-<span>paid, so you are performing some bank account maintenance.</span>
+<span>In Example 4-19 , imagine that it is the end of the month and all your bills have been paid, so you are performing some bank account maintenance.</span>
 <br/>
 <span>Example 4-19. An if statement with curly braces</span>
 <pre>
@@ -1198,45 +651,17 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>In this example, you are checking your balance to see whether it is less than 100 dollars (or whatever your currency is). If so, you pay yourself 1,000 dollars and then add</span>
-<span>it to the balance. (If only making money were that simple!)</span>
+<span>In this example, you are checking your balance to see whether it is less than 100 dollars (or whatever your currency is). If so, you pay yourself 1,000 dollars and then add it to the balance. (If only making money were that simple!)</span>
 <br/>
-<span>If the bank balance is 100 dollars or greater, the conditional statements are ignored</span>
-<span>and program flow skips to the next line (not shown).</span>
+<span>If the bank balance is 100 dollars or greater, the conditional statements are ignored and program flow skips to the next line (not shown).</span>
 <br/>
-<span>In this book, opening curly braces generally start on a new line. Some people like to</span>
-<span>place the first curly brace to the right of the conditional expression; others start a new</span>
-<span>line with it. Either of these is fine, because PHP allows you to set out your whitespace</span>
-<span>characters (spaces, newlines, and tabs) any way you choose. However, you will find</span>
-<span>your code easier to read and debug if you indent each level of conditionals with a tab.</span>
+<span>In this book, opening curly braces generally start on a new line. Some people like to place the first curly brace to the right of the conditional expression; others start a new line with it. Either of these is fine, because PHP allows you to set out your whitespace characters (spaces, newlines, and tabs) any way you choose. However, you will find your code easier to read and debug if you indent each level of conditionals with a tab.</span>
 <h4>The else Statement</h4>
-<span>Sometimes when a conditional is not</span>
-<span>TRUE</span>
-<span>, you may not want to continue on to the</span>
-<span>main program code immediately but might wish to do something else instead. This is</span>
-<span>where the</span>
-<span>else</span>
-<span>statement comes in. With it, you can set up a second detour on your</span>
-<span>highway, as in</span>
-<span>Figure 4-2</span>
-<span>.</span>
+<span>Sometimes when a conditional is not TRUE , you may not want to continue on to the main program code immediately but might wish to do something else instead. This is where the else statement comes in. With it, you can set up a second detour on your highway, as in Figure 4-2 .</span>
 <br/>
-<span>With an</span>
-<span>if...else</span>
-<span>statement, the first conditional statement is executed if the condition is</span>
-<span>TRUE</span>
-<span>. But if it&rsquo;s</span>
-<span>FALSE</span>
-<span>, the second one is executed. One of the two choices</span>
-<span>must</span>
-<span>be executed. Under no circumstance can both (or neither) be executed.</span>
-<span>Example 4-20</span>
-<span>shows the use of the</span>
-<span>if...else</span>
-<span>structure.</span>
+<span>With an if...else statement, the first conditional statement is executed if the condition is TRUE . But if it&rsquo;s FALSE , the second one is executed. One of the two choices must be executed. Under no circumstance can both (or neither) be executed. Example 4-20 shows the use of the if...else structure.</span>
 <p><img src="images/4.2.png"/></p>
-<span>Figure 4-2. The highway now has an if detour and an else detour</span>
-<span>Example 4-20. An if...else statement with curly braces</span>
+<span>Figure 4-2. The highway now has an if detour and an else detour Example 4-20. An if...else statement with curly braces</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -1253,30 +678,11 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>In this example, now that you&rsquo;ve ascertained that you have $100 or more in the bank,</span>
-<span>the</span>
-<span>else</span>
-<span>statement is executed, by which you place some of this money into your savings account.</span>
+<span>In this example, now that you&rsquo;ve ascertained that you have $100 or more in the bank, the else statement is executed, by which you place some of this money into your savings account.</span>
 <br/>
-<span>As with</span>
-<span>if</span>
-<span>statements, if your</span>
-<span>else</span>
-<span>has only one conditional statement, you can opt</span>
-<span>to leave out the curly braces. (Curly braces are always recommended, though. First,</span>
-<span>they make the code easier to understand. Second, they let you easily add more statements to the branch later.)</span>
+<span>As with if statements, if your else has only one conditional statement, you can opt to leave out the curly braces. (Curly braces are always recommended, though. First, they make the code easier to understand. Second, they let you easily add more statements to the branch later.)</span>
 <h4>The elseif Statement</h4>
-<span>There are also times when you want a number of different possibilities to occur, based</span>
-<span>upon a sequence of conditions. You can achieve this using the</span>
-<span>elseif</span>
-<span>statement. As</span>
-<span>you might imagine, it is like an</span>
-<span>else</span>
-<span>statement, except that you place a further conditional expression prior to the conditional code. In</span>
-<span>Example 4-21</span>
-<span>, you can see a complete</span>
-<span>if...elseif...else</span>
-<span>construct.</span>
+<span>There are also times when you want a number of different possibilities to occur, based upon a sequence of conditions. You can achieve this using the elseif statement. As you might imagine, it is like an else statement, except that you place a further conditional expression prior to the conditional code. In Example 4-21 , you can see a complete if...elseif...else construct.</span>
 <br/>
 <span>Example 4-21. An if...elseif...else statement with curly braces</span>
 <pre>
@@ -1302,77 +708,17 @@ title: "Expressions and Control Flow in PHP"
 </pre>
 
 
-<span>In the example, an</span>
-<span>elseif</span>
-<span>statement has been inserted between the</span>
-<span>if</span>
-<span>and</span>
-<span>else</span>
-<span>statements. It checks whether your bank balance exceeds $200 and, if so, decides that you</span>
-<span>can afford to save $100 of it this month.</span>
+<span>In the example, an elseif statement has been inserted between the if and else statements. It checks whether your bank balance exceeds $200 and, if so, decides that you can afford to save $100 of it this month.</span>
 <br/>
-<span>Although I&rsquo;m starting to stretch the metaphor a bit too far, you can imagine this as a</span>
-<span>multiway set of detours (see</span>
-<span>Figure 4-3</span>
-<span>).</span>
+<span>Although I&rsquo;m starting to stretch the metaphor a bit too far, you can imagine this as a multiway set of detours (see Figure 4-3 ).</span>
 <p><img src="images/4.3.png"/></p>
-<span>Figure 4-3. The highway with if, elseif, and else detours</span>
-<span>An</span>
-<span>else</span>
-<span>statement</span>
-<span>closes</span>
-<span>either</span>
-<span>an</span>
-<span>if...else</span>
-<span>or</span>
-<span>an</span>
-<span>if...elseif...else</span>
-<span>statement. You can leave out a final</span>
-<span>else</span>
-<span>if it</span>
-<span>is not required, but you cannot have one before an</span>
-<span>elseif</span>
-<span>; neither</span>
-<span>can you have an</span>
-<span>elseif</span>
-<span>before an</span>
-<span>if</span>
-<span>statement.</span>
-<span>You may have as many</span>
-<span>elseif</span>
-<span>statements as you like. But as the number of</span>
-<span>elseif</span>
-<span>statements increases, you would probably be better advised to consider a</span>
-<span>switch</span>
-<span>statement if it fits your needs. We&rsquo;ll look at that next.</span>
+<span>Figure 4-3. The highway with if, elseif, and else detours An else statement closes either an if...else or an if...elseif...else statement. You can leave out a final else if it is not required, but you cannot have one before an elseif ; neither can you have an elseif before an if statement. You may have as many elseif statements as you like. But as the number of elseif statements increases, you would probably be better advised to consider a switch statement if it fits your needs. We&rsquo;ll look at that next.</span>
 <h4>The switch Statement</h4>
-<span>The</span>
-<span>switch</span>
-<span>statement is useful in cases in which one variable or the result of an</span>
-<span>expression can have multiple values, which should each trigger a different function.</span>
+<span>The switch statement is useful in cases in which one variable or the result of an expression can have multiple values, which should each trigger a different function.</span>
 <br/>
-<span>For example, consider a PHP-driven menu system that passes a single string to the</span>
-<span>main menu code according to what the user requests. Let&rsquo;s say the options are Home,</span>
-<span>About, News, Login, and Links, and we set the variable</span>
-<span>$page</span>
-<span>to one of these, according to the user&rsquo;s input.</span>
+<span>For example, consider a PHP-driven menu system that passes a single string to the main menu code according to what the user requests. Let&rsquo;s say the options are Home, About, News, Login, and Links, and we set the variable $page to one of these, according to the user&rsquo;s input.</span>
 <br/>
-<span>If</span>
-<span>we</span>
-<span>write</span>
-<span>the</span>
-<span>code</span>
-<span>for</span>
-<span>this</span>
-<span>using</span>
-<span>if...elseif...else</span>
-<span>,</span>
-<span>it</span>
-<span>might</span>
-<span>look</span>
-<span>like</span>
-<span>Example 4-22</span>
-<span>.</span>
+<span>If we write the code for this using if...elseif...else , it might look like Example 4-22 .</span>
 <br/>
 <span>Example 4-22. A multiple-line if...elseif...statement</span>
 <pre>
@@ -1386,11 +732,7 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>If we use a</span>
-<span>switch</span>
-<span>statement, the code might look like</span>
-<span>Example 4-23</span>
-<span>.</span>
+<span>If we use a switch statement, the code might look like Example 4-23 .</span>
 <br/>
 <span>Example 4-23. A switch statement</span>
 <pre>
@@ -1417,78 +759,18 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>As you can see,</span>
-<span>$page</span>
-<span>is mentioned only once at the start of the</span>
-<span>switch</span>
-<span>statement.</span>
-<span>Thereafter, the</span>
-<span>case</span>
-<span>command checks for matches. When one occurs, the matching</span>
-<span>conditional statement is executed. Of course, in a real program you would have code</span>
-<span>here to display or jump to a page, rather than simply telling the user what was</span>
-<span>selected.</span>
+<span>As you can see, $page is mentioned only once at the start of the switch statement. Thereafter, the case command checks for matches. When one occurs, the matching conditional statement is executed. Of course, in a real program you would have code here to display or jump to a page, rather than simply telling the user what was selected.</span>
 <br/>
-<span>With</span>
-<span>switch</span>
-<span>statements, you do not use curly braces inside</span>
-<span>case</span>
-<span>commands. Instead, they commence with a colon and end with</span>
-<span>the</span>
-<span>break</span>
-<span>statement. The entire list of cases in the</span>
-<span>switch</span>
-<span>statement is enclosed in a set of curly braces, though.</span>
+<span>With switch statements, you do not use curly braces inside case commands. Instead, they commence with a colon and end with the break statement. The entire list of cases in the switch statement is enclosed in a set of curly braces, though.</span>
 <br/>
 <h6>Breaking out</h6>
-<span>If you wish to break out of the</span>
-<span>switch</span>
-<span>statement because a condition has been fulfilled, use the</span>
-<span>break</span>
-<span>command. This command tells PHP to break out of the</span>
-<span>switch</span>
-<span>and jump to the following statement.</span>
+<span>If you wish to break out of the switch statement because a condition has been fulfilled, use the break command. This command tells PHP to break out of the switch and jump to the following statement.</span>
 <br/>
-<span>If you were to leave out the</span>
-<span>break</span>
-<span>commands in</span>
-<span>Example 4-23</span>
-<span>and the</span>
-<span>case</span>
-<span>of</span>
-<span>Home</span>
-<span>evaluated to be</span>
-<span>TRUE</span>
-<span>, all five cases would then be executed. Or if</span>
-<span>$page</span>
-<span>had the value</span>
-<span>News</span>
-<span>, all the</span>
-<span>case</span>
-<span>commands from then on would execute. This is deliberate and</span>
-<span>allows for some advanced programming, but generally you should always remember</span>
-<span>to issue a</span>
-<span>break</span>
-<span>command every time a set of</span>
-<span>case</span>
-<span>conditionals has finished executing. In fact, leaving out the</span>
-<span>break</span>
-<span>statement is a common error.</span>
+<span>If you were to leave out the break commands in Example 4-23 and the case of Home evaluated to be TRUE , all five cases would then be executed. Or if $page had the value News , all the case commands from then on would execute. This is deliberate and allows for some advanced programming, but generally you should always remember to issue a break command every time a set of case conditionals has finished executing. In fact, leaving out the break statement is a common error.</span>
 <h6>Default action</h6>
-<span>A typical requirement in</span>
-<span>switch</span>
-<span>statements is to fall back on a default action if none</span>
-<span>of the</span>
-<span>case</span>
-<span>conditions are met. For example, in the case of the menu code in</span>
-<span>Example 4-23</span>
-<span>, you could add the code in</span>
-<span>Example 4-24</span>
-<span>immediately before the final</span>
-<span>curly brace.</span>
+<span>A typical requirement in switch statements is to fall back on a default action if none of the case conditions are met. For example, in the case of the menu code in Example 4-23 , you could add the code in Example 4-24 immediately before the final curly brace.</span>
 <br/>
-<span>Example 4-24. A default statement to add to</span>
-<span>Example 4-23</span>
+<span>Example 4-24. A default statement to add to Example 4-23</span>
 <pre>
 <code class="php">
     default:
@@ -1497,29 +779,9 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 
-<span>Although a</span>
-<span>break</span>
-<span>command is not required here because the default is the final sub-</span>
-<span>statement, and program flow will automatically continue to the closing curly brace,</span>
-<span>should you decide to place the</span>
-<span>default</span>
-<span>statement higher up, it would definitely need</span>
-<span>a</span>
-<span>break</span>
-<span>command to prevent program flow from dropping into the following statements. Generally, the safest practice is to always include the</span>
-<span>break</span>
-<span>command.</span>
+<span>Although a break command is not required here because the default is the final sub- statement, and program flow will automatically continue to the closing curly brace, should you decide to place the default statement higher up, it would definitely need a break command to prevent program flow from dropping into the following statements. Generally, the safest practice is to always include the break command.</span>
 <h6>Alternative syntax</h6>
-<span>If you prefer, you may replace the first curly brace in a</span>
-<span>switch</span>
-<span>statement with a single</span>
-<span>colon, and the final curly brace with an</span>
-<span>endswitch</span>
-<span>command, as in</span>
-<span>&nbsp;Example 4-25</span>
-<span>.</span>
-<span>However, this approach is not commonly used and is mentioned here only in case</span>
-<span>you encounter it in third-party code.</span>
+<span>If you prefer, you may replace the first curly brace in a switch statement with a single colon, and the final curly brace with an endswitch command, as in &nbsp;Example 4-25 . However, this approach is not commonly used and is mentioned here only in case you encounter it in third-party code.</span>
 <br/>
 <span>Example 4-25. Alternate switch statement syntax</span>
 <pre>
@@ -1539,40 +801,11 @@ title: "Expressions and Control Flow in PHP"
 </pre>
 
 <h4>The ? Operator</h4>
-<span>One way of avoiding the verbosity of</span>
-<span>if</span>
-<span>and</span>
-<span>else</span>
-<span>statements is to use the more compact ternary operator,</span>
-<span>?</span>
-<span>, which is unusual in that it takes three operands rather than</span>
-<span>the typical two.</span>
+<span>One way of avoiding the verbosity of if and else statements is to use the more compact ternary operator, ? , which is unusual in that it takes three operands rather than the typical two.</span>
 <br/>
-<span>We briefly came across this in</span>
-<span>&nbsp;Chapter 3</span>
-<span>&nbsp;in the discussion about the difference</span>
-<span>between the</span>
-<span>print</span>
-<span>and</span>
-<span>echo</span>
-<span>statements as an example of an operator type that works</span>
-<span>well with</span>
-<span>print</span>
-<span>but not</span>
-<span>echo</span>
-<span>.</span>
+<span>We briefly came across this in &nbsp;Chapter 3 &nbsp;in the discussion about the difference between the print and echo statements as an example of an operator type that works well with print but not echo .</span>
 <br/>
-<span>The</span>
-<span>?</span>
-<span>operator is passed an expression that it must evaluate, along with two statements to execute: one for when the expression evaluates to</span>
-<span>TRUE</span>
-<span>, the other for when it</span>
-<span>is</span>
-<span>FALSE</span>
-<span>.</span>
-<span>Example 4-26</span>
-<span>shows code we might use for writing a warning about the fuel</span>
-<span>level of a car to its digital dashboard.</span>
+<span>The ? operator is passed an expression that it must evaluate, along with two statements to execute: one for when the expression evaluates to TRUE , the other for when it is FALSE . Example 4-26 shows code we might use for writing a warning about the fuel level of a car to its digital dashboard.</span>
 <br/>
 <span>Example 4-26. Using the ? operator</span>
 <pre>
@@ -1583,24 +816,7 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 
-<span>In this statement, if there is one gallon or less of fuel (in other words,</span>
-<span>$fuel</span>
-<span>is set to</span>
-<span>1</span>
-<span>or less), the string</span>
-<span>Fill tank now</span>
-<span>is returned to the preceding</span>
-<span>echo</span>
-<span>statement.</span>
-<span>Otherwise, the string</span>
-<span>There's enough fuel</span>
-<span>is returned. You can also assign the value</span>
-<span>returned in a</span>
-<span>?</span>
-<span>statement to a variable (see</span>
-<span>Example 4-27</span>
-<span>).</span>
-<span>Example 4-27. Assigning a ? conditional result to a variable</span>
+<span>In this statement, if there is one gallon or less of fuel (in other words, $fuel is set to 1 or less), the string Fill tank now is returned to the preceding echo statement. Otherwise, the string There's enough fuel is returned. You can also assign the value returned in a ? statement to a variable (see Example 4-27 ). Example 4-27. Assigning a ? conditional result to a variable</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -1609,23 +825,9 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 
-<span>Here</span>
-<span>$enough</span>
-<span>will be assigned the value</span>
-<span>TRUE</span>
-<span>only when there is more than a gallon</span>
-<span>of fuel; otherwise, it is assigned the value</span>
-<span>FALSE</span>
-<span>.</span>
+<span>Here $enough will be assigned the value TRUE only when there is more than a gallon of fuel; otherwise, it is assigned the value FALSE .</span>
 <br/>
-<span>If you find the</span>
-<span>?</span>
-<span>operator confusing, you are free to stick to</span>
-<span>if</span>
-<span>statements, but you</span>
-<span>should be familiar with it, because you&rsquo;ll see it in other people&rsquo;s code. It can be hard to</span>
-<span>read, because it often mixes multiple occurrences of the same variable. For instance,</span>
-<span>code such as the following is quite popular:</span>
+<span>If you find the ? operator confusing, you are free to stick to if statements, but you should be familiar with it, because you&rsquo;ll see it in other people&rsquo;s code. It can be hard to read, because it often mixes multiple occurrences of the same variable. For instance, code such as the following is quite popular:</span>
 <br/>
 <span>$saved = $saved &gt;= $new ? $saved : $new;</span>
 <br/>
@@ -1641,55 +843,16 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 
-<span>It&rsquo;s a concise way to keep track of the largest value that you&rsquo;ve seen as a program progresses. You save the largest value in</span>
-<span>$saved</span>
-<span>and compare it to</span>
-<span>$new</span>
-<span>each time you get</span>
-<span>a new value. Programmers familiar with the</span>
-<span>?</span>
-<span>operator find it more convenient than</span>
-<span>if</span>
-<span>statements for such short comparisons. When not used for writing compact code,</span>
-<span>it is typically used to make some decision inline, such as when you are testing</span>
-<span>whether a variable is set before passing it to a function.</span>
+<span>It&rsquo;s a concise way to keep track of the largest value that you&rsquo;ve seen as a program progresses. You save the largest value in $saved and compare it to $new each time you get a new value. Programmers familiar with the ? operator find it more convenient than if statements for such short comparisons. When not used for writing compact code, it is typically used to make some decision inline, such as when you are testing whether a variable is set before passing it to a function.</span>
 <h3>Looping</h3>
-<span>One of the great things about computers is that they can repeat calculating tasks</span>
-<span>quickly and tirelessly. Often you may want a program to repeat the same sequence of</span>
-<span>code again and again until something happens, such as a user inputting a value or</span>
-<span>reaching a natural end. PHP&rsquo;s loop structures provide the perfect way to do this.</span>
+<span>One of the great things about computers is that they can repeat calculating tasks quickly and tirelessly. Often you may want a program to repeat the same sequence of code again and again until something happens, such as a user inputting a value or reaching a natural end. PHP&rsquo;s loop structures provide the perfect way to do this.</span>
 <br/>
-<span>To picture how this works, look at</span>
-<span>&nbsp;Figure 4-4</span>
-<span>. It is much the same as the highway</span>
-<span>metaphor used to illustrate</span>
-<span>if</span>
-<span>statements, except the detour also has a loop section</span>
-<span>that&mdash;once</span>
-<span>a</span>
-<span>vehicle</span>
-<span>has</span>
-<span>entered&mdash;can</span>
-<span>be</span>
-<span>exited</span>
-<span>only</span>
-<span>under</span>
-<span>the</span>
-<span>right</span>
-<span>program</span>
-<span>conditions.</span>
+<span>To picture how this works, look at &nbsp;Figure 4-4 . It is much the same as the highway metaphor used to illustrate if statements, except the detour also has a loop section that&mdash;once a vehicle has entered&mdash;can be exited only under the right program conditions.</span>
 <br/>
 <p><img src="images/4.4.png"/></p>
 <span>Figure 4-4. Imagining a loop as part of a program highway layout</span>
 <h4>while Loops</h4>
-<span>Let&rsquo;s turn the digital car dashboard in</span>
-<span>&nbsp;Example 4-26</span>
-<span>&nbsp;into a loop that continuously</span>
-<span>checks the fuel level as you drive, using a</span>
-<span>while</span>
-<span>loop (</span>
-<span>Example 4-28</span>
-<span>).</span>
+<span>Let&rsquo;s turn the digital car dashboard in &nbsp;Example 4-26 &nbsp;into a loop that continuously checks the fuel level as you drive, using a while loop ( Example 4-28 ).</span>
 <br/>
 <span>Example 4-28. A while loop</span>
 <pre>
@@ -1705,45 +868,11 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 
-<span>Actually, you might prefer to keep a green light lit rather than output text, but the</span>
-<span>point is that whatever positive indication you wish to make about the level of fuel is</span>
-<span>placed inside the</span>
-<span>while</span>
-<span>loop. By the way, if you try this example for yourself, note</span>
-<span>that it will keep printing the string until you click the Stop button in your browser.</span>
+<span>Actually, you might prefer to keep a green light lit rather than output text, but the point is that whatever positive indication you wish to make about the level of fuel is placed inside the while loop. By the way, if you try this example for yourself, note that it will keep printing the string until you click the Stop button in your browser.</span>
 <br/>
-<span>As</span>
-<span>with</span>
-<span>if</span>
-<span>statements,</span>
-<span>you</span>
-<span>will</span>
-<span>notice</span>
-<span>that</span>
-<span>curly</span>
-<span>braces</span>
-<span>are</span>
-<span>required to hold the statements inside the</span>
-<span>while</span>
-<span>statements, unless</span>
-<span>there&rsquo;s only one.</span>
+<span>As with if statements, you will notice that curly braces are required to hold the statements inside the while statements, unless there&rsquo;s only one.</span>
 <br/>
-<span>For</span>
-<span>another</span>
-<span>example</span>
-<span>of</span>
-<span>a</span>
-<span>while</span>
-<span>loop</span>
-<span>that</span>
-<span>displays</span>
-<span>the</span>
-<span>12</span>
-<span>times</span>
-<span>table,</span>
-<span>see</span>
-<span>Example 4-29</span>
-<span>.</span>
+<span>For another example of a while loop that displays the 12 times table, see Example 4-29 .</span>
 <br/>
 <span>Example 4-29. A while loop to print the 12 times table</span>
 <pre>
@@ -1758,15 +887,7 @@ title: "Expressions and Control Flow in PHP"
     ?&gt;
 </code>
 </pre>
-<span>Here the variable</span>
-<span>$count</span>
-<span>is initialized to a value of 1, and then a</span>
-<span>while</span>
-<span>loop is started</span>
-<span>with the comparative expression</span>
-<span>$count &lt;= 12</span>
-<span>. This loop will continue executing</span>
-<span>until the variable is greater than 12. The output from this code is as follows:</span>
+<span>Here the variable $count is initialized to a value of 1, and then a while loop is started with the comparative expression $count &lt;= 12 . This loop will continue executing until the variable is greater than 12. The output from this code is as follows:</span>
 <br/>
 <b class="t30">1 times 12 is 12</b>
 <br/>
@@ -1776,46 +897,15 @@ title: "Expressions and Control Flow in PHP"
 <br/>
 <span>and so on...</span>
 <br/>
-<span>Inside the loop, a string is printed along with the value of</span>
-<span>$count</span>
-<span>multiplied by 12.</span>
-<span>For neatness, this is followed with a</span>
-<span>&lt;br&gt;</span>
-<span>tag to force a new line. Then</span>
-<span>$count</span>
-<span>is</span>
-<span>incremented, ready for the final curly brace that tells PHP to return to the start of the</span>
-<span>loop.</span>
+<span>Inside the loop, a string is printed along with the value of $count multiplied by 12. For neatness, this is followed with a &lt;br&gt; tag to force a new line. Then $count is incremented, ready for the final curly brace that tells PHP to return to the start of the loop.</span>
 <br/>
-<span>At this point,</span>
-<span>$count</span>
-<span>is again tested to see whether it is greater than 12. It isn&rsquo;t, but it</span>
-<span>now has the value</span>
-<span>2</span>
-<span>, and after another 11 times around the loop, it will have the value</span>
-<span>13</span>
-<span>. When that happens, the code within the</span>
-<span>while</span>
-<span>loop is skipped and execution</span>
-<span>passes to the code following the loop, which, in this case, is the end of the program.</span>
+<span>At this point, $count is again tested to see whether it is greater than 12. It isn&rsquo;t, but it now has the value 2 , and after another 11 times around the loop, it will have the value 13 . When that happens, the code within the while loop is skipped and execution passes to the code following the loop, which, in this case, is the end of the program.</span>
 <br/>
-<span>If the</span>
-<span>++$count</span>
-<span>statement (which could equally have been</span>
-<span>$count++</span>
-<span>) had not been</span>
-<span>there, this loop would be like the first one in this section. It would never end, and</span>
-<span>only the result of</span>
-<span>1 * 12</span>
-<span>would be printed over and over.</span>
+<span>If the ++$count statement (which could equally have been $count++ ) had not been there, this loop would be like the first one in this section. It would never end, and only the result of 1 * 12 would be printed over and over.</span>
 <br/>
-<span>But there is a much neater way this loop can be written, which I think you will like.</span>
-<span>Take a look at</span>
-<span>Example 4-30</span>
-<span>.</span>
+<span>But there is a much neater way this loop can be written, which I think you will like. Take a look at Example 4-30 .</span>
 <br/>
-<span>Example 4-30. A shortened version of</span>
-<span>Example 4-29</span>
+<span>Example 4-30. A shortened version of Example 4-29</span>
 <pre>
 <code class="php">
     &lt;?php
@@ -1825,38 +915,9 @@ title: "Expressions and Control Flow in PHP"
     ?&gt;
 </code>
 </pre>
-<span>In this example, it was possible to remove the</span>
-<span>++$count</span>
-<span>statement from inside the</span>
-<span>while</span>
-<span>loop and place it directly into the conditional expression of the loop. What</span>
-<span>now happens is that PHP encounters the variable</span>
-<span>$count</span>
-<span>at the start of each iteration</span>
-<span>of the loop and, noticing that it is prefaced with the increment operator, first increments the variable and only then compares it to the value</span>
-<span>12</span>
-<span>. You can therefore see</span>
-<span>that</span>
-<span>$count</span>
-<span>now has to be initialized to</span>
-<span>0</span>
-<span>, not</span>
-<span>1</span>
-<span>, because it is incremented as soon as</span>
-<span>the loop is entered. If you keep the initialization at</span>
-<span>1</span>
-<span>, only results between 2 and 12</span>
-<span>will be output.</span>
+<span>In this example, it was possible to remove the ++$count statement from inside the while loop and place it directly into the conditional expression of the loop. What now happens is that PHP encounters the variable $count at the start of each iteration of the loop and, noticing that it is prefaced with the increment operator, first increments the variable and only then compares it to the value 12 . You can therefore see that $count now has to be initialized to 0 , not 1 , because it is incremented as soon as the loop is entered. If you keep the initialization at 1 , only results between 2 and 12 will be output.</span>
 <h4>do...while Loops</h4>
-<span>A slight variation to the</span>
-<span>while</span>
-<span>loop is the</span>
-<span>do...while</span>
-<span>loop, used when you want a</span>
-<span>block of code to be executed at least once and made conditional only after that.</span>
-<span>Example 4-31</span>
-<span>shows a modified version of the code for the 12 times table that uses</span>
-<span>such a loop.</span>
+<span>A slight variation to the while loop is the do...while loop, used when you want a block of code to be executed at least once and made conditional only after that. Example 4-31 shows a modified version of the code for the 12 times table that uses such a loop.</span>
 <br/>
 <span>Example 4-31. A do...while loop for printing the times table for 12</span>
 <pre>
@@ -1869,26 +930,11 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>Notice how we are back to initializing</span>
-<span>$count</span>
-<span>to</span>
-<span>1</span>
-<span>(rather than</span>
-<span>0</span>
-<span>) because the code is</span>
-<span>being executed immediately, without an opportunity to increment the variable. Other</span>
-<span>than that, though, the code looks pretty similar.</span>
+<span>Notice how we are back to initializing $count to 1 (rather than 0 ) because the code is being executed immediately, without an opportunity to increment the variable. Other than that, though, the code looks pretty similar.</span>
 <br/>
-<span>Of course, if you have more than a single statement inside a</span>
-<span>do...while</span>
-<span>loop,</span>
-<span>remember to use curly braces, as in</span>
-<span>Example 4-32</span>
-<span>.</span>
+<span>Of course, if you have more than a single statement inside a do...while loop, remember to use curly braces, as in Example 4-32 .</span>
 <br/>
-<span>Example 4-32. Expanding</span>
-<span>Example 4-31</span>
-<span>to use curly braces</span>
+<span>Example 4-32. Expanding Example 4-31 to use curly braces</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -1901,15 +947,9 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 <h4>for Loops</h4>
-<span>The final kind of loop statement, the</span>
-<span>for</span>
-<span>loop, is also the most powerful, as it combines the abilities to set up variables as you enter the loop, test for conditions while</span>
-<span>iterating loops, and modify variables after each iteration.</span>
+<span>The final kind of loop statement, the for loop, is also the most powerful, as it combines the abilities to set up variables as you enter the loop, test for conditions while iterating loops, and modify variables after each iteration.</span>
 <br/>
-<span>Example 4-33</span>
-<span>shows how to write the multiplication table program with a</span>
-<span>for</span>
-<span>loop.</span>
+<span>Example 4-33 shows how to write the multiplication table program with a for loop.</span>
 <br/>
 <span>Example 4-33. Outputting the times table for 12 from a for loop</span>
 <pre>
@@ -1920,59 +960,21 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>See how the code has been reduced to a single</span>
-<span>for</span>
-<span>statement containing a single conditional statement? Here&rsquo;s what is going on. Each</span>
-<span>for</span>
-<span>statement takes three parameters:</span>
+<span>See how the code has been reduced to a single for statement containing a single conditional statement? Here&rsquo;s what is going on. Each for statement takes three parameters:</span>
 <br/>
-<span>&bull;</span>
-<span>An initialization expression</span>
+<span>&bull; An initialization expression</span>
 <br/>
-<span>&bull;</span>
-<span>A condition expression</span>
+<span>&bull; A condition expression</span>
 <br/>
-<span>&bull;</span>
-<span>A modification expression</span>
+<span>&bull; A modification expression</span>
 <br/>
-<span>These are separated by semicolons like this:</span>
-<span>for (</span>
-<span>expr1</span>
-<span>;</span>
-<span>expr2</span>
-<span>;</span>
-<span>expr3</span>
-<span>)</span>
-<span>. At the</span>
-<span>start of the first iteration of the loop, the initialization expression is executed. In the</span>
-<span>case of the times table code,</span>
-<span>$count</span>
-<span>is initialized to the value</span>
-<span>1</span>
-<span>. Then, each time</span>
-<span>around the loop, the condition expression (in this case,</span>
-<span>$count &lt;= 12</span>
-<span>) is tested, and</span>
-<span>the loop is entered only if the condition is</span>
-<span>TRUE</span>
-<span>. Finally, at the end of each iteration,</span>
-<span>the modification expression is executed. In the case of the times table code, the variable</span>
-<span>$count</span>
-<span>is incremented.</span>
+<span>These are separated by semicolons like this: for ( expr1 ; expr2 ; expr3 ) . At the start of the first iteration of the loop, the initialization expression is executed. In the case of the times table code, $count is initialized to the value 1 . Then, each time around the loop, the condition expression (in this case, $count &lt;= 12 ) is tested, and the loop is entered only if the condition is TRUE . Finally, at the end of each iteration, the modification expression is executed. In the case of the times table code, the variable $count is incremented.</span>
 <br/>
-<span>All this structure neatly removes any requirement to place the controls for a loop</span>
-<span>within its body, freeing it up just for the statements you want the loop to perform.</span>
+<span>All this structure neatly removes any requirement to place the controls for a loop within its body, freeing it up just for the statements you want the loop to perform.</span>
 <br/>
-<span>Remember to use curly braces with a</span>
-<span>for</span>
-<span>loop if it will contain more than one statement, as in</span>
-<span>Example 4-34</span>
-<span>.</span>
+<span>Remember to use curly braces with a for loop if it will contain more than one statement, as in Example 4-34 .</span>
 <br/>
-<span>Example 4-34.</span>
-<span>The for loop from</span>
-<span>Example 4-33</span>
-<span>with added curly braces</span>
+<span>Example 4-34. The for loop from Example 4-33 with added curly braces</span>
 <pre>
 <code class="php">
 &lt;?php
@@ -1984,20 +986,7 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>Let&rsquo;s compare when to use</span>
-<span>for</span>
-<span>and</span>
-<span>while</span>
-<span>loops. The</span>
-<span>for</span>
-<span>loop is explicitly designed</span>
-<span>around a single value that changes on a regular basis. Usually you have a value that</span>
-<span>increments, as when you are passed a list of user choices and want to process each</span>
-<span>choice in turn. But you can transform the variable any way you like. A more complex</span>
-<span>form of the</span>
-<span>for</span>
-<span>statement even lets you perform multiple operations in each of the</span>
-<span>three parameters:</span>
+<span>Let&rsquo;s compare when to use for and while loops. The for loop is explicitly designed around a single value that changes on a regular basis. Usually you have a value that increments, as when you are passed a list of user choices and want to process each choice in turn. But you can transform the variable any way you like. A more complex form of the for statement even lets you perform multiple operations in each of the three parameters:</span>
 <pre>
 <code class="php">
     for ($i = 1, $j = 1 ; $i + $j &lt; 10 ; $i++ , $j++)
@@ -2006,8 +995,7 @@ title: "Expressions and Control Flow in PHP"
     }
 </code>
 </pre>
-<span>That&rsquo;s complicated and not recommended for first-time users. The key is to distinguish commas from semicolons. The three parameters must be separated by semicolons. Within each parameter, multiple statements can be separated by commas. Thus,</span>
-<span>in the previous example, the first and third parameters each contain two statements:</span>
+<span>That&rsquo;s complicated and not recommended for first-time users. The key is to distinguish commas from semicolons. The three parameters must be separated by semicolons. Within each parameter, multiple statements can be separated by commas. Thus, in the previous example, the first and third parameters each contain two statements:</span>
 <pre>
 <code class="php">
     $i = 1, $j = 1 // Initialize $i and $j
@@ -2016,36 +1004,15 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 
-<span>The main thing to take from this example is that you must separate the three parameter sections with semicolons, not commas (which should be used only to separate</span>
-<span>statements within a parameter section).</span>
+<span>The main thing to take from this example is that you must separate the three parameter sections with semicolons, not commas (which should be used only to separate statements within a parameter section).</span>
 <br/>
-<span>So, when is a</span>
-<span>while</span>
-<span>statement more appropriate than a</span>
-<span>for</span>
-<span>statement? When your</span>
-<span>condition doesn&rsquo;t depend on a simple, regular change to a variable. For instance, if</span>
-<span>you want to check for some special input or error and end the loop when it occurs,</span>
-<span>use a</span>
-<span>while</span>
-<span>statement.</span>
+<span>So, when is a while statement more appropriate than a for statement? When your condition doesn&rsquo;t depend on a simple, regular change to a variable. For instance, if you want to check for some special input or error and end the loop when it occurs, use a while statement.</span>
 <h4>Breaking Out of a Loop</h4>
-<span>Just as you saw how to break out of a</span>
-<span>switch</span>
-<span>statement, you can also break out of a</span>
-<span>for</span>
-<span>loop using the same</span>
-<span>break</span>
-<span>command. This step can be necessary when, for</span>
-<span>example, one of your statements returns an error and the loop cannot continue executing safely.</span>
+<span>Just as you saw how to break out of a switch statement, you can also break out of a for loop using the same break command. This step can be necessary when, for example, one of your statements returns an error and the loop cannot continue executing safely.</span>
 <br/>
-<span>One case in which this might occur is when writing a file returns an error, possibly</span>
-<span>because the disk is full (see</span>
-<span>Example 4-35</span>
-<span>).</span>
+<span>One case in which this might occur is when writing a file returns an error, possibly because the disk is full (see Example 4-35 ).</span>
 <br/>
-<span>Example 4-35. Writing a</span>
-<span>file using a for loop with error trapping</span>
+<span>Example 4-35. Writing a file using a for loop with error trapping</span>
 
 <pre>
 <code class="php">
@@ -2062,77 +1029,24 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 
-<span>This is the most complicated piece of code that you have seen so far, but you&rsquo;re ready</span>
-<span>for it. We&rsquo;ll look into the file-handling commands in a later chapter, but for now all</span>
-<span>you need to know is that the first line opens the file</span>
-<span>&nbsp;text.txt</span>
-<span>&nbsp;for writing in binary</span>
-<span>mode, and then returns a pointer to the file in the variable</span>
-<span>$fp</span>
-<span>, which is used later to</span>
-<span>refer to the open file.</span>
+<span>This is the most complicated piece of code that you have seen so far, but you&rsquo;re ready for it. We&rsquo;ll look into the file-handling commands in a later chapter, but for now all you need to know is that the first line opens the file &nbsp;text.txt &nbsp;for writing in binary mode, and then returns a pointer to the file in the variable $fp , which is used later to refer to the open file.</span>
 <br/>
-<span>The loop then iterates 100 times (from 0 to 99), writing the string</span>
-<span>data</span>
-<span>to the file.</span>
-<span>After each write, the variable</span>
-<span>$written</span>
-<span>is assigned a value by the</span>
-<span>fwrite</span>
-<span>function</span>
-<span>representing the number of characters correctly written. But if there is an error, the</span>
-<span>fwrite</span>
-<span>function assigns the value</span>
-<span>FALSE</span>
-<span>.</span>
+<span>The loop then iterates 100 times (from 0 to 99), writing the string data to the file. After each write, the variable $written is assigned a value by the fwrite function representing the number of characters correctly written. But if there is an error, the fwrite function assigns the value FALSE .</span>
 <br/>
-<span>The behavior of</span>
-<span>fwrite</span>
-<span>makes it easy for the code to check the variable</span>
-<span>$written</span>
-<span>to</span>
-<span>see whether it is set to</span>
-<span>FALSE</span>
-<span>and, if so, to break out of the loop to the following statement closing the file.</span>
+<span>The behavior of fwrite makes it easy for the code to check the variable $written to see whether it is set to FALSE and, if so, to break out of the loop to the following statement closing the file.</span>
 <br/>
 <span>If you are looking to improve the code, the line</span>
 <pre><code class="php">if ($written == FALSE) break;</code></pre>
-<span>can be simplified using the</span>
-<span>NOT</span>
-<span>operator, like this:</span>
+<span>can be simplified using the NOT operator, like this:</span>
 <pre><code class="php">if (!$written) break;</code></pre>
 <span>In fact, the pair of inner loop statements can be shortened to a single statement:</span>
 <pre><code class="php">if (!fwrite($fp, "data")) break;</code></pre>
-<span>The</span>
-<span>break</span>
-<span>command is even more powerful than you might think, because if you</span>
-<span>have code nested more than one layer deep that you need to break out of, you can</span>
-<span>follow the</span>
-<span>break</span>
-<span>command with a number to indicate how many levels to break out</span>
-<span>of:</span>
+<span>The break command is even more powerful than you might think, because if you have code nested more than one layer deep that you need to break out of, you can follow the break command with a number to indicate how many levels to break out of:</span>
 <pre><code class="php">break 2;</code></pre>
 <h4>The continue Statement</h4>
-<span>The</span>
-<span>continue</span>
-<span>statement is a little like a</span>
-<span>break</span>
-<span>statement, except that it instructs PHP</span>
-<span>to stop processing the current loop and to move right to its next iteration. So, instead</span>
-<span>of breaking out of the whole loop, PHP exits only the current iteration.</span>
+<span>The continue statement is a little like a break statement, except that it instructs PHP to stop processing the current loop and to move right to its next iteration. So, instead of breaking out of the whole loop, PHP exits only the current iteration.</span>
 <br/>
-<span>This approach can be useful in cases where you know there is no point continuing</span>
-<span>execution within the current loop and you want to save processor cycles or prevent</span>
-<span>an error from occurring by moving right along to the next iteration of the loop. In</span>
-<span>Example 4-36</span>
-<span>, a</span>
-<span>continue</span>
-<span>statement is used to prevent a division-by-zero error from</span>
-<span>being issued when the variable</span>
-<span>$j</span>
-<span>has a value of</span>
-<span>0</span>
-<span>.</span>
+<span>This approach can be useful in cases where you know there is no point continuing execution within the current loop and you want to save processor cycles or prevent an error from occurring by moving right along to the next iteration of the loop. In Example 4-36 , a continue statement is used to prevent a division-by-zero error from being issued when the variable $j has a value of 0 .</span>
 <br/>
 <span>Example 4-36. Trapping division-by-zero errors using continue</span>
 <pre>
@@ -2150,40 +1064,13 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
-<span>For all values of</span>
-<span>$j</span>
-<span>between</span>
-<span>10</span>
-<span>and</span>
-<span>&ndash;</span>
-<span>10</span>
-<span>, with the exception of</span>
-<span>0</span>
-<span>, the result of calculating</span>
-<span>10</span>
-<span>divided by</span>
-<span>$j</span>
-<span>is displayed. But for the case of</span>
-<span>$j</span>
-<span>being</span>
-<span>0</span>
-<span>, the statement</span>
-<span>con</span>
-<span>tinue</span>
-<span>is issued and execution skips immediately to the next iteration of the loop.</span>
+<span>For all values of $j between 10 and &ndash; 10 , with the exception of 0 , the result of calculating 10 divided by $j is displayed. But for the case of $j being 0 , the statement con tinue is issued and execution skips immediately to the next iteration of the loop.</span>
 <h3>Implicit and Explicit Casting</h3>
-<span>PHP is a loosely typed language that allows you to declare a variable and its type simply by using it. It also automatically converts values from one type to another whenever required. This is called</span>
-<span>implicit casting</span>
-<span>.</span>
+<span>PHP is a loosely typed language that allows you to declare a variable and its type simply by using it. It also automatically converts values from one type to another whenever required. This is called implicit casting .</span>
 <br/>
-<span>However, at times PHP&rsquo;s implicit casting may not be what you want. In</span>
-<span>Example 4-37</span>
-<span>,</span>
-<span>note that the inputs to the division are integers. By default, PHP converts the output</span>
-<span>to floating point so it can give the most precise value&mdash;4.66 recurring.</span>
+<span>However, at times PHP&rsquo;s implicit casting may not be what you want. In Example 4-37 , note that the inputs to the division are integers. By default, PHP converts the output to floating point so it can give the most precise value&mdash;4.66 recurring.</span>
 <br/>
-<span>Example 4-37.</span>
-<span>This expression returns a floating-point number</span>
+<span>Example 4-37. This expression returns a floating-point number</span>
 
 <pre>
 <code class="php">
@@ -2197,49 +1084,11 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 
-<span>But what if we had wanted</span>
-<span>$c</span>
-<span>to be an integer instead? There are various ways in</span>
-<span>which we could achieve this, one of which is to force the result of</span>
-<span>$a</span>
-<span>/</span>
-<span>$b</span>
-<span>to be cast to</span>
-<span>an integer value using the integer cast type</span>
-<span>(int)</span>
-<span>, like this:</span>
+<span>But what if we had wanted $c to be an integer instead? There are various ways in which we could achieve this, one of which is to force the result of $a / $b to be cast to an integer value using the integer cast type (int) , like this:</span>
 <pre><code class="php">$c = (int) ($a / $b);</code></pre>
-<span>This is called</span>
-<span>explicit</span>
-<span>casting. Note that in order to ensure that the value of the entire</span>
-<span>expression</span>
-<span>is</span>
-<span>cast</span>
-<span>to</span>
-<span>an</span>
-<span>integer,</span>
-<span>we</span>
-<span>place</span>
-<span>the</span>
-<span>expression</span>
-<span>within</span>
-<span>parentheses.</span>
-<span>Otherwise, only the variable</span>
-<span>$a</span>
-<span>would have been cast to an integer&mdash;a pointless exercise, as the division by</span>
-<span>$b</span>
-<span>would still have returned a floating-point number.</span>
+<span>This is called explicit casting. Note that in order to ensure that the value of the entire expression is cast to an integer, we place the expression within parentheses. Otherwise, only the variable $a would have been cast to an integer&mdash;a pointless exercise, as the division by $b would still have returned a floating-point number.</span>
 <br/>
-<span>You can explicitly cast to the types shown in</span>
-<span>Table 4-6</span>
-<span>, but you can</span>
-<span>usually avoid having to use a cast by calling one of PHP&rsquo;s built-in</span>
-<span>functions. For example, to obtain an integer value, you could use</span>
-<span>the</span>
-<span>intval</span>
-<span>function. As with some other sections in this book, this</span>
-<span>one is mainly here to help you understand third-party code that</span>
-<span>you may encounter.</span>
+<span>You can explicitly cast to the types shown in Table 4-6 , but you can usually avoid having to use a cast by calling one of PHP&rsquo;s built-in functions. For example, to obtain an integer value, you could use the intval function. As with some other sections in this book, this one is mainly here to help you understand third-party code that you may encounter.</span>
 <br/>
 <span>Table 4-6. PHP&rsquo;s cast types</span>
 <br/>
@@ -2276,49 +1125,20 @@ title: "Expressions and Control Flow in PHP"
 </table>
 
 <h3>PHP Dynamic Linking</h3>
-<span>Because PHP is a programming language, and the output from it can be completely</span>
-<span>different for each user, it&rsquo;s possible for an entire website to run from a single PHP web</span>
-<span>page. Each time the user clicks on something, the details can be sent back to the same</span>
-<span>web page, which decides what to do next according to the various cookies and/or</span>
-<span>other session details it may have stored.</span>
+<span>Because PHP is a programming language, and the output from it can be completely different for each user, it&rsquo;s possible for an entire website to run from a single PHP web page. Each time the user clicks on something, the details can be sent back to the same web page, which decides what to do next according to the various cookies and/or other session details it may have stored.</span>
 <br/>
-<span>But although it is possible to build an entire website this way, it&rsquo;s not recommended,</span>
-<span>because your source code will grow and grow and start to become unwieldy, as it has</span>
-<span>to account for every possible action a user could take.</span>
+<span>But although it is possible to build an entire website this way, it&rsquo;s not recommended, because your source code will grow and grow and start to become unwieldy, as it has to account for every possible action a user could take.</span>
 <br/>
-<span>Instead, it&rsquo;s much more sensible to split your website development into different</span>
-<span>parts. For example, one distinct process is signing up for a website, along with all the</span>
-<span>checking this entails to validate an email address, determine whether a username is</span>
-<span>already taken, and so on.</span>
+<span>Instead, it&rsquo;s much more sensible to split your website development into different parts. For example, one distinct process is signing up for a website, along with all the checking this entails to validate an email address, determine whether a username is already taken, and so on.</span>
 <br/>
-<span>A second module might well be one for logging users in before handing them off to</span>
-<span>the main part of your website. Then you might have a messaging module with the</span>
-<span>facility for users to leave comments, a module containing links and useful information, another to allow uploading of images, and more.</span>
+<span>A second module might well be one for logging users in before handing them off to the main part of your website. Then you might have a messaging module with the facility for users to leave comments, a module containing links and useful information, another to allow uploading of images, and more.</span>
 <br/>
-<span>As long as you have created a way to track your user through your website by means</span>
-<span>of cookies or session variables (both of which we&rsquo;ll look at more closely in later</span>
-<span>chapters), you can split up your website into sensible sections of PHP code, each one</span>
-<span>self-contained, and therefore treat yourself to a much easier future, developing each</span>
-<span>new feature and maintaining old ones.</span>
+<span>As long as you have created a way to track your user through your website by means of cookies or session variables (both of which we&rsquo;ll look at more closely in later chapters), you can split up your website into sensible sections of PHP code, each one self-contained, and therefore treat yourself to a much easier future, developing each new feature and maintaining old ones.</span>
 <h3>Dynamic Linking in Action</h3>
-<span>One of the more popular PHP-driven applications on the Web today is the blogging</span>
-<span>platform WordPress (see</span>
-<span>&nbsp;Figure 4-5</span>
-<span>). As a blogger or a blog reader, you might not</span>
-<span>realize it, but every major section has been given its own main PHP file, and a whole</span>
-<span>raft of generic, shared functions have been placed in separate files that are included</span>
-<span>by the main PHP pages as necessary.</span>
+<span>One of the more popular PHP-driven applications on the Web today is the blogging platform WordPress (see &nbsp;Figure 4-5 ). As a blogger or a blog reader, you might not realize it, but every major section has been given its own main PHP file, and a whole raft of generic, shared functions have been placed in separate files that are included by the main PHP pages as necessary.</span>
 <p><img src="images/4.5.png"/></p>
 <span>Figure 4-5. The WordPress blogging platform is written in PHP</span>
 <br/>
-<span>The whole platform is held together with behind-the-scenes session tracking, so that</span>
-<span>you hardly know when you are transitioning from one subsection to another. So, as a</span>
-<span>web developer, if you want to tweak WordPress, it&rsquo;s easy to find the particular file you</span>
-<span>need, modify it, and test and debug it without messing around with unconnected</span>
-<span>parts of the program. Next time you use WordPress, keep an eye on your browser&rsquo;s</span>
-<span>address bar, particularly if you are managing a blog, and you&rsquo;ll notice some of the different PHP files that it uses.</span>
+<span>The whole platform is held together with behind-the-scenes session tracking, so that you hardly know when you are transitioning from one subsection to another. So, as a web developer, if you want to tweak WordPress, it&rsquo;s easy to find the particular file you need, modify it, and test and debug it without messing around with unconnected parts of the program. Next time you use WordPress, keep an eye on your browser&rsquo;s address bar, particularly if you are managing a blog, and you&rsquo;ll notice some of the different PHP files that it uses.</span>
 <br/>
-<span>This chapter has covered quite a lot of ground, and by now you should be able to put</span>
-<span>together your own small PHP programs. But before you do, and before proceeding</span>
-<span>with the following chapter on functions and objects, you may wish to test your new</span>
-<span>knowledge on the following questions.</span>
+<span>This chapter has covered quite a lot of ground, and by now you should be able to put together your own small PHP programs. But before you do, and before proceeding with the following chapter on functions and objects, you may wish to test your new knowledge on the following questions.</span>

@@ -5,39 +5,17 @@ title: "JavaScript and PHP Validation and Error Handling"
 <h2>JavaScript and PHP Validation and Error Handling</h2>
 <span>With your solid foundation in both PHP and JavaScript, it&rsquo;s time to bring these technologies together to create web forms that are as user-friendly as possible.</span>
 <br/>
-<span>We&rsquo;ll be using PHP to create the forms and JavaScript to perform client-side validation to ensure that the data is as complete and correct as it can be before it is submitted. Final validation of the input will then be made by PHP, which will, if necessary,</span>
-<span>present the form again to the user for further modification.</span>
+<span>We&rsquo;ll be using PHP to create the forms and JavaScript to perform client-side validation to ensure that the data is as complete and correct as it can be before it is submitted. Final validation of the input will then be made by PHP, which will, if necessary, present the form again to the user for further modification.</span>
 <br/>
 <span>In the process, this chapter will cover validation and regular expressions in both JavaScript and PHP.</span>
 <h3>Validating User Input with JavaScript</h3>
-<span>JavaScript validation should be considered an assistance more to your users than to</span>
-<span>your websites because, as I have already stressed many times, you cannot trust any</span>
-<span>data submitted to your server, even if it has supposedly been validated with JavaScript. This is because hackers can quite easily simulate your web forms and submit</span>
-<span>any data of their choosing.</span>
+<span>JavaScript validation should be considered an assistance more to your users than to your websites because, as I have already stressed many times, you cannot trust any data submitted to your server, even if it has supposedly been validated with JavaScript. This is because hackers can quite easily simulate your web forms and submit any data of their choosing.</span>
 <br/>
-<span>Another reason you cannot rely on JavaScript to perform all your input validation is</span>
-<span>that some users disable JavaScript, or use browsers that don&rsquo;t support it.</span>
+<span>Another reason you cannot rely on JavaScript to perform all your input validation is that some users disable JavaScript, or use browsers that don&rsquo;t support it.</span>
 <br/>
-<span>So the best types of validation to do in JavaScript are checking that fields have content</span>
-<span>if they are not to be left empty, ensuring that email addresses conform to the proper</span>
-<span>format, and ensuring that values entered are within expected bounds.</span>
+<span>So the best types of validation to do in JavaScript are checking that fields have content if they are not to be left empty, ensuring that email addresses conform to the proper format, and ensuring that values entered are within expected bounds.</span>
 <h4>The validate.html Document (Part 1)</h4>
-<span>Let&rsquo;s begin with a general sign-up form, common on most sites that offer memberships or registered users. The inputs requested will be</span>
-<span>forename</span>
-<span>,</span>
-<span>surname</span>
-<span>,</span>
-<span>username</span>
-<span>,</span>
-<span>password</span>
-<span>,</span>
-<span>age</span>
-<span>, and</span>
-<span>email address</span>
-<span>.</span>
-<span>Example 16-1</span>
-<span>provides a good template for such a</span>
-<span>form.</span>
+<span>Let&rsquo;s begin with a general sign-up form, common on most sites that offer memberships or registered users. The inputs requested will be forename , surname , username , password , age , and email address . Example 16-1 provides a good template for such a form.</span>
 <br/>
 <span>Example 16-1. A form with JavaScript validation (part 1)</span>
 <pre>
@@ -92,116 +70,23 @@ title: "JavaScript and PHP Validation and Error Handling"
 &lt;/html&gt;
 </code>
 </pre>
-<span>As it stands, this form will display correctly but will not self-validate, because the</span>
-<span>main validation functions have not yet been added. Even so, save it as</span>
-<span>validate.html</span>
-<span>,</span>
-<span>and when you call it up in your browser, it will look like</span>
-<span>Figure 16-1</span>
-<span>.</span>
+<span>As it stands, this form will display correctly but will not self-validate, because the main validation functions have not yet been added. Even so, save it as validate.html , and when you call it up in your browser, it will look like Figure 16-1 .</span>
 <p><img src="images/16.1.png"/></p>
-<span>Figure 16-1. The output from</span>
-<span>Example 16-1</span>
+<span>Figure 16-1. The output from Example 16-1</span>
 <br/>
-<span>Let&rsquo;s look at how this document is made up. The first few lines set up the document</span>
-<span>and use a little CSS to make the form look a little less plain. The parts of the document related to JavaScript come next and are shown in bold.</span>
+<span>Let&rsquo;s look at how this document is made up. The first few lines set up the document and use a little CSS to make the form look a little less plain. The parts of the document related to JavaScript come next and are shown in bold.</span>
 <br/>
-<span>Between the</span>
-<span>&lt;script&gt;</span>
-<span>and</span>
-<span>&lt;/script&gt;</span>
-<span>tags lies a single function called</span>
-<span>validate</span>
-<span>that</span>
-<span>itself calls up six other functions to validate each of the form&rsquo;s input fields. We&rsquo;ll get</span>
-<span>to these functions shortly. For now I&rsquo;ll just explain that they return either an empty</span>
-<span>string if a field validates, or an error message if it fails. If there are any errors, the final</span>
-<span>line of the script pops up an alert box to display them.</span>
+<span>Between the &lt;script&gt; and &lt;/script&gt; tags lies a single function called validate that itself calls up six other functions to validate each of the form&rsquo;s input fields. We&rsquo;ll get to these functions shortly. For now I&rsquo;ll just explain that they return either an empty string if a field validates, or an error message if it fails. If there are any errors, the final line of the script pops up an alert box to display them.</span>
 <br/>
-<span>Upon passing validation, the</span>
-<span>validate</span>
-<span>function returns a value of</span>
-<span>true</span>
-<span>; otherwise, it</span>
-<span>returns</span>
-<span>false</span>
-<span>. The return values from</span>
-<span>validate</span>
-<span>are important, because if it returns</span>
-<span>false</span>
-<span>, the form is prevented from being submitted. This allows the user to close the</span>
-<span>alert pop up and make changes. If</span>
-<span>true</span>
-<span>is returned, no errors were encountered in</span>
-<span>the form&rsquo;s fields and so the form is allowed to be submitted.</span>
+<span>Upon passing validation, the validate function returns a value of true ; otherwise, it returns false . The return values from validate are important, because if it returns false , the form is prevented from being submitted. This allows the user to close the alert pop up and make changes. If true is returned, no errors were encountered in the form&rsquo;s fields and so the form is allowed to be submitted.</span>
 <br/>
-<span>The second part of this example features the HTML for the form with each field and</span>
-<span>its name placed within its own row of a table. This is pretty straightforward HTML,</span>
-<span>with the exception of the</span>
-<span>onSubmit="return validate(this)"</span>
-<span>statement within the</span>
-<span>opening</span>
-<span>&lt;form&gt;</span>
-<span>tag. Using</span>
-<span>onSubmit</span>
-<span>, you can cause a function of your choice to be</span>
-<span>called when a form is submitted. That function can perform some checking and</span>
-<span>return a value of either</span>
-<span>true</span>
-<span>or</span>
-<span>false</span>
-<span>to signify whether the form should be allowed</span>
-<span>to be submitted.</span>
+<span>The second part of this example features the HTML for the form with each field and its name placed within its own row of a table. This is pretty straightforward HTML, with the exception of the onSubmit="return validate(this)" statement within the opening &lt;form&gt; tag. Using onSubmit , you can cause a function of your choice to be called when a form is submitted. That function can perform some checking and return a value of either true or false to signify whether the form should be allowed to be submitted.</span>
 <br/>
-<span>The</span>
-<span>this</span>
-<span>parameter is the current object (i.e., this form) and is passed to the</span>
-<span>vali</span>
-<span>date</span>
-<span>function just discussed. The</span>
-<span>validate</span>
-<span>function receives this parameter as the</span>
-<span>object</span>
-<span>form</span>
-<span>.</span>
+<span>The this parameter is the current object (i.e., this form) and is passed to the vali date function just discussed. The validate function receives this parameter as the object form .</span>
 <br/>
-<span>As you can see, the only JavaScript used within the form&rsquo;s HTML is the call to</span>
-<span>return</span>
-<span>buried in the</span>
-<span>onSubmit</span>
-<span>attribute. Browsers with JavaScript disabled or not available</span>
-<span>will simply ignore the</span>
-<span>onSubmit</span>
-<span>attribute, and the HTML will display just fine.</span>
+<span>As you can see, the only JavaScript used within the form&rsquo;s HTML is the call to return buried in the onSubmit attribute. Browsers with JavaScript disabled or not available will simply ignore the onSubmit attribute, and the HTML will display just fine.</span>
 <h4>The validate.html Document (Part 2)</h4>
-<span>Now we come to</span>
-<span>&nbsp;Example 16-2</span>
-<span>, a set of six functions that do the actual form-field</span>
-<span>validation.</span>
-<span>I</span>
-<span>suggest</span>
-<span>that</span>
-<span>you</span>
-<span>type</span>
-<span>all</span>
-<span>of</span>
-<span>this</span>
-<span>second</span>
-<span>part</span>
-<span>and</span>
-<span>save</span>
-<span>it</span>
-<span>in</span>
-<span>the</span>
-<span>&lt;script&gt;</span>
-<span>...</span>
-<span>&lt;/script&gt;</span>
-<span>section of</span>
-<span>Example 16-1</span>
-<span>, which you should already have saved</span>
-<span>as</span>
-<span>validate.html</span>
-<span>.</span>
+<span>Now we come to &nbsp;Example 16-2 , a set of six functions that do the actual form-field validation. I suggest that you type all of this second part and save it in the &lt;script&gt; ... &lt;/script&gt; section of Example 16-1 , which you should already have saved as validate.html .</span>
 <br/>
 <span>Example 16-2. A form with JavaScript validation (part 2)</span>
 <pre>
@@ -258,320 +143,86 @@ function validateEmail(field)
 }
 </code>
 </pre>
-<span>We&rsquo;ll go through each of these functions in turn, starting with</span>
-<span>validateForename</span>
-<span>, so</span>
-<span>you can see how validation works.</span>
+<span>We&rsquo;ll go through each of these functions in turn, starting with validateForename , so you can see how validation works.</span>
 <h6>Validating the forename</h6>
-<span>validateForename</span>
-<span>is quite a short function that accepts the parameter</span>
-<span>field</span>
-<span>, which</span>
-<span>is the value of the forename passed to it by the</span>
-<span>validate</span>
-<span>function.</span>
+<span>validateForename is quite a short function that accepts the parameter field , which is the value of the forename passed to it by the validate function.</span>
 <br/>
-<span>If this value is the empty string, an error message is returned; otherwise, an empty</span>
-<span>string is returned to signify that no error was encountered.</span>
+<span>If this value is the empty string, an error message is returned; otherwise, an empty string is returned to signify that no error was encountered.</span>
 <br/>
-<span>If the user entered spaces in this field, it would be accepted by</span>
-<span>validateForename</span>
-<span>,</span>
-<span>even though it&rsquo;s empty for all intents and purposes. You can fix this by adding an</span>
-<span>extra statement to trim whitespace from the field before checking whether it&rsquo;s empty,</span>
-<span>use a regular expression to make sure there&rsquo;s something besides whitespace in the</span>
-<span>field, or&mdash;as I do here&mdash;just let the user make the mistake and allow the PHP program to catch it on the server.</span>
+<span>If the user entered spaces in this field, it would be accepted by validateForename , even though it&rsquo;s empty for all intents and purposes. You can fix this by adding an extra statement to trim whitespace from the field before checking whether it&rsquo;s empty, use a regular expression to make sure there&rsquo;s something besides whitespace in the field, or&mdash;as I do here&mdash;just let the user make the mistake and allow the PHP program to catch it on the server.</span>
 <h6>Validating the surname</h6>
-<span>The</span>
-<span>validateSurname</span>
-<span>function is almost identical to</span>
-<span>validateForename</span>
-<span>in that an</span>
-<span>error is returned only if the surname supplied was an empty string. I chose not to</span>
-<span>limit the characters allowed in either of the name fields to allow for possibilities such</span>
-<span>as non-English and accented characters.</span>
+<span>The validateSurname function is almost identical to validateForename in that an error is returned only if the surname supplied was an empty string. I chose not to limit the characters allowed in either of the name fields to allow for possibilities such as non-English and accented characters.</span>
 <br/>
 <h6>Validating the username</h6>
-<span>The</span>
-<span>validateUsername</span>
-<span>function is a little more interesting, because it has a more</span>
-<span>complicated job. It has to allow through only the characters</span>
-<span>a-z</span>
-<span>,</span>
-<span>A-Z</span>
-<span>,</span>
-<span>0-9</span>
-<span>,</span>
-<span>_</span>
-<span>and</span>
-<span>-</span>
-<span>,</span>
-<span>and ensure that usernames are at least five characters long.</span>
+<span>The validateUsername function is a little more interesting, because it has a more complicated job. It has to allow through only the characters a-z , A-Z , 0-9 , _ and - , and ensure that usernames are at least five characters long.</span>
 <br/>
-<span>The</span>
-<span>if...else</span>
-<span>statements commence by returning an error if</span>
-<span>field</span>
-<span>has not been filled in. If it&rsquo;s not the empty string, but is fewer than five characters in length, another</span>
-<span>error message is returned.</span>
+<span>The if...else statements commence by returning an error if field has not been filled in. If it&rsquo;s not the empty string, but is fewer than five characters in length, another error message is returned.</span>
 <br/>
-<span>Then the JavaScript</span>
-<span>test</span>
-<span>function is called, passing a regular expression (which</span>
-<span>matches any character that is</span>
-<span>not</span>
-<span>one of those allowed) to be matched against</span>
-<span>field</span>
-<span>(see</span>
-<span>&ldquo;Regular Expressions&rdquo; on page 377</span>
-<span>). If even one character that isn&rsquo;t one of the</span>
-<span>acceptable characters is encountered, the</span>
-<span>test</span>
-<span>function returns</span>
-<span>true</span>
-<span>, and so</span>
-<span>valida</span>
-<span>teUser</span>
-<span>returns an error string.</span>
+<span>Then the JavaScript test function is called, passing a regular expression (which matches any character that is not one of those allowed) to be matched against field (see &ldquo;Regular Expressions&rdquo; on page 377 ). If even one character that isn&rsquo;t one of the acceptable characters is encountered, the test function returns true , and so valida teUser returns an error string.</span>
 <h6>Validating the password</h6>
-<span>Similar techniques are used in the</span>
-<span>validatePassword</span>
-<span>function. First the function</span>
-<span>checks whether</span>
-<span>field</span>
-<span>is empty, and if it is, returns an error. Next, an error message is</span>
-<span>returned if a password is shorter than six characters.</span>
+<span>Similar techniques are used in the validatePassword function. First the function checks whether field is empty, and if it is, returns an error. Next, an error message is returned if a password is shorter than six characters.</span>
 <br/>
-<span>One of the requirements we&rsquo;re imposing on passwords is that they must have at least</span>
-<span>one each of a lowercase, uppercase, and numerical character, so the</span>
-<span>test</span>
-<span>function is</span>
-<span>called three times, once for each of these cases. If any one of them returns</span>
-<span>false</span>
-<span>, one</span>
-<span>of the requirements was not met and so an error message is returned. Otherwise, the</span>
-<span>empty string is returned to signify that the password was OK.</span>
+<span>One of the requirements we&rsquo;re imposing on passwords is that they must have at least one each of a lowercase, uppercase, and numerical character, so the test function is called three times, once for each of these cases. If any one of them returns false , one of the requirements was not met and so an error message is returned. Otherwise, the empty string is returned to signify that the password was OK.</span>
 <h6>Validating the age</h6>
-<span>validateAge</span>
-<span>returns an error message if</span>
-<span>field</span>
-<span>is not a number (determined by a call</span>
-<span>to the</span>
-<span>isNaN</span>
-<span>function), or if the age entered is lower than 18 or greater than 110. Your</span>
-<span>applications may well have different or no age requirements. Again, upon successful</span>
-<span>validation, the empty string is returned.</span>
+<span>validateAge returns an error message if field is not a number (determined by a call to the isNaN function), or if the age entered is lower than 18 or greater than 110. Your applications may well have different or no age requirements. Again, upon successful validation, the empty string is returned.</span>
 <h6>Validating the email</h6>
-<span>In the last and most complicated example, the email address is validated with</span>
-<span>valida</span>
-<span>teEmail</span>
-<span>. After checking whether anything was actually entered, and returning an</span>
-<span>error message if it wasn&rsquo;t, the function calls the JavaScript</span>
-<span>indexOf</span>
-<span>function twice.</span>
-<span>The first time a check is made to ensure there is a period (</span>
-<span>.</span>
-<span>) somewhere from at least</span>
-<span>the second character of the field, and the second checks that an</span>
-<span>@</span>
-<span>symbol appears</span>
-<span>somewhere at or after the second character.</span>
+<span>In the last and most complicated example, the email address is validated with valida teEmail . After checking whether anything was actually entered, and returning an error message if it wasn&rsquo;t, the function calls the JavaScript indexOf function twice. The first time a check is made to ensure there is a period ( . ) somewhere from at least the second character of the field, and the second checks that an @ symbol appears somewhere at or after the second character.</span>
 <br/>
-<span>If those two checks are satisfied, the</span>
-<span>test</span>
-<span>function is called to see whether any disallowed characters appear in the field. If any of these tests fail, an error message is</span>
-<span>returned. The allowed characters in an email address are uppercase and lowercase letters, numbers, and the</span>
-<span>_</span>
-<span>,</span>
-<span>-</span>
-<span>, period, and</span>
-<span>@</span>
-<span>characters, as detailed in the regular expression passed to the</span>
-<span>test</span>
-<span>method. If no errors are found, the empty string is returned</span>
-<span>to indicate successful validation. On the last line, the script and document are closed.</span>
+<span>If those two checks are satisfied, the test function is called to see whether any disallowed characters appear in the field. If any of these tests fail, an error message is returned. The allowed characters in an email address are uppercase and lowercase letters, numbers, and the _ , - , period, and @ characters, as detailed in the regular expression passed to the test method. If no errors are found, the empty string is returned to indicate successful validation. On the last line, the script and document are closed.</span>
 <p><img src="images/16.2.png"/></p>
-<span>Figure 16-2</span>
-<span>shows the result of the user clicking the Signup button without having</span>
-<span>completed any fields.</span>
-<span>Figure 16-2. JavaScript form validation in action</span>
+<span>Figure 16-2 shows the result of the user clicking the Signup button without having completed any fields. Figure 16-2. JavaScript form validation in action</span>
 <h6>Using a separate JavaScript</h6>
-<span>file</span>
-<span>Of course, because they are generic in construction and could apply to many types of</span>
-<span>validations you might require, these six functions make ideal candidates for moving</span>
-<span>out into a separate JavaScript file. You could name the file something like</span>
-<span>&nbsp;validate_functions.js</span>
-<span>and include it right after the initial script section in</span>
-<span>Example 16-1</span>
-<span>,</span>
-<span>using the following statement:</span>
+<span>file Of course, because they are generic in construction and could apply to many types of validations you might require, these six functions make ideal candidates for moving out into a separate JavaScript file. You could name the file something like &nbsp;validate_functions.js and include it right after the initial script section in Example 16-1 , using the following statement:</span>
 <pre><code class="php">&lt;script src="validate_functions.js"&gt;&lt;/script&gt;</code></pre>
 <h3>Regular Expressions</h3>
-<span>Let&rsquo;s look a little more closely at the pattern matching we have been doing. We&rsquo;ve</span>
-<span>achieved it using</span>
-<span>&nbsp;regular expressions</span>
-<span>, which are supported by both JavaScript and</span>
-<span>PHP. They make it possible to construct the most powerful of pattern-matching algorithms within a single expression.</span>
+<span>Let&rsquo;s look a little more closely at the pattern matching we have been doing. We&rsquo;ve achieved it using &nbsp;regular expressions , which are supported by both JavaScript and PHP. They make it possible to construct the most powerful of pattern-matching algorithms within a single expression.</span>
 <h4>Matching Through Metacharacters</h4>
-<span>Every regular expression must be enclosed in slashes. Within these slashes, certain</span>
-<span>characters have special meanings; they are called</span>
-<span>&nbsp;metacharacters</span>
-<span>. For instance, an</span>
-<span>asterisk (</span>
-<span>*</span>
-<span>) has a meaning similar to what you have seen if you use a shell or Windows command prompt (but not quite the same). An asterisk means, &ldquo;The text you&rsquo;re</span>
-<span>trying to match may have any number of the preceding characters&mdash;or none at all.&rdquo;</span>
+<span>Every regular expression must be enclosed in slashes. Within these slashes, certain characters have special meanings; they are called &nbsp;metacharacters . For instance, an asterisk ( * ) has a meaning similar to what you have seen if you use a shell or Windows command prompt (but not quite the same). An asterisk means, &ldquo;The text you&rsquo;re trying to match may have any number of the preceding characters&mdash;or none at all.&rdquo;</span>
 <br/>
-<span>For instance, let&rsquo;s say you&rsquo;re looking for the name</span>
-<span>Le Guin</span>
-<span>and know that someone</span>
-<span>might spell it with or without a space. Because the text is laid out strangely (for</span>
-<span>instance, someone may have inserted extra spaces to right-justify lines), you could</span>
-<span>have to search for a line such as this:</span>
+<span>For instance, let&rsquo;s say you&rsquo;re looking for the name Le Guin and know that someone might spell it with or without a space. Because the text is laid out strangely (for instance, someone may have inserted extra spaces to right-justify lines), you could have to search for a line such as this:</span>
 <br/>
 <span class="t30">The difficulty of classifying Le Guin's works</span>
 <br/>
-<span>So you need to match</span>
-<span>&nbsp;LeGuin</span>
-<span>, as well as</span>
-<span>&nbsp;Le</span>
-<span>&nbsp;and</span>
-<span>&nbsp;Guin</span>
-<span>&nbsp;separated by any number of</span>
-<span>spaces. The solution is to follow a space with an asterisk:</span>
+<span>So you need to match &nbsp;LeGuin , as well as &nbsp;Le &nbsp;and &nbsp;Guin &nbsp;separated by any number of spaces. The solution is to follow a space with an asterisk:</span>
 <br/>
 <span class="t30">/Le *Guin/</span>
 <br/>
-<span>There&rsquo;s a lot more than the name</span>
-<span>Le Guin</span>
-<span>in the line, but that&rsquo;s OK. As long as the</span>
-<span>regular expression matches some part of the line, the</span>
-<span>test</span>
-<span>function returns a true</span>
-<span>value. What if it&rsquo;s important to make sure the line contains nothing but</span>
-<span>Le Guin</span>
-<span>? I&rsquo;ll</span>
-<span>show you how to ensure that later.</span>
+<span>There&rsquo;s a lot more than the name Le Guin in the line, but that&rsquo;s OK. As long as the regular expression matches some part of the line, the test function returns a true value. What if it&rsquo;s important to make sure the line contains nothing but Le Guin ? I&rsquo;ll show you how to ensure that later.</span>
 <br/>
-<span>Suppose that you know there is always at least one space. In that case, you could use</span>
-<span>the plus sign (</span>
-<span>+</span>
-<span>), because it requires at least one of the preceding characters to be</span>
-<span>present:</span>
+<span>Suppose that you know there is always at least one space. In that case, you could use the plus sign ( + ), because it requires at least one of the preceding characters to be present:</span>
 <br/>
 <span class="t30">/Le +Guin/</span>
 <h4>Fuzzy Character Matching</h4>
-<span>The dot (</span>
-<span>.</span>
-<span>) is particularly useful, because it can match anything except a newline.</span>
-<span>Suppose that you are looking for HTML tags, which start with</span>
-<span>&lt;</span>
-<span>and end with</span>
-<span>&gt;</span>
-<span>. A</span>
-<span>simple way to do so is shown here:</span>
+<span>The dot ( . ) is particularly useful, because it can match anything except a newline. Suppose that you are looking for HTML tags, which start with &lt; and end with &gt; . A simple way to do so is shown here:</span>
 <br/>
 <span class="t30">/&lt;.*&gt;/</span>
 <br/>
-<span>The dot matches any character, and the</span>
-<span>*</span>
-<span>expands it to match zero or more characters, so this is saying, &ldquo;Match anything that lies between</span>
-<span>&lt;</span>
-<span>and</span>
-<span>&gt;</span>
-<span>, even if there&rsquo;s nothing.&rdquo; You will match</span>
-<span>&lt;&gt;</span>
-<span>,</span>
-<span>&lt;em&gt;</span>
-<span>,</span>
-<span>&lt;br&gt;</span>
-<span>, and so on. But if you don&rsquo;t want to match the</span>
-<span>empty case,</span>
-<span>&lt;&gt;</span>
-<span>, you should use</span>
-<span>+</span>
-<span>instead of</span>
-<span>*</span>
-<span>, like this:</span>
+<span>The dot matches any character, and the * expands it to match zero or more characters, so this is saying, &ldquo;Match anything that lies between &lt; and &gt; , even if there&rsquo;s nothing.&rdquo; You will match &lt;&gt; , &lt;em&gt; , &lt;br&gt; , and so on. But if you don&rsquo;t want to match the empty case, &lt;&gt; , you should use + instead of * , like this:</span>
 <br/>
 <span class="t30">/&lt;.+&gt;/</span>
 <br/>
-<span>The plus sign expands the dot to match one or more characters, saying, &ldquo;Match anything that lies between</span>
-<span>&lt;</span>
-<span>and</span>
-<span>&gt;</span>
-<span>as long as there&rsquo;s at least one character between them.&rdquo;</span>
-<span>You will match</span>
-<span>&lt;em&gt;</span>
-<span>and</span>
-<span>&lt;/em&gt;</span>
-<span>,</span>
-<span>&lt;h1&gt;</span>
-<span>and</span>
-<span>&lt;/h1&gt;</span>
-<span>, and tags with attributes, such as this:</span>
+<span>The plus sign expands the dot to match one or more characters, saying, &ldquo;Match anything that lies between &lt; and &gt; as long as there&rsquo;s at least one character between them.&rdquo; You will match &lt;em&gt; and &lt;/em&gt; , &lt;h1&gt; and &lt;/h1&gt; , and tags with attributes, such as this:</span>
 <span class="t30">&lt;a href="www.mozilla.org"&gt;</span>
 <br/>
-<span>Unfortunately, the plus sign keeps on matching up to the last</span>
-<span>&gt;</span>
-<span>on the line, so you</span>
-<span>might end up with this:</span>
+<span>Unfortunately, the plus sign keeps on matching up to the last &gt; on the line, so you might end up with this:</span>
 <br/>
 <span class="t30">&lt;h1&gt;&lt;b&gt;Introduction&lt;/b&gt;&lt;/h1&gt;</span>
 <br/>
 <span>A lot more than one tag! I&rsquo;ll show a better solution later in this section.</span>
 <br/>
-<span>If you use the dot on its own between the angle brackets, without</span>
-<span>following it with either a</span>
-<span>+</span>
-<span>or</span>
-<span>*</span>
-<span>, then it matches a single character;</span>
-<span>you will match</span>
-<span>&lt;b&gt;</span>
-<span>and</span>
-<span>&lt;i&gt;</span>
-<span>but</span>
-<span>not</span>
-<span>&lt;em&gt;</span>
-<span>or</span>
-<span>&lt;textarea&gt;</span>
-<span>.</span>
+<span>If you use the dot on its own between the angle brackets, without following it with either a + or * , then it matches a single character; you will match &lt;b&gt; and &lt;i&gt; but not &lt;em&gt; or &lt;textarea&gt; .</span>
 <br/>
-<span>If you want to match the dot character itself (</span>
-<span>.</span>
-<span>), you have to escape it by placing a</span>
-<span>backslash (</span>
-<span>\</span>
-<span>) before it, because otherwise it&rsquo;s a metacharacter and matches anything.</span>
-<span>As an example, suppose you want to match the floating-point number</span>
-<span>5.0</span>
-<span>. The regular expression is as follows:</span>
+<span>If you want to match the dot character itself ( . ), you have to escape it by placing a backslash ( \ ) before it, because otherwise it&rsquo;s a metacharacter and matches anything. As an example, suppose you want to match the floating-point number 5.0 . The regular expression is as follows:</span>
 <br/>
 <span class="t30">/5\.0/</span>
 <br/>
-<span>The backslash can escape any metacharacter, including another backslash (in case</span>
-<span>you&rsquo;re trying to match a backslash in text). However, to make things a bit confusing,</span>
-<span>you&rsquo;ll see later how backslashes sometimes give the following character a special</span>
-<span>meaning.</span>
+<span>The backslash can escape any metacharacter, including another backslash (in case you&rsquo;re trying to match a backslash in text). However, to make things a bit confusing, you&rsquo;ll see later how backslashes sometimes give the following character a special meaning.</span>
 <br/>
-<span>We just matched a floating-point number. But perhaps you want to match</span>
-<span>5.</span>
-<span>as well</span>
-<span>as</span>
-<span>5.0</span>
-<span>, because both mean the same thing as a floating-point number. You also want</span>
-<span>to match</span>
-<span>5.00</span>
-<span>,</span>
-<span>5.000</span>
-<span>, and so forth&mdash;any number of zeros is allowed. You can do this</span>
-<span>by adding an asterisk, as you&rsquo;ve seen:</span>
+<span>We just matched a floating-point number. But perhaps you want to match 5. as well as 5.0 , because both mean the same thing as a floating-point number. You also want to match 5.00 , 5.000 , and so forth&mdash;any number of zeros is allowed. You can do this by adding an asterisk, as you&rsquo;ve seen:</span>
 <br/>
 <span class="t30">/5\.0*/</span>
 <h4>Grouping Through Parentheses</h4>
-<span>Suppose you want to match powers of increments of units, such as kilo, mega, giga,</span>
-<span>and tera. In other words, you want all the following to match:</span>
+<span>Suppose you want to match powers of increments of units, such as kilo, mega, giga, and tera. In other words, you want all the following to match:</span>
 <br/>
 <span class="t30">1,000</span>
 <span class="t30">1,000,000</span>
@@ -579,114 +230,36 @@ function validateEmail(field)
 <span class="t30">1,000,000,000,000</span>
 <span class="t30">...</span>
 <br/>
-<span>The plus sign works here, too, but you need to group the string</span>
-<span>,000</span>
-<span>so the plus sign</span>
-<span>matches the whole thing. The regular expression is as follows:</span>
+<span>The plus sign works here, too, but you need to group the string ,000 so the plus sign matches the whole thing. The regular expression is as follows:</span>
 <br/>
 <span class="t30">/1(,000)+ /</span>
 <br/>
-<span>The parentheses mean &ldquo;treat this as a group when you apply something such as a plus</span>
-<span>sign.&rdquo;</span>
-<span>1,00,000</span>
-<span>and</span>
-<span>1,000,00</span>
-<span>won&rsquo;t match because the text must have a 1 followed by</span>
-<span>one or more complete groups of a comma followed by three zeros.</span>
+<span>The parentheses mean &ldquo;treat this as a group when you apply something such as a plus sign.&rdquo; 1,00,000 and 1,000,00 won&rsquo;t match because the text must have a 1 followed by one or more complete groups of a comma followed by three zeros.</span>
 <br/>
-<span>The space after the</span>
-<span>+</span>
-<span>character indicates that the match must end when a space is</span>
-<span>encountered. Without it,</span>
-<span>1,000,00</span>
-<span>would incorrectly match because only the first</span>
-<span>1,000</span>
-<span>would be taken into account, and the remaining</span>
-<span>,00</span>
-<span>would be ignored. Requiring a space afterward ensures that matching will continue right through to the end of</span>
-<span>a number.</span>
+<span>The space after the + character indicates that the match must end when a space is encountered. Without it, 1,000,00 would incorrectly match because only the first 1,000 would be taken into account, and the remaining ,00 would be ignored. Requiring a space afterward ensures that matching will continue right through to the end of a number.</span>
 <h4>Character Classes</h4>
-<span>Sometimes you want to match something fuzzy, but not so broad that you want to use</span>
-<span>a dot. Fuzziness is the great strength of regular expressions: they allow you to be as</span>
-<span>precise or vague as you want.</span>
+<span>Sometimes you want to match something fuzzy, but not so broad that you want to use a dot. Fuzziness is the great strength of regular expressions: they allow you to be as precise or vague as you want.</span>
 <br/>
-<span>One of the key features supporting fuzzy matching is the pair of square brackets,</span>
-<span>[]</span>
-<span>.</span>
-<span>It matches a single character, like a dot, but inside the brackets you put a list of things</span>
-<span>that can match. If any of those characters appears, the text matches. For instance, if</span>
-<span>you wanted to match both the American spelling</span>
-<span>gray</span>
-<span>and the British spelling</span>
-<span>grey</span>
-<span>,</span>
-<span>you could specify the following:</span>
+<span>One of the key features supporting fuzzy matching is the pair of square brackets, [] . It matches a single character, like a dot, but inside the brackets you put a list of things that can match. If any of those characters appears, the text matches. For instance, if you wanted to match both the American spelling gray and the British spelling grey , you could specify the following:</span>
 <br/>
 <span class="t30">/gr[ae]y/</span>
 <br/>
-<span>After the</span>
-<span>gr</span>
-<span>in the text you&rsquo;re matching, there can be either an</span>
-<span>a</span>
-<span>or an</span>
-<span>e</span>
-<span>. But there</span>
-<span>must be only one of them: whatever you put inside the brackets matches exactly one</span>
-<span>character. The group of characters inside the brackets is called a</span>
-<span>character class</span>
-<span>.</span>
+<span>After the gr in the text you&rsquo;re matching, there can be either an a or an e . But there must be only one of them: whatever you put inside the brackets matches exactly one character. The group of characters inside the brackets is called a character class .</span>
 <h4>Indicating a Range</h4>
-<span>Inside the brackets, you can use a hyphen (</span>
-<span>-</span>
-<span>) to indicate a range. One very common</span>
-<span>task is matching a single digit, which you can do with a range as follows:</span>
+<span>Inside the brackets, you can use a hyphen ( - ) to indicate a range. One very common task is matching a single digit, which you can do with a range as follows:</span>
 <br/>
 <span class="t30">/[0-9]/</span>
 <br/>
-<span>Digits are such a common item in regular expressions that a single character is provided to represent them:</span>
-<span>\d</span>
-<span>. You can use it in place of the bracketed regular expression to match a digit:</span>
+<span>Digits are such a common item in regular expressions that a single character is provided to represent them: \d . You can use it in place of the bracketed regular expression to match a digit:</span>
 <span class="t30">/\d/</span>
 <h4>Negation</h4>
-<span>One other important feature of the square brackets is</span>
-<span>&nbsp;negation</span>
-<span>&nbsp;of a character class.</span>
-<span>You can turn the whole character class on its head by placing a caret (</span>
-<span>^</span>
-<span>) after the</span>
-<span>opening bracket. Here it means, &ldquo;Match any characters</span>
-<span>except</span>
-<span>the following.&rdquo; So let&rsquo;s</span>
-<span>say you want to find instances of</span>
-<span>&nbsp;Yahoo</span>
-<span>&nbsp;that lack the following exclamation point.</span>
-<span>(The name of the company officially contains an exclamation point!) You could do it</span>
-<span>as follows:</span>
+<span>One other important feature of the square brackets is &nbsp;negation &nbsp;of a character class. You can turn the whole character class on its head by placing a caret ( ^ ) after the opening bracket. Here it means, &ldquo;Match any characters except the following.&rdquo; So let&rsquo;s say you want to find instances of &nbsp;Yahoo &nbsp;that lack the following exclamation point. (The name of the company officially contains an exclamation point!) You could do it as follows:</span>
 <br/>
 <span class="t30">/Yahoo[^!]/</span>
 <br/>
-<span>The character class consists of a single character&mdash;an exclamation point&mdash;but it is</span>
-<span>inverted by the preceding</span>
-<span>^</span>
-<span>. This is actually not a great solution to the problem&mdash;for</span>
-<span>instance, it fails if</span>
-<span>&nbsp;Yahoo</span>
-<span>&nbsp;is at the end of the line, because then it&rsquo;s not followed by</span>
-<span>anything</span>
-<span>, whereas the brackets must match a character. A better solution involves</span>
-<span>negative</span>
-<span>lookahead</span>
-<span>(matching something that is not followed by anything else), but</span>
-<span>that&rsquo;s beyond the scope of this book.</span>
+<span>The character class consists of a single character&mdash;an exclamation point&mdash;but it is inverted by the preceding ^ . This is actually not a great solution to the problem&mdash;for instance, it fails if &nbsp;Yahoo &nbsp;is at the end of the line, because then it&rsquo;s not followed by anything , whereas the brackets must match a character. A better solution involves negative lookahead (matching something that is not followed by anything else), but that&rsquo;s beyond the scope of this book.</span>
 <h4>Some More-Complicated Examples</h4>
-<span>With an understanding of character classes and negation, you&rsquo;re ready now to see a</span>
-<span>better solution to the problem of matching an HTML tag. This solution avoids going</span>
-<span>past the end of a single tag, but still matches tags such as</span>
-<span>&lt;em&gt;</span>
-<span>and</span>
-<span>&lt;/em&gt;</span>
-<span>as well as</span>
-<span>tags with attributes such as this:</span>
+<span>With an understanding of character classes and negation, you&rsquo;re ready now to see a better solution to the problem of matching an HTML tag. This solution avoids going past the end of a single tag, but still matches tags such as &lt;em&gt; and &lt;/em&gt; as well as tags with attributes such as this:</span>
 <br/>
 <span class="t30">&lt;a href="www.mozilla.org"&gt;</span>
 <br/>
@@ -694,11 +267,7 @@ function validateEmail(field)
 <br/>
 <span class="t30">/&lt;[^&gt;]+&gt;/</span>
 <br/>
-<span>That regular expression may look like I just dropped my teacup on the keyboard, but</span>
-<span>it is perfectly valid and very useful. Let&rsquo;s break it apart.</span>
-<span>Figure 16-3</span>
-<span>shows the various</span>
-<span>elements, which I&rsquo;ll describe one by one.</span>
+<span>That regular expression may look like I just dropped my teacup on the keyboard, but it is perfectly valid and very useful. Let&rsquo;s break it apart. Figure 16-3 shows the various elements, which I&rsquo;ll describe one by one.</span>
 <p><img src="images/16.3.png"/></p>
 <span>Figure 16-3. Breakdown of a typical regular expression</span>
 <br/>
@@ -722,25 +291,13 @@ function validateEmail(field)
 <span>/</span>
 <div class="t30">Closing slash that indicates the end of the regular expression.</div>
 <br/>
-<span>Another solution to the problem of matching HTML tags is to use</span>
-<span>a nongreedy operation. By default, pattern matching is greedy,</span>
-<span>returning the longest match possible. Nongreedy matching finds</span>
-<span>the shortest possible match, and its use is beyond the scope of this</span>
-<span>book, but there are more details at</span>
-<span>http://oreilly.com/catalog/regex/</span>
-<span>chapter/ch04.html</span>
-<span>.</span>
+<span>Another solution to the problem of matching HTML tags is to use a nongreedy operation. By default, pattern matching is greedy, returning the longest match possible. Nongreedy matching finds the shortest possible match, and its use is beyond the scope of this book, but there are more details at http://oreilly.com/catalog/regex/ chapter/ch04.html .</span>
 <br/>
-<span>We are going to look now at one of the expressions from</span>
-<span>Example 16-1</span>
-<span>, where the</span>
-<span>validateUsername</span>
-<span>function is used:</span>
+<span>We are going to look now at one of the expressions from Example 16-1 , where the validateUsername function is used:</span>
 <br/>
 <span class="t30">/[^a-zA-Z0-9_-]/</span>
 <br/>
-<span>Figure 16-4</span>
-<span>shows the various elements.</span>
+<span>Figure 16-4 shows the various elements.</span>
 <p><img src="images/16.4.png"/></p>
 <span>Figure 16-4. Breakdown of the validateUsername regular expression</span>
 <br/>
@@ -776,30 +333,13 @@ function validateEmail(field)
 <span>/</span>
 <div class="t30">Closing slash that indicates the end of the regular expression.</div>
 <br/>
-<span>There are two other important metacharacters. They &ldquo;anchor&rdquo; a regular expression by</span>
-<span>requiring that it appear in a particular place. If a caret (</span>
-<span>^</span>
-<span>) appears at the beginning of</span>
-<span>the regular expression, the expression has to appear at the beginning of a line of text;</span>
-<span>otherwise, it doesn&rsquo;t match. Similarly, if a dollar sign (</span>
-<span>$</span>
-<span>) appears at the end of the regular expression, the expression has to appear at the end of a line of text.</span>
-<span>It may be somewhat confusing that</span>
-<span>^</span>
-<span>can mean &ldquo;negate the character class&rdquo; inside square brackets and &ldquo;match the beginning of the</span>
-<span>line&rdquo; if it&rsquo;s at the beginning of the regular expression. Unfortunately,</span>
-<span>the same character is used for two different things, so take care</span>
-<span>when using it.</span>
+<span>There are two other important metacharacters. They &ldquo;anchor&rdquo; a regular expression by requiring that it appear in a particular place. If a caret ( ^ ) appears at the beginning of the regular expression, the expression has to appear at the beginning of a line of text; otherwise, it doesn&rsquo;t match. Similarly, if a dollar sign ( $ ) appears at the end of the regular expression, the expression has to appear at the end of a line of text. It may be somewhat confusing that ^ can mean &ldquo;negate the character class&rdquo; inside square brackets and &ldquo;match the beginning of the line&rdquo; if it&rsquo;s at the beginning of the regular expression. Unfortunately, the same character is used for two different things, so take care when using it.</span>
 <br/>
-<span>We&rsquo;ll finish our exploration of regular expression basics by answering a question</span>
-<span>raised earlier: suppose you want to make sure there is nothing extra on a line besides</span>
-<span>the regular expression? What if you want a line that has &ldquo;Le Guin&rdquo; and nothing else?</span>
-<span>We can do that by amending the earlier regular expression to anchor the two ends:</span>
+<span>We&rsquo;ll finish our exploration of regular expression basics by answering a question raised earlier: suppose you want to make sure there is nothing extra on a line besides the regular expression? What if you want a line that has &ldquo;Le Guin&rdquo; and nothing else? We can do that by amending the earlier regular expression to anchor the two ends:</span>
 <br/>
 <span class="t30">/^Le *Guin$/</span>
 <h4>Summary of Metacharacters</h4>
-<span>Table 16-1</span>
-<span>shows the metacharacters available in regular expressions.</span>
+<span>Table 16-1 shows the metacharacters available in regular expressions.</span>
 <br/>
 <span>Table 16-1. Regular expression metacharacters</span>
 <table class="tbl-left">
@@ -912,50 +452,11 @@ function validateEmail(field)
         <td>Matches at least min and at most max times</td>
     </tr>
 </table>
-<span>Provided with this table, and looking again at the expression</span>
-<span>/[^a-zA-Z0-9_]/</span>
-<span>, you</span>
-<span>can see that it could easily be shortened to</span>
-<span>/[^\w]/</span>
-<span>because the single metacharacter</span>
-<span>\w</span>
-<span>(with a lowercase</span>
-<span>w</span>
-<span>) specifies the characters</span>
-<span>a-z</span>
-<span>,</span>
-<span>A-Z</span>
-<span>,</span>
-<span>0-9</span>
-<span>, and</span>
-<span>_</span>
-<span>.</span>
+<span>Provided with this table, and looking again at the expression /[^a-zA-Z0-9_]/ , you can see that it could easily be shortened to /[^\w]/ because the single metacharacter \w (with a lowercase w ) specifies the characters a-z , A-Z , 0-9 , and _ .</span>
 <br/>
-<span>In fact, we can be cleverer than that, because the metacharacter</span>
-<span>\W</span>
-<span>(with an uppercase</span>
-<span>W</span>
-<span>) specifies all characters</span>
-<span>&nbsp;except</span>
-<span>&nbsp;for</span>
-<span>a-z</span>
-<span>,</span>
-<span>A-Z</span>
-<span>,</span>
-<span>0-9</span>
-<span>, and</span>
-<span>_</span>
-<span>. Therefore, we could also</span>
-<span>drop the</span>
-<span>^</span>
-<span>metacharacter and simply use</span>
-<span>/[\W]/</span>
-<span>for the expression.</span>
+<span>In fact, we can be cleverer than that, because the metacharacter \W (with an uppercase W ) specifies all characters &nbsp;except &nbsp;for a-z , A-Z , 0-9 , and _ . Therefore, we could also drop the ^ metacharacter and simply use /[\W]/ for the expression.</span>
 <br/>
-<span>To give you more ideas of how this all works,</span>
-<span>Table 16-2</span>
-<span>shows a range of expressions</span>
-<span>and the patterns they match.</span>
+<span>To give you more ideas of how this all works, Table 16-2 shows a range of expressions and the patterns they match.</span>
 <br/>
 <span>Table 16-2. Some example regular expressions</span>
 <table class="tbl-left">
@@ -1102,157 +603,38 @@ function validateEmail(field)
 <h4>General Modifiers</h4>
 <span>Some additional modifiers are available for regular expressions:</span>
 <br/>
-<span>&bull;</span>
-<span>/g</span>
-<span>enables</span>
-<span>global</span>
-<span>matching. When using a replace function, specify this modifier</span>
-<span>to replace all matches, rather than only the first one.</span>
+<span>&bull; /g enables global matching. When using a replace function, specify this modifier to replace all matches, rather than only the first one.</span>
 <br/>
-<span>&bull;</span>
-<span>/i</span>
-<span>makes the regular expression match case-insensitive. Thus, instead of</span>
-<span>/[a-zA-</span>
-<span>Z]/</span>
-<span>, you could specify</span>
-<span>/[a-z]/i</span>
-<span>or</span>
-<span>/[A-Z]/i</span>
-<span>.</span>
+<span>&bull; /i makes the regular expression match case-insensitive. Thus, instead of /[a-zA- Z]/ , you could specify /[a-z]/i or /[A-Z]/i .</span>
 <br/>
-<span>&bull;</span>
-<span>/m</span>
-<span>enables multiline mode, in which the caret (</span>
-<span>^</span>
-<span>) and dollar (</span>
-<span>$</span>
-<span>) match before and</span>
-<span>after any newlines in the subject string. Normally, in a multiline string,</span>
-<span>^</span>
-<span>matches</span>
-<span>only at the start of the string, and</span>
-<span>$</span>
-<span>matches only at the end of the string.</span>
+<span>&bull; /m enables multiline mode, in which the caret ( ^ ) and dollar ( $ ) match before and after any newlines in the subject string. Normally, in a multiline string, ^ matches only at the start of the string, and $ matches only at the end of the string.</span>
 <br/>
-<span>For example, the expression</span>
-<span>/cats/g</span>
-<span>will match both occurrences of the word</span>
-<span>cats</span>
-<span>in</span>
-<span>the sentence</span>
-<span>I like cats, and cats like me</span>
-<span>. Similarly,</span>
-<span>/dogs/gi</span>
-<span>will match both occurrences of the word</span>
-<span>dogs</span>
-<span>(</span>
-<span>Dogs</span>
-<span>and</span>
-<span>dogs</span>
-<span>) in the sentence</span>
-<span>Dogs like other dogs</span>
-<span>, because</span>
-<span>you can use these specifiers together.</span>
+<span>For example, the expression /cats/g will match both occurrences of the word cats in the sentence I like cats, and cats like me . Similarly, /dogs/gi will match both occurrences of the word dogs ( Dogs and dogs ) in the sentence Dogs like other dogs , because you can use these specifiers together.</span>
 <h4>Using Regular Expressions in JavaScript</h4>
-<span>In JavaScript, you will use regular expressions mostly in two methods:</span>
-<span>test</span>
-<span>(which</span>
-<span>you have already seen) and</span>
-<span>replace</span>
-<span>. Whereas</span>
-<span>test</span>
-<span>just tells you whether its argument matches the regular expression,</span>
-<span>replace</span>
-<span>takes a second parameter: the string to</span>
-<span>replace the text that matches. Like most functions,</span>
-<span>replace</span>
-<span>generates a new string as</span>
-<span>a return value; it does not change the input.</span>
+<span>In JavaScript, you will use regular expressions mostly in two methods: test (which you have already seen) and replace . Whereas test just tells you whether its argument matches the regular expression, replace takes a second parameter: the string to replace the text that matches. Like most functions, replace generates a new string as a return value; it does not change the input.</span>
 <br/>
-<span>To compare the two methods, the following statement just returns</span>
-<span>true</span>
-<span>to let us</span>
-<span>know that the word</span>
-<span>cats</span>
-<span>appears at least once somewhere within the string:</span>
+<span>To compare the two methods, the following statement just returns true to let us know that the word cats appears at least once somewhere within the string:</span>
 <pre><code class="php">document.write(/cats/i.test("Cats are funny. I like cats."))</code></pre>
-<span>But the following statement replaces both occurrences of the word</span>
-<span>cats</span>
-<span>with the word</span>
-<span>dogs</span>
-<span>, printing the result. The search has to be global (</span>
-<span>/g</span>
-<span>) to find all occurrences, and</span>
-<span>case-insensitive (</span>
-<span>/i</span>
-<span>) to find the capitalized</span>
-<span>Cats</span>
-<span>:</span>
+<span>But the following statement replaces both occurrences of the word cats with the word dogs , printing the result. The search has to be global ( /g ) to find all occurrences, and case-insensitive ( /i ) to find the capitalized Cats :</span>
 <pre><code class="php">document.write("Cats are friendly. I like cats.".replace(/cats/gi,"dogs"))</code></pre>
-<span>If you try out the statement, you&rsquo;ll see a limitation of</span>
-<span>replace</span>
-<span>: because it replaces text</span>
-<span>with exactly the string you tell it to use, the first word</span>
-<span>Cats</span>
-<span>is replaced by</span>
-<span>dogs</span>
-<span>instead</span>
-<span>of</span>
-<span>Dogs</span>
-<span>.</span>
+<span>If you try out the statement, you&rsquo;ll see a limitation of replace : because it replaces text with exactly the string you tell it to use, the first word Cats is replaced by dogs instead of Dogs .</span>
 <h4>Using Regular Expressions in PHP</h4>
-<span>The most common regular expression functions that you are likely to use in PHP are</span>
-<span>preg_match</span>
-<span>,</span>
-<span>preg_match_all</span>
-<span>, and</span>
-<span>preg_replace</span>
-<span>.</span>
+<span>The most common regular expression functions that you are likely to use in PHP are preg_match , preg_match_all , and preg_replace .</span>
 <br/>
-<span>To test whether the word</span>
-<span>cats</span>
-<span>appears anywhere within a string, in any combination</span>
-<span>of upper- and lowercase, you could use</span>
-<span>preg_match</span>
-<span>like this:</span>
+<span>To test whether the word cats appears anywhere within a string, in any combination of upper- and lowercase, you could use preg_match like this:</span>
 <pre><code class="php">$n = preg_match("/cats/i", "Cats are crazy. I like cats.");</code></pre>
-<span>Because PHP uses</span>
-<span>1</span>
-<span>for</span>
-<span>TRUE</span>
-<span>and</span>
-<span>0</span>
-<span>for</span>
-<span>FALSE</span>
-<span>, the preceding statement sets</span>
-<span>$n</span>
-<span>to</span>
-<span>1</span>
-<span>.</span>
-<span>The first argument is the regular expression, and the second is the text to match. But</span>
-<span>preg_match</span>
-<span>is actually a good deal more powerful and complicated, because it takes a</span>
-<span>third argument that shows what text matched:</span>
+<span>Because PHP uses 1 for TRUE and 0 for FALSE , the preceding statement sets $n to 1 . The first argument is the regular expression, and the second is the text to match. But preg_match is actually a good deal more powerful and complicated, because it takes a third argument that shows what text matched:</span>
 <pre>
 <code class="php">
 $n = preg_match("/cats/i", "Cats are curious. I like cats.", $match);
 echo "$n Matches: $match[0]";
 </code>
 </pre>
-<span>The third argument is an array (here, given the name</span>
-<span>$match</span>
-<span>). The function puts the</span>
-<span>text that matches into the first element, so if the match is successful, you can find the</span>
-<span>text that matched in</span>
-<span>$match[0]</span>
-<span>. In this example, the output lets us know that the</span>
-<span>matched text was capitalized:</span>
+<span>The third argument is an array (here, given the name $match ). The function puts the text that matches into the first element, so if the match is successful, you can find the text that matched in $match[0] . In this example, the output lets us know that the matched text was capitalized:</span>
 <br/>
 <b class="t30">1 Matches: Cats</b>
 <br/>
-<span>If you wish to locate all matches, you use the</span>
-<span>preg_match_all</span>
-<span>function, like this:</span>
+<span>If you wish to locate all matches, you use the preg_match_all function, like this:</span>
 <pre>
 <code class="php">
 $n = preg_match_all("/cats/i", "Cats are strange. I like cats.", $match);
@@ -1261,62 +643,17 @@ echo "$n Matches: ";
 for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";
 </code>
 </pre>
-<span>As before,</span>
-<span>$match</span>
-<span>is passed to the function and the element</span>
-<span>$match[0]</span>
-<span>is assigned the</span>
-<span>matches made, but this time as a subarray. To display the subarray, this example iterates through it with a</span>
-<span>for</span>
-<span>loop.</span>
+<span>As before, $match is passed to the function and the element $match[0] is assigned the matches made, but this time as a subarray. To display the subarray, this example iterates through it with a for loop.</span>
 <br/>
-<span>When you want to replace part of a string, you can use</span>
-<span>preg_replace</span>
-<span>as shown here.</span>
-<span>This example replaces all occurrences of the word</span>
-<span>cats</span>
-<span>with the word</span>
-<span>dogs</span>
-<span>, regardless</span>
-<span>of case:</span>
+<span>When you want to replace part of a string, you can use preg_replace as shown here. This example replaces all occurrences of the word cats with the word dogs , regardless of case:</span>
 <pre><code class="php">echo preg_replace("/cats/i", "dogs", "Cats are furry. I like cats.");</code></pre>
-<span>The subject of regular expressions is a large one, and entire books</span>
-<span>have been written about it. If you would like further information, I</span>
-<span>suggest the</span>
-<span>Wikipedia entry</span>
-<span>, or Jeffrey Friedl&rsquo;s excellent book</span>
-<span>Mastering Regular Expressions</span>
-<span>.</span>
+<span>The subject of regular expressions is a large one, and entire books have been written about it. If you would like further information, I suggest the Wikipedia entry , or Jeffrey Friedl&rsquo;s excellent book Mastering Regular Expressions .</span>
 <h3>Redisplaying a Form After PHP Validation</h3>
-<span>OK, back to form validation. So far we&rsquo;ve created the HTML document</span>
-<span>validate.html</span>
-<span>,</span>
-<span>which will post through to the PHP program</span>
-<span>adduser.php</span>
-<span>, but only if JavaScript validates the fields or if JavaScript is disabled or unavailable.</span>
+<span>OK, back to form validation. So far we&rsquo;ve created the HTML document validate.html , which will post through to the PHP program adduser.php , but only if JavaScript validates the fields or if JavaScript is disabled or unavailable.</span>
 <br/>
-<span>So now it&rsquo;s time to create</span>
-<span>adduser.php</span>
-<span>to receive the posted form, perform its own validation,</span>
-<span>and</span>
-<span>then</span>
-<span>present</span>
-<span>the</span>
-<span>form</span>
-<span>again</span>
-<span>to</span>
-<span>the</span>
-<span>visitor</span>
-<span>if</span>
-<span>the</span>
-<span>validation</span>
-<span>fails.</span>
-<span>Example 16-3</span>
-<span>contains the code that you should type and save (or download from the</span>
-<span>companion website).</span>
+<span>So now it&rsquo;s time to create adduser.php to receive the posted form, perform its own validation, and then present the form again to the visitor if the validation fails. Example 16-3 contains the code that you should type and save (or download from the companion website).</span>
 <br/>
-<span>Example 16-3.</span>
-<span>The adduser.php program</span>
+<span>Example 16-3. The adduser.php program</span>
 <pre>
 <code class="php">
 &lt;?php // adduser.php
@@ -1522,88 +859,18 @@ for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";
 ?&gt;
 </code>
 </pre>
-<span>In this example, all input is sanitized prior to use, even passwords,</span>
-<span>which&mdash;since they may contain characters used to format HTML&mdash;</span>
-<span>will be changed into HTML entities. For example,</span>
-<span>&amp;</span>
-<span>will become</span>
-<span>&amp;amp;</span>
-<span>and</span>
-<span>&lt;</span>
-<span>will become</span>
-<span>&amp;lt;</span>
-<span>, and so on. If you will be using a</span>
-<span>hash function to store encrypted passwords, this will not be an</span>
-<span>issue as long as when you later check the password entered, it is</span>
-<span>sanitized in the same way, so that the same inputs will be compared.</span>
+<span>In this example, all input is sanitized prior to use, even passwords, which&mdash;since they may contain characters used to format HTML&mdash; will be changed into HTML entities. For example, &amp; will become &amp;amp; and &lt; will become &amp;lt; , and so on. If you will be using a hash function to store encrypted passwords, this will not be an issue as long as when you later check the password entered, it is sanitized in the same way, so that the same inputs will be compared.</span>
 <br/>
-<span>The result of submitting the form with JavaScript disabled (and two fields incorrectly</span>
-<span>completed) is shown in</span>
-<span>Figure 16-5</span>
-<span>.</span>
+<span>The result of submitting the form with JavaScript disabled (and two fields incorrectly completed) is shown in Figure 16-5 .</span>
 <p><img src="images/16.5.png"/></p>
 <span>Figure 16-5. The form as represented after PHP validation fails</span>
 <br/>
-<span>I have put the PHP section of this code (and changes to the HTML section) in a bold</span>
-<span>typeface</span>
-<span>so</span>
-<span>that</span>
-<span>you</span>
-<span>can</span>
-<span>more</span>
-<span>clearly</span>
-<span>see</span>
-<span>the</span>
-<span>difference</span>
-<span>between</span>
-<span>this</span>
-<span>and</span>
-<span>Example 16-1</span>
-<span>and</span>
-<span>Example 16-2</span>
-<span>.</span>
+<span>I have put the PHP section of this code (and changes to the HTML section) in a bold typeface so that you can more clearly see the difference between this and Example 16-1 and Example 16-2 .</span>
 <br/>
-<span>If you browsed through this example (or typed it or downloaded it from the</span>
-<span>http://</span>
-<span>lpmj.net</span>
-<span>&nbsp;website), you&rsquo;ll have seen that the PHP code is almost a clone of the JavaScript code; the same regular expressions are used to validate each field in very similar functions.</span>
+<span>If you browsed through this example (or typed it or downloaded it from the http:// lpmj.net &nbsp;website), you&rsquo;ll have seen that the PHP code is almost a clone of the JavaScript code; the same regular expressions are used to validate each field in very similar functions.</span>
 <br/>
-<span>But there are a couple of things to note. First, the</span>
-<span>fix_string</span>
-<span>function (right at the</span>
-<span>end) is used to sanitize each field and prevent any attempts at code injection from</span>
-<span>succeeding.</span>
+<span>But there are a couple of things to note. First, the fix_string function (right at the end) is used to sanitize each field and prevent any attempts at code injection from succeeding.</span>
 <br/>
-<span>Also, you will see that the HTML from</span>
-<span>Example 16-1</span>
-<span>has been repeated in the PHP</span>
-<span>code within a</span>
-<span>&lt;&lt;&lt;_END..._END;</span>
-<span>structure, displaying the form with the values that</span>
-<span>the visitor entered the previous time. You do this by simply adding an extra</span>
-<span>value</span>
-<span>parameter to each</span>
-<span>&lt;input&gt;</span>
-<span>tag (such as</span>
-<span>value="$forename"</span>
-<span>). This courtesy is highly</span>
-<span>recommended so that the user has to edit only the previously entered values, and</span>
-<span>doesn&rsquo;t have to type the fields all over again.</span>
+<span>Also, you will see that the HTML from Example 16-1 has been repeated in the PHP code within a &lt;&lt;&lt;_END..._END; structure, displaying the form with the values that the visitor entered the previous time. You do this by simply adding an extra value parameter to each &lt;input&gt; tag (such as value="$forename" ). This courtesy is highly recommended so that the user has to edit only the previously entered values, and doesn&rsquo;t have to type the fields all over again.</span>
 <br/>
-<span>In the real world, you probably wouldn&rsquo;t start with an HTML form</span>
-<span>such as the one in</span>
-<span>Example 16-1</span>
-<span>. Instead, you&rsquo;d be more likely to go</span>
-<span>straight ahead and write the PHP program in</span>
-<span>Example 16-3</span>
-<span>, which</span>
-<span>incorporates all the HTML. And, of course, you&rsquo;d also need to</span>
-<span>make a minor tweak for the case when it&rsquo;s the first time the program is called up, to prevent it from displaying errors when all the</span>
-<span>fields are empty. You also might drop the six JavaScript functions</span>
-<span>into their own</span>
-<span>.js</span>
-<span>file for separate inclusion.</span>
-<span>Now that you&rsquo;ve seen how to bring all of PHP, HTML, and JavaScript together, the</span>
-<span>next chapter will introduce Ajax (Asynchronous JavaScript and XML), which uses</span>
-<span>JavaScript calls to the server in the background to seamlessly update portions of a</span>
-<span>web page, without having to resubmit the entire page to the web server.</span>
+<span>In the real world, you probably wouldn&rsquo;t start with an HTML form such as the one in Example 16-1 . Instead, you&rsquo;d be more likely to go straight ahead and write the PHP program in Example 16-3 , which incorporates all the HTML. And, of course, you&rsquo;d also need to make a minor tweak for the case when it&rsquo;s the first time the program is called up, to prevent it from displaying errors when all the fields are empty. You also might drop the six JavaScript functions into their own .js file for separate inclusion. Now that you&rsquo;ve seen how to bring all of PHP, HTML, and JavaScript together, the next chapter will introduce Ajax (Asynchronous JavaScript and XML), which uses JavaScript calls to the server in the background to seamlessly update portions of a web page, without having to resubmit the entire page to the web server.</span>
