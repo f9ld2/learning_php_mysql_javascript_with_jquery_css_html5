@@ -6,7 +6,7 @@ layout: default
  <button onclick="doA()">DoA</button><br/>
  <script>
 function doA() {
-    
+    var content = $('textarea').val();
 }
 function doBr() {
     var lines = $('textarea').val().split("\n");
@@ -19,6 +19,12 @@ function doBr() {
     $('textarea').val(lines.join("\n"));
 }
 function toUrl(str){
-    return str.toLocaleString().toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/([\-]+)/gi, '-');
+    return str.toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/[\-]+/g, "-").replace(/^\-+|\-+$/gm,'');
+}
+
+function tagA(tmp){
+    return tmp.replace(/(<h\d>[^>]+>)/g, function( match, key ){
+        return '<a id="' toUrl( $(key).text()) ) + '"></a>' + key;
+    });
 }
 </script>
