@@ -44,11 +44,11 @@ title: "Accessing MySQL Using PHP"
 <br/>
 <span>The hostname localhost should work as long as you&rsquo;re using a MySQL database on your local system, and the database &nbsp;publications &nbsp;should work if you&rsquo;re typing the examples I&rsquo;ve used so far.</span>
 <br/>
-<span>The enclosing &lt;?php and ?&gt; tags are especially important for the &nbsp;login.php &nbsp;file in Example 10-1 , because they mean that the lines between can be interpreted only &nbsp;as PHP code. If you were to leave them out and someone were to call up the file directly from your website, it would display as text and reveal your secrets. But, with the tags in place, all that person will see is a blank page. The file will correctly include in your other PHP files.</span>
+<span>The enclosing &lt;?php and ?&gt; tags are especially important for the &nbsp;login.php &nbsp;file in Example 10-1, because they mean that the lines between can be interpreted only &nbsp;as PHP code. If you were to leave them out and someone were to call up the file directly from your website, it would display as text and reveal your secrets. But, with the tags in place, all that person will see is a blank page. The file will correctly include in your other PHP files.</span>
 <br/>
-<span>The $hn variable will tell PHP which computer to use when connecting to a database. This is required, because you can access MySQL databases on any computer connected to your PHP installation, and that potentially includes any host anywhere on the Web. However, the examples in this chapter will be working on the local server. So, in place of specifying a domain such as mysql.myserver.com , you can just use the word localhost (or the IP address 127.0.0.1).</span>
+<span>The $hn variable will tell PHP which computer to use when connecting to a database. This is required, because you can access MySQL databases on any computer connected to your PHP installation, and that potentially includes any host anywhere on the Web. However, the examples in this chapter will be working on the local server. So, in place of specifying a domain such as mysql.myserver.com, you can just use the word localhost (or the IP address 127.0.0.1).</span>
 <br/>
-<span>The database we&rsquo;ll be using, $db , is the one called publications , which we created in Chapter 8 (or may have been provided to you by your server administrator&mdash;in which case you have to modify login.php accordingly).</span>
+<span>The database we&rsquo;ll be using, $db, is the one called publications, which we created in Chapter 8 (or may have been provided to you by your server administrator&mdash;in which case you have to modify login.php accordingly).</span>
 <br/>
 <span>Another benefit of keeping these login details in a single place is that you can change your password as frequently as you like and there will be only one file to update when you do, no matter how many PHP files access MySQL.</span>
 <h4>Connecting to a MySQL Database</h4>
@@ -107,11 +107,11 @@ title: "Accessing MySQL Using PHP"
 ?&gt;
 </code>
 </pre>
-<span>Here the variable $query is assigned a string containing the query to be made, and then passed to the query method of the $conn object, which returns a result that we place in the object $result. If $result is FALSE , there was a problem and the error property of the connection object will contain the details, so the die function is called to display that error.</span>
+<span>Here the variable $query is assigned a string containing the query to be made, and then passed to the query method of the $conn object, which returns a result that we place in the object $result. If $result is FALSE, there was a problem and the error property of the connection object will contain the details, so the die function is called to display that error.</span>
 <br/>
 <span>All the data returned by MySQL is now stored in an easily interrogatable format in the $result object.</span>
 <h6>Fetching a result</h6>
-<span>Once you have an object returned in $result , you can use it to extract the data you want, one item at a time, using the fetch_assoc method of the object. Example 10-4 combines and extends the previous examples into a program that you can type and run yourself to retrieve these results (as depicted in Figure 10-1 ). I suggest that you save this script using the filename query.php (or use the file saved in the free archive of files available at lpmj.net ).</span>
+<span>Once you have an object returned in $result, you can use it to extract the data you want, one item at a time, using the fetch_assoc method of the object. Example 10-4 combines and extends the previous examples into a program that you can type and run yourself to retrieve these results (as depicted in Figure 10-1 ). I suggest that you save this script using the filename query.php (or use the file saved in the free archive of files available at lpmj.net ).</span>
 <br/>
 <span>Example 10-4. Fetching results one cell at a time</span>
 <pre>
@@ -157,9 +157,9 @@ title: "Accessing MySQL Using PHP"
 <br/>
 <span>You will probably agree that all this data seeking is rather cumbersome and that there ought to be a more efficient method of achieving the same result. And, indeed, there is a better method, which is to extract a row at a time.</span>
 <br/>
-<span>In Chapter 9 , I talked about First, Second, and Third Normal Form, so you may have now noticed that the classics table doesn&rsquo;t satisfy these, because both author and book details are included within the same table. That&rsquo;s because we created this table before encountering normalization. However, for the purposes of illustrating access to MySQL from PHP, reusing this table avoids the hassle of typing in a new set of test data, so we&rsquo;ll stick with it for the time being.</span>
+<span>In Chapter 9, I talked about First, Second, and Third Normal Form, so you may have now noticed that the classics table doesn&rsquo;t satisfy these, because both author and book details are included within the same table. That&rsquo;s because we created this table before encountering normalization. However, for the purposes of illustrating access to MySQL from PHP, reusing this table avoids the hassle of typing in a new set of test data, so we&rsquo;ll stick with it for the time being.</span>
 <h6>Fetching a row</h6>
-<span>To fetch one row at a time, replace the for loop from &nbsp;Example 10-4 &nbsp;with the one highlighted in bold in Example 10-5 , and you will find that you get exactly the same result that was displayed in Figure 10-1. You may wish to save this revised file using the name fetchrow.php.</span>
+<span>To fetch one row at a time, replace the for loop from &nbsp;Example 10-4 &nbsp;with the one highlighted in bold in Example 10-5, and you will find that you get exactly the same result that was displayed in Figure 10-1. You may wish to save this revised file using the name fetchrow.php.</span>
 <br/>
 <span>Example 10-5. Fetching results one row at a time</span>
 <pre>
@@ -207,7 +207,7 @@ your code to make debugging easier and help other programmers better manage
 your code.</div>
 <span>MYSQLI_BOTH</span>
 <div class="t30">Associative and numeric array.</div>
-<span>Associative arrays are usually more useful than numeric ones because you can refer to each column by name, such as $row['author'] , instead of trying to remember where it is in the column order. So this script uses an associative array, leading us to pass MYSQLI_ASSOC.</span>
+<span>Associative arrays are usually more useful than numeric ones because you can refer to each column by name, such as $row['author'], instead of trying to remember where it is in the column order. So this script uses an associative array, leading us to pass MYSQLI_ASSOC.</span>
 <h6>Closing a connection</h6>
 <span>PHP will eventually return the memory it has allocated for objects after you have finished with the script, so in small scripts, you don&rsquo;t usually need to worry about releasing memory yourself. However, if you&rsquo;re allocating a lot of result objects or fetching large amounts of data, it can be a good idea to free the memory you have been using to prevent problems later in your script.</span>
 <br/>
@@ -308,21 +308,21 @@ your code.</div>
 </code>
 </pre>
 <p><img src="images/10.2.png"/></p>
-<span>Figure 10-2. The output from Example 10-6 , sqltest.php</span>
+<span>Figure 10-2. The output from Example 10-6, sqltest.php</span>
 <br/>
-<span>At over 80 lines of code, this program may appear daunting, but don&rsquo;t worry&mdash;you&rsquo;ve already covered many of them in Example 10-5 , and what the code does is actually quite simple.</span>
+<span>At over 80 lines of code, this program may appear daunting, but don&rsquo;t worry&mdash;you&rsquo;ve already covered many of them in Example 10-5, and what the code does is actually quite simple.</span>
 <br/>
 <span>It first checks for any inputs that may have been made and then either inserts new data into the table &nbsp;classics &nbsp;of the &nbsp;publications &nbsp;database or deletes a row from it, according to the input supplied. Regardless of whether there was input, the program then outputs all rows in the table to the browser. So let&rsquo;s see how it works.</span>
 <br/>
-<span>The first section of new code starts by using the isset function to check whether values for all the fields have been posted to the program. Upon confirmation, each line within the if statement calls the function get_post , which appears at the end of the program. This function has one small but critical job: fetching input from the browser.</span>
+<span>The first section of new code starts by using the isset function to check whether values for all the fields have been posted to the program. Upon confirmation, each line within the if statement calls the function get_post, which appears at the end of the program. This function has one small but critical job: fetching input from the browser.</span>
 <h4>The $_POST Array</h4>
 <span>I mentioned in an earlier chapter that a browser sends user input through either a Get request or a Post request. The Post request is usually preferred (because it avoids placing unsightly data in the browser&rsquo;s address bar), and so we use it here. The web server bundles up all of the user input (even if the form was filled out with a hundred fields) and puts in into an array named $_POST.</span>
 <br/>
 <span>$_POST is an associative array, which you encountered in Chapter 6. Depending on whether a form has been set to use the Post or the Get method, either the $_POST or the $_GET associative array will be populated with the form data. They can both be read in exactly the same way.</span>
 <br/>
-<span>Each field has an element in the array named after that field. So, if a form contained a field named isbn , the $_POST array contains an element keyed by the word isbn. The PHP program can read that field by referring to either $_POST['isbn'] or $_POST["isbn"] (single and double quotes have the same effect in this case).</span>
+<span>Each field has an element in the array named after that field. So, if a form contained a field named isbn, the $_POST array contains an element keyed by the word isbn. The PHP program can read that field by referring to either $_POST['isbn'] or $_POST["isbn"] (single and double quotes have the same effect in this case).</span>
 <br/>
-<span>If the $_POST syntax still seems complex to you, rest assured that you can just use the convention I&rsquo;ve shown in Example 10-6 , copy the user&rsquo;s input to other variables, and forget about $_POST after that. This is normal in PHP programs: they retrieve all the fields from $_POST at the beginning of the program and then ignore it.</span>
+<span>If the $_POST syntax still seems complex to you, rest assured that you can just use the convention I&rsquo;ve shown in Example 10-6, copy the user&rsquo;s input to other variables, and forget about $_POST after that. This is normal in PHP programs: they retrieve all the fields from $_POST at the beginning of the program and then ignore it.</span>
 <br/>
 <span>There is no reason to write to an element in the $_POST array. Its only purpose is to communicate information from the browser to the program, and you&rsquo;re better off copying data to your own vari‐ ables before altering it.</span>
 <br/>
@@ -338,7 +338,7 @@ your code.</div>
 <h4>Deleting a Record</h4>
 <span>Prior to checking whether new data has been posted, the program checks whether the variable $_POST['delete'] has a value. If so, the user has clicked the DELETE RECORD button to erase a record. In this case, the value of $isbn will also have been posted.</span>
 <br/>
-<span>As you&rsquo;ll recall, the ISBN uniquely identifies each record. The HTML form appends the ISBN to the DELETE FROM query string created in the variable $query , which is then passed to the query method of the $conn object to issue it to MySQL.</span>
+<span>As you&rsquo;ll recall, the ISBN uniquely identifies each record. The HTML form appends the ISBN to the DELETE FROM query string created in the variable $query, which is then passed to the query method of the $conn object to issue it to MySQL.</span>
 <br/>
 <span>If $_POST['delete']) is not set (and so there is no record to be deleted), $_POST['author']) and other posted values are checked. If they have all been given values, then $query is set to an INSERT INTO command, followed by the five values to be inserted. The string is then passed to the query method, which upon completion returns either TRUE or FALSE. If FALSE is returned, the error message held in the error property of the $conn object is displayed, like this:</span>
 <pre>
@@ -350,17 +350,17 @@ your code.</div>
 <h4>Displaying the Form</h4>
 <span>Next we get to the part of code that displays the little form at the top of Figure 10-2. You should recall the echo &lt;&lt;&lt;_END... _END structure from previous chapters, which outputs everything between the _END tags.</span>
 <br/>
-<span>Instead of the echo command, the program could also drop out of PHP using ?&gt; , issue the HTML, and then reenter PHP processing with &lt;?php. Whichever style used is a matter of programmer preference, but I always recommend staying within PHP code for these reasons:</span>
+<span>Instead of the echo command, the program could also drop out of PHP using ?&gt;, issue the HTML, and then reenter PHP processing with &lt;?php. Whichever style used is a matter of programmer preference, but I always recommend staying within PHP code for these reasons:</span>
 <br/>
 <span>&bull; It makes it very clear when debugging (and also for other users) that everything within a &nbsp;.php &nbsp;file is PHP code. Therefore, there is no need to go hunting for dropouts to HTML.</span>
 <br/>
 <span>&bull; When you wish to include a PHP variable directly within HTML, you can just type it. If you had dropped back to HTML, you would have had to temporarily reenter PHP processing, access the variable, and then drop back out again.</span>
 <br/>
-<span>The HTML form section simply sets the form&rsquo;s action to sqltest.php. This means that when the form is submitted, the contents of the form fields will be sent to the file sqltest.php , which is the program itself. The form is also set up to send the fields as a Post rather than a Get request. This is because Get requests are appended to the URL being submitted to and can look messy in your browser. They also allow users to easily modify submissions and try to hack your server. Therefore, whenever possible, you should use Post submissions, which also have the benefit of hiding the posted data from view.</span>
+<span>The HTML form section simply sets the form&rsquo;s action to sqltest.php. This means that when the form is submitted, the contents of the form fields will be sent to the file sqltest.php, which is the program itself. The form is also set up to send the fields as a Post rather than a Get request. This is because Get requests are appended to the URL being submitted to and can look messy in your browser. They also allow users to easily modify submissions and try to hack your server. Therefore, whenever possible, you should use Post submissions, which also have the benefit of hiding the posted data from view.</span>
 <br/>
 <span>Having output the form fields, the HTML displays a Submit button with the name ADD RECORD and closes the form. Note the &lt;pre&gt; and &lt;/pre&gt; tags here, which have been used to force a monospaced font and allow all the inputs to line up neatly. The carriage returns at the end of each line are also output when inside &lt;pre&gt; tags.</span>
 <h4>Querying the Database</h4>
-<span>Next, the code returns to the familiar territory of Example 10-5 , where a query is sent to MySQL asking to see all the records in the classics table, like this:</span>
+<span>Next, the code returns to the familiar territory of Example 10-5, where a query is sent to MySQL asking to see all the records in the classics table, like this:</span>
 <pre>
 <code class="php">
     $query = "SELECT * FROM classics";
@@ -369,13 +369,13 @@ your code.</div>
 </pre>
 <span>After that, $rows is set to a value representing the number of rows in the table: $rows = $result-&gt;num_rows;</span>
 <br/>
-<span>Using the value in $rows , a for loop is then entered to display the contents of each row. Within each iteration of the loop, the data_seek method of the $result object is called to seek to the relevant items of data we&rsquo;re interested in, like this:</span>
+<span>Using the value in $rows, a for loop is then entered to display the contents of each row. Within each iteration of the loop, the data_seek method of the $result object is called to seek to the relevant items of data we&rsquo;re interested in, like this:</span>
 <pre><code class="sql">$result-&gt;data_seek($j);</code></pre>
-<span>Then the array $row is populated with a row of results by calling the fetch_array method of $result , passing it the constant value MYSQLI_NUM , which forces the return of a numeric (rather than associative) array, like this:</span>
+<span>Then the array $row is populated with a row of results by calling the fetch_array method of $result, passing it the constant value MYSQLI_NUM, which forces the return of a numeric (rather than associative) array, like this:</span>
 <pre><code class="sql">$row = $result-&gt;fetch_array(MYSQLI_NUM);</code></pre>
-<span>With the data in $row , it&rsquo;s now a simple matter to display it within the heredoc echo statement that follows in which I have chosen to use a &lt;pre&gt; tag to line up the display of each record in a pleasing manner.</span>
+<span>With the data in $row, it&rsquo;s now a simple matter to display it within the heredoc echo statement that follows in which I have chosen to use a &lt;pre&gt; tag to line up the display of each record in a pleasing manner.</span>
 <br/>
-<span>After the display of each record, there is a second form that also posts to sqltest.php (the program itself) but this time contains two hidden fields: delete and isbn. The delete field is set to yes and isbn to the value held in $row[4] , which contains the ISBN for the record.</span>
+<span>After the display of each record, there is a second form that also posts to sqltest.php (the program itself) but this time contains two hidden fields: delete and isbn. The delete field is set to yes and isbn to the value held in $row[4], which contains the ISBN for the record.</span>
 <br/>
 <span>Then a Submit button with the name DELETE RECORD is displayed, and the form is closed. A curly brace then completes the for loop, which will continue until all records have been displayed, at which time the $result and $conn object&rsquo;s close methods are closed to release resources back to PHP:</span>
 <pre>
@@ -384,7 +384,7 @@ your code.</div>
     $conn-&gt;close();
 </code>
 </pre>
-<span>Finally, you see the definition for the function get_post , which we&rsquo;ve already looked at. And that&rsquo;s it&mdash;our first PHP program to manipulate a MySQL database. So, let&rsquo;s check out what it can do.</span>
+<span>Finally, you see the definition for the function get_post, which we&rsquo;ve already looked at. And that&rsquo;s it&mdash;our first PHP program to manipulate a MySQL database. So, let&rsquo;s check out what it can do.</span>
 <br/>
 <span>Once you have typed the program (and corrected any typing errors), try entering the following data into the various input fields to add a new record for the book Moby Dick to the database:</span>
 <br/>
@@ -408,7 +408,7 @@ your code.</div>
 <h3>Practical MySQL</h3>
 <span>You are now ready to look at some practical techniques that you can use in PHP to access the MySQL database, including tasks such as creating and dropping tables; inserting, updating, and deleting data; and protecting your database and website from malicious users. Note that the following examples assume that you&rsquo;ve already created the login.php program discussed earlier in this chapter.</span>
 <h4>Creating a Table</h4>
-<span>Let&rsquo;s assume that you are working for a wildlife park and need to create a database to hold details about all the types of cats it houses. You are told that there are nine fami‐ lies of cats&mdash;Lion, Tiger, Jaguar, Leopard, Cougar, Cheetah, Lynx, Caracal, and Domestic&mdash;so you&rsquo;ll need a column for that. Then each cat has been given a name , so that&rsquo;s another column, and you also want to keep track of their ages , which is another. Of course, you will probably need more columns later, perhaps to hold dietary requirements, inoculations, and other details, but for now that&rsquo;s enough to get going. A unique identifier is also needed for each animal, so you also decide to create a column for that called id.</span>
+<span>Let&rsquo;s assume that you are working for a wildlife park and need to create a database to hold details about all the types of cats it houses. You are told that there are nine fami‐ lies of cats&mdash;Lion, Tiger, Jaguar, Leopard, Cougar, Cheetah, Lynx, Caracal, and Domestic&mdash;so you&rsquo;ll need a column for that. Then each cat has been given a name, so that&rsquo;s another column, and you also want to keep track of their ages, which is another. Of course, you will probably need more columns later, perhaps to hold dietary requirements, inoculations, and other details, but for now that&rsquo;s enough to get going. A unique identifier is also needed for each animal, so you also decide to create a column for that called id.</span>
 <br/>
 <span>Example 10-7 &nbsp;shows the code you might use to create a MySQL table to hold this data, with the main query assignment in bold text.</span>
 <br/>
@@ -436,7 +436,7 @@ your code.</div>
 </pre>
 <span>As you can see, the MySQL query looks pretty similar to how you would type it directly in the command line, except that there is no trailing semicolon, as none is needed when you are accessing MySQL from PHP.</span>
 <h4>Describing a Table</h4>
-<span>When you aren&rsquo;t logged into the MySQL command line, here&rsquo;s a handy piece of code that you can use to verify that a table has been correctly created from inside a browser. It simply issues the query DESCRIBE cats and then outputs an HTML table with four headings&mdash; Column , &nbsp;Type , &nbsp;Null , and &nbsp;Key &mdash;underneath which all columns within the table are shown. To use it with other tables, simply replace the name cats in the query with that of the new table (see Example 10-8 ).</span>
+<span>When you aren&rsquo;t logged into the MySQL command line, here&rsquo;s a handy piece of code that you can use to verify that a table has been correctly created from inside a browser. It simply issues the query DESCRIBE cats and then outputs an HTML table with four headings&mdash; Column, &nbsp;Type, &nbsp;Null, and &nbsp;Key &mdash;underneath which all columns within the table are shown. To use it with other tables, simply replace the name cats in the query with that of the new table (see Example 10-8 ).</span>
 <br/>
 <span>Example 10-8. Describing the table cats</span>
 <pre>
@@ -514,7 +514,7 @@ your code.</div>
     $query = "INSERT INTO cats VALUES(NULL, 'Cheetah', 'Charly', 3)";
 </code>
 </pre>
-<span>By the way, notice the NULL value passed as the first parameter? This is because the id column is of type AUTO_INCREMENT , and MySQL will decide what value to assign according to the next available number in sequence, so we simply pass a NULL value, which will be ignored.</span>
+<span>By the way, notice the NULL value passed as the first parameter? This is because the id column is of type AUTO_INCREMENT, and MySQL will decide what value to assign according to the next available number in sequence, so we simply pass a NULL value, which will be ignored.</span>
 <br/>
 <span>Of course, the most efficient way to populate MySQL with data is to create an array and insert the data with a single query.</span>
 <h4>Retrieving Data</h4>
@@ -554,7 +554,7 @@ your code.</div>
 <br/>
 <span>Here you can see that the id column has correctly auto-incremented.</span>
 <h4>Updating Data</h4>
-<span>Changing data that you have already inserted is also quite simple. Did you notice the spelling of Charly for the cheetah&rsquo;s name? Let&rsquo;s correct that to Charlie , as in Example 10-12.</span>
+<span>Changing data that you have already inserted is also quite simple. Did you notice the spelling of Charly for the cheetah&rsquo;s name? Let&rsquo;s correct that to Charlie, as in Example 10-12.</span>
 <br/>
 <span>Example 10-12. Renaming Charly the cheetah to Charlie</span>
 <pre>
@@ -594,11 +594,11 @@ your code.</div>
 ?&gt;
 </code>
 </pre>
-<span>This uses a standard DELETE FROM query, and when you run Example 10-11 , you can see that the row has been removed in the following output:</span>
+<span>This uses a standard DELETE FROM query, and when you run Example 10-11, you can see that the row has been removed in the following output:</span>
 <br/>
 <span>Id Family Name Age 1 Lion Leo 4 3 Cheetah Charlie 3</span>
 <h4>Using AUTO_INCREMENT</h4>
-<span>When using AUTO_INCREMENT , you cannot know what value has been given to a column before a row is inserted. Instead, if you need to know it, you must ask MySQL afterward using the mysql_insert_id function. This need is common: for instance, when you process a purchase, you might insert a new customer into a Customers table and then refer to the newly created CustId when inserting a purchase into the pur chase table.</span>
+<span>When using AUTO_INCREMENT, you cannot know what value has been given to a column before a row is inserted. Instead, if you need to know it, you must ask MySQL afterward using the mysql_insert_id function. This need is common: for instance, when you process a purchase, you might insert a new customer into a Customers table and then refer to the newly created CustId when inserting a purchase into the pur chase table.</span>
 <br/>
 <span>Example 10-10 &nbsp;can be rewritten as &nbsp;Example 10-14 &nbsp;to display this value after each insert.</span>
 <br/>
@@ -625,7 +625,7 @@ your code.</div>
 <h6>Using insert IDs</h6>
 <span>It&rsquo;s very common to insert data in multiple tables: a book followed by its author, or a customer followed by his purchase, and so on. When doing this with an auto- increment column, you will need to retain the insert ID returned for storing in the related table.</span>
 <br/>
-<span>For example, let&rsquo;s assume that these cats can be &ldquo;adopted&rdquo; by the public as a means of raising funds, and that when a new cat is stored in the cats table, we also want to create a key to tie it to the animal&rsquo;s adoptive owner. The code to do this is similar to that in Example 10-14 , except that the returned insert ID is stored in the variable $inser tID , and is then used as part of the subsequent query:</span>
+<span>For example, let&rsquo;s assume that these cats can be &ldquo;adopted&rdquo; by the public as a means of raising funds, and that when a new cat is stored in the cats table, we also want to create a key to tie it to the animal&rsquo;s adoptive owner. The code to do this is similar to that in Example 10-14, except that the returned insert ID is stored in the variable $inser tID, and is then used as part of the subsequent query:</span>
 <pre>
 <code class="php">
     $query = "INSERT INTO cats VALUES(NULL, 'Lynx', 'Stumpy', 5)";
@@ -654,7 +654,7 @@ your code.</div>
 <br/>
 <span>You can safely release the lock before inserting data into the second table, because the insert ID has been retrieved and is stored in a program variable. You could also use a transaction instead of locking, but that slows down the MySQL server even more.</span>
 <h4>Performing Additional Queries</h4>
-<span>Okay, that&rsquo;s enough feline fun. To explore some slightly more complex queries, we need to revert to using the customers and classics tables that you created in Chapter 8. There will be two customers in the customers table; the classics table holds the details of a few books. They also share a common column of ISBNs, called isbn , that we can use to perform additional queries. For example, to display all of the customers along with the titles and authors of the books they have bought, you can use the code in Example 10-15.</span>
+<span>Okay, that&rsquo;s enough feline fun. To explore some slightly more complex queries, we need to revert to using the customers and classics tables that you created in Chapter 8. There will be two customers in the customers table; the classics table holds the details of a few books. They also share a common column of ISBNs, called isbn, that we can use to perform additional queries. For example, to display all of the customers along with the titles and authors of the books they have bought, you can use the code in Example 10-15.</span>
 <br/>
 <span>Example 10-15. Performing a secondary query</span>
 <pre>
@@ -702,7 +702,7 @@ your code.</div>
     $query = "SELECT * FROM users WHERE user='$user' AND pass='$pass'";
 </code>
 </pre>
-<span>At first glance, you might think this code is perfectly fine. If the user enters values of fredsmith and mypass for $user and $pass , respectively, then the query string, as passed to MySQL, will be as follows:</span>
+<span>At first glance, you might think this code is perfectly fine. If the user enters values of fredsmith and mypass for $user and $pass, respectively, then the query string, as passed to MySQL, will be as follows:</span>
 <pre><code class="sql">SELECT * FROM users WHERE user='fredsmith' AND pass='mypass'</code></pre>
 <span>This is all well and good, but what if someone enters the following for $user (and doesn&rsquo;t even enter anything for $pass )?</span>
 <br/>
@@ -726,9 +726,9 @@ your code.</div>
 <br/>
 <span>This would be interpreted by MySQL as follows:</span>
 <pre><code class="sql">DELETE FROM users WHERE user='anything' OR 1=1 #' AND pass=''</code></pre>
-<span>Ouch&mdash;that SQL query will always be TRUE , and therefore you&rsquo;ve lost your whole users database! So what can you do about this kind of attack?</span>
+<span>Ouch&mdash;that SQL query will always be TRUE, and therefore you&rsquo;ve lost your whole users database! So what can you do about this kind of attack?</span>
 <h4>Steps You Can Take</h4>
-<span>The first thing is not to rely on PHP&rsquo;s built-in &nbsp;magic quotes , which automatically escape any characters such as single and double quotes by prefacing them with a backslash ( \ ). Why? Because this feature can be turned off; many programmers do so in order to put their own security code in place. So there is no guarantee that this hasn&rsquo;t happened on the server you are working on. In fact, the feature was deprecated as of PHP 5.3.0 and has been removed in PHP 6.0.0.</span>
+<span>The first thing is not to rely on PHP&rsquo;s built-in &nbsp;magic quotes, which automatically escape any characters such as single and double quotes by prefacing them with a backslash ( \ ). Why? Because this feature can be turned off; many programmers do so in order to put their own security code in place. So there is no guarantee that this hasn&rsquo;t happened on the server you are working on. In fact, the feature was deprecated as of PHP 5.3.0 and has been removed in PHP 6.0.0.</span>
 <br/>
 <span>Instead, you should always use the real_escape_string method for all calls to MySQL. Example 10-16 is a function you can use that will remove any magic quotes added to a user-inputted string and then properly sanitize it for you.</span>
 <br/>
@@ -789,7 +789,7 @@ your code.</div>
     DEALLOCATE PREPARE statement;
 </code>
 </pre>
-<span>This can be cumbersome to submit to MySQL, so the mysqli extension makes handling placeholders easier for you with a ready-made method called prepare , which you call like this:</span>
+<span>This can be cumbersome to submit to MySQL, so the mysqli extension makes handling placeholders easier for you with a ready-made method called prepare, which you call like this:</span>
 <pre><code class="sql">$stmt = $conn-&gt;prepare('INSERT INTO classics VALUES(?,?,?,?,?)');</code></pre>
 <span>The object $stmt (or whatever you choose to name it) returned by this method is then used for sending the data to the server in place of the question marks. It&rsquo;s first use is to bind some PHP variables to each of the question marks (the placeholder parameters) in turn, like this:</span>
 <pre><code class="sql">$stmt-&gt;bind_param('sssss', $author, $title, $category, $year, $isbn);</code></pre>
@@ -854,7 +854,7 @@ your code.</div>
 </pre>
 <span>Every time you are able to use prepared statements in place of nonprepared, you will be closing a potential security hole, so it&rsquo;s worth spending the time getting to know how to use them.</span>
 <h4>Preventing HTML Injection</h4>
-<span>There&rsquo;s another type of injection you need to concern yourself about&mdash;not for the safety of your own websites, but for your users&rsquo; privacy and protection. That&rsquo;s cross- site scripting , also referred to as XSS.</span>
+<span>There&rsquo;s another type of injection you need to concern yourself about&mdash;not for the safety of your own websites, but for your users&rsquo; privacy and protection. That&rsquo;s cross- site scripting, also referred to as XSS.</span>
 <br/>
 <span>This occurs when you allow HTML, or more often JavaScript code, to be input by a user and then displayed back by your website. One place this is common is in a comment form. What happens most often is that a malicious user will try to write code that steals cookies from your site&rsquo;s users, allowing him or her to discover username and password pairs or other information. Even worse, the malicious user might launch an attack to download a Trojan onto a user&rsquo;s computer.</span>
 <br/>
@@ -865,14 +865,14 @@ your code.</div>
 &lt;/script&gt;&lt;script&gt;hack();&lt;/script&gt;
 </code>
 </pre>
-<span>This code loads in a JavaScript program and then executes malicious functions. But if it is first passed through htmlentities , it will be turned into the following totally harmless string:</span>
+<span>This code loads in a JavaScript program and then executes malicious functions. But if it is first passed through htmlentities, it will be turned into the following totally harmless string:</span>
 <pre>
 <code class="html">
     &amp;lt;script src='http://x.com/hack.js'&amp;gt; &amp;lt;/script&amp;gt;
     &amp;lt;script&amp;gt;hack();&amp;lt;/script&amp;gt;
 </code>
 </pre>
-<span>Therefore, if you are ever going to display anything that your users enter, either immediately or after storing it in a database, you need to first sanitize it using the htmlentities function. To do this, I recommend that you create a new function, like the first one in Example 10-20 , which can sanitize for both SQL and XSS injections.</span>
+<span>Therefore, if you are ever going to display anything that your users enter, either immediately or after storing it in a database, you need to first sanitize it using the htmlentities function. To do this, I recommend that you create a new function, like the first one in Example 10-20, which can sanitize for both SQL and XSS injections.</span>
 <br/>
 <span>Example 10-20. Functions for preventing both SQL and XSS injection attacks</span>
 <pre>
@@ -933,7 +933,7 @@ your code.</div>
 <pre><code class="php">$rows = mysqli_num_rows($result);</code></pre>
 <span>An integer is returned in $rows. You can fetch the actual data one row at a time in the following way, which returns a numeric array:</span>
 <pre><code class="php">$row = mysqli_fetch_array($result, MYSQLI_NUM);</code></pre>
-<span>In this instance, $row[0] will contain the first column of data, $row[1] the second, and so on. As described in &nbsp;Example 11-5 , rows can also be returned as associative arrays or as both types, depending on the value passed in the second argument.</span>
+<span>In this instance, $row[0] will contain the first column of data, $row[1] the second, and so on. As described in &nbsp;Example 11-5, rows can also be returned as associative arrays or as both types, depending on the value passed in the second argument.</span>
 <br/>
 <span>When you need to know the insert ID of an insert operation, you can always call the mysqli_insert_id function, like this:</span>
 <pre><code class="php">$insertID = mysqli_insert_id($result);</code></pre>

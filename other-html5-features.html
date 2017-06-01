@@ -23,7 +23,7 @@ title: "Other HTML5 Features"
 <br/>
 <span>IP addresses are commonly used by media companies for restricting playback of their content by territory. However, it&rsquo;s a simple matter to set up proxy servers that use a forwarding IP address (in the territory that is blocking outside access) to fetch and pass content through the blockade directly to a &ldquo;foreign&rdquo; browser. Proxy servers are also often employed to disguise a user&rsquo;s real IP address or bypass censorship restrictions, and can be shared across many users on a Wi-Fi hotspot (for example). Therefore, if you locate someone by IP address, you can&rsquo;t be completely sure that you have identified the right location, or even country, and should treat this information as only a best guess.</span>
 <h3>Geolocation and HTML5</h3>
-<span>In Chapter 22 , I briefly introduced HTML5 geolocation. Now it&rsquo;s time to look at it in depth, starting with the example I gave you before, shown again in Example 25-1.</span>
+<span>In Chapter 22, I briefly introduced HTML5 geolocation. Now it&rsquo;s time to look at it in depth, starting with the example I gave you before, shown again in Example 25-1.</span>
 <br/>
 <span>Example 25-1. Displaying a map of your current location</span>
 <pre>
@@ -79,7 +79,7 @@ title: "Other HTML5 Features"
 &lt;/html&gt;
 </code>
 </pre>
-<span>Let&rsquo;s walk through this code and see how it works, starting with the &lt;head&gt; section, which displays a title; loads in the OSC.js file containing the O , S , and C functions I provided to make accessing HTML elements from JavaScript easier; and then also pulls in the JavaScript code for the Google Maps service, which is drawn on later in the program.</span>
+<span>Let&rsquo;s walk through this code and see how it works, starting with the &lt;head&gt; section, which displays a title; loads in the OSC.js file containing the O, S, and C functions I provided to make accessing HTML elements from JavaScript easier; and then also pulls in the JavaScript code for the Google Maps service, which is drawn on later in the program.</span>
 <br/>
 <span>After this, two &lt;div&gt; elements are created&mdash;one for displaying the connection status, and the other for the map:</span>
 <pre>
@@ -88,7 +88,7 @@ title: "Other HTML5 Features"
 &lt;div id='map'&gt;&lt;/div&gt;
 </code>
 </pre>
-<span>The remainder of the document is JavaScript, which immediately starts by interrogating the navigator.geolocation property. If the value returned is undefined , then geolocation is not supported by the browser and an error alert window is popped up.</span>
+<span>The remainder of the document is JavaScript, which immediately starts by interrogating the navigator.geolocation property. If the value returned is undefined, then geolocation is not supported by the browser and an error alert window is popped up.</span>
 <br/>
 <span>Otherwise, the getCurrentPosition method of the property is called, passing it the names of two functions: granted and denied (remember that by passing function names, we pass the actual function code, not the result of calling the function, which would be the case if the function names had brackets attached):</span>
 <pre><code class="javascript">navigator.geolocation.getCurrentPosition(granted, denied)</code></pre>
@@ -111,7 +111,7 @@ var long = position.coords.longitude
 var gmap = O('map')
 </code>
 </pre>
-<span>After this, the object gopts is populated with the values in lat and long , the zoom level is set (in this case to 9), and the ROADMAP map type is selected:</span>
+<span>After this, the object gopts is populated with the values in lat and long, the zoom level is set (in this case to 9), and the ROADMAP map type is selected:</span>
 <pre>
 <code class="javascript">
 var gopts =
@@ -145,7 +145,7 @@ var gopts =
 <br/>
 <span>You can set a different zoom level or imagery type by providing different values to the gopts object. For example, a value of 1 for zoom will zoom out the furthest, and 20 will zoom in the most. A value of SATELLITE for the google.maps.MapTypeId property will switch to satellite imagery, or HYBRID will combine map and satellite data.</span>
 <br/>
-<span>The sensor=false setting from the tail of the URL where the script is loaded in (near the start of the document), should be set to true if you know that the user&rsquo;s device has a GPS sensor; otherwise, leave it as it is. If you simply want to display a Google map for a specific location, and not access the user&rsquo;s location data, you can use the core code in the granted function, replacing the lat and long (and other) values with ones of your choosing. Also, if you would prefer to use Bing maps instead of Google, refer to &nbsp;http:// tinyurl.com/bingmapsapi , or the following long URL: &nbsp;http://micro soft.com/web/post/using-the-bing-maps-api.</span>
+<span>The sensor=false setting from the tail of the URL where the script is loaded in (near the start of the document), should be set to true if you know that the user&rsquo;s device has a GPS sensor; otherwise, leave it as it is. If you simply want to display a Google map for a specific location, and not access the user&rsquo;s location data, you can use the core code in the granted function, replacing the lat and long (and other) values with ones of your choosing. Also, if you would prefer to use Bing maps instead of Google, refer to &nbsp;http:// tinyurl.com/bingmapsapi, or the following long URL: &nbsp;http://micro soft.com/web/post/using-the-bing-maps-api.</span>
 <h3>Local Storage</h3>
 <span>Cookies are an essential part of the modern Internet because they enable websites to save on each user&rsquo;s machine small snippets of information that can be used for tracking purposes. Now this isn&rsquo;t as ominous as it sounds, because most of the tracking going on helps web surfers by saving usernames and passwords, keeping them logged into a social network such as Twitter or Facebook, and more.</span>
 <br/>
@@ -232,7 +232,7 @@ else
 <br/>
 <span>You are not restricted to just storing usernames and passwords; you can include virtually any and all data, and as many key/value pairs as you like, up to the available storage limit for your domain.</span>
 <h3>Web Workers</h3>
-<span>With web workers , you can create sections of JavaScript code that will run in the background, without having to set up and monitor interrupts. Instead, whenever it has something to report, your background process communicates with the main JavaScript through the use of an event.</span>
+<span>With web workers, you can create sections of JavaScript code that will run in the background, without having to set up and monitor interrupts. Instead, whenever it has something to report, your background process communicates with the main JavaScript through the use of an event.</span>
 <br/>
 <span>This means the JavaScript interpreter gets to decide how to allocate time slices most efficiently, and your code only needs to worry about communicating with the background task whenever there&rsquo;s information to convey.</span>
 <br/>
@@ -266,11 +266,11 @@ else
 &lt;/html&gt;
 </code>
 </pre>
-<span>This example first creates a &lt;span&gt; element with the ID of result in which output from the web worker will be placed. Then, in the &lt;script&gt; section, window.Worker is tested via a !! pair of not operators. This has the effect of returning a Boolean value of true if the Worker method exists, and false otherwise. If it is not true , a message is displayed in the else section, alerting us that web workers are not available.</span>
+<span>This example first creates a &lt;span&gt; element with the ID of result in which output from the web worker will be placed. Then, in the &lt;script&gt; section, window.Worker is tested via a !! pair of not operators. This has the effect of returning a Boolean value of true if the Worker method exists, and false otherwise. If it is not true, a message is displayed in the else section, alerting us that web workers are not available.</span>
 <br/>
-<span>Otherwise, a new worker object is created by calling Worker , passing it the filename worker.js &nbsp;(shown shortly). Then the onmessage event of the new worker object is attached to an anonymous function that places any message passed to it by worker.js into the innerHTML property of the previously created &lt;span&gt; element.</span>
+<span>Otherwise, a new worker object is created by calling Worker, passing it the filename worker.js &nbsp;(shown shortly). Then the onmessage event of the new worker object is attached to an anonymous function that places any message passed to it by worker.js into the innerHTML property of the previously created &lt;span&gt; element.</span>
 <br/>
-<span>The web worker itself is saved in the file worker.js , in Example 25-4.</span>
+<span>The web worker itself is saved in the file worker.js, in Example 25-4.</span>
 <br/>
 <span>Example 25-4. The worker.js web worker</span>
 <pre>
@@ -287,9 +287,9 @@ search: while (true)
 }
 </code>
 </pre>
-<span>This file assigns the value 1 to the variable n. It then loops continuously, incrementing n and checking it for primality by a brute-force method of testing all values from 1 to the square root of n to see if they divide exactly into n , with no remainder. Should a factor be found, the continue command stops the brute-force attack immediately because the number is not prime, and starts processing at the next higher value of n.</span>
+<span>This file assigns the value 1 to the variable n. It then loops continuously, incrementing n and checking it for primality by a brute-force method of testing all values from 1 to the square root of n to see if they divide exactly into n, with no remainder. Should a factor be found, the continue command stops the brute-force attack immediately because the number is not prime, and starts processing at the next higher value of n.</span>
 <br/>
-<span>But if all possible factors are tested and none result in a zero remainder, then n must be prime, so its value is passed to postMessage , which sends a message back to the onmessage event of the object that set up this web worker. The result looks like the following:</span>
+<span>But if all possible factors are tested and none result in a zero remainder, then n must be prime, so its value is passed to postMessage, which sends a message back to the onmessage event of the object that set up this web worker. The result looks like the following:</span>
 <br/>
 <span>Current highest prime number: 30477191</span>
 <br/>
@@ -311,7 +311,7 @@ clock.css
 clock.js
 </code>
 </pre>
-<span>The first line in this file declares it to be a manifest file. The lines following list the files the browser needs to download and store, starting with &nbsp;Example 25-6 , the clock.html file, and followed by the OSC.js file, which is the same one used by many examples in this book.</span>
+<span>The first line in this file declares it to be a manifest file. The lines following list the files the browser needs to download and store, starting with &nbsp;Example 25-6, the clock.html file, and followed by the OSC.js file, which is the same one used by many examples in this book.</span>
 <br/>
 <span>Example 25-6. The clock.html file</span>
 <pre>
@@ -338,7 +338,7 @@ clock.js
 <br/>
 <span>AddType text/cache-manifest.appcache</span>
 <br/>
-<span>The files OSC.js , clock.js , and clock.css are then imported and used by the document. The JavaScript in clock.js is listed in Example 25-7.</span>
+<span>The files OSC.js, clock.js, and clock.css are then imported and used by the document. The JavaScript in clock.js is listed in Example 25-7.</span>
 <br/>
 <span>Example 25-7. The clock.js file</span>
 <pre>
@@ -355,11 +355,11 @@ setInterval(function()
 <br/>
 <span>Example 25-8. The clock.css file</span>
 <pre><code class="css">output { font-weight:bold; }</code></pre>
-<span>As long as the &nbsp;clock.appcache &nbsp;file lists them all, these four files ( clock.html , &nbsp;OSC.js , clock.css , and clock.js ) together make up a working offline web application, which will be downloaded and made available locally by any web browser that understands offline web apps. When run, the output looks like this:</span>
+<span>As long as the &nbsp;clock.appcache &nbsp;file lists them all, these four files ( clock.html, &nbsp;OSC.js, clock.css, and clock.js ) together make up a working offline web application, which will be downloaded and made available locally by any web browser that understands offline web apps. When run, the output looks like this:</span>
 <pre><code class="javascript">The time is: Thu Jul 19 2018 15:24:26 GMT+0000 (GMT Standard Time)</code></pre>
 <span>For details on the offline web application specifications, you can check out the official website at http://tinyurl.com/offlinewebapps.</span>
 <h3>Drag and Drop</h3>
-<span>You can easily support dragging and dropping of objects on a web page by setting up event handlers for the ondragstart , ondragover , and ondrop events, as in Example 25-9.</span>
+<span>You can easily support dragging and dropping of objects on a web page by setting up event handlers for the ondragstart, ondragover, and ondrop events, as in Example 25-9.</span>
 <br/>
 <span>Example 25-9. Dragging and dropping objects</span>
 <pre>
@@ -407,9 +407,9 @@ setInterval(function()
 &lt;/html&gt;
 </code>
 </pre>
-<span>After setting up the HTML, title, and loading in the OSC.js file, this document styles the div element with the ID of dest , giving it a background color, border, set dimensions, and padding.</span>
+<span>After setting up the HTML, title, and loading in the OSC.js file, this document styles the div element with the ID of dest, giving it a background color, border, set dimensions, and padding.</span>
 <br/>
-<span>Then, in the &lt;body&gt; section, the div element is created, and its ondrop and ondrag over events have the event handler functions drop and allow attached to them. After this there&rsquo;s some text, and then three images are displayed with their draggable properties set to true , and the function drag is attached to the ondragstart event of each.</span>
+<span>Then, in the &lt;body&gt; section, the div element is created, and its ondrop and ondrag over events have the event handler functions drop and allow attached to them. After this there&rsquo;s some text, and then three images are displayed with their draggable properties set to true, and the function drag is attached to the ondragstart event of each.</span>
 <br/>
 <span>In the &lt;script&gt; section, the allow event handler function simply prevents the default action for dragging (which is to disallow it), while the drag event handler function calls the setData method of the dataTransfer object of the event, passing it the MIME type image/png and the target.id of the event (which is the object being dragged). The dataTransfer object holds the data that is being dragged during a drag-and-drop operation.</span>
 <br/>
@@ -460,7 +460,7 @@ setInterval(function()
 &lt;/html&gt;
 </code>
 </pre>
-<span>Here the usual use is made of the OSC.js file to pull in the O function, and then an iframe element with the ID of frame is created, which loads in Example 25-11. Then, within the &lt;script&gt; section, the variable count is initialized to 1 and a repeating interval is set up to occur every second to post the string 'Message ' (using the post Message method) along with the current value of count , which is then incremented. The postMessage call is attached to the contentWindow property of the iframe object, not the iframe object itself. This is important because web messaging requires posts to be made to a window, not to an object within a window.</span>
+<span>Here the usual use is made of the OSC.js file to pull in the O function, and then an iframe element with the ID of frame is created, which loads in Example 25-11. Then, within the &lt;script&gt; section, the variable count is initialized to 1 and a repeating interval is set up to occur every second to post the string 'Message ' (using the post Message method) along with the current value of count, which is then incremented. The postMessage call is attached to the contentWindow property of the iframe object, not the iframe object itself. This is important because web messaging requires posts to be made to a window, not to an object within a window.</span>
 <br/>
 <span>Example 25-11. Receiving messages from another document</span>
 <pre>
@@ -492,12 +492,12 @@ setInterval(function()
 &lt;/html&gt;
 </code>
 </pre>
-<span>This example sets up a little styling to make output clearer, and then creates a div element with the ID output , in which the contents of received messages will be placed. In the &lt;script&gt; section, there&rsquo;s a single anonymous function attached to the onmessage event of the window. In this function, the event.origin , event.source , and event.data property values are then displayed, as shown in Figure 25-4.</span>
+<span>This example sets up a little styling to make output clearer, and then creates a div element with the ID output, in which the contents of received messages will be placed. In the &lt;script&gt; section, there&rsquo;s a single anonymous function attached to the onmessage event of the window. In this function, the event.origin, event.source, and event.data property values are then displayed, as shown in Figure 25-4.</span>
 <br/>
 <p><img src="images/25.4.png"/></p>
 <span>Figure 25-4. The iframe has so far received 17 messages</span>
 <br/>
-<span>Web messaging works only across domains, so you cannot test it by loading files in from a file system; you must use a web server. As you can see from Figure 25-4 , the origin is http://localhost because these examples are running on a local development server. The source is the Window object, and the current message value is Message 17.</span>
+<span>Web messaging works only across domains, so you cannot test it by loading files in from a file system; you must use a web server. As you can see from Figure 25-4, the origin is http://localhost because these examples are running on a local development server. The source is the Window object, and the current message value is Message 17.</span>
 <br/>
 <span>At the moment, Example 25-10 is not at all secure because the domain value passed to postMessage is the wildcard * :</span>
 <pre><code class="javascript">O('frame').contentWindow.postMessage('Message ' + count++,'*')</code></pre>
@@ -522,9 +522,9 @@ window.onmessage = function(event)
 <br/>
 <span>Normally, you won&rsquo;t alert the user to the origin or source values, and will simply make use of them for security checking. These examples, however, display those values to help you experiment with web messaging and see what is going on. As well as iframes, documents in pop-up windows and other tabs may also talk to each other using this method.</span>
 <h3>Microdata</h3>
-<span>Microdata is a subset of HTML designed to provide metadata to a document in order to make it have meaning to software, just as it has meaning to a reader of the document. Microdata makes available the following new tag attributes: itemscope , item type , itemid , itemref , and itemprop. Using these, you can clearly define the properties of an item such as a book, providing a range of information that a computer can use to understand, for example, its authors, publishers, contents, and so on.</span>
+<span>Microdata is a subset of HTML designed to provide metadata to a document in order to make it have meaning to software, just as it has meaning to a reader of the document. Microdata makes available the following new tag attributes: itemscope, item type, itemid, itemref, and itemprop. Using these, you can clearly define the properties of an item such as a book, providing a range of information that a computer can use to understand, for example, its authors, publishers, contents, and so on.</span>
 <br/>
-<span>Or, more frequently these days, microdata is important for search engines and social networking sites. &nbsp;Example 25-12 &nbsp;creates a short bio for George Washington as if it were a profile on a social networking site, with microdata added to the various elements (shown highlighted in bold). The result looks like Figure 25-5 , which will look the same with or without microdata, because it is never visible to the user.</span>
+<span>Or, more frequently these days, microdata is important for search engines and social networking sites. &nbsp;Example 25-12 &nbsp;creates a short bio for George Washington as if it were a profile on a social networking site, with microdata added to the various elements (shown highlighted in bold). The result looks like Figure 25-5, which will look the same with or without microdata, because it is never visible to the user.</span>
 <br/>
 <span>Example 25-12. Adding microdata to HTML</span>
 <br/>
@@ -577,7 +577,7 @@ else
 </pre>
 <span>The !! pair of not operators is a shorthand way of returning a Boolean value representing the existence (or lack thereof) of the getItems method. If it exists, then true is returned and microdata is supported; otherwise, false is returned.</span>
 <br/>
-<span>Currently, only the Mozilla Firefox and Opera browsers support accessing microdata, but the other browsers are sure to follow soon. When they do, you&rsquo;ll be able to extract this data in the following manner, in which (after the page has loaded) the data object is retrieved from a call to getItems , and the value for the key 'jobTitle' (just as an example) is retrieved by accessing the data object&rsquo;s properties object, and then fetching the latter object&rsquo;s textContent property:</span>
+<span>Currently, only the Mozilla Firefox and Opera browsers support accessing microdata, but the other browsers are sure to follow soon. When they do, you&rsquo;ll be able to extract this data in the following manner, in which (after the page has loaded) the data object is retrieved from a call to getItems, and the value for the key 'jobTitle' (just as an example) is retrieved by accessing the data object&rsquo;s properties object, and then fetching the latter object&rsquo;s textContent property:</span>
 <pre>
 <code class="javascript">
 window.onload = function()
@@ -590,11 +590,11 @@ window.onload = function()
 }
 </code>
 </pre>
-<span>Browsers that support this feature will display as Figure 25-6 , but other browsers will not trigger the pop-up window.</span>
+<span>Browsers that support this feature will display as Figure 25-6, but other browsers will not trigger the pop-up window.</span>
 <br/>
 <p><img src="images/25.6.jpeg"/></p>
 <span>Figure 25-6. Displaying the value for the &lsquo;jobTitle&rsquo; microdata key</span>
 <br/>
-<span>Google has stated that it definitely uses microdata when it finds it, and that microdata is also the preferred snippet format for Google+, so it&rsquo;s well worth starting to add it to your HTML where applicable. For a complete breakdown of the myriad of microdata properties available, check out http://schema.org , which is also the reference for the microdata schemes as declared in the itemType properties.</span>
+<span>Google has stated that it definitely uses microdata when it finds it, and that microdata is also the preferred snippet format for Google+, so it&rsquo;s well worth starting to add it to your HTML where applicable. For a complete breakdown of the myriad of microdata properties available, check out http://schema.org, which is also the reference for the microdata schemes as declared in the itemType properties.</span>
 <h3>Other HTML5 Tags</h3>
-<span>A number of other new HTML5 tags that have not yet been implemented in many browsers, and therefore I won&rsquo;t cover them (particularly since their specs could change). But, for the sake of completeness, these tags are &lt;article&gt; , &lt;aside&gt; , &lt;details&gt; , &lt;figcaption&gt; , &lt;figure&gt; , &lt;footer&gt; , &lt;header&gt; , &lt;hgroup&gt; , &lt;keygen&gt; , &lt;mark&gt; , &lt;menuitem&gt; , &lt;meter&gt; , &lt;nav&gt; , &lt;output&gt; , &lt;progress&gt; , &lt;rp&gt; , &lt;rt&gt; , &lt;ruby&gt; , &lt;section&gt; , &lt;summary&gt; , &lt;time&gt; , and &lt;wbr&gt;. You can get more information on these and all other HTML5 tags at &nbsp;http://tinyurl.com/h5markup &nbsp;(check out the elements sporting a NEW icon).</span>
+<span>A number of other new HTML5 tags that have not yet been implemented in many browsers, and therefore I won&rsquo;t cover them (particularly since their specs could change). But, for the sake of completeness, these tags are &lt;article&gt;, &lt;aside&gt;, &lt;details&gt;, &lt;figcaption&gt;, &lt;figure&gt;, &lt;footer&gt;, &lt;header&gt;, &lt;hgroup&gt;, &lt;keygen&gt;, &lt;mark&gt;, &lt;menuitem&gt;, &lt;meter&gt;, &lt;nav&gt;, &lt;output&gt;, &lt;progress&gt;, &lt;rp&gt;, &lt;rt&gt;, &lt;ruby&gt;, &lt;section&gt;, &lt;summary&gt;, &lt;time&gt;, and &lt;wbr&gt;. You can get more information on these and all other HTML5 tags at &nbsp;http://tinyurl.com/h5markup &nbsp;(check out the elements sporting a NEW icon).</span>

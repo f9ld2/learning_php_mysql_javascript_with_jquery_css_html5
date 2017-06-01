@@ -7,7 +7,7 @@ title: "JavaScript Functions, Objects, and Arrays"
 <br/>
 <span>The usage and syntax are also quite similar to those of PHP, so you should feel right at home as I take you through using functions and objects in JavaScript, as well as through an in-depth exploration of array handling.</span>
 <h3>JavaScript Functions</h3>
-<span>In addition to having access to dozens of built-in functions (or methods) such as write , which you have already seen being used in document.write , you can easily create your own functions. Whenever you have a more complex piece of code that is likely to be reused, you have a candidate for a function.</span>
+<span>In addition to having access to dozens of built-in functions (or methods) such as write, which you have already seen being used in document.write, you can easily create your own functions. Whenever you have a more complex piece of code that is likely to be reused, you have a candidate for a function.</span>
 <h4>Defining a Function</h4>
 <span>The general syntax for a function is shown here:</span>
 <pre>
@@ -28,9 +28,9 @@ function function_name([parameter[,...]])
 <br/>
 <span>&bull; One or more parameters, separated by commas, are optional (indicated by the square brackets, which are not part of the function syntax).</span>
 <br/>
-<span>Function names are case-sensitive, so all of the following strings refer to different functions: getInput , GETINPUT , and getinput.</span>
+<span>Function names are case-sensitive, so all of the following strings refer to different functions: getInput, GETINPUT, and getinput.</span>
 <br/>
-<span>In JavaScript there is a general naming convention for functions: the first letter of each word in a name is capitalized except for the very first letter, which is lowercase. Therefore, of the previous examples, getInput would be the preferred name used by most programmers. This convention is commonly referred to as bumpyCaps , bumpyCase , or camelCase.</span>
+<span>In JavaScript there is a general naming convention for functions: the first letter of each word in a name is capitalized except for the very first letter, which is lowercase. Therefore, of the previous examples, getInput would be the preferred name used by most programmers. This convention is commonly referred to as bumpyCaps, bumpyCase, or camelCase.</span>
 <br/>
 <span>The opening curly brace starts the statements that will execute when you call the function; a matching curly brace must close it. These statements may include one or more return statements, which force the function to cease execution and return to the calling code. If a value is attached to the return statement, the calling code can retrieve it.</span>
 <br/>
@@ -97,7 +97,7 @@ function function_name([parameter[,...]])
 &lt;/script&gt;
 </code>
 </pre>
-<span>When called with the parameters the , DALLAS , and CowBoys , for example, the function returns the string The Dallas Cowboys. Let&rsquo;s walk through the function.</span>
+<span>When called with the parameters the, DALLAS, and CowBoys, for example, the function returns the string The Dallas Cowboys. Let&rsquo;s walk through the function.</span>
 <br/>
 <span>The function first initializes the temporary (and local) variable s to the empty string. Then a for loop iterates through each of the passed parameters, isolating the parameter&rsquo;s first character using the charAt method and converting it to uppercase with the toUpperCase method. The various methods shown in this example are all built into JavaScript and available by default.</span>
 <br/>
@@ -107,7 +107,7 @@ function function_name([parameter[,...]])
 <br/>
 <span>After the whole argument is converted to our desired case, a space character is added to the end and the result is appended to the temporary variable s.</span>
 <br/>
-<span>Finally, the substr method is used again to return the contents of the variable s , except for the final space&mdash;which is unwanted. We remove this by using substr to return the string up to, but not including, the final character.</span>
+<span>Finally, the substr method is used again to return the contents of the variable s, except for the final space&mdash;which is unwanted. We remove this by using substr to return the string up to, but not including, the final character.</span>
 <br/>
 <span>This example is particularly interesting in that it illustrates the use of multiple properties and methods in a single expression. For example:</span>
 <pre><code class="javascript">fixNames.arguments[j].substr(1).toLowerCase()</code></pre>
@@ -131,7 +131,7 @@ function function_name([parameter[,...]])
 <br/>
 <span>One final reminder: the s variable created inside the function is local, and therefore cannot be accessed outside the function. By returning s in the return statement, we made its value available to the caller, which could store or use it any way it wanted. But s itself disappears at the end of the function. Although we could make a function operate on global variables (and sometimes that&rsquo;s necessary), it&rsquo;s much better to just return the values you want to preserve and let JavaScript clean up all the other variables used by the function.</span>
 <h4>Returning an Array</h4>
-<span>In Example 15-3 , the function returned only one parameter, but what if you need to return multiple parameters? You can do this by returning an array, as in Example 15-4.</span>
+<span>In Example 15-3, the function returned only one parameter, but what if you need to return multiple parameters? You can do this by returning an array, as in Example 15-4.</span>
 <br/>
 <span>Example 15-4. Returning an array of values</span>
 <pre>
@@ -154,7 +154,7 @@ function function_name([parameter[,...]])
 </pre>
 <span>Here the variable words is automatically defined as an array and populated with the returned result of a call to the function fixNames. Then a for loop iterates through the array and displays each member.</span>
 <br/>
-<span>As for the fixNames function, it&rsquo;s almost identical to Example 15-3 , except that the variable s is now an array, and after each word has been processed, it is stored as an element of this array, which is returned by the return statement.</span>
+<span>As for the fixNames function, it&rsquo;s almost identical to Example 15-3, except that the variable s is now an array, and after each word has been processed, it is stored as an element of this array, which is returned by the return statement.</span>
 <br/>
 <span>This function enables the extraction of individual parameters from its returned values, like the following (the output from which is simply The Cowboys ):</span>
 <pre>
@@ -166,11 +166,11 @@ document.write(words[0] + " " + words[2])
 <h3>JavaScript Objects</h3>
 <span>A JavaScript object is a step up from a variable, which can contain only one value at a time, in that objects can contain multiple values and even functions. An object groups data together with the functions needed to manipulate it.</span>
 <h4>Declaring a Class</h4>
-<span>When creating a script to use objects, you need to design a composite of data and code called a class. Each new object based on this class is called an instance (or occurrence ) of that class. As you&rsquo;ve already seen, the data associated with an object is called its properties , while the functions it uses are called methods.</span>
+<span>When creating a script to use objects, you need to design a composite of data and code called a class. Each new object based on this class is called an instance (or occurrence ) of that class. As you&rsquo;ve already seen, the data associated with an object is called its properties, while the functions it uses are called methods.</span>
 <br/>
 <span>Let&rsquo;s look at how to declare the class for an object called User that will contain details about the current user. To create the class, just write a function named after the class. This function can accept arguments (I&rsquo;ll show later how it&rsquo;s invoked) and can create properties and methods for objects in that class. The function is called a constructor.</span>
 <br/>
-<span>Example 15-5 shows a constructor for the class User with three properties: forename , username , and password. The class also defines the method showUser.</span>
+<span>Example 15-5 shows a constructor for the class User with three properties: forename, username, and password. The class also defines the method showUser.</span>
 <br/>
 <span>Example 15-5. Declaring the User class and its method</span>
 <pre>
@@ -194,7 +194,7 @@ document.write(words[0] + " " + words[2])
 </pre>
 <span>The function is different from other functions we&rsquo;ve seen so far in two ways:</span>
 <br/>
-<span>&bull; It refers to an object named this. When the program creates an instance of User by running this function, this refers to the instance being created. The same function can be called over and over with different arguments, and will create a new User each time with different values for the properties forename , and so on.</span>
+<span>&bull; It refers to an object named this. When the program creates an instance of User by running this function, this refers to the instance being created. The same function can be called over and over with different arguments, and will create a new User each time with different values for the properties forename, and so on.</span>
 <br/>
 <span>&bull; A new function named showUser is created within the function. The syntax shown here is new and rather complicated, but its purpose is to tie showUser to the User class. Thus, showUser comes into being as a method of the User class.</span>
 <br/>
@@ -225,7 +225,7 @@ document.write(words[0] + " " + words[2])
 </pre>
 <span>I show you this form because you are certain to encounter it when perusing other programmers&rsquo; code.</span>
 <h4>Creating an Object</h4>
-<span>To create an instance of the class User , you can use a statement such as the following:</span>
+<span>To create an instance of the class User, you can use a statement such as the following:</span>
 <pre><code class="javascript">details = new User("Wolfgang", "w.a.mozart", "composer")</code></pre>
 <span>Or you can create an empty object, like this:</span>
 <pre><code class="javascript">details = new User()</code></pre>
@@ -248,7 +248,7 @@ name = details.forename
 if (details.username == "Admin") loginAsAdmin()
 </code>
 </pre>
-<span>So, to access the showUser method of an object of class User , you would use the following syntax, in which the object details has already been created and populated with data:</span>
+<span>So, to access the showUser method of an object of class User, you would use the following syntax, in which the object details has already been created and populated with data:</span>
 <pre><code class="javascript">details.showUser()</code></pre>
 <span>Assuming the data supplied earlier, this code would display the following:</span>
 <pre>
@@ -289,7 +289,7 @@ Password: composer
 <br/>
 <span>User.prototype.greeting = "Hello" document.write(details.greeting)</span>
 <br/>
-<span>The first statement adds the prototype property of greeting with a value of Hello to the class User. In the second line, the object details , which has already been created, correctly displays this new property.</span>
+<span>The first statement adds the prototype property of greeting with a value of Hello to the class User. In the second line, the object details, which has already been created, correctly displays this new property.</span>
 <br/>
 <span>You can also add to or modify methods in a class, as the following statements illustrate:</span>
 <pre>
@@ -416,9 +416,9 @@ Element 2 = Three
 &lt;/script&gt;
 </code>
 </pre>
-<span>To verify that the array has been correctly created and populated, I have used another kind of for loop using the in keyword. This creates a new variable to use only within the array ( ball , in this example) and iterates through all elements of the array to the right of the in keyword ( balls , in this example). The loop acts on each element of balls , placing the key value into ball.</span>
+<span>To verify that the array has been correctly created and populated, I have used another kind of for loop using the in keyword. This creates a new variable to use only within the array ( ball, in this example) and iterates through all elements of the array to the right of the in keyword ( balls, in this example). The loop acts on each element of balls, placing the key value into ball.</span>
 <br/>
-<span>Using this key value stored in ball , you can also get the value of the current element of balls. The result of calling up the example script in a browser is as follows:</span>
+<span>Using this key value stored in ball, you can also get the value of the current element of balls. The result of calling up the example script in a browser is as follows:</span>
 <pre>
 <code class="javascript">
 golf = Golf balls, 6
@@ -462,7 +462,7 @@ ping = Ping Pong balls, 1 doz
 </pre>
 <span>In this example, the lowercase letters represent black pieces, and the uppercase white. A pair of nested for loops walks through the array and displays its contents.</span>
 <br/>
-<span>The outer loop contains two statements, so curly braces enclose them. The inner loop then processes each square in a row, outputting the character at location [j][k] , followed by a space (to square up the printout). This loop contains a single statement, so curly braces are not required to enclose it. The &lt;pre&gt; and &lt;/pre&gt; tags ensure that the output displays correctly, like this:</span>
+<span>The outer loop contains two statements, so curly braces enclose them. The inner loop then processes each square in a row, outputting the character at location [j][k], followed by a space (to square up the printout). This loop contains a single statement, so curly braces are not required to enclose it. The &lt;pre&gt; and &lt;/pre&gt; tags ensure that the output displays correctly, like this:</span>
 <pre>
 <code class="javascript">
 o o o o
@@ -475,7 +475,7 @@ O O O O
 </pre>
 <span>You can also directly access any element within this array by using square brackets:</span>
 <pre><code class="javascript">document.write(checkerboard[7][2])</code></pre>
-<span>This statement outputs the uppercase letter O , the eighth element down and the third along&mdash;remember that array indexes start at 0, not 1.</span>
+<span>This statement outputs the uppercase letter O, the eighth element down and the third along&mdash;remember that array indexes start at 0, not 1.</span>
 <h4>Using Array Methods</h4>
 <span>Given the power of arrays, JavaScript comes ready-made with a number of methods for manipulating them and their data. Here is a selection of the most useful ones.</span>
 <h6>concat</h6>
@@ -489,7 +489,7 @@ document.write(fruit.concat(veg))
 </pre>
 <span>You can specify multiple arrays as arguments, in which case concat adds all their elements in the order that the arrays are specified.</span>
 <br/>
-<span>Here&rsquo;s another way to use concat. This time, plain values are concatenated with the array pets , which outputs Cat,Dog,Fish,Rabbit,Hamster :</span>
+<span>Here&rsquo;s another way to use concat. This time, plain values are concatenated with the array pets, which outputs Cat,Dog,Fish,Rabbit,Hamster :</span>
 <pre>
 <code class="javascript">
 pets = ["Cat", "Dog", "Fish"]
@@ -515,7 +515,7 @@ document.write(more_pets)
 &lt;/script&gt;
 </code>
 </pre>
-<span>In this case, the function passed to forEach is called output. It takes three parameters: the element , its index , and the array. These can be used as required by your function. In this example, just the element and index values are displayed using the function document.write.</span>
+<span>In this case, the function passed to forEach is called output. It takes three parameters: the element, its index, and the array. These can be used as required by your function. In this example, just the element and index values are displayed using the function document.write.</span>
 <br/>
 <span>Once an array has been populated, the method is called like this:</span>
 <pre><code class="javascript">pets.forEach(output)</code></pre>
@@ -656,7 +656,7 @@ Popped 0
 &lt;/script&gt;
 </code>
 </pre>
-<span>The first of the four example sections is the default sort method, &nbsp;alphabetical sort , while the second uses the default sort and then applies the reverse method to get a reverse alphabetical sort.</span>
+<span>The first of the four example sections is the default sort method, &nbsp;alphabetical sort, while the second uses the default sort and then applies the reverse method to get a reverse alphabetical sort.</span>
 <br/>
 <span>The third and fourth sections are a little more complicated; they use a function to compare the relationships between a and b. The function doesn&rsquo;t have a name, because it&rsquo;s used only in the sort. You have already seen the function named function to create an anonymous function; we used it to define a method in a class (the show User method).</span>
 <br/>

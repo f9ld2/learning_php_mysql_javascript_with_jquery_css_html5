@@ -13,7 +13,7 @@ title: "Introduction to MySQL"
 <br/>
 <span>The SQL in MySQL stands for Structured Query Language. This language is loosely based on English and also used in other databases such as Oracle and Microsoft SQL Server. It is designed to allow simple requests from a database via commands such as</span>
 <pre><code class="sql">SELECT title FROM publications WHERE author = 'Charles Dickens';</code></pre>
-<span>A MySQL database contains one or more tables , each of which contains records or rows. Within these rows are various &nbsp;columns &nbsp;or fields &nbsp;that contain the data itself. Table 8-1 shows the contents of an example database of five publications detailing the author, title, type, and year of publication.</span>
+<span>A MySQL database contains one or more tables, each of which contains records or rows. Within these rows are various &nbsp;columns &nbsp;or fields &nbsp;that contain the data itself. Table 8-1 shows the contents of an example database of five publications detailing the author, title, type, and year of publication.</span>
 <br/>
 <span>Table 8-1. Example of a simple database</span>
 <table class="tbl-left">
@@ -70,19 +70,19 @@ title: "Introduction to MySQL"
 <div class="t30">The name of a field within a row</div><br/>
 <span>I should note that I&rsquo;m not trying to reproduce the precise terminology used in academic literature about relational databases, but just to provide simple, everyday terms to help you quickly grasp basic concepts and get started with a database.</span>
 <h3>Accessing MySQL via the Command Line</h3>
-<span>There are three main ways in which you can interact with MySQL: using a command line, via a web interface such as phpMyAdmin, and through a programming language like PHP. We&rsquo;ll start doing the third of these in Chapter 10 , but for now, let&rsquo;s look at the first two.</span>
+<span>There are three main ways in which you can interact with MySQL: using a command line, via a web interface such as phpMyAdmin, and through a programming language like PHP. We&rsquo;ll start doing the third of these in Chapter 10, but for now, let&rsquo;s look at the first two.</span>
 <h4>Starting the Command-Line Interface</h4>
 <span>The following sections describe relevant instructions for Windows, OS X, and Linux.</span>
 <h6>Windows users</h6>
 <span>If you installed XAMPP (as explained in &nbsp;Chapter 2 ), you will be able to access the MySQL executable from the following directory:</span>
 <pre><code class="bash">C:\xampp\mysql\bin</code></pre>
-<span>If you installed XAMPP in a place other than &nbsp;\xampp , you will need to use that directory instead.</span>
+<span>If you installed XAMPP in a place other than &nbsp;\xampp, you will need to use that directory instead.</span>
 <br/>
 <span>By default, the initial MySQL user will be root and will not have had a password set. Seeing as this is a development server that only you should be able to access, we won&rsquo;t worry about creating one yet.</span>
 <br/>
 <span>So, to enter MySQL&rsquo;s command-line interface, select Start&rarr;Run, enter CMD into the Run box, and press Return. This will call up a Windows command prompt. From there, enter one the following (making any appropriate changes as just discussed):</span>
 <pre><code class="bash">C:\xampp\mysql\bin\mysql -u root</code></pre>
-<span>This command tells MySQL to log you in as user root , without a password. You will now be logged into MySQL and can start entering commands. So, to be sure everything is working as it should be, enter the following; the results should be similar to Figure 8-1 :</span>
+<span>This command tells MySQL to log you in as user root, without a password. You will now be logged into MySQL and can start entering commands. So, to be sure everything is working as it should be, enter the following; the results should be similar to Figure 8-1 :</span>
 <pre><code class="sql">SHOW databases;</code></pre>
 <p><img src="images/8.1.png"/></p>
 <span>Figure 8-1. Accessing MySQL from a Windows command prompt</span>
@@ -93,7 +93,7 @@ title: "Introduction to MySQL"
 <br/>
 <span>To enter the MySQL command-line interface, start the Terminal program (which should be available in Finder&rarr;Utilities). Then call up the MySQL program, which will have been installed in the directory /Applications/xampp/bin.</span>
 <br/>
-<span>By default, the initial MySQL user is root , and it will have a password of root too. So, to start the program, type the following:</span>
+<span>By default, the initial MySQL user is root, and it will have a password of root too. So, to start the program, type the following:</span>
 <pre><code class="bash">/Applications/xampp/bin/mysql -u root</code></pre>
 <span>This command tells MySQL to log you in as user root and not to request your password. To verify that all is well, type the following; Figure 8-2 should be the result:</span>
 <br/>
@@ -164,7 +164,7 @@ title: "Introduction to MySQL"
 <br/>
 <span>Example 8-1. Canceling a line of input</span>
 <pre><code class="sql">meaningless gibberish to mysql \c</code></pre>
-<span>When you type that line, MySQL will ignore everything you typed and issue a new prompt. Without the \c , it would have displayed an error message. Be careful, though: if you have opened a string or comment, close it first before using the \c or MySQL will think the \c is just part of the string. Example 8-2 shows the right way to do this. Example 8-2. Canceling input from inside a string</span>
+<span>When you type that line, MySQL will ignore everything you typed and issue a new prompt. Without the \c, it would have displayed an error message. Be careful, though: if you have opened a string or comment, close it first before using the \c or MySQL will think the \c is just part of the string. Example 8-2 shows the right way to do this. Example 8-2. Canceling input from inside a string</span>
 <br/>
 <b class="t30">this is "meaningless gibberish to mysql" \c</b>
 <br/>
@@ -267,7 +267,7 @@ title: "Introduction to MySQL"
 <br/>
 <span>I&rsquo;ll cover most of these as we proceed, but first, you need to remember a couple of points about MySQL commands:</span>
 <br/>
-<span>&bull; SQL commands and keywords are case-insensitive. CREATE , create , and CrEaTe all mean the same thing. However, for the sake of clarity, the recommended style is to use uppercase.</span>
+<span>&bull; SQL commands and keywords are case-insensitive. CREATE, create, and CrEaTe all mean the same thing. However, for the sake of clarity, the recommended style is to use uppercase.</span>
 <br/>
 <span>&bull; Table names are case-sensitive on Linux and OS X, but case-insensitive on Windows. So for portability purposes, you should always choose a case and stick to it. The recommended style is to use lowercase for tables.</span>
 <h6>Creating a database</h6>
@@ -313,7 +313,7 @@ title: "Introduction to MySQL"
     IDENTIFIED BY 'mypasswd';
 </code>
 </pre>
-<span>What this does is allow the user jim@localhost full access to the publications database using the password mypasswd. You can test whether this step has worked by entering quit to exit and then rerunning MySQL the way you did before, but instead of entering -u root -p , type -u jim -p , or whatever username you created. See Table 8-5 for the correct command for your operating system. Modify it as necessary if the mysql client program is installed in a different directory on your system.</span>
+<span>What this does is allow the user jim@localhost full access to the publications database using the password mypasswd. You can test whether this step has worked by entering quit to exit and then rerunning MySQL the way you did before, but instead of entering -u root -p, type -u jim -p, or whatever username you created. See Table 8-5 for the correct command for your operating system. Modify it as necessary if the mysql client program is installed in a different directory on your system.</span>
 <br/>
 <span>Table 8-5. Starting MySQL and logging in as jim@localhost</span>
 <table class="tbl-left">
@@ -358,11 +358,11 @@ CREATE TABLE classics (
 <br/>
 <span>but MySQL commands can be long and complicated, so I recommend a single line at a time until you are comfortable with longer ones.</span>
 <br/>
-<span>MySQL should then issue the response Query OK, 0 rows affected , along with how long it took to execute the command. If you see an error message instead, check your syntax carefully. Every parenthesis and comma counts, and typing errors are easy to make. In case you are wondering, the ENGINE MyISAM tells MySQL the type of database engine to use for this table.</span>
+<span>MySQL should then issue the response Query OK, 0 rows affected, along with how long it took to execute the command. If you see an error message instead, check your syntax carefully. Every parenthesis and comma counts, and typing errors are easy to make. In case you are wondering, the ENGINE MyISAM tells MySQL the type of database engine to use for this table.</span>
 <br/>
 <span>To check whether your new table has been created, type the following:</span>
 <pre><code class="sql">DESCRIBE classics;</code></pre>
-<span>All being well, you will see the sequence of commands and responses shown in Example 8-4 , where you should particularly note the table format displayed.</span>
+<span>All being well, you will see the sequence of commands and responses shown in Example 8-4, where you should particularly note the table format displayed.</span>
 <br/>
 <span>Example 8-4. A MySQL session: creating and checking a new table</span>
 <pre>
@@ -400,7 +400,7 @@ mysql&gt; DESCRIBE classics;
 <div class="t30">Whether a field is allowed to contain a value of NULL.</div>
 
 <span>Key</span>
-<div class="t30">MySQL supports &nbsp;keys &nbsp;or &nbsp;indexes , which are quick ways to look up and search for data. The Key heading shows what type of key (if any) has been applied.</div>
+<div class="t30">MySQL supports &nbsp;keys &nbsp;or &nbsp;indexes, which are quick ways to look up and search for data. The Key heading shows what type of key (if any) has been applied.</div>
 
 <span>Default</span>
 <div class="t30">The default value that will be assigned to the field if no value is specified when a new row is created.</div>
@@ -408,7 +408,7 @@ mysql&gt; DESCRIBE classics;
 <span>Extra</span><br/>
 <span>Additional information, such as whether a field is set to auto-increment.</span>
 <h4>Data Types</h4>
-<span>In Example 8-3 , you may have noticed that three of the table&rsquo;s fields were given the data type of VARCHAR , and one was given the type CHAR. The term VARCHAR stands for VARiable length CHARacter string , and the command takes a numeric value that tells MySQL the maximum length allowed for a string stored in this field.</span>
+<span>In Example 8-3, you may have noticed that three of the table&rsquo;s fields were given the data type of VARCHAR, and one was given the type CHAR. The term VARCHAR stands for VARiable length CHARacter string, and the command takes a numeric value that tells MySQL the maximum length allowed for a string stored in this field.</span>
 <br/>
 <span>This data type is very useful, as MySQL can then plan the size of databases and perform lookups and searches more easily. The downside is that if you ever attempt to assign a string value longer than the length allowed, it will be truncated to the maximum length declared in the table definition.</span>
 <br/>
@@ -698,12 +698,12 @@ CREATE TABLE classics (
 </pre>
 <span>If you wish to check whether the column has been added, use the following command to view the table&rsquo;s columns and data types:</span>
 <pre><code class="sql">DESCRIBE classics;</code></pre>
-<span>Now that we&rsquo;ve finished with it, the id column is no longer needed, so if you created it using &nbsp;Example 8-5 , you should now remove the column using the command in Example 8-7.</span>
+<span>Now that we&rsquo;ve finished with it, the id column is no longer needed, so if you created it using &nbsp;Example 8-5, you should now remove the column using the command in Example 8-7.</span>
 <br/>
 <span>Example 8-7. Removing the id column</span>
 <pre><code class="sql">ALTER TABLE classics DROP id;</code></pre>
 <h6>Adding data to a table</h6>
-<span>To add data to a table, use the INSERT command. Let&rsquo;s see this in action by populating the table &nbsp;classics &nbsp;with the data from &nbsp;Table 8-1 , using one form of the INSERT command repeatedly ( Example 8-8 ).</span>
+<span>To add data to a table, use the INSERT command. Let&rsquo;s see this in action by populating the table &nbsp;classics &nbsp;with the data from &nbsp;Table 8-1, using one form of the INSERT command repeatedly ( Example 8-8 ).</span>
 <br/>
 <span>Example 8-8. Populating the classics table</span>
 <pre>
@@ -727,13 +727,13 @@ CREATE TABLE classics (
 <br/>
 <span>Don&rsquo;t worry about the SELECT command for now&mdash;we&rsquo;ll come to it in the section &ldquo; Querying a MySQL Database&rdquo; on page 192. Suffice it to say that, as typed, it will display all the data you just entered.</span>
 <br/>
-<span>Let&rsquo;s go back and look at how we used the INSERT command. The first part, INSERT INTO classics , tells MySQL where to insert the following data. Then, within parentheses, the four column names are listed&mdash; author , title , type , and year &mdash;all separated by commas. This tells MySQL that these are the fields into which the data is to be inserted.</span>
+<span>Let&rsquo;s go back and look at how we used the INSERT command. The first part, INSERT INTO classics, tells MySQL where to insert the following data. Then, within parentheses, the four column names are listed&mdash; author, title, type, and year &mdash;all separated by commas. This tells MySQL that these are the fields into which the data is to be inserted.</span>
 <br/>
 <span>The second line of each INSERT command contains the keyword VALUES followed by four strings within parentheses, and separated by commas. This supplies MySQL with the four values to be inserted into the four columns previously specified. (As always, my choice of where to break the lines was arbitrary.)</span>
 <br/>
 <span>Each item of data will be inserted into the corresponding column, in a one-to-one correspondence. If you accidentally listed the columns in a different order from the data, the data would go into the wrong columns. And the number of columns must match the number of data items.</span>
 <h6>Renaming a table</h6>
-<span>Renaming a table, like any other change to the structure or meta information about a table, is achieved via the ALTER command. So, for example, to change the name of table classics to pre1900 , use the following command:</span>
+<span>Renaming a table, like any other change to the structure or meta information about a table, is achieved via the ALTER command. So, for example, to change the name of table classics to pre1900, use the following command:</span>
 <pre><code class="sql">ALTER TABLE classics RENAME pre1900;</code></pre>
 <span>If you tried that command, you should revert the table name by entering the following, so that later examples in this chapter will work as printed:</span>
 <br/>
@@ -743,7 +743,7 @@ CREATE TABLE classics (
 <pre><code class="sql">ALTER TABLE classics MODIFY year SMALLINT;</code></pre>
 <span>When you do this, if the conversion of data type makes sense to MySQL, it will automatically change the data while keeping the meaning. In this case, it will change each string to a comparable integer, and so on, as the string is recognizable as referring to an integer.</span>
 <h6>Adding a new column</h6>
-<span>Let&rsquo;s suppose that you have created a table and populated it with plenty of data, only to discover you need an additional column. Not to worry. Here&rsquo;s how to add the new column pages , which will be used to store the number of pages in a publication:</span>
+<span>Let&rsquo;s suppose that you have created a table and populated it with plenty of data, only to discover you need an additional column. Not to worry. Here&rsquo;s how to add the new column pages, which will be used to store the number of pages in a publication:</span>
 <pre><code class="sql">ALTER TABLE classics ADD pages SMALLINT UNSIGNED;</code></pre>
 <span>This adds the new column with the name pages using the UNSIGNED SMALLINT data type, sufficient to hold a value of up to 65,535&mdash;hopefully that&rsquo;s more than enough for any book ever published!</span>
 <br/>
@@ -752,7 +752,7 @@ CREATE TABLE classics (
 <p><img src="images/8.5.png"/></p>
 <span>Figure 8-5. Adding the new pages column and viewing the table</span>
 <h6>Renaming a column</h6>
-<span>Looking again at Figure 8-5 , you may decide that having a column named type can be confusing, because that is the name used by MySQL to identify data types. Again, no problem&mdash;let&rsquo;s change its name to category , like this:</span>
+<span>Looking again at Figure 8-5, you may decide that having a column named type can be confusing, because that is the name used by MySQL to identify data types. Again, no problem&mdash;let&rsquo;s change its name to category, like this:</span>
 <pre><code class="sql">ALTER TABLE classics CHANGE type category VARCHAR(16);</code></pre>
 <span>Note the addition of VARCHAR(16) on the end of this command. That&rsquo;s because the CHANGE keyword requires the data type to be specified, even if you don&rsquo;t intend to change it, and VARCHAR(16) was the data type specified when that column was initially created as type.</span>
 <h6>Removing a column</h6>
@@ -778,7 +778,7 @@ CREATE TABLE classics (
 <br/>
 <span>Of course, you don&rsquo;t have to search libraries that way, because they have either a card index system or, most likely, a database of their own. And the same goes for MySQL, because at the expense of a slight overhead in memory and disk space, you can create a &ldquo;card index&rdquo; for a table that MySQL will use to conduct lightning-fast searches.</span>
 <h4>Creating an Index</h4>
-<span>The way to achieve fast searches is to add an index , either when creating a table or at any time afterward. But the decision is not so simple. For example, there are different index types such as a regular INDEX , PRIMARY KEY , and FULLTEXT. Also, you must decide which columns require an index, a judgment that requires you to predict whether you will be searching any of the data in that column. Indexes can also get complicated, because you can combine multiple columns in one index. And even when you&rsquo;ve decided that, you still have the option of reducing index size by limiting the amount of each column to be indexed.</span>
+<span>The way to achieve fast searches is to add an index, either when creating a table or at any time afterward. But the decision is not so simple. For example, there are different index types such as a regular INDEX, PRIMARY KEY, and FULLTEXT. Also, you must decide which columns require an index, a judgment that requires you to predict whether you will be searching any of the data in that column. Indexes can also get complicated, because you can combine multiple columns in one index. And even when you&rsquo;ve decided that, you still have the option of reducing index size by limiting the amount of each column to be indexed.</span>
 <br/>
 <span>If we imagine the searches that may be made on the classics table, it becomes apparent that all of the columns may need to be searched. However, if the pages column created in the section &nbsp;&ldquo;Adding a new column&rdquo; on page 184 &nbsp;had not been deleted, it would probably not have needed an index, as most people would be unlikely to search for books by the number of pages they have. Anyway, go ahead and add an index to each of the columns, using the commands in Example 8-10.</span>
 <br/>
@@ -804,7 +804,7 @@ CREATE TABLE classics (
 <br/>
 <span>With the category column, currently only the first character is required to identify a string as unique (F for Fiction, N for Nonfiction, and P for Play), but I chose an index of four characters to allow for future category types that may be unique only after four characters. You can also re-index this column later, when you have a more complete set of categories. And finally, I set no limit to the year column&rsquo;s index, because it&rsquo;s an integer, not a string.</span>
 <br/>
-<span>The results of issuing these commands (and a DESCRIBE command to confirm that they worked) can be seen in Figure 8-7 , which shows the key MUL for each column. This key means that multiple occurrences of a value may occur within that column, which is exactly what we want, as authors may appear many times, the same book title could be used by multiple authors, and so on.</span>
+<span>The results of issuing these commands (and a DESCRIBE command to confirm that they worked) can be seen in Figure 8-7, which shows the key MUL for each column. This key means that multiple occurrences of a value may occur within that column, which is exactly what we want, as authors may appear many times, the same book title could be used by multiple authors, and so on.</span>
 <p><img src="images/8.8.png"/></p>
 <span>Figure 8-7. Adding indexes to the classics table</span>
 <h6>Using CREATE INDEX</h6>
@@ -820,7 +820,7 @@ CREATE TABLE classics (
 <h6>Adding indexes when creating tables</h6>
 <span>You don&rsquo;t have to wait until after creating a table to add indexes. In fact, doing so can be time-consuming, as adding an index to a large table can take a very long time. Therefore, let&rsquo;s look at a command that creates the table classics with indexes already in place.</span>
 <br/>
-<span>Example 8-12 is a reworking of Example 8-3 in which the indexes are created at the same time as the table. Note that to incorporate the modifications made in this chapter, this version uses the new column name category instead of type and sets the data type of &nbsp;year &nbsp;to SMALLINT instead of CHAR(4). If you want to try it out without first deleting your current &nbsp;classics &nbsp;table, change the word &nbsp;classics &nbsp;in line 1 to something else like classics1 , and then drop classics1 after you have finished with it.</span>
+<span>Example 8-12 is a reworking of Example 8-3 in which the indexes are created at the same time as the table. Note that to incorporate the modifications made in this chapter, this version uses the new column name category instead of type and sets the data type of &nbsp;year &nbsp;to SMALLINT instead of CHAR(4). If you want to try it out without first deleting your current &nbsp;classics &nbsp;table, change the word &nbsp;classics &nbsp;in line 1 to something else like classics1, and then drop classics1 after you have finished with it.</span>
 <br/>
 <span>Example 8-12. Creating the table classics with indexes</span>
 <pre>
@@ -840,7 +840,7 @@ CREATE TABLE classics (
 <h6>Primary keys</h6>
 <span>So far, you&rsquo;ve created the table classics and ensured that MySQL can search it quickly by adding indexes, but there&rsquo;s still something missing. All the publications in the table can be searched, but there is no single unique key for each publication to enable instant accessing of a row. The importance of having a key with a unique value for each row will come up when we start to combine data from different tables.</span>
 <br/>
-<span>The section &ldquo;The AUTO_INCREMENT data type&rdquo; on page 181 briefly introduced the idea of a primary key when creating the auto-incrementing column id , which could have been used as a primary key for this table. However, I wanted to reserve that task for a more appropriate column: the internationally recognized ISBN.</span>
+<span>The section &ldquo;The AUTO_INCREMENT data type&rdquo; on page 181 briefly introduced the idea of a primary key when creating the auto-incrementing column id, which could have been used as a primary key for this table. However, I wanted to reserve that task for a more appropriate column: the internationally recognized ISBN.</span>
 <br/>
 <span>So let&rsquo;s go ahead and create a new column for this key. Now, bearing in mind that ISBNs are 13 characters long, you might think that the following command would do the job:</span>
 <pre><code class="sql">ALTER TABLE classics ADD isbn CHAR(13) PRIMARY KEY;</code></pre>
@@ -887,19 +887,19 @@ CREATE TABLE classics (
 <h6>Creating a FULLTEXT index</h6>
 <span>Unlike a regular index, MySQL&rsquo;s FULLTEXT allows super-fast searches of entire columns of text. It stores every word in every data string in a special index that you can search using &ldquo;natural language,&rdquo; in a similar manner to using a search engine.</span>
 <br/>
-<span>It&rsquo;s not strictly true that MySQL stores all the words in a FULLTEXT index, because it has a built-in list of more than 500 words that it chooses to ignore because they are so common that they aren&rsquo;t very helpful for searching anyway. This list, called &nbsp;stopwords , includes the , &nbsp;as , &nbsp;is , &nbsp;of , and so on. The list helps MySQL run much more quickly when performing a FULLTEXT search and keeps database sizes down. Appendix C contains the full list of stopwords.</span>
+<span>It&rsquo;s not strictly true that MySQL stores all the words in a FULLTEXT index, because it has a built-in list of more than 500 words that it chooses to ignore because they are so common that they aren&rsquo;t very helpful for searching anyway. This list, called &nbsp;stopwords, includes the, &nbsp;as, &nbsp;is, &nbsp;of, and so on. The list helps MySQL run much more quickly when performing a FULLTEXT search and keeps database sizes down. Appendix C contains the full list of stopwords.</span>
 <br/>
 <span>Here are some things that you should know about FULLTEXT indexes:</span>
 <br/>
 <span>&bull; FULLTEXT indexes can be used only with MyISAM tables, the type used by MySQL&rsquo;s default storage engine (MySQL supports at least 10 different storage engines). If you need to convert a table to MyISAM, you can usually use the MySQL command ALTER TABLE tablename ENGINE = MyISAM;.</span>
 <br/>
-<span>&bull; FULLTEXT indexes can be created for CHAR , VARCHAR , and TEXT columns only.</span>
+<span>&bull; FULLTEXT indexes can be created for CHAR, VARCHAR, and TEXT columns only.</span>
 <br/>
 <span>&bull; A FULLTEXT index definition can be given in the CREATE TABLE statement when a table is created, or added later using ALTER TABLE (or CREATE INDEX ).</span>
 <br/>
 <span>&bull; For large data sets, it is &nbsp;much &nbsp;faster to load your data into a table that has no FULLTEXT index and then create the index than to load data into a table that has an existing FULLTEXT index.</span>
 <br/>
-<span>To create a FULLTEXT index, apply it to one or more records as in &nbsp;Example 8-15 , which adds a FULLTEXT index to the pair of columns &nbsp;author and title in the &nbsp;classics table (this index is in addition to the ones already created and does not affect them).</span>
+<span>To create a FULLTEXT index, apply it to one or more records as in &nbsp;Example 8-15, which adds a FULLTEXT index to the pair of columns &nbsp;author and title in the &nbsp;classics table (this index is in addition to the ones already created and does not affect them).</span>
 <br/>
 <span>Example 8-15. Adding a FULLTEXT index to the table classics</span>
 <pre><code class="sql">ALTER TABLE classics ADD FULLTEXT(author,title);</code></pre>
@@ -909,11 +909,11 @@ CREATE TABLE classics (
 <h4>Querying a MySQL Database</h4>
 <span>So far, we&rsquo;ve created a MySQL database and tables, populated them with data, and added indexes to make them fast to search. Now it&rsquo;s time to look at how these searches are performed, and the various commands and qualifiers available.</span>
 <h6>SELECT</h6>
-<span>As you saw in Figure 8-4 , the SELECT command is used to extract data from a table. In that section, I used its simplest form to select all data and display it&mdash;something you will never want to do on anything but the smallest tables, because all the data will scroll by at an unreadable pace. Let&rsquo;s now examine SELECT in more detail.</span>
+<span>As you saw in Figure 8-4, the SELECT command is used to extract data from a table. In that section, I used its simplest form to select all data and display it&mdash;something you will never want to do on anything but the smallest tables, because all the data will scroll by at an unreadable pace. Let&rsquo;s now examine SELECT in more detail.</span>
 <br/>
 <span>The basic syntax is as follows:</span>
 <pre><code class="sql">SELECT something FROM tablename;</code></pre>
-<span>The something can be an * (asterisk) as you saw before, which means every column , or you can choose to select only certain columns. For instance, Example 8-16 shows how to select just the author and title and just the title and isbn. The result of typing these commands can be seen in Figure 8-9.</span>
+<span>The something can be an * (asterisk) as you saw before, which means every column, or you can choose to select only certain columns. For instance, Example 8-16 shows how to select just the author and title and just the title and isbn. The result of typing these commands can be seen in Figure 8-9.</span>
 <br/>
 <span>Example 8-16. Two different SELECT statements</span>
 <pre>
@@ -925,7 +925,7 @@ CREATE TABLE classics (
 <p><img src="images/8.9.png"/></p>
 <span>Figure 8-9. The output from two different SELECT statements</span>
 <h6>SELECT COUNT</h6>
-<span>Another replacement for the something parameter is COUNT , which can be used in many ways. In Example 8-17 , it displays the number of rows in the table by passing * as a parameter, which means &nbsp;all rows. As you&rsquo;d expect, the result returned is 5 , as there are five publications in the table.</span>
+<span>Another replacement for the something parameter is COUNT, which can be used in many ways. In Example 8-17, it displays the number of rows in the table by passing * as a parameter, which means &nbsp;all rows. As you&rsquo;d expect, the result returned is 5, as there are five publications in the table.</span>
 <br/>
 <span>Example 8-17. Counting rows</span>
 <pre><code class="sql">SELECT COUNT(*) FROM classics;</code></pre>
@@ -953,7 +953,7 @@ CREATE TABLE classics (
 <h6>DELETE</h6>
 <span>When you need to remove a row from a table, use the DELETE command. Its syntax is similar to the SELECT command and allows you to narrow down the exact row or rows to delete using qualifiers such as WHERE and LIMIT.</span>
 <br/>
-<span>Now that you&rsquo;ve seen the effects of the DISTINCT qualifier, if you typed Example 8-18 , you should remove Little Dorrit by entering the commands in Example 8-20.</span>
+<span>Now that you&rsquo;ve seen the effects of the DISTINCT qualifier, if you typed Example 8-18, you should remove Little Dorrit by entering the commands in Example 8-20.</span>
 <br/>
 <span>Example 8-20. Removing the new entry</span>
 <pre><code class="sql">DELETE FROM classics WHERE title='Little Dorrit';</code></pre>
@@ -961,7 +961,7 @@ CREATE TABLE classics (
 <br/>
 <span>The WHERE keyword is very powerful, and important to enter correctly; an error could lead a command to the wrong rows (or have no effect in cases where nothing matches the WHERE clause). So now we&rsquo;ll spend some time on that clause, which is the heart and soul of SQL.</span>
 <h6>WHERE</h6>
-<span>The WHERE keyword enables you to narrow down queries by returning only those where a certain expression is true. Example 8-20 returns only the rows where the column exactly matches the string Little Dorrit , using the equality operator =. Example 8-21 shows a couple more examples of using WHERE with =.</span>
+<span>The WHERE keyword enables you to narrow down queries by returning only those where a certain expression is true. Example 8-20 returns only the rows where the column exactly matches the string Little Dorrit, using the equality operator =. Example 8-21 shows a couple more examples of using WHERE with =.</span>
 <br/>
 <span>Example 8-21. Using the WHERE keyword</span>
 <pre>
@@ -1004,7 +1004,7 @@ SELECT author,title FROM classics LIMIT 3,1;
 <p><img src="images/8.12.png"/></p>
 <span>Figure 8-12. Restricting the rows returned with LIMIT</span>
 <h6>MATCH...AGAINST</h6>
-<span>The MATCH...AGAINST construct can be used on columns that have been given a FULL TEXT index (see the section &ldquo;Creating a FULLTEXT index&rdquo; on page 191 ). With it, you can make natural-language searches as you would in an Internet search engine. Unlike the use of WHERE...= or WHERE...LIKE , MATCH...AGAINST lets you enter multiple words in a search query and checks them against all words in the FULLTEXT columns. FULLTEXT indexes are case-insensitive, so it makes no difference what case is used in your queries.</span>
+<span>The MATCH...AGAINST construct can be used on columns that have been given a FULL TEXT index (see the section &ldquo;Creating a FULLTEXT index&rdquo; on page 191 ). With it, you can make natural-language searches as you would in an Internet search engine. Unlike the use of WHERE...= or WHERE...LIKE, MATCH...AGAINST lets you enter multiple words in a search query and checks them against all words in the FULLTEXT columns. FULLTEXT indexes are case-insensitive, so it makes no difference what case is used in your queries.</span>
 <br/>
 <span>Assuming that you have added a FULLTEXT index to the &nbsp;author &nbsp;and &nbsp;title &nbsp;columns, enter the three queries shown in &nbsp;Example 8-24. The first asks for any of these columns that contain the word and to be returned. Because and is a stopword, MySQL will ignore it and the query will always produce an empty set&mdash;no matter what is stored in the columns. The second query asks for any rows that contain both of the words curiosity and shop anywhere in them, in any order, to be returned. And the last query applies the same kind of search for the words &nbsp;tom &nbsp;and &nbsp;sawyer. &nbsp;Figure 8-13 shows the results of these queries.</span>
 <br/>
@@ -1062,7 +1062,7 @@ SELECT author,title FROM classics LIMIT 3,1;
 <br/>
 <span>In the first query, Mark Twain&rsquo;s real name of Samuel Langhorne Clemens was appended to his pen name in brackets, which affected only one row. The second query, however, affected three rows, because it changed all occurrences of the word Fiction in the category column to the term Classic Fiction.</span>
 <br/>
-<span>When performing an update, you can also make use of the qualifiers you have already seen, such as LIMIT , and the following ORDER BY and GROUP BY keywords.</span>
+<span>When performing an update, you can also make use of the qualifiers you have already seen, such as LIMIT, and the following ORDER BY and GROUP BY keywords.</span>
 <h6>ORDER BY</h6>
 <span>ORDER BY sorts returned results by one or more columns in ascending or descending order. &nbsp;Example 8-27 &nbsp;shows two such queries, the results of which can be seen in Figure 8-16.</span>
 <br/>
@@ -1082,7 +1082,7 @@ SELECT author,title FROM classics LIMIT 3,1;
 <span>This shows that each ascending and descending qualifier applies to a single column. The DESC keyword applies only to the preceding column, &nbsp;year. Because you allow author &nbsp;to use the default sort order, it is sorted in ascending order. You could also have explicitly specified ascending order for that column, with the same results:</span>
 <pre><code class="sql">SELECT author,title,year FROM classics ORDER BY author ASC,year DESC</code></pre>
 <h6>GROUP BY</h6>
-<span>In a similar fashion to ORDER BY , you can group results returned from queries using GROUP BY , which is good for retrieving information about a group of data. For example, if you want to know how many publications there are of each category in the classics table, you can issue the following query:</span>
+<span>In a similar fashion to ORDER BY, you can group results returned from queries using GROUP BY, which is good for retrieving information about a group of data. For example, if you want to know how many publications there are of each category in the classics table, you can issue the following query:</span>
 <pre><code class="sql">SELECT category,COUNT(author) FROM classics GROUP BY category</code></pre>
 <br/>
 <span>which returns the following output:</span>
@@ -1124,7 +1124,7 @@ SELECT author,title FROM classics LIMIT 3,1;
 <p><img src="images/8.17.png"/></p>
 <span>Figure 8-17. Creating the customers table</span>
 <br/>
-<span>There&rsquo;s also a shortcut for inserting multiple rows of data, as in Example 8-28 , in which you can replace the three separate INSERT INTO queries with a single one listing the data to be inserted, separated by commas, like this:</span>
+<span>There&rsquo;s also a shortcut for inserting multiple rows of data, as in Example 8-28, in which you can replace the three separate INSERT INTO queries with a single one listing the data to be inserted, separated by commas, like this:</span>
 <pre>
 <code class="sql">
 INSERT INTO customers(name,isbn) VALUES
@@ -1157,7 +1157,7 @@ INSERT INTO customers(name,isbn) VALUES
 </pre>
 <span>See how this query has neatly tied both tables together to show the publications purchased from the classics table by the people in the customers table?</span>
 <h6>NATURAL JOIN</h6>
-<span>Using NATURAL JOIN , you can save yourself some typing and make queries a little clearer. This kind of join takes two tables and automatically joins columns that have the same name. So, to achieve the same results as from &nbsp;Example 8-29 , you would enter the following:</span>
+<span>Using NATURAL JOIN, you can save yourself some typing and make queries a little clearer. This kind of join takes two tables and automatically joins columns that have the same name. So, to achieve the same results as from &nbsp;Example 8-29, you would enter the following:</span>
 <pre><code class="sql">SELECT name,author,title FROM customers NATURAL JOIN classics;</code></pre>
 <h6>JOIN...ON</h6>
 <span>If you wish to specify the column on which to join two tables, use the JOIN...ON construct, as follows, to achieve results identical to those of Example 8-29 :</span>
@@ -1190,7 +1190,7 @@ SELECT name,author,title FROM customers
 </code>
 </pre>
 <h4>Using Logical Operators</h4>
-<span>You can also use the logical operators AND , OR , and NOT in your MySQL WHERE queries to further narrow down your selections. Example 8-30 shows one instance of each, but you can mix and match them in any way you need.</span>
+<span>You can also use the logical operators AND, OR, and NOT in your MySQL WHERE queries to further narrow down your selections. Example 8-30 shows one instance of each, but you can mix and match them in any way you need.</span>
 <br/>
 <span>Example 8-30. Using logical operators</span>
 <pre>

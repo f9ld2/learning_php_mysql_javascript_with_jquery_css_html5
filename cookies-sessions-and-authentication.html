@@ -9,7 +9,7 @@ title: "Cookies, Sessions, and Authentication"
 <h3>Using Cookies in PHP</h3>
 <span>A cookie is an item of data that a web server saves to your computer&rsquo;s hard disk via a web browser. It can contain almost any alphanumeric information (as long as it&rsquo;s under 4 KB) and can be retrieved from your computer and returned to the server. Common uses include session tracking, maintaining data across multiple visits, holding shopping cart contents, storing login details, and more.</span>
 <br/>
-<span>Because of their privacy implications, cookies can be read only from the issuing domain. In other words, if a cookie is issued by, for example, &nbsp;oreilly.com , it can be retrieved only by a web server using that domain. This prevents other websites from gaining access to details for which they are not authorized.</span>
+<span>Because of their privacy implications, cookies can be read only from the issuing domain. In other words, if a cookie is issued by, for example, &nbsp;oreilly.com, it can be retrieved only by a web server using that domain. This prevents other websites from gaining access to details for which they are not authorized.</span>
 <br/>
 <span>Because of the way the Internet works, multiple elements on a web page can be embedded from multiple domains, each of which can issue its own cookies. When this happens, they are referred to as &nbsp;third-party cookies. Most commonly, these are created by advertising companies in order to track users across multiple websites.</span>
 <br/>
@@ -21,13 +21,13 @@ title: "Cookies, Sessions, and Authentication"
 <br/>
 <span>This exchange shows a browser receiving two pages:</span>
 <br/>
-<span>1. The browser issues a request to retrieve the main page, index.html , at the website http://www.webserver.com. The first header specifies the file, and the second header specifies the server.</span>
+<span>1. The browser issues a request to retrieve the main page, index.html, at the website http://www.webserver.com. The first header specifies the file, and the second header specifies the server.</span>
 <br/>
 <span>2. When the web server at &nbsp;webserver.com &nbsp;receives this pair of headers, it returns some of its own. The second header defines the type of content to be sent ( text/ html ), and the third one sends a cookie of the name &nbsp;name &nbsp;and with the value value. Only then are the contents of the web page transferred.</span>
 <br/>
-<span>3. Once the browser has received the cookie, it will then return it with every future request made to the issuing server until the cookie expires or is deleted. So, when the browser requests the new page &nbsp;/news.html , it also returns the cookie &nbsp;name with the value value.</span>
+<span>3. Once the browser has received the cookie, it will then return it with every future request made to the issuing server until the cookie expires or is deleted. So, when the browser requests the new page &nbsp;/news.html, it also returns the cookie &nbsp;name with the value value.</span>
 <br/>
-<span>4. Because the cookie has already been set, when the server receives the request to send &nbsp;/news.html , it does not have to resend the cookie, but just returns the requested page.</span>
+<span>4. Because the cookie has already been set, when the server receives the request to send &nbsp;/news.html, it does not have to resend the cookie, but just returns the requested page.</span>
 <h4>Setting a Cookie</h4>
 <span>Setting a cookie in PHP is a simple matter. As long as no HTML has yet been transferred, you can call the setcookie function, which has the following syntax (see Table 12-1 ):</span>
 <pre><code class="php">setcookie(name, value, expire, path, domain, secure, httponly);</code></pre>
@@ -74,7 +74,7 @@ title: "Cookies, Sessions, and Authentication"
         Optional.
         ) The Internet domain of the cookie. If this is
        .webserver.com
-        , the cookie is
+       , the cookie is
         available to all of
         webserver.com
         and its subdomains, such as
@@ -83,12 +83,12 @@ title: "Cookies, Sessions, and Authentication"
         images.webserver.com
        . If it is
         images.webserver.com
-        , the cookie is available
+       , the cookie is available
         only to
         images.webserver.com
         and its subdomains such as
         sub.images.webserver.com
-        , but not, say, to
+       , but not, say, to
         www.webserver.com
        .</td>
         <td>.webserver.com</td>
@@ -102,7 +102,7 @@ title: "Cookies, Sessions, and Authentication"
         ). If this value
         is
         TRUE
-        , the cookie can be transferred only across a secure connection. The default
+       , the cookie can be transferred only across a secure connection. The default
         is
         FALSE
        .</td>
@@ -115,7 +115,7 @@ title: "Cookies, Sessions, and Authentication"
         ; implemented since PHP version 5.2.0.) Whether the cookie must use the
         HTTP protocol. If this value is
         TRUE
-        , scripting languages such as JavaScript cannot
+       , scripting languages such as JavaScript cannot
         access the cookie. (Not supported in all browsers.) The default is
         FALSE
        .</td>
@@ -164,7 +164,7 @@ title: "Cookies, Sessions, and Authentication"
 ?&gt;
 </code>
 </pre>
-<span>By default, the type of interface Zend Server uses is cgi-fcgi , which is incompatible with basic authentication. However, configuring Zend is beyond the scope of this book, so if you are using it for Example 12-1 through Example 12-5 , you may prefer to test them on a different server. To determine the interface of a server, you can call the php_sapi_name function, which will return a string such as 'cgi-fcgi' , 'cli' , and so on. Basic authentication is not recommended anyway on a production website, as it is very insecure, but you need to know how it works for maintaining legacy code. Please refer to http://php.net/php_sapi_name for further details.</span>
+<span>By default, the type of interface Zend Server uses is cgi-fcgi, which is incompatible with basic authentication. However, configuring Zend is beyond the scope of this book, so if you are using it for Example 12-1 through Example 12-5, you may prefer to test them on a different server. To determine the interface of a server, you can call the php_sapi_name function, which will return a string such as 'cgi-fcgi', 'cli', and so on. Basic authentication is not recommended anyway on a production website, as it is very insecure, but you need to know how it works for maintaining legacy code. Please refer to http://php.net/php_sapi_name for further details.</span>
 <br/>
 <span>The first thing the program does is look for two particular array values: $_SERVER['PHP_AUTH_USER'] and $_SERVER['PHP_AUTH_PW']. If they both exist, they represent the username and password entered by a user into an authentication prompt.</span>
 <br/>
@@ -236,7 +236,7 @@ title: "Cookies, Sessions, and Authentication"
 <br/>
 <span>All you have to do when verifying someone&rsquo;s login password is to add these same random strings back in before and after it, and then check the resulting token from a hash call against the one stored in the database for that user.</span>
 <br/>
-<span>Let&rsquo;s create a MySQL table to hold some user details and add a couple of accounts. So type and save the program in &nbsp;Example 12-3 &nbsp;as &nbsp;setupusers.php , and then open it in your browser.</span>
+<span>Let&rsquo;s create a MySQL table to hold some user details and add a couple of accounts. So type and save the program in &nbsp;Example 12-3 &nbsp;as &nbsp;setupusers.php, and then open it in your browser.</span>
 <br/>
 <span>Example 12-3. Creating a users table and adding two accounts</span>
 <pre>
@@ -280,9 +280,9 @@ title: "Cookies, Sessions, and Authentication"
 ?&gt;
 </code>
 </pre>
-<span>This program will create the table users within your publications database (or whichever database you set up for the login.php file in Chapter 10 ). In this table, it will create two users: Bill Smith and Pauline Jones. They have the usernames and passwords of bsmith/mysecret and pjones/acrobat , respectively.</span>
+<span>This program will create the table users within your publications database (or whichever database you set up for the login.php file in Chapter 10 ). In this table, it will create two users: Bill Smith and Pauline Jones. They have the usernames and passwords of bsmith/mysecret and pjones/acrobat, respectively.</span>
 <br/>
-<span>Using the data in this table, we can now modify Example 12-2 to properly authenticate users, and &nbsp;Example 12-4 &nbsp;shows the code needed to do this. Type it, save it as authenticate.php , and call it up in your browser.</span>
+<span>Using the data in this table, we can now modify Example 12-2 to properly authenticate users, and &nbsp;Example 12-4 &nbsp;shows the code needed to do this. Type it, save it as authenticate.php, and call it up in your browser.</span>
 <br/>
 <span>Example 12-4. PHP authentication using MySQL</span>
 <pre>
@@ -338,7 +338,7 @@ title: "Cookies, Sessions, and Authentication"
 </pre>
 <span>As you might expect at this point in the book, some of these examples are starting to get quite a bit longer. But don&rsquo;t be put off. The final 10 lines are simply Example 10-22 from Chapter 10. They are there to sanitize the user input&mdash;very important.</span>
 <br/>
-<span>The only lines to really concern yourself with at this point start with the assigning of two variables, $un_temp and $pw_temp , using the submitted username and password, highlighted in bold text. Next, a query is issued to MySQL to look up the user $un_temp and, if a result is returned, to assign the first row to $row. (Because user‐ names are unique, there will be only one row.) Then the two salts are created in $salt1 and $salt2 , which are then added before and after the submitted password $pw_temp. This string is then passed to the hash function, which returns a 32- character hexadecimal value in $token.</span>
+<span>The only lines to really concern yourself with at this point start with the assigning of two variables, $un_temp and $pw_temp, using the submitted username and password, highlighted in bold text. Next, a query is issued to MySQL to look up the user $un_temp and, if a result is returned, to assign the first row to $row. (Because user‐ names are unique, there will be only one row.) Then the two salts are created in $salt1 and $salt2, which are then added before and after the submitted password $pw_temp. This string is then passed to the hash function, which returns a 32- character hexadecimal value in $token.</span>
 <br/>
 <span>Now all that&rsquo;s necessary is to check $token against the value stored in the database, which happens to be in the fourth column&mdash;which is column 3 when starting from 0. So $row[3] contains the previous token calculated for the salted password. If the two match, a friendly welcome string is output, calling the user by his or her first name (see Figure 12-4 ). Otherwise, an error message is displayed. As mentioned before, the error message is the same regardless of whether such a username exists, as this provides minimal information to potential hackers or password guessers.</span>
 <p><img src="images/12.4.png"/></p>
@@ -348,7 +348,7 @@ title: "Cookies, Sessions, and Authentication"
 <br/>
 <span>By sanitizing input immediately after it is encountered, you will block any malicious HTML, JavaScript, or MySQL attacks before they can get any further, and will not have to sanitize this data again. Remember, however, that if a user has characters such as &lt; or &amp; in a password (for example), these will be expanded to &amp;lt; or &amp;amp; by the htmlemtities function. But as long as your code allows for strings that may end up larger than the provided input width, and as long as you always run passwords through this sanitization, you&rsquo;ll be just fine.</span>
 <h3>Using Sessions</h3>
-<span>Because your program can&rsquo;t tell what variables were set in other programs&mdash;or even what values the same program set the previous time it ran&mdash;you&rsquo;ll sometimes want to track what your users are doing from one web page to another. You can do this by setting hidden fields in a form, as seen in Chapter 10 , and checking the value of the fields after the form is submitted, but PHP provides a much more powerful and simpler solution in the form of sessions. These are groups of variables that are stored on the server but relate only to the current user. To ensure that the right variables are applied to the right users, PHP saves a cookie in the users&rsquo; web browsers to uniquely identify them.</span>
+<span>Because your program can&rsquo;t tell what variables were set in other programs&mdash;or even what values the same program set the previous time it ran&mdash;you&rsquo;ll sometimes want to track what your users are doing from one web page to another. You can do this by setting hidden fields in a form, as seen in Chapter 10, and checking the value of the fields after the form is submitted, but PHP provides a much more powerful and simpler solution in the form of sessions. These are groups of variables that are stored on the server but relate only to the current user. To ensure that the right variables are applied to the right users, PHP saves a cookie in the users&rsquo; web browsers to uniquely identify them.</span>
 <br/>
 <span>This cookie has meaning only to the web server and cannot be used to ascertain any information about a user. You might ask about those users who have their cookies turned off. Well, that&rsquo;s not a problem as of PHP 4.2.0, because it will identify when this is the case and place a cookie token in the Get portion of each URL request instead. Either way, sessions provide a solid way of keeping track of your users.</span>
 <h4>Starting a Session</h4>
@@ -356,7 +356,7 @@ title: "Cookies, Sessions, and Authentication"
 <pre><code class="php">$_SESSION['variable'] = $value;</code></pre>
 <span>They can then be read back just as easily in later program runs, like this:</span>
 <pre><code class="php">$variable = $_SESSION['variable'];</code></pre>
-<span>Now assume that you have an application that always needs access to the username, password, first name, and last name of each user, as stored in the table users , which you should have created a little earlier. So let&rsquo;s further modify authenticate.php from Example 12-4 to set up a session once a user has been authenticated.</span>
+<span>Now assume that you have an application that always needs access to the username, password, first name, and last name of each user, as stored in the table users, which you should have created a little earlier. So let&rsquo;s further modify authenticate.php from Example 12-4 to set up a session once a user has been authenticated.</span>
 <br/>
 <span>Example 12-5 shows the changes needed. The only difference is the content of the if ($token == $row[3]) section, which we now start by opening a session and saving these four variables into it. Type this program (or modify Example 12-4 ) and save it as authenticate2.php. But don&rsquo;t run it in your browser yet, as you will also need to create a second program in a moment.</span>
 <br/>
@@ -449,7 +449,7 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 <br/>
 <span>Sessions neatly confine to a single program the extensive code required to authenticate and log in a user. Once a user has been authenticated, and you have created a session, your program code becomes very simple indeed. You need only to call up session_start and look up any variables to which you need access from $_SESSION.</span>
 <br/>
-<span>In &nbsp;Example 12-6 , a quick test of whether $_SESSION['username'] has a value is enough to let you know that the current user is authenticated, because session variables are stored on the server (unlike cookies, which are stored on the web browser) and can therefore be trusted.</span>
+<span>In &nbsp;Example 12-6, a quick test of whether $_SESSION['username'] has a value is enough to let you know that the current user is authenticated, because session variables are stored on the server (unlike cookies, which are stored on the web browser) and can therefore be trusted.</span>
 <br/>
 <span>If $_SESSION['username'] has not been assigned a value, no session is active, so the last line of code in Example 12-6 directs users to the login page at authenticate2.php.</span>
 <br/>
@@ -501,7 +501,7 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 ?&gt;
 </code>
 </pre>
-<span>The first time you navigate from authenticate2.php to continue.php , it will display all the session variables. But, because of the call to destroy_session_and_data , if you then click your browser&rsquo;s Reload button, the session will have been destroyed and you&rsquo;ll be prompted to return to the login page.</span>
+<span>The first time you navigate from authenticate2.php to continue.php, it will display all the session variables. But, because of the call to destroy_session_and_data, if you then click your browser&rsquo;s Reload button, the session will have been destroyed and you&rsquo;ll be prompted to return to the login page.</span>
 <h4>Setting a Time-Out</h4>
 <span>There are other times when you might wish to close a user&rsquo;s session yourself, such as when the user has forgotten or neglected to log out, and you want the program to do so for her for her own security. You do this by setting the time-out after which a logout will automatically occur if there has been no activity.</span>
 <br/>
@@ -539,7 +539,7 @@ $_SERVER['HTTP_USER_AGENT']);
 <br/>
 <b class="t30">http://yourserver.com/authenticate.php?PHPSESSID=123456789</b>
 <br/>
-<span>In this example, the made-up session ID of 123456789 is being passed to the server. Now, consider Example 12-9 , which is susceptible to session fixation. To see how, type it and save it as sessiontest.php.</span>
+<span>In this example, the made-up session ID of 123456789 is being passed to the server. Now, consider Example 12-9, which is susceptible to session fixation. To see how, type it and save it as sessiontest.php.</span>
 <br/>
 <span>Example 12-9. A session susceptible to session fixation</span>
 <pre>
