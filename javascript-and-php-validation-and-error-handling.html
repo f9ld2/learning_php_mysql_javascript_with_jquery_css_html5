@@ -2,18 +2,21 @@
 layout: default
 title: "JavaScript and PHP Validation and Error Handling"
 ---
+<a id="javascript-and-php-validation-and-error-handling"></a>
 <h2>JavaScript and PHP Validation and Error Handling</h2>
 <span>With your solid foundation in both PHP and JavaScript, it&rsquo;s time to bring these technologies together to create web forms that are as user-friendly as possible.</span>
 <br/>
 <span>We&rsquo;ll be using PHP to create the forms and JavaScript to perform client-side validation to ensure that the data is as complete and correct as it can be before it is submitted. Final validation of the input will then be made by PHP, which will, if necessary, present the form again to the user for further modification.</span>
 <br/>
 <span>In the process, this chapter will cover validation and regular expressions in both JavaScript and PHP.</span>
+<a id="validating-user-input-with-javascript"></a>
 <h3>Validating User Input with JavaScript</h3>
 <span>JavaScript validation should be considered an assistance more to your users than to your websites because, as I have already stressed many times, you cannot trust any data submitted to your server, even if it has supposedly been validated with JavaScript. This is because hackers can quite easily simulate your web forms and submit any data of their choosing.</span>
 <br/>
 <span>Another reason you cannot rely on JavaScript to perform all your input validation is that some users disable JavaScript, or use browsers that don&rsquo;t support it.</span>
 <br/>
 <span>So the best types of validation to do in JavaScript are checking that fields have content if they are not to be left empty, ensuring that email addresses conform to the proper format, and ensuring that values entered are within expected bounds.</span>
+<a id="the-validate-html-document-part-1"></a>
 <h4>The validate.html Document (Part 1)</h4>
 <span>Let&rsquo;s begin with a general sign-up form, common on most sites that offer memberships or registered users. The inputs requested will be forename, surname, username, password, age, and email address. Example 16-1 provides a good template for such a form.</span>
 <br/>
@@ -85,6 +88,7 @@ title: "JavaScript and PHP Validation and Error Handling"
 <span>The this parameter is the current object (i.e., this form) and is passed to the vali date function just discussed. The validate function receives this parameter as the object form.</span>
 <br/>
 <span>As you can see, the only JavaScript used within the form&rsquo;s HTML is the call to return buried in the onSubmit attribute. Browsers with JavaScript disabled or not available will simply ignore the onSubmit attribute, and the HTML will display just fine.</span>
+<a id="the-validate-html-document-part-2"></a>
 <h4>The validate.html Document (Part 2)</h4>
 <span>Now we come to &nbsp;Example 16-2, a set of six functions that do the actual form-field validation. I suggest that you type all of this second part and save it in the &lt;script&gt;... &lt;/script&gt; section of Example 16-1, which you should already have saved as validate.html.</span>
 <br/>
@@ -144,38 +148,47 @@ function validateEmail(field)
 </code>
 </pre>
 <span>We&rsquo;ll go through each of these functions in turn, starting with validateForename, so you can see how validation works.</span>
+<a id="validating-the-forename"></a>
 <h6>Validating the forename</h6>
 <span>validateForename is quite a short function that accepts the parameter field, which is the value of the forename passed to it by the validate function.</span>
 <br/>
 <span>If this value is the empty string, an error message is returned; otherwise, an empty string is returned to signify that no error was encountered.</span>
 <br/>
 <span>If the user entered spaces in this field, it would be accepted by validateForename, even though it&rsquo;s empty for all intents and purposes. You can fix this by adding an extra statement to trim whitespace from the field before checking whether it&rsquo;s empty, use a regular expression to make sure there&rsquo;s something besides whitespace in the field, or&mdash;as I do here&mdash;just let the user make the mistake and allow the PHP program to catch it on the server.</span>
+<a id="validating-the-surname"></a>
 <h6>Validating the surname</h6>
 <span>The validateSurname function is almost identical to validateForename in that an error is returned only if the surname supplied was an empty string. I chose not to limit the characters allowed in either of the name fields to allow for possibilities such as non-English and accented characters.</span>
 <br/>
+<a id="validating-the-username"></a>
 <h6>Validating the username</h6>
 <span>The validateUsername function is a little more interesting, because it has a more complicated job. It has to allow through only the characters a-z, A-Z, 0-9, _ and -, and ensure that usernames are at least five characters long.</span>
 <br/>
 <span>The if...else statements commence by returning an error if field has not been filled in. If it&rsquo;s not the empty string, but is fewer than five characters in length, another error message is returned.</span>
 <br/>
 <span>Then the JavaScript test function is called, passing a regular expression (which matches any character that is not one of those allowed) to be matched against field (see &ldquo;Regular Expressions&rdquo; on page 377 ). If even one character that isn&rsquo;t one of the acceptable characters is encountered, the test function returns true, and so valida teUser returns an error string.</span>
+<a id="validating-the-password"></a>
 <h6>Validating the password</h6>
 <span>Similar techniques are used in the validatePassword function. First the function checks whether field is empty, and if it is, returns an error. Next, an error message is returned if a password is shorter than six characters.</span>
 <br/>
 <span>One of the requirements we&rsquo;re imposing on passwords is that they must have at least one each of a lowercase, uppercase, and numerical character, so the test function is called three times, once for each of these cases. If any one of them returns false, one of the requirements was not met and so an error message is returned. Otherwise, the empty string is returned to signify that the password was OK.</span>
+<a id="validating-the-age"></a>
 <h6>Validating the age</h6>
 <span>validateAge returns an error message if field is not a number (determined by a call to the isNaN function), or if the age entered is lower than 18 or greater than 110. Your applications may well have different or no age requirements. Again, upon successful validation, the empty string is returned.</span>
+<a id="validating-the-email"></a>
 <h6>Validating the email</h6>
 <span>In the last and most complicated example, the email address is validated with valida teEmail. After checking whether anything was actually entered, and returning an error message if it wasn&rsquo;t, the function calls the JavaScript indexOf function twice. The first time a check is made to ensure there is a period (. ) somewhere from at least the second character of the field, and the second checks that an @ symbol appears somewhere at or after the second character.</span>
 <br/>
 <span>If those two checks are satisfied, the test function is called to see whether any disallowed characters appear in the field. If any of these tests fail, an error message is returned. The allowed characters in an email address are uppercase and lowercase letters, numbers, and the _, -, period, and @ characters, as detailed in the regular expression passed to the test method. If no errors are found, the empty string is returned to indicate successful validation. On the last line, the script and document are closed.</span>
 <p><img src="images/16.2.png"/></p>
 <span>Figure 16-2 shows the result of the user clicking the Signup button without having completed any fields. Figure 16-2. JavaScript form validation in action</span>
+<a id="using-a-separate-javascript"></a>
 <h6>Using a separate JavaScript</h6>
 <span>file Of course, because they are generic in construction and could apply to many types of validations you might require, these six functions make ideal candidates for moving out into a separate JavaScript file. You could name the file something like &nbsp;validate_functions.js and include it right after the initial script section in Example 16-1, using the following statement:</span>
 <pre><code class="php">&lt;script src="validate_functions.js"&gt;&lt;/script&gt;</code></pre>
+<a id="regular-expressions"></a>
 <h3>Regular Expressions</h3>
 <span>Let&rsquo;s look a little more closely at the pattern matching we have been doing. We&rsquo;ve achieved it using &nbsp;regular expressions, which are supported by both JavaScript and PHP. They make it possible to construct the most powerful of pattern-matching algorithms within a single expression.</span>
+<a id="matching-through-metacharacters"></a>
 <h4>Matching Through Metacharacters</h4>
 <span>Every regular expression must be enclosed in slashes. Within these slashes, certain characters have special meanings; they are called &nbsp;metacharacters. For instance, an asterisk ( * ) has a meaning similar to what you have seen if you use a shell or Windows command prompt (but not quite the same). An asterisk means, &ldquo;The text you&rsquo;re trying to match may have any number of the preceding characters&mdash;or none at all.&rdquo;</span>
 <br/>
@@ -192,6 +205,7 @@ function validateEmail(field)
 <span>Suppose that you know there is always at least one space. In that case, you could use the plus sign ( + ), because it requires at least one of the preceding characters to be present:</span>
 <br/>
 <span class="t30">/Le +Guin/</span>
+<a id="fuzzy-character-matching"></a>
 <h4>Fuzzy Character Matching</h4>
 <span>The dot (. ) is particularly useful, because it can match anything except a newline. Suppose that you are looking for HTML tags, which start with &lt; and end with &gt;. A simple way to do so is shown here:</span>
 <br/>
@@ -221,6 +235,7 @@ function validateEmail(field)
 <span>We just matched a floating-point number. But perhaps you want to match 5. as well as 5.0, because both mean the same thing as a floating-point number. You also want to match 5.00, 5.000, and so forth&mdash;any number of zeros is allowed. You can do this by adding an asterisk, as you&rsquo;ve seen:</span>
 <br/>
 <span class="t30">/5\.0*/</span>
+<a id="grouping-through-parentheses"></a>
 <h4>Grouping Through Parentheses</h4>
 <span>Suppose you want to match powers of increments of units, such as kilo, mega, giga, and tera. In other words, you want all the following to match:</span>
 <br/>
@@ -237,6 +252,7 @@ function validateEmail(field)
 <span>The parentheses mean &ldquo;treat this as a group when you apply something such as a plus sign.&rdquo; 1,00,000 and 1,000,00 won&rsquo;t match because the text must have a 1 followed by one or more complete groups of a comma followed by three zeros.</span>
 <br/>
 <span>The space after the + character indicates that the match must end when a space is encountered. Without it, 1,000,00 would incorrectly match because only the first 1,000 would be taken into account, and the remaining,00 would be ignored. Requiring a space afterward ensures that matching will continue right through to the end of a number.</span>
+<a id="character-classes"></a>
 <h4>Character Classes</h4>
 <span>Sometimes you want to match something fuzzy, but not so broad that you want to use a dot. Fuzziness is the great strength of regular expressions: they allow you to be as precise or vague as you want.</span>
 <br/>
@@ -245,6 +261,7 @@ function validateEmail(field)
 <span class="t30">/gr[ae]y/</span>
 <br/>
 <span>After the gr in the text you&rsquo;re matching, there can be either an a or an e. But there must be only one of them: whatever you put inside the brackets matches exactly one character. The group of characters inside the brackets is called a character class.</span>
+<a id="indicating-a-range"></a>
 <h4>Indicating a Range</h4>
 <span>Inside the brackets, you can use a hyphen ( - ) to indicate a range. One very common task is matching a single digit, which you can do with a range as follows:</span>
 <br/>
@@ -252,12 +269,14 @@ function validateEmail(field)
 <br/>
 <span>Digits are such a common item in regular expressions that a single character is provided to represent them: \d. You can use it in place of the bracketed regular expression to match a digit:</span>
 <span class="t30">/\d/</span>
+<a id="negation"></a>
 <h4>Negation</h4>
 <span>One other important feature of the square brackets is &nbsp;negation &nbsp;of a character class. You can turn the whole character class on its head by placing a caret ( ^ ) after the opening bracket. Here it means, &ldquo;Match any characters except the following.&rdquo; So let&rsquo;s say you want to find instances of &nbsp;Yahoo &nbsp;that lack the following exclamation point. (The name of the company officially contains an exclamation point!) You could do it as follows:</span>
 <br/>
 <span class="t30">/Yahoo[^!]/</span>
 <br/>
 <span>The character class consists of a single character&mdash;an exclamation point&mdash;but it is inverted by the preceding ^. This is actually not a great solution to the problem&mdash;for instance, it fails if &nbsp;Yahoo &nbsp;is at the end of the line, because then it&rsquo;s not followed by anything, whereas the brackets must match a character. A better solution involves negative lookahead (matching something that is not followed by anything else), but that&rsquo;s beyond the scope of this book.</span>
+<a id="some-more-complicated-examples"></a>
 <h4>Some More-Complicated Examples</h4>
 <span>With an understanding of character classes and negation, you&rsquo;re ready now to see a better solution to the problem of matching an HTML tag. This solution avoids going past the end of a single tag, but still matches tags such as &lt;em&gt; and &lt;/em&gt; as well as tags with attributes such as this:</span>
 <br/>
@@ -338,6 +357,7 @@ function validateEmail(field)
 <span>We&rsquo;ll finish our exploration of regular expression basics by answering a question raised earlier: suppose you want to make sure there is nothing extra on a line besides the regular expression? What if you want a line that has &ldquo;Le Guin&rdquo; and nothing else? We can do that by amending the earlier regular expression to anchor the two ends:</span>
 <br/>
 <span class="t30">/^Le *Guin$/</span>
+<a id="summary-of-metacharacters"></a>
 <h4>Summary of Metacharacters</h4>
 <span>Table 16-1 shows the metacharacters available in regular expressions.</span>
 <br/>
@@ -600,6 +620,7 @@ function validateEmail(field)
         <td>Any five-letter word</td>
     </tr>
 </table>
+<a id="general-modifiers"></a>
 <h4>General Modifiers</h4>
 <span>Some additional modifiers are available for regular expressions:</span>
 <br/>
@@ -610,6 +631,7 @@ function validateEmail(field)
 <span>&bull; /m enables multiline mode, in which the caret ( ^ ) and dollar ( $ ) match before and after any newlines in the subject string. Normally, in a multiline string, ^ matches only at the start of the string, and $ matches only at the end of the string.</span>
 <br/>
 <span>For example, the expression /cats/g will match both occurrences of the word cats in the sentence I like cats, and cats like me. Similarly, /dogs/gi will match both occurrences of the word dogs ( Dogs and dogs ) in the sentence Dogs like other dogs, because you can use these specifiers together.</span>
+<a id="using-regular-expressions-in-javascript"></a>
 <h4>Using Regular Expressions in JavaScript</h4>
 <span>In JavaScript, you will use regular expressions mostly in two methods: test (which you have already seen) and replace. Whereas test just tells you whether its argument matches the regular expression, replace takes a second parameter: the string to replace the text that matches. Like most functions, replace generates a new string as a return value; it does not change the input.</span>
 <br/>
@@ -618,6 +640,7 @@ function validateEmail(field)
 <span>But the following statement replaces both occurrences of the word cats with the word dogs, printing the result. The search has to be global ( /g ) to find all occurrences, and case-insensitive ( /i ) to find the capitalized Cats :</span>
 <pre><code class="php">document.write("Cats are friendly. I like cats.".replace(/cats/gi,"dogs"))</code></pre>
 <span>If you try out the statement, you&rsquo;ll see a limitation of replace : because it replaces text with exactly the string you tell it to use, the first word Cats is replaced by dogs instead of Dogs.</span>
+<a id="using-regular-expressions-in-php"></a>
 <h4>Using Regular Expressions in PHP</h4>
 <span>The most common regular expression functions that you are likely to use in PHP are preg_match, preg_match_all, and preg_replace.</span>
 <br/>
@@ -648,6 +671,7 @@ for ($j=0 ; $j &lt; $n ; ++$j) echo $match[0][$j]." ";
 <span>When you want to replace part of a string, you can use preg_replace as shown here. This example replaces all occurrences of the word cats with the word dogs, regardless of case:</span>
 <pre><code class="php">echo preg_replace("/cats/i", "dogs", "Cats are furry. I like cats.");</code></pre>
 <span>The subject of regular expressions is a large one, and entire books have been written about it. If you would like further information, I suggest the Wikipedia entry, or Jeffrey Friedl&rsquo;s excellent book Mastering Regular Expressions.</span>
+<a id="redisplaying-a-form-after-php-validation"></a>
 <h3>Redisplaying a Form After PHP Validation</h3>
 <span>OK, back to form validation. So far we&rsquo;ve created the HTML document validate.html, which will post through to the PHP program adduser.php, but only if JavaScript validates the fields or if JavaScript is disabled or unavailable.</span>
 <br/>

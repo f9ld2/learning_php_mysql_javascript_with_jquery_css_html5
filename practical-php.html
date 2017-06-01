@@ -2,8 +2,10 @@
 layout: default
 title: "Practical PHP"
 ---
+<a id="practical-php"></a>
 <h2>Practical PHP</h2>
 <span>Previous chapters went over the elements of the PHP language. This chapter builds on your new programming skills to teach you some common but important practical tasks. You will learn the best ways to manage string handling to achieve clear and concise code that displays in web browsers exactly how you want it to, including advanced date and time management. You&rsquo;ll also find out how to create and otherwise modify files, including those uploaded by users.</span>
+<a id="using-printf"></a>
 <h3>Using printf</h3>
 <span>You&rsquo;ve already seen the print and echo functions, which simply output text to the browser. But a much more powerful function, printf, controls the format of the output by letting you put special formatting characters in a string. For each formatting character, printf expects you to pass an argument that it will display using that format. For instance, the following example uses the %d conversion specifier to display the value 3 in decimal:</span>
 <pre><code class="php">printf("There are %d items in your basket", 3);</code></pre>
@@ -88,6 +90,7 @@ title: "Practical PHP"
 <pre><code class="html">&lt;span style='color:#417FF5'&gt;Hello&lt;/span&gt;</code></pre>
 <span>Usually, you&rsquo;ll find it convenient to use variables or expressions as arguments to printf. For instance, if you stored values for your colors in the three variables $r, $g, and $b, you could create a darker color with this:</span>
 <pre><code class="php">printf("&lt;span style='color:#%X%X%X'&gt;Hello&lt;/span&gt;", $r-20, $g-20, $b-20);</code></pre>
+<a id="precision-setting"></a>
 <h4>Precision Setting</h4>
 <span>Not only can you specify a conversion type, but you can also set the precision of the displayed result. For example, amounts of currency are usually displayed with only two digits of precision. However, after a calculation, a value may have a greater precision than this, such as 123.42 / 12, which results in 10.285. To ensure that such values are correctly stored internally, but displayed with only two digits of precision, you can insert the string ".2" between the % symbol and the conversion specifier:</span>
 <pre><code class="php">printf("The result is: $%.2f", 123.42 / 12);</code></pre>
@@ -169,6 +172,7 @@ title: "Practical PHP"
         <td>########10.2850</td>
     </tr>
 </table>
+<a id="string-padding"></a>
 <h4>String Padding</h4>
 <span>You can also pad strings to required lengths (as you can with numbers), select different padding characters, and even choose between left and right justification. Example 7-2 shows various examples.</span>
 <br/>
@@ -245,6 +249,7 @@ title: "Practical PHP"
         <td>[####Rasm]</td>
     </tr>
 </table>
+<a id="using-sprintf"></a>
 <h4>Using sprintf</h4>
 <span>Often, you don&rsquo;t want to output the result of a conversion but need it to use elsewhere in your code. This is where the sprintf function comes in. With it, you can send the output to another variable rather than to the browser.</span>
 <br/>
@@ -257,6 +262,7 @@ title: "Practical PHP"
     echo $out;
 </code>
 </pre>
+<a id="date-and-time-functions"></a>
 <h3>Date and Time Functions</h3>
 <span>To keep track of the date and time, PHP uses standard Unix timestamps, which are simply the number of seconds since the start of January 1, 1970. To determine the current timestamp, you can use the time function:</span>
 <pre><code class="php">echo time();</code></pre>
@@ -445,6 +451,7 @@ title: "Practical PHP"
         <td>00 to 59</td>
     </tr>
 </table>
+<a id="date-constants"></a>
 <h4>Date Constants</h4>
 <span>There are a number of useful constants that you can use with the date command to return the date in specific formats. For example, date(DATE_RSS) returns the current date and time in the valid format for an RSS feed. Some of the more commonly used constants are as follows:</span>
 <br/>
@@ -483,6 +490,7 @@ and example output is
 The complete list can be found at
 http://php.net/manual/en/class.datetime.php.
 </div>
+<a id="using-checkdate"></a>
 <h4>Using checkdate</h4>
 <span>You&rsquo;ve seen how to display a valid date in a variety of formats. But how can you check whether a user has submitted a valid date to your program? The answer is to pass the month, day, and year to the checkdate function, which returns a value of TRUE if the date is valid, or FALSE if it is not.</span>
 <br/>
@@ -502,13 +510,16 @@ http://php.net/manual/en/class.datetime.php.
 </code>
 </pre>
 
+<a id="file-handling"></a>
 <h3>File Handling</h3>
 <span>Powerful as it is, MySQL is not the only (or necessarily the best) way to store all data on a web server. Sometimes it can be quicker and more convenient to directly access files on the hard disk. Cases in which you might need to do this are modifying images such as uploaded user avatars, or log files that you wish to process.</span>
 <br/>
 <span>First, though, a note about file naming: if you are writing code that may be used on various PHP installations, there is no way of knowing whether these systems are case- sensitive. For example, Windows and Mac OS X filenames are not case-sensitive, but Linux and Unix ones are. Therefore, you should always assume that the system is case-sensitive and stick to a convention such as all lowercase filenames.</span>
+<a id="checking-whether-a-file-exists"></a>
 <h4>Checking Whether a File Exists</h4>
 <span>To determine whether a file already exists, you can use the file_exists function, which returns either TRUE or FALSE, and is used like this:</span>
 <pre><code class="php">if (file_exists("testfile.txt")) echo "File exists";</code></pre>
+<a id="creating-a-file"></a>
 <h4>Creating a File</h4>
 <span>At this point, testfile.txt doesn&rsquo;t exist, so let&rsquo;s create it and write a few lines to it. Type Example 7-4 and save it as testfile.php.</span>
 <br/>
@@ -595,6 +606,7 @@ http://php.net/manual/en/class.datetime.php.
     </tr>
 </table>
 
+<a id="reading-from-files"></a>
 <h4>Reading from Files</h4>
 <span>The easiest way to read from a text file is to grab a whole line through fgets (think of the final s as standing for string ), as in Example 7-5.</span>
 <br/>
@@ -633,6 +645,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>Lin</span>
 <br/>
 <span>The fread function is commonly used with binary data. But if you use it on text data that spans more than one line, remember to count newline characters.</span>
+<a id="copying-files"></a>
 <h4>Copying Files</h4>
 <span>Let&rsquo;s try out the PHP copy function to create a clone of testfile.txt. Type Example 7-7 and save it as copyfile.php, and then call up the program in your browser.</span>
 <br/>
@@ -657,6 +670,7 @@ http://php.net/manual/en/class.datetime.php.
 ?&gt;
 </code>
 </pre>
+<a id="moving-a-file"></a>
 <h4>Moving a File</h4>
 <span>To move a file, rename it with the rename function, as in Example 7-9.</span>
 <br/>
@@ -673,6 +687,7 @@ http://php.net/manual/en/class.datetime.php.
 </pre>
 <br/>
 <span>You can use the rename function on directories, too. To avoid any warning messages, if the original file doesn&rsquo;t exist, you can call the file_exists function first to check.</span>
+<a id="deleting-a-file"></a>
 <h4>Deleting a File</h4>
 <span>Deleting a file is just a matter of using the unlink function to remove it from the file system, as in Example 7-10.</span><br/>
 <span>Example 7-10. Deleting a file</span>
@@ -687,6 +702,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>Whenever you access files on your hard disk directly, you must also always ensure that it is impossible for your file system to be compromised. For example, if you are deleting a file based on user input, you must make absolutely certain it is a file that can be safely deleted and that the user is allowed to delete it.</span>
 <br/>
 <span>As with moving a file, a warning message will be displayed if the file doesn&rsquo;t exist, which you can avoid by using file_exists to first check for its existence before calling unlink.</span>
+<a id="updating-files"></a>
 <h4>Updating Files</h4>
 <span>Often, you will want to add more data to a saved file, which you can do in many ways. You can use one of the append write modes (see Table 7-5 ), or you can simply open a file for reading and writing with one of the other modes that supports writing, and move the file pointer to the correct place within the file that you wish to write to or read from.</span>
 <br/>
@@ -722,6 +738,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>SEEK_CUR sets the file pointer to the current position plus the value of the given offset. Therefore, if the file pointer is currently at position 18, the following call will move it to position 23:</span>
 <pre><code class="php">fseek($fh, 5, SEEK_CUR);</code></pre>
 <span>Although this is not recommended unless you have very specific reasons for it, it is even possible to use text files such as this (but with fixed line lengths) as simple flat file databases. Your program can then use fseek to move back and forth within such a file to retrieve, update, and add new records. You can also delete records by overwriting them with zero characters, and so on.</span>
+<a id="locking-files-for-multiple-accesses"></a>
 <h4>Locking Files for Multiple Accesses</h4>
 <span>Web programs are often called by many users at the same time. If more than one person tries to write to a file simultaneously, it can become corrupted. And if one person writes to it while another is reading from it, the file is all right, but the person reading it can get odd results. To handle simultaneous users, you must use the file-locking flock function. This function queues up all other requests to access a file until your program releases the lock. So, whenever your programs use write access on files that may be accessed concurrently by multiple users, you should also add file locking to them, as in Example 7-12, which is an updated version of Example 7-11.</span>
 <br/>
@@ -758,6 +775,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>By the way, implementing file locking and then accidentally leaving it out in one section of code can lead to an extremely hard-to-locate bug.</span>
 <br/>
 <span>flock will not work on NFS and many other networked file systems. Also, when using a multithreaded server like ISAPI, you may not be able to rely on flock to protect files against other PHP scripts running in parallel threads of the same server instance. Additionally, flock is not supported on any system using the old FAT file system, such as older versions of Windows.</span>
+<a id="reading-an-entire-file"></a>
 <h4>Reading an Entire File</h4>
 <span>A handy function for reading in an entire file without having to use file handles is file_get_contents. It&rsquo;s very easy to use, as you can see in Example 7-13.</span>
 <br/>
@@ -783,6 +801,7 @@ http://php.net/manual/en/class.datetime.php.
 </pre>
 <p><img src="images/7.1.png"/></p>
 <span>Figure 7-1. The O&rsquo;Reilly home page grabbed with file_get_contents</span>
+<a id="uploading-files"></a>
 <h4>Uploading Files</h4>
 <span>Uploading files to a web server is a subject that seems daunting to many people, but it actually couldn&rsquo;t be much easier. All you need to do to upload a file from a form is choose a special type of encoding called multipart/form-data, and your browser will handle the rest. To see how this works, type the program in Example 7-15 and save it as upload.php. When you run it, you&rsquo;ll see a form in your browser that lets you upload a file of your choice.</span>
 <br/>
@@ -827,6 +846,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>If you run this program and receive warning messages such as Per mission denied for the move_uploaded_file function call, then you may not have the correct permissions set for the folder in which the program is running.</span>
 <p><img src="images/7.2.png"/></p>
 <span>Figure 7-2. Uploading an image as form data</span>
+<a id="using-files"></a>
 <h6>Using $_FILES</h6>
 <span>Five things are stored in the $_FILES array when a file is uploaded, as shown in Table 7-6 (where file is the file upload field name supplied by the submitting form).</span>
 <br/>
@@ -933,6 +953,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>Sometimes you may encounter the media type of image/pjpeg, which indicates a progressive JPEG, but you can safely add this to your code as an alias of image/jpeg, like this:</span>
 <br/>
 <span>case 'image/pjpeg': case 'image/jpeg': $ext = 'jpg'; break;</span>
+<a id="system-calls"></a>
 <h3>System Calls</h3>
 <span>Sometimes PHP will not have the function you need to perform a certain action, but the operating system it is running on may. In such cases, you can use the exec system call to do the job.</span>
 <br/>
@@ -984,6 +1005,7 @@ http://php.net/manual/en/class.datetime.php.
 <span>You should also note the use of the escapeshellcmd function. It is a good habit to always use this when issuing an exec call, because it sanitizes the command string, preventing the execution of arbitrary commands, should you supply user input to the call.</span>
 <br/>
 <span>The system calling functions are typically disabled on shared web hosts, as they pose a security risk. You should always try to solve your problems within PHP if you can, and go to the system directly only if it is really necessary. Also, going to the system is relatively slow, and you need to code two implementations if your application is expected to run on both Windows and Linux/Unix systems.</span>
+<a id="xhtml-or-html5"></a>
 <h3>XHTML or HTML5?</h3>
 <span>Because XHTML documents need to be well formed, you can parse them using standard XML parsers&mdash;unlike HTML, which requires a lenient HTML-specific parser. For this reason, XHTML never really caught on, and when the time came to devise a new standard, the World Wide Web Consortium chose to support HTML5 rather than the newer XHTML2 standard.</span>
 <br/>

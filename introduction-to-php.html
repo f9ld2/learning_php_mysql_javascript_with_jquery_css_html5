@@ -2,11 +2,13 @@
 layout: default
 title: "Introduction to PHP"
 ---
+<a id="introduction-to-php"></a>
 <h2>Introduction to PHP</h2>
 <span>In Chapter 1, I explained that PHP is the language that you use to make the server generate dynamic output&mdash;output that is potentially different each time a browser requests a page. In this chapter, you&rsquo;ll start learning this simple but powerful language; it will be the topic of the following chapters up through Chapter 7.</span><br/>
 <span>I encourage you to develop your PHP code in one of the IDEs listed in Chapter 2. It will help you catch typos and speed up learning tremendously in comparison to less feature-rich editors.</span><br/>
 <span>Many of these development environments let you run the PHP code and see the output discussed in this chapter. I&rsquo;ll also show you how to embed the PHP in an HTML file so that you can see what the output looks like in a web page (the way your users will ultimately see it). But that step, as thrilling as it may be at first, isn&rsquo;t really impor tant at this stage.</span><br/>
 <span>In production, your web pages will be a combination of PHP, HTML, and JavaScript, and some MySQL statements laid out using CSS, and possibly utilizing various HTML5 elements. Furthermore, each page can lead to other pages to provide users with ways to click through links and fill out forms. We can avoid all that complexity while learning each language, though. Focus for now on just writing PHP code and making sure that you get the output you expect&mdash;or at least that you understand the output you actually get!</span>
+<a id="incorporating-php-within-html"></a>
 <h3>Incorporating PHP Within HTML</h3>
 <span>By default, PHP documents end with the extension.php. When a web server encoun ters this extension in a requested file, it automatically passes it to the PHP processor. Of course, web servers are highly configurable, and some web developers choose to force files ending with.htm or.html to also get parsed by the PHP processor, usually because they want to hide the fact that they are using PHP.</span><br/>
 <span>Your PHP program is responsible for passing back a clean file suitable for display in a web browser. At its very simplest, a PHP document will output only HTML. To prove this, you can take any normal HTML document such as an index.html file and save it as index.php, and it will display identically to the original.</span><br/>
@@ -37,15 +39,18 @@ title: "Introduction to PHP"
 <span>Although it&rsquo;s not as obvious that the PHP parser is being called, this is a valid, alter native syntax that also usually works, but should be discouraged, as it is incompatible with XML and its use is now deprecated (meaning that it is no longer recommended and could be removed in future versions).</span><br/>
 <span>If you have only PHP code in a file, you may omit the closing ?&gt;. This can be a good practice, as it will ensure that you have no excess whitespace leaking from your PHP files (especially impor tant when you&rsquo;re writing object-oriented code).</span>
 
+<a id="this-book-s-examples"></a>
 <h3>This Book&rsquo;s Examples</h3>
 <span>To save you the time it would take to type them all in, all the examples from this book have been archived onto the website at &nbsp;http://lpmj.net, which you can download to your computer by clicking the Download Examples link in the heading section (see Figure 3-1 ).</span>
 <p><img src="images/3.1.png"/></p>
 <span>Figure 3-1. Viewing examples from this book at http://lpmj.net</span><br/>
 <span>As well as having all the examples saved by chapter and example number (such as example3-1.php ), the provided archive also contains an additional directory called named_examples, in which you&rsquo;ll find all the examples I suggest you save using a spe cific filename (such as the upcoming Example 3-4, which should be saved as test1.php ).</span>
 
+<a id="the-structure-of-php"></a>
 <h3>The Structure of PHP</h3>
 <span>We&rsquo;re going to cover quite a lot of ground in this section. It&rsquo;s not too difficult, but I recommend that you work your way through it carefully, as it sets the foundation for everything else in this book. As always, there are some useful questions at the end of the chapter that you can use to test how much you&rsquo;ve learned.</span>
 
+<a id="using-comments"></a>
 <h4>Using Comments</h4>
 <span>There are two ways in which you can add comments to your PHP code. The first turns a single line into a comment by preceding it with a pair of forward slashes:</span>
 <pre><code class="php">// This is a comment</code></pre>
@@ -68,13 +73,16 @@ title: "Introduction to PHP"
 <span>You can use the /* and */ pairs of characters to open and close comments almost anywhere you like inside your code. Most, if not all, programmers use this construct to temporarily comment out entire sections of code that do not work or that, for one reason or another, they do not wish to be interpreted.</span><br/>
 <span>A common error is to use /* and */ to comment out a large section of code that already contains a commented-out section that uses those characters. You can&rsquo;t nest comments this way; the PHP inter preter won&rsquo;t know where a comment ends and will display an error message. However, if you use a program editor or IDE with syntax highlighting, this type of error is easier to spot.</span>
 
+<a id="basic-syntax"></a>
 <h4>Basic Syntax</h4>
 <span>PHP is quite a simple language with roots in C and Perl, yet it looks more like Java. It is also very flexible, but there are a few rules that you need to learn about its syntax and structure.</span><br/>
 
+<a id="semicolons"></a>
 <h6>Semicolons</h6>
 <span>You may have noticed in the previous examples that the PHP commands ended with a semicolon, like this:</span>
 <pre><code class="php">$x += 10;</code></pre>
 <span>Probably the most common cause of errors you will encounter with PHP is forgetting this semicolon. This causes PHP to treat multiple statements like one statement, which it is unable to understand, prompting it to produce a Parse error message.</span>
+<a id="the-symbol"></a>
 <h6>The $ symbol</h6>
 <span>The $ symbol has come to be used in many different ways by different programming languages. For example, if you have ever written in the BASIC language, you will have used the $ to terminate variable names to denote them as strings.</span><br/>
 <span>In PHP, however, you must place a $ in front of all variables. This is required to make the PHP parser faster, as it instantly knows whenever it comes across a variable. Whether your variables are numbers, strings, or arrays, they should all look something like those in Example 3-3.</span><br/>
@@ -90,8 +98,10 @@ title: "Introduction to PHP"
 </pre>
 <span>And really that&rsquo;s pretty much all the syntax that you have to remember. Unlike lan guages such as Python, which are very strict about how you indent and lay out our code, PHP leaves you completely free to use (or not use) all the indenting and spacing you like. In fact, sensible use of whitespace is generally encouraged (along with com prehensive commenting) to help you understand your code when you come back to it. It also helps other programmers when they have to maintain your code.</span>
 
+<a id="variables"></a>
 <h4>Variables</h4>
 <span>There&rsquo;s a simple metaphor that will help you understand what PHP variables are all about. Just think of them as little (or big) matchboxes! That&rsquo;s right&mdash;matchboxes that you&rsquo;ve painted over and written names on.</span>
+<a id="string-variables"></a>
 <h6>String variables</h6>
 <span>Imagine you have a matchbox on which you have written the word &nbsp;username. You then write Fred Smith on a piece of paper and place it into the box (see Figure 3-2 ). Well, that&rsquo;s the same process as assigning a string value to a variable, like this:</span>
 <pre><code class="php">$username = "Fred Smith";</code></pre>
@@ -120,6 +130,7 @@ title: "Introduction to PHP"
 <span>http://localhost:8080/test1.php</span><br/>
 <span>I won&rsquo;t mention this again, so just remember to use the port number if required when trying examples or writing your own code.</span><br/>
 <span>The result of running this code should be two occurrences of the name Fred Smith, the first of which is the result of the echo $username command, and the second of the echo $current_user command.</span><br/>
+<a id="numeric-variables"></a>
 <h6>Numeric variables</h6>
 <span>Variables don&rsquo;t contain just strings&mdash;they can contain numbers too. If we return to the matchbox analogy, to store the number 17 in the variable $count, the equivalent would be placing, say, 17 beads in a matchbox on which you have written the word count :</span>
 <pre><code class="php">$count = 17;</code></pre>
@@ -127,6 +138,7 @@ title: "Introduction to PHP"
 <pre><code class="php">$count = 17.5;</code></pre>
 <span>To read the contents of the matchbox, you would simply open it and count the beads. In PHP, you would assign the value of $count to another variable or perhaps just echo it to the web browser.</span>
 
+<a id="arrays"></a>
 <h6>Arrays</h6>
 <span>So what are arrays? Well, you can think of them as several matchboxes glued together. For example, let&rsquo;s say we want to store the player names for a five-person soccer team in an array called $team. To do this, we could glue five matchboxes side by side and write down the names of all the players on separate pieces of paper, placing one in each matchbox.</span><br/>
 <span>Across the whole top of the matchbox assembly we would write the word team (see Figure 3-3 ). The equivalent of this in PHP would be the following:</span>
@@ -139,6 +151,7 @@ title: "Introduction to PHP"
 <p><img src="images/3.3.png"/></p>
 <span>Figure 3-3. An array is like several matchboxes glued together</span><br/>
 <span>The reason the previous statement has the number 3, not 4, is because the first element of a PHP array is actually the zeroth element, so the player numbers will therefore be 0 through 4.</span>
+<a id="two-dimensional-arrays"></a>
 <h6>Two-dimensional arrays</h6>
 <span>There&rsquo;s a lot more you can do with arrays. For example, instead of being single dimensional lines of matchboxes, they can be two-dimensional matrixes or can even have three or more dimensions.</span><br/>
 <span>As an example of a two-dimensional array, let&rsquo;s say we want to keep track of a game of tic-tac-toe, which requires a data structure of nine cells arranged in a 3&times;3 square. To represent this with matchboxes, imagine nine of them glued to each other in a matrix of three rows by three columns (see Figure 3-4 ).</span>
@@ -164,6 +177,7 @@ title: "Introduction to PHP"
 <span>As mentioned, we can support arrays with even more dimensions by simply creating more arrays within arrays. However, we will not be covering arrays of more than two dimensions in this book.</span><br/>
 <span>And don&rsquo;t worry if you&rsquo;re still having difficulty coming to grips with using arrays, as the subject is explained in detail in Chapter 6.</span>
 
+<a id="variable-naming-rules"></a>
 <h6>Variable-naming rules</h6>
 <span>When creating PHP variables, you must follow these four rules:</span><br/>
 <span>&bull; Variable names must start with a letter of the alphabet or the &nbsp;_ &nbsp;(underscore) character.</span><br/>
@@ -172,11 +186,13 @@ title: "Introduction to PHP"
 <span>&bull; Variable names are case-sensitive. The variable $High_Score is not the same as the variable $high_score.</span><br/>
 <span>To allow extended ASCII characters that include accents, PHP also supports the bytes from 127 through 255 in variable names. But unless your code will be maintained only by programmers who are used to those characters, it&rsquo;s probably best to avoid them, because programmers using English keyboards will have difficulty accessing them.</span>
 
+<a id="operators"></a>
 <h4>Operators</h4>
 <span>Operators &nbsp;are the mathematical, string, comparison, and logical commands such as plus, minus, multiply, and divide. PHP looks a lot like plain arithmetic; for instance, the following statement outputs 8:</span>
 <pre><code class="php">echo 6 + 2;</code></pre>
 <span>Before moving on to learn what PHP can do for you, take a moment to learn about the various operators it provides.</span>
 
+<a id="arithmetic-operators"></a>
 <h6>Arithmetic operators</h6>
 <span>Arithmetic operators do what you would expect. They are used to perform mathematics. You can use them for the main four operations (plus, minus, times, and divide) as well as to find a modulus (the remainder after a division) and to increment or decrement a value (see Table 3-1 ).</span><br/>
 <span>Table 3-1. Arithmetic operators</span><br/>
@@ -224,6 +240,7 @@ title: "Introduction to PHP"
     </tr>
 </table>
 
+<a id="assignment-operators"></a>
 <h6>Assignment operators</h6>
 <span>These operators are used to assign values to variables. They start with the very simple = and move on to +=, -=, and so on (see Table 3-2 ). The operator += adds the value on the right side to the variable on the left, instead of totally replacing the value on the left. Thus, if $count starts with the value 5, the statement</span>
 <pre><code class="php">$count += 1;</code></pre>
@@ -275,6 +292,7 @@ title: "Introduction to PHP"
     </tr>
 </table>
 
+<a id="comparison-operators"></a>
 <h6>Comparison operators</h6>
 <span>Comparison operators are generally used inside a construct such as an if statement in which you need to compare two items. For example, you may wish to know whether a variable you have been incrementing has reached a specific value, or whether another variable is less than a set value, and so on (see Table 3-3 ).</span><br/>
 <span>Note the difference between = and ==. The first is an assignment operator, and the second is a comparison operator. Even more-advanced programmers can sometimes transpose the two when coding hurriedly, so be careful.</span><br/>
@@ -318,6 +336,7 @@ title: "Introduction to PHP"
     </tr>
 </table>
 
+<a id="logical-operators"></a>
 <h6>Logical operators</h6>
 <span>If you haven&rsquo;t used them before, logical operators may at first seem a little daunting. But just think of them the way you would use logic in English. For example, you might say to yourself, &ldquo;If the time is later than 12 p.m. and earlier than 2 p.m., then have lunch.&rdquo; In PHP, the code for this might look something like the following (using military timing):</span>
 <pre><code class="php">if ($hour &gt; 12 &amp;&amp; $hour &lt; 14) dolunch();</code></pre>
@@ -370,6 +389,7 @@ title: "Introduction to PHP"
 <pre><code class="php">$ingredient = $ammonia xor $bleach;</code></pre>
 <span>In the example, if either $ammonia or $bleach is TRUE, $ingredient will also be set to TRUE. But if both are TRUE or both are FALSE, $ingredient will be set to FALSE.</span>
 
+<a id="variable-assignment"></a>
 <h4>Variable Assignment</h4>
 <span>The syntax to assign a value to a variable is always variable = value. Or, to reassign the value to another variable, it is other variable = variable.</span><br/>
 <span>There are also a couple of other assignment operators that you will find useful. For example, we&rsquo;ve already seen</span>
@@ -377,6 +397,7 @@ title: "Introduction to PHP"
 <span>which tells the PHP parser to add the value on the right (in this instance, the value 10 ) to the variable $x. Likewise, we could subtract as follows:</span>
 <pre><code class="php">$y -= 10;</code></pre>
 
+<a id="variable-incrementing-and-decrementing"></a>
 <h6>Variable incrementing and decrementing</h6>
 <span>Adding or subtracting 1 is such a common operation that PHP provides special oper ators for it. You can use one of the following in place of the += and -= operators:</span>
 <pre>
@@ -393,6 +414,7 @@ title: "Introduction to PHP"
 <span>In short, whether a variable is incremented or decremented before or after testing depends on whether the increment or decrement operator is placed before or after the variable.</span><br/>
 <span>By the way, the correct answer to the previous question is that the echo statement will display the result &ndash; 1, because $y was decremented right after it was accessed in the if statement, and before the echo statement.</span>
 
+<a id="string-concatenation"></a>
 <h6>String concatenation</h6>
 <span>String concatenation uses the period (. ) to append one string of characters to another. The simplest way to do this is as follows:</span>
 <pre><code class="php">echo "You have ". $msgs. " messages.";</code></pre>
@@ -402,6 +424,7 @@ title: "Introduction to PHP"
 <pre><code class="php">$bulletin.= $newsflash;</code></pre>
 <span>In this case, if $bulletin contains a news bulletin and $newsflash has a news flash, the command appends the news flash to the news bulletin so that $bulletin now comprises both strings of text.</span>
 
+<a id="string-types"></a>
 <h6>String types</h6>
 <span>PHP supports two types of strings that are denoted by the type of quotation mark that you use. If you wish to assign a literal string, preserving the exact contents, you should use the single quotation mark (apostrophe), like this:</span>
 <pre><code class="php">$info = 'Preface variables with a $ like this: $variable';</code></pre>
@@ -410,6 +433,7 @@ title: "Introduction to PHP"
 <pre><code class="php">echo "This week $count people have viewed your profile";</code></pre>
 <span>As you will realize, this syntax also offers a simpler form of concatenation in which you don&rsquo;t need to use a period, or close and reopen quotes, to append one string to another. This is called &nbsp;variable substitution, and you will notice some applications using it extensively and others not using it at all.</span>
 
+<a id="escaping-characters"></a>
 <h6>Escaping characters</h6>
 <span>Sometimes a string needs to contain characters with special meanings that might be interpreted incorrectly. For example, the following line of code will not work, because the second quotation mark encountered in the word spelling&rsquo;s will tell the PHP parser that the string end has been reached. Consequently, the rest of the line will be rejected as an error:</span>
 <pre><code class="php">$text = 'My spelling's atroshus'; // Erroneous syntax</code></pre>
@@ -421,6 +445,7 @@ title: "Introduction to PHP"
 <pre><code class="php">$heading = "Date\tName\tPayment";</code></pre>
 <span>These special backslash-preceded characters work only in double-quoted strings. In single-quoted strings, the preceding string would be displayed with the ugly \t sequences instead of tabs. Within single-quoted strings, only the escaped apostrophe ( \' ) and escaped backslash itself ( \\ ) are recognized as escaped characters.</span>
 
+<a id="multiple-line-commands"></a>
 <h4>Multiple-Line Commands</h4>
 <span>There are times when you need to output quite a lot of text from PHP, and using several echo (or print ) statements would be time-consuming and messy. To overcome this, PHP offers two conveniences. The first is just to put multiple lines between quotes, as in Example 3-6. Variables can also be assigned, as in Example 3-7.</span><br/>
 <span>Example 3-6. A multiline string echo statement</span><br/>
@@ -501,6 +526,7 @@ _END;
 <span>Laying out text over multiple lines is usually just a convenience to make your PHP code easier to read, because once it is displayed in a web page, HTML formatting rules take over and whitespace is suppressed (but $author is still replaced with the variable&rsquo;s value).</span><br/>
 <span>So, for example, if you load these multiline output examples into a browser, they will not display over several lines, because all browsers treat newlines just like spaces. However, if you use the browser&rsquo;s View Source feature, you will find that the newlines are correctly placed, and the output does appear over several lines.</span>
 
+<a id="variable-typing"></a>
 <h4>Variable Typing</h4>
 <span>PHP is a very loosely typed language. This means that variables do not have to be declared before they are used, and that PHP always converts variables to the &nbsp;type required by their context when they are accessed.</span><br/>
 <span>For example, you can create a multiple-digit number and extract the n th digit from it simply by assuming it to be a string. In the following snippet of code, the numbers 12345 and 67890 are multiplied together, returning a result of 838102050, which is then placed in the variable $number, as shown in Example 3-10.</span><br/>
@@ -528,6 +554,7 @@ echo $pi * ($radius * $radius);
 </pre>
 
 <span>In practice, what this all means is that you don&rsquo;t have to worry too much about your variable types. Just assign them values that make sense to you, and PHP will convert them if necessary. Then, when you want to retrieve values, just ask for them&mdash;for example, with an echo statement.</span>
+<a id="constants"></a>
 <h4>Constants</h4>
 <span>Constants &nbsp;are similar to variables, holding information to be accessed later, except that they are what they sound like&mdash;constant. In other words, once you have defined one, its value is set for the remainder of the program and cannot be altered.</span><br/>
 <span>One example of a use for a constant is to hold the location of your server root (the folder with the main files of your website). You would define such a constant like this:</span>
@@ -538,6 +565,7 @@ echo $pi * ($radius * $radius);
 <span>The main two things you have to remember about constants are that they must not be prefaced with a $ (as with regular variables), and that you can define them only using the define function.</span><br/>
 <span>It is generally considered a good practice to use only uppercase for constant variable names, especially if other people will also read your code.</span>
 
+<a id="predefined-constants"></a>
 <h4>Predefined Constants</h4>
 <span>PHP comes ready-made with dozens of predefined constants that you generally will be unlikely to use as a beginner to PHP. However, there are a few&mdash;known as the magic constants &mdash;that you will find useful. The names of the magic constants always have two underscores at the beginning and two at the end, so that you won&rsquo;t accidentally try to name one of your own constants with a name that is already taken. They are detailed in Table 3-5. The concepts referred to in the table will be introduced in future chapters.</span><br/>
 <span>Table 3-5. PHP&rsquo;s magic constants</span><br/>
@@ -581,6 +609,7 @@ echo $pi * ($radius * $radius);
 <pre><code class="php">echo "This is line ". __LINE__. " of file ". __FILE__;</code></pre>
 <span>This causes the current program line in the current file (including the path) being executed to be output to the web browser.</span>
 
+<a id="the-difference-between-the-echo-and-print-commands"></a>
 <h4>The Difference Between the echo and print Commands</h4>
 <span>So far, you have seen the echo command used in a number of different ways to output text from the server to your browser. In some cases, a string literal has been output. In others, strings have first been concatenated or variables have been evaluated. I&rsquo;ve also shown output spread over multiple lines.</span><br/>
 <span>But there is also an alternative to echo that you can use: print. The two commands are quite similar, but print is a function-like construct that takes a single parameter and has a return value (which is always 1 ), whereas echo is purely a PHP language construct. Since both commands are constructs, neither requires parentheses.</span><br/>
@@ -589,6 +618,7 @@ echo $pi * ($radius * $radius);
 <span>The question mark is simply a way of interrogating whether variable $b is TRUE or FALSE. Whichever command is on the left of the following colon is executed if $b is TRUE, whereas the command to the right is executed if $b is FALSE.</span><br/>
 <span>Generally, though, the examples in this book use echo, and I recommend that you do so as well until you reach such a point in your PHP development that you discover the need for using print.</span>
 
+<a id="functions"></a>
 <h4>Functions</h4>
 <span>Functions are used to separate out sections of code that perform a particular task. For example, maybe you often need to look up a date and return it in a certain format. That would be a good example to turn into a function. The code doing it might be only three lines long, but if you have to paste it into your program a dozen times, you&rsquo;re making your program unnecessarily large and complex, unless you use a function. And if you decide to change the data format later, putting it in a function means having to change it in only one place.</span><br/>
 <span>Placing it into a function not only shortens your source code and makes it more readable, but also adds extra functionality (pun intended), because functions can be passed parameters to make them perform differently. They can also return values to the calling code.</span><br/>
@@ -614,10 +644,12 @@ echo $pi * ($radius * $radius);
 <span>which passes to longdate the current Unix timestamp less the number of seconds since 17 days ago (17 days &times; 24 hours &times; 60 minutes &times; 60 seconds).</span><br/>
 <span>Functions can also accept multiple parameters and return multiple results, using techniques that I&rsquo;ll develop over the following chapters.</span>
 
+<a id="variable-scope"></a>
 <h4>Variable Scope</h4>
 <span>If you have a very long program, it&rsquo;s quite possible that you could start to run out of good variable names, but with PHP you can decide the scope of a variable. In other words, you can, for example, tell it that you want the variable $temp to be used only inside a particular function and to forget it was ever used when the function returns. In fact, this is the default scope for PHP variables.</span><br/>
 <span>Alternatively, you could inform PHP that a variable is global in scope and thus can be accessed by every other part of your program.</span>
 
+<a id="local-variables"></a>
 <h6>Local variables</h6>
 <span>Local variables &nbsp;are variables that are created within, and can be accessed only by, a function. They are generally temporary variables that are used to store partially processed results prior to the function&rsquo;s return.</span><br/>
 <span>One set of local variables is the list of arguments to a function. In the previous section, we defined a function that accepted a parameter named $timestamp. This is meaningful only in the body of the function; you can&rsquo;t get or set its value outside the function.</span><br/>
@@ -696,6 +728,7 @@ echo $pi * ($radius * $radius);
 
 <span>Forgetting the scope of a variable is a common programming error, so remembering how variable scope works will help you debug some quite obscure problems. Suffice it to say that unless you have declared a variable otherwise, its scope is limited to being local: either to the current function, or to the code outside of any functions, depending on whether it was first created or accessed inside or outside a function.</span><br/>
 
+<a id="global-variables"></a>
 <h6>Global variables</h6>
 <span>There are cases when you need a variable to have global scope, because you want all your code to be able to access it. Also, some data may be large and complex, and you don&rsquo;t want to keep passing it as arguments to functions.</span><br/>
 <span>To declare a variable as having global scope, use the keyword global. Let&rsquo;s assume that you have a way of logging your users into your website and want all your code to know whether it is interacting with a logged-in user or a guest. One way to do this is to create a global variable such as $is_logged_in :</span>
@@ -705,6 +738,7 @@ echo $pi * ($radius * $radius);
 <span>Also, if you have too many global variables, you run the risk of using one of those names again locally, or at least thinking you have used it locally, when in fact it has already been declared as global. All manner of strange bugs can arise from such situa tions.</span><br/>
 <span>Sometimes I adopt the convention of making all global variable names uppercase (just as it&rsquo;s recommended that constants should be uppercase) so that I can see at a glance the scope of a variable.</span>
 
+<a id="static-variables"></a>
 <h6>Static variables</h6>
 <span>In the section &ldquo;Local variables&rdquo; on page 57, I mentioned that the value of the variable is wiped out when the function ends. If a function runs many times, it starts with a fresh copy of the variable and the previous setting has no effect.</span><br/>
 <span>Here&rsquo;s an interesting case. What if you have a local variable inside a function that you don&rsquo;t want any other parts of your code to have access to, but you would also like to keep its value for the next time the function is called? Why? Perhaps because you want a counter to track how many times a function is called. The solution is to declare a static variable, as shown in Example 3-17.</span><br/>
@@ -738,6 +772,7 @@ echo $pi * ($radius * $radius);
 </code>
 </pre>
 
+<a id="superglobal-variables"></a>
 <h6>Superglobal variables</h6>
 <span>Starting with PHP 4.1.0, several predefined variables are available. These are known as superglobal variables, which means that they are provided by the PHP environment but are global within the program, accessible absolutely everywhere.</span><br/>
 <span>These superglobals contain lots of useful information about the currently running program and its environment (see &nbsp;Table 3-6 ). They are structured as associative arrays, a topic discussed in Chapter 6.</span><br/>
@@ -792,6 +827,7 @@ echo $pi * ($radius * $radius);
 <pre><code class="php">$came_from = $_SERVER['HTTP_REFERER'];</code></pre>
 <span>It&rsquo;s that simple. Oh, and if the user came straight to your web page, such as by typing its URL directly into a browser, $came_from will be set to an empty string.</span>
 
+<a id="superglobals-and-security"></a>
 <h6>Superglobals and security</h6>
 <span>A word of caution is in order before you start using superglobal variables, because they are often used by hackers trying to find exploits to break into your website. What they do is load up $_POST, $_GET, or other superglobals with malicious code, such as Unix or MySQL commands that can damage or display sensitive data if you na&iuml;vely access them.</span><br/>
 <span>Therefore, you should always sanitize superglobals before using them. One way to do this is via the PHP htmlentities function. It converts all characters into HTML entities. For example, less-than and greater-than characters ( &lt; and &gt; ) are transformed into the strings &amp;lt; and &amp;gt; so that they are rendered harmless, as are all quotes and backslashes, and so on.</span><br/>

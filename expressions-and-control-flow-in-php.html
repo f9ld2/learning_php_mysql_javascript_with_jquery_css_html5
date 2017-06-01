@@ -2,10 +2,12 @@
 layout: default
 title: "Expressions and Control Flow in PHP"
 ---
+<a id="expressions-and-control-flow-in-php"></a>
 <h2>Expressions and Control Flow in PHP</h2>
 <span>The previous chapter introduced several topics in passing that this chapter covers more fully, such as making choices (branching) and creating complex expressions. In the previous chapter, I wanted to focus on the most basic syntax and operations in PHP, but I couldn&rsquo;t avoid touching on more-advanced topics. Now I can fill in the background that you need to use these powerful PHP features properly.</span>
 <br/>
 <span>In this chapter, you will get a thorough grounding in how PHP programming works in practice and in how to control the flow of the program.</span>
+<a id="expressions"></a>
 <h3>Expressions</h3>
 <span>Let&rsquo;s start with the most fundamental part of any programming language: expressions.</span>
 <br/>
@@ -16,6 +18,7 @@ title: "Expressions and Control Flow in PHP"
 <span>which in PHP would be</span>
 <pre><code class="php">$y = 3 * (abs(2 * $x) + 4);</code></pre>
 <span>The value returned ( y, or $y in this case) can be a number, a string, or a Boolean value (named after George Boole, a 19th-century English mathematician and philosopher). By now, you should be familiar with the first two value types, but I&rsquo;ll explain the third.</span>
+<a id="true-or-false"></a>
 <h4>TRUE or FALSE?</h4>
 <span>A basic Boolean value can be either TRUE or FALSE. For example, the expression 20 &gt; 9 (20 is greater than 9) is TRUE, and the expression 5 == 6 (5 is equal to 6) is FALSE. (You can combine Boolean operations using operators such as AND, OR, and XOR, which are covered later in this chapter.)</span>
 <br/>
@@ -58,6 +61,7 @@ title: "Expressions and Control Flow in PHP"
 <b class="t30">a: [1]</b><br/>
 <b class="t30">b: []</b><br/>
 <span>By the way, in some languages FALSE may be defined as 0 or even &ndash; 1, so it&rsquo;s worth checking on its definition in each language.</span>
+<a id="literals-and-variables"></a>
 <h4>Literals and Variables</h4>
 <span>The simplest form of an expression is a literal, which simply means something that evaluates to itself, such as the number 73 or the string "Hello". An expression could also simply be a variable, which evaluates to the value that has been assigned to it. They are both types of expressions, because they return a value.</span>
 <br/>
@@ -101,6 +105,7 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
+<a id="operators"></a>
 <h3>Operators</h3>
 <span>PHP offers a lot of powerful operators that range from arithmetic, string, and logical operators to assignment, comparison, and more (see Table 4-1 ).</span>
 <br/>
@@ -165,6 +170,7 @@ title: "Expressions and Control Flow in PHP"
 <span>&bull; Binary operators, which represent the bulk of PHP operators, including addition, subtraction, multiplication, and division.</span>
 <br/>
 <span>&bull; One ternary operator, which takes the form ? x : y. It&rsquo;s a terse, single-line if statement that chooses between two expressions, depending on the result of a third one.</span>
+<a id="operator-precedence"></a>
 <h4>Operator Precedence</h4>
 <span>If all operators had the same precedence, they would be processed in the order in which they are encountered. In fact, many operators do have the same precedence, so let&rsquo;s look at a few in Example 4-5.</span>
 <br/>
@@ -300,6 +306,7 @@ title: "Expressions and Control Flow in PHP"
     </tr>
 </table><br/>
 
+<a id="associativity"></a>
 <h4>Associativity</h4>
 <span>We&rsquo;ve been looking at processing expressions from left to right, except where operator precedence is in effect. But some operators require processing from right to left, and this direction of processing is called the operator&rsquo;s associativity. For some operators, there is no associativity.</span>
 <br/>
@@ -437,8 +444,10 @@ title: "Expressions and Control Flow in PHP"
 <span>This multiple assignment is possible only if the rightmost part of the expression is evaluated first, and then processing continues in a right-to-left direction.</span>
 <br/>
 <span>As a beginner to PHP, you should avoid the potential pitfalls of operator associativity by always nesting your subexpressions within parentheses to force the order of evaluation. This will also help other programmers who may have to maintain your code to understand what is happening.</span>
+<a id="relational-operators"></a>
 <h4>Relational Operators</h4>
 <span>Relational operators test two operands and return a Boolean result of either TRUE or FALSE. There are three types of relational operators: equality, comparison, and logical.</span>
+<a id="equality"></a>
 <h6>Equality</h6>
 <span>As we&rsquo;ve already encountered a few times in this chapter, the equality operator is == (two equals signs). It is important not to confuse it with the = (single equals sign) assignment operator. In Example 4-12, the first statement assigns a value and the second tests it for equality.</span>
 <br/>
@@ -486,6 +495,7 @@ title: "Expressions and Control Flow in PHP"
 <span>And, as you might expect, the first if statement does not output the number 1, because the code is asking whether $a and $b are not equal to each other numerically.</span>
 <br/>
 <span>Instead, it outputs the number 2, because the second if statement is asking whether $a and $b are &nbsp;not &nbsp;identical to each other in their present operand types, and the answer is TRUE ; they are not the same.</span>
+<a id="comparison-operators"></a>
 <h6>Comparison operators</h6>
 <span>Using comparison operators, you can test for more than just equality and inequality. PHP also gives you &gt; (is greater than), &lt; (is less than), &gt;= (is greater than or equal to), and &lt;= (is less than or equal to) to play with. Example 4-15 shows these in use.</span>
 <br/>
@@ -622,10 +632,12 @@ title: "Expressions and Control Flow in PHP"
     </tr>
 </table>
 
+<a id="conditionals"></a>
 <h3>Conditionals</h3>
 <span>Conditionals &nbsp;alter program flow. They enable you to ask questions about certain things and respond to the answers you get in different ways. Conditionals are central to dynamic web pages&mdash;the goal of using PHP in the first place&mdash;because they make it easy to create different output each time a page is viewed.</span>
 <br/>
 <span>There are three types of nonlooping conditionals: the if statement, the switch statement, and the ? operator. By nonlooping, I mean that the actions initiated by the statement take place and program flow then moves on, whereas looping conditionals (which we&rsquo;ll get to shortly) execute code over and over until a condition is met.</span>
+<a id="the-if-statement"></a>
 <h4>The if Statement</h4>
 <span>One way of thinking about program flow is to imagine it as a single-lane highway that you are driving along. It&rsquo;s pretty much a straight line, but now and then you encounter various signs telling you where to go.</span>
 <br/>
@@ -656,6 +668,7 @@ title: "Expressions and Control Flow in PHP"
 <span>If the bank balance is 100 dollars or greater, the conditional statements are ignored and program flow skips to the next line (not shown).</span>
 <br/>
 <span>In this book, opening curly braces generally start on a new line. Some people like to place the first curly brace to the right of the conditional expression; others start a new line with it. Either of these is fine, because PHP allows you to set out your whitespace characters (spaces, newlines, and tabs) any way you choose. However, you will find your code easier to read and debug if you indent each level of conditionals with a tab.</span>
+<a id="the-else-statement"></a>
 <h4>The else Statement</h4>
 <span>Sometimes when a conditional is not TRUE, you may not want to continue on to the main program code immediately but might wish to do something else instead. This is where the else statement comes in. With it, you can set up a second detour on your highway, as in Figure 4-2.</span>
 <br/>
@@ -681,6 +694,7 @@ title: "Expressions and Control Flow in PHP"
 <span>In this example, now that you&rsquo;ve ascertained that you have $100 or more in the bank, the else statement is executed, by which you place some of this money into your savings account.</span>
 <br/>
 <span>As with if statements, if your else has only one conditional statement, you can opt to leave out the curly braces. (Curly braces are always recommended, though. First, they make the code easier to understand. Second, they let you easily add more statements to the branch later.)</span>
+<a id="the-elseif-statement"></a>
 <h4>The elseif Statement</h4>
 <span>There are also times when you want a number of different possibilities to occur, based upon a sequence of conditions. You can achieve this using the elseif statement. As you might imagine, it is like an else statement, except that you place a further conditional expression prior to the conditional code. In Example 4-21, you can see a complete if...elseif...else construct.</span>
 <br/>
@@ -713,6 +727,7 @@ title: "Expressions and Control Flow in PHP"
 <span>Although I&rsquo;m starting to stretch the metaphor a bit too far, you can imagine this as a multiway set of detours (see Figure 4-3 ).</span>
 <p><img src="images/4.3.png"/></p>
 <span>Figure 4-3. The highway with if, elseif, and else detours An else statement closes either an if...else or an if...elseif...else statement. You can leave out a final else if it is not required, but you cannot have one before an elseif ; neither can you have an elseif before an if statement. You may have as many elseif statements as you like. But as the number of elseif statements increases, you would probably be better advised to consider a switch statement if it fits your needs. We&rsquo;ll look at that next.</span>
+<a id="the-switch-statement"></a>
 <h4>The switch Statement</h4>
 <span>The switch statement is useful in cases in which one variable or the result of an expression can have multiple values, which should each trigger a different function.</span>
 <br/>
@@ -763,10 +778,12 @@ title: "Expressions and Control Flow in PHP"
 <br/>
 <span>With switch statements, you do not use curly braces inside case commands. Instead, they commence with a colon and end with the break statement. The entire list of cases in the switch statement is enclosed in a set of curly braces, though.</span>
 <br/>
+<a id="breaking-out"></a>
 <h6>Breaking out</h6>
 <span>If you wish to break out of the switch statement because a condition has been fulfilled, use the break command. This command tells PHP to break out of the switch and jump to the following statement.</span>
 <br/>
 <span>If you were to leave out the break commands in Example 4-23 and the case of Home evaluated to be TRUE, all five cases would then be executed. Or if $page had the value News, all the case commands from then on would execute. This is deliberate and allows for some advanced programming, but generally you should always remember to issue a break command every time a set of case conditionals has finished executing. In fact, leaving out the break statement is a common error.</span>
+<a id="default-action"></a>
 <h6>Default action</h6>
 <span>A typical requirement in switch statements is to fall back on a default action if none of the case conditions are met. For example, in the case of the menu code in Example 4-23, you could add the code in Example 4-24 immediately before the final curly brace.</span>
 <br/>
@@ -780,6 +797,7 @@ title: "Expressions and Control Flow in PHP"
 </pre>
 
 <span>Although a break command is not required here because the default is the final sub- statement, and program flow will automatically continue to the closing curly brace, should you decide to place the default statement higher up, it would definitely need a break command to prevent program flow from dropping into the following statements. Generally, the safest practice is to always include the break command.</span>
+<a id="alternative-syntax"></a>
 <h6>Alternative syntax</h6>
 <span>If you prefer, you may replace the first curly brace in a switch statement with a single colon, and the final curly brace with an endswitch command, as in &nbsp;Example 4-25. However, this approach is not commonly used and is mentioned here only in case you encounter it in third-party code.</span>
 <br/>
@@ -800,6 +818,7 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 
+<a id="the-operator"></a>
 <h4>The ? Operator</h4>
 <span>One way of avoiding the verbosity of if and else statements is to use the more compact ternary operator, ?, which is unusual in that it takes three operands rather than the typical two.</span>
 <br/>
@@ -844,6 +863,7 @@ title: "Expressions and Control Flow in PHP"
 </pre>
 
 <span>It&rsquo;s a concise way to keep track of the largest value that you&rsquo;ve seen as a program progresses. You save the largest value in $saved and compare it to $new each time you get a new value. Programmers familiar with the ? operator find it more convenient than if statements for such short comparisons. When not used for writing compact code, it is typically used to make some decision inline, such as when you are testing whether a variable is set before passing it to a function.</span>
+<a id="looping"></a>
 <h3>Looping</h3>
 <span>One of the great things about computers is that they can repeat calculating tasks quickly and tirelessly. Often you may want a program to repeat the same sequence of code again and again until something happens, such as a user inputting a value or reaching a natural end. PHP&rsquo;s loop structures provide the perfect way to do this.</span>
 <br/>
@@ -851,6 +871,7 @@ title: "Expressions and Control Flow in PHP"
 <br/>
 <p><img src="images/4.4.png"/></p>
 <span>Figure 4-4. Imagining a loop as part of a program highway layout</span>
+<a id="while-loops"></a>
 <h4>while Loops</h4>
 <span>Let&rsquo;s turn the digital car dashboard in &nbsp;Example 4-26 &nbsp;into a loop that continuously checks the fuel level as you drive, using a while loop ( Example 4-28 ).</span>
 <br/>
@@ -916,6 +937,7 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 <span>In this example, it was possible to remove the ++$count statement from inside the while loop and place it directly into the conditional expression of the loop. What now happens is that PHP encounters the variable $count at the start of each iteration of the loop and, noticing that it is prefaced with the increment operator, first increments the variable and only then compares it to the value 12. You can therefore see that $count now has to be initialized to 0, not 1, because it is incremented as soon as the loop is entered. If you keep the initialization at 1, only results between 2 and 12 will be output.</span>
+<a id="do-while-loops"></a>
 <h4>do...while Loops</h4>
 <span>A slight variation to the while loop is the do...while loop, used when you want a block of code to be executed at least once and made conditional only after that. Example 4-31 shows a modified version of the code for the 12 times table that uses such a loop.</span>
 <br/>
@@ -946,6 +968,7 @@ title: "Expressions and Control Flow in PHP"
 ?&gt;
 </code>
 </pre>
+<a id="for-loops"></a>
 <h4>for Loops</h4>
 <span>The final kind of loop statement, the for loop, is also the most powerful, as it combines the abilities to set up variables as you enter the loop, test for conditions while iterating loops, and modify variables after each iteration.</span>
 <br/>
@@ -1007,6 +1030,7 @@ title: "Expressions and Control Flow in PHP"
 <span>The main thing to take from this example is that you must separate the three parameter sections with semicolons, not commas (which should be used only to separate statements within a parameter section).</span>
 <br/>
 <span>So, when is a while statement more appropriate than a for statement? When your condition doesn&rsquo;t depend on a simple, regular change to a variable. For instance, if you want to check for some special input or error and end the loop when it occurs, use a while statement.</span>
+<a id="breaking-out-of-a-loop"></a>
 <h4>Breaking Out of a Loop</h4>
 <span>Just as you saw how to break out of a switch statement, you can also break out of a for loop using the same break command. This step can be necessary when, for example, one of your statements returns an error and the loop cannot continue executing safely.</span>
 <br/>
@@ -1043,6 +1067,7 @@ title: "Expressions and Control Flow in PHP"
 <pre><code class="php">if (!fwrite($fp, "data")) break;</code></pre>
 <span>The break command is even more powerful than you might think, because if you have code nested more than one layer deep that you need to break out of, you can follow the break command with a number to indicate how many levels to break out of:</span>
 <pre><code class="php">break 2;</code></pre>
+<a id="the-continue-statement"></a>
 <h4>The continue Statement</h4>
 <span>The continue statement is a little like a break statement, except that it instructs PHP to stop processing the current loop and to move right to its next iteration. So, instead of breaking out of the whole loop, PHP exits only the current iteration.</span>
 <br/>
@@ -1065,6 +1090,7 @@ title: "Expressions and Control Flow in PHP"
 </code>
 </pre>
 <span>For all values of $j between 10 and &ndash; 10, with the exception of 0, the result of calculating 10 divided by $j is displayed. But for the case of $j being 0, the statement con tinue is issued and execution skips immediately to the next iteration of the loop.</span>
+<a id="implicit-and-explicit-casting"></a>
 <h3>Implicit and Explicit Casting</h3>
 <span>PHP is a loosely typed language that allows you to declare a variable and its type simply by using it. It also automatically converts values from one type to another whenever required. This is called implicit casting.</span>
 <br/>
@@ -1124,6 +1150,7 @@ title: "Expressions and Control Flow in PHP"
     </tr>
 </table>
 
+<a id="php-dynamic-linking"></a>
 <h3>PHP Dynamic Linking</h3>
 <span>Because PHP is a programming language, and the output from it can be completely different for each user, it&rsquo;s possible for an entire website to run from a single PHP web page. Each time the user clicks on something, the details can be sent back to the same web page, which decides what to do next according to the various cookies and/or other session details it may have stored.</span>
 <br/>
@@ -1134,6 +1161,7 @@ title: "Expressions and Control Flow in PHP"
 <span>A second module might well be one for logging users in before handing them off to the main part of your website. Then you might have a messaging module with the facility for users to leave comments, a module containing links and useful information, another to allow uploading of images, and more.</span>
 <br/>
 <span>As long as you have created a way to track your user through your website by means of cookies or session variables (both of which we&rsquo;ll look at more closely in later chapters), you can split up your website into sensible sections of PHP code, each one self-contained, and therefore treat yourself to a much easier future, developing each new feature and maintaining old ones.</span>
+<a id="dynamic-linking-in-action"></a>
 <h3>Dynamic Linking in Action</h3>
 <span>One of the more popular PHP-driven applications on the Web today is the blogging platform WordPress (see &nbsp;Figure 4-5 ). As a blogger or a blog reader, you might not realize it, but every major section has been given its own main PHP file, and a whole raft of generic, shared functions have been placed in separate files that are included by the main PHP pages as necessary.</span>
 <p><img src="images/4.5.png"/></p>

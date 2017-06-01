@@ -2,10 +2,12 @@
 layout: default
 title: "Cookies, Sessions, and Authentication"
 ---
+<a id="cookies-sessions-and-authentication"></a>
 <h2>Cookies, Sessions, and Authentication</h2>
 <span>As your web projects grow larger and more complicated, you will find an increasing need to keep track of your users. Even if you aren&rsquo;t offering logins and passwords, you will still often need to store details about a user&rsquo;s current session and possibly also recognize her when she returns to your site.</span>
 <br/>
 <span>Several technologies support this kind of interaction, ranging from simple browser cookies to session handling and HTTP authentication. Between them, they offer the opportunity for you to configure your site to your users&rsquo; preferences and ensure a smooth and enjoyable transition through it.</span>
+<a id="using-cookies-in-php"></a>
 <h3>Using Cookies in PHP</h3>
 <span>A cookie is an item of data that a web server saves to your computer&rsquo;s hard disk via a web browser. It can contain almost any alphanumeric information (as long as it&rsquo;s under 4 KB) and can be retrieved from your computer and returned to the server. Common uses include session tracking, maintaining data across multiple visits, holding shopping cart contents, storing login details, and more.</span>
 <br/>
@@ -28,6 +30,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>3. Once the browser has received the cookie, it will then return it with every future request made to the issuing server until the cookie expires or is deleted. So, when the browser requests the new page &nbsp;/news.html, it also returns the cookie &nbsp;name with the value value.</span>
 <br/>
 <span>4. Because the cookie has already been set, when the server receives the request to send &nbsp;/news.html, it does not have to resend the cookie, but just returns the requested page.</span>
+<a id="setting-a-cookie"></a>
 <h4>Setting a Cookie</h4>
 <span>Setting a cookie in PHP is a simple matter. As long as no HTML has yet been transferred, you can call the setcookie function, which has the following syntax (see Table 12-1 ):</span>
 <pre><code class="php">setcookie(name, value, expire, path, domain, secure, httponly);</code></pre>
@@ -124,14 +127,17 @@ title: "Cookies, Sessions, and Authentication"
 </table>
 <span>So, to create a cookie with the name username and the value Hannah that is accessible across the entire web server on the current domain, and will be removed from the browser&rsquo;s cache in seven days, use the following:</span>
 <pre><code class="php">setcookie('username', 'Hannah', time() + 60 * 60 * 24 * 7, '/');</code></pre>
+<a id="accessing-a-cookie"></a>
 <h4>Accessing a Cookie</h4>
 <span>Reading the value of a cookie is as simple as accessing the $_COOKIE system array. For example, if you wish to see whether the current browser has the cookie called user name already stored and, if so, to read its value, use the following:</span>
 <pre><code class="php">if (isset($_COOKIE['username'])) $username = $_COOKIE['username'];</code></pre>
 <span>Note that you can read a cookie back only after it has been sent to a web browser. This means that when you issue a cookie, you cannot read it in again until the browser reloads the page (or another with access to the cookie) from your website and passes the cookie back to the server in the process.</span>
+<a id="destroying-a-cookie"></a>
 <h4>Destroying a Cookie</h4>
 <span>To delete a cookie, you must issue it again and set a date in the past. It is important for all parameters in your new setcookie call except the timestamp to be identical to the parameters when the cookie was first issued; otherwise, the deletion will fail. Therefore, to delete the cookie created earlier, you would use the following:</span>
 <pre><code class="php">setcookie('username', 'Hannah', time() - 2592000, '/');</code></pre>
 <span>As long as the time given is in the past, the cookie should be deleted. However, I have used a time of 2,592,000 seconds (one month) in the past in case the client computer&rsquo;s date and time are not correctly set.</span>
+<a id="http-authentication"></a>
 <h3>HTTP Authentication</h3>
 <span>HTTP authentication uses the web server to manage users and passwords for the application. It&rsquo;s adequate for most applications that ask users to log in, although some applications have specialized needs or more stringent security requirements that call for other techniques.</span>
 <br/>
@@ -211,6 +217,7 @@ title: "Cookies, Sessions, and Authentication"
 <span>Incidentally, take a look at the wording of the error message: Invalid username / password combination. It doesn&rsquo;t say whether the username or the password or both were wrong&mdash;the less information you can give to a potential hacker, the better.</span>
 <br/>
 <span>A mechanism is now in place to authenticate users, but only for a single username and password. Also, the password appears in clear text within the PHP file, and if someone managed to hack into your server, he would instantly know it. So let&rsquo;s look at a better way to handle usernames and passwords.</span>
+<a id="storing-usernames-and-passwords"></a>
 <h4>Storing Usernames and Passwords</h4>
 <span>Obviously, MySQL is the natural way to store usernames and passwords. But again, we don&rsquo;t want to store the passwords as clear text, because our website could be compromised if the database were accessed by a hacker. Instead, we&rsquo;ll use a neat trick called a one-way function.</span>
 <br/>
@@ -225,6 +232,7 @@ title: "Cookies, Sessions, and Authentication"
 <b class="t30">7b694600c8a2a2b0897c719958713619</b>
 <br/>
 <span>By using the hash function, you can keep up with future developments in security and simply pass the hashing algorithm to it that you wish to implement, resulting in less code maintenance (although you will probably have to accommodate larger hash lengths than 32 characters in your databases).</span>
+<a id="salting"></a>
 <h4>Salting</h4>
 <span>Unfortunately, hash on its own is not enough to protect a database of passwords, because it could still be susceptible to a brute force attack that uses another database of known 32-character hexadecimal tokens. Such databases do exist, as a quick Google search will verify, although probably only for md5 and sha1 or sha2 at the moment.</span>
 <br/>
@@ -347,10 +355,12 @@ title: "Cookies, Sessions, and Authentication"
 <span>You can try this out for yourself by calling up the program in your browser and entering a username of bsmith and password of mysecret (or pjones and acrobat ), the values that were saved in the database by Example 12-3.</span>
 <br/>
 <span>By sanitizing input immediately after it is encountered, you will block any malicious HTML, JavaScript, or MySQL attacks before they can get any further, and will not have to sanitize this data again. Remember, however, that if a user has characters such as &lt; or &amp; in a password (for example), these will be expanded to &amp;lt; or &amp;amp; by the htmlemtities function. But as long as your code allows for strings that may end up larger than the provided input width, and as long as you always run passwords through this sanitization, you&rsquo;ll be just fine.</span>
+<a id="using-sessions"></a>
 <h3>Using Sessions</h3>
 <span>Because your program can&rsquo;t tell what variables were set in other programs&mdash;or even what values the same program set the previous time it ran&mdash;you&rsquo;ll sometimes want to track what your users are doing from one web page to another. You can do this by setting hidden fields in a form, as seen in Chapter 10, and checking the value of the fields after the form is submitted, but PHP provides a much more powerful and simpler solution in the form of sessions. These are groups of variables that are stored on the server but relate only to the current user. To ensure that the right variables are applied to the right users, PHP saves a cookie in the users&rsquo; web browsers to uniquely identify them.</span>
 <br/>
 <span>This cookie has meaning only to the web server and cannot be used to ascertain any information about a user. You might ask about those users who have their cookies turned off. Well, that&rsquo;s not a problem as of PHP 4.2.0, because it will identify when this is the case and place a cookie token in the Get portion of each URL request instead. Either way, sessions provide a solid way of keeping track of your users.</span>
+<a id="starting-a-session"></a>
 <h4>Starting a Session</h4>
 <span>Starting a session requires calling the PHP function session_start before any HTML has been output, similarly to how cookies are sent during header exchanges. Then, to begin saving session variables, you just assign them as part of the $_SESSION array, like this:</span>
 <pre><code class="php">$_SESSION['variable'] = $value;</code></pre>
@@ -454,6 +464,7 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 <span>If $_SESSION['username'] has not been assigned a value, no session is active, so the last line of code in Example 12-6 directs users to the login page at authenticate2.php.</span>
 <br/>
 <span>The continue.php program prints back the value of the user&rsquo;s password to show you how session variables work. In practice, you already know that the user is logged in, so you shouldn&rsquo;t need to keep track of (or display) any passwords, and in fact doing so would be a security risk.</span>
+<a id="ending-a-session"></a>
 <h4>Ending a Session</h4>
 <span>When the time comes to end a session, usually when a user requests to log out from your site, you can use the session_destroy function in association, as in Example 12-7. That example provides a useful function for totally destroying a session, logging a user out, and unsetting all session variables.</span>
 <br/>
@@ -502,6 +513,7 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 </code>
 </pre>
 <span>The first time you navigate from authenticate2.php to continue.php, it will display all the session variables. But, because of the call to destroy_session_and_data, if you then click your browser&rsquo;s Reload button, the session will have been destroyed and you&rsquo;ll be prompted to return to the login page.</span>
+<a id="setting-a-time-out"></a>
 <h4>Setting a Time-Out</h4>
 <span>There are other times when you might wish to close a user&rsquo;s session yourself, such as when the user has forgotten or neglected to log out, and you want the program to do so for her for her own security. You do this by setting the time-out after which a logout will automatically occur if there has been no activity.</span>
 <br/>
@@ -509,8 +521,10 @@ $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database)
 <pre><code class="php">ini_set('session.gc_maxlifetime', 60 * 60 * 24);</code></pre>
 <span>If you wish to know what the current time-out period is, you can display it using the following:</span>
 <pre><code class="php">echo ini_get('session.gc_maxlifetime');</code></pre>
+<a id="session-security"></a>
 <h4>Session Security</h4>
 <span>Although I mentioned that once you had authenticated a user and set up a session, you could safely assume that the session variables were trustworthy, this isn&rsquo;t exactly the case. The reason is that it&rsquo;s possible to use &nbsp;packet sniffing &nbsp;(sampling of data) to discover session IDs passing across a network. Additionally, if the session ID is passed in the Get part of a URL, it might appear in external site server logs. The only truly secure way of preventing these from being discovered is to implement Secure Sockets Layer (SSL) and run HTTPS instead of HTTP web pages. That&rsquo;s beyond the scope of this book, although you may like to take a look at http://apache-ssl.org for details on setting up a secure web server.</span>
+<a id="preventing-session-hijacking"></a>
 <h6>Preventing session hijacking</h6>
 <span>When SSL is not a possibility, you can further authenticate users by storing their IP address along with their other details by adding a line such as the following when you store their session:</span>
 <pre><code class="php">$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];</code></pre>
@@ -534,6 +548,7 @@ $_SERVER['HTTP_USER_AGENT']);
     $_SERVER['HTTP_USER_AGENT'])) different_user();
 </code>
 </pre>
+<a id="preventing-session-fixation"></a>
 <h6>Preventing session fixation</h6>
 <span>Session fixation &nbsp;happens when a malicious user tries to present a session ID to the server rather than letting the server create one. It can happen when a user takes advantage of the ability to pass a session ID in the Get part of a URL, like this:</span>
 <br/>
@@ -582,10 +597,12 @@ $_SERVER['HTTP_USER_AGENT']);
 </code>
 </pre>
 <span>This way, an attacker can come back to your site using any of the session IDs that he or she generated, but none of them will call up another user&rsquo;s session, as they will all have been replaced with regenerated IDs. If you want to be ultra-paranoid, you can even regenerate the session ID on each request.</span>
+<a id="forcing-cookie-only-sessions"></a>
 <h6>Forcing cookie-only sessions</h6>
 <span>If you are prepared to require your users to enable cookies on your website, you can use the ini_set function, like this:</span>
 <pre><code class="php">ini_set('session.use_only_cookies', 1);</code></pre>
 <span>With that setting, the ?PHPSESSID= trick will be completely ignored. If you use this security measure, I also recommend that you inform your users that your site requires cookies, so they know what&rsquo;s wrong if they don&rsquo;t get the results they want.</span>
+<a id="using-a-shared-server"></a>
 <h6>Using a shared server</h6>
 <span>On a server shared with other accounts, you will not want to have all your session data saved into the same directory as theirs. Instead, you should choose a directory to which only your account has access (and that is not web-visible) to store your sessions, by placing an ini_set call near the start of a program, like this:</span>
 <pre><code class="php">ini_set('session.save_path', '/home/user/myaccount/sessions');</code></pre>

@@ -2,8 +2,10 @@
 layout: default
 title: "Expressions and Control Flow in JavaScript"
 ---
+<a id="expressions-and-control-flow-in-javascript"></a>
 <h2>Expressions and Control Flow in JavaScript</h2>
 <span>In the previous chapter, I introduced the basics of JavaScript and the DOM. Now it&rsquo;s time to look at how to construct complex expressions in JavaScript and how to control the program flow of your scripts by using conditional statements.</span>
+<a id="expressions"></a>
 <h3>Expressions</h3>
 <span>JavaScript expressions are very similar to those in PHP. As you learned in Chapter 4, an expression is a combination of values, variables, operators, and functions that results in a value; the result can be a number, a string, or a Boolean value (which evaluates to either true or false ).</span>
 <br/>
@@ -41,6 +43,7 @@ if (1 == TRUE) document.write('TRUE') // Will cause an error
 </code>
 </pre>
 <span>Remember that any code snippets you wish to type and try for yourself in an HTML file need to be enclosed within &lt;script&gt; and &lt;/script&gt; tags.</span>
+<a id="literals-and-variables"></a>
 <h3>Literals and Variables</h3>
 <span>The simplest form of an expression is a literal, which means something that evaluates to itself, such as the number 22 or the string Press Enter. An expression could also be a variable, which evaluates to the value that has been assigned to it. They are both types of expressions, because they return a value.</span>
 <br/>
@@ -84,6 +87,7 @@ e: 24
 &lt;/script&gt;
 </code>
 </pre>
+<a id="operators"></a>
 <h3>Operators</h3>
 <span>JavaScript offers a lot of powerful operators that range from arithmetic, string, and logical operators to assignment, comparison, and more (see Table 14-1 ).</span>
 <br/>
@@ -142,6 +146,7 @@ e: 24
 <span>&bull; Binary &nbsp;operators, which represent the bulk of JavaScript operators&mdash;including addition, subtraction, multiplication, and division&mdash;take two operands.</span>
 <br/>
 <span>&bull; One &nbsp;ternary &nbsp;operator, which takes the form ? x : y. It&rsquo;s a terse single-line if statement that chooses between two expressions depending on a third one.</span>
+<a id="operator-precedence"></a>
 <h4>Operator Precedence</h4>
 <span>As with PHP, JavaScript utilizes operator precedence, in which some operators in an expression are considered more important than others and are therefore evaluated first. Table 14-2 lists JavaScript&rsquo;s operators and their precedencies.</span>
 <br/>
@@ -212,6 +217,7 @@ e: 24
         <td>Separator</td>
     </tr>
 </table>
+<a id="associativity"></a>
 <h4>Associativity</h4>
 <span>Most JavaScript operators are processed in order from left to right in an equation. But some operators require processing from right to left instead. The direction of processing is called the operator&rsquo;s associativity.</span>
 <br/>
@@ -277,8 +283,10 @@ e: 24
         <td>Left</td>
     </tr>
 </table>
+<a id="relational-operators"></a>
 <h4>Relational Operators</h4>
 <span>Relational operators test two operands and return a Boolean result of either true or false. There are three types of relational operators: equality, comparison, and logical.</span>
+<a id="equality-operators"></a>
 <h6>Equality operators</h6>
 <span>The equality operator is == (which should not be confused with the = assignment operator). In Example 14-4, the first statement assigns a value, and the second tests it for equality. As it stands, nothing will be printed out, because month is assigned the string value July, and therefore the check for it having a value of October will fail.</span>
 <br/>
@@ -309,6 +317,7 @@ e: 24
 <span>In contrast, the second if statement uses the identity operator, three equals signs in a row, which prevents JavaScript from automatically converting types. This means that a and b are therefore found to be different, so nothing is output.</span>
 <br/>
 <span>As with forcing operator precedence, whenever you&rsquo;re in doubt about how JavaScript will convert operand types, you can use the identity operator to turn this behavior off.</span>
+<a id="comparison-operators"></a>
 <h6>Comparison operators</h6>
 <span>Using comparison operators, you can test for more than just equality and inequality. JavaScript also gives you &gt; (is greater than), &lt; (is less than), &gt;= (is greater than or equal to), and &lt;= (is less than or equal to) to play with. &nbsp;Example 14-6 &nbsp;shows these operators in use.</span>
 <br/>
@@ -331,6 +340,7 @@ a is less than b
 a is less than or equal to b
 </code>
 </pre>
+<a id="logical-operators"></a>
 <h6>Logical operators</h6>
 <span>Logical operators produce true-or-false results, and are also known as Boolean operators. There are three of them in JavaScript (see Table 14-4 ).</span>
 <br/>
@@ -430,6 +440,7 @@ a is less than or equal to b
         <td>false</td>
     </tr>
 </table>
+<a id="the-with-statement"></a>
 <h3>The with Statement</h3>
 <span>The with statement is not one that you&rsquo;ve seen in earlier chapters on PHP, because it&rsquo;s exclusive to JavaScript. With it (if you see what I mean), you can simplify some types of JavaScript statements by reducing many references to an object to just one reference. References to properties and methods within the with block are assumed to apply to that object.</span>
 <br/>
@@ -453,6 +464,7 @@ a is less than or equal to b
 <span>The string is 43 characters In upper case it's: THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG</span>
 <br/>
 <span>This is how the code works: the JavaScript interpreter recognizes that the length property and toUpperCase() method have to be applied to some object. Because they stand alone, the interpreter assumes they apply to the string object that you specified in the with statement.</span>
+<a id="using-onerror"></a>
 <h3>Using onerror</h3>
 <span>There are more constructs not available in PHP. Using either the onerror event, or a combination of the try and catch keywords, you can catch JavaScript errors and deal with them yourself.</span>
 <br/>
@@ -483,6 +495,7 @@ a is less than or equal to b
 <span>Then, to test the new function, we deliberately place a syntax error in the code with a call to document.writ instead of document.write (the final e is missing). Figure 14-1 shows the result of running this script in a browser. Using onerror this way can also be quite useful during the debugging process.</span>
 <p><img src="images/14.1.png"/></p>
 <span>Figure 14-1. Using the onerror event with an alert method pop-up</span>
+<a id="using-try-catch"></a>
 <h3>Using try...catch</h3>
 <span>The try and catch keywords are more standard and more flexible than the onerror technique shown in the previous section. These keywords let you trap errors for a selected section of code, rather than all scripts in a document. However, they do not catch syntax errors, for which you need onerror.</span>
 <br/>
@@ -514,8 +527,10 @@ finally
 }
 </code>
 </pre>
+<a id="conditionals"></a>
 <h3>Conditionals</h3>
 <span>Conditionals alter program flow. They enable you to ask questions about certain things and respond to the answers you get in different ways. There are three types of nonlooping conditionals: the if statement, the switch statement, and the ? operator.</span>
+<a id="the-if-statement"></a>
 <h4>The if Statement</h4>
 <span>Several examples in this chapter have already made use of if statements. The code within such a statement is executed only if the given expression evaluates to true. Multiline if statements require curly braces around them, but as in PHP, you can omit the braces for single statements. Therefore, the following statements are valid:</span>
 <pre>
@@ -529,6 +544,7 @@ if (a &gt; 100)
 if (b == 10) document.write("b is equal to 10")
 </code>
 </pre>
+<a id="the-else-statement"></a>
 <h4>The else Statement</h4>
 <span>When a condition has not been met, you can execute an alternative by using an else statement, like this:</span>
 <pre>
@@ -568,6 +584,7 @@ else if(a &lt; 100) document.write("a is less than 100")
 else document.write("a is equal to 100")
 </code>
 </pre>
+<a id="the-switch-statement"></a>
 <h4>The switch Statement</h4>
 <span>The switch statement is useful when one variable or the result of an expression can have multiple values, and you want to perform a different function for each value.</span>
 <br/>
@@ -619,14 +636,17 @@ switch (page)
 </code>
 </pre>
 <span>The variable page is mentioned only once at the start of the switch statement. Thereafter, the case command checks for matches. When one occurs, the matching conditional statement is executed. Of course, a real program would have code here to display or jump to a page, rather than simply telling the user what was selected.</span>
+<a id="breaking-out"></a>
 <h6>Breaking out</h6>
 <span>As you can see in Example 14-14, just as with PHP, the break command allows your code to break out of the switch statement once a condition has been satisfied. Remember to include the break unless you want to continue executing the statements under the next case.</span>
+<a id="default-action"></a>
 <h6>Default action</h6>
 <span>When no condition is satisfied, you can specify a default action for a switch statement by using the default keyword. Example 14-15 shows a code snippet that could be inserted into Example 14-14.</span>
 <br/>
 <span>Example 14-15. A default statement to add to Example 14-14</span>
 <br/>
 <span>default: document.write("Unrecognized selection") break</span>
+<a id="the-operator"></a>
 <h4>The ? Operator</h4>
 <span>The ternary operator ( ? ), combined with the : character, provides a quick way of doing if...else tests. With it you can write an expression to evaluate, and then follow it with a ? symbol and the code to execute if the expression is true. After that, place a : and the code to execute if the expression evaluates to false.</span>
 <br/>
@@ -646,8 +666,10 @@ switch (page)
 </pre>
 <span>The statement has been broken up into several lines for clarity, but you would be more likely to use such a statement on a single line, in this manner:</span>
 <pre><code class="javascript">size = a &lt;= 5 ? "short" : "long"</code></pre>
+<a id="looping"></a>
 <h3>Looping</h3>
 <span>Again, you will find many close similarities between JavaScript and PHP when it comes to looping. Both languages support while, do...while, and for loops.</span>
+<a id="while-loops"></a>
 <h4>while Loops</h4>
 <span>A JavaScript while loop first checks the value of an expression and starts executing the statements within the loop only if that expression is true. If it is false, execution skips over to the next JavaScript statement (if any).</span>
 <br/>
@@ -677,6 +699,7 @@ Counter: 4
 </code>
 </pre>
 <span>If the variable counter were not incremented within the loop, it is quite possible that some browsers could become unresponsive due to a never-ending loop, and the page may not even be easy to terminate with Escape or the Stop button. So be careful with your JavaScript loops.</span>
+<a id="do-while-loops"></a>
 <h4>do...while Loops</h4>
 <span>When you require a loop to iterate at least once before any tests are made, use a do...while loop, which is similar to a while loop, except that the test expression is checked only after each iteration of the loop. So, to output the first seven results in the 7 times table, you could use code such as that in Example 14-18.</span>
 <br/>
@@ -704,6 +727,7 @@ Counter: 4
 7 times 7 is 49
 </code>
 </pre>
+<a id="for-loops"></a>
 <h4>for Loops</h4>
 <span>A for loop combines the best of all worlds into a single looping construct that allows you to pass three parameters for each statement:</span>
 <br/>
@@ -732,6 +756,7 @@ Counter: 4
 <pre><code class="javascript">for (i = 1 ; i &lt; 10 ; i++, --j)</code></pre>
 <span>Or you can do both at the same time:</span>
 <pre><code class="javascript">for (i = 1, j = 1 ; i &lt; 10 ; i++, --j)</code></pre>
+<a id="breaking-out-of-a-loop"></a>
 <h4>Breaking Out of a Loop</h4>
 <span>The break command, which you&rsquo;ll recall is important inside a switch statement, is also available within for loops. You might need to use this, for example, when searching for a match of some kind. Once the match is found, you know that continuing to search will only waste time and make your visitor wait. Example 14-20 shows how to use the break command.</span>
 <br/>
@@ -756,6 +781,7 @@ Counter: 4
 <span>This script outputs the following:</span>
 <pre><code class="javascript">0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
 - Found at location 17</code></pre>
+<a id="the-continue-statement"></a>
 <h4>The continue Statement</h4>
 <span>Sometimes you don&rsquo;t want to entirely exit from a loop, but instead wish to skip the remaining statements just for this iteration of the loop. In such cases, you can use the continue command. Example 14-21 shows this in use.</span>
 <br/>
@@ -792,6 +818,7 @@ Counter: 4
 18, 19,
 </code>
 </pre>
+<a id="explicit-casting"></a>
 <h3>Explicit Casting</h3>
 <span>Unlike PHP, JavaScript has no explicit casting of types such as (int) or (float). Instead, when you need a value to be of a certain type, use one of JavaScript&rsquo;s built-in functions, shown in Table 14-6.</span>
 <br/>

@@ -2,12 +2,15 @@
 layout: default
 title: "JavaScript Functions, Objects, and Arrays"
 ---
+<a id="javascript-functions-objects-and-arrays"></a>
 <h2>JavaScript Functions, Objects, and Arrays</h2>
 <span>Just like PHP, JavaScript offers access to functions and objects. In fact, JavaScript is actually based on objects, because&mdash;as you&rsquo;ve seen&mdash;it has to access the DOM, which makes every element of an HTML document available to manipulate as an object.</span>
 <br/>
 <span>The usage and syntax are also quite similar to those of PHP, so you should feel right at home as I take you through using functions and objects in JavaScript, as well as through an in-depth exploration of array handling.</span>
+<a id="javascript-functions"></a>
 <h3>JavaScript Functions</h3>
 <span>In addition to having access to dozens of built-in functions (or methods) such as write, which you have already seen being used in document.write, you can easily create your own functions. Whenever you have a more complex piece of code that is likely to be reused, you have a candidate for a function.</span>
+<a id="defining-a-function"></a>
 <h4>Defining a Function</h4>
 <span>The general syntax for a function is shown here:</span>
 <pre>
@@ -76,6 +79,7 @@ function function_name([parameter[,...]])
 <span>Note the use of the length property, which you already encountered in the previous chapter, and also how the array displayItems.arguments is referenced using the variable j as an offset into it. I also chose to keep the function short and sweet by not surrounding the contents of the for loop in curly braces, as it contains only a single statement.</span>
 <br/>
 <span>Using this technique, you now have a function that can take as many (or as few) arguments as you like and act on each argument as you desire.</span>
+<a id="returning-a-value"></a>
 <h4>Returning a Value</h4>
 <span>Functions are not used just to display things. In fact, they are mostly used to perform calculations or data manipulation and then return a result. The function fixNames in Example 15-3 uses the arguments array (discussed in the previous section) to take a series of strings passed to it and return them as a single string. The &ldquo;fix&rdquo; it performs is to convert every character in the arguments to lowercase except for the first character of each argument, which is set to a capital letter.</span>
 <br/>
@@ -130,6 +134,7 @@ function function_name([parameter[,...]])
 <span class="t30">ixedcase</span>
 <br/>
 <span>One final reminder: the s variable created inside the function is local, and therefore cannot be accessed outside the function. By returning s in the return statement, we made its value available to the caller, which could store or use it any way it wanted. But s itself disappears at the end of the function. Although we could make a function operate on global variables (and sometimes that&rsquo;s necessary), it&rsquo;s much better to just return the values you want to preserve and let JavaScript clean up all the other variables used by the function.</span>
+<a id="returning-an-array"></a>
 <h4>Returning an Array</h4>
 <span>In Example 15-3, the function returned only one parameter, but what if you need to return multiple parameters? You can do this by returning an array, as in Example 15-4.</span>
 <br/>
@@ -163,8 +168,10 @@ words = fixNames("the", "DALLAS", "CowBoys")
 document.write(words[0] + " " + words[2])
 </code>
 </pre>
+<a id="javascript-objects"></a>
 <h3>JavaScript Objects</h3>
 <span>A JavaScript object is a step up from a variable, which can contain only one value at a time, in that objects can contain multiple values and even functions. An object groups data together with the functions needed to manipulate it.</span>
+<a id="declaring-a-class"></a>
 <h4>Declaring a Class</h4>
 <span>When creating a script to use objects, you need to design a composite of data and code called a class. Each new object based on this class is called an instance (or occurrence ) of that class. As you&rsquo;ve already seen, the data associated with an object is called its properties, while the functions it uses are called methods.</span>
 <br/>
@@ -224,6 +231,7 @@ document.write(words[0] + " " + words[2])
 </code>
 </pre>
 <span>I show you this form because you are certain to encounter it when perusing other programmers&rsquo; code.</span>
+<a id="creating-an-object"></a>
 <h4>Creating an Object</h4>
 <span>To create an instance of the class User, you can use a statement such as the following:</span>
 <pre><code class="javascript">details = new User("Wolfgang", "w.a.mozart", "composer")</code></pre>
@@ -240,6 +248,7 @@ details.password = "composer"
 <span>You can also add new properties to an object, like this:</span>
 <pre><code class="javascript">details.greeting = "Hello"</code></pre>
 <span>You can verify that adding such new properties works with the following statement: document.write(details.greeting)</span>
+<a id="accessing-objects"></a>
 <h4>Accessing Objects</h4>
 <span>To access an object, you can refer to its properties, as in the following two unrelated example statements:</span>
 <pre>
@@ -258,6 +267,7 @@ Username: w.a.mozart
 Password: composer
 </code>
 </pre>
+<a id="the-prototype-keyword"></a>
 <h4>The prototype Keyword</h4>
 <span>The prototype keyword can save you a lot of memory. In the User class, every instance will contain the three properties and the method. Therefore, if you have 1,000 of these objects in memory, the method showUser will also be replicated 1,000 times. However, because the method is identical in every case, you can specify that new objects should refer to a single instance of the method instead of creating a copy of it. So, instead of using the following in a class constructor:</span>
 <pre><code class="javascript">this.showUser = function()</code></pre>
@@ -304,6 +314,7 @@ details.showUser()
 </code>
 </pre>
 <span>You might add these lines to your script in a conditional statement (such as if ), so they run if user activities cause you to decide you need a different showUser method. After these lines run, even if the object details has been created already, further calls to details.showUser will run the new function. The old definition of showUser has been erased.</span>
+<a id="static-methods-and-properties"></a>
 <h6>Static methods and properties</h6>
 <span>When reading about PHP objects, you learned that classes can have static properties and methods as well as properties and methods associated with a particular instance of a class. JavaScript also supports static properties and methods, which you can conveniently store and retrieve from the class&rsquo;s prototype. Thus, the following statements set and read a static string from User :</span>
 <pre>
@@ -312,6 +323,7 @@ User.prototype.greeting = "Hello"
 document.write(User.prototype.greeting)
 </code>
 </pre>
+<a id="extending-javascript-objects"></a>
 <h6>Extending JavaScript objects</h6>
 <span>The prototype keyword even lets you add functionality to a built-in object. For example, suppose that you would like to add the ability to replace all spaces in a string with nonbreaking spaces in order to prevent it from wrapping around. You can do this by adding a prototype method to JavaScript&rsquo;s default String object definition, like this:</span>
 <pre>
@@ -338,13 +350,16 @@ String.prototype.trim = function()
 <span>If we break down the expression into its component parts, the two / characters mark the start and end of the expression, and the final g specifies a global search. Inside the expression, the ^\s+ part searches for one or more whitespace characters appearing at the start of the search string, while the \s+$ part searches for one or more whitespace characters at the end of the search string. The | character in the middle acts to separate the alternatives.</span>
 <br/>
 <span>The result is that when either of these expressions matches, the match is replaced with the empty string, thus returning a trimmed version of the string without any leading or trailing whitespace.</span>
+<a id="javascript-arrays"></a>
 <h3>JavaScript Arrays</h3>
 <span>Array handling in JavaScript is very similar to PHP, although the syntax is a little different. Nevertheless, given all you have already learned about arrays, this section should be relatively straightforward for you.</span>
+<a id="numeric-arrays"></a>
 <h4>Numeric Arrays</h4>
 <span>To create a new array, use the following syntax:</span>
 <pre><code class="javascript">arrayname = new Array()</code></pre>
 <span>Or you can use the shorthand form, as follows:</span>
 <pre><code class="javascript">arrayname = []</code></pre>
+<a id="assigning-element-values"></a>
 <h6>Assigning element values</h6>
 <span>In PHP, you could add a new element to an array by simply assigning it without specifying the element offset, like this:</span>
 <pre>
@@ -393,10 +408,12 @@ Element 1 = Two
 Element 2 = Three
 </code>
 </pre>
+<a id="assignment-using-the-array-keyword"></a>
 <h6>Assignment using the array keyword</h6>
 <span>You can also create an array together with some initial elements by using the Array keyword, like this:</span>
 <pre><code class="javascript">numbers = Array("One", "Two", "Three")</code></pre>
 <span>There is nothing stopping you from adding more elements afterward as well. So now you have a couple of ways you can add items to an array, and one way of referencing them, but JavaScript offers many more, which I&rsquo;ll get to shortly. But first we&rsquo;ll look at another type of array.</span>
+<a id="associative-arrays"></a>
 <h4>Associative Arrays</h4>
 <span>An associative array is one in which its elements are referenced by name rather than by numeric offset. To create an associative array, define a block of elements within curly braces. For each element, place the key on the left and the contents on the right of a colon ( : ). Example 15-9 shows how you might create an associative array to hold the contents of the &ldquo;balls&rdquo; section of an online sports equipment retailer.</span>
 <br/>
@@ -429,6 +446,7 @@ ping = Ping Pong balls, 1 doz
 </pre>
 <span>To get a specific element of an associative array, you can specify a key explicitly, in the following manner (in this case, outputting the value Soccer ball, 1 ):</span>
 <pre><code class="javascript">document.write(balls['soccer'])</code></pre>
+<a id="multidimensional-arrays"></a>
 <h4>Multidimensional Arrays</h4>
 <span>To create a multidimensional array in JavaScript, just place arrays inside other arrays. For example, to create an array to hold the details of a two-dimensional checkerboard (8&times;8 squares), you could use the code in Example 15-10.</span>
 <br/>
@@ -476,8 +494,10 @@ O O O O
 <span>You can also directly access any element within this array by using square brackets:</span>
 <pre><code class="javascript">document.write(checkerboard[7][2])</code></pre>
 <span>This statement outputs the uppercase letter O, the eighth element down and the third along&mdash;remember that array indexes start at 0, not 1.</span>
+<a id="using-array-methods"></a>
 <h4>Using Array Methods</h4>
 <span>Given the power of arrays, JavaScript comes ready-made with a number of methods for manipulating them and their data. Here is a selection of the most useful ones.</span>
+<a id="concat"></a>
 <h6>concat</h6>
 <span>The concat method concatenates two arrays, or a series of values within an array. For example, the following code outputs Banana,Grape,Carrot,Cabbage :</span>
 <pre>
@@ -497,6 +517,7 @@ more_pets = pets.concat("Rabbit", "Hamster")
 document.write(more_pets)
 </code>
 </pre>
+<a id="foreach-for-non-ie-browsers"></a>
 <h6>forEach (for non-IE browsers)</h6>
 <span>The forEach method in JavaScript is another way of achieving functionality similar to the PHP foreach keyword, but only for browsers other than Internet Explorer. To use it, you pass it the name of a function, which will be called for each element within the array. Example 15-11 shows how.</span>
 <br/>
@@ -528,9 +549,11 @@ Element at index 2 has the value Rabbit
 Element at index 3 has the value Hamster
 </code>
 </pre>
+<a id="foreach-a-cross-browser-solution"></a>
 <h6>forEach (a cross-browser solution)</h6>
 <span>Of course, as is its way, Microsoft chose not to support the forEach method, so the previous example will work only on non&ndash;Internet Explorer browsers. Therefore, until IE does support it, and to ensure cross-browser compatibility, you should use a statement such as the following instead of pets.forEach(output) :</span>
 <pre><code class="javascript">for (j = 0 ; j &lt; pets.length ; ++j) output(pets[j], j)</code></pre>
+<a id="join"></a>
 <h6>join</h6>
 <span>With the join method, you can convert all the values in an array to strings and then join them together into one large string, placing an optional separator between them. Example 15-12 shows three ways of using this method.</span>
 <br/>
@@ -553,6 +576,7 @@ Cat Dog Rabbit Hamster
 Cat : Dog : Rabbit : Hamster
 </code>
 </pre>
+<a id="push-and-pop"></a>
 <h6>push and pop</h6>
 <span>You already saw how the push method can be used to insert a value into an array. The inverse method is pop. It deletes the most recently inserted element from an array and returns it. Example 15-13 shows an example of its use.</span>
 <br/>
@@ -612,6 +636,7 @@ Popped 1
 Popped 0
 </code>
 </pre>
+<a id="using-reverse"></a>
 <h6>Using reverse</h6>
 <span>The reverse method simply reverses the order of all elements in an array. Example 15-15 shows this in action.</span>
 <br/>
@@ -627,6 +652,7 @@ Popped 0
 </pre>
 <span>The original array is modified, and the output from this script is as follows:</span>
 <pre><code class="javascript">Hockey,Baseball,Tennis,Football</code></pre>
+<a id="sort"></a>
 <h6>sort</h6>
 <span>With the sort method, you can place all elements of an array in alphabetical or other order, depending on the parameters used. Example 15-16 shows four types of sort.</span>
 <br/>

@@ -2,10 +2,12 @@
 layout: default
 title: "Using Ajax"
 ---
+<a id="using-ajax"></a>
 <h2>Using Ajax</h2>
 <span>The term &nbsp;Ajax &nbsp;was first coined in 2005. It stands for &nbsp;Asynchronous JavaScript and XML, which, in simple terms, means using a set of methods built in to JavaScript to transfer data between the browser and a server in the background. An excellent example of this technology is Google Maps (see Figure 17-1 ), in which new sections of a map are downloaded from the server when needed, without requiring a page refresh.</span>
 <br/>
 <span>Using Ajax not only substantially reduces the amount of data that must be sent back and forth, but also makes web pages seamlessly dynamic&mdash;allowing them to behave more like self-contained applications. The results are a much improved user interface and better responsiveness.</span>
+<a id="what-is-ajax"></a>
 <h3>What Is Ajax?</h3>
 <span>The beginnings of Ajax as used today started with the release of Internet Explorer 5 in 1999, which introduced a new ActiveX object, XMLHttpRequest. ActiveX is Microsoft&rsquo;s technology for signing plug-ins that install additional software to your computer. Other browser developers later followed suit, but rather than using ActiveX, they all implemented the feature as a native part of the JavaScript interpreter.</span>
 <br/>
@@ -14,6 +16,7 @@ title: "Using Ajax"
 <span>So let&rsquo;s see how to implement Ajax by using JavaScript.</span>
 <p><img src="images/17.1.jpeg"/></p>
 <span>Figure 17-1. Google Maps is an excellent example of Ajax in action</span>
+<a id="using-xmlhttprequest"></a>
 <h3>Using XMLHttpRequest</h3>
 <span>Because of the differences between browser implementations of XMLHttpRequest, you must create a special function in order to ensure that your code will work on all major browsers.</span>
 <br/>
@@ -153,6 +156,7 @@ title: "Using Ajax"
 <span>These properties and methods give you control over what data you send to the server and receive back, as well as a choice of send and receive methods. For example, you can choose whether to request data in plain text (which could include HTML and other tags) or in XML format. You can also decide whether you wish to use the Post or Get method to send to the server.</span>
 <br/>
 <span>Let&rsquo;s look at the Post method first by creating a very simple pair of documents: a combination of HTML and JavaScript, and a PHP program to interact via Ajax with the first. Hopefully you&rsquo;ll enjoy these examples, because they illustrate just what Web 2.0 and Ajax are all about. With a few lines of JavaScript, they request a web document from a third-party web server, which is then returned to the browser by your server and placed within a section of the current document.</span>
+<a id="your-first-ajax-program"></a>
 <h4>Your First Ajax Program</h4>
 <span>Type and save the code in Example 17-2 as urlpost.html, but don&rsquo;t load it into your browser yet.</span><br/>
 <span>Example 17-2. urlpost.html</span><br/>
@@ -227,6 +231,7 @@ title: "Using Ajax"
 <span>Let&rsquo;s go through this document and look at what it does, starting with the first six lines, which simply set up an HTML document and display a heading. The next line creates a DIV with the ID info, containing the text This sentence will be replaced by default. Later on, the text returned from the Ajax call will be inserted here.</span>
 <br/>
 <span>The next six lines are required for making an HTTP Post Ajax request. The first sets the variable params to a parameter = value pair, which is what we&rsquo;ll send to the server. Then the Ajax object request is created. After this, the open method is called to set the object to make a Post request to urlpost.php in asynchronous mode. The last three lines in this group set up headers that are required for the receiving server to know that a Post request is coming.</span>
+<a id="the-readystate-property"></a>
 <h6>The readyState property</h6>
 <span>Now we get to the nitty-gritty of an Ajax call, which all hangs on the readyState property. The &ldquo;asynchronous&rdquo; aspect of Ajax allows the browser to keep accepting user input and changing the screen, while our program sets the onreadystatechange property to call a function of our choice each time readyState changes. In this case, a nameless (or anonymous), inline function has been used, as opposed to a separate, named function. This type of function is known as a callback function, as it is called back each time readyState changes.</span>
 <br/>
@@ -269,6 +274,7 @@ function ajaxCallback()
 <span>After that, all the preceding code is activated each time readyState changes.</span>
 <br/>
 <span>The remainder of the document is the ajaxRequest function from Example 17-1, and the closing script and HTML tags.</span>
+<a id="the-server-half-of-the-ajax-process"></a>
 <h6>The server half of the Ajax process</h6>
 <span>Now we get to the PHP half of the equation, which you can see in Example 17-3. Type it and save it as urlpost.php.</span>
 <br/>
@@ -299,6 +305,7 @@ function ajaxCallback()
 <span>Figure 17-2. The Amazon mobile website has been loaded into a DIV</span>
 <br/>
 <span>Not only have we succeeded in making an Ajax call and having a response returned to JavaScript, but we&rsquo;ve also harnessed the power of PHP to enable the merging in of a totally unrelated web object. Incidentally, if we had tried to find a way to fetch the Amazon mobile web page directly via Ajax (without recourse to the PHP server-side module), we wouldn&rsquo;t have succeeded, because there are security blocks preventing cross-domain Ajax. So this example also illustrates a handy solution to a practical problem.</span>
+<a id="using-get-instead-of-post"></a>
 <h4>Using Get Instead of Post</h4>
 <span>As with submitting any form data, you have the option of submitting your data in the form of Get requests, and you will save a few lines of code if you do so. However, there is a downside: some browsers may cache Get requests, whereas Post requests will never be cached. You don&rsquo;t want to cache a request, because the browser will just redisplay what it got the last time instead of going to the server for fresh input. The solution to this is to use a workaround that adds a random parameter to each request, ensuring that each URL requested is unique.</span>
 <br/>
@@ -401,6 +408,7 @@ function ajaxCallback()
 </code>
 </pre>
 <span>All that&rsquo;s different between this and &nbsp;Example 17-3 &nbsp;is that the references to $_POST have been replaced with $_GET. The end result of calling up &nbsp;urlget.html &nbsp;in your browser is identical to loading in urlpost.html.</span>
+<a id="sending-xml-requests"></a>
 <h4>Sending XML Requests</h4>
 <span>Although the objects we&rsquo;ve been creating are called XMLHttpRequest objects, so far we have made absolutely no use of XML. This is where the Ajax term is a bit of a misnomer, because the technology actually allows you to request any type of textual data, only one of which is XML. As you have seen, we have requested an entire HTML document via Ajax, but we could equally have asked for a text page, a string or number, or even spreadsheet data.</span>
 <br/>
@@ -507,6 +515,7 @@ function ajaxCallback()
 <br/>
 <span>However, responseXML doesn&rsquo;t simply contain a string of XML text: it is actually a complete XML document object that we can examine and parse using DOM tree methods and properties. This means it is accessible, for example, by the JavaScript getElementsByTagName method.</span>
 <br/>
+<a id="about-xml"></a>
 <h6>About XML</h6>
 <span>An XML document will generally take the form of the RSS feed shown in Example 17-8. However, the beauty of XML is that we can store this type of structure internally in a DOM tree (see Figure 17-3 ) to make it quickly searchable.</span>
 <br/>
@@ -546,9 +555,11 @@ function ajaxCallback()
 <span>Figure 17-4. Fetching a Yahoo! XML news feed via Ajax</span>
 <br/>
 <span>As with all form data, you can use either the Post or the Get method when requesting XML data; your choice will make little difference to the result.</span>
+<a id="why-use-xml"></a>
 <h6>Why use XML?</h6>
 <span>You may ask why you would use XML other than for fetching XML documents such as RSS feeds. Well, the simple answer is that you don&rsquo;t have to, but if you wish to pass structured data back to your Ajax applications, it could be a real pain to send a simple, unorganized jumble of text that would need complicated processing in JavaScript.</span>
 <br/>
 <span>Instead, you can create an XML document and pass that back to the Ajax function, which will automatically place it into a DOM tree, as easily accessible as the HTML DOM object with which you are now familiar.</span>
+<a id="using-frameworks-for-ajax"></a>
 <h4>Using Frameworks for Ajax</h4>
 <span>Now that you know how to code your own Ajax routines, you might like to investigate some of the free frameworks that are available to make it even easier, and which offer many more advanced features. In particular, I would suggest you check out jQuery, probably the most commonly used framework, and which I introduce in Chapter 21. In the following chapter, though, we&rsquo;ll look at how to apply styling to your websites with CSS.</span>

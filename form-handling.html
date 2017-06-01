@@ -2,10 +2,12 @@
 layout: default
 title: "Form Handling"
 ---
+<a id="form-handling"></a>
 <h2>Form Handling</h2>
 <span>The main way that website users interact with PHP and MySQL is through the use of HTML forms. These were introduced very early on in the development of the World Wide Web in 1993&mdash;even before the advent of ecommerce&mdash;and have remained a mainstay ever since, due to their simplicity and ease of use.</span>
 <br/>
 <span>Of course, enhancements have been made over the years to add extra functionality to HTML form handling, so this chapter will bring you up to speed on state-of-the-art form handling and show you the best ways to implement forms for good usability and security. Plus, as you will see a little later on, the HTML5 specification has further improved the use of forms.</span>
+<a id="building-forms"></a>
 <h3>Building Forms</h3>
 <span>Handling forms is a multipart process. First a form is created, into which a user can enter the required details. This data is then sent to the web server, where it is interpreted, often with some error checking. If the PHP code identifies one or more fields that require reentering, the form may be redisplayed with an error message. When the code is satisfied with the accuracy of the input, it takes some action that usually involves the database, such as entering details about a purchase.</span>
 <br/>
@@ -47,6 +49,7 @@ _END;
 <span>The rest of the program just closes all the items it opened: the form, the body of the HTML document, and the PHP echo &lt;&lt;&lt;_END statement. The result of opening this program in a web browser is shown in Figure 11-1.</span>
 <p><img src="images/11.1.png"/></p>
 <span>Figure 11-1. The result of opening formtest.php in a web browser</span>
+<a id="retrieving-submitted-data"></a>
 <h3>Retrieving Submitted Data</h3>
 <span>Example 11-1 is only one part of the multipart form-handling process. If you enter a name and click the Submit Query button, absolutely nothing will happen other than the form being redisplayed. So now it&rsquo;s time to add some PHP code to process the data submitted by the form.</span>
 <br/>
@@ -83,6 +86,7 @@ _END;
 <span>Notice how the &lt;input&gt; elements in this example do not use the /&gt; form of self-closing, because in the new world of HTML5 this style is optional (and it was never actually required in HTML4 anyway; it was recommended purely because XHTML was planned to supersede HTML at some point&mdash;but this never happened). So since I&rsquo;m always in favor of less work when programming, I no longer use these characters except for actual XHTML (where this type of closing remains necessary), saving both a space and a slash for every self-closing tag.</span>
 <p><img src="images/11.2.png"/></p>
 <span>Figure 11-2. formtest.php with data handling</span>
+<a id="register-globals-an-old-solution-hangs-on"></a>
 <h4>register_globals: An Old Solution Hangs On</h4>
 <span>Before security became such a big issue, the default behavior of PHP was to assign the $_POST and $_GET arrays directly to PHP variables. For example, there would be no need to use the instruction $name=$_POST['name']; because $name would already be given that value automatically by PHP at the program start!</span>
 <br/>
@@ -93,6 +97,7 @@ _END;
 <span>In fact, because many installations on the Web still have this gaping hole, I advise you to always initialize every variable you use, just in case your code will ever run on such a system. Initialization is also good programming practice, because you can comment each initialization to remind yourself and other programmers what a variable is for.</span>
 <br/>
 <span>If you ever find yourself maintaining code that seems to assume values for certain variables for no apparent reason, you can make an educated guess that the programmer probably wrote the code using register_globals, and that these values are intended to be extracted from a Post or Get. If so, I recommend that you rewrite the code to load these variables explicitly from the correct $_POST or $_GET array.</span>
+<a id="default-values"></a>
 <h4>Default Values</h4>
 <span>Sometimes it&rsquo;s convenient to offer your site visitors a default value in a web form. For example, suppose you put up a loan repayment calculator widget on a real estate website. It could make sense to enter default values of, say, 25 years and 6 percent interest, so that the user can simply type either the principle sum to borrow or the amount that she can afford to pay each month.</span>
 <br/>
@@ -117,14 +122,17 @@ _END;
 <span>Figure 11-3. Using default values for selected form fields</span>
 <br/>
 <span>Default values are also used for hidden fields if you want to pass extra information from your web page to your program, in addition to what users enter. We&rsquo;ll look at hidden fields later in this chapter.</span>
+<a id="input-types"></a>
 <h4>Input Types</h4>
 <span>HTML forms are very versatile and allow you to submit a wide range of input types, from text boxes and text areas to checkboxes, radio buttons, and more.</span>
+<a id="text-boxes"></a>
 <h6>Text boxes</h6>
 <span>The input type you will probably use most often is the text box. It accepts a wide range of alphanumeric text and other characters in a single-line box. The general format of a text box input is as follows:</span>
 <pre><code class="html">&lt;input type="text" name="name" size="size" maxlength="length" value="value"&gt;</code></pre>
 <span>We&rsquo;ve already covered the name and value attributes, but two more are introduced here: size and maxlength. The size attribute specifies the width of the box (in characters of the current font) as it should appear on the screen, and maxlength specifies the maximum number of characters that a user is allowed to enter into the field.</span>
 <br/>
 <span>The only required attributes are type, which tells the web browser what type of input to expect, and name, for giving the input a name that will be used to process the field upon receipt of the submitted form.</span>
+<a id="text-areas"></a>
 <h6>Text areas</h6>
 <span>When you need to accept input of more than a short line of text, use a text area. This is similar to a text box, but, because it allows multiple lines, it has some different attributes. Its general format looks like this:</span>
 <pre><code class="html">&lt;textarea name="name" cols="width" rows="height" wrap="type"&gt;&lt;/textarea&gt;</code></pre>
@@ -139,6 +147,7 @@ _END;
 <span>Table 11-1. The wrap types available in a textarea input</span>
 <br/>
 <span>Type Action off Text does not wrap, and lines appear exactly as the user types them. soft Text wraps but is sent to the server as one long string without carriage returns and line feeds. hard Text wraps and is sent to the server in wrapped format with soft returns and line feeds.</span>
+<a id="checkboxes"></a>
 <h6>Checkboxes</h6>
 <span>When you want to offer a number of different options to a user, from which he can select one or more items, checkboxes are the way to go. Here is the format to use:</span>
 <pre><code class="html">&lt;input type="checkbox" name="name" value="value" checked="checked"&gt;</code></pre>
@@ -185,6 +194,7 @@ _END;
 <span>foreach($ice as $item) echo "$item&lt;br&gt;";</span>
 <br/>
 <span>This uses the standard PHP foreach construct to iterate through the array $ice and pass each element&rsquo;s value into the variable $item, which is then displayed via the echo command. The &lt;br&gt; is just an HTML formatting device to force a new line after each flavor in the display. By default, checkboxes are square.</span>
+<a id="radio-buttons"></a>
 <h6>Radio buttons</h6>
 <span>Radio buttons are named after the push-in preset buttons found on many older radios, where any previously depressed button pops back up when another is pressed. They are used when you want only a single value to be returned from a selection of two or more options. All the buttons in a group must use the same name and, because only a single value is returned, you do not have to pass an array.</span>
 <br/>
@@ -197,6 +207,7 @@ _END;
 <span>Figure 11-5. Selecting a single value with radio buttons</span>
 <br/>
 <span>Here, the second option of Noon&ndash;4pm has been selected by default. This default choice ensures that at least one delivery time will be chosen by the user, which she can change to one of the other two options if she prefers. Had one of the items not been already checked, the user might forget to select an option, and no value would be submitted at all for the delivery time. By default, radio buttons are round.</span>
+<a id="hidden-fields"></a>
 <h6>Hidden fields</h6>
 <span>Sometimes it is convenient to have hidden form fields so that you can keep track of the state of form entry. For example, you might wish to know whether a form has already been submitted. You can achieve this by adding some HTML in your PHP code, such as the following:</span>
 <br/>
@@ -209,6 +220,7 @@ _END;
 <span>Hidden fields can also be useful for storing other details, such as a session ID string that you might create to identify a user, and so on.</span>
 <br/>
 <span>Never treat hidden fields as secure&mdash;because they are not. Someone could easily view the HTML containing them by using a browser&rsquo;s View Source feature.</span>
+<a id="select"></a>
 <h6>&lt;select&gt;</h6>
 <span>The &lt;select&gt; tag lets you create a drop-down list of options, offering either single or multiple selections. It conforms to the following syntax:</span>
 <br/>
@@ -237,6 +249,7 @@ _END;
 <span>Figure 11-7. Using a select with the multiple attribute</span>
 <br/>
 <span>You can also use the selected attribute within a multiple select and can, in fact, have more than one option preselected if you wish.</span>
+<a id="labels"></a>
 <h6>Labels</h6>
 <span>You can provide an even better user experience by utilizing the &lt;label&gt; tag. With it, you can surround a form element, making it selectable by clicking any visible part contained between the opening and closing &lt;label&gt; tags.</span>
 <br/>
@@ -245,6 +258,7 @@ _END;
 <span>&lt;label&gt;8am-Noon&lt;input type="radio" name="time" value="1"&gt;&lt;/label&gt;</span>
 <br/>
 <span>The text will not be underlined like a hyperlink when you do this, but as the mouse passes over, it will change to an arrow instead of a text cursor, indicating that the whole item is clickable.</span>
+<a id="the-submit-button"></a>
 <h6>The submit button</h6>
 <span>To match the type of form being submitted, you can change the text of the submit button to anything you like by using the value attribute, like this:</span>
 <br/>
@@ -253,6 +267,7 @@ _END;
 <span>You can also replace the standard text button with a graphic image of your choice, using HTML such as this:</span>
 <br/>
 <span>&lt;input type="image" name="submit" src="image.gif"&gt;</span>
+<a id="sanitizing-input"></a>
 <h4>Sanitizing Input</h4>
 <span>Now we return to PHP programming. It can never be emphasized enough that handling user data is a security minefield, and that it is essential to learn to treat all such data with utmost caution from the word go. It&rsquo;s actually not that difficult to sanitize user input from potential hacking attempts, but it must be done.</span>
 <br/>
@@ -301,6 +316,7 @@ _END;
 <span>If you are using the procedural version of the mysqli extension, you will need to modify the sanitizeMySQL function to call the mysqli_real_escape_string function, like this (in which case $connection will then be a handle, not an object):</span>
 <br/>
 <span>$var = mysqli_real_escape_string($connection, $var);</span>
+<a id="an-example-program"></a>
 <h3>An Example Program</h3>
 <span>So let&rsquo;s look at how a real-life PHP program integrates with an HTML form by creating the program convert.php listed in Example 11-10. Type it as shown and try it for yourself.</span>
 <br/>
@@ -329,14 +345,17 @@ _END;
 <span>After outputting the HTML to close the document, we come finally to the function sanitizeString from Example 11-9. Try playing with the example by inputting different values into the fields; for a bit of fun, can you find a value for which Fahrenheit and Celsius are the same?</span>
 <br/>
 <span>All the examples in this chapter have used the Post method to send form data. I recommend this, as it&rsquo;s the neatest and most secure method. However, the forms can easily be changed to use the Get method, as long as values are fetched from the $_GET array instead of the $_POST array. Reasons to do this might include making the result of a search bookmarkable or directly linkable from another page.</span>
+<a id="what-s-new-in-html5"></a>
 <h3>What&rsquo;s New in HTML5?</h3>
 <span>With HTML5, developers can draw on a number of useful enhancements to form handling to make using forms easier than ever, including new attributes; color, date, and time pickers; and new input types&mdash;although some of these features are not yet implanted across all major browsers. The following new features, however, will work on all browsers.</span>
+<a id="the-autocomplete-attribute"></a>
 <h4>The autocomplete Attribute</h4>
 <span>You can apply the autocomplete attribute to either the &lt;form&gt; element, or to any of the color, date, email, password, range, search, tel, text, or url types of the &lt;input&gt; element.</span>
 <br/>
 <span>With autocomplete enabled, previous user inputs are recalled and automatically entered into fields as suggestions. You can also disable this feature by turning autocomplete off. Here&rsquo;s how to turn autocomplete on for an entire form but disable it for specific fields (highlighted in bold):</span>
 <br/>
 <span>&lt;form action='myform.php' method='post' autocomplete='on' &gt; &lt;input type='text' name='username'&gt; &lt;input type='password' name='password' autocomplete='off' &gt; &lt;/form&gt;</span>
+<a id="the-autofocus-attribute"></a>
 <h4>The autofocus Attribute</h4>
 <span>The autofocus attribute gives immediate focus to an element when a page loads. It can be applied to any &lt;input&gt;, &lt;textarea&gt;, or &lt;button&gt; element, like this:</span>
 <br/>
@@ -345,18 +364,21 @@ _END;
 <span>Browsers that use touch interfaces (such as Android, iOS, or Windows Phone) usually ignore the autofocus attribute, leaving it to the user to tap on a field to give it focus; otherwise, the zoom in, focusing, and pop-up keyboards this attribute would generate could quickly become very annoying.</span>
 <br/>
 <span>Because this feature will cause the focus to move in to an input element, the Backspace key will no longer take the user back a web page (although Alt-Left and Alt- Right will still move backward and forward within the browsing history).</span>
+<a id="the-placeholder-attribute"></a>
 <h4>The placeholder Attribute</h4>
 <span>The placeholder attribute lets you place into any blank input field a helpful hint to explain to users what they should enter. You use it like this:</span>
 <br/>
 <span>&lt;input type='text' name='name' size='50' placeholder='First &amp; Last name' &gt;</span>
 <br/>
 <span>The input field will display the placeholder text as a prompt until the user starts typing, at which point the placeholder will disappear.</span>
+<a id="the-required-attribute"></a>
 <h4>The required Attribute</h4>
 <span>The required attribute is used to ensure that a field has been completed before a form is submitted. You use it like this:</span>
 <br/>
 <span>&lt;input type='text' name='creditcard' required='required' &gt;</span>
 <br/>
 <span>When the browser detects attempted form submission where there&rsquo;s an uncompleted required input, a message is displayed, prompting the user to complete the field.</span>
+<a id="override-attributes"></a>
 <h4>Override Attributes</h4>
 <span>With override attributes, you can override form settings on an element-by-element basis. So, for example, using the formaction attribute, you can specify that a submit button should submit a form to a different URL than is specified in the form itself, like the following (in which the default and overridden action URLs are bold):</span>
 <br/>
@@ -365,12 +387,15 @@ _END;
 <span>HTML5 also brings support for the formenctype, formmethod, formnovalidate, and formtarget override attributes, which you can use in exactly the same manner as for maction to override one of these settings.</span>
 <br/>
 <span>The form overrides have been supported in most major browsers for a few years, but have been featured in Internet Explorer only since version 10.</span>
+<a id="the-width-and-height-attributes"></a>
 <h4>The width and height Attributes</h4>
 <span>Using these new attributes, you can alter the dimensions of an input image, like this:</span>
 <br/>
 <span>&lt;input type='image' src='picture.png' width='120' height='80' &gt;</span>
+<a id="features-awaiting-full-implementation"></a>
 <h3>Features Awaiting Full Implementation</h3>
 <span>Since HTML5 is still in its early days (even though it&rsquo;s been around for many years), browser developers have been implementing features according to their own schedules, so many parts of the specification are available only on some browsers. However, during the life of this edition, more and more of them will become available across the board, so it&rsquo;s worth mentioning what&rsquo;s coming here so that you&rsquo;ll be ready to use them sooner rather than later.</span>
+<a id="the-form-attribute"></a>
 <h4>The form Attribute</h4>
 <span>With HTML5, you no longer have to place &lt;input&gt; elements within &lt;form&gt; elements, because you can specify the form to which an input applies by supplying a form attribute. The following code shows a form being created, but with its input outside of the &lt;form&gt; and &lt;/form&gt; tags:</span>
 <br/>
@@ -379,34 +404,40 @@ _END;
 <span>To do this, you must give the form an ID using the id attribute, and this is the ID to which the form attribute of an input element must refer.</span>
 <br/>
 <span>At the time of writing, this attribute is unsupported by Internet Explorer.</span>
+<a id="the-list-attribute"></a>
 <h4>The list Attribute</h4>
 <span>HTML5 supports attaching lists to inputs to enable users to easily select from a predefined list. But, at the time of writing, only Firefox, Chrome, Safari, and IE support the list attribute. Nevertheless, once Opera picks it up, it will be a very handy feature, which you&rsquo;ll be able to use like this:</span>
 <br/>
 <span>Select destination: &lt;input type='url' name='site' list='links' &gt; &lt; datalist id='links' &gt; &lt;option label='Google' value='http://google.com'&gt; &lt;option label='Yahoo!' value='http://yahoo.com'&gt; &lt;option label='Bing' value='http://bing.com'&gt; &lt;option label='Ask' value='http://ask.com'&gt; &lt; /datalist &gt;</span>
+<a id="the-min-and-max-attributes"></a>
 <h4>The min and max Attributes</h4>
 <span>With the min and max attributes, you can specify minimum and maximum values for inputs, but currently not in Firefox or IE. You use the attributes like this:</span>
 <br/>
 <span>&lt;input type='time' name='alarm' value='07:00' min='05:00' max='09:00' &gt;</span>
 <br/>
 <span>The browser will then either offer up and down selectors for the range of values allowed, or simply disallow values outside of that range. In tests, however, I have found this attribute to be flaky in some implementations, and suggest you fully test before implementing this feature, even when it is available on all browsers.</span>
+<a id="the-step-attribute"></a>
 <h4>The step Attribute</h4>
 <span>Often used with min and max, the step attribute supports stepping through number or date values, like this:</span>
 <br/>
 <span>&lt;input type='time' name='meeting' value='12:00' min='09:00' max='16:00' step='3600' &gt;</span>
 <br/>
 <span>When you are stepping through date or time values, each unit represents 1 second. This attribute is not yet supported by Firefox or IE.</span>
+<a id="the-color-input-type"></a>
 <h4>The color Input Type</h4>
 <span>The color input type calls up a color picker so that you can simply click the color of your choice. You use it like this:</span>
 <br/>
 <span>Choose a color &lt;input type='color' name='color'&gt;</span>
 <br/>
 <span>Neither Firefox nor IE supports this input type at the time of writing.</span>
+<a id="the-number-and-range-input-types"></a>
 <h4>The number and range Input Types</h4>
 <span>The number and range input types restrict input to either a number or a number within a specified range, like this:</span>
 <br/>
 <span>&lt;input type='number' name='age'&gt; &lt;input type='range' name='num' min='0' max='100' value='50' step='1'&gt;</span>
 <br/>
 <span>Firefox does not appear to support the number input type at the time of writing.</span>
+<a id="date-and-time-pickers"></a>
 <h4>Date and Time Pickers</h4>
 <span>When you choose an input type of date, month, week, time, datetime, or datetime- local, a picker will pop up on supported browsers from which the user can make a selection, like this one, which inputs the time:</span>
 <br/>
